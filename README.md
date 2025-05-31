@@ -17,4 +17,4 @@ The results of the experiment can be found in the `Experiment` folder.
 3. The results of of DeFi Staking Model on the ground truth dataset can be found in the `groundTruth/2_model` folder.
 
 ## SSR
-The source code of SSR can be found in the `SSR` folder.
+The source code of SSR can be found in the `ssr` folder.
