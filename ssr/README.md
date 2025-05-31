@@ -17,5 +17,8 @@ pip install -r ./requirements.txt
 
 ## Usage
 ```console
-python ./ssr/defects_identifier.py ./examples/sportsDAO.sol
+python ./ssr/defects_identifier.py $your_folder_path$/examples/sportsDAO.sol
 ```
+Note: 
+The input should be the absolute path of the contract to be analyzed.
+And the analysis results will be outputted to the same folder of the contract.

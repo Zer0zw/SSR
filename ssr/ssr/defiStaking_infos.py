@@ -282,7 +282,7 @@ def get_defiStaking_infos_singleProject_mainContract(project_name, contract_fold
     if defiStaking_info_dict != {}:
         # print("Outputting DeFi Staking information...")
         # 确保目录存在
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        # os.makedirs(os.path.dirname(output_folder_path), exist_ok=True)
         # 打开文件并将字典数据写入文件
         with open(output_path, 'w') as f:
             json.dump(defiStaking_info_dict, f, ensure_ascii=False, indent=4)

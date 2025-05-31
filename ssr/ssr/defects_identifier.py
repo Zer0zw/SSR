@@ -2,6 +2,7 @@ import json
 import os
 import sys
 import logging
+import argparse
 
 from slither.slither import Slither
 from typing import List, Tuple
@@ -28,6 +29,7 @@ from inter.solc_reader import setup_global_solc
 from tqdm import tqdm
 
 from defiStaking_model import read_defiStaking_Infos, construct_defiStaking_model, output_defiStaking_model_to_json
+from defiStaking_infos import get_defiStaking_infos_singleProject_mainContract
 
 from inter.contract_analyzer import SSR_Variable
 from inter.contract_analyzer import get_MainContract
@@ -1968,186 +1970,111 @@ def defects_identifier_singleProject(project_name, _contract_folder_path, _defiS
     # except:
     #     logger.error(f"Failed to Calculate DeFi Staking Defects Metrics for Project: {project_name}")
 
+def defects_identifier_singleContract(_contract_path):
+    # 读取DeFi Staking合约信息
+    _contract_name = os.path.basename(_contract_path).split(".")[0]
+    _contract_folder_path = os.path.dirname(_contract_path)
 
+    _defiStaking_Infos_folder_path = _contract_folder_path + "/" + _contract_name + "_outputs/defiStaking_infos"
+    _defiStaking_model_folder_path = _contract_folder_path + "/" + _contract_name + "_outputs/defiStaking_model"
+    _defects_folder_path = _contract_folder_path + "/" + _contract_name + "_outputs/logical_defects"
 
+    if not os.path.exists(_defiStaking_Infos_folder_path):
+        os.makedirs(_defiStaking_Infos_folder_path)
+        print(f"Created directory: {_defiStaking_Infos_folder_path}")
 
-if __name__ == "__main__":
-    # ******************************************************************************
-    # groundTruth
-    # ******************************************************************************  
-    # # 检测在一个文件夹下的所有sol文件
-    # target_sol_folder_path = "/mnt/linzw3/work/defistaking/1_Datasets/groundTruth"
-    # project_name_list = contract_analyzer.get_projectNams_from_folder(target_sol_folder_path)
+    if not os.path.exists(_defiStaking_model_folder_path):
+        os.makedirs(_defiStaking_model_folder_path)
+        print(f"Created directory: {_defiStaking_model_folder_path}")
 
-    # # LLM提取的DeFi Staking合约信息路径的json文件路径
-    # defiStaking_Infos_folder_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/2_model/infos"
+    if not os.path.exists(_defects_folder_path):
+        os.makedirs(_defects_folder_path)
+        print(f"Created directory: {_defects_folder_path}")
+
+    _defiStaking_Infos_path = os.path.join(_defiStaking_Infos_folder_path, _contract_name + ".json")
+    _defiStaking_model_path = os.path.join(_defiStaking_model_folder_path, _contract_name + ".json")
+    _output_defects_path = os.path.join(_defects_folder_path + "/defects", _contract_name + ".json")
+
+    # _defiStaking_Infos_dict = read_defiStaking_Infos(_defiStaking_Infos_path)
+
+    # 验证合约源码文件是否存在
+    if not os.path.exists(_contract_path):
+        logger.error(f"Contract file not found: {_contract_path}")
+        raise FileNotFoundError(f"Contract file not found: {_contract_path}")
     
-    # # 构建的DeFi Staking模型的json文件路径
-    # defiStaking_model_folder_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/2_model/model"
+    # 验证该项目的DeFi Staking Defects是否已经检测过了，省时间
+    if os.path.exists(_output_defects_path):
+        logger.info(f"DeFi Staking Defects already exists: {_contract_name}")
+        raise RuntimeError(f"DeFi Staking Defects already exists: {_contract_name}")
     
-    # # 合约路径
-    # contract_folder_path = "/mnt/linzw3/work/defistaking/1_Datasets/groundTruth"
-
-    # # 输出漏洞检测结果的路径
-    # output_folder_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/3_defects"
-
-    # # metrics_folder_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/4_metrics/groundTruth"
-    # # groundTruth_metrics_json_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/4_metrics/groundTruth_metrics.json"
-
-    # ***************************************************************
-    # Single Project
-    # ***************************************************************
-    # project_name = "PopsicleFinance"
-
-    # contract_path = "/mnt/linzw3/work/defistaking/1_Datasets/groundTruth/" + project_name + ".sol"
-    # setup_global_solc(contract_path)
-    # slither_obj = Slither(contract_path)
-    # main_contract = get_MainContract(slither_obj)
-
-    # defiStaking_model_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/2_model/model/" + project_name + ".json"
-    # defiStaking_Infos_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/2_model/infos/" + project_name + ".json"
-    # defiStaking_Infos_dict = read_defiStaking_Infos(defiStaking_Infos_path)
-    # defiStaking_model_dict = construct_defiStaking_model(slither_obj, defiStaking_Infos_dict, contract_path)
-
-    # output_model_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/2_model/model/" + project_name + ".json" 
-    # output_defiStaking_model_to_json(defiStaking_model_dict, output_model_path)
-    # defiStaking_model_dict_read = read_defiStaking_model(slither_obj,output_model_path, contract_path)
-
-    # defects_dict = detect_defects(main_contract, defiStaking_model_dict_read, contract_path)
-
-    # output_defects(defects_dict, "/mnt/linzw3/work/defistaking/SSR/temp", project_name)
+    setup_global_solc(_contract_path)
+    # 验证合约是否可被Slither分析
+    if not contract_analyzer.is_contract_analyzable(_contract_path):
+        logger.info(f"Contract is not analyzable by Slither: {_contract_name}")
+        raise RuntimeError(f"Contract is not analyzable by Slither: {_contract_name}")
     
-    # defects_identifier_singleProject(project_name, contract_folder_path, defiStaking_Infos_folder_path, defiStaking_model_folder_path, output_folder_path)
+    slither_obj = Slither(_contract_path)
 
-    # ***************************************************************
-    # Multiple Projects
-    # ***************************************************************
+    if os.path.exists(_defiStaking_Infos_path):
+        try:
+            _defiStaking_Infos_dict = read_defiStaking_Infos(_defiStaking_Infos_path)
+        except:
+            logger.error(f"Failed to Read DeFi Staking Infos for Project: {_contract_name}")
+    else:
+        try: 
+            get_defiStaking_infos_singleProject_mainContract(_contract_name, _contract_folder_path, _defiStaking_Infos_folder_path)
+            _defiStaking_Infos_dict = read_defiStaking_Infos(_defiStaking_Infos_path)
+            logger.info(f"DeFi Staking Infos Extracted for Project: {_contract_name}")
+        except:
+            logger.error(f"Failed to Extract DeFi Staking Infos for Project: {_contract_name}")
 
-    # for project_name in tqdm(project_name_list):
-    #     print("Analying project: ", project_name)
-    #     try:
-    #         defects_identifier_singleProject(project_name, contract_folder_path, defiStaking_Infos_folder_path, defiStaking_model_folder_path, output_folder_path)
-    #     except:
-    #         pass
+    # 读取DeFi Staking模型
+    # 如何模型信息已经存在，则直接读取，否则，构造模型
+    if os.path.exists(_defiStaking_model_path):
+        try:
+            _defiStaking_model_dict_read = read_defiStaking_model(slither_obj, _defiStaking_model_path, _contract_path)
+        except:
+            logger.error(f"Failed to Read DeFi Staking Model for Project: {_contract_name}")
+          
+    else:
+        try:
+            _defiStaking_model_dict = construct_defiStaking_model(slither_obj, _defiStaking_Infos_dict, _contract_path)
+            logger.info(f"DeFi Staking Model Constructed for Project: {_contract_name}")
+            _defiStaking_model_dict_read = _defiStaking_model_dict
+        except:
+            logger.error(f"Failed to Construct DeFi Staking Model for Project: {_contract_name}")
 
-    # print("The number of projects to be analyzed: ", contract_analyzer.count_files_in_directory(contract_folder_path))
-    # print("The number of projects analyzed: ", contract_analyzer.count_files_in_directory(output_folder_path + "/defects"))
+        # 输出DeFi Staking模型
+        try:
+            # _output_model_folder_path = "/mnt/linzw3/work/defistaking/3_Experiment/groundTruth/2_model/model"
+            _output_model_path = os.path.join(_defiStaking_model_folder_path, _contract_name + ".json")
+            output_defiStaking_model_to_json(_defiStaking_model_dict, _output_model_path)
+            logger.info(f"DeFi Staking Model Outputted for Project: {_contract_name}")
+        except:
+            logger.error(f"Failed to Output DeFi Staking Model for Project: {_contract_name}")
+
+    # DeFi Staking漏洞检测
+    _main_contract = get_MainContract(slither_obj)
+    defects_dict = detect_defects(_main_contract, _defiStaking_model_dict_read, _contract_path)
+    logger.info(f"DeFi Staking Defects Identified for Project: {_contract_name}")
+
+    # 输出DeFi Staking漏洞检测结果
+    try:
+        output_defects(defects_dict, _defects_folder_path, _contract_name)
+        logger.info(f"DeFi Staking Defects Outputted for Project: {_contract_name}")
+    except:
+        logger.error(f"Failed to Output DeFi Staking Defects for Project: {_contract_name}")
 
 
-    # ***************************************************************
-    # largeScale
-    # ***************************************************************
 
-    # ***************************************************************
-    # Multiple Projects
-    # ***************************************************************
-    # 待分析的公链名称
-    chain_name_list = [
-        "ethereum",
-        "bsc",
-        "arbitrum",
-        "avalanche",
-        "celo",
-        "fantom",
-        "optimism",
-        "polygon",
-        "tron"
-    ]
-
-    contract_folder_path = "/mnt/linzw3/work/defistaking/1_Datasets/largeScale/final"
-    defiStaking_Infos_folder_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/1_model/infos"
-    defiStaking_model_folder_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/1_model/model"
-    output_folder_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/2_defects"
-
-    for chain_name in chain_name_list:
-        # 更新每个公链对应的路径信息
-        defiStaking_Infos_folder_path_perChain = os.path.join(defiStaking_Infos_folder_path, chain_name)
-        defiStaking_model_folder_path_perChain = os.path.join(defiStaking_model_folder_path, chain_name)
-        contract_folder_path_perChain = os.path.join(contract_folder_path, chain_name)
-        output_folder_path_perChain = os.path.join(output_folder_path, chain_name)
-
-        # 获取该公链下所有项目名称
-        files = os.listdir(defiStaking_Infos_folder_path_perChain)
-        project_name_list_perChain = [os.path.splitext(file)[0] for file in files if file.endswith('.json')]
-
-        for project_name in tqdm(project_name_list_perChain):
-            print("Analying project: ", project_name)
-            try:
-                defects_identifier_singleProject(project_name, contract_folder_path_perChain, defiStaking_Infos_folder_path_perChain, defiStaking_model_folder_path_perChain, output_folder_path_perChain)
-            except:
-                pass
-            
-
-    # ***************************************************************
-    # Single Project
-    # ***************************************************************
-    # chain_name = "ethereum"
-    # contract_name = "c1fb414ef8767e1a6460bf4ec1c7e9eb46699960_HOStaking"
+if __name__ == "__main__": 
+    parser = argparse.ArgumentParser(description="DeFi Staking Logical Defects Identifier")
+    parser.add_argument("contract_path", type=str, help="The Absolute Path of the Contract to be Analyzed")
     
+    args = parser.parse_args()
+    contract_path = args.contract_path
 
-    # contract_path = "/mnt/linzw3/work/defistaking/1_Datasets/largeScale/final/" + chain_name + "/" + contract_name + ".sol"
-    # setup_global_solc(contract_path)
-    # slither_obj = Slither(contract_path)
-    # main_contract = get_MainContract(slither_obj)
-
-    # defiStaking_model_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/1_model/model/" + chain_name + "/" + contract_name + ".json"
-    # defiStaking_Infos_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/1_model/infos/" + chain_name + "/" + contract_name + ".json"
-    # defiStaking_Infos_dict = read_defiStaking_Infos(defiStaking_Infos_path)
-    # defiStaking_model_dict = construct_defiStaking_model(slither_obj, defiStaking_Infos_dict, contract_path)
-
-    # output_model_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/1_model/model/" + chain_name + "/" + contract_name + ".json"  
-    # output_defiStaking_model_to_json(defiStaking_model_dict, output_model_path)
-    # defiStaking_model_dict_read = read_defiStaking_model(slither_obj,output_model_path, contract_path)
-
-    # defects_dict = detect_defects(main_contract, defiStaking_model_dict_read, contract_path)
-
-    # output_defects(defects_dict, "/mnt/linzw3/work/defistaking/SSR/temp", contract_name)
-
-
-    # **************************************************************
-    # Test
-    # ***************************************************************
-    # # files = os.listdir(defiStaking_Infos_folder_path + "/analyzable/ethereum")
-    # # project_name_list_perChain = [os.path.splitext(file)[0] for file in files if file.endswith('.json')]
-    # # project_name = project_name_list_perChain[7]
-
-    # # contract_path = os.path.join(contract_folder_path + "/analyzable/ethereum", project_name + ".sol")
-    # contract_path = "/mnt/linzw3/work/defistaking/1_Datasets/largeScale/final/ethereum/b6dbc8dfac6ae4b7946d28c19c0dbf9e97c937d7_ShijaStake.sol"
-    # setup_global_solc(contract_path)
-    # slither_obj = Slither(contract_path)
-    # main_contract = get_MainContract(slither_obj)
-
-    # # defiStaking_model_path = os.path.join(defiStaking_model_folder_path, project_name + ".json")
-    # defiStaking_model_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/1_model/model/ethereum/b6dbc8dfac6ae4b7946d28c19c0dbf9e97c937d7_ShijaStake.json"
-    # # defiStaking_model_dict_read = read_defiStaking_model(slither_obj, defiStaking_model_path, contract_path)
-    # # defiStaking_Infos_path = os.path.join(defiStaking_Infos_folder_path + "/analyzable/ethereum", project_name + ".json")
-    # defiStaking_Infos_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/1_model/infos/ethereum/b6dbc8dfac6ae4b7946d28c19c0dbf9e97c937d7_ShijaStake.json"
-    # defiStaking_Infos_dict = read_defiStaking_Infos(defiStaking_Infos_path)
-    # defiStaking_model_dict = construct_defiStaking_model(slither_obj, defiStaking_Infos_dict, contract_path)
-    # # defiStaking_model_dict_read = defiStaking_model_dict
-
-    # # output_model_path = os.path.join(defiStaking_model_folder_path + "/analyzable/ethereum", project_name + ".json")
-    # output_model_path = "/mnt/linzw3/work/defistaking/3_Experiment/largeScale/1_model/model/ethereum/b6dbc8dfac6ae4b7946d28c19c0dbf9e97c937d7_ShijaStake.json"
-    # output_defiStaking_model_to_json(defiStaking_model_dict, output_model_path)
-    # defiStaking_model_dict_read = read_defiStaking_model(slither_obj,output_model_path, contract_path)
-
-    # defects_dict = detect_defects(main_contract, defiStaking_model_dict_read, contract_path)
-
-    # # output_defects(defects_dict, output_folder_path + "/analyzable/ethereum", project_name)
-    # output_defects(defects_dict, "/mnt/linzw3/work/defistaking/SSR/temp", "b6dbc8dfac6ae4b7946d28c19c0dbf9e97c937d7_ShijaStake")
-
-    # print("testing...")
-    # for func in main_contract.functions:
-    #     if func.name == "unstakeSUF":
-    #         func_unstakeSUF = func
-
-    # modifyTime_nodeAndTime_list = get_nodes_directly_modify_time(main_contract, func_unstakeSUF, defiStaking_model_dict, contract_path)
-
-
-    
-    
-
-    
+    defects_identifier_singleContract(contract_path)
 
 
     print("aha!")
