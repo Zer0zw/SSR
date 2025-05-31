@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.received"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "tge",
+                "Node": "_stake[msg.sender].received  = _stake[msg.sender].amount * 5 / 100"
+            },
+            {
+                "Function": "cliam",
+                "Node": "_stake[msg.sender].received += reci"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "ended",
+                "Node": "tokens.transfer(msg.sender, tokens.balanceOf(address(this)))"
+            },
+            {
+                "Function": "end",
+                "Node": "tokens.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

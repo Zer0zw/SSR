@@ -1,0 +1,141 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardPending",
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "foam"
+        ],
+        "Reward Token Address": [
+            "foam"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "pendingReward"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    700
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "foam",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Full Calculation Variables": [
+                    "foam",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingReward",
+                "Node": [
+                    674
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "bonusEndBlock",
+                    "foam",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "rewardPerBlock",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Full Calculation Variables": [
+                    "bonusEndBlock",
+                    "foam",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "rewardPerBlock",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    719
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "foam",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Full Calculation Variables": [
+                    "foam",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    731
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Control Variables": [
+                    "foam",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Full Calculation Variables": [
+                    "foam",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardPending"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

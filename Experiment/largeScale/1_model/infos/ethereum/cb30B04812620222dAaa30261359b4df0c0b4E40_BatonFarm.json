@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "periodFinish",
+            "rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "nftAddAndStake",
+                "Node": "ERC721(pair.nft()).safeTransferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardsToken.safeTransfer(msg.sender, amountToReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAndRemoveNftFromPool",
+                "Node": "SafeTransferLib.safeTransferETH(msg.sender, baseTokenOutputAmount)"
+            },
+            {
+                "Function": "withdrawAndRemoveNftFromPool",
+                "Node": "ERC721(pair.nft()).safeTransferFrom(address(this), msg.sender, tokenIds[i])"
+            },
+            {
+                "Function": "withdrawAndRemoveLPFromPool",
+                "Node": "SafeTransferLib.safeTransferETH(msg.sender, baseTokenOutputAmount)"
+            },
+            {
+                "Function": "withdrawAndRemoveLPFromPool",
+                "Node": "ERC20(address(pair)).safeTransfer(msg.sender, fractionalTokenOutputAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, amountToWithdrawal)"
+            }
+        ]
+    }
+}

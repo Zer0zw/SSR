@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [
+            "_unlockTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_token.transferFrom(_msgSender(), address(this), value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingRewards",
+                "Node": "return SafeMath.div((SafeMath.mul(_balances[account],_rewards)),_totalStaked)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_token.transfer(_msgSender(), SafeMath.add(_balances[_msgSender()],rewardAmount))"
+            }
+        ]
+    }
+}

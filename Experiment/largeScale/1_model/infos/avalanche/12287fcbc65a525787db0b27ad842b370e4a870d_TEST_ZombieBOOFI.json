@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits"
+        ],
+        "User Stake Reward": [
+            "userProfits",
+            "userProfitsIncludingTransfers"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "boofi"
+        ],
+        "Reward Token Address": [
+            "boofi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(recipient, (_amount * (INIT_EXCHANGE_RATE) / 1e18))"
+            },
+            {
+                "Function": "enterFor",
+                "Node": "_mint(recipient, (_amount * (INIT_EXCHANGE_RATE) / 1e18)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "boofi.safeTransfer(recipient, toSend)"
+            },
+            {
+                "Function": "leaveTo",
+                "Node": "boofi.safeTransfer(recipient, toSend)"
+            }
+        ]
+    }
+}

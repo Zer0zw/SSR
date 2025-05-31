@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "DURATION"
+        ],
+        "Stake Token Address": [
+            "lpt"
+        ],
+        "Reward Token Address": [
+            "sharetoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            },
+            {
+                "Function": "stakeWithInviter",
+                "Node": "stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "sharetoken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            },
+            {
+                "Function": "EmergencyWithraw",
+                "Node": "lpt.safeTransfer(msg.sender, balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

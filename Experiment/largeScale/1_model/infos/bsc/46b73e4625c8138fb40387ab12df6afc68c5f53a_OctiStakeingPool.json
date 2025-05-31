@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeOfUser"
+        ],
+        "User Stake Reward": [
+            "earnOfUser"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sendOctiDividends(msg.sender, address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "sendBNBDividends(msg.sender,bonus)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC20(token).transfer(msg.sender,amount)"
+            }
+        ]
+    }
+}

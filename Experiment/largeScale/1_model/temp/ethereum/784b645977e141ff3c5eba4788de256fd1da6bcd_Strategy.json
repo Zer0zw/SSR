@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStakedLPToken"
+        ],
+        "User Stake Reward": [
+            "pendingSTGRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "STG"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeLP",
+                "Node": "lpStaker.deposit(liquidityPoolIDInLPStaking, _amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "prepareReturn",
+                "Node": "if (useCurve) { _sellRewardsCurve() } else { _sellRewardsUniv3() }"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstakeLP",
+                "Node": "lpStaker.withdraw(liquidityPoolIDInLPStaking, _amountToUnstake)"
+            },
+            {
+                "Function": "_emergencyUnstakeLP",
+                "Node": "lpStaker.emergencyWithdraw(liquidityPoolIDInLPStaking)"
+            }
+        ]
+    }
+}

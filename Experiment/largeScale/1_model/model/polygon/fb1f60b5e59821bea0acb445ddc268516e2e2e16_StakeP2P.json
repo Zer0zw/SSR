@@ -1,0 +1,92 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfos.amount"
+        ],
+        "User Stake Reward": [
+            "stakeInfos.claimed"
+        ],
+        "User Stake Time": [
+            "stakeInfos.startTS",
+            "stakeInfos.endTS"
+        ],
+        "Stake Token Address": [
+            "p2pptoken"
+        ],
+        "Reward Token Address": [
+            "p2pptoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeToken"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [],
+        "Sensitive Functions": [
+            "emergencyWithdrawErc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    392
+                ],
+                "Input": [
+                    "stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "addressStaked",
+                    "p2pptoken",
+                    "planExpired"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "addressStaked",
+                    "p2pptoken",
+                    "planExpired"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    374
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Control Variables": [
+                    "addressStaked",
+                    "interestRate",
+                    "p2pptoken",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Full Calculation Variables": [
+                    "addressStaked",
+                    "interestRate",
+                    "p2pptoken",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

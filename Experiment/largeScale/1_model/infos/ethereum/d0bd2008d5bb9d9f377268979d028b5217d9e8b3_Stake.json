@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakerInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakerInfo.reward"
+        ],
+        "User Stake Time": [
+            "startDateOfMining",
+            "endDateOfMining"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(stakeToken, msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "TransferHelper.safeTransfer(rewardToken, _staker, out)"
+            },
+            {
+                "Function": "claim0",
+                "Node": "TransferHelper.safeTransfer(rewardToken, _staker, out)"
+            },
+            {
+                "Function": "quit",
+                "Node": "TransferHelper.safeTransfer(rewardToken, _staker, out)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "TransferHelper.safeTransfer(stakeToken, msg.sender, _amount)"
+            },
+            {
+                "Function": "quit",
+                "Node": "TransferHelper.safeTransfer(stakeToken, msg.sender, stakers[msg.sender].amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "amount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_tokenLP"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "BEP20(_tokenLP).approve(master,  _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getCakeRewards",
+                "Node": "amount = masterChefV2.pendingCake( _pid, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "masterChefV2.withdraw( _pid, amount)"
+            }
+        ]
+    }
+}

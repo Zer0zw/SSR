@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardPerSharePaid",
+            "accRewardPerShare"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "solid",
+            "oxd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20Upgradeable(address(lp)).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "IERC20Upgradeable(address(ripOxd)).safeTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Upgradeable(address(lp)).safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

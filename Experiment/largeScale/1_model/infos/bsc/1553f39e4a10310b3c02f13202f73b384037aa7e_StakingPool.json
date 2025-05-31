@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalances"
+        ],
+        "User Stake Reward": [
+            "claimableRewards"
+        ],
+        "User Stake Time": [
+            "lastStaked"
+        ],
+        "Stake Token Address": [
+            "tokenToStake"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositStake",
+                "Node": "TransferHelper.safeTransferFrom(tokenToStake, address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "stakedBalances[msg.sender] = stakedBalances[msg.sender].add(rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "TransferHelper.safeTransfer(tokenToStake, msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

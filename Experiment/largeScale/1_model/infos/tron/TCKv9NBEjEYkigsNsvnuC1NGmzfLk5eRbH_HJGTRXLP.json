@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "hjg"
+        ],
+        "Reward Token Address": [
+            "hjg"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeHJGTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeHJGTransfer(referrer, referrerFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

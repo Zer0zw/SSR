@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.freezeAmount"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "coin"
+        ],
+        "Reward Token Address": [
+            "erc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investIn",
+                "Node": "super.stake(value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "erc.transfer(msg.sender, staticReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

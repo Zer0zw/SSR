@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PoolInfo.token"
+        ],
+        "User Stake Reward": [
+            "PoolInfo.crvRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lptoken"
+        ],
+        "Reward Token Address": [
+            "crv"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ITokenMinter(token).mint(msg.sender,_amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "ITokenMinter(token).mint(msg.sender,_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rewardClaimed",
+                "Node": "ITokenMinter(minter).mint(_address,_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lptoken).safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(lptoken).safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "withdrawTo",
+                "Node": "IERC20(lptoken).safeTransfer(_to, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "rewards"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "timeLocked"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "balanceOf[msg.sender] -= _value"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "balanceOf[msg.sender] += ((_value) + (_value * (feePerMonth[_period] * timeStaked))/10**decimals)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.update"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(msg.sender, address(this), _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeSushiTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _wantAmt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "withdrawEth(address(msg.sender), _wantAmt, false)"
+            }
+        ]
+    }
+}

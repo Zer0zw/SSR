@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amountLocked"
+        ],
+        "User Stake Reward": [
+            "stakeToken.createRewards"
+        ],
+        "User Stake Time": [
+            "numOfMonths"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "stakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "_tokenTransfer(address(this), toAddress, amount, false)"
+            },
+            {
+                "Function": "increaseStake",
+                "Node": "_tokenTransfer(staker, address(stakeToken), penaltyAmount, false)"
+            },
+            {
+                "Function": "bridgeStakeNftIn",
+                "Node": "_tokenTransfer(everBridgeVault, toAddress, amount, false)"
+            },
+            {
+                "Function": "mirgateV2Staker",
+                "Node": "_tokenTransfer(address(this), toAddress, amount, false)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_distributeStakingRewards",
+                "Node": "stakeToken.createRewards(amount)"
+            },
+            {
+                "Function": "earlyWithdraw",
+                "Node": "_tokenTransfer(staker, address(stakeToken), penaltyAmount, false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "_tokenTransfer(staker, address(stakeToken), amount, false)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_tokenTransfer(staker, address(stakeToken), amount, false)"
+            },
+            {
+                "Function": "bridgeStakeNftOut",
+                "Node": "_tokenTransfer(fromAddress, everBridgeVault, amount, false)"
+            }
+        ]
+    }
+}

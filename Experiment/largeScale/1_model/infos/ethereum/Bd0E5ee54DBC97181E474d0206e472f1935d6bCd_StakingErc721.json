@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftTokens"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "NFT"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeInternal",
+                "Node": "NFT.safeTransferFrom(sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "TOKEN.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawNFTInternal",
+                "Node": "NFT.safeTransferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

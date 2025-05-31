@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IRewardPool(rewardPool).deposit(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IRewardPool(rewardPool).getReward()"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IRewardPool(rewardPool).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            }
+        ]
+    }
+}

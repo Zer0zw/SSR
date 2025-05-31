@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPoolStakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserRewards"
+        ],
+        "User Stake Time": [
+            "PoolEndTime"
+        ],
+        "Stake Token Address": [
+            "CA2Token"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "CA2Token.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "OwnerDeposit",
+                "Node": "CA2Token.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "BUSD.safeTransfer(msg.sender, UserRewards[msg.sender])"
+            },
+            {
+                "Function": "OwnerClaim",
+                "Node": "BUSD.safeTransfer(msg.sender, UserRewards[_userAddress])"
+            },
+            {
+                "Function": "Restake",
+                "Node": "convertPancake(UserRewards[msg.sender], address(BUSD), address(CA2Token))"
+            },
+            {
+                "Function": "OwnerRestake",
+                "Node": "convertPancake(UserRewards[_userAddress], address(BUSD), address(CA2Token))"
+            },
+            {
+                "Function": "RestakeCA2LP",
+                "Node": "convertPancake(half, address(BUSD), address(CA2Token))"
+            },
+            {
+                "Function": "OwnerRestakeCA2LP",
+                "Node": "convertPancake(half, address(BUSD), address(CA2Token))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Exit",
+                "Node": "CA2Token.safeTransfer(msg.sender, UserPoolStakeAmount[msg.sender][PoolId])"
+            },
+            {
+                "Function": "ExitOwner",
+                "Node": "CA2Token.safeTransfer(msg.sender, UserPoolStakeAmount[_userAddress][PoolId])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "length_stakedIds"
+        ],
+        "User Stake Reward": [
+            "address_to_amount"
+        ],
+        "User Stake Time": [
+            "checkpoints"
+        ],
+        "Stake Token Address": [
+            "my_token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "my_token.transferFrom(msg.sender, address(this), tokenId[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": "mint(reciever, reward)"
+            },
+            {
+                "Function": "claimStolen",
+                "Node": "mint(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "my_token.transferFrom(address(this), msg.sender, tokenId[i]"
+            }
+        ]
+    }
+}

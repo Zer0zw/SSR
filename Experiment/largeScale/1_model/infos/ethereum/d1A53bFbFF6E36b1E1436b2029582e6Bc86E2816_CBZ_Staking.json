@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.cbzStaked",
+            "stakers.seedStaked"
+        ],
+        "User Stake Reward": [
+            "stakers.unclaimedMysteryBoxes",
+            "stakers.unclaimedFlowers"
+        ],
+        "User Stake Time": [
+            "cbzStaked.start",
+            "seedStaked.start"
+        ],
+        "Stake Token Address": [
+            "CornerBoyz",
+            "Seeds"
+        ],
+        "Reward Token Address": [
+            "Flowers"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "CornerBoyz.transferFrom(msg.sender, address(this), _tokenIds[i])"
+            },
+            {
+                "Function": "startGrowing",
+                "Node": "Seeds.transferFrom(msg.sender, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestFlowers",
+                "Node": "Flowers.mint(msg.sender, seedrewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "stopGrowing",
+                "Node": "Seeds.transferFrom(address(this), msg.sender, _tokenIds[i])"
+            },
+            {
+                "Function": "unstake",
+                "Node": "CornerBoyz.transferFrom(address(this), msg.sender, _tokenIds[i])"
+            }
+        ]
+    }
+}

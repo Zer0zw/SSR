@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "monkStake",
+            "ninjaStake"
+        ],
+        "User Stake Reward": [
+            "accHakuPerMonk",
+            "accHakuPerNinja"
+        ],
+        "User Stake Time": [
+            "startTime",
+            "endTime"
+        ],
+        "Stake Token Address": [
+            "hakuNft"
+        ],
+        "Reward Token Address": [
+            "hakuCoin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeMonk",
+                "Node": "emit TokenStaked(account, tokenId, accHakuPerMonk.div(1e18))"
+            },
+            {
+                "Function": "_stakeNinja",
+                "Node": "emit TokenStaked(account, tokenId, accHakuPerNinja.div(1e18))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimFromStake",
+                "Node": "safeHakuTransfer(msg.sender, owed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_claimFromMonk",
+                "Node": "hakuNft.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            },
+            {
+                "Function": "_claimFromNinja",
+                "Node": "hakuNft.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            },
+            {
+                "Function": "rescue",
+                "Node": "hakuNft.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            }
+        ]
+    }
+}

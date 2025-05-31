@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LiquidityProviders.LockedAmount"
+        ],
+        "User Stake Reward": [
+            "LiquidityProviders.TotalRewardsPaid"
+        ],
+        "User Stake Time": [
+            "LiquidityProviders.Days"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.ContractAddress"
+        ],
+        "Reward Token Address": [
+            "fundamenta"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addPosition",
+                "Node": "fundamenta.mintTo(msg.sender, _preYield.div(preYieldDivisor))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAccruedYieldAndAdd",
+                "Node": "fundamenta.mintTo(msg.sender, yield)"
+            },
+            {
+                "Function": "removePosition",
+                "Node": "fundamenta.mintTo(msg.sender, yield)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removePosition",
+                "Node": "pool.ContractAddress.safeTransfer(msg.sender, _lpTokenAmount)"
+            },
+            {
+                "Function": "forcePositionRemoval",
+                "Node": "pool.ContractAddress.safeTransfer(_account, _lpTokenAmount)"
+            }
+        ]
+    }
+}

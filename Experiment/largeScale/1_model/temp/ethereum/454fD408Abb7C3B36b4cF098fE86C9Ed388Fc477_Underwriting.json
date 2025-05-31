@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "divCurrencies",
+            "limit"
+        ],
+        "User Stake Time": [
+            "claimAt"
+        ],
+        "Stake Token Address": [
+            "Nsure"
+        ],
+        "Reward Token Address": [
+            "divCurrencies",
+            "divCurrency"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "Nsure.transferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(divCurrencies[currency].divCurrency).safeTransfer(msg.sender,_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Nsure.transfer(msg.sender,_amount)"
+            }
+        ]
+    }
+}

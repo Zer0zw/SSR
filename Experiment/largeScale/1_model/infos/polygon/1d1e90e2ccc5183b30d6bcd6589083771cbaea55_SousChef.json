@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardPending",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "gold"
+        ],
+        "Reward Token Address": [
+            "gold"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "gold.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "gold.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "gold.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "_getRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lp.safeApprove(address(stakingRewards), lpAmount)"
+            },
+            {
+                "Function": "transferStake",
+                "Node": "lp.safeApprove(address(stakingRewards), stakingLPAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransferFrom(liquidityProvider, address(this), bonusShare)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeApprove(address(converter), bonusShare)"
+            },
+            {
+                "Function": "liquidityProviderGetBonus",
+                "Node": "rewardToken.safeTransfer(liquidityProvider, lpBonusShare)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "converter.removeLiquidityAndConvert(amount, token0Percentage, msg.sender)"
+            },
+            {
+                "Function": "exit",
+                "Node": "converter.removeLiquidityAndConvert(amount, token0Percentage, msg.sender)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeableUnits.stakeableContract.balanceOf"
+        ],
+        "User Stake Reward": [
+            "stakerData.accumulatedRewards",
+            "stakerData.lastClaimTimestamp"
+        ],
+        "User Stake Time": [
+            "stakerData.stakedUnlockTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakeableUnits.stakeableContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeUnits",
+                "Node": "stakeableUnits[location].stakeableContract.stake(_msgSender())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "aggregateRewards",
+                "Node": "stakerData[_address].accumulatedRewards += uint128(rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeUnits",
+                "Node": "stakeableUnits[location].stakeableContract.unstake(_msgSender())"
+            }
+        ]
+    }
+}

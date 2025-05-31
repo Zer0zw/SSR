@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositTime",
+            "UserInfo.unstakeStartTime"
+        ],
+        "Stake Token Address": [
+            "tinuToken"
+        ],
+        "Reward Token Address": [
+            "tinuToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "IERC20(tinuToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(tinuToken).safeTransfer(msg.sender, outAmount)"
+            },
+            {
+                "Function": "claim",
+                "Node": "IERC20(tinuToken).safeTransfer(msg.sender, receiveAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeToken",
+                "Node": "IERC20(tinuToken).safeTransfer(msg.sender, outAmount)"
+            },
+            {
+                "Function": "claim",
+                "Node": "IERC20(tinuToken).safeTransfer(msg.sender, receiveAmount)"
+            }
+        ]
+    }
+}

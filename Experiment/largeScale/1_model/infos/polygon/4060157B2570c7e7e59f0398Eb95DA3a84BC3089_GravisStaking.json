@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeOf"
+        ],
+        "User Stake Reward": [
+            "_withdrawnRewardOf"
+        ],
+        "User Stake Time": [
+            "lastRewardDistribution"
+        ],
+        "Stake Token Address": [
+            "grvx"
+        ],
+        "Reward Token Address": [
+            "metal"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "grvx.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "metal.mint(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "grvx.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

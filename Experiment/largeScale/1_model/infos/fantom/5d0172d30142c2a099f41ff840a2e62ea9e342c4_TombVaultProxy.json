@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakes"
+        ],
+        "User Stake Reward": [
+            "getUserRewards"
+        ],
+        "User Stake Time": [
+            "stakeLocks"
+        ],
+        "Stake Token Address": [
+            "usdcToken"
+        ],
+        "Reward Token Address": [
+            "tshare"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(usdcToken).transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "deposit(IERC20(usdcToken).balanceOf(msg.sender))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getUserRewards",
+                "Node": "(getConvertedLptoUSD(balance()).mul(balanceOf(user))).div(totalSupply())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(usdcToken).safeTransfer(msg.sender, totalBusd)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

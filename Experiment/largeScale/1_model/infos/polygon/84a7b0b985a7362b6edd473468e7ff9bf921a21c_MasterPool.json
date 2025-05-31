@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "strategies"
+        ],
+        "Reward Token Address": [
+            "WILLY"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "strategy.deposit(_for, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "WILLY.transfer(to, _pendingWilly)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "WILLY.transfer(to, _pendingWilly)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "strategy.withdraw(_for, amount, _rewardAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "strategy.withdrawAll(to)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.claimed"
+        ],
+        "User Stake Time": [
+            "StakeInfo.startTS",
+            "StakeInfo.endTS"
+        ],
+        "Stake Token Address": [
+            "wayfToken"
+        ],
+        "Reward Token Address": [
+            "wayfToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "wayfToken.transferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "wayfToken.transfer(_msgSender(), totalTokens)"
+            }
+        ],
+        "unStake": []
+    }
+}

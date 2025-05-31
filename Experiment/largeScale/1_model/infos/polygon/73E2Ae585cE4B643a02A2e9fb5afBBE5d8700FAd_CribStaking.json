@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit",
+            "Claim.gons"
+        ],
+        "User Stake Reward": [
+            "Epoch.distribute"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "CRB"
+        ],
+        "Reward Token Address": [
+            "sCRB",
+            "gCRB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "CRB.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "sCRB.safeTransfer(_to, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "CRB.safeTransfer(msg.sender, info.deposit)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "CRB.safeTransfer(_to, amount_)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "CRB.safeTransfer(_to, amount_)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "CRB.safeTransfer(msg.sender, info.deposit)"
+            }
+        ]
+    }
+}

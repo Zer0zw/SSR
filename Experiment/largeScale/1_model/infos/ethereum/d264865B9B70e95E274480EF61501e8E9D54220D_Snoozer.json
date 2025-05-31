@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "deployedTime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "_stakingToken"
+        ],
+        "Reward Token Address": [
+            "_rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, reward.mul(97).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransfer(0xe5658b5dDbE0De05Ac7397b04A2ADeA69cd499aa, reward.mul(3).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

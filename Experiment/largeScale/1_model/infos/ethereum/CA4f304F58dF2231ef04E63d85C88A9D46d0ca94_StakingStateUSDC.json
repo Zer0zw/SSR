@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmountOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "USDC_ADDRESS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakedAmountOf[_account] = stakedAmountOf[_account].add(_amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakedAmountOf[_account] = stakedAmountOf[_account].sub(_amount)"
+            },
+            {
+                "Function": "refund",
+                "Node": "return usdc().transfer(_account, _amount.div(10**12))"
+            }
+        ]
+    }
+}

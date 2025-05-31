@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingAmount"
+        ],
+        "User Stake Reward": [
+            "tokenDebt"
+        ],
+        "User Stake Time": [
+            "latestStakingBlock"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateTokenDebt",
+                "Node": "tokenDebt[staker] = tokenDebt[staker] + pendingDebt"
+            },
+            {
+                "Function": "totalTokenDebt",
+                "Node": "return pendingDebt.add(tokenDebt[staker])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "stakingToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pendingRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositedAt"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "user.amount = user.amount.add(amount)\nuser.depositedAt = block.timestamp\ntotalSupply = totalSupply.add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "uint256 claimedAmount = _safeTransferRewards(msg.sender, user.pendingRewards)\nuser.pendingRewards = user.pendingRewards.sub(claimedAmount)\nuser.claimedAt = block.timestamp\ntotalReward = totalReward.sub(claimedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "user.amount = 0\nuser.depositedAt = block.timestamp\ntotalSupply = totalSupply.sub(amount)"
+            }
+        ]
+    }
+}

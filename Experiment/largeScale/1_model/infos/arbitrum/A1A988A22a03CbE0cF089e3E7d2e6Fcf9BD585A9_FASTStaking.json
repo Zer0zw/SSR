@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances.total",
+            "balances.locked",
+            "balances.unlocked",
+            "balances.earned"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "LockedBalance.unlockTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "mint",
+                "Node": "stakingTokenReserve.transfer(address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(_rewardToken).safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "Address.sendValue(payable(msg.sender), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawExpiredLocks",
+                "Node": "stakingToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

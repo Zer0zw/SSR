@@ -1,0 +1,76 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "dataBase.amount"
+        ],
+        "User Stake Reward": [
+            "_Daily_Reward",
+            "_60Days_Reward",
+            "_90Days_Reward",
+            "_120Days_Reward",
+            "_365Days_Reward"
+        ],
+        "User Stake Time": [
+            "dataBase.duration",
+            "dataBase.stake_time"
+        ],
+        "Stake Token Address": [
+            "Stake_Token"
+        ],
+        "Reward Token Address": [
+            "Reward_Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "Stake_Token.transferFrom(msg.sender,address(this),_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "get_Reward",
+                "Node": "Reward_Token.transfer(msg.sender,_Daily_Reward)"
+            },
+            {
+                "Function": "get_Reward",
+                "Node": "Reward_Token.transfer(msg.sender,_60Days_Reward)"
+            },
+            {
+                "Function": "get_Reward",
+                "Node": "Reward_Token.transfer(msg.sender,_90Days_Reward)"
+            },
+            {
+                "Function": "OpenReward",
+                "Node": "Reward_Token.transfer(msg.sender, getCal(_Daily_Reward, perDailyReward))"
+            },
+            {
+                "Function": "OpenReward",
+                "Node": "Reward_Token.transfer(msg.sender, getCal(_60Days_Reward, per60daysReward))"
+            },
+            {
+                "Function": "OpenReward",
+                "Node": "Reward_Token.transfer(msg.sender, getCal(_90Days_Reward, per90daysReward))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "get_Reward",
+                "Node": "Stake_Token.transfer(msg.sender,_userdata[i].amount)"
+            },
+            {
+                "Function": "OpenReward",
+                "Node": "Stake_Token.transfer(msg.sender,getCal(_userdata[i].amount, perDaily))"
+            },
+            {
+                "Function": "OpenReward",
+                "Node": "Stake_Token.transfer(msg.sender,getCal(_userdata[i].amount,per60days))"
+            },
+            {
+                "Function": "OpenReward",
+                "Node": "Stake_Token.transfer(msg.sender,getCal(_userdata[i].amount,per90days))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,119 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakes.value"
+        ],
+        "User Stake Reward": [
+            "_stakes.rewardValue"
+        ],
+        "User Stake Time": [
+            "_stakes.startTime",
+            "_stakes.timePeriod"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "addCombinedStake",
+            "addMultiplierStake",
+            "addTimeStake"
+        ],
+        "getReward": [
+            "distributeRewards"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addTimeStake",
+                "Node": [
+                    1684
+                ],
+                "Input": [
+                    "timePeriod",
+                    "value"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "addMultiplierStake",
+                "Node": [
+                    1706
+                ],
+                "Input": [
+                    "marketCapX",
+                    "value"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "addCombinedStake",
+                "Node": [
+                    1729
+                ],
+                "Input": [
+                    "marketCapX",
+                    "timePeriod",
+                    "value"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeRewards",
+                "Node": [
+                    1899
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1787
+                ],
+                "Input": [
+                    "stakeId"
+                ],
+                "Calculation Variables": [
+                    "_stakes.id",
+                    "_stakes.rewardValue",
+                    "_stakes.value"
+                ],
+                "Control Variables": [
+                    "_stakes.id",
+                    "_stakes.rewardValue",
+                    "_stakes.value"
+                ],
+                "Full Calculation Variables": [
+                    "_stakes.id",
+                    "_stakes.rewardValue",
+                    "_stakes.value"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

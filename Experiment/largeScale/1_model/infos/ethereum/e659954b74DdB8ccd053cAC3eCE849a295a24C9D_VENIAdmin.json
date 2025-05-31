@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "UserInfo_single.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo_single.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken",
+            "SinglePoolInfo.sToken"
+        ],
+        "Reward Token Address": [
+            "veni"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "deposit_single",
+                "Node": "pool.sToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeVENITransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "harvest_single",
+                "Node": "safeVENITransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "withdraw_single",
+                "Node": "pool.sToken.safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount"
+            },
+            {
+                "Function": "emergencyWithdraw_single",
+                "Node": "pool.sToken.safeTransfer(address(msg.sender), user.amount"
+            }
+        ]
+    }
+}

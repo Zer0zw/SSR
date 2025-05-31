@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "MAP_USER_REWARD_INFO.stakedBalance"
+        ],
+        "User Stake Reward": [
+            "MAP_USER_REWARD_INFO.rewards"
+        ],
+        "User Stake Time": [
+            "MAP_USER_REWARD_INFO.lastUpdated"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "MAP_STAKED_TOKEN[_tokenIDList[i]] = true"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "REWARD_TOKEN.transfer(_msgSender(), user.rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_beforeTokenTransfers",
+                "Node": "MAP_STAKED_TOKEN[startTokenId] = true"
+            }
+        ]
+    }
+}

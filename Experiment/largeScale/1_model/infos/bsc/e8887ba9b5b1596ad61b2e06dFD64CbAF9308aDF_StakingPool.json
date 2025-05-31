@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingDetails.tokenAmount"
+        ],
+        "User Stake Reward": [
+            "AccountDetails.totalHarvestedRewards"
+        ],
+        "User Stake Time": [
+            "StakingDetails.stakedAt"
+        ],
+        "Stake Token Address": [
+            "poolToken"
+        ],
+        "Reward Token Address": [
+            "poolToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "poolToken.transferFrom(account, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "poolToken.transferFrom(poolVault, account, rewards)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "poolToken.transferFrom(poolVault, account, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "poolToken.transfer(account, amount)"
+            },
+            {
+                "Function": "unstakePartial",
+                "Node": "poolToken.transfer(account, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "poolToken.transfer(account, tokenAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "fireFBXAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "FBX"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_mint(msg.sender, uint256(1e18 * FBXAmount / fireFBXPrice))"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "FBX.safeTransferFrom(VAULT_ADDRESS, msg.sender, uint256((fireFBXAmount * fireFBXPrice / 1e18) * (1e18 - EXIT_FEE) / 1e18))"
+            }
+        ]
+    }
+}

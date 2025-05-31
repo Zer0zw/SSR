@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "balancesReward"
+        ],
+        "User Stake Time": [
+            "depositDates"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "tokenReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(token.transferFrom(_sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "require(tokenReward.transfer(_sender, amountReward)"
+            },
+            {
+                "Function": "_mint",
+                "Node": "require(tokenReward.transfer(LPRewardAddress(), total.sub(userShare))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(token.transfer(_sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "when"
+        ],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20Upgradeable(underlying).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "restake",
+                "Node": "IERC20Upgradeable(underlying).safeApprove(pool, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IStake(pool).claimAllRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "IStake(pool).exit(stakingRewards)"
+            },
+            {
+                "Function": "exitAll",
+                "Node": "IStake(pool).exit(stakingRewards)"
+            }
+        ]
+    }
+}

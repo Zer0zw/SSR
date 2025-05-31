@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolInfo.totalStaked",
+            "GDT.balanceOf"
+        ],
+        "User Stake Reward": [
+            "poolInfo.EarnRateSec",
+            "poolInfo.APR"
+        ],
+        "User Stake Time": [
+            "poolInfo.lastUpdate"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "EsGMX",
+            "WAVAX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterETH",
+                "Node": "GDT.mint(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "enter",
+                "Node": "GDT.mint(msg.sender, amountAfterFee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "cycleRewardsETHandEsGMX",
+                "Node": "_RewardRouter.claimEsGmx()"
+            },
+            {
+                "Function": "cycleRewardsETH",
+                "Node": "_RewardRouter.claimFees()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveETH",
+                "Node": "WAVAX.withdraw(amountSendOut)"
+            },
+            {
+                "Function": "leave",
+                "Node": "StakedToken.safeTransfer(msg.sender, amountSendOut)"
+            }
+        ]
+    }
+}

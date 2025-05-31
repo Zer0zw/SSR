@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "Claim.rewardsOwed"
+        ],
+        "User Stake Time": [
+            "entryMap"
+        ],
+        "Stake Token Address": [
+            "GAMEToken"
+        ],
+        "Reward Token Address": [
+            "payToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addGAME",
+                "Node": "require(GAMEToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "require(payToken.transfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawGAME",
+                "Node": "require(GAMEToken.transfer(msg.sender, GAMEAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "Claim.rewardsOwed"
+        ],
+        "User Stake Time": [
+            "entryMap"
+        ],
+        "Stake Token Address": [
+            "dropToken"
+        ],
+        "Reward Token Address": [
+            "payToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "adddrop",
+                "Node": "require(dropToken.transferFrom(msg.sender, address(this), _amount), \"Transfer failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "require(payToken.transfer(msg.sender, rewards), \"Transfer failed\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawdrop",
+                "Node": "require(dropToken.transfer(msg.sender, dropAmount), \"Failed Transfer\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "NATIVE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.want.safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "pool.want.safeIncreaseAllowance(pool.strat, _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeNATIVETransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeNATIVETransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), _wantAmt)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

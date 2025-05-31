@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.allInvest"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "User.hisBtAward"
+        ],
+        "User Stake Time": [
+            "periodFinish",
+            "User.checkpoint"
+        ],
+        "Stake Token Address": [
+            "uTokenAddr"
+        ],
+        "Reward Token Address": [
+            "beeTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investIn",
+                "Node": "uToken.transferFrom(msg.sender,address(this),uValue)"
+            },
+            {
+                "Function": "investIn",
+                "Node": "beeToken.transferFrom(msg.sender,address(this),beeValue)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "beeToken.transfer(msg.sender, staticReward)"
+            },
+            {
+                "Function": "getBonus",
+                "Node": "beeToken.transfer(msg.sender, dynReward)"
+            }
+        ],
+        "unStake": []
+    }
+}

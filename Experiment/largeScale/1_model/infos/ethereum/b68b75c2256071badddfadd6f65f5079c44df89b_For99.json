@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked"
+        ],
+        "User Stake Reward": [
+            "_stakeRewardPerDay"
+        ],
+        "User Stake Time": [
+            "staked"
+        ],
+        "Stake Token Address": [
+            "sos_token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "emit Transfer(msg.sender, address(0), _stakeAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "emit Transfer(address(0), msg.sender, _stakeAmount+reward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "balances[msg.sender]+= _stakeAmount+reward"
+            }
+        ]
+    }
+}

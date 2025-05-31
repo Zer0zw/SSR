@@ -1,0 +1,176 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "farming_unit.balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "farming_unit.deposit_time",
+            "farming_unit.locked_time"
+        ],
+        "Stake Token Address": [
+            "farming_unit.token"
+        ],
+        "Reward Token Address": [
+            "token_pool.reward"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "farmTokens"
+        ],
+        "getReward": [
+            "issueInterestToken"
+        ],
+        "unStake": [
+            "unfarmTokens"
+        ],
+        "Sensitive Functions": [
+            "create_farmable",
+            "farmTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farmTokens",
+                "Node": [
+                    147
+                ],
+                "Input": [
+                    "_amount",
+                    "locking",
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "is_farmable",
+                    "token_pool.has_farmed",
+                    "token_pool.is_farming",
+                    "token_pool.min_lock",
+                    "token_pool.total_balance"
+                ],
+                "Full Calculation Variables": [
+                    "is_farmable",
+                    "token_pool.has_farmed",
+                    "token_pool.is_farming",
+                    "token_pool.min_lock",
+                    "token_pool.total_balance"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": [
+                    217
+                ],
+                "Input": [
+                    "id"
+                ],
+                "Calculation Variables": [
+                    "farming_unit.token",
+                    "token_pool.reward",
+                    "token_pool.total_balance",
+                    "token_pool.lock_multiplier",
+                    "token_pool.emission_rate",
+                    "farming_unit.locked_time",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time"
+                ],
+                "Control Variables": [
+                    "token_pool.reward",
+                    "token_pool.total_balance",
+                    "token_pool.mintable",
+                    "token_pool.emission_rate",
+                    "farming_unit.locked_time",
+                    "last_tx",
+                    "farming_unit.token",
+                    "token_pool.reward_token",
+                    "locked",
+                    "token_pool.lock_multiplier",
+                    "cooldown_time",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "token_pool.reward_token_fixed"
+                ],
+                "Full Calculation Variables": [
+                    "token_pool.reward",
+                    "token_pool.total_balance",
+                    "token_pool.mintable",
+                    "token_pool.emission_rate",
+                    "farming_unit.locked_time",
+                    "last_tx",
+                    "farming_unit.token",
+                    "token_pool.reward_token",
+                    "locked",
+                    "token_pool.lock_multiplier",
+                    "cooldown_time",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "token_pool.reward_token_fixed"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfarmTokens",
+                "Node": [
+                    187
+                ],
+                "Input": [
+                    "id"
+                ],
+                "Calculation Variables": [
+                    "farming_unit.token",
+                    "token_pool.reward",
+                    "token_pool.total_balance",
+                    "token_pool.lock_multiplier",
+                    "token_pool.emission_rate",
+                    "farming_unit.locked_time",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time"
+                ],
+                "Control Variables": [
+                    "token_pool.reward",
+                    "token_pool.total_balance",
+                    "token_pool.mintable",
+                    "token_pool.emission_rate",
+                    "farming_unit.locked_time",
+                    "token_pool.is_farming",
+                    "last_tx",
+                    "farming_unit.active",
+                    "farming_unit.token",
+                    "token_pool.reward_token",
+                    "locked",
+                    "token_pool.lock_multiplier",
+                    "cooldown_time",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "token_pool.reward_token_fixed"
+                ],
+                "Full Calculation Variables": [
+                    "token_pool.reward",
+                    "token_pool.total_balance",
+                    "token_pool.mintable",
+                    "token_pool.emission_rate",
+                    "farming_unit.locked_time",
+                    "token_pool.is_farming",
+                    "last_tx",
+                    "farming_unit.active",
+                    "farming_unit.token",
+                    "token_pool.reward_token",
+                    "locked",
+                    "token_pool.lock_multiplier",
+                    "cooldown_time",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "token_pool.reward_token_fixed"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

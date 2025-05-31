@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Record.stake"
+        ],
+        "User Stake Reward": [
+            "tokenRecords"
+        ],
+        "User Stake Time": [
+            "Record.expire"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "kToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": "lpToken.transferFrom(msg.sender,address(this), _value)"
+            },
+            {
+                "Function": "stake",
+                "Node": "lpToken.transferFrom(msg.sender,address(this), _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "sendToken",
+                "Node": "kToken.transfer(_to, _value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.transfer( msg.sender, _value)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingUserData.amountForStakes"
+        ],
+        "User Stake Reward": [
+            "calculateReward.amount"
+        ],
+        "User Stake Time": [
+            "StakingUserData.endStakeTime"
+        ],
+        "Stake Token Address": [
+            "ecowattToken"
+        ],
+        "Reward Token Address": [
+            "ecowattCarbonToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "ecowattToken.transferFrom(msg.sender, address (this), stake"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calculateReward",
+                "Node": "ecowattCarbonToken.mint(msg.sender, reward)"
+            },
+            {
+                "Function": "withdrawTokens",
+                "Node": "ecowattToken.transfer(msg.sender, tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTokens",
+                "Node": "ecowattToken.transfer(msg.sender, tokens)"
+            }
+        ]
+    }
+}

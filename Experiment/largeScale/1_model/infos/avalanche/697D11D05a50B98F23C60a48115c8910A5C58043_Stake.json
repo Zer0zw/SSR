@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeCount"
+        ],
+        "User Stake Reward": [
+            "remainingRewards"
+        ],
+        "User Stake Time": [
+            "Stake.stakeDate",
+            "Stake.latestClaimDate"
+        ],
+        "Stake Token Address": [
+            "stakable"
+        ],
+        "Reward Token Address": [
+            "wallet"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakable.safeTransferFrom(msg.sender, address(this), stakeData.tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "wallet.transferTo(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakable.safeTransferFrom(address(this), account, stake.tokenId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakable.safeTransferFrom(address(this), account, stake.tokenId)"
+            }
+        ]
+    }
+}

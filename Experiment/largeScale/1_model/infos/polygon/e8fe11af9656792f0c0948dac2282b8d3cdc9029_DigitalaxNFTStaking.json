@@ -1,0 +1,90 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.balance"
+        ],
+        "User Stake Reward": [
+            "Staker.rewardsEarned",
+            "Staker.tokenRevenueRewardsEarned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "parentNFT"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "parentNFT.safeTransferFrom(_user, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "parentNFT.safeTransferFrom(_user, address(this), tokenIds[i])"
+            },
+            {
+                "Function": "_stake",
+                "Node": "parentNFT.safeTransferFrom(_user, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeByNFT",
+                "Node": "IDigitalaxNFT(_token).safeTransferFrom(_user, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeBatchByNFT",
+                "Node": "IDigitalaxNFT(tokens[i]).safeTransferFrom(_user, address(this), tokenIds[i])"
+            },
+            {
+                "Function": "_stakeByNFT",
+                "Node": "IDigitalaxNFT(_token).safeTransferFrom(_user, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.transfer(_user, payableAmount)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(_tokens[i]).transfer(_user, rewardPayableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "parentNFT.safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "parentNFT.safeTransferFrom(address(this), _user, tokenIds[i])"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "parentNFT.safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "unstakeByNFT",
+                "Node": "IDigitalaxNFT(_token).safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "unstakeBatchByNFT",
+                "Node": "IDigitalaxNFT(tokens[i]).safeTransferFrom(address(this), _user, tokenIds[i])"
+            },
+            {
+                "Function": "_unstakeByNFT",
+                "Node": "IDigitalaxNFT(_token).safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "parentNFT.safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstakeByNFT",
+                "Node": "IDigitalaxNFT(_token).safeTransferFrom(address(this), _user, _tokenId)"
+            }
+        ]
+    }
+}

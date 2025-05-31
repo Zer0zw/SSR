@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeMap.amount"
+        ],
+        "User Stake Reward": [
+            "StakeMap.rewardStakePaid"
+        ],
+        "User Stake Time": [
+            "StakeMap.period",
+            "StakeMap.expirationTime"
+        ],
+        "Stake Token Address": [
+            "lpt"
+        ],
+        "Reward Token Address": [
+            "velTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLp",
+                "Node": "super.stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(velTokenAddress).transfer(msg.sender, transferAmount)"
+            },
+            {
+                "Function": "withdrawLP",
+                "Node": "IERC20(velTokenAddress).transfer(msg.sender, transferAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLP",
+                "Node": "super.withdraw(withdrawAmount)"
+            }
+        ]
+    }
+}

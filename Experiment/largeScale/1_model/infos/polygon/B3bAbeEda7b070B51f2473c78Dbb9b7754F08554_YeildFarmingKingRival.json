@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfor.amountStake"
+        ],
+        "User Stake Reward": [
+            "userLockPrize.amount",
+            "totalTokenLockUser"
+        ],
+        "User Stake Time": [
+            "userInfor.timeStake"
+        ],
+        "Stake Token Address": [
+            "lpTokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenPrizeAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "DepositStake",
+                "Node": "IERC20(lpTokenAddress).transferFrom(msg.sender, address(this), amountLPLiquidity)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "gatherReward",
+                "Node": "IERC20(tokenPrizeAddress).transfer(msg.sender, prizeClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WithdrawStake",
+                "Node": "IERC20(lpTokenAddress).transfer(msg.sender, amountLPLiquidity)"
+            }
+        ]
+    }
+}

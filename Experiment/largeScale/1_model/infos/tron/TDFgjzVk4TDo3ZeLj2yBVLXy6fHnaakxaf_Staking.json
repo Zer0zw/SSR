@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balance_SST",
+            "StakeRecord.stakedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakedTime",
+            "StakeRecord.stakedTime"
+        ],
+        "Stake Token Address": [
+            "SST_token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "SST_token.safeTransferFrom(msg.sender,(address(this)), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "SST_token.safeTransfer( msg.sender, _amount)"
+            }
+        ]
+    }
+}

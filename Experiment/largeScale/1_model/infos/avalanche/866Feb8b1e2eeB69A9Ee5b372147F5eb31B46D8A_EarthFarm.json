@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "earthBalance"
+        ],
+        "User Stake Time": [
+            "startTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "earthToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lpToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawYield",
+                "Node": "earthToken.mint(msg.sender, toTransfer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "lpToken.transfer(msg.sender, balTransfer)"
+            }
+        ]
+    }
+}

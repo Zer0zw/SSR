@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balancesPerToken"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "BZRX",
+            "vBZRX",
+            "LPToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeWithDelegate",
+                "Node": "token.safeTransfer(receiver, withdrawAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earned",
+                "Node": "token.safeTransfer(receiver, withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "rescueToken",
+                "Node": "token.safeTransfer(receiver, withdrawAmount)"
+            }
+        ]
+    }
+}

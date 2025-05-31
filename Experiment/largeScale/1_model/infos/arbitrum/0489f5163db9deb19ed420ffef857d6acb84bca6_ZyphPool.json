@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmounts"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "zyphTokenAddress"
+        ],
+        "Reward Token Address": [
+            "zyphShareAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(zyphTokenAddress).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(zyphTokenAddress).transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPoolInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [
+            "UserPoolInfo.timeDeposited",
+            "UserPoolInfo.timeClaimed"
+        ],
+        "Stake Token Address": [
+            "adValoremToken"
+        ],
+        "Reward Token Address": [
+            "adValoremToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IBEP20(adValoremToken).safeTransferFrom(address(msg.sender), address(this), _amount"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IBEP20(adValoremToken).safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimPendingReward",
+                "Node": "IBEP20(adValoremToken).safeTransfer(_address, rewardAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IBEP20(adValoremToken).safeTransfer(_address, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(adValoremToken).safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IBEP20(adValoremToken).safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

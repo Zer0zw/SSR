@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfoMap.pptBalance"
+        ],
+        "User Stake Reward": [
+            "userInfoMap.minerBalances"
+        ],
+        "User Stake Time": [
+            "userInfoMap.maxPeriodID"
+        ],
+        "Stake Token Address": [
+            "_operators"
+        ],
+        "Reward Token Address": [
+            "mineInfoMap"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "changePPTStake",
+                "Node": "userInfoMap[account].pptBalance = IERC20(_operators[managerIndex]).balanceOf(account)"
+            },
+            {
+                "Function": "transferPPTCoin",
+                "Node": "userInfoMap[account].pptBalance = IERC20(_operators[managerIndex]).balanceOf(account)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeemMinerCoin",
+                "Node": "_redeemMineCoin(mineCoin,msg.sender)"
+            },
+            {
+                "Function": "_redeemMineCoin",
+                "Node": "_redeem(recieptor,mineCoin,mineBalance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeemOut",
+                "Node": "_redeem(msg.sender,mineCoin,amount)"
+            }
+        ]
+    }
+}

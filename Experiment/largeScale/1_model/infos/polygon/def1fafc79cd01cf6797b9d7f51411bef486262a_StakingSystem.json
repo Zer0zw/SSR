@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Stake.interest"
+        ],
+        "User Stake Time": [
+            "Stake.lockedForXDays"
+        ],
+        "Stake Token Address": [
+            "deftToken"
+        ],
+        "Reward Token Address": [
+            "deftToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "startStake",
+                "Node": "deftToken.transferCustom(msg.sender, address(this), _startStake.stakedAmount)"
+            },
+            {
+                "Function": "bulkStartStake",
+                "Node": "deftToken.transferCustom(msg.sender, address(this), _startStake.stakedAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "endStake",
+                "Node": "deftToken.mintHumanAddress(msg.sender, interest)"
+            },
+            {
+                "Function": "bulkEndStake",
+                "Node": "deftToken.mintHumanAddress(msg.sender, interest)"
+            },
+            {
+                "Function": "scrapeStake",
+                "Node": "deftToken.mintHumanAddress(msg.sender, interest)"
+            },
+            {
+                "Function": "bulkScrapeStake",
+                "Node": "deftToken.mintHumanAddress(msg.sender, interest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "endStake",
+                "Node": "deftToken.transferCustom(address(this), msg.sender, stakes[stakeId].stakedAmount)"
+            },
+            {
+                "Function": "bulkEndStake",
+                "Node": "deftToken.transferCustom(address(this), msg.sender, stakes[stakeId].stakedAmount)"
+            },
+            {
+                "Function": "scrapeStake",
+                "Node": "deftToken.transferCustom(address(this), msg.sender, stakes[stakeId].stakedAmount)"
+            },
+            {
+                "Function": "bulkScrapeStake",
+                "Node": "deftToken.transferCustom(address(this), msg.sender, stakes[stakeId].stakedAmount)"
+            }
+        ]
+    }
+}

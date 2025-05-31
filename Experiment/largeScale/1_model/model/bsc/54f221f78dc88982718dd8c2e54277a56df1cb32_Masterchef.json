@@ -1,0 +1,191 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userInfo.lastRewardTimestamp"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "medax"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "initialize",
+            "setpooladdress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1650,
+                    1651,
+                    1652,
+                    1653,
+                    1654
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.depositFeeBP",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.depositFeeBP",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1639
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "medaxApy",
+                    "medaxApyPool",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "medaxApy",
+                    "medaxApyPool",
+                    "perDaysecond",
+                    "poolInfo.istoken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "medaxApy",
+                    "medaxApyPool",
+                    "perDaysecond",
+                    "poolInfo.istoken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1639
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "medaxApy",
+                    "medaxApyPool",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "medaxApy",
+                    "medaxApyPool",
+                    "perDaysecond",
+                    "poolInfo.istoken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "medaxApy",
+                    "medaxApyPool",
+                    "perDaysecond",
+                    "poolInfo.istoken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1674
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1686
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

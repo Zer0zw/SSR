@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake"
+        ],
+        "User Stake Reward": [
+            "dividendCredit",
+            "dividendDebit"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositHelper",
+                "Node": "stake[msg.sender] = stake[msg.sender].add(_stakeIncrement)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "depositHelper(msg.value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimHelper",
+                "Node": "uint _dividendsForStake = stake[msg.sender].mul(stakeValue)"
+            },
+            {
+                "Function": "claim",
+                "Node": "msg.sender.transfer(_dividends)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "depositHelper(_dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(_amountAfterTax)"
+            }
+        ]
+    }
+}

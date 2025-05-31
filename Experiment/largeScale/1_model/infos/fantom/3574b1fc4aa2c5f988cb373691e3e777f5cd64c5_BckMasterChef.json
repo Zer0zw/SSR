@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpTokens"
+        ],
+        "Reward Token Address": [
+            "bck"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpTokens[_pid].safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeBckTransfer(_to, eligibleBck)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "safeBckTransfer(_to, eligibleBck)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "lpTokens[_pid].safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "lpTokens[_pid].safeTransfer(_to, amount)"
+            }
+        ]
+    }
+}

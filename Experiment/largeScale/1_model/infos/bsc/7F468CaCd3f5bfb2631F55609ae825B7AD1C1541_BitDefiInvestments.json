@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Player.stakeTotal",
+            "UserDept.amount"
+        ],
+        "User Stake Reward": [
+            "Player.stakeRoi",
+            "Player.stakingLevel"
+        ],
+        "User Stake Time": [
+            "UserDept.depTime",
+            "Player.lastwDays"
+        ],
+        "Stake Token Address": [
+            "bdf"
+        ],
+        "Reward Token Address": [
+            "bdf"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "bdf.transferFrom(msg.sender, address(this), _bdf)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pwithdraw",
+                "Node": "bdf.transfer(msg.sender,_amount)"
+            },
+            {
+                "Function": "rwithdraw",
+                "Node": "bdf.transfer(msg.sender,_amount)"
+            },
+            {
+                "Function": "swithdraw",
+                "Node": "bdf.transfer(msg.sender,_amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

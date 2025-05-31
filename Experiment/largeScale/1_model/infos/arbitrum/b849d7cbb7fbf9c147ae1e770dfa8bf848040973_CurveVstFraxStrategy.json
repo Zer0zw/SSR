@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lockedStakes.liquidity"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lockedStakes.ending_timestamp"
+        ],
+        "Stake Token Address": [
+            "VSTFRAX"
+        ],
+        "Reward Token Address": [
+            "FXS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IFraxFarm(rewards).stakeLocked(_want, 86400)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IFraxFarm(rewards).lockAdditional(lockedStakes[arr_idx].kek_id, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_getReward()"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IFraxFarm(rewards).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IFraxFarm(rewards).withdrawLocked(lockedStakes[arr_idx].kek_id)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "IFraxFarm(rewards).withdrawLocked(lockedStakes[i].kek_id)"
+            },
+            {
+                "Function": "withdrawLocked",
+                "Node": "IFraxFarm(rewards).withdrawLocked(kek_id)"
+            }
+        ]
+    }
+}

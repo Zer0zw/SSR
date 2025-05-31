@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.firstAmount",
+            "StakeInfo.secondAmount",
+            "StakeInfo.poolAmount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.reward",
+            "StakeInfo.splittedReward"
+        ],
+        "User Stake Time": [
+            "StakeInfo.endBlock"
+        ],
+        "Stake Token Address": [
+            "TOKENS"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(tokenAddress).transferFrom(msg.sender, address(this), value)"
+            },
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "partialReward",
+                "Node": "token.transfer(tierStakeInfo.sender, reward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(tierStakeInfo.sender, tierStakeInfo.reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(tierStakeInfo.sender, tierStakeInfo.poolAmount)"
+            }
+        ]
+    }
+}

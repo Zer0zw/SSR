@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(rewards, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, _maticFee)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IGravityRewards(rewards).withdraw(0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IGravityRewards(rewards).withdraw(_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IGravityRewards(rewards).emergencyWithdraw()"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(want).safeTransfer(jar, _want)"
+            }
+        ]
+    }
+}

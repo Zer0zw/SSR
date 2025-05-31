@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake.tokensStaked"
+        ],
+        "User Stake Reward": [
+            "dayDividendPool"
+        ],
+        "User Stake Time": [
+            "stake.startDay",
+            "stake.endDay"
+        ],
+        "Stake Token Address": [
+            "_tokenContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "newStake",
+                "Node": "_tokenContract.transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectStake",
+                "Node": "Address.sendValue( payable(_stake.owner) , profit"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "collectStake",
+                "Node": "_tokenContract.transfer(msg.sender, _stake.tokensStaked)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "statikClaimAmount"
+        ],
+        "User Stake Reward": [
+            "usdcClaimAmount"
+        ],
+        "User Stake Time": [
+            "statikClaimSecond",
+            "usdcClaimSecond"
+        ],
+        "Stake Token Address": [
+            "usdc"
+        ],
+        "Reward Token Address": [
+            "statik"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "statik.safeTransfer(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStatik",
+                "Node": "statik.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimUsdc",
+                "Node": "usdc.safeTransfer(msg.sender, usdcTransferAmount)"
+            },
+            {
+                "Function": "emergencyClaimUsdcAll",
+                "Node": "usdc.safeTransfer(msg.sender, usdcTransferAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "statik.safeTransferFrom(msg.sender, dead, amount)"
+            },
+            {
+                "Function": "emergencyRedeemAll",
+                "Node": "statik.safeTransferFrom(msg.sender, dead, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakeTotal",
+            "Depo.amt"
+        ],
+        "User Stake Reward": [
+            "UserInfo.promoteBonus",
+            "UserInfo.withdrawTotal"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastSign",
+            "Depo.investTime"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStablecoins",
+                "Node": "BUSD.safeTransfer(owner(), stakeFee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "BUSD.safeTransfer(msg.sender, x)"
+            },
+            {
+                "Function": "withdrawRefBonus",
+                "Node": "BUSD.safeTransfer(msg.sender, amtz)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeemInitial",
+                "Node": "BUSD.safeTransfer(msg.sender, transferAmt)"
+            }
+        ]
+    }
+}

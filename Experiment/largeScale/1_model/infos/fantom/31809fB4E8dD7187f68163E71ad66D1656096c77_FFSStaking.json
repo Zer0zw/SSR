@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposits"
+        ],
+        "User Stake Reward": [
+            "User.compounds",
+            "User.total_ref_bonus"
+        ],
+        "User Stake Time": [
+            "User.deposit_time"
+        ],
+        "Stake Token Address": [
+            "FFSToken"
+        ],
+        "Reward Token Address": [
+            "FPADToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "FFSToken.transferFrom(_userAddress, address(frensVaultAddress), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim_out",
+                "Node": "FPADToken.transfer(address(msg.sender), _amt)"
+            },
+            {
+                "Function": "_claim_referral",
+                "Node": "FPADToken.transfer(address(msg.sender), _amt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw_principal",
+                "Node": "FFSToken.transfer(address(msg.sender), _withdraw_amt)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "maxMintProofOfStake"
+        ],
+        "User Stake Time": [
+            "transferInStruct.time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "transfer",
+                "Node": "balances[_to] = balances[_to].add(_value)"
+            },
+            {
+                "Function": "batchTransfer",
+                "Node": "balances[_recipients[j]] = balances[_recipients[j]].add(_values[j])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "mint",
+                "Node": "balances[msg.sender] = balances[msg.sender].add(reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "transfer",
+                "Node": "balances[_to] = balances[_to].add(_value)"
+            },
+            {
+                "Function": "transferFrom",
+                "Node": "balances[_to] = balances[_to].add(_value)"
+            }
+        ]
+    }
+}

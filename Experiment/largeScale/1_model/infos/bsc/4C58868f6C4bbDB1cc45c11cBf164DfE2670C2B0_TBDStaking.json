@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "Claim.gons"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "TBD"
+        ],
+        "Reward Token Address": [
+            "sTBD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sTBD.safeTransfer(address(warmupContract), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "warmupContract.retrieve(_recipient, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "TBD.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

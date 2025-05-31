@@ -1,0 +1,331 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakerToMTTokenIds",
+            "StakerToMCTokenIds",
+            "StakerToPartnerTokenIds"
+        ],
+        "User Stake Reward": [
+            "MT_EMISSIONS_RATE",
+            "MC_EMISSIONS_RATE",
+            "partner_EMISSIONS_RATE"
+        ],
+        "User Stake Time": [
+            "MTTokenIdTimeStaked",
+            "MCTokenIdTimeStaked",
+            "partnerTokenIdTimeStaked"
+        ],
+        "Stake Token Address": [
+            "MT_ADDRESS",
+            "MC_ADDRESS",
+            "Partner_Address"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "StakeMC",
+            "StakeMT",
+            "StakePartner"
+        ],
+        "getReward": [
+            "claimAll",
+            "claimByCucumberTokenId",
+            "claimByPartnerTokenId",
+            "claimByTomatoTokenId"
+        ],
+        "unStake": [
+            "unstakeAll",
+            "unstakeCucumbersByIds",
+            "unstakeTomatosByIds",
+            "unstakepartnerByIds"
+        ],
+        "Sensitive Functions": [
+            "setMcAddress",
+            "setMtAddress",
+            "setPartnerAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeMT",
+                "Node": [
+                    905
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MAX_WALLET_STAKED",
+                    "MTTokenIdToStaker",
+                    "_mtIERC721Enumerable",
+                    "maxSupply",
+                    "stakingLive"
+                ],
+                "Full Calculation Variables": [
+                    "MAX_WALLET_STAKED",
+                    "MTTokenIdToStaker",
+                    "_mtIERC721Enumerable",
+                    "maxSupply",
+                    "stakingLive"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "StakeMC",
+                "Node": [
+                    920
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MAX_WALLET_STAKED",
+                    "MCTokenIdToStaker",
+                    "_mcIERC721Enumerable",
+                    "maxSupply",
+                    "stakingLive"
+                ],
+                "Full Calculation Variables": [
+                    "MAX_WALLET_STAKED",
+                    "MCTokenIdToStaker",
+                    "_mcIERC721Enumerable",
+                    "maxSupply",
+                    "stakingLive"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "StakePartner",
+                "Node": [
+                    935
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MAX_WALLET_STAKED",
+                    "_partnerIERC721Enumerable",
+                    "maxSupply",
+                    "partnerTokenIdToStaker",
+                    "stakingLive"
+                ],
+                "Full Calculation Variables": [
+                    "MAX_WALLET_STAKED",
+                    "_partnerIERC721Enumerable",
+                    "maxSupply",
+                    "partnerTokenIdToStaker",
+                    "stakingLive"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByTomatoTokenId",
+                "Node": [
+                    1060
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [
+                    "MTTokenIdTimeStaked",
+                    "MT_EMISSIONS_RATE"
+                ],
+                "Control Variables": [
+                    "MTTokenIdTimeStaked",
+                    "MTTokenIdToStaker",
+                    "MT_EMISSIONS_RATE"
+                ],
+                "Full Calculation Variables": [
+                    "MTTokenIdTimeStaked",
+                    "MTTokenIdToStaker",
+                    "MT_EMISSIONS_RATE"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimByCucumberTokenId",
+                "Node": [
+                    1066
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [
+                    "MCTokenIdTimeStaked",
+                    "MC_EMISSIONS_RATE"
+                ],
+                "Control Variables": [
+                    "MCTokenIdTimeStaked",
+                    "MCTokenIdToStaker",
+                    "MC_EMISSIONS_RATE"
+                ],
+                "Full Calculation Variables": [
+                    "MCTokenIdTimeStaked",
+                    "MCTokenIdToStaker",
+                    "MC_EMISSIONS_RATE"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimByPartnerTokenId",
+                "Node": [
+                    1072
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [
+                    "partnerTokenIdTimeStaked",
+                    "partner_EMISSIONS_RATE"
+                ],
+                "Control Variables": [
+                    "partnerTokenIdTimeStaked",
+                    "partnerTokenIdToStaker",
+                    "partner_EMISSIONS_RATE"
+                ],
+                "Full Calculation Variables": [
+                    "partnerTokenIdTimeStaked",
+                    "partnerTokenIdToStaker",
+                    "partner_EMISSIONS_RATE"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAll",
+                "Node": [
+                    1103
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "MCTokenIdTimeStaked",
+                    "MC_EMISSIONS_RATE",
+                    "MTTokenIdTimeStaked",
+                    "MT_EMISSIONS_RATE",
+                    "StakerToMCTokenIds",
+                    "StakerToMTTokenIds",
+                    "StakerToPartnerTokenIds",
+                    "partnerTokenIdTimeStaked",
+                    "partner_EMISSIONS_RATE"
+                ],
+                "Control Variables": [
+                    "MCTokenIdTimeStaked",
+                    "MC_EMISSIONS_RATE",
+                    "MTTokenIdTimeStaked",
+                    "MT_EMISSIONS_RATE",
+                    "StakerToMCTokenIds",
+                    "StakerToMTTokenIds",
+                    "StakerToPartnerTokenIds",
+                    "partnerTokenIdTimeStaked",
+                    "partner_EMISSIONS_RATE"
+                ],
+                "Full Calculation Variables": [
+                    "MCTokenIdTimeStaked",
+                    "MC_EMISSIONS_RATE",
+                    "MTTokenIdTimeStaked",
+                    "MT_EMISSIONS_RATE",
+                    "StakerToMCTokenIds",
+                    "StakerToMTTokenIds",
+                    "StakerToPartnerTokenIds",
+                    "partnerTokenIdTimeStaked",
+                    "partner_EMISSIONS_RATE"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": [
+                    959
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "StakerToMTTokenIds",
+                    "StakerToMCTokenIds",
+                    "StakerToPartnerTokenIds"
+                ],
+                "Control Variables": [
+                    "StakerToMTTokenIds",
+                    "_partnerIERC721Enumerable",
+                    "_mcIERC721Enumerable",
+                    "StakerToPartnerTokenIds",
+                    "StakerToMCTokenIds",
+                    "_mtIERC721Enumerable"
+                ],
+                "Full Calculation Variables": [
+                    "StakerToMTTokenIds",
+                    "_partnerIERC721Enumerable",
+                    "_mcIERC721Enumerable",
+                    "StakerToPartnerTokenIds",
+                    "StakerToMCTokenIds",
+                    "_mtIERC721Enumerable"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeTomatosByIds",
+                "Node": [
+                    984
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MTTokenIdToStaker",
+                    "_mtIERC721Enumerable"
+                ],
+                "Full Calculation Variables": [
+                    "MTTokenIdToStaker",
+                    "_mtIERC721Enumerable"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeCucumbersByIds",
+                "Node": [
+                    1001
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MCTokenIdToStaker",
+                    "_mcIERC721Enumerable"
+                ],
+                "Full Calculation Variables": [
+                    "MCTokenIdToStaker",
+                    "_mcIERC721Enumerable"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakepartnerByIds",
+                "Node": [
+                    1018
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_partnerIERC721Enumerable",
+                    "partnerTokenIdToStaker"
+                ],
+                "Full Calculation Variables": [
+                    "_partnerIERC721Enumerable",
+                    "partnerTokenIdToStaker"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

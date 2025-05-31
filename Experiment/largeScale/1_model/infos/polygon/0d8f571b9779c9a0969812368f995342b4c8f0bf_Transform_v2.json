@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amounts_NoAffiliate",
+            "affiliate_info.amount"
+        ],
+        "User Stake Reward": [
+            "hodlamount",
+            "hodlamountforuser",
+            "hodlamountforaffiliate"
+        ],
+        "User Stake Time": [
+            "startTime",
+            "duration"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "HODLAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositTokensWithoutAffiliate",
+                "Node": "IERC20(pools[_poolindex].tokenAddress).transferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "depositTokensWithAffiliate",
+                "Node": "IERC20(pools[_poolindex].tokenAddress).transferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "depositMATICWithoutAffiliate",
+                "Node": "pools[_poolindex].amounts_NoAffiliate[msg.sender] = previousDepositAmount.add(msg.value)"
+            },
+            {
+                "Function": "depositMATICWithAffiliate",
+                "Node": "pools[_poolindex].affiliate_info[msg.sender].amount = previousDepositAmount.add(msg.value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributionHODLs",
+                "Node": "IERC20(HODLAddress).transfer(add, hodlamount)"
+            },
+            {
+                "Function": "distributionHODLsForBonus",
+                "Node": "IERC20(HODLAddress).transfer(add, hodlamountforuser)"
+            }
+        ],
+        "unStake": []
+    }
+}

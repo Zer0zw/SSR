@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastStakeTime",
+            "UserInfo.lastHarvestTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "pvi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_want.safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestReward",
+                "Node": "_safePviTransfer(_account, _claimableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_want.safeTransfer(address(msg.sender), _wantAmt)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_want.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

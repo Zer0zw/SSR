@@ -1,0 +1,180 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfo.balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakeInfo.stakedTimestamp",
+            "stakeInfo.lastClaimTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakeInfo.asset"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim",
+            "claimAll"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "claim",
+            "claimAll",
+            "stake",
+            "unstake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1429
+                ],
+                "Input": [
+                    "account",
+                    "amount",
+                    "asset",
+                    "requiredClaim"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "permittedERC20s"
+                ],
+                "Full Calculation Variables": [
+                    "permittedERC20s"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1582
+                ],
+                "Input": [
+                    "account",
+                    "asset",
+                    "requiredClaim"
+                ],
+                "Calculation Variables": [
+                    "MAXIMUM_STAKING_TIME",
+                    "MINIMUM_STAKING_TIME",
+                    "assetRewards.dripRate",
+                    "assetRewards.staked",
+                    "stakeInfo.asset",
+                    "stakeInfo.balance",
+                    "stakeInfo.lastClaimTimestamp",
+                    "stakeInfo.stakedTimestamp"
+                ],
+                "Control Variables": [
+                    "MAXIMUM_STAKING_TIME",
+                    "MINIMUM_STAKING_TIME",
+                    "assetRewards.dripRate",
+                    "assetRewards.dripToken",
+                    "assetRewards.staked",
+                    "rewardWallet",
+                    "stakeInfo.asset",
+                    "stakeInfo.balance",
+                    "stakeInfo.lastClaimTimestamp",
+                    "stakeInfo.stakedTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "MAXIMUM_STAKING_TIME",
+                    "MINIMUM_STAKING_TIME",
+                    "assetRewards.dripRate",
+                    "assetRewards.dripToken",
+                    "assetRewards.staked",
+                    "rewardWallet",
+                    "stakeInfo.asset",
+                    "stakeInfo.balance",
+                    "stakeInfo.lastClaimTimestamp",
+                    "stakeInfo.stakedTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAll",
+                "Node": [
+                    1582
+                ],
+                "Input": [
+                    "account",
+                    "requiredClaim"
+                ],
+                "Calculation Variables": [
+                    "MAXIMUM_STAKING_TIME",
+                    "MINIMUM_STAKING_TIME",
+                    "assetRewards.dripRate",
+                    "assetRewards.staked",
+                    "stakeInfo.asset",
+                    "stakeInfo.balance",
+                    "stakeInfo.lastClaimTimestamp",
+                    "stakeInfo.stakedTimestamp"
+                ],
+                "Control Variables": [
+                    "MAXIMUM_STAKING_TIME",
+                    "MINIMUM_STAKING_TIME",
+                    "assetRewards.dripRate",
+                    "assetRewards.dripToken",
+                    "assetRewards.staked",
+                    "rewardWallet",
+                    "stakeInfo.asset",
+                    "stakeInfo.balance",
+                    "stakeInfo.lastClaimTimestamp",
+                    "stakeInfo.stakedTimestamp",
+                    "userStakes"
+                ],
+                "Full Calculation Variables": [
+                    "MAXIMUM_STAKING_TIME",
+                    "MINIMUM_STAKING_TIME",
+                    "assetRewards.dripRate",
+                    "assetRewards.dripToken",
+                    "assetRewards.staked",
+                    "rewardWallet",
+                    "stakeInfo.asset",
+                    "stakeInfo.balance",
+                    "stakeInfo.lastClaimTimestamp",
+                    "stakeInfo.stakedTimestamp",
+                    "userStakes"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1487
+                ],
+                "Input": [
+                    "amount",
+                    "asset",
+                    "requiredClaim"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "assetRewards.staked",
+                    "stakeInfo.asset",
+                    "stakeInfo.balance",
+                    "stakeInfo.lastClaimTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "assetRewards.staked",
+                    "stakeInfo.asset",
+                    "stakeInfo.balance",
+                    "stakeInfo.lastClaimTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

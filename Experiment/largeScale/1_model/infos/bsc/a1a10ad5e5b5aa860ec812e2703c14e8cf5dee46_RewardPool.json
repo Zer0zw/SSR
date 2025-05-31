@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pendingBct"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastRewardBlock"
+        ],
+        "Stake Token Address": [
+            "LpBctUsdt"
+        ],
+        "Reward Token Address": [
+            "Bct"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(LpBctUsdt).transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "Bct.safeTransfer(msg.sender, _amount.sub(withdrawFee))"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "Bct.safeTransfer(referrer, commissionAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Bct.safeTransfer(msg.sender, _amount.sub(withdrawFee))"
+            }
+        ]
+    }
+}

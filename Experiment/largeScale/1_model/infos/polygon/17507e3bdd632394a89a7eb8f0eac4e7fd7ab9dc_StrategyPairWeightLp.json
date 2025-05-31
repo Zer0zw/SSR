@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IShareRewardBank(farmPool).deposit(poolId, _baseBal)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IShareRewardBank(farmPool).deposit(poolId, _baseBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IShareRewardBank(farmPool).deposit(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IShareRewardBank(farmPool).withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IShareRewardBank(farmPool).withdrawAll(poolId)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IShareRewardBank(farmPool).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

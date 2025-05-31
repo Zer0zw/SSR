@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "User.reward"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "c_lgt_trx_pair"
+        ],
+        "Reward Token Address": [
+            "c_lgt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "c_lgt_trx_pair.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "c_lgt.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "c_lgt_trx_pair.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "c_lgt_trx_pair.transfer(msg.sender, _balances[msg.sender])"
+            }
+        ]
+    }
+}

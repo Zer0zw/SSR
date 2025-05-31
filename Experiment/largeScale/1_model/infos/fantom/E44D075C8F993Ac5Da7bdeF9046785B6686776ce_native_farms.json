@@ -1,0 +1,72 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount_native_staked.amount_staked",
+            "amount_native_usdc_staked.amount_staked",
+            "amount_native_ftm_staked.amount_staked"
+        ],
+        "User Stake Reward": [
+            "vest_to_native_stakers",
+            "vest_to_native_ftm_stakers",
+            "vest_to_native_stable_stakers"
+        ],
+        "User Stake Time": [
+            "amount_native_staked.entry_epoch",
+            "amount_native_usdc_staked.entry_epoch",
+            "amount_native_ftm_staked.entry_epoch"
+        ],
+        "Stake Token Address": [
+            "native_token",
+            "protocol_token_stable",
+            "protocol_token_ftm"
+        ],
+        "Reward Token Address": [
+            "usdc",
+            "native_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking_asset_native",
+                "Node": "ERC20(native_token).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "staking_protocol_token_stable",
+                "Node": "ERC20(protocol_token_stable).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "staking_protocol_token_ftm",
+                "Node": "ERC20(protocol_token_ftm).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest_rewards_native",
+                "Node": "ERC20(usdc).transfer(msg.sender, uint256(amount_vested))"
+            },
+            {
+                "Function": "harvest_rewards_ftm_native",
+                "Node": "ERC20(native_token).transfer(msg.sender, uint256(amount_vested))"
+            },
+            {
+                "Function": "harvest_rewards_stable_native",
+                "Node": "ERC20(native_token).transfer(msg.sender, uint256(amount_vested))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstaking_asset_native",
+                "Node": "ERC20(native_token).transfer(msg.sender, amount_to_unstake)"
+            },
+            {
+                "Function": "unstaking_protocol_token_stable",
+                "Node": "ERC20(protocol_token_stable).transfer(msg.sender, amount_to_unstake)"
+            },
+            {
+                "Function": "unstaking_protocol_token_ftm",
+                "Node": "ERC20(protocol_token_ftm).transfer(msg.sender, amount_to_unstake)"
+            }
+        ]
+    }
+}

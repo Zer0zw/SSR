@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [
+            "warmupInfo.gons"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry"
+        ],
+        "Stake Token Address": [
+            "Time"
+        ],
+        "Reward Token Address": [
+            "Memories"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "Memories.safeTransfer( address(warmupContract), _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "warmupContract.retrieve( _recipient,  amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "Time.safeTransfer( msg.sender, _amount )"
+            }
+        ]
+    }
+}

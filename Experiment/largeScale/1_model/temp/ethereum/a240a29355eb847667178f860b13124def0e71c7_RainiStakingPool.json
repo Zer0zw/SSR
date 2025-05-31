@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked"
+        ],
+        "User Stake Reward": [
+            "balances"
+        ],
+        "User Stake Time": [
+            "lastUpdated"
+        ],
+        "Stake Token Address": [
+            "rainiToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "rainiToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "balanceUpdate",
+                "Node": "balances[_owner] = balances[_owner].add(reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "rainiToken.safeTransfer(_msgSender(), _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "zoo"
+        ],
+        "Reward Token Address": [
+            "fzoo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "mint(msg.sender, _amount.div(1e18).mul(1e18))"
+            },
+            {
+                "Function": "enterWithFZOO",
+                "Node": "mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "fzoo.transfer(msg.sender, what.sub(withdrawn.mul(1e18)))"
+            }
+        ]
+    }
+}

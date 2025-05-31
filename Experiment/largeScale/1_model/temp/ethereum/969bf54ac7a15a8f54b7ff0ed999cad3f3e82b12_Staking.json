@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staker.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "staker.lockedtime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_token.transferFrom(msg.sender,address(this),amount)"
+            },
+            {
+                "Function": "buyforstakingwithexactEHTforToken",
+                "Node": "payable(owner()).transfer(msg.value)"
+            },
+            {
+                "Function": "buyforstakingwithexactUsdtforToken",
+                "Node": "usdt.transferFrom(msg.sender,owner(),amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_token.transfer(msg.sender,_stakers[msg.sender].amount)"
+            }
+        ]
+    }
+}

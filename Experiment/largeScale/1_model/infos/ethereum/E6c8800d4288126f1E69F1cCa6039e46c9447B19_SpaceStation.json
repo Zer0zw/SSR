@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount",
+            "stakeAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "_mintBlock",
+            "lockBlockNum"
+        ],
+        "Stake Token Address": [
+            "_stakeToken",
+            "erc20"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeIn",
+                "Node": "require(IERC20(campaignStakeConfigs[_cid].erc20).transferFrom(msg.sender, address(this), stakeAmount)"
+            },
+            {
+                "Function": "forgeStake",
+                "Node": "require(IERC20(campaignStakeConfigs[_cid].erc20).transferFrom(msg.sender, address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "emit EventClaim(_cid, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "stakeOutQuasar",
+                "Node": "require(_stakeToken.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "stakeOutSuper",
+                "Node": "require(_stakeToken[i].transfer(msg.sender, _amount[i])"
+            },
+            {
+                "Function": "emergencyWithdrawQuasar",
+                "Node": "require(_stakeToken.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdrawSuper",
+                "Node": "require(_stakeToken[i].transfer(msg.sender, _amount[i])"
+            }
+        ]
+    }
+}

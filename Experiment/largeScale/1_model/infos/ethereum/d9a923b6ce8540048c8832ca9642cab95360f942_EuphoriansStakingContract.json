@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStaked",
+            "Stake.owner"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "nftAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nft.transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IEuphorians(tokenAddress).mint(account, earned)"
+            },
+            {
+                "Function": "claimForAddress",
+                "Node": "IEuphorians(tokenAddress).mint(account, earned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nft.transferFrom(address(this), account, tokenId)"
+            },
+            {
+                "Function": "_unstakeMany",
+                "Node": "nft.transferFrom(address(this), account, tokenId)"
+            }
+        ]
+    }
+}

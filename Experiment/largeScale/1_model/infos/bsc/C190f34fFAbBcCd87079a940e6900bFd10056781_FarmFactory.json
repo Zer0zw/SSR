@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserFarm.deposited"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "CreateFarmParams.lpToken"
+        ],
+        "Reward Token Address": [
+            "CreateFarmParams.erc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "info.erc20.transferFrom(msg.sender, address(this), info.amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pending",
+                "Node": "uint256 pendingRewards = farmInstance.pending(0, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "farmInstance.withdraw(0, amount, msg.sender)"
+            }
+        ]
+    }
+}

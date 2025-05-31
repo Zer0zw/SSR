@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_usersSet"
+        ],
+        "User Stake Reward": [
+            "durationReward"
+        ],
+        "User Stake Time": [
+            "_usersMap",
+            "durationTime"
+        ],
+        "Stake Token Address": [
+            "NFTCollection"
+        ],
+        "Reward Token Address": [
+            "RewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTier",
+                "Node": "NFTCollection.transferFrom(msg.sender, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeTierAll",
+                "Node": "NFTCollection.transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTier",
+                "Node": "RewardToken.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "claimTierAll",
+                "Node": "RewardToken.safeTransfer(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTier",
+                "Node": "NFTCollection.transferFrom(address(this), msg.sender, _tokenId)"
+            },
+            {
+                "Function": "withdrawTierAll",
+                "Node": "NFTCollection.transferFrom(address(this), msg.sender, setTokenId)"
+            }
+        ]
+    }
+}

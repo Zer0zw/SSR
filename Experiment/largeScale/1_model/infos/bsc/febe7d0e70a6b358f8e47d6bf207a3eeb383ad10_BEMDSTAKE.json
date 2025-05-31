@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardEarned"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTime",
+            "UserInfo.rewardTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.stakeToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.stakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.stakeToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "poolInfo.stakeToken.safeTransfer(msg.sender, user.rewardEarned)"
+            },
+            {
+                "Function": "bonus",
+                "Node": "pool.stakeToken.safeTransfer(address(msg.sender), _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.stakeToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "EmergencyWithdraw",
+                "Node": "pool.stakeToken.safeTransfer(address(msg.sender), _amount)"
+            }
+        ]
+    }
+}

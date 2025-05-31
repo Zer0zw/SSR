@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "rewardAmount"
+        ],
+        "User Stake Time": [
+            "stakesStartTime"
+        ],
+        "Stake Token Address": [
+            "tcontract"
+        ],
+        "Reward Token Address": [
+            "tcontract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(tcontract.transferFrom(msg.sender,owner, tokenAmountInWEI), \"Don't have enough balance\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeWithReward",
+                "Node": "require(tcontract.transfer(msg.sender,totalAmount), \"Don't have enough balance\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeWithoutReward",
+                "Node": "require(tcontract.transfer(msg.sender,stakeAmount), \"Don't have enough balance\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_lockedAmountByOwner"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "_unlockAtByOwner"
+        ],
+        "Stake Token Address": [
+            "_baseTokenContract"
+        ],
+        "Reward Token Address": [
+            "_pooledTokenContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onERC20Received",
+                "Node": "_pooledTokenContract.mint(from, tokenAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "onERC20Received",
+                "Node": "_pooledTokenContract.burn(amount)"
+            },
+            {
+                "Function": "unlock",
+                "Node": "_baseTokenContract.transfer(msg.sender, lockedAmount)"
+            }
+        ]
+    }
+}

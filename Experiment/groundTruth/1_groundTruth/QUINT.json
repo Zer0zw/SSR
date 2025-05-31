@@ -1,0 +1,107 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "tokenStakeRecord.amount",
+                "lpStakeRecord.lpAmount"
+            ],
+            "User Stake Reward": [
+                "tokenStakeRecord.reward",
+                "lpStakeRecord.reward"
+            ],
+            "User Stake Time": [
+                "tokenStakeRecord.time",
+                "lpStakeRecord.time"
+            ],
+            "Stake Token Address": [
+                "token"
+            ],
+            "Reward Token Address": [
+                "token"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "claim"
+            ],
+            "unStake": [
+                "withdraw"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "liquidityPair",
+                        "minLp",
+                        "token",
+                        "minToken",
+                        "users.isExists"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claim",
+                    "Calculation Variables": [
+                        "distributor",
+                        "lpStakeRecord.reward",
+                        "lpStakeRecord.time",
+                        "lpStakeRecord.amount",
+                        "token",
+                        "tokenStakeRecord.reward",
+                        "tokenStakeRecord.time",
+                        "tokenStakeRecord.amount",
+                        "rewardDivider"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "liquidityPair",
+                        "lpStakeRecord.reward",
+                        "tokenStakeRecord.reward",
+                        "tokenStakeRecord.time",
+                        "lpStakeRecord.time",
+                        "withdrawTaxPercent",
+                        "tokenStakeRecord.startTime",
+                        "lpStakeRecord.lpAmount",
+                        "lpStakeRecord.startTime",
+                        "users.totalWithdrawanToken",
+                        "token",
+                        "users.totalWithdrawanLp",
+                        "tokenStakeRecord.amount",
+                        "lpStakeRecord.amount",
+                        "withdrawDuration"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [
+            "stake",
+            "withdraw"
+        ],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

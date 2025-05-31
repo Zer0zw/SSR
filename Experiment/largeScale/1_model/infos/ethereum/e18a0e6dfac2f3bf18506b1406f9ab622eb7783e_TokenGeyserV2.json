@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserTotals.stakingShares",
+            "Stake.stakingShares"
+        ],
+        "User Stake Reward": [
+            "UserTotals.stakingShareSeconds"
+        ],
+        "User Stake Time": [
+            "Stake.timestampSec"
+        ],
+        "Stake Token Address": [
+            "_stakingPool.token()"
+        ],
+        "Reward Token Address": [
+            "_unlockedPool.token()"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(_stakingPool.token().transferFrom(staker, address(_stakingPool), amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "require(_stakingPool.token().transferFrom(staker, address(_stakingPool), amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_rewardUserAndReferrers",
+                "Node": "require(_unlockedPool.transfer(user, userAmount))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "require(_stakingPool.transfer(msg.sender, amount))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.lockedAmount",
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.tokenAtLastUserAction",
+            "UserInfo.userBoostedShare"
+        ],
+        "User Stake Time": [
+            "UserInfo.lockStartTime",
+            "UserInfo.lockEndTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositOperation",
+                "Node": "token.safeTransferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "masterchefV2.withdraw(fundingPID, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawOperation",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            },
+            {
+                "Function": "unstakeFundingToken",
+                "Node": "fundingToken.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

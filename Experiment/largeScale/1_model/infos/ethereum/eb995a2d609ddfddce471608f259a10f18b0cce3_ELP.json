@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastUpdateTime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "_stakingToken"
+        ],
+        "Reward Token Address": [
+            "_rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "super._farm(_beneficiary, _amount)"
+            },
+            {
+                "Function": "_farm",
+                "Node": "super._farm(_beneficiary, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_withdraw(_amount)"
+            },
+            {
+                "Function": "unfarm",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

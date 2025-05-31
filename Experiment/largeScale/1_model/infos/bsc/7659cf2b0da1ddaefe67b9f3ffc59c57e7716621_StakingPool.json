@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingData.balance",
+            "stakedBalancePerUser",
+            "totalStakedBalancePerUser"
+        ],
+        "User Stake Reward": [
+            "StakingData.reward",
+            "rewardClaimedPerUser",
+            "totalRewardClaimedPerUser"
+        ],
+        "User Stake Time": [
+            "StakingData.stakedTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.stakingToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "IERC20(pool.stakingToken).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(pool.rewardToken).safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "unstakeToken",
+                "Node": "IERC20(pool.rewardToken).safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeToken",
+                "Node": "IERC20(pool.stakingToken).safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "emercencyWithdrawToken",
+                "Node": "IERC20(pool.stakingToken).safeTransfer(_account, data.balance)"
+            }
+        ]
+    }
+}

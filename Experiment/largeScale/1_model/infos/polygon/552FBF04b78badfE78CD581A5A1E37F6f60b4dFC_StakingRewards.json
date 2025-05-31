@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userBalances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "Pool.rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "Pool.stakingToken"
+        ],
+        "Reward Token Address": [
+            "Pool.rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "pools[id].stakingToken.safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "pools[id].rewardsToken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pools[id].stakingToken.safeTransfer(msg.sender, amount"
+            },
+            {
+                "Function": "exit",
+                "Node": "pools[id].stakingToken.safeTransfer(msg.sender, userBalances[id][msg.sender]"
+            }
+        ]
+    }
+}

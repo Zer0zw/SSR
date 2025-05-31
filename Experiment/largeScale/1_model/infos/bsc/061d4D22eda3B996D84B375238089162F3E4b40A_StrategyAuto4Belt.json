@@ -1,0 +1,64 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfWant",
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "Auto"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IAutoFarmV2(autofarm).deposit(poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wbnb).safeTransfer(msg.sender, callFeeAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wbnb).safeTransfer(vgatorFeeRecipient, vgatorFeeAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wbnb).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFee))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "_retireStratEmergency",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IAutoFarmV2(autofarm).withdraw(poolId, uint(-1))"
+            },
+            {
+                "Function": "panicEmergency",
+                "Node": "IAutoFarmV2(autofarm).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

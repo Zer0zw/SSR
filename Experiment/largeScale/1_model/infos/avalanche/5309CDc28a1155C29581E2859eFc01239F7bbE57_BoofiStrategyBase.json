@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "joePid"
+        ],
+        "User Stake Reward": [
+            "pendingJoe"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "joeMasterChefV2.deposit(joePid, tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "joeMasterChefV2.deposit(joePid, 0)"
+            },
+            {
+                "Function": "_swapRewardForBoofi",
+                "Node": "joeRouter.swapExactTokensForTokens(amountIn, 0, pathRewardToBoofi, hauntedHouse.strategyPool(), block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "depositToken.safeTransfer(to, tokenAmount)"
+            },
+            {
+                "Function": "migrate",
+                "Node": "depositToken.safeTransfer(newStrategy, toWithdraw)"
+            },
+            {
+                "Function": "migrate",
+                "Node": "rewardToken.safeTransfer(newStrategy, rewardsToTransfer)"
+            }
+        ]
+    }
+}

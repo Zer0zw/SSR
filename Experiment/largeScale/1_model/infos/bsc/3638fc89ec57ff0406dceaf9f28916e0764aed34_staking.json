@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolRewards.totalAmount",
+            "userData.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "poolRewards.rewards",
+            "userData.reward"
+        ],
+        "User Stake Time": [
+            "poolRewards.stakeTime",
+            "userData.timeLastStaked"
+        ],
+        "Stake Token Address": [
+            "token.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "token.tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakePool",
+                "Node": "IERC20(_pool.stakeTokenInfo.tokenAddress).transferFrom(msg.sender, address(this), _amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_pool.rewardTokenInfo.tokenAddress).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(_pool.stakeTokenInfo.tokenAddress).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "payable(msg.sender).transfer(amount)"
+            }
+        ]
+    }
+}

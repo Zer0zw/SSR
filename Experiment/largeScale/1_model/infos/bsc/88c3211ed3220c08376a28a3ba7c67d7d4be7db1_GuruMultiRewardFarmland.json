@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "Reward.rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), stakingToken.balanceOf(msg.sender))"
+            },
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(_rewardsToken).safeTransfer(msg.sender, _reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "IERC20(_rewardsToken).safeTransfer(msg.sender, _reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "IERC20(_rewardsToken).safeTransfer(_ben, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "stakingToken.safeTransfer(msg.sender, _balances[msg.sender])"
+            }
+        ]
+    }
+}

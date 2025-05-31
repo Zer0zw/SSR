@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "iglooMaster.userShares"
+        ],
+        "User Stake Reward": [
+            "harvested",
+            "iglooStrategyStorage.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokensArray"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "joeMasterChefV3.deposit(joePid, tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "_safeRewardTokenTransfer(rewardToken, to, userPendingRewards)"
+            },
+            {
+                "Function": "_previousRewardsHarvest",
+                "Node": "_safeRewardTokenTransfer(previousRewardToken, to, userPendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "depositToken.safeTransfer(to, tokenAmount)"
+            }
+        ]
+    }
+}

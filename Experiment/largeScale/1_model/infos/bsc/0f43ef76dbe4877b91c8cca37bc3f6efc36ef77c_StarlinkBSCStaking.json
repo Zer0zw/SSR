@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalEarned",
+            "UserInfo.totalBonus"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "bridgeAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "bridgeAddress.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "tokenAddress.safeTransfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "tokenAddress.safeTransfer(address(msg.sender), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "bridgeAddress.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "bridgeAddress.safeTransfer(address(msg.sender), amountToTransfer)"
+            }
+        ]
+    }
+}

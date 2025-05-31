@@ -1,0 +1,69 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "poolStartTime",
+            "poolEndTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.token",
+            "PoolInfo.nft"
+        ],
+        "Reward Token Address": [
+            "vshare"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.token.safeTransferFrom(_sender, address(this), _amount"
+            },
+            {
+                "Function": "StakeNft",
+                "Node": "pool.nft.safeTransferFrom(_sender, address(this),  _tokenIds[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safevshareTransfer(_sender, _pending)"
+            },
+            {
+                "Function": "StakeNft",
+                "Node": "safevshareTransfer(_sender, _pending)"
+            },
+            {
+                "Function": "UnstakeNft",
+                "Node": "safevshareTransfer(_sender, _pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safevshareTransfer(_sender, _pending)"
+            },
+            {
+                "Function": "claimRewardNft",
+                "Node": "safevshareTransfer(_sender, _pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnstakeNft",
+                "Node": "pool.nft.safeTransferFrom(address(this), _sender, _tokenIds[i]"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.token.safeTransfer(_sender, _amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.token.safeTransfer(msg.sender, _amount"
+            }
+        ]
+    }
+}

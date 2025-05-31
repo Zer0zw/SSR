@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakeAmounts"
+        ],
+        "User Stake Reward": [
+            "_bounsAmounts"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_pairAddress"
+        ],
+        "Reward Token Address": [
+            "_tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLP",
+                "Node": "bool result = IERC20(_pairAddress).transferFrom(_msgSender(), address(this), lpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_dividentsNext",
+                "Node": "bool result = IERC20(_tokenAddress).transfer(account, payAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLP",
+                "Node": "bool result = IERC20(_pairAddress).transfer(_msgSender(), lpAmount)"
+            }
+        ]
+    }
+}

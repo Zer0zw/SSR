@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPStaked"
+        ],
+        "User Stake Reward": [
+            "claimableView"
+        ],
+        "User Stake Time": [
+            "LPStakedFrom"
+        ],
+        "Stake Token Address": [
+            "LP_CONTRACT"
+        ],
+        "Reward Token Address": [
+            "BCASH_CONTRACT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLP",
+                "Node": "lp.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBCash",
+                "Node": "bc.mintBatch(_mintAddressArray, _mintAmountArray)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "bc.mintBatch(_mintAddressArray, _mintAmountArray)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLP",
+                "Node": "lp.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

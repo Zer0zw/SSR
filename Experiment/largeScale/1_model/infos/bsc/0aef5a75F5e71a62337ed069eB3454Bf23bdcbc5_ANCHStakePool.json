@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.stakeRewardWithdrawedAmount",
+            "UserInfo.inviteRewardWithdrawedAmount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.deposit(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earnStakeReward",
+                "Node": "safeTransfer(msg.sender, stakeLPReward)"
+            },
+            {
+                "Function": "earnInviteReward",
+                "Node": "safeTransfer(account, inviteReward)"
+            },
+            {
+                "Function": "earn",
+                "Node": "safeTransfer(msg.sender, totalReward)"
+            },
+            {
+                "Function": "earn",
+                "Node": "safeTransfer(msg.sender, stakeLPReward)"
+            },
+            {
+                "Function": "earn",
+                "Node": "safeTransfer(msg.sender, inviteReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

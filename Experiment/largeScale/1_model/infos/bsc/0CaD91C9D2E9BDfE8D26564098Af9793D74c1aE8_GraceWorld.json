@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStakingToken",
+            "Staking.stakingToken"
+        ],
+        "User Stake Reward": [
+            "User.airdropReward",
+            "Staking.currentRewards",
+            "Staking.genRewards"
+        ],
+        "User Stake Time": [
+            "Staking.stakingDate",
+            "Staking.lastWithdrawalDate"
+        ],
+        "Stake Token Address": [
+            "GWD"
+        ],
+        "Reward Token Address": [
+            "GWD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "start_staking",
+                "Node": "GWD.transfer(stakingPaymentWallet,totalReward)"
+            },
+            {
+                "Function": "start_staking_other",
+                "Node": "GWD.transfer(stakingPaymentWallet,totalReward)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "GWD.transferFrom(stakingPaymentWallet,msg.sender,withdrawalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

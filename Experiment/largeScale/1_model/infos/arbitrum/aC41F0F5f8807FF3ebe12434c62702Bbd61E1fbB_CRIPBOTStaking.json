@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Users.DepositeToken",
+            "depositeToken"
+        ],
+        "User Stake Reward": [
+            "Users.WithdrawAbleReward",
+            "Users.WithdrawReward"
+        ],
+        "User Stake Time": [
+            "lockabledays",
+            "Users.lockableDays"
+        ],
+        "Stake Token Address": [
+            "Token"
+        ],
+        "Reward Token Address": [
+            "Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "Token.transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTokens",
+                "Node": "Token.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "Token.transfer(msg.sender, totalwithdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": "Token.transfer(msg.sender, totalwithdrawAmount)"
+            }
+        ]
+    }
+}

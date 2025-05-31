@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.farmedToken"
+        ],
+        "User Stake Reward": [
+            "TradeFinanceReward"
+        ],
+        "User Stake Time": [
+            "userInfo.lockableDays"
+        ],
+        "Stake Token Address": [
+            "TradeFinance"
+        ],
+        "Reward Token Address": [
+            "TradeFinance"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "TradeFinance.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeTransferWYZ(msg.sender, amounttoTransferred)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": "safeTransferWYZ(msg.sender, amounttoTransferred)"
+            }
+        ]
+    }
+}

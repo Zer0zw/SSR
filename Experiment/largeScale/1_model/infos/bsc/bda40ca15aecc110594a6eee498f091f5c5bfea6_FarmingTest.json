@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStake.amount"
+        ],
+        "User Stake Reward": [
+            "UserStake.withdrawnReward"
+        ],
+        "User Stake Time": [
+            "UserStake.stakedAt",
+            "UserStake.rewardWithdrawnAt"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lpToken.transferFrom(sender, contractAddr, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "rewardToken.transfer(sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "lpToken.transfer(receiver, stakedLp)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "rewardToken.transfer(receiver, leftoverReward)"
+            }
+        ]
+    }
+}

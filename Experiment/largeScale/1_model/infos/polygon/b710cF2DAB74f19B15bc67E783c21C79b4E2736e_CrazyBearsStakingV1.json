@@ -1,0 +1,71 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenByUser"
+        ],
+        "User Stake Reward": [
+            "FieldReward.common",
+            "FieldReward.rare",
+            "FieldReward.epic",
+            "FieldReward.legendary",
+            "FieldReward.special"
+        ],
+        "User Stake Time": [
+            "StakedToken.since"
+        ],
+        "Stake Token Address": [
+            "stakableContractAddress"
+        ],
+        "Reward Token Address": [
+            "FieldReward.contractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakeableContract.safeTransferFrom(_from, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "stakeableContract.safeTransferFrom(_from, address(this), _tokens[i])"
+            },
+            {
+                "Function": "batchStake",
+                "Node": "stakeableContract.safeTransferFrom(_from, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "receiveReward",
+                "Node": "rewardContract.safeTransferFrom(address(this), msg.sender, rewardTokenId, earned, '')"
+            },
+            {
+                "Function": "batchReceiveReward",
+                "Node": "rewardContract.safeTransferFrom(address(this), msg.sender, rewardTokenId, earned, '')"
+            },
+            {
+                "Function": "receiveRewardAll",
+                "Node": "rewardContract.safeTransferFrom(address(this), msg.sender, rewardTokenId, earned, '')"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakeableContract.safeTransferFrom(address(this), user, _tokenID)"
+            },
+            {
+                "Function": "batchUnstake",
+                "Node": "stakeableContract.safeTransferFrom(address(this), user, _tokenIds[i])"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "stakeableContract.safeTransferFrom(address(this), msg.sender, _tokenID)"
+            },
+            {
+                "Function": "emergencyReturn",
+                "Node": "stakeableContract.safeTransferFrom(address(this), msg.sender, _tokenID)"
+            }
+        ]
+    }
+}

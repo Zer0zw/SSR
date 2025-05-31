@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stake"
+        ],
+        "User Stake Reward": [
+            "Stake.notWithdrawn"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "payable(devAddress).transfer(depositFee)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "stake[_msgSender()].stake += stake[_msgSender()].notWithdrawn"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "payable(_msgSender()).transfer(amount)"
+            },
+            {
+                "Function": "claimContributeBonus",
+                "Node": "payable(_msgSender()).transfer(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCapital",
+                "Node": "payable(_msgSender()).transfer(amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "staked"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(masterchef).deposit(poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokens(toStaked, 0, rewardToStakedRoute, address(this), block.timestamp)"
+            },
+            {
+                "Function": "swapAndChargeFees",
+                "Node": "IERC20(staked).safeTransfer(strategist, stakedBal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(staked).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(staked).safeTransfer(vault, wantBal - withdrawalFeeAmount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(staked).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMasterChef(masterchef).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

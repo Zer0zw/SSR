@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "snapshotStakedAmountMap",
+            "userDebtMap"
+        ],
+        "User Stake Reward": [
+            "pendingReward",
+            "pendingRewardAll"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lastTimestamp"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.tokenStaked"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.tokenReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.tokenReward.safeTransfer(msg.sender, userProfitAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "pool.tokenReward.safeTransfer(msg.sender, userProfitAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

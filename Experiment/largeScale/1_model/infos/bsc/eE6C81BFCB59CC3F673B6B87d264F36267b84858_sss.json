@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "miner.tokenNum"
+        ],
+        "User Stake Reward": [
+            "miner.usdt"
+        ],
+        "User Stake Time": [
+            "miner.stime",
+            "miner.ctime"
+        ],
+        "Stake Token Address": [
+            "supportToken"
+        ],
+        "Reward Token Address": [
+            "usdtAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "doStake",
+                "Node": "IERC20(token).transferFrom(_msgSender(),address(this),amountIn"
+            },
+            {
+                "Function": "doStart",
+                "Node": "payable(backAddr).transfer(amountIn)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doClaim",
+                "Node": "_mint(me.me, canClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "payable(_msgSender()).transfer(amount)"
+            },
+            {
+                "Function": "redeem",
+                "Node": "IERC20(supportToken[me.tokenIndex[i]]).transfer(_msgSender(),amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Pool.stakingPool",
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "Pool.token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20Upgradeable(_token).safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stakeETH",
+                "Node": "IWrappedETH(wrappedETH).wrap{value: msg.value}()"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.stakingPool.withdraw(msg.sender, _receiver, _amount)"
+            },
+            {
+                "Function": "withdrawETH",
+                "Node": "IWrappedETH(wrappedETH).unwrap(_amount)"
+            },
+            {
+                "Function": "withdrawETH",
+                "Node": "payable(msg.sender).call{value: _amount}(\"\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TotalInvest"
+        ],
+        "User Stake Reward": [
+            "Balance",
+            "dividends"
+        ],
+        "User Stake Time": [
+            "Deposit.time",
+            "last_payout"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "BUSD.safeTransferFrom(msg.sender, address(this), original_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "BUSD.safeTransfer(msg.sender, balance)"
+            },
+            {
+                "Function": "userInfo",
+                "Node": "Balance[msg.sender] += payout"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "BUSD.safeTransfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

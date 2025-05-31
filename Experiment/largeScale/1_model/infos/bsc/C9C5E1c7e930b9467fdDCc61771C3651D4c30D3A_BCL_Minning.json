@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.toClaim",
+            "UserInfo.claimed"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakeTime"
+        ],
+        "Stake Token Address": [
+            "LP"
+        ],
+        "Reward Token Address": [
+            "BCL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLp",
+                "Node": "LP.safeTransferFrom(msg.sender, address(this), amount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "BCL.safeTransfer(msg.sender, (_newRew * coe) / 10)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeLp",
+                "Node": "LP.safeTransfer(msg.sender, _temp)"
+            }
+        ]
+    }
+}

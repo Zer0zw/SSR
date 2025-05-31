@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stakable"
+        ],
+        "User Stake Reward": [
+            "_babyWool"
+        ],
+        "User Stake Time": [
+            "Stake.start"
+        ],
+        "Stake Token Address": [
+            "ls.stakables"
+        ],
+        "Reward Token Address": [
+            "_babyWool"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakable.safeTransferFrom(msg.sender, address(this), stakables[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "shear",
+                "Node": "_babyWool.mint(owner, (duration * size * _shearBase * _stake.fertility) / DENOMINATOR, _fee)"
+            },
+            {
+                "Function": "shearAll",
+                "Node": "_babyWool.mint(owner, (duration * size * _shearBase * _stake.fertility) / DENOMINATOR, _fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakable.transferFrom(address(this), owner, stakables[i])"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "stakable.transferFrom(address(this), owner, stakables[i])"
+            }
+        ]
+    }
+}

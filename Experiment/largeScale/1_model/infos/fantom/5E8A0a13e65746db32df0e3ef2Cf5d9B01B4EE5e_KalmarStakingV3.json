@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.mint(msg.sender, amounAfterFee)"
+            },
+            {
+                "Function": "depositWhitelist",
+                "Node": "token.mint(_for, amounAfterFee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "migrateToLpStaking",
+                "Node": "kalmarLpStaking.depositWhitelist(address(stakingToken), msg.sender, amount, false)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "UserInfo.rarity",
+            "rewardRates"
+        ],
+        "User Stake Time": [
+            "UserInfo.startTime",
+            "UserInfo.endTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "spirit.transferFrom(msg.sender, address(this), id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "token.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getVReward",
+                "Node": "token.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "getReward",
+                "Node": "spirit.transferFrom(address(this), msg.sender,usersInfo[msg.sender].id)"
+            }
+        ]
+    }
+}

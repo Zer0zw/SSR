@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IBaseV1Gauge(lpComponent).deposit(_amount, 0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20Upgradeable(reward).safeTransfer(BADGER_TREE, rewardToTree)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAll",
+                "Node": "IBaseV1Gauge(lpComponent).withdrawAll()"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "IBaseV1Gauge(lpComponent).withdraw(_amount)"
+            }
+        ]
+    }
+}

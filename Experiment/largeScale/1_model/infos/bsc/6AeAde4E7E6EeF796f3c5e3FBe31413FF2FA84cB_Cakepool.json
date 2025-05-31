@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "Staker.balance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "periodFinish",
+            "DURATION"
+        ],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": [
+            "gift"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "deriveDAO().mint(msg.sender, reward, true)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

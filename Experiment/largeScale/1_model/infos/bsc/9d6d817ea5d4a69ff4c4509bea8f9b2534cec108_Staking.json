@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TimeLock_Six_Month.amount",
+            "TimeLock_Nine_Month.amount",
+            "TimeLock_Twelve_Month.amount"
+        ],
+        "User Stake Reward": [
+            "plan_1_Roi",
+            "plan_2_Roi",
+            "plan_3_Roi"
+        ],
+        "User Stake Time": [
+            "TimeLock_Six_Month.start_time",
+            "TimeLock_Six_Month.end_time",
+            "TimeLock_Nine_Month.start_time",
+            "TimeLock_Nine_Month.end_time",
+            "TimeLock_Twelve_Month.start_time",
+            "TimeLock_Twelve_Month.end_time"
+        ],
+        "Stake Token Address": [
+            "tokenAdress"
+        ],
+        "Reward Token Address": [
+            "tokenAdress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Lock_Token",
+                "Node": "ERC20interface.transferFrom(msg.sender, contractAddress, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Reward",
+                "Node": "return total"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ERC20interface.transfer(msg.sender, total)"
+            }
+        ]
+    }
+}

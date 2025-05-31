@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "native"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IGMXRouter(chef).stakeGmx(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IGMXTracker(rewardStorage).claim(address(this))"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IGMXTracker(rewardStorage).claim(address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IGMXRouter(chef).unstakeGmx(_amount - wantBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IGMXRouter(chef).unstakeGmx(balanceOfPool())"
+            },
+            {
+                "Function": "panic",
+                "Node": "IGMXRouter(chef).unstakeGmx(balanceOfPool())"
+            }
+        ]
+    }
+}

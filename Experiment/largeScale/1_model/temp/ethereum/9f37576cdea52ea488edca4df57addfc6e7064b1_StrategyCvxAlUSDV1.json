@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ICvxBaseRewardPool(rewardPool).balanceOf(address(this))",
+            "IERC20(alusdcrv).balanceOf(address(this))"
+        ],
+        "User Stake Reward": [
+            "ICvxBaseRewardPool(rewardPool).earned(address(this))",
+            "ICvxExtraRewardPool(extraRewardPool).earned(address(this))"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "alusd",
+            "alusdcrv"
+        ],
+        "Reward Token Address": [
+            "rewardTokenCRV",
+            "rewardTokenCVX",
+            "rewardTokenALCX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ICvxBooster(stakingPool).depositAll(stakingPoolId, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ICvxBaseRewardPool(rewardPool).getReward(address(this), true)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "ICvxBaseRewardPool(rewardPool).withdrawAndUnwrap(_toWithdraw, false)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "balance = _withdrawNonWantAsset(_asset)"
+            }
+        ]
+    }
+}

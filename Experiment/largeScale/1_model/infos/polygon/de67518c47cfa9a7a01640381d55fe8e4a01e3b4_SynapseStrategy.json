@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "pendingSynapse"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMiniChef(rewards).deposit(poolId, _want, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IMiniChef(rewards).harvest(poolId, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IMiniChef(rewards).withdraw(poolId, _amount, address(this))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IMiniChef(rewards).emergencyWithdraw(poolId, address(this))"
+            }
+        ]
+    }
+}

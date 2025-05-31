@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.extRewardDebt"
+        ],
+        "User Stake Time": [
+            "PoolInfo.bonusStartTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(pool.lpToken).safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(rewardToken).safeTransfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(rewardToken).safeTransfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "withDrawLPFromExt",
+                "Node": "IERC20(JoeToken).safeTransfer(msg.sender, transferJoeAmount)"
+            },
+            {
+                "Function": "depositLPToChef",
+                "Node": "IERC20(JoeToken).safeTransfer(msg.sender,transferJoeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withDrawLPFromExt",
+                "Node": "IChef(pool.extFarmInfo.extFarmAddr).withdraw(pool.extFarmInfo.extPid, _amount)"
+            }
+        ]
+    }
+}

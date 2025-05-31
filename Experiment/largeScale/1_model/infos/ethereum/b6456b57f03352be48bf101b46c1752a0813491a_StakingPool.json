@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UnbondCommitment.unlocksAt"
+        ],
+        "Stake Token Address": [
+            "ADXToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "innerEnter",
+                "Node": "require(ADXToken.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "enter",
+                "Node": "innerEnter(msg.sender, amount)"
+            },
+            {
+                "Function": "enterTo",
+                "Node": "innerEnter(recipient, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "uniswap.swapTokensForExactTokens(amount, adxAmountMax, path, to, block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(ADXToken.transfer(msg.sender, receivedTokens)"
+            },
+            {
+                "Function": "rageLeave",
+                "Node": "require(ADXToken.transfer(msg.sender, receivedTokens)"
+            }
+        ]
+    }
+}

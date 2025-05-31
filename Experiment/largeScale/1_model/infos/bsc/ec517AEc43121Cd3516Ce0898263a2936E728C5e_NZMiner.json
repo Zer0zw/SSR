@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amountA",
+            "User.amountB"
+        ],
+        "User Stake Reward": [
+            "UserReward.accTotalReward",
+            "UserReward.accPendingReward",
+            "UserReward.peerTotalReward",
+            "UserReward.peerPendingReward"
+        ],
+        "User Stake Time": [
+            "Order.orderTime",
+            "Order.rewardTime"
+        ],
+        "Stake Token Address": [
+            "nzAddress",
+            "zzbtAddress"
+        ],
+        "Reward Token Address": [
+            "nzAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(nzAddress).safeTransferFrom(msg.sender, feeOwner, amountA)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(zzbtAddress).safeTransferFrom(msg.sender, destroyAddress, amountB)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(nzAddress).safeTransfer(msg.sender, totalRewards.add(rew))"
+            }
+        ],
+        "unStake": []
+    }
+}

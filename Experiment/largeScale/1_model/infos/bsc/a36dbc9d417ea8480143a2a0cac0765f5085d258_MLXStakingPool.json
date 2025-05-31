@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "unclaimedReward"
+        ],
+        "User Stake Time": [
+            "lastActionTime",
+            "depositTime",
+            "swaplock.time"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(rewardToken.transferFrom(address(this), msg.sender, rewardToSend)"
+            },
+            {
+                "Function": "compoundReward",
+                "Node": "balances[msg.sender] += rewardToCompound"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCapital",
+                "Node": "require(token.transferFrom(address(this), msg.sender, _amountToSend)"
+            }
+        ]
+    }
+}

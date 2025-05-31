@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.balance"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalWithdrawn"
+        ],
+        "User Stake Time": [
+            "UserInfo.unlockBlock"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(sender, nToMint, received)"
+            },
+            {
+                "Function": "_registerFirstPurchase",
+                "Node": "_mint(msg.sender, received, received)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, sendAmount)"
+            }
+        ]
+    }
+}

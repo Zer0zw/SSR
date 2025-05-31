@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount",
+            "_amountsuper"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "dividToken"
+        ],
+        "Reward Token Address": [
+            "busdToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeSuper",
+                "Node": "_burn(msg.sender, _amountsuper)"
+            },
+            {
+                "Function": "stake",
+                "Node": "_burn(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "_mint(msg.sender, amount_to_mint)"
+            },
+            {
+                "Function": "withdrawStakeSuper",
+                "Node": "_mint(msg.sender, amount_to_mint)"
+            }
+        ]
+    }
+}

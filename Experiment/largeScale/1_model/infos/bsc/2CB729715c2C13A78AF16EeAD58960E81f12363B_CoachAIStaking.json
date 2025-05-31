@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "CADT"
+        ],
+        "Reward Token Address": [
+            "sCADT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( sCADT ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IsCADT( sCADT ).balanceForGons( info.gons ) )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( CADT ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20( CADT ).safeTransfer( msg.sender, info.deposit )"
+            }
+        ]
+    }
+}

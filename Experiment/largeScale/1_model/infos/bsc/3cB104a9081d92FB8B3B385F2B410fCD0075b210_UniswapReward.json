@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPower"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [
+            "_lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "_BCCToken"
+        ],
+        "Reward Token Address": [
+            "_rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_BCCToken.safeTransferFrom(msg.sender, address(this), amounts.mul(desNum))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_rewardToken.transfer(msg.sender, leftReward )"
+            }
+        ],
+        "unStake": []
+    }
+}

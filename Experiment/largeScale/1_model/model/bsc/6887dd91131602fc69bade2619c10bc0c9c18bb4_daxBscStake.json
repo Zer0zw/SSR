@@ -1,0 +1,154 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakeRewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "lastClock"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "registerAndStake",
+            "stake"
+        ],
+        "getReward": [
+            "withdrawEarnings"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": [
+                    130
+                ],
+                "Input": [
+                    "_amount",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    152
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": [
+                    189
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes"
+                ],
+                "Control Variables": [
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "token",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "token",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    173
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "unstakingTaxRate"
+                ],
+                "Control Variables": [
+                    "lastClock",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "token",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Full Calculation Variables": [
+                    "lastClock",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "token",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

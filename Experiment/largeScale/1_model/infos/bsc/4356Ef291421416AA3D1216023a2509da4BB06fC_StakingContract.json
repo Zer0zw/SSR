@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "bonuses"
+        ],
+        "User Stake Time": [
+            "lastStakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, amount + bonus)"
+            },
+            {
+                "Function": "getEstimatedReward",
+                "Node": "This function does not directly transfer rewards but calculates the estimated reward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, amount + bonus)"
+            }
+        ]
+    }
+}

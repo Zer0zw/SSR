@@ -1,0 +1,243 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lpStakeAmount",
+            "getStakeData.stakeAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lpStakeTime",
+            "getStakeData.stakeTime"
+        ],
+        "Stake Token Address": [
+            "FMT",
+            "mainPairC"
+        ],
+        "Reward Token Address": [
+            "FMT"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "LpStake",
+            "addLpAndStake",
+            "stake"
+        ],
+        "getReward": [
+            "withdrawStaked"
+        ],
+        "unStake": [
+            "withdrawLpStaked",
+            "withdrawStaked"
+        ],
+        "Sensitive Functions": [
+            "setData"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "LpStake",
+                "Node": [
+                    1091
+                ],
+                "Input": [
+                    "_inviter",
+                    "_stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "lpRequire",
+                    "mainPairC"
+                ],
+                "Full Calculation Variables": [
+                    "lpRequire",
+                    "mainPairC"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "addLpAndStake",
+                "Node": [
+                    1118
+                ],
+                "Input": [
+                    "_amountFMT",
+                    "_inviter"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FMT",
+                    "USDT",
+                    "lpFmtRequire",
+                    "mainPairC"
+                ],
+                "Full Calculation Variables": [
+                    "FMT",
+                    "USDT",
+                    "lpFmtRequire",
+                    "mainPairC"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    1175
+                ],
+                "Input": [
+                    "_inviter",
+                    "_options",
+                    "_stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FMT",
+                    "_tokenManager",
+                    "fmtRequire",
+                    "getStakeNum",
+                    "stakeRate"
+                ],
+                "Full Calculation Variables": [
+                    "FMT",
+                    "_tokenManager",
+                    "fmtRequire",
+                    "getStakeNum",
+                    "stakeRate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStaked",
+                "Node": [
+                    1217
+                ],
+                "Input": [
+                    "_num"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FMT",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "_tokenManager",
+                    "allStakedAmountFMT",
+                    "computeCycle",
+                    "cycle",
+                    "getStakeData.stakeAmount",
+                    "getStakeData.stakeOptions",
+                    "getStakeData.stakeTime",
+                    "getStakeNum",
+                    "stakeRate"
+                ],
+                "Full Calculation Variables": [
+                    "FMT",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "_tokenManager",
+                    "allStakedAmountFMT",
+                    "computeCycle",
+                    "cycle",
+                    "getStakeData.stakeAmount",
+                    "getStakeData.stakeOptions",
+                    "getStakeData.stakeTime",
+                    "getStakeNum",
+                    "stakeRate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLpStaked",
+                "Node": [
+                    1154
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FMT",
+                    "USDT",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "_tokenManager",
+                    "allStakedAmountLP",
+                    "isLpStaker",
+                    "lpCycle",
+                    "lpStakeAmount",
+                    "lpStakeTime",
+                    "lpStakerAmount",
+                    "mainPairC",
+                    "swapRouter"
+                ],
+                "Full Calculation Variables": [
+                    "FMT",
+                    "USDT",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "_tokenManager",
+                    "allStakedAmountLP",
+                    "isLpStaker",
+                    "lpCycle",
+                    "lpStakeAmount",
+                    "lpStakeTime",
+                    "lpStakerAmount",
+                    "mainPairC",
+                    "swapRouter"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawStaked",
+                "Node": [
+                    1218
+                ],
+                "Input": [
+                    "_num"
+                ],
+                "Calculation Variables": [
+                    "getStakeData.stakeAmount",
+                    "getStakeData.stakeOptions",
+                    "getStakeData.stakeTime"
+                ],
+                "Control Variables": [
+                    "FMT",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "_tokenManager",
+                    "allStakedAmountFMT",
+                    "computeCycle",
+                    "cycle",
+                    "getStakeData.stakeAmount",
+                    "getStakeData.stakeOptions",
+                    "getStakeData.stakeTime",
+                    "getStakeNum",
+                    "stakeRate"
+                ],
+                "Full Calculation Variables": [
+                    "FMT",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "_tokenManager",
+                    "allStakedAmountFMT",
+                    "computeCycle",
+                    "cycle",
+                    "getStakeData.stakeAmount",
+                    "getStakeData.stakeOptions",
+                    "getStakeData.stakeTime",
+                    "getStakeNum",
+                    "stakeRate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

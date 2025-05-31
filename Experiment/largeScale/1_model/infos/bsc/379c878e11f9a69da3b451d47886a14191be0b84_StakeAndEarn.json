@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lockedAmount",
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.monthlyReward",
+            "Deposit.monthlyRewardWithdrawal"
+        ],
+        "User Stake Time": [
+            "Deposit.startTime",
+            "Deposit.endTime"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "monthlyRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakedToken.lockToken(amount, msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), reward-fee)"
+            },
+            {
+                "Function": "withdrawMonthly",
+                "Node": "monthlyRewardToken.safeTransfer(address(msg.sender), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), reward - fee)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "monthlyRewardToken.safeTransfer(address(msg.sender), monthlyPending)"
+            }
+        ]
+    }
+}

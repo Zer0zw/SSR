@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardAmount",
+            "addressMultiplier"
+        ],
+        "User Stake Time": [
+            "tokenStakeTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "bulkStake",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "rewardToken.transfer(msg.sender, totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "bulkUnstake",
+                "Node": "stakingToken.transferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

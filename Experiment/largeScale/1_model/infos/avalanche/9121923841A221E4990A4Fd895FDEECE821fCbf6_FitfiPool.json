@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.depositAmount",
+            "DepositInfo.depositAmount"
+        ],
+        "User Stake Reward": [
+            "DepositInfo.rewardAmount"
+        ],
+        "User Stake Time": [
+            "UserInfo.lockStartTime",
+            "UserInfo.lockEndTime",
+            "DepositInfo.depositedTime"
+        ],
+        "Stake Token Address": [
+            "fitfiToken"
+        ],
+        "Reward Token Address": [
+            "fitfiToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "fitfiToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositOperation",
+                "Node": "fitfiToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "fitfiToken.safeTransfer(msg.sender, rewardAmount_)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "fitfiToken.safeTransfer(msg.sender, amount_)"
+            }
+        ]
+    }
+}

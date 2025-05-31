@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "timeperiod"
+        ],
+        "Stake Token Address": [
+            "Colosseum"
+        ],
+        "Reward Token Address": [
+            "Colosseum"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "Token(Colosseum).transferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "Token(Colosseum).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "claimDivs",
+                "Node": "Token(Colosseum).transfer(account, pendingDivs)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(Colosseum).transfer(msg.sender, amountToWithdraw), \"Could not transfer tokens.\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(Colosseum).transfer(msg.sender, amountAfterFee), \"Could not transfer tokens.\")"
+            }
+        ]
+    }
+}

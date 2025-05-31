@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.profit",
+            "User.bonus"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Deposit.finish"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "token.transferFrom(msg.sender, address(this), value)"
+            },
+            {
+                "Function": "investforBNB",
+                "Node": "token.transferFrom(msg.sender, address(this), value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

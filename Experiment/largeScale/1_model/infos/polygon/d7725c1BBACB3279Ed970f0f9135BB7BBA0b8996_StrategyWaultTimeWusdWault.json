@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_wantAddress"
+        ],
+        "Reward Token Address": [
+            "_earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IWault(masterChef).deposit(pid, _wantAmount, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IWault(masterChef).deposit(pid, 0, true)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IWault(masterChef).withdraw(pid, _amount, true)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IWault(masterChef).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

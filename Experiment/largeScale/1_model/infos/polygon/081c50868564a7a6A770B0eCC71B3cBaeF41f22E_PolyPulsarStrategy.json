@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IPulsarChef(rewards).deposit(poolId, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, _maticFee)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IPulsarChef(rewards).withdraw(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IPulsarChef(rewards).withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IPulsarChef(rewards).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

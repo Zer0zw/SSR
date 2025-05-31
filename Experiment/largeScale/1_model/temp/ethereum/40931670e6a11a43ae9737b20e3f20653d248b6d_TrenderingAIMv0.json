@@ -1,0 +1,75 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakes.ETH_TRND_LP_amount",
+            "userStakes.DAI_TRND_LP_amount",
+            "userStakes.DAI_xTRND_LP_amount"
+        ],
+        "User Stake Reward": [
+            "xTRND_reward",
+            "DAI_reward"
+        ],
+        "User Stake Time": [
+            "userStakes.ETH_TRND_LP_time",
+            "userStakes.DAI_TRND_LP_time",
+            "userStakes.DAI_xTRND_LP_time"
+        ],
+        "Stake Token Address": [
+            "ETH_TRND_LP_token",
+            "DAI_TRND_LP_token",
+            "DAI_xTRND_LP_token"
+        ],
+        "Reward Token Address": [
+            "xTRND_token",
+            "DAI_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake_ETH_LPs",
+                "Node": "ETH_TRND_LP_token.safeTransferFrom(address(msg.sender), address(this), ETH_TRND_LP_amount"
+            },
+            {
+                "Function": "stake_DAI_LPs",
+                "Node": "DAI_TRND_LP_token.safeTransferFrom(address(msg.sender), address(this), DAI_TRND_LP_amount"
+            },
+            {
+                "Function": "stake_DAI_LPs",
+                "Node": "DAI_xTRND_LP_token.safeTransferFrom(address(msg.sender), address(this), DAI_xTRND_LP_amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake_ETH_LPs",
+                "Node": "saferTransfer(xTRND_token, address(msg.sender), xTRND_reward"
+            },
+            {
+                "Function": "stake_DAI_LPs",
+                "Node": "saferTransfer(DAI_token, address(msg.sender), DAI_reward"
+            },
+            {
+                "Function": "unstake_ETH_LPs",
+                "Node": "saferTransfer(xTRND_token, address(msg.sender), xTRND_reward"
+            },
+            {
+                "Function": "unstake_DAI_LPs",
+                "Node": "saferTransfer(DAI_token, address(msg.sender), DAI_reward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake_ETH_LPs",
+                "Node": "saferTransfer(ETH_TRND_LP_token, address(msg.sender), ETH_TRND_LP_amount"
+            },
+            {
+                "Function": "unstake_DAI_LPs",
+                "Node": "saferTransfer(DAI_TRND_LP_token, address(msg.sender), DAI_TRND_LP_amount"
+            },
+            {
+                "Function": "unstake_DAI_LPs",
+                "Node": "saferTransfer(DAI_xTRND_LP_token, address(msg.sender), DAI_xTRND_LP_amount"
+            }
+        ]
+    }
+}

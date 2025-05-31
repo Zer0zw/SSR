@@ -1,0 +1,169 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "userInfo.totalPayoutAmount",
+            "userInfo.periodPayoutAmount",
+            "userInfo.payoutsDone"
+        ],
+        "User Stake Time": [
+            "userInfo.lockTime",
+            "userInfo.unlockTime"
+        ],
+        "Stake Token Address": [
+            "gachyilandAddress"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "setRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    2383
+                ],
+                "Input": [
+                    "_nftID",
+                    "poolID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "categories.amount",
+                    "categories.depositsCounter",
+                    "categories.isActive",
+                    "categories.paymentTimes",
+                    "categories.stakingPeriod",
+                    "gachyilandAddress"
+                ],
+                "Full Calculation Variables": [
+                    "categories.amount",
+                    "categories.depositsCounter",
+                    "categories.isActive",
+                    "categories.paymentTimes",
+                    "categories.stakingPeriod",
+                    "gachyilandAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    2470
+                ],
+                "Input": [
+                    "_nftID",
+                    "poolID"
+                ],
+                "Calculation Variables": [
+                    "categories.amount",
+                    "categories.isActive",
+                    "categories.paymentTimes",
+                    "categories.stakingPeriod",
+                    "userInfo.initialOwner",
+                    "userInfo.lockTime",
+                    "userInfo.payoutsDone",
+                    "userInfo.periodPayoutAmount",
+                    "userInfo.poolID"
+                ],
+                "Control Variables": [
+                    "categories.amount",
+                    "categories.isActive",
+                    "categories.paymentTimes",
+                    "categories.stakingPeriod",
+                    "rewardToken",
+                    "userInfo.initialOwner",
+                    "userInfo.lockTime",
+                    "userInfo.payoutsDone",
+                    "userInfo.periodPayoutAmount",
+                    "userInfo.poolID"
+                ],
+                "Full Calculation Variables": [
+                    "categories.amount",
+                    "categories.isActive",
+                    "categories.paymentTimes",
+                    "categories.stakingPeriod",
+                    "rewardToken",
+                    "userInfo.initialOwner",
+                    "userInfo.lockTime",
+                    "userInfo.payoutsDone",
+                    "userInfo.periodPayoutAmount",
+                    "userInfo.poolID"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    2547
+                ],
+                "Input": [
+                    "_nftID",
+                    "poolID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "categories.depositsCounter",
+                    "gachyilandAddress",
+                    "userInfo.lockTime",
+                    "userInfo.poolID",
+                    "userInfo.unlockTime"
+                ],
+                "Full Calculation Variables": [
+                    "categories.depositsCounter",
+                    "gachyilandAddress",
+                    "userInfo.lockTime",
+                    "userInfo.poolID",
+                    "userInfo.unlockTime"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    2569
+                ],
+                "Input": [
+                    "_nftID",
+                    "_poolID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "allowedEmergencyWithdraw",
+                    "categories.depositsCounter",
+                    "gachyilandAddress",
+                    "userInfo.poolID"
+                ],
+                "Full Calculation Variables": [
+                    "allowedEmergencyWithdraw",
+                    "categories.depositsCounter",
+                    "gachyilandAddress",
+                    "userInfo.poolID"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

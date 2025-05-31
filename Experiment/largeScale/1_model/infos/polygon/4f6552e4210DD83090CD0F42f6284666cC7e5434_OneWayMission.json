@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "NEPTUNE"
+        ],
+        "Reward Token Address": [
+            "REWARD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "transact",
+                "Node": "NEPTUNE.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "transact",
+                "Node": "safeRewardTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "transact",
+                "Node": "NEPTUNE.safeTransfer(burnAddress, user.amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "NEPTUNE.safeTransfer(address(msg.sender), user.amount"
+            }
+        ]
+    }
+}

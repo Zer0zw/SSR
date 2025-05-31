@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "receivedRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "based"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "IERC20(based).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": "IERC20(rewardTokens[RewardId]).transfer(recipient, rewards)"
+            },
+            {
+                "Function": "DistributeSolidSex",
+                "Node": "issueInterestToken(0)"
+            },
+            {
+                "Function": "DistributeSolidSex",
+                "Node": "issueInterestToken(1)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "IERC20(based).transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "VYBE"
+        ],
+        "Reward Token Address": [
+            "sVYBE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sVYBE.safeTransfer( address(warmupContract), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "warmupContract.retrieve( _recipient,  amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "VYBE.safeTransfer( msg.sender, _amount)"
+            }
+        ]
+    }
+}

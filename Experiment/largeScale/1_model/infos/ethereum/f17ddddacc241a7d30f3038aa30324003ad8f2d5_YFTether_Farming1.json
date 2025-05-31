@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "depositTime",
+            "lastClaimedTime"
+        ],
+        "Stake Token Address": [
+            "LPtokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(Token(LPtokenAddress).transferFrom(msg.sender, address(this), amountToDeposit)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "require(Token(tokenAddress).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "claim",
+                "Node": "updateAccount(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(LPtokenAddress).transfer(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(Token(LPtokenAddress).transfer(msg.sender, amountAfterFee)"
+            }
+        ]
+    }
+}

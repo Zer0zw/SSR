@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_externalContractTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewardsToCompound"
+        ],
+        "User Stake Time": [
+            "lastCompoundTime"
+        ],
+        "Stake Token Address": [
+            "_stakingTokenAddr"
+        ],
+        "Reward Token Address": [
+            "_rewardTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_invest",
+                "Node": "_stakingContract.createStake(_amount)"
+            },
+            {
+                "Function": "invest",
+                "Node": "_invest(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "_stakingContract.getRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_divest",
+                "Node": "_stakingContract.removeStake(_amount)"
+            },
+            {
+                "Function": "divest",
+                "Node": "_divest(_amount)"
+            }
+        ]
+    }
+}

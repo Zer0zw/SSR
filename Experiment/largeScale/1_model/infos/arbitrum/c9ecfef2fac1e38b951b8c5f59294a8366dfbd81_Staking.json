@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "UMAMI"
+        ],
+        "Reward Token Address": [
+            "sUMAMI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(sUMAMI ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IsUMAMI( sUMAMI ).balanceForGons( info.gons )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( UMAMI ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20( UMAMI ).safeTransfer( msg.sender, info.deposit )"
+            }
+        ]
+    }
+}

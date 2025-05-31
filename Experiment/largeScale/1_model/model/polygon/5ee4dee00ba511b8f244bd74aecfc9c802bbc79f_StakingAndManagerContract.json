@@ -1,0 +1,87 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake90DaysHolders.amountForStakes"
+        ],
+        "User Stake Reward": [
+            "ecowattCarbonToken"
+        ],
+        "User Stake Time": [
+            "stake90DaysHolders.endStakeTime"
+        ],
+        "Stake Token Address": [
+            "ecowattToken"
+        ],
+        "Reward Token Address": [
+            "ecowattCarbonToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "createStake"
+        ],
+        "getReward": [
+            "calculateReward",
+            "createStake",
+            "withdrawTokens"
+        ],
+        "unStake": [
+            "withdrawTokens"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": [
+                    463
+                ],
+                "Input": [
+                    "stake",
+                    "typeStake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ecowattToken",
+                    "maxAmountForStaking",
+                    "minAmountForStaking",
+                    "stakingActive"
+                ],
+                "Full Calculation Variables": [
+                    "ecowattToken",
+                    "maxAmountForStaking",
+                    "minAmountForStaking",
+                    "stakingActive"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawTokens",
+                "Node": [
+                    533
+                ],
+                "Input": [
+                    "typeStake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ecowattToken",
+                    "stake180DaysHolders.endStakeTime",
+                    "stake360DaysHolders.endStakeTime",
+                    "stake90DaysHolders.endStakeTime"
+                ],
+                "Full Calculation Variables": [
+                    "ecowattToken",
+                    "stake180DaysHolders.endStakeTime",
+                    "stake360DaysHolders.endStakeTime",
+                    "stake90DaysHolders.endStakeTime"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakedAmount"
+        ],
+        "User Stake Reward": [
+            "FarmGhost",
+            "BOOPotAtStake"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "balances[msg.sender] += FarmGhost.sub(BOOPotAtStake[msg.sender]).mul(StakedAmount[msg.sender]).mod(totalSupply)+FarmGhost.sub(BOOPotAtStake[msg.sender]).mul(StakedAmount[msg.sender]).div(totalSupply)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "balances[msg.sender] += FarmGhost.sub(BOOPotAtStake[msg.sender]).mul(StakedAmount[msg.sender]).mod(totalSupply)+FarmGhost.sub(BOOPotAtStake[msg.sender]).mul(StakedAmount[msg.sender]).div(totalSupply)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "balances[msg.sender] += FarmGhost.sub(BOOPotAtStake[msg.sender]).mul(StakedAmount[msg.sender]).mod(totalSupply)+FarmGhost.sub(BOOPotAtStake[msg.sender]).mul(StakedAmount[msg.sender]).div(totalSupply)"
+            }
+        ]
+    }
+}

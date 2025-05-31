@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.claimed",
+            "earnedTokens"
+        ],
+        "User Stake Time": [
+            "StakeInfo.startTS",
+            "StakeInfo.endTS",
+            "planDuration"
+        ],
+        "Stake Token Address": [
+            "AlgoX"
+        ],
+        "Reward Token Address": [
+            "AlgoX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "AlgoX.transferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "AlgoX.transfer(_msgSender(), totalTokens)"
+            }
+        ],
+        "unStake": []
+    }
+}

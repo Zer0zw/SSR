@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "timePooled",
+            "internalTime"
+        ],
+        "Stake Token Address": [
+            "frenAddress"
+        ],
+        "Reward Token Address": [
+            "frenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(poolAddress).transfer(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokens",
+                "Node": "IERC20(frenAddress).mint(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLPTokens",
+                "Node": "IERC20(poolAddress).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

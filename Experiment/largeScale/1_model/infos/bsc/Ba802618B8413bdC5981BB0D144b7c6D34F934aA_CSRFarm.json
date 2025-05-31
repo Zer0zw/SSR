@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Order.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Order.time"
+        ],
+        "Stake Token Address": [
+            "coesLpToken"
+        ],
+        "Reward Token Address": [
+            "csrToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "coesLpToken.transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "csrToken.transfer(_addr, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelStake",
+                "Node": "coesLpToken.transfer(msg.sender, order.amount)"
+            }
+        ]
+    }
+}

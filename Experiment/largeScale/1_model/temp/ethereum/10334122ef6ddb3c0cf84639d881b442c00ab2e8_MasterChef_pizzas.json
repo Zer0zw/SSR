@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.reward",
+            "UserInfo.rewardPaid"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "pizzas"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safePizzaTransfer(msg.sender, reward.mul(90).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safePizzaTransfer(projectAddress, reward.mul(10).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "safePizzaTransfer(msg.sender, user.reward.mul(90).div(100))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safePizzaTransfer(projectAddress, user.reward.mul(10).div(100))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            }
+        ]
+    }
+}

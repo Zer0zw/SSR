@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStakeToken"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "exitTimeOut"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(lp, lpAmount, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "super.withdraw()"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdrawAll()"
+            }
+        ]
+    }
+}

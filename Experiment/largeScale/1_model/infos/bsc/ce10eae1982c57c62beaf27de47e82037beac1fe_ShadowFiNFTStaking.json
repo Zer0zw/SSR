@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.totalRedeemed"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "IShadowFiNFT"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "joinPool",
+                "Node": "SDFNFTToken.safeTransferFrom(msg.sender, address(this), _tokenId)"
+            },
+            {
+                "Function": "joinPoolBatch",
+                "Node": "SDFNFTToken.safeTransferFrom(msg.sender, address(this), _id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "safeRewardTransfer(_pid, msg.sender, pending)"
+            },
+            {
+                "Function": "redeemAll",
+                "Node": "safeRewardTransfer(_pid, msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leavePool",
+                "Node": "SDFNFTToken.safeTransferFrom(address(this), msg.sender, _id)"
+            },
+            {
+                "Function": "leavePoolBatch",
+                "Node": "SDFNFTToken.safeTransferFrom(address(this), msg.sender, _id)"
+            },
+            {
+                "Function": "leavePoolForUser",
+                "Node": "SDFNFTToken.safeTransferFrom(address(this), _account, _id)"
+            },
+            {
+                "Function": "leavePoolBatchForUser",
+                "Node": "SDFNFTToken.safeTransferFrom(address(this), _account, _id)"
+            }
+        ]
+    }
+}

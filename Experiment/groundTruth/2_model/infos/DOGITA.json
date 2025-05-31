@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf",
+            "OrderInfo.amount"
+        ],
+        "User Stake Reward": [
+            "totalRewardEarn",
+            "OrderInfo.claimedReward"
+        ],
+        "User Stake Time": [
+            "OrderInfo.lockupDuration"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(token.transferFrom(_msgSender(), address(this), depAmount), \"TokenStaking: token transferFrom via deposit not succeeded\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "require(token.transfer(address(_msgSender()), claimAvailable), \"TokenStaking: token transfer via claim rewards not succeeded\""
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(token.transfer(address(_msgSender()), depAmount), \"TokenStaking: token transfer via withdraw not succeeded\")"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(token.transfer(address(_msgSender()), total), \"TokenStaking: token transfer via emergency withdraw not succeeded\""
+            }
+        ]
+    }
+}

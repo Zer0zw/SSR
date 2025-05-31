@@ -1,0 +1,136 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.poolBal",
+            "users.total_deposits"
+        ],
+        "User Stake Reward": [
+            "users.rewardEarned"
+        ],
+        "User Stake Time": [
+            "users.pool_deposit_time"
+        ],
+        "Stake Token Address": [
+            "tokenAddr"
+        ],
+        "Reward Token Address": [
+            "tokenAddr"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "PoolStake"
+        ],
+        "getReward": [
+            "claimPool"
+        ],
+        "unStake": [
+            "claimPool"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "PoolStake",
+                "Node": [
+                    164
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "tokenAddr"
+                ],
+                "Full Calculation Variables": [
+                    "tokenAddr"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPool",
+                "Node": [
+                    217
+                ],
+                "Input": [
+                    "_amount",
+                    "_user",
+                    "_penality",
+                    "_reward"
+                ],
+                "Calculation Variables": [
+                    "users.pool_payouts",
+                    "divisorDays",
+                    "users.pool_deposit_time",
+                    "users.rewardEarned",
+                    "poolRewardPercent",
+                    "users.poolBal",
+                    "poolDays"
+                ],
+                "Control Variables": [
+                    "users.pool_payouts",
+                    "divisorDays",
+                    "poolRewardPercent",
+                    "users.poolBal",
+                    "poolDays",
+                    "fullMaturityTime",
+                    "users.pool_deposit_time",
+                    "users.rewardEarned",
+                    "tokenAddr"
+                ],
+                "Full Calculation Variables": [
+                    "users.pool_payouts",
+                    "divisorDays",
+                    "poolRewardPercent",
+                    "users.poolBal",
+                    "poolDays",
+                    "fullMaturityTime",
+                    "users.pool_deposit_time",
+                    "users.rewardEarned",
+                    "tokenAddr"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimPool",
+                "Node": [
+                    216
+                ],
+                "Input": [
+                    "_amount",
+                    "_user",
+                    "_penality",
+                    "_reward"
+                ],
+                "Calculation Variables": [
+                    "users.pool_payouts",
+                    "users.pool_deposit_time",
+                    "users.rewardEarned",
+                    "users.poolBal"
+                ],
+                "Control Variables": [
+                    "users.pool_payouts",
+                    "fullMaturityTime",
+                    "users.pool_deposit_time",
+                    "users.rewardEarned",
+                    "users.poolBal",
+                    "tokenAddr"
+                ],
+                "Full Calculation Variables": [
+                    "users.pool_payouts",
+                    "fullMaturityTime",
+                    "users.pool_deposit_time",
+                    "users.rewardEarned",
+                    "users.poolBal",
+                    "tokenAddr"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

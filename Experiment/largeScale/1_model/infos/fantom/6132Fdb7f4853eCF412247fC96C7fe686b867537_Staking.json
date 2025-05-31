@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "weth"
+        ],
+        "Reward Token Address": [
+            "weth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, msg.value)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distribute",
+                "Node": "TransferHelper.safeTransferFrom(weth, msg.sender, address(this), _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransferETH(msg.sender, what)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "TransferHelper.safeTransferETH(msg.sender, what)"
+            }
+        ]
+    }
+}

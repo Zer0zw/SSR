@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "duration"
+        ],
+        "Stake Token Address": [
+            "uniToken"
+        ],
+        "Reward Token Address": [
+            "lqtyToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "lqtyToken.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "withdrawAndClaim",
+                "Node": "lqtyToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "withdrawAndClaim",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

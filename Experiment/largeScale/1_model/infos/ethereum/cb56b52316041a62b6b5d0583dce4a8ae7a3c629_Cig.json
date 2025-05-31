@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.deposit"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(lpToken.transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeSendPayout(_to, delta)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "safeSendPayout(_to, delta)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(lpToken.transferFrom(address(this), address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(lpToken.transfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

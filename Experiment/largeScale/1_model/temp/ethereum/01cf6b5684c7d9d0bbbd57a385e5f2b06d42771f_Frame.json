@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensHeld"
+        ],
+        "User Stake Reward": [
+            "shardsGained"
+        ],
+        "User Stake Time": [
+            "tokenYield"
+        ],
+        "Stake Token Address": [
+            "mp"
+        ],
+        "Reward Token Address": [
+            "shards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "mp.transferFrom(msg.sender, address(this), _token)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimShardsFromTokens",
+                "Node": "shards.mintShards(msg.sender, shardsGained)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "shards.mintShards(msg.sender, shardsGained)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "mp.transferFrom(address(this), _owner, _token)"
+            },
+            {
+                "Function": "withdrawLockedUp",
+                "Node": "mp.transferFrom(address(this), _lockedup.owner, _lockedup.token)"
+            }
+        ]
+    }
+}

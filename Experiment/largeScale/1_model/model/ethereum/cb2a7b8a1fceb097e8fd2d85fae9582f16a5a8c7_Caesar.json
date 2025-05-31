@@ -1,0 +1,810 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "wksa"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "stakeNKCM",
+            "stakeNKCN",
+            "stakeNKSN"
+        ],
+        "getReward": [
+            "deposit",
+            "stakeNKCM",
+            "stakeNKCN",
+            "stakeNKSN",
+            "withdraw",
+            "withdrawNKCM",
+            "withdrawNKCN",
+            "withdrawNKSN"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw",
+            "withdrawNKCM",
+            "withdrawNKCN",
+            "withdrawNKSN"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "migrate"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1430
+                ],
+                "Input": [
+                    "_amount",
+                    "_inviter",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "addrToId",
+                    "bonusEndBlock",
+                    "idToAddr",
+                    "lastUser",
+                    "levelBonus",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.inviteNumber",
+                    "userInfo.nkcmLength",
+                    "userInfo.nkcnLength",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "addrToId",
+                    "bonusEndBlock",
+                    "idToAddr",
+                    "lastUser",
+                    "levelBonus",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.inviteNumber",
+                    "userInfo.nkcmLength",
+                    "userInfo.nkcnLength",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stakeNKSN",
+                "Node": [
+                    1482
+                ],
+                "Input": [
+                    "_pid",
+                    "nksnId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nksnList",
+                    "nksnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Full Calculation Variables": [
+                    "nksnList",
+                    "nksnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeNKCN",
+                "Node": [
+                    1520
+                ],
+                "Input": [
+                    "_pid",
+                    "nkcnId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nkcnList",
+                    "nkcnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Full Calculation Variables": [
+                    "nkcnList",
+                    "nkcnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeNKCM",
+                "Node": [
+                    1558
+                ],
+                "Input": [
+                    "_pid",
+                    "nkcmId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nkcmList",
+                    "nkcmToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Full Calculation Variables": [
+                    "nkcmList",
+                    "nkcmToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1405
+                ],
+                "Input": [
+                    "_amount",
+                    "_inviter",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.inviteNumber",
+                    "userInfo.nkcmLength",
+                    "userInfo.nkcnLength",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.inviteNumber",
+                    "userInfo.nkcmLength",
+                    "userInfo.nkcnLength",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.inviteNumber",
+                    "userInfo.nkcmLength",
+                    "userInfo.nkcnLength",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1444
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeNKSN",
+                "Node": [
+                    1487
+                ],
+                "Input": [
+                    "_pid",
+                    "nksnId"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nksnList",
+                    "nksnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nksnList",
+                    "nksnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawNKSN",
+                "Node": [
+                    1509
+                ],
+                "Input": [
+                    "_pid",
+                    "nksnId"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nksnList",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nksnList",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeNKCN",
+                "Node": [
+                    1525
+                ],
+                "Input": [
+                    "_pid",
+                    "nkcnId"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nkcnList",
+                    "nkcnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nkcnList",
+                    "nkcnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawNKCN",
+                "Node": [
+                    1547
+                ],
+                "Input": [
+                    "_pid",
+                    "nkcnId"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nkcnList",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nkcnList",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeNKCM",
+                "Node": [
+                    1562
+                ],
+                "Input": [
+                    "_pid",
+                    "nkcmId"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nkcmList",
+                    "nkcmToken",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nkcmList",
+                    "nkcmToken",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawNKCM",
+                "Node": [
+                    1584
+                ],
+                "Input": [
+                    "_pid",
+                    "nkcmId"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nkcmList",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "nkcmList",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1448
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accWKSAPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.weightedSupply",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight",
+                    "wksaPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1456
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawNKSN",
+                "Node": [
+                    1503
+                ],
+                "Input": [
+                    "_pid",
+                    "nksnId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nksnList",
+                    "nksnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Full Calculation Variables": [
+                    "nksnList",
+                    "nksnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nksnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawNKCN",
+                "Node": [
+                    1541
+                ],
+                "Input": [
+                    "_pid",
+                    "nkcnId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nkcnList",
+                    "nkcnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Full Calculation Variables": [
+                    "nkcnList",
+                    "nkcnToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nkcnLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawNKCM",
+                "Node": [
+                    1578
+                ],
+                "Input": [
+                    "_pid",
+                    "nkcmId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nkcmList",
+                    "nkcmToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Full Calculation Variables": [
+                    "nkcmList",
+                    "nkcmToken",
+                    "poolInfo.accWKSAPerShare",
+                    "userInfo.amount",
+                    "userInfo.nkcmLength",
+                    "userInfo.rewardDebt",
+                    "userInfo.weight"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

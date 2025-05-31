@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_want"
+        ],
+        "User Stake Reward": [
+            "_pendingHnd"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "dodo_hnd_eth_lp"
+        ],
+        "Reward Token Address": [
+            "hnd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(rewards, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IDodoMine(rewards).claimAllRewards()"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(hnd).safeTransfer(IController(controller).treasury(), _keepHND)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IDodoMine(rewards).withdraw(_amount)"
+            }
+        ]
+    }
+}

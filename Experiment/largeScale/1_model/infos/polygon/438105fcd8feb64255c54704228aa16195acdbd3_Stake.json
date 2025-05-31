@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "points"
+        ],
+        "User Stake Time": [
+            "lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "_tokenAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            },
+            {
+                "Function": "fixedStake",
+                "Node": "super.fixedStake(_day, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "MyIERC721(cards[_erc721Address][id].erc721).mint(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "withdrawFixedStake",
+                "Node": "super.withdrawFixedStake(index)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            },
+            {
+                "Function": "rescueScore",
+                "Node": "_rescueScore(account)"
+            }
+        ]
+    }
+}

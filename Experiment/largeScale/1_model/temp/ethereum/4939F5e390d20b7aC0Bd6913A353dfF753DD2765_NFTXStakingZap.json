@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lockedBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "zapLock"
+        ],
+        "Stake Token Address": [
+            "vault"
+        ],
+        "Reward Token Address": [
+            "xLPtoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addLiquidity721ETH",
+                "Node": "WETH.deposit{value: msg.value}()"
+            },
+            {
+                "Function": "addLiquidity1155ETH",
+                "Node": "WETH.deposit{value: msg.value}()"
+            },
+            {
+                "Function": "addLiquidity721",
+                "Node": "IERC20Upgradeable(address(WETH)).transferFrom(msg.sender, address(this), wethIn)"
+            },
+            {
+                "Function": "addLiquidity1155",
+                "Node": "IERC20Upgradeable(address(WETH)).transferFrom(msg.sender, address(this), wethIn)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawXLPTokens",
+                "Node": "IERC20Upgradeable(xLPtoken).transfer(msg.sender, lockedBal)"
+            }
+        ]
+    }
+}

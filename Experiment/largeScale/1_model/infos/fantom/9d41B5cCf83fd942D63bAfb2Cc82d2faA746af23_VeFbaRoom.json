@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "Memberseat.lastSnapshotIndex"
+        ],
+        "User Stake Reward": [
+            "Memberseat.rewardEarned"
+        ],
+        "User Stake Time": [
+            "Memberseat.epochTimerStart"
+        ],
+        "Stake Token Address": [
+            "ve"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(ve).safeTransferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "_safeRewardTransfer(msg.sender, _earned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "IERC721(ve).safeTransferFrom(address(this), msg.sender, _tokenId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_token.safeTransfer(msg.sender, _weight)"
+            }
+        ]
+    }
+}

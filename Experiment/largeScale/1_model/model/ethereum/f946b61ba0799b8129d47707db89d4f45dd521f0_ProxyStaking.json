@@ -1,0 +1,154 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "positions.tokenQuantity"
+        ],
+        "User Stake Reward": [
+            "positions.profitsPerWeek",
+            "positions.profitsReclaimed"
+        ],
+        "User Stake Time": [
+            "positions.createdDate",
+            "positions.nextWeekUnlockDate"
+        ],
+        "Stake Token Address": [
+            "tokens.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "proxyCoinAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeTokens"
+        ],
+        "getReward": [
+            "receiveWeekProfits"
+        ],
+        "unStake": [
+            "closePosition"
+        ],
+        "Sensitive Functions": [
+            "addToken",
+            "withdrawProxy"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": [
+                    279
+                ],
+                "Input": [
+                    "symbol",
+                    "tokenQuantity"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "stakingOn",
+                    "tokens.symbol",
+                    "tokens.tokenAddress",
+                    "tokens.tokenId"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "stakingOn",
+                    "tokens.symbol",
+                    "tokens.tokenAddress",
+                    "tokens.tokenId"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "receiveWeekProfits",
+                "Node": [
+                    332
+                ],
+                "Input": [
+                    "positionId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "amountOfTokenPerEth",
+                    "apr",
+                    "positions.apy",
+                    "positions.nextWeekUnlockDate",
+                    "positions.open",
+                    "positions.positionId",
+                    "positions.profitsPerWeek",
+                    "positions.profitsReclaimed",
+                    "positions.tokenQuantity",
+                    "positions.walletAddress",
+                    "stakingOn"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "amountOfTokenPerEth",
+                    "apr",
+                    "positions.apy",
+                    "positions.nextWeekUnlockDate",
+                    "positions.open",
+                    "positions.positionId",
+                    "positions.profitsPerWeek",
+                    "positions.profitsReclaimed",
+                    "positions.tokenQuantity",
+                    "positions.walletAddress",
+                    "stakingOn"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "closePosition",
+                "Node": [
+                    310
+                ],
+                "Input": [
+                    "positionId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "positions.open",
+                    "positions.positionId",
+                    "positions.profitsPerWeek",
+                    "positions.symbol",
+                    "positions.tokenQuantity",
+                    "positions.walletAddress",
+                    "tokens.symbol",
+                    "tokens.tokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "positions.open",
+                    "positions.positionId",
+                    "positions.profitsPerWeek",
+                    "positions.symbol",
+                    "positions.tokenQuantity",
+                    "positions.walletAddress",
+                    "tokens.symbol",
+                    "tokens.tokenAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

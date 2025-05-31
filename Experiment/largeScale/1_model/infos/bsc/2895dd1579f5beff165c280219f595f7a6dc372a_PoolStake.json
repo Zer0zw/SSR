@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.liquidity"
+        ],
+        "User Stake Reward": [
+            "User.tokenBonus",
+            "User.wethBonus"
+        ],
+        "User Stake Time": [
+            "User.start",
+            "User.release"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "token",
+            "weth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addLiquidity",
+                "Node": "token.transferFrom(msg.sender, address(this), rate)"
+            },
+            {
+                "Function": "relockLiquidity",
+                "Node": "No direct token transfer to user in this function, it updates user's stake details"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawUserBonus",
+                "Node": "_withdrawUserETHBonus(msg.sender, releasedETH, _id)"
+            },
+            {
+                "Function": "withdrawUserBonus",
+                "Node": "_withdrawUserTokenBonus(msg.sender, releasedToken, _id)"
+            },
+            {
+                "Function": "endStake",
+                "Node": "_withdrawUserBonus(_id)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLiquidity",
+                "Node": "pancakeRouter.removeLiquidityETH(address(token), _lpAmount, 1, 1, msg.sender, now)"
+            },
+            {
+                "Function": "withdrawUserLP",
+                "Node": "lpToken.transfer(msg.sender, liquidity)"
+            }
+        ]
+    }
+}

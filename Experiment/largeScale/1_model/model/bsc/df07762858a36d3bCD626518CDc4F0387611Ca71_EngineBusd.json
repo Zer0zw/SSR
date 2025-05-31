@@ -1,0 +1,142 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserQuery.amount",
+            "DepoQuery.amount"
+        ],
+        "User Stake Reward": [
+            "DepoQuery.reward"
+        ],
+        "User Stake Time": [
+            "DepoQuery.deadline"
+        ],
+        "Stake Token Address": [
+            "TokenAddress"
+        ],
+        "Reward Token Address": [
+            "TokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "Stake"
+        ],
+        "getReward": [
+            "Collect"
+        ],
+        "unStake": [
+            "Swap"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": [
+                    470,
+                    471,
+                    472,
+                    473
+                ],
+                "Input": [
+                    "_amount",
+                    "noOfDays"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Compound",
+                    "Per_Day",
+                    "UserQuery.amount",
+                    "UserQuery.key",
+                    "UserQuery.user_addr",
+                    "stakeQuery.stakeId",
+                    "stakeQuery.user_addr",
+                    "total_supply"
+                ],
+                "Full Calculation Variables": [
+                    "Compound",
+                    "Per_Day",
+                    "UserQuery.amount",
+                    "UserQuery.key",
+                    "UserQuery.user_addr",
+                    "stakeQuery.stakeId",
+                    "stakeQuery.user_addr",
+                    "total_supply"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Collect",
+                "Node": [
+                    541,
+                    542,
+                    543
+                ],
+                "Input": [
+                    "_StakeId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DepoQuery.amount",
+                    "DepoQuery.deadline",
+                    "DepoQuery.init",
+                    "DepoQuery.reward",
+                    "claimQuery.amount"
+                ],
+                "Full Calculation Variables": [
+                    "DepoQuery.amount",
+                    "DepoQuery.deadline",
+                    "DepoQuery.init",
+                    "DepoQuery.reward",
+                    "claimQuery.amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Swap",
+                "Node": [
+                    583
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "D_P",
+                    "Ref_Fee",
+                    "decimals",
+                    "price"
+                ],
+                "Control Variables": [
+                    "BUSD",
+                    "D_P",
+                    "Ref_Fee",
+                    "claimQuery.amount",
+                    "decimals",
+                    "price",
+                    "priceQuery.price",
+                    "timeUnit",
+                    "total_supply",
+                    "withdrawTime.deadline"
+                ],
+                "Full Calculation Variables": [
+                    "BUSD",
+                    "D_P",
+                    "Ref_Fee",
+                    "claimQuery.amount",
+                    "decimals",
+                    "price",
+                    "priceQuery.price",
+                    "timeUnit",
+                    "total_supply",
+                    "withdrawTime.deadline"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

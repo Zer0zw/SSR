@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "Time"
+        ],
+        "Reward Token Address": [
+            "Memories"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( Memories ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IMemo( Memories ).balanceForGons( info.gons ) )"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IWarmup( warmupContract ).retrieve( address(this), IMemo( Memories ).balanceForGons( info.gons ) )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( Time ).safeTransfer( msg.sender, _amount )"
+            }
+        ]
+    }
+}

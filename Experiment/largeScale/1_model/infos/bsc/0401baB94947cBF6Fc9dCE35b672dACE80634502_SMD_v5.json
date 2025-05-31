@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposits.amount"
+        ],
+        "User Stake Reward": [
+            "Deposits.userAccShare",
+            "rew"
+        ],
+        "User Stake Time": [
+            "Deposits.initialStake",
+            "lockDuration"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "_payMe(from, amount, tokenAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "_payDirect(from, rew, rewardTokenAddress)"
+            },
+            {
+                "Function": "claimOldRewards",
+                "Node": "_payDirect(msg.sender, rew, rewardTokenAddress)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "_payDirect(from, amount, tokenAddress)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "epoch.distribute"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "Clout"
+        ],
+        "Reward Token Address": [
+            "sClout"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sClout.safeTransfer( address(warmupContract), _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "warmupContract.retrieve( _recipient,  amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "Clout.safeTransfer( msg.sender, _amount )"
+            }
+        ]
+    }
+}

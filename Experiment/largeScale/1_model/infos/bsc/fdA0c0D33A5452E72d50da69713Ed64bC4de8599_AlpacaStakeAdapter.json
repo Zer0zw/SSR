@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "withdrawalAmount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "getInvestCallData",
+                "Node": "data = abi.encodeWithSignature(\"deposit(address,uint256,uint256)\", investor, pid, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingReward",
+                "Node": "reward = IMasterChef(strategy).pendingAlpaca(pid, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "getDevestCallData",
+                "Node": "data = abi.encodeWithSignature(\"withdraw(address,uint256,uint256)\", investor, pid, _amount)"
+            }
+        ]
+    }
+}

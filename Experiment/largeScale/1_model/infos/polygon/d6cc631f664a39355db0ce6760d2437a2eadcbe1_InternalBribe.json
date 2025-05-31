@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "userRewardPerTokenStored",
+            "lastEarn"
+        ],
+        "User Stake Time": [
+            "Checkpoint.timestamp"
+        ],
+        "Stake Token Address": [
+            "_ve"
+        ],
+        "Reward Token Address": [
+            "rewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "_safeTransferFrom(token, msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_safeTransfer(tokens[i], msg.sender, _reward)"
+            },
+            {
+                "Function": "getRewardForOwner",
+                "Node": "_safeTransfer(tokens[i], _owner, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "_safeTransfer(token, to, value)"
+            }
+        ]
+    }
+}

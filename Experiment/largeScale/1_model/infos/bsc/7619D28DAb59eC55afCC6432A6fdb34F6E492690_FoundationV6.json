@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.shares",
+            "User.perm_shares"
+        ],
+        "User Stake Reward": [
+            "User.all_earnings"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "STAKE"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "BUSD.transferFrom(msg.sender, address(this), _deposit"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "BUSD.transfer(msg.sender, claim_reward)"
+            },
+            {
+                "Function": "compound",
+                "Node": "BUSD.approve(address(pol), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "BUSD.transfer(msg.sender, baseAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.amount"
+        ],
+        "User Stake Reward": [
+            "amount",
+            "amountUSDT"
+        ],
+        "User Stake Time": [
+            "Staking.StakingMonths",
+            "Staking.daysRemains"
+        ],
+        "Stake Token Address": [
+            "_depositToken"
+        ],
+        "Reward Token Address": [
+            "_depositToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "transferTokenToStaking",
+                "Node": "_depositToken.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "transferAdminTokenToStaking",
+                "Node": "_depositToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.transfer(msg.sender, amount * 75 / 100)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.mint(msg.sender, amount * 75 / 100)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.transfer(msg.sender, bAmount)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.mint(msg.sender, bAmountUSDT)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.transfer(msg.sender, bAmount)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.mint(msg.sender, bAmountUSDT)"
+            }
+        ]
+    }
+}

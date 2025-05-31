@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "cvxCrvToken.safeTransfer(_account, cvxCrvBalance)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "IRewards(cvxCrvRewards).stakeFor(_account,cvxCrvBalance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "stakingToken.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.amount"
+        ],
+        "User Stake Reward": [
+            "Staker.reward",
+            "Staker.claimedRewards"
+        ],
+        "User Stake Time": [
+            "Staker.stakedAtTimestamp",
+            "Staker.unstakedAtTimestamp",
+            "Staker.rewardRedeemedAt"
+        ],
+        "Stake Token Address": [
+            "GoFitterAIContract"
+        ],
+        "Reward Token Address": [
+            "GoFitterAIContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "GoFitterAIContract.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "GoFitterAIContract.safeTransfer(msg.sender, rewardsEarned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "GoFitterAIContract.safeTransfer(msg.sender, unstakeAmount)"
+            }
+        ]
+    }
+}

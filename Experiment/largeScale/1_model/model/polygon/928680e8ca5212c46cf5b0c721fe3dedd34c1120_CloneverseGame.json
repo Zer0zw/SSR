@@ -1,0 +1,101 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeDatabase.clonesIds"
+        ],
+        "User Stake Reward": [
+            "lastMined"
+        ],
+        "User Stake Time": [
+            "stakeDatabase.stakePeriodDays"
+        ],
+        "Stake Token Address": [
+            "clonesContract"
+        ],
+        "Reward Token Address": [
+            "coilContract"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "unstake"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "setClonesContract",
+            "setCoilContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    773
+                ],
+                "Input": [
+                    "_days",
+                    "_ids"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakeDatabase.chances",
+                    "stakeDatabase.isActive",
+                    "stakeDatabase.stakePrice"
+                ],
+                "Full Calculation Variables": [
+                    "stakeDatabase.chances",
+                    "stakeDatabase.isActive",
+                    "stakeDatabase.stakePrice"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    794
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakeDatabase.chances",
+                    "tax"
+                ],
+                "Control Variables": [
+                    "stakeDatabase.chances",
+                    "stakeDatabase.isActive",
+                    "tax"
+                ],
+                "Full Calculation Variables": [
+                    "stakeDatabase.chances",
+                    "stakeDatabase.isActive",
+                    "tax"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    789
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakeDatabase.isActive"
+                ],
+                "Full Calculation Variables": [
+                    "stakeDatabase.isActive"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

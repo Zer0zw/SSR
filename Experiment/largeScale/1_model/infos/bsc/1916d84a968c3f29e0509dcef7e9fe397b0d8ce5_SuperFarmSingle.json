@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_inToken"
+        ],
+        "Reward Token Address": [
+            "_rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_inToken.safeTransferFrom(address(msg.sender), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "_rewardToken.safeTransferFrom(_rewardVault, address(msg.sender), pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_rewardToken.safeTransferFrom(_rewardVault, address(msg.sender), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_inToken.safeTransfer(address(msg.sender), amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_inToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

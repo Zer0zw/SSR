@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakedTierFSToken.tokenAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "StakedTierNFT.creationTimestamp",
+            "StakedTierFSToken.creationTimestamp"
+        ],
+        "Stake Token Address": [
+            "fsToken"
+        ],
+        "Reward Token Address": [
+            "sFSToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTierFSTokens",
+                "Node": "sFSToken.mintToken(msg.sender, _fsTokenAmountToStake)"
+            },
+            {
+                "Function": "updateCurrentStakedFSTokens",
+                "Node": "sFSToken.mintToken(msg.sender, _fsTokenAmountToStake)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstakeTierNFT",
+                "Node": "tierFactory.safeTransferFrom(address(this), msg.sender, _stakedTierNFT.nftId, 1, \"\")"
+            },
+            {
+                "Function": "unstakeTierFSTokensAfterLockupPeriod",
+                "Node": "fsToken.safeTransfer(msg.sender, _stakedTierFSToken.tokenAmount)"
+            },
+            {
+                "Function": "unstakeTierFSTokensBeforeLockupPeriod",
+                "Node": "fsToken.safeTransfer(msg.sender, _fsTokensToReturnToStaker)"
+            }
+        ]
+    }
+}

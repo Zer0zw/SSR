@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "rewardAcc",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "averageBlockDeposit"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onReward",
+                "Node": "user.amount = shares"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardToken.safeTransfer(to, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

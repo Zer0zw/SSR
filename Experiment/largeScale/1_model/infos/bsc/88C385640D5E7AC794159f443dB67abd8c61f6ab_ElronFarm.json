@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "Elronlp"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "super.Deposit(amount)"
+            },
+            {
+                "Function": "OwnerDeposit",
+                "Node": "super.OwnerDeposit(_userAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "USDT.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "OwnerClaim",
+                "Node": "USDT.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Exit",
+                "Node": "super.Exit()"
+            },
+            {
+                "Function": "ExitOwner",
+                "Node": "super.ExitOwner(_userAddress)"
+            }
+        ]
+    }
+}

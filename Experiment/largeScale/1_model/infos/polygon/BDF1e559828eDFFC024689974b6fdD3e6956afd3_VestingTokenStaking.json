@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances_"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "period_"
+        ],
+        "Stake Token Address": [
+            "token_"
+        ],
+        "Reward Token Address": [
+            "token_"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositToken",
+                "Node": "require(token_.transferFrom(msg.sender, address(this), _amount), ERR_TRANSFER_FAILURE)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawToken",
+                "Node": "token_.customTransfer(_toAddress, userTotalAmount, userTgeAmount, userUnlockedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawToken",
+                "Node": "token_.customTransfer(_toAddress, userTotalAmount, userTgeAmount, userUnlockedAmount)"
+            }
+        ]
+    }
+}

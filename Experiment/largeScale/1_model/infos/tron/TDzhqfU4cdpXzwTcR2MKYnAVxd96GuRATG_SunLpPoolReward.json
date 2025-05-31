@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "DURATION"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "cock"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "cock.safeTransfer(msg.sender, reward.mul(90).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "cock.safeTransfer(addrCBO,reward.mul(10).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

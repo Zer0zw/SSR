@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingData.amount"
+        ],
+        "User Stake Reward": [
+            "stakingData.claim"
+        ],
+        "User Stake Time": [
+            "stakingData.time"
+        ],
+        "Stake Token Address": [
+            "MTVToken"
+        ],
+        "Reward Token Address": [
+            "MTVToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "MTVToken.transferFrom(stakSender,address(this),  _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "MTVToken.transfer(msg.sender,reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "MTVToken.transfer(msg.sender,balanceOf)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "MTVToken.transfer(msg.sender,_amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "MTVToken.transfer(msg.sender,balanceOf)"
+            }
+        ]
+    }
+}

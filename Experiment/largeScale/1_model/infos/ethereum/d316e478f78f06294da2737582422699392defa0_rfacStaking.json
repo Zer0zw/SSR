@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "bank"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "rfacNFT.safeTransferFrom(msg.sender, address(this), _tokenData[n].tokenIDs[i],\"0x00\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "cashOutFromStaking",
+                "Node": "require(rewardToken[stakingToken].transferFrom(address(this),msg.sender, reward-1)"
+            },
+            {
+                "Function": "cashOutFromBank",
+                "Node": "require(rewardToken[_tokenAddress].transferFrom(address(this),msg.sender, amt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "rfacNFT.safeTransferFrom(address(this),msg.sender, stakes[msg.sender][hands[n]].tokenIDs[i],\"0x00\")"
+            }
+        ]
+    }
+}

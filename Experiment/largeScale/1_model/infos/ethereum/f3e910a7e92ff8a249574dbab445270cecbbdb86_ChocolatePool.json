@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Account.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Account.rewardsClaimed",
+            "Account.pending"
+        ],
+        "User Stake Time": [
+            "stakingPeriod"
+        ],
+        "Stake Token Address": [
+            "vanilla"
+        ],
+        "Reward Token Address": [
+            "rewardsWallet"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "vanilla.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "rewardsWallet.sendRewards(msg.sender, pendingReward(msg.sender))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnStake",
+                "Node": "vanilla.transfer(msg.sender, stakedAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "distributionWithToken",
+            "startClaimedRewardIndex"
+        ],
+        "User Stake Time": [
+            "leaveStakingIndex"
+        ],
+        "Stake Token Address": [
+            "_dropToken"
+        ],
+        "Reward Token Address": [
+            "rewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_afterEnterInStaking",
+                "Node": "startClaimedRewardIndex[_user][token] = lastDistributionIndex + 1"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewardsWithToken",
+                "Node": "_deliverTokens(_token, _user, totalClaimed)"
+            }
+        ],
+        "unStake": []
+    }
+}

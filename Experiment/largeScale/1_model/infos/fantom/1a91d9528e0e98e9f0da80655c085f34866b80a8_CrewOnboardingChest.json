@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userRewards",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "pearls"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "updateShare",
+                "Node": "user.amount = pearlsReferrals.pointsTracked(_account)"
+            },
+            {
+                "Function": "updateShare",
+                "Node": "user.amount = pearlsReferrals.pointsTrackedLP(_account)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "pearls.mint(_account, pending)"
+            }
+        ],
+        "unStake": []
+    }
+}

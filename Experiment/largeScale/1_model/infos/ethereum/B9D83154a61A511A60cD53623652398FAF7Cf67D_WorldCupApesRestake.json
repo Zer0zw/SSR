@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToTokens",
+            "stakerToInitialTokens"
+        ],
+        "User Stake Reward": [
+            "stakerToTokens"
+        ],
+        "User Stake Time": [
+            "stakerToLastClaim"
+        ],
+        "Stake Token Address": [
+            "WCAToken"
+        ],
+        "Reward Token Address": [
+            "WCAToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "restake",
+                "Node": "WCAToken.transferFrom(_address, owner(), balance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "WCAToken.transferFrom(owner(), _address, rewards)"
+            }
+        ],
+        "unStake": []
+    }
+}

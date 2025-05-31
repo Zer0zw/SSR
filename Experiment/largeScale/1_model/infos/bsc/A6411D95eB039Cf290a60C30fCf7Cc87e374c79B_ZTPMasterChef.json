@@ -1,0 +1,68 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "LockInfo.endTime",
+            "LockInfo.lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimToken",
+                "Node": "safeSushiTransfer(msg.sender, total/3)"
+            },
+            {
+                "Function": "claimToken",
+                "Node": "addLockItem(msg.sender,total.sub(total/3))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "safeSushiTransfer(to, pending/3)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "addLockItem(to,pending.sub(pending/3))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeSushiTransfer(to, pending/3)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "addLockItem(to,pending.sub(pending/3))"
+            },
+            {
+                "Function": "claimLocked",
+                "Node": "safeSushiTransfer(msg.sender,total)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "rmCard",
+                "Node": "ZtpNFT(0xbd313604703047103B400851B456ec38BD8a8733).transferFrom(address(this),msg.sender,tokenId)"
+            }
+        ]
+    }
+}

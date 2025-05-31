@@ -1,0 +1,205 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "investors.invested"
+        ],
+        "User Stake Reward": [
+            "investors.withdrawn",
+            "investors.reinvest"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "RTCTokenAddress",
+            "RTC_Plus_address"
+        ],
+        "Reward Token Address": [
+            "RTCTokenAddress",
+            "RTC_Plus_address"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "retopupStaking"
+        ],
+        "getReward": [
+            "claimRetopupReward",
+            "withdrawMint"
+        ],
+        "unStake": [
+            "withdrawPrincipal"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1274
+                ],
+                "Input": [
+                    "amount",
+                    "tariff"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "RTC_Plus_address",
+                    "investors.deposits",
+                    "investors.invested",
+                    "investors.registered",
+                    "min_deposit",
+                    "tariffs.time",
+                    "totalInvested"
+                ],
+                "Full Calculation Variables": [
+                    "RTC_Plus_address",
+                    "investors.deposits",
+                    "investors.invested",
+                    "investors.registered",
+                    "min_deposit",
+                    "tariffs.time",
+                    "totalInvested"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "retopupStaking",
+                "Node": [
+                    1548,
+                    1549,
+                    1550,
+                    1551,
+                    1552
+                ],
+                "Input": [
+                    "amount",
+                    "tokenID"
+                ],
+                "Calculation Variables": [
+                    "RTCC_price",
+                    "RTC_price",
+                    "swapContractAddress"
+                ],
+                "Control Variables": [
+                    "RTCC_price",
+                    "RTCTokenAddress",
+                    "RTC_Plus_address",
+                    "RTC_price",
+                    "investors._retopup",
+                    "investors.invested",
+                    "investors.registered",
+                    "min_deposit",
+                    "swapContractAddress"
+                ],
+                "Full Calculation Variables": [
+                    "RTCC_price",
+                    "RTCTokenAddress",
+                    "RTC_Plus_address",
+                    "RTC_price",
+                    "investors._retopup",
+                    "investors.invested",
+                    "investors.registered",
+                    "min_deposit",
+                    "swapContractAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawMint",
+                "Node": [
+                    1425
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "investors.deposits",
+                    "investors.paidAt",
+                    "tariffs.percent",
+                    "tariffs.time"
+                ],
+                "Control Variables": [
+                    "RTCTokenAddress",
+                    "investors.deposits",
+                    "investors.paidAt",
+                    "investors.registered",
+                    "investors.withdrawn",
+                    "min_withdrawl",
+                    "tariffs.percent",
+                    "tariffs.time"
+                ],
+                "Full Calculation Variables": [
+                    "RTCTokenAddress",
+                    "investors.deposits",
+                    "investors.paidAt",
+                    "investors.registered",
+                    "investors.withdrawn",
+                    "min_withdrawl",
+                    "tariffs.percent",
+                    "tariffs.time"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimRetopupReward",
+                "Node": [
+                    1599
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "investors._retopup",
+                    "investors.paidAt"
+                ],
+                "Control Variables": [
+                    "RTC_Plus_address",
+                    "investors._retopup",
+                    "investors.paidAt",
+                    "investors.registered",
+                    "investors.withdrawn",
+                    "min_withdrawl"
+                ],
+                "Full Calculation Variables": [
+                    "RTC_Plus_address",
+                    "investors._retopup",
+                    "investors.paidAt",
+                    "investors.registered",
+                    "investors.withdrawn",
+                    "min_withdrawl"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPrincipal",
+                "Node": [
+                    1406
+                ],
+                "Input": [
+                    "index"
+                ],
+                "Calculation Variables": [
+                    "investors.deposits",
+                    "investors.registered",
+                    "investors.withdrawn"
+                ],
+                "Control Variables": [
+                    "RTCTokenAddress",
+                    "investors.deposits",
+                    "investors.registered",
+                    "investors.withdrawn"
+                ],
+                "Full Calculation Variables": [
+                    "RTCTokenAddress",
+                    "investors.deposits",
+                    "investors.registered",
+                    "investors.withdrawn"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

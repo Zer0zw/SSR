@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "lastStaked"
+        ],
+        "Stake Token Address": [
+            "quaiToken"
+        ],
+        "Reward Token Address": [
+            "quaiToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(quaiToken).transferFrom(msg.sender, address(this), amountTokens"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateStake",
+                "Node": "IERC20(quaiToken).transfer(msg.sender, dividends)"
+            },
+            {
+                "Function": "withdrawDividends",
+                "Node": "IERC20(quaiToken).transfer(msg.sender, dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(quaiToken).transfer(msg.sender, toTransfer)"
+            }
+        ]
+    }
+}

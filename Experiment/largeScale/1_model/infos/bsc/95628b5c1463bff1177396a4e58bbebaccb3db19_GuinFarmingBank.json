@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.totalStaked"
+        ],
+        "User Stake Reward": [
+            "UserInfo.dayRateTotal"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastClaimedTime",
+            "UserInfo.deployTime"
+        ],
+        "Stake Token Address": [
+            "_pentasNFT"
+        ],
+        "Reward Token Address": [
+            "guinToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(_pentasNFT).safeTransferFrom(IERC721(_pentasNFT).ownerOf(_tokenId), address(this), _tokenId"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(guinToken).transfer(_user, toTransfer)"
+            },
+            {
+                "Function": "_harvestPendingRewards",
+                "Node": "IERC20(guinToken).transfer(_user, toTransfer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(_pentasNFT).safeTransferFrom(address(this), _info.userAddress, _tokenId)"
+            }
+        ]
+    }
+}

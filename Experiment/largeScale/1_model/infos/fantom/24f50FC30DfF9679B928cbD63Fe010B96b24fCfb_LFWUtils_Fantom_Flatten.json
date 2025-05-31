@@ -1,0 +1,85 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingInfo[1]",
+            "farmingInfo[1]"
+        ],
+        "User Stake Reward": [
+            "stakingInfo[0]",
+            "farmingInfo[0]"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingData[0]",
+            "farmingData[0]",
+            "farmingData[1]"
+        ],
+        "Reward Token Address": [
+            "stakingData[1]",
+            "farmingData[2]"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "getFWalletStakingInfo",
+                "Node": "stakingInfo[1] += scInterface.getStake(_userAddress, i)"
+            },
+            {
+                "Function": "getGeistStakingInfo",
+                "Node": "stakingInfo[1] = scInterface.totalBalance(_userAddress)"
+            },
+            {
+                "Function": "getSpookyStakingInfo",
+                "Node": "stakingInfo[1] = scInterface.BOOBalance(_userAddress)"
+            },
+            {
+                "Function": "getSpiritStakingInfo",
+                "Node": "(stakingInfo[1], ) = scInterface.userInfo(0, _userAddress)"
+            },
+            {
+                "Function": "getWigoStakingInfo",
+                "Node": "(stakingInfo[1], ) = scInterface.userInfo(0, _userAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getFWalletStakingInfo",
+                "Node": "stakingInfo[0] += scInterface.pendingRewards(_userAddress, i)"
+            },
+            {
+                "Function": "getGeistStakingInfo",
+                "Node": "stakingInfo[0] = scInterface.rewards(_userAddress, geist)"
+            },
+            {
+                "Function": "getGeistFarmingInfo",
+                "Node": "farmingInfo[0] = ((dummy*accRewardPerShare)/1e12)  - rewardDebt"
+            },
+            {
+                "Function": "getSpookyFarmingV1Info",
+                "Node": "farmingInfo[0] = scInterface.pendingBOO(_pId, _userAddress)"
+            },
+            {
+                "Function": "getSpookyFarmingV2Info",
+                "Node": "farmingInfo[0] = scInterface.pendingBOO(_pId, _userAddress)"
+            },
+            {
+                "Function": "getSpiritStakingInfo",
+                "Node": "stakingInfo[0] = scInterface.pendingSpirit(0, _userAddress)"
+            },
+            {
+                "Function": "getSpiritFarmingInfo",
+                "Node": "farmingInfo[0] = scInterface.pendingSpirit(_pId, _userAddress)"
+            },
+            {
+                "Function": "getWigoStakingInfo",
+                "Node": "stakingInfo[0] = scInterface.pendingWigo(0, _userAddress)"
+            },
+            {
+                "Function": "getWigoFarmingInfo",
+                "Node": "farmingInfo[0] = scInterface.pendingWigo(_pId, _userAddress)"
+            }
+        ],
+        "unStake": []
+    }
+}

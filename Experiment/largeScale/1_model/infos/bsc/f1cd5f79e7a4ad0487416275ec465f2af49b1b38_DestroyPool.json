@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_UserBurnUsdt",
+            "_UserBurnKoro"
+        ],
+        "User Stake Reward": [
+            "withdrawRewardOf"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "USDT_ADDRESS",
+            "aToken"
+        ],
+        "Reward Token Address": [
+            "mintToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(USDT_ADDRESS).safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(aToken).safeTransferFrom(msg.sender, address(this), aTokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "IERC20(mintToken).safeTransfer(_to, _amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "token0",
+            "token1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lp.safeApprove(address(stakingRewards), lpAmount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "lp.transfer(address(tempStakeManager), lpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransferFrom(liquidityProvider, address(this), bonusShare)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeApprove(address(converter), bonusShare)"
+            },
+            {
+                "Function": "liquidityProviderGetBonus",
+                "Node": "rewardToken.safeTransfer(liquidityProvider, lpBonusShare)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lp.safeApprove(address(converter), amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(token0Percentage, _balances[msg.sender])"
+            }
+        ]
+    }
+}

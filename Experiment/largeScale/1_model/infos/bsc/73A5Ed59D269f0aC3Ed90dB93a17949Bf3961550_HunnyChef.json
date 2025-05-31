@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.balance"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pending"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "VaultInfo.token"
+        ],
+        "Reward Token Address": [
+            "HUNNY"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "notifyDeposited",
+                "Node": "userInfo.balance = userInfo.balance.add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "safeHunnyTransfer",
+                "Node": "minter.safeHunnyTransfer(user, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "notifyWithdrawn",
+                "Node": "userInfo.balance = userInfo.balance.sub(amount)"
+            }
+        ]
+    }
+}

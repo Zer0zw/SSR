@@ -1,0 +1,214 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PlanI.Amount",
+            "PlanII.Amount",
+            "PlanIII.Amount"
+        ],
+        "User Stake Reward": [
+            "PlanI.Claimable",
+            "PlanII.Claimable",
+            "PlanIII.Claimable"
+        ],
+        "User Stake Time": [
+            "PlanI.StakeTime",
+            "PlanII.StakeTime",
+            "PlanIII.StakeTime"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "CompleteWithDraw",
+            "withdrawAll"
+        ],
+        "unStake": [
+            "CompleteWithDraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    109
+                ],
+                "Input": [
+                    "_amount",
+                    "_depositId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TOKEN",
+                    "currentStaked",
+                    "maxStake",
+                    "minStake"
+                ],
+                "Full Calculation Variables": [
+                    "TOKEN",
+                    "currentStaked",
+                    "maxStake",
+                    "minStake"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CompleteWithDraw",
+                "Node": [
+                    290
+                ],
+                "Input": [
+                    "_depositId",
+                    "_user",
+                    "reward"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PlanI.Claimable",
+                    "PlanI.Claimed",
+                    "PlanI.LastClaimTime",
+                    "PlanI.MaxClaimable",
+                    "PlanII.Claimable",
+                    "PlanII.Claimed",
+                    "PlanII.LastClaimTime",
+                    "PlanII.MaxClaimable",
+                    "PlanIII.Claimable",
+                    "PlanIII.Claimed",
+                    "PlanIII.LastClaimTime",
+                    "PlanIII.MaxClaimable",
+                    "RewardAddress",
+                    "TOKEN"
+                ],
+                "Full Calculation Variables": [
+                    "PlanI.Claimable",
+                    "PlanI.Claimed",
+                    "PlanI.LastClaimTime",
+                    "PlanI.MaxClaimable",
+                    "PlanII.Claimable",
+                    "PlanII.Claimed",
+                    "PlanII.LastClaimTime",
+                    "PlanII.MaxClaimable",
+                    "PlanIII.Claimable",
+                    "PlanIII.Claimed",
+                    "PlanIII.LastClaimTime",
+                    "PlanIII.MaxClaimable",
+                    "RewardAddress",
+                    "TOKEN"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    290
+                ],
+                "Input": [
+                    "reward",
+                    "_depositId",
+                    "reward",
+                    "_depositId",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PlanI.LastClaimTime",
+                    "PlanII.Claimable",
+                    "PlanI.MaxClaimable",
+                    "PlanII.LastClaimTime",
+                    "PlanI.Claimed",
+                    "TOKEN",
+                    "PlanIII.Claimable",
+                    "PlanIII.LastClaimTime",
+                    "RewardAddress",
+                    "PlanII.MaxClaimable",
+                    "PlanIII.MaxClaimable",
+                    "PlanIII.Claimed",
+                    "PlanII.Claimed",
+                    "PlanI.Claimable"
+                ],
+                "Full Calculation Variables": [
+                    "PlanI.LastClaimTime",
+                    "PlanII.Claimable",
+                    "PlanI.MaxClaimable",
+                    "PlanII.LastClaimTime",
+                    "PlanI.Claimed",
+                    "TOKEN",
+                    "PlanIII.Claimable",
+                    "PlanIII.LastClaimTime",
+                    "RewardAddress",
+                    "PlanII.MaxClaimable",
+                    "PlanIII.MaxClaimable",
+                    "PlanIII.Claimed",
+                    "PlanII.Claimed",
+                    "PlanI.Claimable"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "CompleteWithDraw",
+                "Node": [
+                    342
+                ],
+                "Input": [
+                    "reward",
+                    "_depositId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PlanII.Claimable",
+                    "PlanII.Amount",
+                    "PlanII.LastClaimTime",
+                    "TOKEN",
+                    "PlanIII.StakeTime",
+                    "PlanIII.Claimable",
+                    "PlanIII.Amount",
+                    "PlanII.StakeTime",
+                    "PlanIII.LastClaimTime",
+                    "PlanI.UnStakeTime",
+                    "PlanII.MaxClaimable",
+                    "PlanIII.MaxClaimable",
+                    "PlanIII.UnStakeTime",
+                    "PlanIII.Claimed",
+                    "PlanII.Claimed",
+                    "PlanII.UnStakeTime",
+                    "PlanI.StakeTime",
+                    "PlanI.Amount"
+                ],
+                "Full Calculation Variables": [
+                    "PlanII.Claimable",
+                    "PlanII.Amount",
+                    "PlanII.LastClaimTime",
+                    "TOKEN",
+                    "PlanIII.StakeTime",
+                    "PlanIII.Claimable",
+                    "PlanIII.Amount",
+                    "PlanII.StakeTime",
+                    "PlanIII.LastClaimTime",
+                    "PlanI.UnStakeTime",
+                    "PlanII.MaxClaimable",
+                    "PlanIII.MaxClaimable",
+                    "PlanIII.UnStakeTime",
+                    "PlanIII.Claimed",
+                    "PlanII.Claimed",
+                    "PlanII.UnStakeTime",
+                    "PlanI.StakeTime",
+                    "PlanI.Amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

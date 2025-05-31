@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUserPandaSpaceClubNFT",
+            "tokensStakedByUserNFTv2"
+        ],
+        "User Stake Reward": [
+            "pendingRewardsPandaSpaceClubNFT",
+            "pendingRewardsNFTv2"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddressPandaSpaceClubNFT",
+            "collectionAddressNFTv2"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakePandaSpaceClubNFT",
+                "Node": "_mint(_msgSender(), welcomeBonusAmountPandaSpaceClubNFT)"
+            },
+            {
+                "Function": "stakeNFTv2",
+                "Node": "_mint(_msgSender(), welcomeBonusAmountNFTv2)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestPandaSpaceClubNFT",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            },
+            {
+                "Function": "harvestNFTv2",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakePandaSpaceClubNFT",
+                "Node": "IERC721(collectionAddressPandaSpaceClubNFT).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeNFTv2",
+                "Node": "IERC721(collectionAddressNFTv2).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

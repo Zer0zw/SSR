@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "bonus"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "joe"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "steakhut.deposit(pid, _wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "router.swapExactTokensForTokens(bonus.balanceOf(address(this)), _estimates[0], rewardPath, address(this), 1e10)"
+            },
+            {
+                "Function": "_payHarvestFees",
+                "Node": "IERC20(wavax).safeTransfer(treasury, IERC20(wavax).balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "steakhut.withdraw(pid, _amount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "_withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

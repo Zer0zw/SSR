@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_want"
+        ],
+        "User Stake Reward": [
+            "_vsta"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_lp"
+        ],
+        "Reward Token Address": [
+            "vsta"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IStakingRewards(rewards).stake(_want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IStakingRewards(rewards).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IStakingRewards(rewards).withdraw(_amount)"
+            }
+        ]
+    }
+}

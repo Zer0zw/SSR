@@ -1,0 +1,138 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "unclaimedReward",
+            "referralRewards.reward"
+        ],
+        "User Stake Time": [
+            "lastActionTime",
+            "depositTime",
+            "swaplock.time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimReward",
+            "compoundReward"
+        ],
+        "unStake": [
+            "withdrawCapital"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    889
+                ],
+                "Input": [
+                    "_ref"
+                ],
+                "Calculation Variables": [
+                    "refPercentage"
+                ],
+                "Control Variables": [
+                    "maxPoolLimit",
+                    "minDeposit",
+                    "refPercentage",
+                    "referralRewards.amount",
+                    "referralRewards.reward",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "maxPoolLimit",
+                    "minDeposit",
+                    "refPercentage",
+                    "referralRewards.amount",
+                    "referralRewards.reward",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    976,
+                    977,
+                    978,
+                    979
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolBalance",
+                    "rewardLock",
+                    "rewardToken",
+                    "swaplock.time"
+                ],
+                "Full Calculation Variables": [
+                    "poolBalance",
+                    "rewardLock",
+                    "rewardToken",
+                    "swaplock.time"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "compoundReward",
+                "Node": [
+                    949
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "balances"
+                ],
+                "Full Calculation Variables": [
+                    "balances"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCapital",
+                "Node": [
+                    923
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "PCT_BASE",
+                    "balances",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "PCT_BASE",
+                    "balances",
+                    "depositTime",
+                    "totalStaked",
+                    "withdrawFee",
+                    "withdrawLock"
+                ],
+                "Full Calculation Variables": [
+                    "PCT_BASE",
+                    "balances",
+                    "depositTime",
+                    "totalStaked",
+                    "withdrawFee",
+                    "withdrawLock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

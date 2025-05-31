@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStakingToken",
+            "Staking.stakingToken"
+        ],
+        "User Stake Reward": [
+            "Staking.currentRewards",
+            "Staking.genRewards"
+        ],
+        "User Stake Time": [
+            "Staking.stakingDate",
+            "Staking.lastWithdrawalDate"
+        ],
+        "Stake Token Address": [
+            "graceToken"
+        ],
+        "Reward Token Address": [
+            "graceToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "start_staking",
+                "Node": "graceToken.transferFrom(msg.sender,address(this),walletUsed)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "graceToken.transfer(msg.sender,withdrawalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "sellToken",
+                "Node": "graceToken.transferFrom(msg.sender,address(this),tokenQty)"
+            },
+            {
+                "Function": "sellToken",
+                "Node": "busdToken.transfer(msg.sender,busd_amt)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(Token(tokenAddress).transferFrom(msg.sender, address(this), amountToStake), \"Insufficient Token Allowance\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "require(Token(tokenAddress).transfer(account, pendingDivs), \"Could not transfer tokens.\""
+            },
+            {
+                "Function": "claimReward",
+                "Node": "updateAccount(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(Token(tokenAddress).transfer(msg.sender, amountAfterFee), \"Could not transfer tokens.\""
+            },
+            {
+                "Function": "unstake",
+                "Node": "msg.sender.transfer(eth)"
+            },
+            {
+                "Function": "claimScoreEth",
+                "Node": "msg.sender.transfer(eth)"
+            }
+        ]
+    }
+}

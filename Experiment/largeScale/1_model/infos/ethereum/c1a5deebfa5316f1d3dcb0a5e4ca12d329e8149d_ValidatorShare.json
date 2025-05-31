@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "getLiquidRewards"
+        ],
+        "User Stake Time": [
+            "DelegatorUnbond.withdrawEpoch"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_buyVoucher",
+                "Node": "require(stakeManager.delegationDeposit(validatorId, amountToDeposit, msg.sender)"
+            },
+            {
+                "Function": "_buyShares",
+                "Node": "_mint(user, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawAndTransferReward",
+                "Node": "require(stakeManager.transferFunds(validatorId, liquidRewards, user)"
+            },
+            {
+                "Function": "withdrawRewards",
+                "Node": "require(stakeManager.transferFunds(validatorId, liquidRewards, user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "sellVoucher",
+                "Node": "stakeManager.updateValidatorState(validatorId, -int256(claimAmount))"
+            },
+            {
+                "Function": "_claimUnstakedTokens",
+                "Node": "require(stakeManager.transferFunds(validatorId, _amount, msg.sender)"
+            },
+            {
+                "Function": "migrateOut",
+                "Node": "stakeManager.updateValidatorState(validatorId, -int256(amount))"
+            }
+        ]
+    }
+}

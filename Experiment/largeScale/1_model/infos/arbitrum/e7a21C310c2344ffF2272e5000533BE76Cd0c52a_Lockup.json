@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalLockedForProperty",
+            "StakingPositions.amount"
+        ],
+        "User Stake Reward": [
+            "cumulativeGlobalReward",
+            "StakingPositions.pendingReward",
+            "StakingPositions.cumulativeReward"
+        ],
+        "User Stake Time": [
+            "lastSameGlobalRewardTimestamp"
+        ],
+        "Stake Token Address": [
+            "registry().registries(\"Dev\")"
+        ],
+        "Reward Token Address": [
+            "registry().registries(\"DevBridge\")"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositToProperty",
+                "Node": "IERC20(registry().registries(\"Dev\")).transferFrom(msg.sender, _property, _amount)"
+            },
+            {
+                "Function": "depositToPosition",
+                "Node": "IERC20(registry().registries(\"Dev\")).transferFrom(msg.sender, positions.property, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawInterest",
+                "Node": "IDevBridge(registry().registries(\"DevBridge\")).mint(msg.sender, value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawByPosition",
+                "Node": "IProperty(positions.property).withdraw(msg.sender, _amount)"
+            }
+        ]
+    }
+}

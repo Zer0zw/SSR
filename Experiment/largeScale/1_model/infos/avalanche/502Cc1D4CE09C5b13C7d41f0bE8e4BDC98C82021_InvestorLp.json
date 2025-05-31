@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerAmount"
+        ],
+        "User Stake Reward": [
+            "stakerReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "targetToken"
+        ],
+        "Reward Token Address": [
+            "tokensToBeRewardedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositAvaxLp",
+                "Node": "IStakingManager(stakingManager).deposit(poolId, IERC20(investmentAddress).balanceOf(address(this)) - initBal, 0"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reinvest",
+                "Node": "IERC20(tokensToBeRewardedAddress[i]).transfer(treasury, rewardAmount / IStakingManager(stakingManager).bankCut())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAvaxLp",
+                "Node": "IJoeRouter(_routerAddress).removeLiquidityAVAX(targetToken[0], differenceBal, token0Entitlement, token1Entitlement, tx.origin, block.timestamp + 3600)"
+            },
+            {
+                "Function": "evacuateFunds",
+                "Node": "IERC20(liquidityPool).transfer(treasury, IERC20(liquidityPool).balanceOf(address(this)))"
+            }
+        ]
+    }
+}

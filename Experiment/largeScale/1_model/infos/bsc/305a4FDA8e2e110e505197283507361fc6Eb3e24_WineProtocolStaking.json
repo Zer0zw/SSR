@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakingInfo.revenue",
+            "StakingInfo.accumulated"
+        ],
+        "User Stake Time": [
+            "StakingInfo.end"
+        ],
+        "Stake Token Address": [
+            "WINE"
+        ],
+        "Reward Token Address": [
+            "WINE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "firstStakeWithoutNFT",
+                "Node": "IERC20(WINE).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "firstStakeWithNFT",
+                "Node": "IERC20(WINE).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "secondaryStakeWithoutNFT",
+                "Node": "IERC20(WINE).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "secondaryStakeWithNFT",
+                "Node": "IERC20(WINE).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(WINE).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

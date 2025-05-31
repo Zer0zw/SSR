@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "blackHoledToken"
+        ],
+        "Reward Token Address": [
+            "REWARD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "blackHoledToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeRewardTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "blackHoledToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "blackHoledToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

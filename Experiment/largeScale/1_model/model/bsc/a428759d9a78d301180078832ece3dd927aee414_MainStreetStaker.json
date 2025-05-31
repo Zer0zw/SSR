@@ -1,0 +1,158 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TOTAL_BANANA_STAKED",
+            "TOTAL_GNANA_STAKED"
+        ],
+        "User Stake Reward": [
+            "TOTAL_BANANA_DISTRIBUTED"
+        ],
+        "User Stake Time": [
+            "TIME_LOCKED_BANANA",
+            "TIME_LOCKED_GNANA"
+        ],
+        "Stake Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ],
+        "Reward Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "compound",
+            "deposit"
+        ],
+        "getReward": [
+            "compound"
+        ],
+        "unStake": [
+            "withdrawBanana",
+            "withdrawGnana"
+        ],
+        "Sensitive Functions": [
+            "withdrawBanana",
+            "withdrawGnana",
+            "withdrawLeftOverBanana",
+            "withdrawLeftOverGnana",
+            "withdrawRemainingMainstreet"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "compound",
+                "Node": [
+                    281
+                ],
+                "Input": [
+                    "bananaToStake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN",
+                    "BANANA_POOL"
+                ],
+                "Full Calculation Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN",
+                    "BANANA_POOL"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    281
+                ],
+                "Input": [
+                    "bananaToStake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN",
+                    "BANANA_POOL"
+                ],
+                "Full Calculation Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN",
+                    "BANANA_POOL"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": [
+                    325
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GNANA_POOL",
+                    "BANANA_TOKEN",
+                    "GNANA_TOKEN",
+                    "BANANA_POOL"
+                ],
+                "Full Calculation Variables": [
+                    "GNANA_POOL",
+                    "BANANA_TOKEN",
+                    "GNANA_TOKEN",
+                    "BANANA_POOL"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBanana",
+                "Node": [
+                    310
+                ],
+                "Input": [
+                    "percent"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BANANA_POOL",
+                    "BANANA_TOKEN",
+                    "TOTAL_BANANA_STAKED",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "BANANA_POOL",
+                    "BANANA_TOKEN",
+                    "TOTAL_BANANA_STAKED",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawGnana",
+                "Node": [
+                    332
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStakingToken",
+            "Staking.staking"
+        ],
+        "User Stake Reward": [
+            "Staking.currentRewards"
+        ],
+        "User Stake Time": [
+            "Staking.stakingDate",
+            "Staking.lastWithdrawalDate"
+        ],
+        "Stake Token Address": [
+            "gnrToken"
+        ],
+        "Reward Token Address": [
+            "groToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "start_staking",
+                "Node": "groToken.transfer(rewardWallet,(groQty+stakingReward))"
+            },
+            {
+                "Function": "real_estate_staking_admin",
+                "Node": "groToken.transfer(rewardWallet,stakingReward)"
+            },
+            {
+                "Function": "real_estate_staking",
+                "Node": "groToken.transfer(rewardWallet,stakingReward)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "groToken.transferFrom(rewardWallet, msg.sender, withdrawalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

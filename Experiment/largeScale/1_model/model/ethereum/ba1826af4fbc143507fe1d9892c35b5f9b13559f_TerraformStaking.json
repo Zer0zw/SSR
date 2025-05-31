@@ -1,0 +1,217 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "deposits.claimed"
+        ],
+        "User Stake Time": [
+            "brackets.lockedDays"
+        ],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "stakeTruth"
+        ],
+        "getReward": [
+            "claimRewards",
+            "extendStake"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "rescueTokens",
+            "setTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    718
+                ],
+                "Input": [
+                    "bracket",
+                    "tokenAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "brackets.enabled",
+                    "depositToken",
+                    "deposits.active",
+                    "deposits.bracket",
+                    "deposits.info",
+                    "deposits.truth",
+                    "terraFormInitiated"
+                ],
+                "Full Calculation Variables": [
+                    "brackets.enabled",
+                    "depositToken",
+                    "deposits.active",
+                    "deposits.bracket",
+                    "deposits.info",
+                    "deposits.truth",
+                    "terraFormInitiated"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stakeTruth",
+                "Node": [
+                    787
+                ],
+                "Input": [
+                    "_tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.active",
+                    "deposits.truth",
+                    "deposits.truthcircle",
+                    "truthToken"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.active",
+                    "deposits.truth",
+                    "deposits.truthcircle",
+                    "truthToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    778
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "PRECISION_FACTOR",
+                    "deposits.active",
+                    "deposits.bracket",
+                    "deposits.claimed",
+                    "deposits.info",
+                    "deposits.truth",
+                    "deposits.truthcircle"
+                ],
+                "Control Variables": [
+                    "PRECISION_FACTOR",
+                    "deposits.active",
+                    "deposits.bracket",
+                    "deposits.claimed",
+                    "deposits.info",
+                    "deposits.truth",
+                    "deposits.truthcircle",
+                    "rewardsToken"
+                ],
+                "Full Calculation Variables": [
+                    "PRECISION_FACTOR",
+                    "deposits.active",
+                    "deposits.bracket",
+                    "deposits.claimed",
+                    "deposits.info",
+                    "deposits.truth",
+                    "deposits.truthcircle",
+                    "rewardsToken"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "extendStake",
+                "Node": [
+                    809
+                ],
+                "Input": [
+                    "_bracket"
+                ],
+                "Calculation Variables": [
+                    "PRECISION_FACTOR",
+                    "deposits.active",
+                    "deposits.bracket",
+                    "deposits.claimed",
+                    "deposits.info",
+                    "deposits.truth",
+                    "deposits.truthcircle"
+                ],
+                "Control Variables": [
+                    "PRECISION_FACTOR",
+                    "brackets.APYRewards",
+                    "brackets.enabled",
+                    "brackets.lockedDays",
+                    "deposits.active",
+                    "deposits.bracket",
+                    "deposits.claimed",
+                    "deposits.info",
+                    "deposits.truth",
+                    "deposits.truthcircle",
+                    "rewardsToken"
+                ],
+                "Full Calculation Variables": [
+                    "PRECISION_FACTOR",
+                    "brackets.APYRewards",
+                    "brackets.enabled",
+                    "brackets.lockedDays",
+                    "deposits.active",
+                    "deposits.bracket",
+                    "deposits.claimed",
+                    "deposits.info",
+                    "deposits.truth",
+                    "deposits.truthcircle",
+                    "rewardsToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    833
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "deposits.claimed",
+                    "deposits.truthcircle",
+                    "deposits.active",
+                    "deposits.info",
+                    "deposits.bracket",
+                    "deposits.truth"
+                ],
+                "Control Variables": [
+                    "deposits.claimed",
+                    "rewardsToken",
+                    "depositToken",
+                    "truthToken",
+                    "deposits.truthcircle",
+                    "PRECISION_FACTOR",
+                    "deposits.bracket",
+                    "deposits.truth",
+                    "deposits.info",
+                    "deposits.active"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.claimed",
+                    "rewardsToken",
+                    "depositToken",
+                    "truthToken",
+                    "deposits.truthcircle",
+                    "PRECISION_FACTOR",
+                    "deposits.bracket",
+                    "deposits.truth",
+                    "deposits.info",
+                    "deposits.active"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

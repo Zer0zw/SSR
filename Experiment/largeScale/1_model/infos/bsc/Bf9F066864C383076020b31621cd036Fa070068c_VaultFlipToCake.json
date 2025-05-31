@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "_depositedAt"
+        ],
+        "Stake Token Address": [
+            "_stakingToken"
+        ],
+        "Reward Token Address": [
+            "_rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "_stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IBEP20(CAKE).safeTransfer(msg.sender, cakeBalance.sub(performanceFee))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "_stakingToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

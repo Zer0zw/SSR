@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.remainingYelTokenReward"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lastRewardTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.stakingToken"
+        ],
+        "Reward Token Address": [
+            "yel"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.stakingToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeRewardTransfer(_depositor, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeRewardTransfer(tx.origin, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.stakingToken.safeTransfer(zap, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.stakingToken.safeTransfer(address(msg.sender), userAmount)"
+            }
+        ]
+    }
+}

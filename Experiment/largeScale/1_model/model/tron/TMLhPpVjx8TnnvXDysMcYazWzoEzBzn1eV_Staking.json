@@ -1,0 +1,137 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "Token"
+        ],
+        "Reward Token Address": [
+            "Token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "invest"
+        ],
+        "getReward": [
+            "withdraw",
+            "withdrawReferralBonus"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": [
+                    238
+                ],
+                "Input": [
+                    "_amount",
+                    "plan",
+                    "referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "INVEST_MIN_AMOUNT",
+                    "PERCENTS_DIVIDER",
+                    "REFERRAL_PERCENTS",
+                    "Token",
+                    "users.bonus",
+                    "users.checkpoint",
+                    "users.deposits",
+                    "users.levels",
+                    "users.referrer",
+                    "users.totalBonus"
+                ],
+                "Full Calculation Variables": [
+                    "INVEST_MIN_AMOUNT",
+                    "PERCENTS_DIVIDER",
+                    "REFERRAL_PERCENTS",
+                    "Token",
+                    "users.bonus",
+                    "users.checkpoint",
+                    "users.deposits",
+                    "users.levels",
+                    "users.referrer",
+                    "users.totalBonus"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    293
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "Token"
+                ],
+                "Control Variables": [
+                    "Token",
+                    "users.checkpoint",
+                    "users.deposits"
+                ],
+                "Full Calculation Variables": [
+                    "Token",
+                    "users.checkpoint",
+                    "users.deposits"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawReferralBonus",
+                "Node": [
+                    347
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "users.bonus"
+                ],
+                "Control Variables": [
+                    "Token",
+                    "users.bonus"
+                ],
+                "Full Calculation Variables": [
+                    "Token",
+                    "users.bonus"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    273
+                ],
+                "Input": [
+                    "_index",
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "users.deposits"
+                ],
+                "Control Variables": [
+                    "Token",
+                    "totalStaked",
+                    "users.deposits"
+                ],
+                "Full Calculation Variables": [
+                    "Token",
+                    "totalStaked",
+                    "users.deposits"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

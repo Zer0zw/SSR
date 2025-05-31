@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Invest.balance"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "Invest.block_deposit",
+            "Invest.block_withdraw",
+            "Invest.block_break"
+        ],
+        "Stake Token Address": [
+            "plg_token",
+            "usdc_token"
+        ],
+        "Reward Token Address": [
+            "plg_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositWithPLG",
+                "Node": "plg.transferFrom(msg.sender,address(this),PLG_Amount)"
+            },
+            {
+                "Function": "depositWithMATIC",
+                "Node": "No direct token transfer statement for staking, as it involves receiving MATIC via msg.value"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdraw",
+                "Node": "pool.processETHRequest(account,reward*88/100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "pool.processETHRequest(account,balanceAmount)"
+            }
+        ]
+    }
+}

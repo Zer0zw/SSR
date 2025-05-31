@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pending"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "out"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(pool, _want)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IERC20(want).safeApprove(pool, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(out).safeTransfer(strategist, (totalReward.mul(strategistReward)).div(100))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(newb).safeTransfer(_vault, IERC20(newb).balanceOf(address(this)))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(out).transfer(_vault, (totalReward.mul(wbnbReward)).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(_vault, balance)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(IController(controller).rewards(), _fee)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_asset.safeTransfer(controller, balance)"
+            }
+        ]
+    }
+}

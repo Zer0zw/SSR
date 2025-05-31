@@ -1,0 +1,62 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositAmount",
+            "DepositInfo.amount"
+        ],
+        "User Stake Reward": [
+            "mintAmount",
+            "dividendAmount",
+            "DepositInfo.miningRewardDebt",
+            "DepositInfo.dividendRewardDebt"
+        ],
+        "User Stake Time": [
+            "DepositInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "miningToken",
+            "dividendToken",
+            "refferalRewardToken",
+            "nodeRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "poolInfo[_pid].lpToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeMiningTokenTransfer(_msgSender(), deservedMiningReward)"
+            },
+            {
+                "Function": "claim",
+                "Node": "safeDividendTokenTransfer(_msgSender(), deservedDividendReward)"
+            },
+            {
+                "Function": "claimAllReferralReward",
+                "Node": "safeMiningTokenTransfer(_msgSender(), totalPendingRefferalReward)"
+            },
+            {
+                "Function": "claimAllNodeReward",
+                "Node": "safeMiningTokenTransfer(_msgSender(), totalPendingNodeReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "poolInfo[_pid].lpToken.safeTransfer(_msgSender(), getTotalRedeemableLPAmount(_pid, _msgSender()))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "poolInfo[_pid].lpToken.safeTransfer(_msgSender(), depositAmount[_pid][_msgSender()])"
+            }
+        ]
+    }
+}

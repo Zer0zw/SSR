@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.firstDepositBlock",
+            "UserInfo.lastDepositBlock",
+            "UserInfo.lastWithdrawBlock",
+            "UserInfo.blockdelta"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolRestakingInfo.reward",
+            "PoolRestakingInfo.reward1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "Bava.transfer(msg.sender, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "Bava.transfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), userWithdrawFee)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(devaddr), depositTokenAmount-userWithdrawFee)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), amountToSend)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(devaddr), devToSend)"
+            }
+        ]
+    }
+}

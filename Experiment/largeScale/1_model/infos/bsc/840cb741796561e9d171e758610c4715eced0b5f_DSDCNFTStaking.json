@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.tokenIds"
+        ],
+        "User Stake Reward": [
+            "_rewards",
+            "_earned",
+            "_canClaim"
+        ],
+        "User Stake Time": [
+            "Staking.stakeAt",
+            "Staking.endstakeAt"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(stakingToken).transferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimEarnedReward",
+                "Node": "IERC20(rewardToken).transfer(msg.sender, _rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(stakingToken).safeTransferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

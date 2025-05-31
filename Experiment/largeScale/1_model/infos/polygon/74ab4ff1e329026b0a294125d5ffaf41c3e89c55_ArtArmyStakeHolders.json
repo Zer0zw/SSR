@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Investor.amountStaked"
+        ],
+        "User Stake Reward": [
+            "Investor.earns",
+            "Investor.totalEarns"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStake",
+                "Node": "_token.transferFrom(investorAddress, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getEarns",
+                "Node": "investorAddress.call{value: earns}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "_token.transfer(investorAddress, amount)"
+            }
+        ]
+    }
+}

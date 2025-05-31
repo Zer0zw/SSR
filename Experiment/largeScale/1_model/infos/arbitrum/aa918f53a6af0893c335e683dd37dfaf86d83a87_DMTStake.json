@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.lockedTokens"
+        ],
+        "User Stake Reward": [
+            "UserInfo.lastRewardClaimTimeStamp"
+        ],
+        "User Stake Time": [
+            "LOCKING_PERIOD"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(token.transferFrom(msg.sender, address(this), amount), \"Transfer failed\")"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "require(token.transferFrom(msg.sender, address(this), amount), \"Transfer failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "token.transfer(userAddress, reward)"
+            },
+            {
+                "Function": "stakerewards",
+                "Node": "claimRewardstoStake(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "token.transfer(userAddress, amount)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "token.transfer(userAddress, amount)"
+            }
+        ]
+    }
+}

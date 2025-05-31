@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "yield"
+        ],
+        "User Stake Time": [
+            "timestamp"
+        ],
+        "Stake Token Address": [
+            "tokenContract"
+        ],
+        "Reward Token Address": [
+            "paymentContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(tokenContract).transferFrom(msg.sender, address(this), _tokenids[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(paymentContract).transfer(msg.sender,pay)"
+            },
+            {
+                "Function": "payday",
+                "Node": "IERC20(paymentContract).transfer(msg.sender,_yield)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(tokenContract).transferFrom(address(this),msg.sender,_tokenids[i])"
+            }
+        ]
+    }
+}

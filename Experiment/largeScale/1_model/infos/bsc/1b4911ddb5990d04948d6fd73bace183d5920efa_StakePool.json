@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "_stakeOf"
+        ],
+        "User Stake Reward": [
+            "_KValueOf"
+        ],
+        "User Stake Time": [
+            "StakeSet.Item.createTime"
+        ],
+        "Stake Token Address": [
+            "StakeSet.Item.payTokenAddr"
+        ],
+        "Reward Token Address": [
+            "KORO_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(_payToken).safeTransferFrom(msg.sender, address(this), _payTokenAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(item.payTokenAddr).safeTransfer(msg.sender, payTokenAmount)"
+            },
+            {
+                "Function": "withdrawKoro",
+                "Node": "IERC20(KORO_ADDRESS).safeTransfer(msg.sender, _KValueOf[msg.sender])"
+            }
+        ]
+    }
+}

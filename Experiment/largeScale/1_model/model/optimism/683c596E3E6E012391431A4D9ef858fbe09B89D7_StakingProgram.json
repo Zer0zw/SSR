@@ -1,0 +1,143 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "stakers.remainder"
+        ],
+        "User Stake Time": [
+            "stakers.round"
+        ],
+        "Stake Token Address": [
+            "erc20tokenInstance"
+        ],
+        "Reward Token Address": [
+            "erc20tokenInstance"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "acceleratorStake",
+            "stake"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    154
+                ],
+                "Input": [
+                    "_tokens_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "erc20tokenInstance",
+                    "stakingStopped"
+                ],
+                "Full Calculation Variables": [
+                    "erc20tokenInstance",
+                    "stakingStopped"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "acceleratorStake",
+                "Node": [
+                    182
+                ],
+                "Input": [
+                    "_staker",
+                    "_tokens_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "acceleratorAddress",
+                    "erc20tokenInstance",
+                    "stakingStopped"
+                ],
+                "Full Calculation Variables": [
+                    "acceleratorAddress",
+                    "erc20tokenInstance",
+                    "stakingStopped"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    213
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "payouts",
+                    "round",
+                    "scaling",
+                    "stakers.remainder",
+                    "stakers.round",
+                    "stakers.stakedTokens",
+                    "totalDividends"
+                ],
+                "Control Variables": [
+                    "erc20tokenInstance",
+                    "payouts",
+                    "round",
+                    "scaling",
+                    "stakers.remainder",
+                    "stakers.round",
+                    "stakers.stakedTokens",
+                    "totalDividends"
+                ],
+                "Full Calculation Variables": [
+                    "erc20tokenInstance",
+                    "payouts",
+                    "round",
+                    "scaling",
+                    "stakers.remainder",
+                    "stakers.round",
+                    "stakers.stakedTokens",
+                    "totalDividends"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    229
+                ],
+                "Input": [
+                    "_tokens_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "erc20tokenInstance",
+                    "round",
+                    "stakers.round",
+                    "stakers.stakedTokens",
+                    "unstakingFee"
+                ],
+                "Full Calculation Variables": [
+                    "erc20tokenInstance",
+                    "round",
+                    "stakers.round",
+                    "stakers.stakedTokens",
+                    "unstakingFee"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewarded"
+        ],
+        "User Stake Time": [
+            "UserInfo.duration"
+        ],
+        "Stake Token Address": [
+            "usdtToken",
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit_ido",
+                "Node": "payable(marketAddr).transfer(_amount)"
+            },
+            {
+                "Function": "deposit_white",
+                "Node": "usdtToken.safeTransferFrom(msg.sender, marketAddr, rewardNum)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getIdoReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getWhiteReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": []
+    }
+}

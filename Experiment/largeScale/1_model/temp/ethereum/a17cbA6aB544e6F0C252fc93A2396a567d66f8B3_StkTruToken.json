@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "FarmRewards.claimableReward"
+        ],
+        "User Stake Time": [
+            "cooldowns"
+        ],
+        "Stake Token Address": [
+            "tru"
+        ],
+        "Reward Token Address": [
+            "tru",
+            "tfusd",
+            "feeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "tru.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "_stakeWithoutTransfer",
+                "Node": "stakeSupply = stakeSupply.add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.safeTransfer(msg.sender, rewardToClaim)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "token.safeTransfer(msg.sender, rewardToClaim)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "token.safeTransfer(msg.sender, rewardToClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "tru.safeTransfer(msg.sender, amountToTransfer)"
+            }
+        ]
+    }
+}

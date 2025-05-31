@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Investor.deposits"
+        ],
+        "User Stake Reward": [
+            "Investor.bonusRef",
+            "Investor.bonusRefTron"
+        ],
+        "User Stake Time": [
+            "Investor.depositAt"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFund",
+                "Node": "_mint(msg.sender, tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawnToken",
+                "Node": "_mint(msg.sender, tokenAmount)"
+            },
+            {
+                "Function": "withdrawnReferrer",
+                "Node": "_mint(msg.sender, investors[msg.sender].bonusRef)"
+            },
+            {
+                "Function": "withdrawnReferrer",
+                "Node": "msg.sender.transfer(investors[msg.sender].bonusRefTron)"
+            },
+            {
+                "Function": "withdrawnFreezBonus",
+                "Node": "msg.sender.transfer(investors[msg.sender].tempFreezWithdrawn)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeFund",
+                "Node": "msg.sender.transfer(unstakeAmount * 80 / 100)"
+            },
+            {
+                "Function": "unFreezToken",
+                "Node": "_mint(msg.sender, amount)"
+            }
+        ]
+    }
+}

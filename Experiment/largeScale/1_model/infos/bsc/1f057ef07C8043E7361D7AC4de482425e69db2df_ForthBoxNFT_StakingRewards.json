@@ -1,0 +1,73 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "feedRewardArr.sum",
+            "feedRewardArr.alreadyReward"
+        ],
+        "User Stake Time": [
+            "feedRewardArr.startTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakes",
+                "Node": "stakingToken.safeTransferFrom(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "stakeFresh",
+                "Node": "stakingToken.safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(_msgSender(), reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "rewardsToken.safeTransfer(_msgSender(), reward)"
+            },
+            {
+                "Function": "exits",
+                "Node": "rewardsToken.safeTransfer(_msgSender(), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransferFrom(address(this),_msgSender(), tokenId)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "stakingToken.safeTransferFrom(address(this),_msgSender(), tokenId)"
+            },
+            {
+                "Function": "_withdrawDel",
+                "Node": "stakingToken.safeTransferFrom(address(this),_msgSender(), tokenId)"
+            },
+            {
+                "Function": "exit",
+                "Node": "stakingToken.safeTransferFrom(address(this),_msgSender(), _OwnerNFTs[_msgSender()].NftIDs[i])"
+            },
+            {
+                "Function": "exits",
+                "Node": "stakingToken.safeTransferFrom(address(this),_msgSender(), _OwnerNFTs[_msgSender()].NftIDs[LastNum-1-i])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit",
+            "warmupInfo.gons"
+        ],
+        "User Stake Reward": [
+            "epoch.distribute"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry"
+        ],
+        "Stake Token Address": [
+            "CADT"
+        ],
+        "Reward Token Address": [
+            "sCADT",
+            "gCADT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "CADT.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "_send",
+                "Node": "sCADT.safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "_send",
+                "Node": "gCADT.mint(_to, gCADT.balanceTo(_amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "CADT.safeTransfer(msg.sender, info.deposit)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "CADT.safeTransfer(_to, amount_)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "CADT.safeTransfer(_to, amount_)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "CADT.safeTransfer(msg.sender, info.deposit)"
+            }
+        ]
+    }
+}

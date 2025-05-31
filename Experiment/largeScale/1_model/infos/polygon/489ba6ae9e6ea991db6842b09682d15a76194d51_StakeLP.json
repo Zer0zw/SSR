@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.stakingAmount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.claimedRewards"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakeStartTime",
+            "StakeInfo.lockPeriod"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), erc20Amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_mintRewardTokens(msg.sender, rewardAmount)"
+            },
+            {
+                "Function": "compoundRewards",
+                "Node": "stakeInfo.stakingAmount += compoundableRewards"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakingToken.transfer(msg.sender, stakeInfo.stakingAmount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_mintRewardTokens(msg.sender, rewardAmount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "erc721.safeTransferFrom(address(this), msg.sender, stakeInfo.stakedTokenIds[i])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_shares",
+            "_principal"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [
+            "_depositedAt"
+        ],
+        "Stake Token Address": [
+            "ALPACA_IB_BNB"
+        ],
+        "Reward Token Address": [
+            "ALPACA"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "payable(msg.sender).transfer(withdrawAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "payable(msg.sender).transfer(withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "payable(msg.sender).transfer(withdrawAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(withdrawAmount)"
+            }
+        ]
+    }
+}

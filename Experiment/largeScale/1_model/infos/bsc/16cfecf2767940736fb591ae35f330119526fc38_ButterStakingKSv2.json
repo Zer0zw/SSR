@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MAIN_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.current.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "MAIN_TOKEN.transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "MAIN_TOKEN.transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdrawall",
+                "Node": "MAIN_TOKEN.transfer(address(msg.sender), all)"
+            },
+            {
+                "Function": "emergencyReturn",
+                "Node": "MAIN_TOKEN.transfer(addr, withamount)"
+            },
+            {
+                "Function": "emergencyReturnNoSwap",
+                "Node": "MAIN_TOKEN.transfer(addr, withamount)"
+            },
+            {
+                "Function": "emergencyReturnNoSwapNoFee",
+                "Node": "MAIN_TOKEN.transfer(addr, withamount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "MAIN_TOKEN.transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdrawall",
+                "Node": "MAIN_TOKEN.transfer(address(msg.sender), all)"
+            }
+        ]
+    }
+}

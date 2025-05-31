@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStake",
+            "userStakeById"
+        ],
+        "User Stake Reward": [
+            "rewardsById"
+        ],
+        "User Stake Time": [
+            "userStakeTimeById"
+        ],
+        "Stake Token Address": [
+            "PRXY"
+        ],
+        "Reward Token Address": [
+            "BTCpx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20Upgradeable(PRXY).safeTransferFrom(_msgSender(), treasury, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20Upgradeable(BTCpx).safeTransferFrom(btcpxTreasury, _msgSender(), _rewardEarned.div(1e8))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20Upgradeable(PRXY).safeTransferFrom(treasury, _msgSender(), _stakeAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.numberNFTStaked",
+            "Staker.numberNFTStakedPerToken"
+        ],
+        "User Stake Reward": [
+            "Staker.rewardsEarned",
+            "Staker.rewardsReleased"
+        ],
+        "User Stake Time": [
+            "nftStakeRecords.nftStakeTime",
+            "nftStakeRecords.nftUnstakeTime"
+        ],
+        "Stake Token Address": [
+            "whitelistedTokens"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(_whitelistedNFT).safeTransferFrom(_user, address(this), _tokenId"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "IERC721(_whitelistedNFTs[i]).safeTransferFrom(_msgSender(), address(this), _tokenIds[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.transfer(_user, _payableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(_whitelistedNFT).safeTransferFrom(address(this), _user, _tokenId"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "IERC721(_whitelistedNFTs[i]).safeTransferFrom(address(this), _user, _tokenIds[i]"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "IERC721(_whitelistedNFT).safeTransferFrom(address(this), _msgSender(), _tokenId"
+            },
+            {
+                "Function": "adminEmergencySafeUnstake",
+                "Node": "IERC721(_whitelistedNFT).safeTransferFrom(address(this), tokenOwner[_whitelistedNFT][_tokenId], _tokenId"
+            },
+            {
+                "Function": "adminEmergencyUnstake",
+                "Node": "IERC721(_whitelistedNFT).transferFrom(address(this), tokenOwner[_whitelistedNFT][_tokenId], _tokenId"
+            }
+        ]
+    }
+}

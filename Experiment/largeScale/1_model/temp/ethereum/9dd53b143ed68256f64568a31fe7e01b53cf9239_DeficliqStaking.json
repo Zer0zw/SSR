@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStakedBalance",
+            "Stake._amount"
+        ],
+        "User Stake Reward": [
+            "Stake._stakeRewardType"
+        ],
+        "User Stake Time": [
+            "Stake._timestamp",
+            "Stake._withdrawnTimestamp"
+        ],
+        "Stake Token Address": [
+            "tokenContract"
+        ],
+        "Reward Token Address": [
+            "CLIQ"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "tokenContract.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "tokenContract.transfer(msg.sender, totalStake)"
+            },
+            {
+                "Function": "forceWithdraw",
+                "Node": "tokenContract.transfer(msg.sender, stakes[msg.sender][stakeIndex]._amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "tokenContract.transfer(msg.sender, totalStake)"
+            },
+            {
+                "Function": "forceWithdraw",
+                "Node": "tokenContract.transfer(msg.sender, stakes[msg.sender][stakeIndex]._amount)"
+            }
+        ]
+    }
+}

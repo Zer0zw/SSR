@@ -1,0 +1,66 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked.tokenId"
+        ],
+        "User Stake Reward": [
+            "rewardPerDay90",
+            "rewardPerDay180",
+            "rewardPerDay360"
+        ],
+        "User Stake Time": [
+            "staked.stakeTime",
+            "staked.unstakeTime"
+        ],
+        "Stake Token Address": [
+            "stakingNft"
+        ],
+        "Reward Token Address": [
+            "rewardingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "stakingNft.transferFrom(_msgSender() , address(this) , tokenId)"
+            },
+            {
+                "Function": "stake",
+                "Node": "stakingNft.transferFrom(_msgSender() , address(this) , tokenId)"
+            },
+            {
+                "Function": "stakeMany",
+                "Node": "stakingNft.transferFrom(_msgSender() , address(this) , tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_unstake",
+                "Node": "rewardingToken.transferFrom(rewardingTokenWallet , _msgSender() , reward)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "rewardingToken.transferFrom(rewardingTokenWallet , _msgSender() , reward)"
+            },
+            {
+                "Function": "unstakeMany",
+                "Node": "rewardingToken.transferFrom(rewardingTokenWallet , _msgSender() , reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "stakingNft.transferFrom(address(this),_msgSender() , tokenId)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "stakingNft.transferFrom(address(this),_msgSender() , tokenId)"
+            },
+            {
+                "Function": "unstakeMany",
+                "Node": "stakingNft.transferFrom(address(this),_msgSender() , tokenIds[i])"
+            }
+        ]
+    }
+}

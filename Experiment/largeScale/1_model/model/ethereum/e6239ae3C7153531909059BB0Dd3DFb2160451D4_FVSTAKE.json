@@ -1,0 +1,125 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingTAmount",
+            "_stakingInfo.stakingAmount"
+        ],
+        "User Stake Reward": [
+            "referralAmount",
+            "_claimInfo.rewardAmount",
+            "_referralInfo.referralAmount"
+        ],
+        "User Stake Time": [
+            "_stakingInfo.stakingDate",
+            "_stakingInfo.claimDate"
+        ],
+        "Stake Token Address": [
+            "FINEVIPAddress"
+        ],
+        "Reward Token Address": [
+            "USDC"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "Stake"
+        ],
+        "getReward": [
+            "Unstake",
+            "claimReward"
+        ],
+        "unStake": [
+            "Unstake"
+        ],
+        "Sensitive Functions": [
+            "changeFineVipContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": [
+                    744
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FINEVIPAddress",
+                    "stakingTAmount"
+                ],
+                "Full Calculation Variables": [
+                    "FINEVIPAddress",
+                    "stakingTAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    803
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "USDC"
+                ],
+                "Full Calculation Variables": [
+                    "USDC"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "Unstake",
+                "Node": [
+                    803
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "USDC"
+                ],
+                "Full Calculation Variables": [
+                    "USDC"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Unstake",
+                "Node": [
+                    774,
+                    775,
+                    776,
+                    777
+                ],
+                "Input": [
+                    "idx"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FINEVIPAddress",
+                    "_stakingInfo.stakingAmount",
+                    "_stakingInfo.stakingDate",
+                    "_stakingInfo.unstaked",
+                    "lockUpPeriod",
+                    "stakingTAmount"
+                ],
+                "Full Calculation Variables": [
+                    "FINEVIPAddress",
+                    "_stakingInfo.stakingAmount",
+                    "_stakingInfo.stakingDate",
+                    "_stakingInfo.unstaked",
+                    "lockUpPeriod",
+                    "stakingTAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

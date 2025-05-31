@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.amount"
+        ],
+        "User Stake Reward": [
+            "unlockedPool.balance()",
+            "lockedPool.balance()"
+        ],
+        "User Stake Time": [
+            "Staking.totalAmountTime",
+            "Staking.lastUpdatedTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakingBPT"
+        ],
+        "Reward Token Address": [
+            "bellaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_updateUserStaking",
+                "Node": "userInfo.amount = userInfo.amount.add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_calculateRewardAndBurnAll",
+                "Node": "uint256 reward = unlockedPool.balance().mul(userInfo.totalAmountTime).div(totalStakingAmountTime)"
+            },
+            {
+                "Function": "_calculateRewardAndCleanUser",
+                "Node": "uint256 reward = unlockedPool.balance().mul(userInfo.totalAmountTime).div(totalStakingAmountTime)"
+            },
+            {
+                "Function": "_totalRewardsFor",
+                "Node": "uint256 reward = unlockedAmount.mul(newUserTotalAmountTime).div(newTotalStakingAmountTime)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_calculateRewardAndCleanUser",
+                "Node": "uint256 staking = userInfo.amount"
+            }
+        ]
+    }
+}

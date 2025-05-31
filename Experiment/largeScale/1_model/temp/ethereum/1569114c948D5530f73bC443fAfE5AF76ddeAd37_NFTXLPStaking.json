@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StakingPool.stakingToken"
+        ],
+        "Reward Token Address": [
+            "StakingPool.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_rewardDistributionTokenAddr(pool).withdrawReward(account)"
+            },
+            {
+                "Function": "emergencyExitAndClaim",
+                "Node": "_rewardDistributionTokenAddr(pool).withdrawReward(account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransfer(account, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransfer(account, amount)"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransfer(account, amount)"
+            },
+            {
+                "Function": "emergencyExitAndClaim",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransfer(account, amount)"
+            }
+        ]
+    }
+}

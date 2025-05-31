@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount",
+            "stakerDetail.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Stake.reward",
+            "stakerDetail.stakerPendingReward"
+        ],
+        "User Stake Time": [
+            "Stake.stakedAt",
+            "Stake.endedAt"
+        ],
+        "Stake Token Address": [
+            "komToken"
+        ],
+        "Reward Token Address": [
+            "komVToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20MintableBurnableUpgradeable(komToken).safeTransferFrom(sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_compound",
+                "Node": "_stake(_sender, _amount + reward, _lockIndex, _compoundType)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "IERC20MintableBurnableUpgradeable(komToken).safeTransfer(_sender, withdrawableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20MintableBurnableUpgradeable(komToken).safeTransfer(_sender, withdrawableAmount)"
+            }
+        ]
+    }
+}

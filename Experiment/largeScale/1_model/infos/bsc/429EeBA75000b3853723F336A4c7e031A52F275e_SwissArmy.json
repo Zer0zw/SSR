@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staketBalances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "claimedRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "collectionAddress"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStaker",
+                "Node": "staketBalances[_address] = staketBalances[_address].add(_amount)"
+            },
+            {
+                "Function": "setLongTerm",
+                "Node": "staketBalances[_address] = staketBalances[_address].add(_amount)"
+            },
+            {
+                "Function": "putFlag",
+                "Node": "staketBalances[_address] = staketBalances[_address].add(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "batchCalimStaked",
+                "Node": "rewards[stakersIndex[msg.sender]] = rewards[stakersIndex[msg.sender]] - _amount"
+            },
+            {
+                "Function": "_batchClaimBep20",
+                "Node": "router.swapExactETHForTokensSupportingFeeOnTransferTokens{value: _amount * percentages[i] / 100}(0, path, msg.sender, deadline)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeLongTerm",
+                "Node": "staketBalances[_address] = 0"
+            },
+            {
+                "Function": "putFlag",
+                "Node": "staketBalances[_address] = 0"
+            }
+        ]
+    }
+}

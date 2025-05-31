@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(callFeeRecipient, callFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(lightFeeRecipient, lightFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMasterChef(chef).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

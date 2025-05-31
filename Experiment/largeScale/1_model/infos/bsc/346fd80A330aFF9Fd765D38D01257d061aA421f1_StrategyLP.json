@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user.amount"
+        ],
+        "User Stake Reward": [
+            "pending"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "out"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(pool, _want)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IERC20(want).safeApprove(pool, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(out).safeTransfer(msg.sender, _2reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(_vault, balance)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_asset.safeTransfer(controller, balance)"
+            }
+        ]
+    }
+}

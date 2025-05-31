@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedBalances.ETHStaked"
+        ],
+        "User Stake Reward": [
+            "_stakedBalances.rewards"
+        ],
+        "User Stake Time": [
+            "_stakedBalances.lastBlockChecked"
+        ],
+        "Stake Token Address": [
+            "ETHAddress"
+        ],
+        "Reward Token Address": [
+            "CRTAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mintSqETH",
+                "Node": "_mint(msg.sender, msg.value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewards",
+                "Node": "ERC20(CRT_TOKEN).transferFrom(address(this), msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawCRT",
+                "Node": "ERC20(CRT_TOKEN).transferFrom(address(this), msg.sender, payout)"
+            },
+            {
+                "Function": "withdrawETH",
+                "Node": "msg.sender.transfer(amountCalculate)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCRT",
+                "Node": "ERC20(CRT_TOKEN).transferFrom(address(this), msg.sender, payout)"
+            },
+            {
+                "Function": "withdrawETH",
+                "Node": "msg.sender.transfer(amountCalculate)"
+            }
+        ]
+    }
+}

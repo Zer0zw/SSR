@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolMap.balance"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpPair"
+        ],
+        "Reward Token Address": [
+            "poolMap.targetToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpPair.transfer(_dest, sent)"
+            },
+            {
+                "Function": "depositByGov",
+                "Node": "IStakingRewards(pool).stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IStakingRewards(pool.targetPool).getReward()"
+            },
+            {
+                "Function": "claimByGov",
+                "Node": "IStakingRewards(pool).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IStakingRewards(pool.targetPool).withdraw(_amount)"
+            },
+            {
+                "Function": "withdrawByGov",
+                "Node": "IStakingRewards(pool).withdraw(_amount)"
+            }
+        ]
+    }
+}

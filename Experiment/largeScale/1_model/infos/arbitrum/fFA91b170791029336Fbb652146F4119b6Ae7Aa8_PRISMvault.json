@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PoolInfo.totalStaked",
+            "PRISMT.balanceOf"
+        ],
+        "User Stake Reward": [
+            "PoolInfo.EarnRateSec"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lastUpdate"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.PRISMlptoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterETH",
+                "Node": "PRISMT.mint(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "enter",
+                "Node": "PRISMT.mint(msg.sender, amountAfterFee)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leaveETH",
+                "Node": "PRISMT.burn(msg.sender, _share)"
+            },
+            {
+                "Function": "leave",
+                "Node": "PRISMT.burn(msg.sender, _share)"
+            }
+        ]
+    }
+}

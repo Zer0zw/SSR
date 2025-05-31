@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalInvested",
+            "DepositList.amt"
+        ],
+        "User Stake Reward": [
+            "User.divs",
+            "User.refBonus"
+        ],
+        "User Stake Time": [
+            "User.startDate",
+            "DepositList.depoTime"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "BUSD.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "BUSD.transfer(msg.sender, withdrawAmount)"
+            },
+            {
+                "Function": "drawLastDepositWinner",
+                "Node": "BUSD.transfer(lastDepositPotentialWinner, adjustedAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInitial",
+                "Node": "BUSD.transfer(msg.sender, refundAmount)"
+            }
+        ]
+    }
+}

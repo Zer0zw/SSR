@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "accountSlottedNfts"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "SlottedNft.timestamp"
+        ],
+        "Stake Token Address": [
+            "czf"
+        ],
+        "Reward Token Address": [
+            "whitelistToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFor",
+                "Node": "super.depositFor(_account, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawTo",
+                "Node": "super.withdrawTo(_account, _amount - withdrawFee)"
+            }
+        ]
+    }
+}

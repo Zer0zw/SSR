@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfos.lp",
+            "order.lpNumber"
+        ],
+        "User Stake Reward": [
+            "userInfos.receivedSgt",
+            "userInfos.receivedEne",
+            "order.received",
+            "order.reward"
+        ],
+        "User Stake Time": [
+            "order.buyTime",
+            "order.unlockTime",
+            "order.endTime"
+        ],
+        "Stake Token Address": [
+            "lpAddress"
+        ],
+        "Reward Token Address": [
+            "plan.tokenAddress",
+            "order.tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "pledgeLp",
+                "Node": "IERC20(lpAddress).transferFrom(address(msg.sender), address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(order_info.tokenAddress).transfer(address(msg.sender), reward"
+            },
+            {
+                "Function": "getReward",
+                "Node": "mintToken(order_info.tokenAddress).mint(address(msg.sender), reward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unpledgeLp",
+                "Node": "IERC20(lpAddress).transfer(address(msg.sender), order_info.lpNumber"
+            }
+        ]
+    }
+}

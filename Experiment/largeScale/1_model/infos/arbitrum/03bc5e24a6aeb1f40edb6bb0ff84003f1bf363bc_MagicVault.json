@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolInfo.totalStaked",
+            "CJT.balanceOf"
+        ],
+        "User Stake Reward": [
+            "poolInfo.EarnRateSec",
+            "poolInfo.APR"
+        ],
+        "User Stake Time": [
+            "poolInfo.lastUpdate"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "EsGMX",
+            "WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterETH",
+                "Node": "CJT.mint(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "enter",
+                "Node": "CJT.mint(msg.sender, amountAfterFee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_cycleRewardsETH",
+                "Node": "WETH.transfer(owner(),  WETH.balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveETH",
+                "Node": "payable(msg.sender).call{value: amountSendOut}(\"\")"
+            },
+            {
+                "Function": "leave",
+                "Node": "StakedToken.safeTransfer(msg.sender, amountSendOut)"
+            }
+        ]
+    }
+}

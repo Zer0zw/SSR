@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.initialTokens"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.rewardStartBlock",
+            "UserInfo.lastWithdrawlBlock"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "stakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeAndLock",
+                "Node": "IERC20(stakeToken).transferFrom(hotWallet, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(stakeToken).transferFrom(hotWallet, msg.sender, totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(stakeToken).transfer(msg.sender, currentToUnlocked)"
+            }
+        ]
+    }
+}

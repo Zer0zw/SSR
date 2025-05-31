@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stake"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pacocaShares"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "STAKED_TOKEN"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "STAKED_TOKEN.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "_safePACOCATransfer(msg.sender, pacocaAmount)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "_safePACOCATransfer(msg.sender, pacocaAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "STAKED_TOKEN.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

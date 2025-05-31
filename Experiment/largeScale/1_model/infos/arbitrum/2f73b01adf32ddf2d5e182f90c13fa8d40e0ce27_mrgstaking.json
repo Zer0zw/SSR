@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.stakingAmount"
+        ],
+        "User Stake Reward": [
+            "Staker.rewards_1",
+            "Staker.rewards_2"
+        ],
+        "User Stake Time": [
+            "Staker.lastUpdateTime",
+            "Staker.lastStakeUpdateTime"
+        ],
+        "Stake Token Address": [
+            "stakeTokenAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenAddress_1",
+            "rewardTokenAddress_2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakeTokenAddress).transferFrom(stakerAddress, address(this), amount.mul(995).div(1000)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakeTokenAddress).transferFrom(stakerAddress, marketingAddress, amount.mul(5).div(1000))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "rewardToken_1.transfer(stakerAddress, _reward_1)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "rewardToken_2.transfer(stakerAddress, _reward_2)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstaking",
+                "Node": "IERC20(stakeTokenAddress).burn(amount.mul(10).div(1000))"
+            },
+            {
+                "Function": "unstaking",
+                "Node": "IERC20(stakeTokenAddress).transfer(marketingAddress, amount.mul(10).div(1000))"
+            },
+            {
+                "Function": "unstaking",
+                "Node": "IERC20(stakeTokenAddress).transfer(stakerAddress, amount.mul(1000 - withdrawFee).div(1000))"
+            }
+        ]
+    }
+}

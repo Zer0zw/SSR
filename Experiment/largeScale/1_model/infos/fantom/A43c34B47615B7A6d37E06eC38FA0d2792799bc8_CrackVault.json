@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "profitShare"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "sideProfitToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "sideProfitToken().safeTransfer(msg.sender, profitShare)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken().safeTransfer(msg.sender, r)"
+            }
+        ]
+    }
+}

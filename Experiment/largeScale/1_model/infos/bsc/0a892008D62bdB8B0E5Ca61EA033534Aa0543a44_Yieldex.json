@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.Lpaddress"
+        ],
+        "Reward Token Address": [
+            "tenToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(tenToken).safeTransfer(msg.sender,(rewardShare.div(1e12).sub(subValue)))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "supplyFarm",
+                "Node": "IERC20(tenToken).safeTransfer(msg.sender,(rewardShare.div(1e12).sub(subValue)))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(tenToken).safeTransfer(msg.sender,(rewardShare.div(1e12).sub(subValue)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(iAddress).safeTransfer(msg.sender,_withdrawBalance)"
+            },
+            {
+                "Function": "lpToToken",
+                "Node": "Address.sendValue(payable(msg.sender),_returned1)"
+            }
+        ]
+    }
+}

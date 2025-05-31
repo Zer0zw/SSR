@@ -1,0 +1,117 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "_deposits.amount"
+            ],
+            "User Stake Reward": [
+                "_epochs.sharePerToken"
+            ],
+            "User Stake Time": [
+                "_epochs.startedAt"
+            ],
+            "Stake Token Address": [
+                "_otseaERC20"
+            ],
+            "Reward Token Address": []
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "claim",
+                "compound",
+                "withdraw"
+            ],
+            "unStake": [
+                "withdraw"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "_otseaERC20",
+                        "isDepositingAllowed"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claim",
+                    "Calculation Variables": [
+                        "LOOP_LIMIT",
+                        "REWARD_PRECISION",
+                        "_currentEpoch",
+                        "_deposits",
+                        "_deposits.amount",
+                        "_deposits.rewardReferenceEpoch",
+                        "_epochs.sharePerToken"
+                    ]
+                },
+                {
+                    "Function": "compound",
+                    "Calculation Variables": [
+                        "LOOP_LIMIT",
+                        "REWARD_PRECISION",
+                        "_currentEpoch",
+                        "_deposits",
+                        "_deposits.amount",
+                        "_deposits.rewardReferenceEpoch",
+                        "_epochs.sharePerToken"
+                    ]
+                },
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "LOOP_LIMIT",
+                        "REWARD_PRECISION",
+                        "_currentEpoch",
+                        "_deposits",
+                        "_deposits.amount",
+                        "_deposits.rewardReferenceEpoch",
+                        "_epochs.sharePerToken"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "LOOP_LIMIT",
+                        "REWARD_PRECISION",
+                        "_currentEpoch",
+                        "_deposits",
+                        "_deposits.amount",
+                        "_deposits.rewardReferenceEpoch",
+                        "_epochs.sharePerToken",
+                        "_otseaERC20"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [
+            "stake"
+        ],
+        
+        "Unsafe Verifications (UV)": [
+            "withdraw"
+        ],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

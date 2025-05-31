@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalance"
+        ],
+        "User Stake Reward": [
+            "claimableAlpaca",
+            "currentAlpaca"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ibToken"
+        ],
+        "Reward Token Address": [
+            "alpacaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_farm",
+                "Node": "ibToken.deposit(_wantBal)"
+            },
+            {
+                "Function": "_farm",
+                "Node": "alpacaFarm.deposit(address(this), poolId, bal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimAlpaca",
+                "Node": "alpacaFarm.harvest(poolId)"
+            },
+            {
+                "Function": "_disposeAlpaca",
+                "Node": "IUniswapV2Router02(uniswapRouter).swapExactTokensForTokens(_alpaca, conservativeWant, path, address(this), now)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "alpacaFarm.withdraw(address(this), poolId, _amountShare)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "ibToken.withdraw(IERC20(ibToken).balanceOf(address(this)))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,242 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownedStakesBalance"
+        ],
+        "User Stake Reward": [
+            "stakes.startTimestamp"
+        ],
+        "User Stake Time": [
+            "stakes.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "ryuToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "batchStake",
+            "stake",
+            "stakeAll"
+        ],
+        "getReward": [
+            "claim",
+            "claimAll"
+        ],
+        "unStake": [
+            "claim",
+            "claimAll"
+        ],
+        "Sensitive Functions": [
+            "withdrawRyu"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "batchStake",
+                "Node": [
+                    2039
+                ],
+                "Input": [
+                    "_tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "isPaused",
+                    "nft"
+                ],
+                "Full Calculation Variables": [
+                    "isPaused",
+                    "nft"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    2050
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "isPaused",
+                    "nft"
+                ],
+                "Full Calculation Variables": [
+                    "isPaused",
+                    "nft"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeAll",
+                "Node": [
+                    2050
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "isPaused",
+                    "BASE_REWARD_PER_DAY",
+                    "LEGEND_REWARD_PER_DAY",
+                    "nft"
+                ],
+                "Full Calculation Variables": [
+                    "isPaused",
+                    "BASE_REWARD_PER_DAY",
+                    "LEGEND_REWARD_PER_DAY",
+                    "nft"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    2085
+                ],
+                "Input": [
+                    "_unstake",
+                    "tokenId"
+                ],
+                "Calculation Variables": [
+                    "BASE_REWARD_PER_DAY",
+                    "CLAIM_TOKEN_TAX_PERCENTAGE",
+                    "LEGEND_REWARD_PER_DAY",
+                    "nft",
+                    "stakes.owner",
+                    "stakes.staked",
+                    "stakes.startTimestamp",
+                    "stakes.tokenId"
+                ],
+                "Control Variables": [
+                    "BASE_REWARD_PER_DAY",
+                    "CLAIM_TOKEN_TAX_PERCENTAGE",
+                    "LEGEND_REWARD_PER_DAY",
+                    "nft",
+                    "ryuToken",
+                    "stakes.owner",
+                    "stakes.staked",
+                    "stakes.startTimestamp",
+                    "stakes.tokenId"
+                ],
+                "Full Calculation Variables": [
+                    "BASE_REWARD_PER_DAY",
+                    "CLAIM_TOKEN_TAX_PERCENTAGE",
+                    "LEGEND_REWARD_PER_DAY",
+                    "nft",
+                    "ryuToken",
+                    "stakes.owner",
+                    "stakes.staked",
+                    "stakes.startTimestamp",
+                    "stakes.tokenId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAll",
+                "Node": [
+                    2111
+                ],
+                "Input": [
+                    "_unstake"
+                ],
+                "Calculation Variables": [
+                    "BASE_REWARD_PER_DAY",
+                    "CLAIM_TOKEN_TAX_PERCENTAGE",
+                    "LEGEND_REWARD_PER_DAY",
+                    "nft",
+                    "ownedStakes",
+                    "ownedStakesBalance",
+                    "ownedStakesIndex",
+                    "stakes.owner",
+                    "stakes.staked",
+                    "stakes.startTimestamp",
+                    "stakes.tokenId"
+                ],
+                "Control Variables": [
+                    "BASE_REWARD_PER_DAY",
+                    "CLAIM_TOKEN_TAX_PERCENTAGE",
+                    "LEGEND_REWARD_PER_DAY",
+                    "nft",
+                    "ownedStakes",
+                    "ownedStakesBalance",
+                    "ownedStakesIndex",
+                    "ryuToken",
+                    "stakes.owner",
+                    "stakes.staked",
+                    "stakes.startTimestamp",
+                    "stakes.tokenId"
+                ],
+                "Full Calculation Variables": [
+                    "BASE_REWARD_PER_DAY",
+                    "CLAIM_TOKEN_TAX_PERCENTAGE",
+                    "LEGEND_REWARD_PER_DAY",
+                    "nft",
+                    "ownedStakes",
+                    "ownedStakesBalance",
+                    "ownedStakesIndex",
+                    "ryuToken",
+                    "stakes.owner",
+                    "stakes.staked",
+                    "stakes.startTimestamp",
+                    "stakes.tokenId"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimAll",
+                "Node": [
+                    2125
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nft",
+                    "stakes.owner",
+                    "stakes.tokenId"
+                ],
+                "Full Calculation Variables": [
+                    "nft",
+                    "stakes.owner",
+                    "stakes.tokenId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claim",
+                "Node": [
+                    2125
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nft",
+                    "stakes.owner",
+                    "stakes.tokenId"
+                ],
+                "Full Calculation Variables": [
+                    "nft",
+                    "stakes.owner",
+                    "stakes.tokenId"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

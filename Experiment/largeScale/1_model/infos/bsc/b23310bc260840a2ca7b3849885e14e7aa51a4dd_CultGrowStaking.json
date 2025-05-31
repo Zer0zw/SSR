@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "RewardInfo.pendingVaultRewards",
+            "RewardInfo.claimedVaultRewards"
+        ],
+        "User Stake Time": [
+            "VaultInfo.stakingPeriod"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(_from, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "exitWhileStaking",
+                "Node": "token.safeTransfer(address(_msgSender()), _withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exitWhileCollecting",
+                "Node": "token.safeTransfer(address(_msgSender()), _withdrawAmount)"
+            },
+            {
+                "Function": "exitWhileStaking",
+                "Node": "token.safeTransfer(address(_msgSender()), _withdrawAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(_msgSender(), _totalUserShares)"
+            }
+        ]
+    }
+}

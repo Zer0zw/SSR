@@ -1,0 +1,245 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeToken",
+            "userInfo.stakedOf"
+        ],
+        "User Stake Reward": [
+            "userInfo.userReward",
+            "userInfo.rewardOf"
+        ],
+        "User Stake Time": [
+            "userInfo.lastVoteAt",
+            "userInfo.lastRewardAt"
+        ],
+        "Stake Token Address": [
+            "nodeInfo.stakedToken",
+            "voteToken"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "nodeVote"
+        ],
+        "getReward": [
+            "nodeVote",
+            "revokeVote",
+            "takeNodeReward",
+            "takeReward"
+        ],
+        "unStake": [
+            "revokeNodeWithdraw",
+            "revokeVoteWithdraw"
+        ],
+        "Sensitive Functions": [
+            "applyNode",
+            "setApplyNodeRequired",
+            "setVoteTokenRate",
+            "setVoteTokenStatus"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "nodeVote",
+                "Node": [
+                    390,
+                    391,
+                    392,
+                    393,
+                    394,
+                    395
+                ],
+                "Input": [
+                    "_token",
+                    "amount",
+                    "node"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "isVote",
+                    "nodeInfo.admin",
+                    "nodeInfo.status",
+                    "nodeInfo.totalVote",
+                    "nodeInfo.totalVoter",
+                    "userInfo.lastVoteAt",
+                    "userInfo.node",
+                    "userInfo.rewardOf",
+                    "userInfo.stakedOf",
+                    "userInfo.voteOf",
+                    "voteToken.rate",
+                    "voteToken.status"
+                ],
+                "Full Calculation Variables": [
+                    "isVote",
+                    "nodeInfo.admin",
+                    "nodeInfo.status",
+                    "nodeInfo.totalVote",
+                    "nodeInfo.totalVoter",
+                    "userInfo.lastVoteAt",
+                    "userInfo.node",
+                    "userInfo.rewardOf",
+                    "userInfo.stakedOf",
+                    "userInfo.voteOf",
+                    "voteToken.rate",
+                    "voteToken.status"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeNodeReward",
+                "Node": [
+                    477
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "nodeInfo.pendingReward",
+                    "nodeInfo.totalReward"
+                ],
+                "Control Variables": [
+                    "nodeInfo.pendingReward",
+                    "nodeInfo.totalReward",
+                    "tokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "nodeInfo.pendingReward",
+                    "nodeInfo.totalReward",
+                    "tokenAddress"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "nodeVote",
+                "Node": [
+                    486
+                ],
+                "Input": [
+                    "_node",
+                    "_pending",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "tokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "tokenAddress"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "takeReward",
+                "Node": [
+                    486
+                ],
+                "Input": [
+                    "_pending",
+                    "_node",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "bonusDay",
+                    "userInfo.voteOf",
+                    "totalUsedReward",
+                    "tokenAddress",
+                    "totalVote",
+                    "userInfo.node",
+                    "accPerShare",
+                    "totalReward",
+                    "userInfo.rewardOf"
+                ],
+                "Full Calculation Variables": [
+                    "bonusDay",
+                    "userInfo.voteOf",
+                    "totalUsedReward",
+                    "tokenAddress",
+                    "totalVote",
+                    "userInfo.node",
+                    "accPerShare",
+                    "totalReward",
+                    "userInfo.rewardOf"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "revokeVote",
+                "Node": [
+                    486
+                ],
+                "Input": [
+                    "_node",
+                    "_pending",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "tokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "tokenAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "revokeNodeWithdraw",
+                "Node": [
+                    361
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "nodeInfo.stakedToken",
+                    "nodeInfo.unstakeAmount",
+                    "nodeInfo.unstakeAt"
+                ],
+                "Control Variables": [
+                    "nodeInfo.stakedToken",
+                    "nodeInfo.unstakeAmount",
+                    "nodeInfo.unstakeAt",
+                    "revokeNodeDuration",
+                    "totalUnstakeAmount"
+                ],
+                "Full Calculation Variables": [
+                    "nodeInfo.stakedToken",
+                    "nodeInfo.unstakeAmount",
+                    "nodeInfo.unstakeAt",
+                    "revokeNodeDuration",
+                    "totalUnstakeAmount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "revokeVoteWithdraw",
+                "Node": [
+                    454
+                ],
+                "Input": [
+                    "_token"
+                ],
+                "Calculation Variables": [
+                    "userUnstakeAmount"
+                ],
+                "Control Variables": [
+                    "revokeVoteDuration",
+                    "totalUnstakeAmount",
+                    "userUnstakeAmount",
+                    "userUnstakeAt"
+                ],
+                "Full Calculation Variables": [
+                    "revokeVoteDuration",
+                    "totalUnstakeAmount",
+                    "userUnstakeAmount",
+                    "userUnstakeAt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStake",
+            "Package.amount"
+        ],
+        "User Stake Reward": [
+            "totalReward",
+            "Package.lastHarvest"
+        ],
+        "User Stake Time": [
+            "Package.lockFrom",
+            "Package.lockUntil"
+        ],
+        "Stake Token Address": [
+            "cloudNft"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "cloudNft.setTokenLockUntil(_tokenIds[i], block.timestamp.add(lockingPeriod))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeRewardTokenTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "safeRewardTokenTransfer(msg.sender, _totalReward)"
+            }
+        ],
+        "unStake": []
+    }
+}

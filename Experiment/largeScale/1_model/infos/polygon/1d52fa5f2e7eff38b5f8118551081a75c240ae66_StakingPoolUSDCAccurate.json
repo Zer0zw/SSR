@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Account.balance"
+        ],
+        "User Stake Reward": [
+            "Account.earningEstimated",
+            "Account.booster"
+        ],
+        "User Stake Time": [
+            "Account.blockDeposited",
+            "Account.blockWithdrawal"
+        ],
+        "Stake Token Address": [
+            "poolToken"
+        ],
+        "Reward Token Address": [
+            "returnPoolToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "returnPoolToken.mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "poolToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "satisfyRequest",
+                "Node": "poolToken.transferFrom(msg.sender, _user, _amount)"
+            }
+        ]
+    }
+}

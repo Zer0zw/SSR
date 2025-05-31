@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balance"
+        ],
+        "User Stake Reward": [
+            "_rewards",
+            "_rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "_lastStakedTime",
+            "_nextHarvestUntil"
+        ],
+        "Stake Token Address": [
+            "_stakingERC20"
+        ],
+        "Reward Token Address": [
+            "_rewardERC20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_balance[msg.sender] = _balance[msg.sender].add(stakingAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_rewardERC20.safeTransfer(msg.sender, leftReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_balance[msg.sender] = _balance[msg.sender].sub(bAmount)"
+            }
+        ]
+    }
+}

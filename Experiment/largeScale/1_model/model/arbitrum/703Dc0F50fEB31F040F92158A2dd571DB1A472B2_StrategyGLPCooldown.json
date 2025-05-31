@@ -1,0 +1,115 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "native"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest",
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1440
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "cooldown",
+                    "extraCooldownDuration",
+                    "glpManager"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "cooldown",
+                    "extraCooldownDuration",
+                    "glpManager"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1503
+                ],
+                "Input": [
+                    "callFeeRecipient"
+                ],
+                "Calculation Variables": [
+                    "DIVISOR",
+                    "beefyFeeConfig",
+                    "native"
+                ],
+                "Control Variables": [
+                    "beefyFeeRecipient",
+                    "strategist",
+                    "beefyFeeConfig",
+                    "DIVISOR",
+                    "native"
+                ],
+                "Full Calculation Variables": [
+                    "beefyFeeRecipient",
+                    "strategist",
+                    "beefyFeeConfig",
+                    "DIVISOR",
+                    "native"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1457
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "WITHDRAWAL_MAX",
+                    "want",
+                    "withdrawalFee"
+                ],
+                "Control Variables": [
+                    "WITHDRAWAL_MAX",
+                    "vault",
+                    "want",
+                    "withdrawalFee"
+                ],
+                "Full Calculation Variables": [
+                    "WITHDRAWAL_MAX",
+                    "vault",
+                    "want",
+                    "withdrawalFee"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

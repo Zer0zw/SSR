@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "SlottedNft.timestamp"
+        ],
+        "Stake Token Address": [
+            "czr"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFor",
+                "Node": "super.depositFor(_account, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawTo",
+                "Node": "super.withdrawTo(rewardsreceiver, _amount - withdrawFee)"
+            },
+            {
+                "Function": "unslotNft",
+                "Node": "_nftSc.transferFrom(address(this), msg.sender, slottedNft.id)"
+            }
+        ]
+    }
+}

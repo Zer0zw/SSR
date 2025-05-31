@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedNFTs"
+        ],
+        "User Stake Reward": [
+            "stakedNFT._rarity"
+        ],
+        "User Stake Time": [
+            "stakedNFT._blockStart"
+        ],
+        "Stake Token Address": [
+            "stakedNFT._contract"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onERC721Received",
+                "Node": "_stakeNft(id, from, _msgSender(), stakedNFTHelper.ERC721)"
+            },
+            {
+                "Function": "onERC1155Received",
+                "Node": "_stakeNft(id, from, _msgSender(), stakedNFTHelper.ERC1155)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBatchAirDrop",
+                "Node": "_token.mint(_msgSender(), _value)"
+            },
+            {
+                "Function": "claimAirDrop",
+                "Node": "_token.mint(_msgSender(), value)"
+            },
+            {
+                "Function": "claimZXVC",
+                "Node": "_token.mint(_msgSender(), nft.currentValue())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeNFT",
+                "Node": "IERC1155(nft._contract).safeTransferFrom(address(this), _msgSender(), nft._id, 1, \"\")"
+            },
+            {
+                "Function": "unStakeNFT",
+                "Node": "IERC721(nft._contract).safeTransferFrom(address(this), _msgSender(), nft._id, \"\")"
+            }
+        ]
+    }
+}

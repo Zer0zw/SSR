@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens",
+            "totalEarnedEth"
+        ],
+        "User Stake Time": [
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "trustedDepositTokenAddress"
+        ],
+        "Reward Token Address": [
+            "trustedRewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(trustedPlatformTokenAddress).safeTransferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(tokenToTransfer).safeTransfer(account, amountToTransfer)"
+            },
+            {
+                "Function": "claimAs",
+                "Node": "IERC20(tokenToTransfer).safeTransfer(account, amountToTransfer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(withdrawAsToken).safeTransfer(msg.sender, withdrawTokenReceived)"
+            }
+        ]
+    }
+}

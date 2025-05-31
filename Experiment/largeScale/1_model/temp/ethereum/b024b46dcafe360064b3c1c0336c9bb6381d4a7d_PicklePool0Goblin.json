@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [
+            "sushi"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "sushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addShare",
+                "Node": "masterChef.deposit(pid, balance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reinvest",
+                "Node": "sushi.safeTransfer(msg.sender, bounty)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeShare",
+                "Node": "masterChef.withdraw(pid, balance)"
+            },
+            {
+                "Function": "liquidate",
+                "Node": "SafeToken.safeTransferETH(msg.sender, wad)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUser"
+        ],
+        "User Stake Reward": [
+            "pendingRewards"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_mint(_msgSender(), welcomeBonusAmount)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "No direct transfer statement for equity tokens in the function; it calls stake which includes the minting of welcome bonus"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            },
+            {
+                "Function": "harvestBatch",
+                "Node": "No direct transfer statement in the function; it calls harvest which includes the minting of rewards"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(collectionAddress).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "No direct transfer statement in the function; it calls unstake which includes the transfer of tokens"
+            }
+        ]
+    }
+}

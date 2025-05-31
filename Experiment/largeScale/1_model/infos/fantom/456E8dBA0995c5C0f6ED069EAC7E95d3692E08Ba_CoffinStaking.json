@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "Claim.gons"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "Coffin"
+        ],
+        "Reward Token Address": [
+            "Dance"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( Dance ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IMemo( Dance ).balanceForGons( info.gons ) )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( Coffin ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20( Coffin ).safeTransfer( msg.sender, info.deposit )"
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerAmount"
+        ],
+        "User Stake Reward": [
+            "stakerReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "targetToken"
+        ],
+        "Reward Token Address": [
+            "tokensToBeRewardedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositSingle",
+                "Node": "IERC20(targetToken).transferFrom(tx.origin, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawSingle",
+                "Node": "IERC20(targetToken).transfer(tx.origin, IERC20(targetToken).balanceOf(address(this)) - initBal)"
+            }
+        ]
+    }
+}

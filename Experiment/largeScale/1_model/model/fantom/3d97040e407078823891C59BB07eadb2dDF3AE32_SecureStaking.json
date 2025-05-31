@@ -1,0 +1,151 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "warmupInfo.expiry"
+        ],
+        "Stake Token Address": [
+            "SCR"
+        ],
+        "Reward Token Address": [
+            "sSCR"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "forfeit",
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    647
+                ],
+                "Input": [
+                    "_amount",
+                    "_recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "SCR",
+                    "epoch.distribute",
+                    "epoch.endTime",
+                    "epoch.length",
+                    "epoch.number",
+                    "sSCR",
+                    "totalBonus",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons",
+                    "warmupInfo.lock",
+                    "warmupPeriod"
+                ],
+                "Full Calculation Variables": [
+                    "SCR",
+                    "epoch.distribute",
+                    "epoch.endTime",
+                    "epoch.length",
+                    "epoch.number",
+                    "sSCR",
+                    "totalBonus",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons",
+                    "warmupInfo.lock",
+                    "warmupPeriod"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    659
+                ],
+                "Input": [
+                    "_recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "epoch.number",
+                    "sSCR",
+                    "warmupContract",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons"
+                ],
+                "Full Calculation Variables": [
+                    "epoch.number",
+                    "sSCR",
+                    "warmupContract",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    691
+                ],
+                "Input": [
+                    "_amount",
+                    "_trigger"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "SCR",
+                    "sSCR"
+                ],
+                "Full Calculation Variables": [
+                    "SCR",
+                    "sSCR"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "forfeit",
+                "Node": [
+                    671
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Control Variables": [
+                    "SCR",
+                    "sSCR",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Full Calculation Variables": [
+                    "SCR",
+                    "sSCR",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

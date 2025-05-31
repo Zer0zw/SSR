@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebtDark",
+            "UserInfo.rewardDebtSpark",
+            "UserInfo.rewardDebtGlow",
+            "UserInfo.rewardLockedUpDark",
+            "UserInfo.rewardLockedUpSpark",
+            "UserInfo.rewardLockedUpGlow"
+        ],
+        "User Stake Time": [
+            "UserInfo.nextHarvestUntil"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "tokenDark",
+            "tokenSpark",
+            "tokenGlow"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "payOrLockupPendingToken",
+                "Node": "safeTokenTransferDark(msg.sender, totalRewards)"
+            },
+            {
+                "Function": "payOrLockupPendingToken",
+                "Node": "safeTokenTransferSpark(msg.sender, totalRewards)"
+            },
+            {
+                "Function": "payOrLockupPendingToken",
+                "Node": "safeTokenTransferGlow(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), amount"
+            }
+        ]
+    }
+}

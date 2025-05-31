@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_totalSupply"
+        ],
+        "User Stake Reward": [
+            "userReward"
+        ],
+        "User Stake Time": [
+            "blocksStaking"
+        ],
+        "Stake Token Address": [
+            "DAI_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "MANA_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeDai",
+                "Node": "DAI_TOKEN.transferFrom(msg.sender, address(this), MINT_PRICE)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "MANA_TOKEN.transfer(msg.sender, userReward)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "amount"
+        ],
+        "User Stake Time": [
+            "Stake.lastClaim"
+        ],
+        "Stake Token Address": [
+            "consoleToken"
+        ],
+        "Reward Token Address": [
+            "gameToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeConsoles",
+                "Node": "consoleToken.transferFrom(_msgSender(), address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "gameToken.mint(msg.sender, amount * 10 ** 18)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeConsoles",
+                "Node": "consoleToken.transferFrom(address(this), _msgSender(), tokenIds[i])"
+            }
+        ]
+    }
+}

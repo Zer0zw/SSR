@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mappingStakeInfoBUSD.amountTokens1",
+            "mappingStakeInfoBUSD.amountTokens2",
+            "mappingStakeInfoBUSD.amountTokens3",
+            "mappingStakeInfoBNB.amountTokens1",
+            "mappingStakeInfoBNB.amountTokens2",
+            "mappingStakeInfoBNB.amountTokens3"
+        ],
+        "User Stake Reward": [
+            "mappingClaimInfoBUSD.amountBUSDClaimed1",
+            "mappingClaimInfoBUSD.amountBUSDClaimed2",
+            "mappingClaimInfoBUSD.amountBUSDClaimed3",
+            "mappingClaimInfoBNB.amountBNBClaimed1",
+            "mappingClaimInfoBNB.amountBNBClaimed2",
+            "mappingClaimInfoBNB.amountBNBClaimed3"
+        ],
+        "User Stake Time": [
+            "mappingStakeInfoBUSD.startStake1",
+            "mappingStakeInfoBUSD.startStake2",
+            "mappingStakeInfoBUSD.startStake3",
+            "mappingStakeInfoBNB.startStake1",
+            "mappingStakeInfoBNB.startStake2",
+            "mappingStakeInfoBNB.startStake3"
+        ],
+        "Stake Token Address": [
+            "W6address"
+        ],
+        "Reward Token Address": [
+            "BUSDaddress",
+            "WBNBaddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeBUSD",
+                "Node": "IERC20(W6address).transferFrom(staker, address(this), stakeAmount)"
+            },
+            {
+                "Function": "StakeBNB",
+                "Node": "IERC20(W6address).transferFrom(staker, address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBUSD",
+                "Node": "IERC20(BUSDaddress).transfer(staker, ganhosBUSD)"
+            },
+            {
+                "Function": "claimBNB",
+                "Node": "payable(staker).transfer(ganhosBNB)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimBUSD",
+                "Node": "IERC20(W6address).transfer(staker, amountTokens)"
+            },
+            {
+                "Function": "claimBNB",
+                "Node": "IERC20(W6address).transfer(staker, amountTokens)"
+            }
+        ]
+    }
+}

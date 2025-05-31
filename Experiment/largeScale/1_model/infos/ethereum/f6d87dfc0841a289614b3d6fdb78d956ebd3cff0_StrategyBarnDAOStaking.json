@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStaked"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "emissionToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "adjustPosition",
+                "Node": "IStaking(staking).deposit(address(want), _toInvest)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "prepareReturn",
+                "Node": "IFarming(farmingContract).massHarvest()"
+            },
+            {
+                "Function": "_sellMostlyOnUni",
+                "Node": "IUniswapV2Router02(sushiswapRouter).swapExactTokensForTokens(_amount, uint256(0), emissionTokenPath, address(this), block.timestamp)"
+            },
+            {
+                "Function": "_sellMostlyOnSushi",
+                "Node": "IUniswapV2Router02(sushiswapRouter).swapExactTokensForTokens(_amount, uint256(0), emissionTokenPath, address(this), block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "liquidatePosition",
+                "Node": "IStaking(staking).withdraw(address(want), Math.min(_stakedBal, _amountNeeded.sub(_wantBal)))"
+            },
+            {
+                "Function": "liquidateAllPositions",
+                "Node": "IStaking(staking).withdraw(address(want), _stakedBal)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IStaking(staking).emergencyWithdraw(address(want))"
+            },
+            {
+                "Function": "prepareMigration",
+                "Node": "IStaking(staking).withdraw(address(want), _stakedBal)"
+            }
+        ]
+    }
+}

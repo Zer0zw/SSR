@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "farmingTime"
+        ],
+        "Stake Token Address": [
+            "LPTokenAddress"
+        ],
+        "Reward Token Address": [
+            "VAPEAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "require(Token(LPTokenAddress).transferFrom(msg.sender, address(this), amountToFarm)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "require(Token(VAPEAddress).transfer(account, unclaimedDivs)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "updateAccount(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfarm",
+                "Node": "require(Token(LPTokenAddress).transfer(msg.sender, amountAfterFee)"
+            }
+        ]
+    }
+}

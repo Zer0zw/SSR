@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "NftCalcForceInfo.nftCount_L3",
+            "NftCalcForceInfo.nftCount_L4",
+            "NftCalcForceInfo.nftCount_L5"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "NftStakingInfo.stakingTime"
+        ],
+        "Stake Token Address": [
+            "nftContractAddr"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "IERC721(nftContractAddr).transferFrom(msg.sender,address(this), tokenID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "award",
+                "Node": "_transfer(from, addr, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstaking",
+                "Node": "IERC721(nftContractAddr).transferFrom(address(this), stakingInfo.owner, tokenID)"
+            }
+        ]
+    }
+}

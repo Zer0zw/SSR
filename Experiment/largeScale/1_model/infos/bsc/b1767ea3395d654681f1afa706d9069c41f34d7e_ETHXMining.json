@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "unClaimedRewardsBalance"
+        ],
+        "User Stake Time": [
+            "lastClaimedRewardsBlock"
+        ],
+        "Stake Token Address": [
+            "miningToken"
+        ],
+        "Reward Token Address": [
+            "miningToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "miningToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "buyAwardTokens",
+                "Node": "miningToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "miningToken.transfer(msg.sender, balance)"
+            },
+            {
+                "Function": "claimTreasureAwards",
+                "Node": "miningToken.transfer(account, amount + amountDym)"
+            },
+            {
+                "Function": "claimStakeAwards",
+                "Node": "miningToken.transfer(account, amount + amountDym)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlockTokens",
+                "Node": "miningToken.transfer(msg.sender, toUnstakeBalance)"
+            },
+            {
+                "Function": "claimYFNTBack",
+                "Node": "yfntToken.transfer(account, _yfntVIPACondition)"
+            }
+        ]
+    }
+}

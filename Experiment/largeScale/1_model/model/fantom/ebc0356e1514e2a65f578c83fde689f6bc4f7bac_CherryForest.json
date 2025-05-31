@@ -1,0 +1,191 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.balance"
+        ],
+        "User Stake Reward": [
+            "stakers.rewardEarned"
+        ],
+        "User Stake Time": [
+            "stakers.epochTimerStart"
+        ],
+        "Stake Token Address": [
+            "pool"
+        ],
+        "Reward Token Address": [
+            "tree"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claimReward",
+            "exit",
+            "withdraw"
+        ],
+        "unStake": [
+            "exit",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    295
+                ],
+                "Input": [
+                    "amount_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PERIOD",
+                    "epoch",
+                    "pool",
+                    "stakers.balance",
+                    "stakers.epochTimerStart"
+                ],
+                "Full Calculation Variables": [
+                    "PERIOD",
+                    "epoch",
+                    "pool",
+                    "stakers.balance",
+                    "stakers.epochTimerStart"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    447
+                ],
+                "Input": [
+                    "newEpoch_",
+                    "staker_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "rewardLockupEpochs",
+                    "tree"
+                ],
+                "Full Calculation Variables": [
+                    "rewardLockupEpochs",
+                    "tree"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "exit",
+                "Node": [
+                    447
+                ],
+                "Input": [
+                    "newEpoch_",
+                    "staker_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "rewardLockupEpochs",
+                    "tree"
+                ],
+                "Full Calculation Variables": [
+                    "rewardLockupEpochs",
+                    "tree"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimReward",
+                "Node": [
+                    447
+                ],
+                "Input": [
+                    "staker_",
+                    "newEpoch_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "epoch",
+                    "stakers",
+                    "PERIOD",
+                    "rewardLockupEpochs",
+                    "tree"
+                ],
+                "Full Calculation Variables": [
+                    "epoch",
+                    "stakers",
+                    "PERIOD",
+                    "rewardLockupEpochs",
+                    "tree"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    335
+                ],
+                "Input": [
+                    "amount_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PERIOD",
+                    "epoch",
+                    "pool",
+                    "stakers.balance",
+                    "stakers.epochTimerStart",
+                    "totalSupply",
+                    "withdrawLockupEpochs"
+                ],
+                "Full Calculation Variables": [
+                    "PERIOD",
+                    "epoch",
+                    "pool",
+                    "stakers.balance",
+                    "stakers.epochTimerStart",
+                    "totalSupply",
+                    "withdrawLockupEpochs"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "exit",
+                "Node": [
+                    335
+                ],
+                "Input": [
+                    "amount_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "withdrawLockupEpochs",
+                    "pool",
+                    "stakers.balance",
+                    "PERIOD",
+                    "totalSupply",
+                    "epoch",
+                    "stakers.epochTimerStart"
+                ],
+                "Full Calculation Variables": [
+                    "withdrawLockupEpochs",
+                    "pool",
+                    "stakers.balance",
+                    "PERIOD",
+                    "totalSupply",
+                    "epoch",
+                    "stakers.epochTimerStart"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

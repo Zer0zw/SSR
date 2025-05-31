@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_mintbotTokens"
+        ],
+        "User Stake Reward": [
+            "stakedNFT._rarity"
+        ],
+        "User Stake Time": [
+            "stakedNFT._blockStart"
+        ],
+        "Stake Token Address": [
+            "stakedNFT._contract"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeNft",
+                "Node": "_stakedNFTs[_owner].insert(_tokenId, nft)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimZXVC",
+                "Node": "_token.mint(_owner, nft.currentValue())"
+            },
+            {
+                "Function": "claimAllZXVC",
+                "Node": "_token.mint(_owner, harvest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeNFT",
+                "Node": "IERC1155(contractAddress).safeTransferFrom(address(this), _owner, _tokenId, 1, \"\")"
+            },
+            {
+                "Function": "unStakeNFT",
+                "Node": "IERC721(contractAddress).safeTransferFrom(address(this), _owner, _tokenId, \"\")"
+            }
+        ]
+    }
+}

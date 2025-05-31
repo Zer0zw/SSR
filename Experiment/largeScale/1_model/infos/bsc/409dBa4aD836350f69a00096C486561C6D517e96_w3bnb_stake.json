@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposits.amount"
+        ],
+        "User Stake Reward": [
+            "User.bonus",
+            "User.totalBonus"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Plan.time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "user.deposits.push(Deposit(plan, msg.value, block.timestamp, false))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "payable(address(msg.sender)).transfer(totalAmount)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "user.deposits.push(Deposit(plan, finalAmount, block.timestamp, true))"
+            }
+        ],
+        "unStake": []
+    }
+}

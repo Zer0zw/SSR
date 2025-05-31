@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "starRewards",
+            "lsRewards"
+        ],
+        "User Stake Time": [
+            "userLastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "savageBox"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TRC20(savageBox).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getStarReward",
+                "Node": "emit StarRewardPaid(msg.sender, _starReward+userStarTeamReward)"
+            },
+            {
+                "Function": "getLsReward",
+                "Node": "emit LsRewardPaid(msg.sender, _lsReward+userLsTeamReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TRC20(savageBox).transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

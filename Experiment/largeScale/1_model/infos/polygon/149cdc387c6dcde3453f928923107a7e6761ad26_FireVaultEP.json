@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedEP"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "EP"
+        ],
+        "Reward Token Address": [
+            "FBX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, amountFireEP)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimSwap",
+                "Node": "FBX.safeTransfer(FBX_VAULT, fee)"
+            },
+            {
+                "Function": "claimSwap",
+                "Node": "SUSHI_ROUTER.swapExactTokensForTokens(toSpend, buyableAmount.mul(995).div(1000), sushiPath, address(this), block.timestamp + 1)"
+            },
+            {
+                "Function": "claimSwap",
+                "Node": "EP.mintEP(toSpend.div(300))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "EP.safeTransfer(msg.sender, amountEP)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,153 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalNFTStaked"
+        ],
+        "User Stake Reward": [
+            "claimedRewardAmount"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "NFTContract"
+        ],
+        "Reward Token Address": [
+            "PawsContract"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeNFT"
+        ],
+        "getReward": [
+            "redeemToken",
+            "withdrawToken"
+        ],
+        "unStake": [
+            "withdrawToken"
+        ],
+        "Sensitive Functions": [
+            "addNFTContract",
+            "updateNFTContract",
+            "updatePawsContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": [
+                    2187
+                ],
+                "Input": [
+                    "_nftContractId",
+                    "_stakingDays",
+                    "_tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "NFTContract",
+                    "stakes.nfttokenId",
+                    "stakes.stakingDays",
+                    "stakes.timestamp"
+                ],
+                "Full Calculation Variables": [
+                    "NFTContract",
+                    "stakes.nfttokenId",
+                    "stakes.stakingDays",
+                    "stakes.timestamp"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeemToken",
+                "Node": [
+                    2210
+                ],
+                "Input": [
+                    "_nftContractAddress",
+                    "_tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PawsContract",
+                    "stakes.nfttokenId",
+                    "stakes.staker",
+                    "stakes.stakingDays",
+                    "stakes.timestamp"
+                ],
+                "Full Calculation Variables": [
+                    "PawsContract",
+                    "stakes.nfttokenId",
+                    "stakes.staker",
+                    "stakes.stakingDays",
+                    "stakes.timestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": [
+                    2237
+                ],
+                "Input": [
+                    "_nftContractId",
+                    "_tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "NFTContract",
+                    "PawsContract",
+                    "redeemPenalty",
+                    "stakes.nfttokenId",
+                    "stakes.staker",
+                    "stakes.stakingDays",
+                    "stakes.timestamp"
+                ],
+                "Full Calculation Variables": [
+                    "NFTContract",
+                    "PawsContract",
+                    "redeemPenalty",
+                    "stakes.nfttokenId",
+                    "stakes.staker",
+                    "stakes.stakingDays",
+                    "stakes.timestamp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawToken",
+                "Node": [
+                    2240
+                ],
+                "Input": [
+                    "_nftContractId",
+                    "_tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "NFTContract",
+                    "redeemPenalty",
+                    "stakes.nfttokenId",
+                    "stakes.staker",
+                    "stakes.stakingDays",
+                    "stakes.timestamp"
+                ],
+                "Full Calculation Variables": [
+                    "NFTContract",
+                    "redeemPenalty",
+                    "stakes.nfttokenId",
+                    "stakes.staker",
+                    "stakes.stakingDays",
+                    "stakes.timestamp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

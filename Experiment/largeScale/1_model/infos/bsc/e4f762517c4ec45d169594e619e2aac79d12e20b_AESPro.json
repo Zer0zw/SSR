@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "checkpoint"
+        ],
+        "Stake Token Address": [
+            "miningTokenAddr"
+        ],
+        "Reward Token Address": [
+            "miningTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investIn",
+                "Node": "super.stake(newLimitAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "miningToken.transfer(msg.sender, tmpDynamicAmount)"
+            },
+            {
+                "Function": "getBonus",
+                "Node": "closeReward(dynReward)"
+            }
+        ],
+        "unStake": []
+    }
+}

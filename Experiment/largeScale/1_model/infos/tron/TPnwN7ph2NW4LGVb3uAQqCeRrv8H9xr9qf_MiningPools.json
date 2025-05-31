@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakeIn"
+        ],
+        "User Stake Reward": [
+            "UserInfo.willCollect"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.stakingToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": "rewardToken.mint(msg.sender, userReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "collect",
+                "Node": "_tryWithdraw(pool, user, _withdrawAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "smelt.balanceOf(_account)"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "melt"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "smelt.mint(msg.sender,smeltAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(melt).safeTransfer(msg.sender, meltAmount)"
+            }
+        ]
+    }
+}

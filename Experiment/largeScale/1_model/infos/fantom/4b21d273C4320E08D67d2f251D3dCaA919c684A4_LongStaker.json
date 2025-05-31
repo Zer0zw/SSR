@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposits.amount"
+        ],
+        "User Stake Reward": [
+            "User.deposits.profit"
+        ],
+        "User Stake Time": [
+            "User.deposits.start",
+            "User.deposits.finish"
+        ],
+        "Stake Token Address": [
+            "stableCoin"
+        ],
+        "Reward Token Address": [
+            "stableCoin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "IERC20( stableCoin ).transferFrom( msg.sender, address(this), amount )"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "IERC20( stableCoin ).safeTransfer( msg.sender, left )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20( stableCoin ).safeTransfer( msg.sender, totalAmount )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20( stableCoin ).safeTransfer( msg.sender, totalAmount )"
+            }
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stats.balance",
+            "stats.counterBalance"
+        ],
+        "User Stake Reward": [
+            "stats.totalMinted",
+            "stats.totalReferral"
+        ],
+        "User Stake Time": [
+            "stats.lastUpdated"
+        ],
+        "Stake Token Address": [
+            "tokenAddress",
+            "counterAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "freeze",
+                "Node": "token.transferFrom(_customerAddress, address(this), _baseAmount)"
+            },
+            {
+                "Function": "freeze",
+                "Node": "counterToken.transferFrom(_customerAddress, address(this), _counterAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardToken.transfer(_customerAddress, _minted)"
+            },
+            {
+                "Function": "claim",
+                "Node": "rewardToken.transfer(referrer, _referrerMinted)"
+            },
+            {
+                "Function": "claim",
+                "Node": "rewardToken.transfer(rewardReceiverAddress, _rewardMinted)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfreeze",
+                "Node": "token.transfer(_customerAddress, balance)"
+            },
+            {
+                "Function": "unfreeze",
+                "Node": "counterToken.transfer(_customerAddress, counterBalance)"
+            }
+        ]
+    }
+}

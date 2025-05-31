@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount",
+            "totalxBoo"
+        ],
+        "User Stake Reward": [
+            "lastReward",
+            "thisReward"
+        ],
+        "User Stake Time": [
+            "lastRewardBlock",
+            "thisRewardBlock"
+        ],
+        "Stake Token Address": [
+            "want",
+            "xBOO"
+        ],
+        "Reward Token Address": [
+            "output",
+            "wrapped"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMirrorWorld(mirrorWorld).enter(wantBal)"
+            },
+            {
+                "Function": "depositxBOO",
+                "Node": "IAce(ace).deposit(poolId, xbooBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouter(unirouter).swapExactTokensForTokens(outputBalance, 0, outputToWantRoute, address(this), now.add(600))"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(msg.sender, callFeeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantbal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantbal.sub(withdrawalFeeAmount))"
+            }
+        ]
+    }
+}

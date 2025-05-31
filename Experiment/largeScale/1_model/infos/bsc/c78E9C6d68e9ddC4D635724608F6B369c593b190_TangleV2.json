@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "rewardableEvents"
+        ],
+        "User Stake Reward": [
+            "storedRewards",
+            "getAvailableRewards"
+        ],
+        "User Stake Time": [
+            "startTime"
+        ],
+        "Stake Token Address": [
+            "liquidityAddress"
+        ],
+        "Reward Token Address": [
+            "liquidityAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ERC20(liquidityAddress).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "balances[_address] += availableRewards - taxify(availableRewards, id2 + 1)"
+            },
+            {
+                "Function": "withdrawAllRewards",
+                "Node": "for (uint i = 0; i < 3; i++) { if (getAvailableRewards(_address, i) > 0) withdrawRewards(_address, i) }"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC20(liquidityAddress).transfer(msg.sender, rewardableEvents[msg.sender][2])"
+            }
+        ]
+    }
+}

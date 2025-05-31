@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToMGDCTokenIds"
+        ],
+        "User Stake Reward": [
+            "MGDC_EMISSIONS_RATE"
+        ],
+        "User Stake Time": [
+            "MGDCTokenIdTimeStaked"
+        ],
+        "Stake Token Address": [
+            "MGDC_ADDRESS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMGDCByIds",
+                "Node": "_MGDCIERC721Enumerable.transferFrom(msg.sender, address(this), id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByMGDCTokenId",
+                "Node": "_mint(msg.sender, ((block.timestamp - MGDCTokenIdTimeStaked[tokenId]) * MGDC_EMISSIONS_RATE))"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "_mint(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": "_MGDCIERC721Enumerable.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeMGDCByIds",
+                "Node": "_MGDCIERC721Enumerable.transferFrom(address(this), msg.sender, id)"
+            }
+        ]
+    }
+}

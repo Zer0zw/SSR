@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "VGatorBal"
+        ],
+        "User Stake Reward": [
+            "wbnbBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "VGator"
+        ],
+        "Reward Token Address": [
+            "wbnb"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IRewardPool(rewards).stake(VGatorBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IRewardPool(rewards).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(VGator).safeTransfer(vault, _transfer)"
+            }
+        ]
+    }
+}

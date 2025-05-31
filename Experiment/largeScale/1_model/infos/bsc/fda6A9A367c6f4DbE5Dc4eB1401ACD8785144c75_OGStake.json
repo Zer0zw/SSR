@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.Amount"
+        ],
+        "User Stake Reward": [
+            "Staker.Claimable",
+            "Staker.MaxClaimable",
+            "Staker.TokenPerTimeStep"
+        ],
+        "User Stake Time": [
+            "Staker.StakeTime",
+            "Staker.UnStakeTime"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TOKEN.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdraw",
+                "Node": "TOKEN.transferFrom(RewardAddress, reward, calcRewards(_user, _depositId))"
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transfer(msg.sender, stakedata.Plan[_depositId][msg.sender].Amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "forceUnstake",
+                "Node": "TOKEN.transfer(msg.sender, stakedata.Plan[_depositId][msg.sender].Amount - ((stakedata.Plan[_depositId][msg.sender].Amount * tax) / percentDivider))"
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transfer(msg.sender, stakedata.Plan[_depositId][msg.sender].Amount)"
+            }
+        ]
+    }
+}

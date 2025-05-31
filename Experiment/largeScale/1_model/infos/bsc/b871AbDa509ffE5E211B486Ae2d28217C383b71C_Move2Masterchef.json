@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardDoubleDebt",
+            "UserInfo.multiRewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "Move2Farm",
+            "PoolInfo.doubleToken",
+            "AdditionalPoolInfo.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeMove2FarmTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "safeTokenTransfer(msg.sender, doubleFarmPending,pool.doubleToken)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "safeTokenTransfer(msg.sender, addPending,addPoolItem.token)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeMove2FarmTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeTokenTransfer(msg.sender, doubleFarmPending,pool.doubleToken)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeTokenTransfer(msg.sender,addPending,addPoolItem.token)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

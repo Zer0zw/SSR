@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "share"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseAsset"
+        ],
+        "Reward Token Address": [
+            "rewardAsset"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(stableAsset).safeTransfer(treasury, currentPerformanceFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stableAsset).safeTransfer(msg.sender, stablepart)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(baseAsset).safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingDetails.tokenAmount"
+        ],
+        "User Stake Reward": [
+            "AccountDetails.totalHarvestedRewards"
+        ],
+        "User Stake Time": [
+            "StakingDetails.stakedAt"
+        ],
+        "Stake Token Address": [
+            "QUINT_TOKEN"
+        ],
+        "Reward Token Address": [
+            "QUINT_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "QUINT_TOKEN.transferFrom(account, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "QUINT_TOKEN.transferFrom(rewardVault, account, rewards)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "QUINT_TOKEN.transferFrom(rewardVault, account, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "QUINT_TOKEN.transfer(account, amount)"
+            },
+            {
+                "Function": "unstakePartial",
+                "Node": "QUINT_TOKEN.transfer(account, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "QUINT_TOKEN.transfer(msg.sender, tokenAmount)"
+            }
+        ]
+    }
+}

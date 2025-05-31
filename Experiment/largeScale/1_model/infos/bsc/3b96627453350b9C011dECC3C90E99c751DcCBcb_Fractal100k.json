@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "infoVesting.firstBalance"
+        ],
+        "User Stake Reward": [
+            "totalEarned",
+            "totalCanWithdrawal"
+        ],
+        "User Stake Time": [
+            "infoVesting.initialTimestamp"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingInitial",
+                "Node": "principalWallet.transfer(totalReceive)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawalVesting",
+                "Node": "token.transfer(msg.sender,totalCanWithdrawal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawalInitialDeposit",
+                "Node": "token.transfer(msg.sender,infoVesting[msg.sender].firstBalance)"
+            }
+        ]
+    }
+}

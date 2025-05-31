@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "Stake.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "NOVO"
+        ],
+        "Reward Token Address": [
+            "NOVO"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": "NOVO.transferFrom(_account, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeFor",
+                "Node": "NOVO.transfer(_account, _amount + reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeFor",
+                "Node": "NOVO.transfer(_account, _amount + reward)"
+            }
+        ]
+    }
+}

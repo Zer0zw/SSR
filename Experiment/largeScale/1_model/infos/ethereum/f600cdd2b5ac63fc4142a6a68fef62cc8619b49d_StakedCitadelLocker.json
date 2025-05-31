@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Balances.locked",
+            "LockedBalance.amount"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "LockedBalance.unlockTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "_lock",
+                "Node": "stakingToken.safeTransfer(boostPayment, spendAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20Upgradeable(_rewardsToken).safeTransfer(_account, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_processExpiredLocks",
+                "Node": "transferCVX(_withdrawTo, locked, true)"
+            },
+            {
+                "Function": "withdrawExpiredLocksTo",
+                "Node": "transferCVX(_withdrawTo, locked, true)"
+            },
+            {
+                "Function": "processExpiredLocks",
+                "Node": "transferCVX(_withdrawTo, locked, true)"
+            }
+        ]
+    }
+}

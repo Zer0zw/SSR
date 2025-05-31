@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerBalances.amountStaked"
+        ],
+        "User Stake Reward": [
+            "stakerBalances.unclaimedXp"
+        ],
+        "User Stake Time": [
+            "stakerBalances.timeOfLastUpdate"
+        ],
+        "Stake Token Address": [
+            "nftCollection"
+        ],
+        "Reward Token Address": [
+            "xpToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nftCollection.transferFrom(msg.sender, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "xpToken.safeTransfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nftCollection.transferFrom(address(this), msg.sender, _tokenIds[i])"
+            }
+        ]
+    }
+}

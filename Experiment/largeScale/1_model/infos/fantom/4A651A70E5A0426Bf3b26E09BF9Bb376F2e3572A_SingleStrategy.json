@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "outputBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(masterchef).deposit(poolId, wantBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IBeetsRouter(beets).swap(swaps, funds, 1, now.add(600))"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(msg.sender, callFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(feeBatchAddress, grimFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMasterChef(masterchef).emergencyWithdraw(poolId, address(this))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit"
+        ],
+        "User Stake Reward": [
+            "Pending",
+            "earned_amt"
+        ],
+        "User Stake Time": [
+            "Invtime"
+        ],
+        "Stake Token Address": [
+            "stakingAddress"
+        ],
+        "Reward Token Address": [
+            "tokenV1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(stakingAddress).transferFrom(msg.sender,address(this),_amount)"
+            },
+            {
+                "Function": "airdrop",
+                "Node": "IERC20(stakingAddress).transfer(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewards",
+                "Node": "IERC20(stakingAddress).transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stakingAddress).transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "compound",
+                "Node": "Deposit[msg.sender] = Deposit[msg.sender].add(reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stakingAddress).transfer(msg.sender, Deposit[msg.sender])"
+            }
+        ]
+    }
+}

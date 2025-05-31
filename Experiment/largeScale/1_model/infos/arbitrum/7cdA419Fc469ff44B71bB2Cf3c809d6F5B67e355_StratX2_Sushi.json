@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAddress"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress",
+            "earnedRewardAddresses"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_farm",
+                "Node": "IERC20(wantAddress).approve(farmContractAddress, wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "_safeSwap(uniRouterAddress, earned1Amt, slippageFactor, earned1ToEarnedPath, address(this), block.timestamp.add(600))"
+            },
+            {
+                "Function": "earn",
+                "Node": "_safeSwap(uniRouterAddress, earned2Amt, slippageFactor, earned2ToEarnedPath, address(this), block.timestamp.add(600))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unfarm",
+                "Node": "IMiniChefFarm(farmContractAddress).withdrawAndHarvest(pid, _wantAmt, address(this))"
+            }
+        ]
+    }
+}

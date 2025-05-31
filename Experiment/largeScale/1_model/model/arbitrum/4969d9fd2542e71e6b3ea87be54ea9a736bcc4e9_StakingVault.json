@@ -1,0 +1,161 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakers.yieldRewardAmount"
+        ],
+        "User Stake Time": [
+            "stakers.firstStakeTimestamp",
+            "stakers.lastRewardTimestamp"
+        ],
+        "Stake Token Address": [
+            "tokenMNTE"
+        ],
+        "Reward Token Address": [
+            "tokenUSDT"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim",
+            "withdraw"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1101,
+                    1102,
+                    1103,
+                    1104
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MINIMUM_CONTRIBUTION_AMOUNT",
+                    "_paused",
+                    "period",
+                    "tokenMNTE"
+                ],
+                "Full Calculation Variables": [
+                    "MINIMUM_CONTRIBUTION_AMOUNT",
+                    "_paused",
+                    "period",
+                    "tokenMNTE"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1143,
+                    1144,
+                    1145,
+                    1146
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakers.yieldRewardAmount"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "stakers.yieldRewardAmount",
+                    "tokenUSDT"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "stakers.yieldRewardAmount",
+                    "tokenUSDT"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claim",
+                "Node": [
+                    1143,
+                    1144,
+                    1145,
+                    1146
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakers.yieldRewardAmount"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "_ENTERED",
+                    "period",
+                    "tokenUSDT",
+                    "_NOT_ENTERED",
+                    "stakers.yieldRewardAmount",
+                    "_status"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "_ENTERED",
+                    "period",
+                    "tokenUSDT",
+                    "_NOT_ENTERED",
+                    "stakers.yieldRewardAmount",
+                    "_status"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1188,
+                    1189,
+                    1190,
+                    1191
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakers.stakedAmount",
+                    "stakers.yieldRewardAmount",
+                    "stakers.stakerIndex"
+                ],
+                "Control Variables": [
+                    "stakers.stakedAmount",
+                    "_paused",
+                    "_ENTERED",
+                    "period",
+                    "_NOT_ENTERED",
+                    "stakers.yieldRewardAmount",
+                    "_status",
+                    "tokenMNTE",
+                    "stakers.stakerIndex"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.stakedAmount",
+                    "_paused",
+                    "_ENTERED",
+                    "period",
+                    "_NOT_ENTERED",
+                    "stakers.yieldRewardAmount",
+                    "_status",
+                    "tokenMNTE",
+                    "stakers.stakerIndex"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingRecord.staked"
+        ],
+        "User Stake Reward": [
+            "StakingRecord.totalProfit"
+        ],
+        "User Stake Time": [
+            "StakingRecord.blockIndex"
+        ],
+        "Stake Token Address": [
+            "StakingToken"
+        ],
+        "Reward Token Address": [
+            "O3Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_pullToken(StakingToken, _msgSender(), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimProfit",
+                "Node": "_pushShareToken(_msgSender(), totalProfit)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_pushToken(StakingToken, _msgSender(), amount)"
+            }
+        ]
+    }
+}

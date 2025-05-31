@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake.amount"
+        ],
+        "User Stake Reward": [
+            "totalRewards"
+        ],
+        "User Stake Time": [
+            "stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "ndbToken"
+        ],
+        "Reward Token Address": [
+            "ndbToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "require(ndbToken.transferFrom(msg.sender, address(this), _stake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unStake",
+                "Node": "ndbToken.transferFrom(owner(), msg.sender, _investorReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "ndbToken.transfer(msg.sender, _stake)"
+            }
+        ]
+    }
+}

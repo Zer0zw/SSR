@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "UserInfo.token0Rewards",
+            "UserInfo.token1Rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token0",
+            "token1"
+        ],
+        "Reward Token Address": [
+            "token0",
+            "token1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectFees",
+                "Node": "pay(token0, address(this), msg.sender, amount0)"
+            },
+            {
+                "Function": "collectFees",
+                "Node": "pay(token1, address(this), msg.sender, amount1)"
+            },
+            {
+                "Function": "collectProtocolFees",
+                "Node": "pay(token0, address(this), msg.sender, amount0)"
+            },
+            {
+                "Function": "collectProtocolFees",
+                "Node": "pay(token1, address(this), msg.sender, amount1)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pay(token0, address(this), msg.sender, amount0)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pay(token1, address(this), msg.sender, amount1)"
+            }
+        ]
+    }
+}

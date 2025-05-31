@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStakedTokens"
+        ],
+        "User Stake Reward": [
+            "remainingReward",
+            "remainingRewardSecondToken"
+        ],
+        "User Stake Time": [
+            "stake.stakingStart"
+        ],
+        "Stake Token Address": [
+            "NFT"
+        ],
+        "Reward Token Address": [
+            "prxy",
+            "_Btcpx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "NFT.transferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "remainingRewardClaim",
+                "Node": "IERC20(prxy).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "remainingRewardClaim",
+                "Node": "IERC20(_Btcpx).transfer(msg.sender, amount2)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeYourNFT",
+                "Node": "NFT.transferFrom(address(this), s_Data.stakerAddress, s_Data.tokenId)"
+            }
+        ]
+    }
+}

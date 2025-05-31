@@ -1,0 +1,139 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewards"
+        ],
+        "User Stake Time": [
+            "userInfo.lastStaked"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "DBX",
+            "DBC",
+            "vDBX"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    722
+                ],
+                "Input": [
+                    "_account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "vaults",
+                    "poolId",
+                    "DBC",
+                    "farms",
+                    "userInfo.rewardDebt",
+                    "accPerShare",
+                    "WETH",
+                    "userInfo.amount",
+                    "userInfo.rewards",
+                    "DBX",
+                    "vDBX"
+                ],
+                "Full Calculation Variables": [
+                    "vaults",
+                    "poolId",
+                    "DBC",
+                    "farms",
+                    "userInfo.rewardDebt",
+                    "accPerShare",
+                    "WETH",
+                    "userInfo.amount",
+                    "userInfo.rewards",
+                    "DBX",
+                    "vDBX"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    677
+                ],
+                "Input": [
+                    "_account",
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "accPerShare",
+                    "farms",
+                    "poolId",
+                    "userInfo.amount",
+                    "userInfo.lastStaked",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewards",
+                    "vaults"
+                ],
+                "Full Calculation Variables": [
+                    "accPerShare",
+                    "farms",
+                    "poolId",
+                    "userInfo.amount",
+                    "userInfo.lastStaked",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewards",
+                    "vaults"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    694
+                ],
+                "Input": [
+                    "_account"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.lastStaked",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "farms",
+                    "poolId",
+                    "userInfo.amount",
+                    "userInfo.lastStaked",
+                    "userInfo.rewardDebt",
+                    "vaults"
+                ],
+                "Full Calculation Variables": [
+                    "farms",
+                    "poolId",
+                    "userInfo.amount",
+                    "userInfo.lastStaked",
+                    "userInfo.rewardDebt",
+                    "vaults"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

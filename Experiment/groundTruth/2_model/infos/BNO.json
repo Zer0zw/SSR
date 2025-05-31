@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.allstake"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "pledgeAddress"
+        ],
+        "Reward Token Address": [
+            "profitToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "pledge",
+                "Node": "pledgeAddress.transferFrom(msg.sender,address(this),_stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "safeGoodTransfer(msg.sender,pending)"
+            },
+            {
+                "Function": "rePledge",
+                "Node": "safeGoodTransfer(msg.sender,pending)"
+            },
+            {
+                "Function": "stakeNft",
+                "Node": "safeGoodTransfer(msg.sender,pending)"
+            },
+            {
+                "Function": "unstakeNft",
+                "Node": "safeGoodTransfer(msg.sender,pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "rePledge",
+                "Node": "pledgeAddress.safeTransfer(address(msg.sender), _stakeAmount"
+            },
+            {
+                "Function": "unstakeNft",
+                "Node": "nftContract.safeTransferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,196 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "depositedTokens"
+            ],
+            "User Stake Reward": [
+                "totalEarnedTokens",
+                "unclaimed"
+            ],
+            "User Stake Time": [
+                "stakingTime",
+                "firstTime",
+                "lastClaimedTime",
+                "progressiveTime"
+            ],
+            "Stake Token Address": [
+                "tokenDepositAddress"
+            ],
+            "Reward Token Address": [
+                "tokenDepositAddress"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "deposit"
+            ],
+            "getReward": [
+                "claimDivs",
+                "deposit",
+                "withdraw",
+                "withdraw2"
+            ],
+            "unStake": [
+                "withdraw",
+                "withdraw2"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "ended",
+                        "tokenDepositAddress"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "alreadyProgUnstaked",
+                        "depositedTokens",
+                        "extraAPY",
+                        "ended",
+                        "firstTime",
+                        "holders",
+                        "lastClaimedTime",
+                        "maxDepositedTokens",
+                        "percent_claim",
+                        "rewardEnded",
+                        "rewardInterval",
+                        "rewardRate",
+                        "tokenDepositAddress",
+                        "unclaimed",
+                        "unstakeTime",
+                        "stakingTime",
+                        "number_intervals"
+                    ]
+                },
+                {
+                    "Function": "withdraw2",
+                    "Calculation Variables": [
+                        "alreadyProgUnstaked",
+                        "depositedTokens",
+                        "ended",
+                        "extraAPY",
+                        "firstTime",
+                        "holders",
+                        "lastClaimedTime",
+                        "maxDepositedTokens",
+                        "percent_claim",
+                        "rewardEnded",
+                        "rewardInterval",
+                        "rewardRate",
+                        "unclaimed",
+                        "unstakeTime",
+                        "stakingTime",
+                        "number_intervals"
+                    ]
+                },
+                {
+                    "Function": "claimDivs",
+                    "Calculation Variables": [
+                        "alreadyProgUnstaked",
+                        "percent_claim",
+                        "firstTime",
+                        "tokenDepositAddress",
+                        "rewardEnded",
+                        "lastClaimedTime",
+                        "extraAPY",
+                        "unstakeTime",
+                        "rewardRate",
+                        "ended",
+                        "maxDepositedTokens",
+                        "depositedTokens",
+                        "claimTime",
+                        "holders",
+                        "rewardInterval",
+                        "unclaimed"
+                    ]
+                },
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "alreadyProgUnstaked",
+                        "depositedTokens",
+                        "ended",
+                        "extraAPY",
+                        "firstTime",
+                        "holders",
+                        "lastClaimedTime",
+                        "maxDepositedTokens",
+                        "percent_claim",
+                        "rewardEnded",
+                        "rewardInterval",
+                        "rewardRate",
+                        "unclaimed",
+                        "unstakeTime"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "alreadyProgUnstaked",
+                        "depositedTokens",
+                        "ended",
+                        "extraAPY",
+                        "firstTime",
+                        "holders",
+                        "lastClaimedTime",
+                        "maxDepositedTokens",
+                        "number_intervals",
+                        "owner",
+                        "percent_claim",
+                        "rewardEnded",
+                        "rewardInterval",
+                        "rewardRate",
+                        "stakingTime",
+                        "tokenDepositAddress",
+                        "unclaimed",
+                        "unstakeTime",
+                        "unstakingFeeRate"
+                    ]
+                },
+                {
+                    "Function": "withdraw2",
+                    "Calculation Variables": [
+                        "alreadyProgUnstaked",
+                        "ended",
+                        "holders",
+                        "tokenDepositAddress",
+                        "unstakingFeeRate",
+                        "stakingTime",
+                        "unstakeTime",
+                        "depositedTokens",
+                        "number_intervals",
+                        "amountPerInterval"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": [
+            "transferAnyERC20Tokens"
+        ]
+    }
+}
+        

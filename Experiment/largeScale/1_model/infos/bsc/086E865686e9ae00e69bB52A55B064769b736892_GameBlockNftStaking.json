@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositedAt"
+        ],
+        "Stake Token Address": [
+            "nftToken"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "reward.safeTransfer(to, _pendingReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "reward.safeTransfer(to, _pendingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "nftToken.safeTransferFrom(address(this), to, tokenId)"
+            }
+        ]
+    }
+}

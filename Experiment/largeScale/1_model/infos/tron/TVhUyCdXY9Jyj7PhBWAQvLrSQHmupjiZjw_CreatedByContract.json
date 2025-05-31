@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "Stake.checkpoint"
+        ],
+        "Stake Token Address": [
+            "_avv"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_avv.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimReward",
+                "Node": "_safeTransfer(_stakeholder, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_avv.transfer(address(this), _amount)"
+            }
+        ]
+    }
+}

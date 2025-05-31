@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "safeSushiTransfer(msg.sender, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingtoken",
+                "Node": "return user.amount.mul(accSushiPerShare).div(1e12).sub(user.rewardDebt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

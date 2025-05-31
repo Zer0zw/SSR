@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [
+            "epoch.distribute"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry"
+        ],
+        "Stake Token Address": [
+            "Cunoro"
+        ],
+        "Reward Token Address": [
+            "sCunoro"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sCunoro.safeTransfer( address(warmupContract), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "warmupContract.retrieve( _recipient,  amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "Cunoro.safeTransfer( msg.sender, _amount)"
+            }
+        ]
+    }
+}

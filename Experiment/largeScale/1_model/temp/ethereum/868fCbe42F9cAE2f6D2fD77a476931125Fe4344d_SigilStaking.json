@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_accountStakingInfo",
+            "stake.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "_feeCollectionValues",
+            "feeCollectionArchive.feeCollected"
+        ],
+        "User Stake Time": [
+            "_accountStakingInfo",
+            "stake.dateAtStake"
+        ],
+        "Stake Token Address": [
+            "_investmentTokenAddress"
+        ],
+        "Reward Token Address": [
+            "_investmentTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_investmentTokenAddress).transferFrom(msg.sender, address(this), amountToDeposit)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_investmentTokenAddress).transfer(msg.sender, amountToCollect + stakedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_investmentTokenAddress).transfer(msg.sender, amountToCollect + stakedAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,91 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "mapUserInfo.amount"
+            ],
+            "User Stake Reward": [],
+            "User Stake Time": [
+                "mapUserInfo.startTime",
+                "mapUserInfo.endTime"
+            ],
+            "Stake Token Address": [
+                "stakedToken"
+            ],
+            "Reward Token Address": [
+                "stakedToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stakeToken"
+            ],
+            "getReward": [],
+            "unStake": [
+                "unstakeToken"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stakeToken",
+                    "Calculation Variables": [
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "minStakingToken",
+                        "stakedToken",
+                        "stakingPeriod"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "unstakeToken",
+                    "Calculation Variables": [
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "mapUserInfo.APY",
+                        "mapUserInfo.amount",
+                        "mapUserInfo.claimStatus",
+                        "mapUserInfo.endTime",
+                        "stakedToken"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unstakeToken",
+                    "Calculation Variables": [
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "mapUserInfo.APY",
+                        "mapUserInfo.amount",
+                        "mapUserInfo.claimStatus",
+                        "mapUserInfo.endTime",
+                        "stakedToken"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

@@ -1,0 +1,87 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.firstDepositBlock",
+            "UserInfo.lastDepositBlock",
+            "UserInfo.lastWithdrawBlock",
+            "UserInfo.blockdelta"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolRestakingInfo.reward",
+            "PoolRestakingInfo.reward1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "safeBavaTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "safeBavaTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), depositTokenAmount*(userFeeStage[0])/(100))",
+                "Condition": "user.blockdelta == blockDeltaStartStage[0] || block.number == user.lastDepositBlock"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), depositTokenAmount*(userFeeStage[1])/(100))",
+                "Condition": "user.blockdelta >= blockDeltaStartStage[1] && user.blockdelta <= blockDeltaEndStage[0]"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), depositTokenAmount*(userFeeStage[2])/(100))",
+                "Condition": "user.blockdelta >= blockDeltaStartStage[2] && user.blockdelta <= blockDeltaEndStage[1]"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), depositTokenAmount*(userFeeStage[3])/(100))",
+                "Condition": "user.blockdelta >= blockDeltaStartStage[3] && user.blockdelta <= blockDeltaEndStage[2]"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), depositTokenAmount*(userFeeStage[4])/(100))",
+                "Condition": "user.blockdelta >= blockDeltaStartStage[4] && user.blockdelta <= blockDeltaEndStage[3]"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), depositTokenAmount*(userFeeStage[5])/(1000))",
+                "Condition": "user.blockdelta >= blockDeltaStartStage[5] && user.blockdelta <= blockDeltaEndStage[4]"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), depositTokenAmount*(userFeeStage[6])/(10000))",
+                "Condition": "user.blockdelta >= blockDeltaStartStage[6] && user.blockdelta <= blockDeltaEndStage[5]"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), depositTokenAmount*(userFeeStage[7])/(10000))",
+                "Condition": "user.blockdelta > blockDeltaStartStage[7]"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), amountToSend)"
+            }
+        ]
+    }
+}

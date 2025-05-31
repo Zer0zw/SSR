@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "startTime",
+            "poolPeriod"
+        ],
+        "Stake Token Address": [
+            "_stakingTokenAddress"
+        ],
+        "Reward Token Address": [
+            "_rewardsTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(_stakingTokenAddress, msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "TransferHelper.safeTransferETH(msg.sender, reward)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "TransferHelper.safeTransfer(_rewardsTokenAddress, msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(_stakingTokenAddress, msg.sender, amount)"
+            }
+        ]
+    }
+}

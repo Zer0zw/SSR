@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Investment.lpDouble",
+            "Investment.lpSingle"
+        ],
+        "User Stake Reward": [
+            "Investment.rewarded",
+            "Investment.claimed"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stake",
+            "busd"
+        ],
+        "Reward Token Address": [
+            "pol"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stake.transfer(address(vault), _stakeVaulted)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "busd.transfer(msg.sender, _busd)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "busd.transfer(msg.sender, _busd)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "busd.transfer(msg.sender, _busd)"
+            }
+        ]
+    }
+}

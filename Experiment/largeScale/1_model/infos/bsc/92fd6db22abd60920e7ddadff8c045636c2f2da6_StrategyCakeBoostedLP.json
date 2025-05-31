@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IVeCakeStaker(boostStaker).deposit(chef, poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokens(toNative, 0, outputToNativeRoute, address(this), now)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(callFeeRecipient, callFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(beefyFeeRecipient, beefyFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IVeCakeStaker(boostStaker).withdraw(chef, poolId, _amount.sub(wantBal))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IVeCakeStaker(boostStaker).emergencyWithdraw(chef, poolId)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IVeCakeStaker(boostStaker).emergencyWithdraw(chef, poolId)"
+            }
+        ]
+    }
+}

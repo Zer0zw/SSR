@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount",
+            "totalLockedDhvByUser"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "dhvToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "coverCluster",
+                "Node": "lockedDhvForClusterByUser[_cluster][_user] += amountInDhv"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "releaseCluster",
+                "Node": "lockedDhvForClusterByUser[_cluster][_user] -= amountInDhv"
+            },
+            {
+                "Function": "releaseClusterTotal",
+                "Node": "lockedDhvForClusterByUser[_cluster][_user] = 0"
+            }
+        ]
+    }
+}

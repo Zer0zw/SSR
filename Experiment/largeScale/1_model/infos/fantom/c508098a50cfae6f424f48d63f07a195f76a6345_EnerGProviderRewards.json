@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "penerg"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.RewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "penerg.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_deposit",
+                "Node": "safeTransfer(pool.RewardToken, to, pending)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "safeTransfer(pool.RewardToken, to, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "safeTransfer(penerg, to, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "penerg.safeTransfer(address(msg.sender), oldUserAmount)"
+            }
+        ]
+    }
+}

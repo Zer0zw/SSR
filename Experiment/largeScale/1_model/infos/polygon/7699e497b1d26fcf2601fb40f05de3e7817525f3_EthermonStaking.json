@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "data.emons"
+        ],
+        "User Stake Reward": [
+            "data.balance"
+        ],
+        "User Stake Time": [
+            "data.duration"
+        ],
+        "Stake Token Address": [
+            "emon"
+        ],
+        "Reward Token Address": [
+            "emon"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositeTokens",
+                "Node": "emon.safeTransferFrom(msgSender(), address(this), data.emons)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "emon.safeTransfer(data.owner, data.emons)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "emon.safeTransfer(data.owner, data.emons)"
+            }
+        ]
+    }
+}

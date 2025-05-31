@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "APR"
+        ],
+        "User Stake Time": [
+            "depositBlock"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingToken.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAPY",
+                "Node": "stakingToken.transfer(to, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.transfer(to, amount)"
+            }
+        ]
+    }
+}

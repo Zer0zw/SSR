@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceUser"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "harvestTime"
+        ],
+        "Stake Token Address": [
+            "tokenReward"
+        ],
+        "Reward Token Address": [
+            "tokenReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "initCompound",
+                "Node": "IBEP20(tokenReward).transferFrom(_msgSender(), address(this),tAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeMyRewards",
+                "Node": "IBEP20(tokenReward).transfer(_msgSender(), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "totalSupply -= balanceUser[_msgSender()]"
+            }
+        ]
+    }
+}

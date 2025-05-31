@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "boostedBalances",
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "currentEpochRewardsClaimable",
+            "previousEpochRewardsClaimable"
+        ],
+        "User Stake Time": [
+            "lastActionTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "want"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakeToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "want.safeTransfer(user, reward)"
+            },
+            {
+                "Function": "updateClaimUserRewardAndBooster",
+                "Node": "want.safeTransfer(user, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakeToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakeToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

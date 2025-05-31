@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.DepositeToken",
+            "UserInfo.withoutlockingamount"
+        ],
+        "User Stake Reward": [
+            "userInfo.totalreward",
+            "UserInfo.totalreward"
+        ],
+        "User Stake Time": [
+            "userInfo.lockableDays",
+            "UserInfo.lockableDays"
+        ],
+        "Stake Token Address": [
+            "SMS"
+        ],
+        "Reward Token Address": [
+            "SMS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposite",
+                "Node": "SMS.transferFrom(msg.sender,address(this), _amount)"
+            },
+            {
+                "Function": "Deposite_WithoutLocking",
+                "Node": "SMS.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "WithdrawReward",
+                "Node": "SMS.transfer(msg.sender, user.WithdrawAbleReward)"
+            },
+            {
+                "Function": "WithdrawReward_withlocking",
+                "Node": "SMS.transfer(msg.sender, user.WithdrawAbleReward)"
+            },
+            {
+                "Function": "withdraw_upline_amount",
+                "Node": "SMS.transfer(msg.sender, Users[msg.sender].upline_Reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Withdraw_Staking_Amount",
+                "Node": "SMS.transfer(msg.sender,withdrawableAmount)"
+            },
+            {
+                "Function": "Withdraw_without_Staking_Amount",
+                "Node": "SMS.transfer(msg.sender,withdrawableAmount)"
+            }
+        ]
+    }
+}

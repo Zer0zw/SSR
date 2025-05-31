@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.farmedToken"
+        ],
+        "User Stake Reward": [
+            "ETAGHYReward"
+        ],
+        "User Stake Time": [
+            "userInfo.lockableDays"
+        ],
+        "Stake Token Address": [
+            "ETAGHY"
+        ],
+        "Reward Token Address": [
+            "ETAGHY"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "ETAGHY.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeTransferWYZ(msg.sender, amounttoTransferred)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": "safeTransferWYZ(msg.sender, amounttoTransferred)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalNFTStaked"
+        ],
+        "User Stake Reward": [
+            "claimedRewardAmount"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "NFTContract"
+        ],
+        "Reward Token Address": [
+            "PawsContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "_NFTContract.safeTransferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeemToken",
+                "Node": "PawsContract.mint(msg.sender, _reward)"
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": "PawsContract.mint(msg.sender, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawToken",
+                "Node": "_NFTContract.safeTransferFrom(address(this), msg.sender, _tokenId)"
+            }
+        ]
+    }
+}

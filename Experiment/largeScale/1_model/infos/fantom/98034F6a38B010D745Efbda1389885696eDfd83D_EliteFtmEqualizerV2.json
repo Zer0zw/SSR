@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "equal"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IEqualizerGauge(gauge).deposit(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IEqualizerGauge(gauge).getReward(address(this), rewardTokens)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IEqualizerGauge(gauge).getReward(address(this), rewardTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal - withdrawalFeeAmount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, balanceOfWant())"
+            },
+            {
+                "Function": "panic",
+                "Node": "IEqualizerGauge(gauge).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

@@ -1,0 +1,158 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalDeposits"
+        ],
+        "User Stake Reward": [
+            "rewardToken1",
+            "rewardToken2"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken1",
+            "rewardToken2"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "reinvest",
+            "reinvest"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1135
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "REQUIRE_REINVEST_BEFORE_DEPOSIT",
+                    "depositToken",
+                    "totalDeposits"
+                ],
+                "Full Calculation Variables": [
+                    "REQUIRE_REINVEST_BEFORE_DEPOSIT",
+                    "depositToken",
+                    "totalDeposits"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1238
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "rewardToken2"
+                ],
+                "Control Variables": [
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "pid",
+                    "rewardToken2",
+                    "stakingContract"
+                ],
+                "Full Calculation Variables": [
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "pid",
+                    "rewardToken2",
+                    "stakingContract"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "reinvest",
+                "Node": [
+                    1249
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "ADMIN_FEE_BIPS",
+                    "rewardToken2",
+                    "BIPS_DIVISOR",
+                    "REINVEST_REWARD_BIPS"
+                ],
+                "Control Variables": [
+                    "arbi",
+                    "MIN_TOKENS_TO_REINVEST",
+                    "rewardToken1",
+                    "ADMIN_FEE_BIPS",
+                    "stakingContract",
+                    "pid",
+                    "rewardToken2",
+                    "BIPS_DIVISOR",
+                    "REINVEST_REWARD_BIPS"
+                ],
+                "Full Calculation Variables": [
+                    "arbi",
+                    "MIN_TOKENS_TO_REINVEST",
+                    "rewardToken1",
+                    "ADMIN_FEE_BIPS",
+                    "stakingContract",
+                    "pid",
+                    "rewardToken2",
+                    "BIPS_DIVISOR",
+                    "REINVEST_REWARD_BIPS"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1154
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "BIPS_DIVISOR",
+                    "WITHDRAW_FEE_BIPS",
+                    "totalDeposits"
+                ],
+                "Control Variables": [
+                    "BIPS_DIVISOR",
+                    "WITHDRAW_FEE_BIPS",
+                    "depositToken",
+                    "totalDeposits"
+                ],
+                "Full Calculation Variables": [
+                    "BIPS_DIVISOR",
+                    "WITHDRAW_FEE_BIPS",
+                    "depositToken",
+                    "totalDeposits"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantTotal"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_depositLpToken",
+                "Node": "wantToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getRewards",
+                "Node": "stakingRewards.getReward()"
+            },
+            {
+                "Function": "_getRewards",
+                "Node": "IdQuick(dQuick).leave(curBalance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "migrateImpulse",
+                "Node": "stakingRewards.exit()"
+            },
+            {
+                "Function": "migrateImpulse",
+                "Node": "rewardToken.safeTransfer(treasury, rewardCommission)"
+            }
+        ]
+    }
+}

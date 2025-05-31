@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userCollateral"
+        ],
+        "User Stake Reward": [
+            "userAccrued"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(stakeToken.transferFrom(msg.sender, address(this), amount), \"transferFrom failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeReward",
+                "Node": "if (rewardToken.transfer(user, userAccrued[user]))"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "distributeReward(user[i])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(stakeToken.transfer(msg.sender, amount), \"transfer failed\")"
+            }
+        ]
+    }
+}

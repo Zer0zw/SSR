@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "USER.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "USER.reward",
+            "USER.TotalOMBRewarded"
+        ],
+        "User Stake Time": [
+            "USER.creationTime"
+        ],
+        "Stake Token Address": [
+            "tokenInstance"
+        ],
+        "Reward Token Address": [
+            "tokenInstance"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "stakers[msg.sender].stakedAmount = ((msg.value).sub(_stakingFee)).add(stakers[msg.sender].stakedAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CLAIMREWARD",
+                "Node": "require(tokenInstance.transfer(msg.sender,owing), \"ERROR: error in sending reward from contract\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WITHDRAW",
+                "Node": "r.transfer(tokens.sub(_unstakingFee))"
+            }
+        ]
+    }
+}

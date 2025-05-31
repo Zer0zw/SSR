@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositBlock"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakeToken.transferFrom(address(msg.sender), address(this), amount)"
+            },
+            {
+                "Function": "depositOnBehalf",
+                "Node": "stakeToken.transferFrom(address(msg.sender), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "rewardToken.transfer(address(msg.sender), rewardsAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "rewardToken.transfer(address(msg.sender), pending * rewardPPS())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakeToken.transfer(address(msg.sender), transferredAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakeToken.transfer(address(msg.sender), transferredAmount)"
+            }
+        ]
+    }
+}

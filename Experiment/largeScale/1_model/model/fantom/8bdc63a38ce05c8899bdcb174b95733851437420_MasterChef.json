@@ -1,0 +1,189 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "tri"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1590,
+                    1591,
+                    1592,
+                    1593,
+                    1594
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1588
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1625
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint",
+                    "triPerBlock",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint",
+                    "triPerBlock",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint",
+                    "triPerBlock",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1628
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint",
+                    "triPerBlock",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accTriPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint",
+                    "triPerBlock",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1641
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

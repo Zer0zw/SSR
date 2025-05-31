@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "capitalAmounts"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "capital"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "updatePosition",
+                "Node": "IERC20(capital).approve(address(earning), liquidityAmount)"
+            },
+            {
+                "Function": "updatePosition",
+                "Node": "IEarningDodo(earning).stake(user, liquidityAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earningRepay",
+                "Node": "IERC20(token).safeTransfer(user, amountV1)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "closePosition",
+                "Node": "safeTransfer(tokenA, tokenA, user, amountA, deadLine)"
+            },
+            {
+                "Function": "closePosition",
+                "Node": "safeTransfer(tokenB, tokenB, user, amountB, deadLine)"
+            },
+            {
+                "Function": "directClearingPosition",
+                "Node": "safeTransfer(borrowsV1[user], borrowsV1[user], user, surplusAmount, deadLine)"
+            },
+            {
+                "Function": "indirectClearingPosition",
+                "Node": "safeTransfer(receiveToken, receiveToken, msg.sender, price, deadLine)"
+            }
+        ]
+    }
+}

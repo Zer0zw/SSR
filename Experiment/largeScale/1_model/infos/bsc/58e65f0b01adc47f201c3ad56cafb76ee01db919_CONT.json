@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Staker.totalReward"
+        ],
+        "User Stake Time": [
+            "Stake.term"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "balances[msg.sender] = balances[msg.sender].sub(_amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "balances[referer] = balances[referer].add(refAmount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "emit Transfer(address(this), referer, refAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "balances[msg.sender] = balances[msg.sender].add(amount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "emit Transfer(address(this), msg.sender, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

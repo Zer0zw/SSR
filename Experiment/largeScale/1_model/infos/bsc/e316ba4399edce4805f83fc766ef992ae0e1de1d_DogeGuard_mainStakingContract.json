@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.userAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalDogeCollected",
+            "UserInfo.totalDogeGuardCollected"
+        ],
+        "User Stake Time": [
+            "IndexInfo.timestampIndex"
+        ],
+        "Stake Token Address": [
+            "DogeGuard"
+        ],
+        "Reward Token Address": [
+            "DOGE",
+            "DogeGuard"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IBEP20(DogeGuard).safeTransferFrom(account, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IBEP20(DOGE).safeTransfer(account, aDoge)"
+            },
+            {
+                "Function": "claim",
+                "Node": "IBEP20(DogeGuard).safeTransfer(account, aDogeguard)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "IBEP20(DogeGuard).safeTransfer(account, depAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawal",
+                "Node": "IBEP20(DogeGuard).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

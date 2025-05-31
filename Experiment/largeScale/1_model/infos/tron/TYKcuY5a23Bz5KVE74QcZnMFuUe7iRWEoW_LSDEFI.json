@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "starBalance",
+            "customBalance"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "_pledge"
+        ],
+        "Reward Token Address": [
+            "mine"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_customLP).safeTransferFrom(msg.sender, address(this), customAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeMineTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeMineTransfer(referrer, referrerFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_customLP).safeTransfer(msg.sender, customAmount)"
+            },
+            {
+                "Function": "safeWithdraw",
+                "Node": "IERC20(_customLP).safeTransfer(user, customBalance[_customLP][user])"
+            }
+        ]
+    }
+}

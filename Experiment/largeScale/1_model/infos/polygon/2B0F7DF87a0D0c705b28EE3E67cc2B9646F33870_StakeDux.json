@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.claimed"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakingDuration"
+        ],
+        "Stake Token Address": [
+            "aplToken"
+        ],
+        "Reward Token Address": [
+            "aplToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "aplToken.transferFrom(_msgSender(), address(this), stakeAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "aplToken.transferFrom(walletFunds, _msgSender(), amountEarned)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "aplToken.transfer(_msgSender(), stakeAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

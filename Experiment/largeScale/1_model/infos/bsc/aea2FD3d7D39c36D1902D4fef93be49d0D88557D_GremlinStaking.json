@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "staked.claimedAmount"
+        ],
+        "User Stake Time": [
+            "staked.lastBlockStaked"
+        ],
+        "Stake Token Address": [
+            "GREM"
+        ],
+        "Reward Token Address": [
+            "GREM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "GREM.transfer(msg.sender, getReward(msg.sender))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "GREM.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "singleCompound",
+                "Node": "stakings[msg.sender].stakedAmount = stakings[msg.sender].stakedAmount.add(reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "GREM.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "GREM.transfer( msg.sender, stakings[msg.sender].stakedAmount)"
+            }
+        ]
+    }
+}

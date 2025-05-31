@@ -1,0 +1,68 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "HarvestData.cvxCrvHarvested",
+            "HarvestData.cvxHarvsted"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "crv",
+            "cvx",
+            "cvxCrv"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "booster.deposit(pid, _want, true)"
+            },
+            {
+                "Function": "cvxCrvRewardsPool.stake",
+                "Node": "cvxCrvRewardsPool.stake(tendData.cvxCrvTended)"
+            },
+            {
+                "Function": "cvxRewardsPool.stake",
+                "Node": "cvxRewardsPool.stake(cvxToken.balanceOf(address(this)))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "baseRewardsPool.getReward",
+                "Node": "baseRewardsPool.getReward(address(this), true)"
+            },
+            {
+                "Function": "cvxCrvRewardsPool.getReward",
+                "Node": "cvxCrvRewardsPool.getReward(address(this), true)"
+            },
+            {
+                "Function": "cvxRewardsPool.getReward",
+                "Node": "cvxRewardsPool.getReward(false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAll",
+                "Node": "baseRewardsPool.withdrawAndUnwrap(balanceOfPool(), false)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "baseRewardsPool.withdrawAndUnwrap(_toWithdraw, false)"
+            },
+            {
+                "Function": "cvxCrvRewardsPool.withdraw",
+                "Node": "cvxCrvRewardsPool.withdraw(cvxCrvRewardsPoolBalance, true)"
+            },
+            {
+                "Function": "cvxRewardsPool.withdraw",
+                "Node": "cvxRewardsPool.withdraw(cvxRewardsPoolBalance, true)"
+            }
+        ]
+    }
+}

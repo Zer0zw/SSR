@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Depo.amt"
+        ],
+        "User Stake Reward": [
+            "User.refBonus",
+            "Depo.amt"
+        ],
+        "User Stake Time": [
+            "Depo.depoTime"
+        ],
+        "Stake Token Address": [
+            "USDC"
+        ],
+        "Reward Token Address": [
+            "USDC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStablecoins",
+                "Node": "USDC.safeTransferFrom(msg.sender, address(this), amtx)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "USDC.safeTransfer(msg.sender, x)"
+            },
+            {
+                "Function": "withdrawPartialDivs",
+                "Node": "USDC.safeTransfer(msg.sender, amtx)"
+            },
+            {
+                "Function": "withdrawRefBonus",
+                "Node": "USDC.safeTransfer(msg.sender, amtz)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInitial",
+                "Node": "USDC.safeTransfer(msg.sender, transferAmt)"
+            },
+            {
+                "Function": "withdrawPartialInitial",
+                "Node": "USDC.safeTransfer(msg.sender, transferAmt)"
+            }
+        ]
+    }
+}

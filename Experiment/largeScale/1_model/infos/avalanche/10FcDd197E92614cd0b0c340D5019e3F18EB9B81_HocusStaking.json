@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "Epoch.distribute"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "Hocus"
+        ],
+        "Reward Token Address": [
+            "sHocus"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( sHocus ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IsHocus( sHocus ).balanceForGons( info.gons ) )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( Hocus ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20( Hocus ).safeTransfer( msg.sender, info.deposit )"
+            }
+        ]
+    }
+}

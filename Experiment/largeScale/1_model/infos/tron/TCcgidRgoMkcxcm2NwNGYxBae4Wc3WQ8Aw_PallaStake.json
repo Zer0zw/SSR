@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.Staked"
+        ],
+        "User Stake Reward": [
+            "User.Claimed"
+        ],
+        "User Stake Time": [
+            "User.Checkpoint"
+        ],
+        "Stake Token Address": [
+            "pools.token"
+        ],
+        "Reward Token Address": [
+            "pallaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "pools[pool].token.transferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "pallaToken.transfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "pallaToken.transfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "pools[pool].token.transfer(msg.sender, user.Staked[pool])"
+            }
+        ]
+    }
+}

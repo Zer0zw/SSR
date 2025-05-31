@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "uid2Investor.plans_soda.investment"
+        ],
+        "User Stake Reward": [
+            "uid2Investor.plans_soda.currentDividends"
+        ],
+        "User Stake Time": [
+            "uid2Investor.plans_soda.investmentDate",
+            "uid2Investor.plans_soda.lastWithdrawalDate"
+        ],
+        "Stake Token Address": [
+            "BEE"
+        ],
+        "Reward Token Address": [
+            "BEE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "BEE.transferFrom(_addr, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "BEE.mint(msg.sender,payout)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "BEE.mint(msg.sender,payout)"
+            },
+            {
+                "Function": "claimRef",
+                "Node": "BEE.mint(msg.sender,amount)"
+            },
+            {
+                "Function": "claimLotteryReward",
+                "Node": "BEE.mint(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "BEE.transfer(msg.sender, body)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "BEE.mint(msg.sender, payout)"
+            }
+        ]
+    }
+}

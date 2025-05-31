@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastUpdated"
+        ],
+        "Stake Token Address": [
+            "LPAddress"
+        ],
+        "Reward Token Address": [
+            "taiyakiAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(LPAddress).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "ERC20PresetMinterPauser(taiyakiAddress).mint(_msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(IERC20(LPAddress).transfer(_msgSender(), amount.sub(fee)"
+            }
+        ]
+    }
+}

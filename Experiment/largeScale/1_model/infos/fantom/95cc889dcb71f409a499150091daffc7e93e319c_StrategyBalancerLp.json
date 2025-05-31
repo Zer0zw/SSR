@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "pendingBeets",
+            "pendingToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IBeethovenxMasterChef(farmPool).deposit(poolId, _baseBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IBeethovenxMasterChef(farmPool).harvest(poolId, address(this))"
+            },
+            {
+                "Function": "_swapTokens",
+                "Node": "unirouter.swapExactTokensForTokensSupportingFeeOnTransferTokens(_amount, 1, path, _receiver, block.timestamp)"
+            },
+            {
+                "Function": "_swapTokens",
+                "Node": "firebirdRouter.swapExactTokensForTokensSupportingFeeOnTransferTokens(_input, _output, _amount, 1, path, dexIds, _receiver, block.timestamp)"
+            },
+            {
+                "Function": "_swapTokens",
+                "Node": "IBalancerV2Vault(balancerV2Vault).swap(singleSwap, funds, 1, block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IBeethovenxMasterChef(farmPool).withdrawAndHarvest(poolId, _amount, address(this))"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IBeethovenxMasterChef(farmPool).withdrawAndHarvest(poolId, _stakedAmount, address(this))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IBeethovenxMasterChef(farmPool).emergencyWithdraw(poolId, address(this))"
+            }
+        ]
+    }
+}

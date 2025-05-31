@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PlanI.Amount",
+            "PlanII.Amount",
+            "PlanIII.Amount"
+        ],
+        "User Stake Reward": [
+            "PlanI.Claimable",
+            "PlanII.Claimable",
+            "PlanIII.Claimable"
+        ],
+        "User Stake Time": [
+            "PlanI.StakeTime",
+            "PlanII.StakeTime",
+            "PlanIII.StakeTime"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TOKEN.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAll",
+                "Node": "TOKEN.transferFrom(RewardAddress, reward, calcRewardsHour(_user, _depositId))"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "TOKEN.transferFrom(RewardAddress, reward, calcRewardsHour(_user, _depositId))"
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transferFrom(RewardAddress, reward, calcRewardsHour(msg.sender, _depositId))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transfer(msg.sender, PlanI[msg.sender].Amount)"
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transfer(msg.sender, PlanII[msg.sender].Amount)"
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transfer(msg.sender, PlanIII[msg.sender].Amount)"
+            }
+        ]
+    }
+}

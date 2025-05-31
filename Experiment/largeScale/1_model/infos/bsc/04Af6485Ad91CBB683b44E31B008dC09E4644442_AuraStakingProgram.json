@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStakingToken",
+            "Staking.stakingToken"
+        ],
+        "User Stake Reward": [
+            "User.currentRewards",
+            "Staking.currentRewards",
+            "Staking.genRewards"
+        ],
+        "User Stake Time": [
+            "Staking.stakingDate",
+            "Staking.lastWithdrawalDate"
+        ],
+        "Stake Token Address": [
+            "AuraToken"
+        ],
+        "Reward Token Address": [
+            "AuraToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "start_staking",
+                "Node": "AuraToken.transferFrom(msg.sender,address(this),walletUsed)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "AuraToken.transfer(msg.sender,withdrawalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

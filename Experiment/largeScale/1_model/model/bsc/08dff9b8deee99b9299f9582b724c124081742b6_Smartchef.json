@@ -1,0 +1,205 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.lastRewardBlock"
+        ],
+        "User Stake Time": [
+            "userInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "DOGE"
+        ],
+        "Reward Token Address": [
+            "DOGE"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    465
+                ],
+                "Input": [
+                    "_amount",
+                    "_isCompounding",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CakeJackPotReferral",
+                    "DOGE",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "CakeJackPotReferral",
+                    "DOGE",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    458
+                ],
+                "Input": [
+                    "_amount",
+                    "_isCompounding",
+                    "_referrer"
+                ],
+                "Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "rewardPercentage",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Control Variables": [
+                    "BLOCKS_PER_DAY",
+                    "CakeJackPotReferral",
+                    "DOGE",
+                    "rewardPercentage",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "CakeJackPotReferral",
+                    "DOGE",
+                    "rewardPercentage",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    486
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "rewardPercentage",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Control Variables": [
+                    "BLOCKS_PER_DAY",
+                    "DOGE",
+                    "lockTime",
+                    "rewardPercentage",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "DOGE",
+                    "lockTime",
+                    "rewardPercentage",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    495
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BLOCKS_PER_DAY",
+                    "DOGE",
+                    "lockTime",
+                    "rewardPercentage",
+                    "totalStakedAmount",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "DOGE",
+                    "lockTime",
+                    "rewardPercentage",
+                    "totalStakedAmount",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    510
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DOGE",
+                    "feeAddress1",
+                    "feeAddress2",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "DOGE",
+                    "feeAddress1",
+                    "feeAddress2",
+                    "lockTime",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "withdrawFee"
+                ],
+                "Full Calculation Variables": [
+                    "DOGE",
+                    "feeAddress1",
+                    "feeAddress2",
+                    "lockTime",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "withdrawFee"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

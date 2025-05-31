@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "DepositInfo.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.claimed"
+        ],
+        "User Stake Time": [
+            "DepositInfo.timestamp",
+            "Bracket.lockedDays"
+        ],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "depositToken.transferFrom(_msgSender(), address(this), tokenAmount)"
+            },
+            {
+                "Function": "stakeTruth",
+                "Node": "truthToken.safeTransferFrom(_msgSender(), address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "rewardsToken.transfer(_msgSender(), rewardsAmount)"
+            },
+            {
+                "Function": "extendStake",
+                "Node": "rewardsToken.transfer(_msgSender(), rewardsAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "depositToken.transfer(_msgSender(), depositedAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "truthToken.safeTransferFrom(address(this), _msgSender(), deposits[_msgSender()].truth.tokenId)"
+            }
+        ]
+    }
+}

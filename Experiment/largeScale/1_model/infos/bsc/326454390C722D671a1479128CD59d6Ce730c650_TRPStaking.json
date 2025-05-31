@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "TRP"
+        ],
+        "Reward Token Address": [
+            "sTRP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( sTRP ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IsTRP( sTRP ).balanceForGons( info.gons ) )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( TRP ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20( TRP ).safeTransfer( msg.sender, info.deposit )"
+            }
+        ]
+    }
+}

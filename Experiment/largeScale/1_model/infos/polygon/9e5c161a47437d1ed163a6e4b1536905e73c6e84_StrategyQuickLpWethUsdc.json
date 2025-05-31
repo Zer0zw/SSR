@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_wantBal"
+        ],
+        "User Stake Reward": [
+            "pendingHarvest"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_want"
+        ],
+        "Reward Token Address": [
+            "_farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_farm",
+                "Node": "IERC20(want).safeIncreaseAllowance(address(farmingPool), _wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "return IStakingRewards(farmingPool).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IStakingRewards(farmingPool).withdraw(_amount)"
+            },
+            {
+                "Function": "_exit",
+                "Node": "IStakingRewards(farmingPool).exit()"
+            }
+        ]
+    }
+}

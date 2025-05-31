@@ -1,0 +1,255 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances.total",
+            "balances.locked",
+            "balances.unlocked",
+            "balances.earned"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "userEarnings.unlockTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "mint",
+            "mint",
+            "stake"
+        ],
+        "getReward": [
+            "exit",
+            "getReward"
+        ],
+        "unStake": [
+            "exit",
+            "withdraw",
+            "withdrawExpiredLocks"
+        ],
+        "Sensitive Functions": [
+            "addReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    800
+                ],
+                "Input": [
+                    "amount",
+                    "lock"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "balances.locked",
+                    "balances.total",
+                    "balances.unlocked",
+                    "stakingToken",
+                    "totalSupply"
+                ],
+                "Full Calculation Variables": [
+                    "balances.locked",
+                    "balances.total",
+                    "balances.unlocked",
+                    "stakingToken",
+                    "totalSupply"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "mint",
+                "Node": [
+                    812
+                ],
+                "Input": [
+                    "amount",
+                    "user",
+                    "withPenalty"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "minters",
+                    "stakingToken",
+                    "treasury"
+                ],
+                "Full Calculation Variables": [
+                    "minters",
+                    "stakingToken",
+                    "treasury"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "exit",
+                "Node": [
+                    910
+                ],
+                "Input": [
+                    "_rewardTokens"
+                ],
+                "Calculation Variables": [
+                    "rewards"
+                ],
+                "Control Variables": [
+                    "rewards",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "rewards",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "getReward",
+                "Node": [
+                    910
+                ],
+                "Input": [
+                    "_rewardTokens",
+                    "_rewardTokens"
+                ],
+                "Calculation Variables": [
+                    "rewards"
+                ],
+                "Control Variables": [
+                    "rewardData.lastUpdateTime",
+                    "totalSupply",
+                    "rewardData.periodFinish",
+                    "rewards",
+                    "rewardData.rewardPerTokenStored",
+                    "rewardTokens",
+                    "lockedSupply",
+                    "rewardData.balance",
+                    "balances.earned",
+                    "rewardData.rewardRate",
+                    "balances.total",
+                    "balances.locked",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "rewardData.lastUpdateTime",
+                    "totalSupply",
+                    "rewardData.periodFinish",
+                    "rewards",
+                    "rewardData.rewardPerTokenStored",
+                    "rewardTokens",
+                    "lockedSupply",
+                    "rewardData.balance",
+                    "balances.earned",
+                    "rewardData.rewardRate",
+                    "balances.total",
+                    "balances.locked",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    879
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "balances.earned",
+                    "balances.locked",
+                    "balances.total",
+                    "balances.unlocked",
+                    "stakingToken",
+                    "totalSupply",
+                    "userEarnings.amount",
+                    "userEarnings.unlockTime"
+                ],
+                "Full Calculation Variables": [
+                    "balances.earned",
+                    "balances.locked",
+                    "balances.total",
+                    "balances.unlocked",
+                    "stakingToken",
+                    "totalSupply",
+                    "userEarnings.amount",
+                    "userEarnings.unlockTime"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "exit",
+                "Node": [
+                    932
+                ],
+                "Input": [
+                    "claimRewards"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "balances.earned",
+                    "balances.locked",
+                    "balances.total",
+                    "balances.unlocked",
+                    "stakingToken",
+                    "totalSupply",
+                    "userEarnings.amount"
+                ],
+                "Full Calculation Variables": [
+                    "balances.earned",
+                    "balances.locked",
+                    "balances.total",
+                    "balances.unlocked",
+                    "stakingToken",
+                    "totalSupply",
+                    "userEarnings.amount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawExpiredLocks",
+                "Node": [
+                    964
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "balances.locked",
+                    "balances.total",
+                    "userLocks.amount",
+                    "userLocks.unlockTime"
+                ],
+                "Control Variables": [
+                    "balances.locked",
+                    "balances.total",
+                    "lockedSupply",
+                    "stakingToken",
+                    "totalSupply",
+                    "userLocks.amount",
+                    "userLocks.unlockTime"
+                ],
+                "Full Calculation Variables": [
+                    "balances.locked",
+                    "balances.total",
+                    "lockedSupply",
+                    "stakingToken",
+                    "totalSupply",
+                    "userLocks.amount",
+                    "userLocks.unlockTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

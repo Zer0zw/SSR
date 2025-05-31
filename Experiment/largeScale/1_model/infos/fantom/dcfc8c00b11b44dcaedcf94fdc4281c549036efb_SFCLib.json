@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getStake"
+        ],
+        "User Stake Reward": [
+            "_rewardsStash"
+        ],
+        "User Stake Time": [
+            "LockedDelegation.duration"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "delegate",
+                "Node": "_rawDelegate(delegator, toValidatorID, amount, true)"
+            },
+            {
+                "Function": "_delegate",
+                "Node": "_rawDelegate(delegator, toValidatorID, amount, true)"
+            },
+            {
+                "Function": "_rawDelegate",
+                "Node": "getStake[delegator][toValidatorID] = getStake[delegator][toValidatorID].add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "(bool sent,) = delegator.call.value(rewards.lockupExtraReward.add(rewards.lockupBaseReward).add(rewards.unlockedReward))(\"\")"
+            },
+            {
+                "Function": "_claimRewards",
+                "Node": "_mintNativeToken(totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "(bool sent,) = delegator.call.value(amount.sub(penalty))(\"\")"
+            },
+            {
+                "Function": "liquidateSFTM",
+                "Node": "(bool sent,) = msg.sender.call.value(amount)(\"\")"
+            },
+            {
+                "Function": "unlockStake",
+                "Node": "ld.lockedStake -= amount"
+            }
+        ]
+    }
+}

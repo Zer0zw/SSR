@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "startStaking"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "startStaking"
+        ],
+        "Stake Token Address": [
+            "poolTokenAddress"
+        ],
+        "Reward Token Address": [
+            "uFFYIAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "poolToken.safeTransferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "uFFYI.mint(_msgSender(), reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "uFFYI.safeTransfer(_msgSender(), rewards[_msgSender()])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "poolToken.safeTransfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "poolToken.safeTransfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUserGKK",
+            "tokensStakedByUserKGW"
+        ],
+        "User Stake Reward": [
+            "coinAmountPerRewardUnitGKK",
+            "coinAmountPerRewardUnitKGW"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddressGKK",
+            "collectionAddressKGW"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeGKK",
+                "Node": "_mint(_msgSender(), welcomeBonusAmountGKK)"
+            },
+            {
+                "Function": "stakeKGW",
+                "Node": "_mint(_msgSender(), welcomeBonusAmountKGW)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestGKK",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            },
+            {
+                "Function": "harvestKGW",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeGKK",
+                "Node": "IERC721(collectionAddressGKK).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeKGW",
+                "Node": "IERC721(collectionAddressKGW).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

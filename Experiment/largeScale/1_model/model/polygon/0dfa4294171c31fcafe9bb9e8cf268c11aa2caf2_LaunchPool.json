@@ -1,0 +1,145 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakes.amount"
+        ],
+        "User Stake Reward": [
+            "_stakes.shares"
+        ],
+        "User Stake Time": [
+            "_startTimestamp",
+            "_endTimestamp"
+        ],
+        "Stake Token Address": [
+            "_stakes.token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "distributeSharesChunk"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "initialize",
+            "stake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    795
+                ],
+                "Input": [
+                    "amount",
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_allowedTokens",
+                    "_stakeAmountMin",
+                    "_stakeClamp",
+                    "_stakesMax",
+                    "_stakesTotal",
+                    "_startTimestamp",
+                    "_tokenDecimals",
+                    "stage"
+                ],
+                "Full Calculation Variables": [
+                    "_allowedTokens",
+                    "_stakeAmountMin",
+                    "_stakeClamp",
+                    "_stakesMax",
+                    "_stakesTotal",
+                    "_startTimestamp",
+                    "_tokenDecimals",
+                    "stage"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeSharesChunk",
+                "Node": [
+                    927
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "_stakes.amount",
+                    "_stakes.investor",
+                    "_stakes.shares",
+                    "_stakes.token",
+                    "_stakesDistributed"
+                ],
+                "Control Variables": [
+                    "_sponsor",
+                    "_stakes.amount",
+                    "_stakes.investor",
+                    "_stakes.shares",
+                    "_stakes.token",
+                    "_stakesCount",
+                    "_stakesDistributed",
+                    "_token",
+                    "stage"
+                ],
+                "Full Calculation Variables": [
+                    "_sponsor",
+                    "_stakes.amount",
+                    "_stakes.investor",
+                    "_stakes.shares",
+                    "_stakes.token",
+                    "_stakesCount",
+                    "_stakesDistributed",
+                    "_token",
+                    "stage"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    838,
+                    839,
+                    840,
+                    841
+                ],
+                "Input": [
+                    "stakeId"
+                ],
+                "Calculation Variables": [
+                    "_stakes.amount",
+                    "_stakes.token",
+                    "_stakesByAccount",
+                    "_tokenDecimals"
+                ],
+                "Control Variables": [
+                    "_stakes.amount",
+                    "_stakes.token",
+                    "_stakesByAccount",
+                    "_tokenDecimals",
+                    "stage"
+                ],
+                "Full Calculation Variables": [
+                    "_stakes.amount",
+                    "_stakes.token",
+                    "_stakesByAccount",
+                    "_tokenDecimals",
+                    "stage"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

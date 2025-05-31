@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "DepositedToken.activeDeposit"
+        ],
+        "User Stake Reward": [
+            "DepositedToken.totalGained",
+            "DepositedToken.pendingGains"
+        ],
+        "User Stake Time": [
+            "DepositedToken.startTime",
+            "DepositedToken.lastClaimedDate"
+        ],
+        "Stake Token Address": [
+            "ACN"
+        ],
+        "Reward Token Address": [
+            "ACN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "require(IERC20(ACN).transferFrom(msg.sender, address(this), _amount))"
+            },
+            {
+                "Function": "AddToStake",
+                "Node": "require(IERC20(ACN).transferFrom(msg.sender, address(this), _amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "require(IERC20(ACN).transfer(msg.sender, _pendingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "StopStaking",
+                "Node": "require(IERC20(ACN).transfer(msg.sender, _activeDeposit)"
+            }
+        ]
+    }
+}

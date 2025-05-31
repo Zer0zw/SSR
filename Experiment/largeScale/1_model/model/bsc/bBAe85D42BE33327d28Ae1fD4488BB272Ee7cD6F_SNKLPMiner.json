@@ -1,0 +1,129 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf",
+            "orderInfo.amount"
+        ],
+        "User Stake Reward": [
+            "orderInfo.reward"
+        ],
+        "User Stake Time": [
+            "orderInfo.start",
+            "orderInfo.end"
+        ],
+        "Stake Token Address": [
+            "SNKLP"
+        ],
+        "Reward Token Address": [
+            "SNK"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    413
+                ],
+                "Input": [
+                    "amount",
+                    "endTime"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "SNKLP",
+                    "balanceOf",
+                    "totalSupply"
+                ],
+                "Full Calculation Variables": [
+                    "SNKLP",
+                    "balanceOf",
+                    "totalSupply"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    500
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "orderInfo.end",
+                    "orderInfo.lastRewardTime",
+                    "orderInfo.rate",
+                    "orderInfo.user",
+                    "userOrders"
+                ],
+                "Control Variables": [
+                    "SNK",
+                    "orderInfo.end",
+                    "orderInfo.lastRewardTime",
+                    "orderInfo.rate",
+                    "orderInfo.user",
+                    "userOrders"
+                ],
+                "Full Calculation Variables": [
+                    "SNK",
+                    "orderInfo.end",
+                    "orderInfo.lastRewardTime",
+                    "orderInfo.rate",
+                    "orderInfo.user",
+                    "userOrders"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    530
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "orderInfo.amount",
+                    "orderInfo.end",
+                    "orderInfo.isTakeBack",
+                    "orderInfo.user",
+                    "userOrders"
+                ],
+                "Control Variables": [
+                    "SNKLP",
+                    "balanceOf",
+                    "orderInfo.amount",
+                    "orderInfo.end",
+                    "orderInfo.isTakeBack",
+                    "orderInfo.user",
+                    "totalSupply",
+                    "userOrders"
+                ],
+                "Full Calculation Variables": [
+                    "SNKLP",
+                    "balanceOf",
+                    "orderInfo.amount",
+                    "orderInfo.end",
+                    "orderInfo.isTakeBack",
+                    "orderInfo.user",
+                    "totalSupply",
+                    "userOrders"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

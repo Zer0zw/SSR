@@ -1,0 +1,171 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.stakedDays"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "local"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "pendingAmount",
+            "pendingLocal",
+            "totalPending",
+            "withdraw"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1337
+                ],
+                "Input": [
+                    "_amount",
+                    "_days",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.depositFeeBP",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.depositFeeBP",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1400
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Control Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "pendingLocal",
+                "Node": [
+                    1180
+                ],
+                "Input": [
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "pendingAmount",
+                "Node": [
+                    1205
+                ],
+                "Input": [
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "totalPending",
+                "Node": [
+                    1231
+                ],
+                "Input": [
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1400
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Control Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.userRewardInfo"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

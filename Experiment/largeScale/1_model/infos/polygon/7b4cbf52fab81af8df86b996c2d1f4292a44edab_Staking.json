@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "numberTokensStaked",
+            "number1to1TokensStaked"
+        ],
+        "User Stake Reward": [
+            "_balances"
+        ],
+        "User Stake Time": [
+            "lastClaimTime"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNfts",
+                "Node": "nft.transferFrom(msg.sender,address(this),tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewards",
+                "Node": "_balances[account] += reward"
+            },
+            {
+                "Function": "viewRewards",
+                "Node": "return pendingReward + _balances[account]"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNfts",
+                "Node": "nft.transferFrom(address(this),msg.sender,tokenId)"
+            }
+        ]
+    }
+}

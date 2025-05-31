@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "newStakedHearts",
+            "stakedHearts"
+        ],
+        "User Stake Reward": [
+            "heartsEarned"
+        ],
+        "User Stake Time": [
+            "newStakedDays",
+            "stakedDays"
+        ],
+        "Stake Token Address": [
+            "hexContract"
+        ],
+        "Reward Token Address": [
+            "hexContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mintShares",
+                "Node": "hexContract.transferFrom(msg.sender, address(this), newStakedHearts)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "mintEarnings",
+                "Node": "hexContract.transfer(address(stake.receiver), heartsEarned)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TokenStake.amount",
+            "LpStake.lpAmount"
+        ],
+        "User Stake Reward": [
+            "TokenStake.reward",
+            "LpStake.reward"
+        ],
+        "User Stake Time": [
+            "TokenStake.time",
+            "LpStake.time"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "liquidityPair.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.transferFrom(distributor, msg.sender, preReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "token.transferFrom(distributor, msg.sender, preReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "liquidityPair.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

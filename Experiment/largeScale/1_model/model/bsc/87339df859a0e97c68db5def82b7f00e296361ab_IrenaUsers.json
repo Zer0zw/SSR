@@ -1,0 +1,285 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userShoeDetails.stakedAmount",
+            "userDetails.userTotalStaked"
+        ],
+        "User Stake Reward": [
+            "userDetails.userRewardEarned",
+            "userShoeDetails.rewardsClaimed"
+        ],
+        "User Stake Time": [
+            "userShoeDetails.stakedTime",
+            "shoeDetails.shoeStakeDays"
+        ],
+        "Stake Token Address": [
+            "irena"
+        ],
+        "Reward Token Address": [
+            "usdt"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositTokens"
+        ],
+        "getReward": [
+            "claimReward",
+            "withdrawTokens"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdrawTokens"
+        ],
+        "Sensitive Functions": [
+            "withdrawIrena",
+            "withdrawUsdt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositTokens",
+                "Node": [
+                    327
+                ],
+                "Input": [
+                    "_amount",
+                    "_shoePid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "adminFeePercent",
+                    "irena",
+                    "shoeDetails.shoeIsEnabled",
+                    "shoeDetails.shoeTokensToBeStaked"
+                ],
+                "Full Calculation Variables": [
+                    "adminFeePercent",
+                    "irena",
+                    "shoeDetails.shoeIsEnabled",
+                    "shoeDetails.shoeTokensToBeStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawTokens",
+                "Node": [
+                    280
+                ],
+                "Input": [
+                    "_shoePid",
+                    "_userCoveredMeters"
+                ],
+                "Calculation Variables": [
+                    "shoeDetails.shoeDailyMeters",
+                    "shoeDetails.shoePrice",
+                    "shoeDetails.shoePricePerMeter",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.lastClaimedTime",
+                    "userShoeDetails.rewardsClaimed",
+                    "userShoeDetails.userId"
+                ],
+                "Control Variables": [
+                    "intervalBlock",
+                    "shoeDetails.shoeDailyMeters",
+                    "shoeDetails.shoePrice",
+                    "shoeDetails.shoePricePerMeter",
+                    "usdt",
+                    "userDetails.userCoveredMeters",
+                    "userDetails.userId",
+                    "userDetails.userRewardEarned",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.lastClaimedTime",
+                    "userShoeDetails.rewardsClaimed",
+                    "userShoeDetails.userId",
+                    "userTransactionReceipt.MetersCovered",
+                    "userTransactionReceipt.lastClaimedTime",
+                    "userTransactionReceipt.lastMetersCovered",
+                    "userTransactionReceipt.rewardsClaimed",
+                    "userTransactionReceipt.shoePid",
+                    "userTransactionReceipt.transactionTime",
+                    "userTransactionReceipt.userId"
+                ],
+                "Full Calculation Variables": [
+                    "intervalBlock",
+                    "shoeDetails.shoeDailyMeters",
+                    "shoeDetails.shoePrice",
+                    "shoeDetails.shoePricePerMeter",
+                    "usdt",
+                    "userDetails.userCoveredMeters",
+                    "userDetails.userId",
+                    "userDetails.userRewardEarned",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.lastClaimedTime",
+                    "userShoeDetails.rewardsClaimed",
+                    "userShoeDetails.userId",
+                    "userTransactionReceipt.MetersCovered",
+                    "userTransactionReceipt.lastClaimedTime",
+                    "userTransactionReceipt.lastMetersCovered",
+                    "userTransactionReceipt.rewardsClaimed",
+                    "userTransactionReceipt.shoePid",
+                    "userTransactionReceipt.transactionTime",
+                    "userTransactionReceipt.userId"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimReward",
+                "Node": [
+                    317
+                ],
+                "Input": [
+                    "_shoePid",
+                    "_userCoveredMeters"
+                ],
+                "Calculation Variables": [
+                    "shoeDetails.shoeDailyMeters",
+                    "shoeDetails.shoePrice",
+                    "shoeDetails.shoePricePerMeter",
+                    "shoeDetails.shoeStockLeft",
+                    "shoeDetails.shoeUseDays",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.dateOfBuying",
+                    "userShoeDetails.expired",
+                    "userShoeDetails.lastClaimedTime",
+                    "userShoeDetails.paidAmount",
+                    "userShoeDetails.rewardsClaimed",
+                    "userShoeDetails.userId"
+                ],
+                "Control Variables": [
+                    "intervalBlock",
+                    "shoeDetails.shoeDailyMeters",
+                    "shoeDetails.shoePrice",
+                    "shoeDetails.shoePricePerMeter",
+                    "shoeDetails.shoeStockLeft",
+                    "shoeDetails.shoeUseDays",
+                    "usdt",
+                    "userDetails.paidAmount",
+                    "userDetails.userCoveredMeters",
+                    "userDetails.userId",
+                    "userDetails.userRewardEarned",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.dateOfBuying",
+                    "userShoeDetails.expired",
+                    "userShoeDetails.lastClaimedTime",
+                    "userShoeDetails.paidAmount",
+                    "userShoeDetails.rewardsClaimed",
+                    "userShoeDetails.userId",
+                    "userTransactionReceipt.MetersCovered",
+                    "userTransactionReceipt.lastClaimedTime",
+                    "userTransactionReceipt.lastMetersCovered",
+                    "userTransactionReceipt.rewardsClaimed",
+                    "userTransactionReceipt.shoePid",
+                    "userTransactionReceipt.transactionTime",
+                    "userTransactionReceipt.userId"
+                ],
+                "Full Calculation Variables": [
+                    "intervalBlock",
+                    "shoeDetails.shoeDailyMeters",
+                    "shoeDetails.shoePrice",
+                    "shoeDetails.shoePricePerMeter",
+                    "shoeDetails.shoeStockLeft",
+                    "shoeDetails.shoeUseDays",
+                    "usdt",
+                    "userDetails.paidAmount",
+                    "userDetails.userCoveredMeters",
+                    "userDetails.userId",
+                    "userDetails.userRewardEarned",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.dateOfBuying",
+                    "userShoeDetails.expired",
+                    "userShoeDetails.lastClaimedTime",
+                    "userShoeDetails.paidAmount",
+                    "userShoeDetails.rewardsClaimed",
+                    "userShoeDetails.userId",
+                    "userTransactionReceipt.MetersCovered",
+                    "userTransactionReceipt.lastClaimedTime",
+                    "userTransactionReceipt.lastMetersCovered",
+                    "userTransactionReceipt.rewardsClaimed",
+                    "userTransactionReceipt.shoePid",
+                    "userTransactionReceipt.transactionTime",
+                    "userTransactionReceipt.userId"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTokens",
+                "Node": [
+                    355
+                ],
+                "Input": [
+                    "_MetersCovered",
+                    "_shoePid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "adminFeePercent",
+                    "irena",
+                    "shoeDetails.shoePrice",
+                    "shoeDetails.shoeStakeDays",
+                    "shoeDetails.shoeStockLeft",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.dateOfBuying",
+                    "userShoeDetails.expired",
+                    "userShoeDetails.paidAmount",
+                    "userShoeDetails.stakedAmount",
+                    "userShoeDetails.stakedTime",
+                    "userShoeDetails.withdrawTime"
+                ],
+                "Full Calculation Variables": [
+                    "adminFeePercent",
+                    "irena",
+                    "shoeDetails.shoePrice",
+                    "shoeDetails.shoeStakeDays",
+                    "shoeDetails.shoeStockLeft",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.dateOfBuying",
+                    "userShoeDetails.expired",
+                    "userShoeDetails.paidAmount",
+                    "userShoeDetails.stakedAmount",
+                    "userShoeDetails.stakedTime",
+                    "userShoeDetails.withdrawTime"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    379
+                ],
+                "Input": [
+                    "_shoePid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "irena",
+                    "isEmergencyWithdrawable",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.dateOfBuying",
+                    "userShoeDetails.expired",
+                    "userShoeDetails.paidAmount",
+                    "userShoeDetails.stakedAmount",
+                    "userShoeDetails.stakedTime",
+                    "userShoeDetails.withdrawTime"
+                ],
+                "Full Calculation Variables": [
+                    "irena",
+                    "isEmergencyWithdrawable",
+                    "userShoeDetails.MetersCovered",
+                    "userShoeDetails.dateOfBuying",
+                    "userShoeDetails.expired",
+                    "userShoeDetails.paidAmount",
+                    "userShoeDetails.stakedAmount",
+                    "userShoeDetails.stakedTime",
+                    "userShoeDetails.withdrawTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

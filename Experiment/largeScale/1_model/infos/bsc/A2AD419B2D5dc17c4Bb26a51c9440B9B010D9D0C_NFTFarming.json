@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.numMinerNFTs"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "timeLockReward"
+        ],
+        "User Stake Time": [
+            "lockedPeroid"
+        ],
+        "Stake Token Address": [
+            "minerNFT"
+        ],
+        "Reward Token Address": [
+            "melos"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onERC1155BatchReceived",
+                "Node": "_safeNFTTransferFrom(address(this), _from, _ids)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "_safeMELOSTransfer(sender, drawableBalance)"
+            },
+            {
+                "Function": "claim",
+                "Node": "_payPendingRewardIfAvailable(sender, user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "retrieve",
+                "Node": "_safeNFTTransferFrom(address(this), sender, _ids)"
+            },
+            {
+                "Function": "emergencyRetrieve",
+                "Node": "_safeNFTTransferFrom(address(this), sender, ids)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "calcReward"
+        ],
+        "User Stake Time": [
+            "Stake.startDate",
+            "Stake.endDate"
+        ],
+        "Stake Token Address": [
+            "BLUE_ART"
+        ],
+        "Reward Token Address": [
+            "BLUE_ART"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bool success = BLUE_ART.transferFrom(senderUser, address(this), parsedTokenAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "bool success = BLUE_ART.transfer(senderUser, reward)"
+            },
+            {
+                "Function": "updateStakeDuration",
+                "Node": "bool success = BLUE_ART.transfer(senderUser, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "bool success = BLUE_ART.transfer(senderUser, reward)"
+            }
+        ]
+    }
+}

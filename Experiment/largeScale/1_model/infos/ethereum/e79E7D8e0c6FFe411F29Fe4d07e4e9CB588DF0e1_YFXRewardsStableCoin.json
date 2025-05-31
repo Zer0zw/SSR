@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "weiBalanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "SUPPORTED_STAKING_COIN_ADDRESSES"
+        ],
+        "Reward Token Address": [
+            "yfx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(tokenAddress).safeTransferFrom(msg.sender, _wallet, tokenAmount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "super.tokenStake(tokenAddress, left)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "yfx.safeTransfer(msg.sender, actualPaid)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "yfx.safeTransfer(referrer, commission)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.tokenWithdraw(tokenAddress, amount)"
+            }
+        ]
+    }
+}

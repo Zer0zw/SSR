@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenA",
+            "tokenB"
+        ],
+        "Reward Token Address": [
+            "LDO",
+            "QUICK"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, matic_bal)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(QUICK).safeTransfer(strategist, _quick)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(LDO).safeTransfer(strategist, _rewardBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, feeAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

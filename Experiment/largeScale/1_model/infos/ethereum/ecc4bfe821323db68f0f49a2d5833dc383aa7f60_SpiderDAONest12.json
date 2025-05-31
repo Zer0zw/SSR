@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakes"
+        ],
+        "User Stake Reward": [
+            "REWARD_PERC"
+        ],
+        "User Stake Time": [
+            "deposited"
+        ],
+        "Stake Token Address": [
+            "SpiderDAOToken"
+        ],
+        "Reward Token Address": [
+            "rewardAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "SpiderDAOToken.safeTransferFrom(staker, address(this), remaining)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "SpiderDAOToken.safeTransferFrom(rewardAddress, from, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "SpiderDAOToken.safeTransfer(from, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "SpiderDAOToken.safeTransfer(msg.sender,_stakes[msg.sender])"
+            },
+            {
+                "Function": "emergencyWithdrawAdmin",
+                "Node": "SpiderDAOToken.safeTransfer(msg.sender,SpiderDAOToken.balanceOf(address(this)))"
+            }
+        ]
+    }
+}

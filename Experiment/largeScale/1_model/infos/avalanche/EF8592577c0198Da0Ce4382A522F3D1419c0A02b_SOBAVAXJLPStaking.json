@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "_SOBJLPToken"
+        ],
+        "Reward Token Address": [
+            "_SOBJLPToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(_SOBJLPToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(_SOBJLPToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(_SOBJLPToken.transfer(msg.sender, unstakedAmount)"
+            }
+        ]
+    }
+}

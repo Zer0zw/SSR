@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "farmedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "farmedAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_wormDeposit",
+                "Node": "IWault(stakingRewardsAddress).deposit(pid, _farmedAmt, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_wormHarvest",
+                "Node": "IWault(stakingRewardsAddress).claim(pid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_wormWithdraw",
+                "Node": "IWault(stakingRewardsAddress).withdraw(pid, _farmedAmt, true)"
+            },
+            {
+                "Function": "_emergencyWormWithdraw",
+                "Node": "IWault(stakingRewardsAddress).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

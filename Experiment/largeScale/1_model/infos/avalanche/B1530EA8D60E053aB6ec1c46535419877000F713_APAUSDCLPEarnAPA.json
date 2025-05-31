@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastStakingBlock"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ERC20(stakedToken).transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "safeERC20Transfer(ERC20(rewardTokens[i]), address(msg.sender), pending"
+            },
+            {
+                "Function": "withdraw2",
+                "Node": "safeERC20Transfer(ERC20(rewardTokens[i]), address(_caller), pending"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "safeERC20Transfer(ERC20(stakedToken), address(msg.sender), amountToTransfer"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ERC20(stakedToken).transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdraw2",
+                "Node": "ERC20(stakedToken).transfer(address(_caller), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "safeERC20Transfer(ERC20(stakedToken), address(msg.sender), amountToTransfer)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "cooldowns"
+        ],
+        "Stake Token Address": [
+            "poolInfo.assetToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "StakingPools.deposit(_pid, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IStrategyRouter(strategyRouter).harvest(_asset, _msgSender(), userAmount, totalClusterLocked)"
+            },
+            {
+                "Function": "triggerHarvest",
+                "Node": "IStrategyRouter(strategyRouter).harvest(_asset, _user, userAmount, totalClusterLocked)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "StakingPools.withdraw(_pid, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stake"
+        ],
+        "User Stake Reward": [
+            "UserInfo.autoAlphaBetaShares"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime"
+        ],
+        "Stake Token Address": [
+            "STAKED_TOKEN"
+        ],
+        "Reward Token Address": [
+            "ALPHABETA"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "VAULT_TOKEN.mint(msg.sender, currentShares)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "VAULT_TOKEN.mint(msg.sender, currentShares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_safeALPHABETATransfer(msg.sender, withdrawAmount)"
+            },
+            {
+                "Function": "_claimRewards",
+                "Node": "_safeALPHABETATransfer(msg.sender, withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "STAKED_TOKEN.safeTransfer(msg.sender, currentAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "STAKED_TOKEN.safeTransfer(msg.sender, currentAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposits.depositAmount"
+        ],
+        "User Stake Reward": [
+            "Deposits.rewards"
+        ],
+        "User Stake Time": [
+            "Deposits.depositTime",
+            "Deposits.endTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(_payMe(from, amount), \"Payment failed\")"
+            },
+            {
+                "Function": "_stake",
+                "Node": "require(_payMe(from, amount), \"Payment failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "if (_payDirect(from, amount.add(reward)))"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "if (_payDirect(from, amount.add(reward)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "bool principalPaid = _payDirect(from, amount)"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "bool principalPaid = _payDirect(from, amount)"
+            }
+        ]
+    }
+}

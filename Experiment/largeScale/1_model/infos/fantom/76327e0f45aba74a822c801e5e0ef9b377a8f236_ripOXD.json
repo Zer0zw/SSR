@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount",
+            "shares"
+        ],
+        "User Stake Reward": [
+            "claimableOxSolid"
+        ],
+        "User Stake Time": [
+            "withdrawalOpenUntil"
+        ],
+        "Stake Token Address": [
+            "oxd"
+        ],
+        "Reward Token Address": [
+            "oxSOLID"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestIfEnoughOxSolid",
+                "Node": "router.swapExactTokensForTokens(amountIn, 0, routes, address(this), block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "oxd.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

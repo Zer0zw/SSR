@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Referrer.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Referrer.stakeComission"
+        ],
+        "User Stake Time": [
+            "Referrer.staking_days",
+            "Referrer.timestamp"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "referredStake",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "token.transfer(msg.sender, comission)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnStaking",
+                "Node": "token.transfer(msg.sender, result + user.stakedAmount)"
+            },
+            {
+                "Function": "UnStaking",
+                "Node": "token.transfer(msg.sender, RQ[msg.sender].stakeComission)"
+            }
+        ]
+    }
+}

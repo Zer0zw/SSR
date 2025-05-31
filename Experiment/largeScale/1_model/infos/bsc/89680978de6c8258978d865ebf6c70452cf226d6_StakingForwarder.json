@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "timelocks.LockedItem.amount"
+        ],
+        "User Stake Reward": [
+            "amountOut"
+        ],
+        "User Stake Time": [
+            "lockInterval",
+            "month"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "returnToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "returnToken.mint(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw30Day",
+                "Node": "stakeToken.transfer(msg.sender, amountOut)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakeToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "NFTbalanceForAddress"
+        ],
+        "User Stake Reward": [
+            "claimableForAddress",
+            "totalRewardClaimedForAddress"
+        ],
+        "User Stake Time": [
+            "lastUpdateTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakeNFTContract"
+        ],
+        "Reward Token Address": [
+            "rewardsTokenContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeNFT",
+                "Node": "stakeNFTContract.safeTransferFrom(msg.sender, address(this), tokensId[i]"
+            },
+            {
+                "Function": "batchStakeNFT",
+                "Node": "stakeNFTContract.safeTransferFrom(msg.sender, address(this), tokensId[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsTokenContract.mint(msg.sender, claimAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNft",
+                "Node": "stakeNFTContract.safeTransferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeAllNFTForAddress",
+                "Node": "unstakeNft(NFTtokenIdsStakedForAddress[msg.sender][0])"
+            }
+        ]
+    }
+}

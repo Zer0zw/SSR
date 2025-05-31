@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "User.stakeRewards"
+        ],
+        "User Stake Time": [
+            "TokenData.stakeStartTime"
+        ],
+        "Stake Token Address": [
+            "usdc"
+        ],
+        "Reward Token Address": [
+            "usdc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_transfer(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "stakeTrialNFT",
+                "Node": "_transfer(ownerOf(tokenId), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakingRewards",
+                "Node": "usdc.transfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "claimReferrerRewards",
+                "Node": "usdc.transfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_transfer(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

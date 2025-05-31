@@ -1,0 +1,66 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount",
+            "underlyingAmount",
+            "cTokenAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "sushiToken",
+            "sushiBar",
+            "aaveSushiToken",
+            "crSushiToken",
+            "crXSushiToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeSushi",
+                "Node": "IERC20(sushiBar).safeTransfer(to, IERC20(sushiBar).balanceOf(address(this)))"
+            },
+            {
+                "Function": "stakeSushiBalance",
+                "Node": "IERC20(sushiBar).safeTransfer(to, IERC20(sushiBar).balanceOf(address(this)))"
+            },
+            {
+                "Function": "stakeSushiToAave",
+                "Node": "aave.deposit(sushiBar, IERC20(sushiBar).balanceOf(address(this)), to, 0)"
+            },
+            {
+                "Function": "stakeSushiToBento",
+                "Node": "bento.deposit(IERC20(sushiBar), address(this), to, IERC20(sushiBar).balanceOf(address(this)), 0)"
+            },
+            {
+                "Function": "stakeSushiToCream",
+                "Node": "IERC20(crXSushiToken).safeTransfer(to, IERC20(crXSushiToken).balanceOf(address(this)))"
+            },
+            {
+                "Function": "stakeSushiToCreamToBento",
+                "Node": "bento.deposit(IERC20(crXSushiToken), address(this), to, IERC20(crXSushiToken).balanceOf(address(this)), 0)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstakeSushiFromAave",
+                "Node": "sushiToken.safeTransfer(to, sushiToken.balanceOf(address(this)))"
+            },
+            {
+                "Function": "unstakeSushiFromBento",
+                "Node": "sushiToken.safeTransfer(to, sushiToken.balanceOf(address(this)))"
+            },
+            {
+                "Function": "unstakeSushiFromCream",
+                "Node": "sushiToken.safeTransfer(to, sushiToken.balanceOf(address(this)))"
+            },
+            {
+                "Function": "unstakeSushiFromCreamFromBento",
+                "Node": "sushiToken.safeTransfer(to, sushiToken.balanceOf(address(this)))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "getShareFor"
+        ],
+        "User Stake Time": [
+            "addressToTimestamp"
+        ],
+        "Stake Token Address": [
+            "_bc"
+        ],
+        "Reward Token Address": [
+            "_bc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "_bc.transfer(msg.sender, 1000000 ether)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "_bc.transfer(msg.sender, _remaining)"
+            }
+        ]
+    }
+}

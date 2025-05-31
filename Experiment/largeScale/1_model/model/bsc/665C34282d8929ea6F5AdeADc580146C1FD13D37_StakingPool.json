@@ -1,0 +1,220 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingDetails.totalOriginalTokenStaked",
+            "stakingDetails.totalActualCakeStaked"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakingDetails.lastOriginalTokenClaimTime",
+            "stakingDetails.lastCakeClaimTime"
+        ],
+        "Stake Token Address": [
+            "originalToken",
+            "cakeLpToken"
+        ],
+        "Reward Token Address": [
+            "originalToken",
+            "cakeLpToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositCake",
+            "depositOriginalToken"
+        ],
+        "getReward": [
+            "claimCakeTokenEarnings",
+            "claimOriginalTokenEarnings"
+        ],
+        "unStake": [
+            "withdrawCake",
+            "withdrawOriginalToken"
+        ],
+        "Sensitive Functions": [
+            "changeCakeToken",
+            "changeOriginalToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositOriginalToken",
+                "Node": [
+                    590
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "pT"
+                ],
+                "Control Variables": [
+                    "originalToken",
+                    "pT",
+                    "vice"
+                ],
+                "Full Calculation Variables": [
+                    "originalToken",
+                    "pT",
+                    "vice"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositCake",
+                "Node": [
+                    602
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "rate",
+                    "split",
+                    "pT"
+                ],
+                "Control Variables": [
+                    "originalToken",
+                    "rate",
+                    "cakeLpToken",
+                    "pT",
+                    "vice",
+                    "split"
+                ],
+                "Full Calculation Variables": [
+                    "originalToken",
+                    "rate",
+                    "cakeLpToken",
+                    "pT",
+                    "vice",
+                    "split"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimOriginalTokenEarnings",
+                "Node": [
+                    670
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "dateRange",
+                    "originalTokenApy",
+                    "stakingDetails.lastOriginalTokenClaimTime",
+                    "stakingDetails.totalOriginalTokenStaked",
+                    "tokenDecimals"
+                ],
+                "Control Variables": [
+                    "dateRange",
+                    "originalToken",
+                    "originalTokenApy",
+                    "stakingDetails",
+                    "stakingDetails.lastOriginalTokenClaimTime",
+                    "stakingDetails.totalOriginalTokenStaked",
+                    "tokenDecimals",
+                    "vice"
+                ],
+                "Full Calculation Variables": [
+                    "dateRange",
+                    "originalToken",
+                    "originalTokenApy",
+                    "stakingDetails",
+                    "stakingDetails.lastOriginalTokenClaimTime",
+                    "stakingDetails.totalOriginalTokenStaked",
+                    "tokenDecimals",
+                    "vice"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimCakeTokenEarnings",
+                "Node": [
+                    688
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "cakeApy",
+                    "dateRange",
+                    "rate",
+                    "stakingDetails.lastCakeClaimTime",
+                    "stakingDetails.totalActualCakeStaked",
+                    "tokenDecimals"
+                ],
+                "Control Variables": [
+                    "cakeApy",
+                    "dateRange",
+                    "originalToken",
+                    "rate",
+                    "stakingDetails",
+                    "stakingDetails.lastCakeClaimTime",
+                    "stakingDetails.totalActualCakeStaked",
+                    "tokenDecimals"
+                ],
+                "Full Calculation Variables": [
+                    "cakeApy",
+                    "dateRange",
+                    "originalToken",
+                    "rate",
+                    "stakingDetails",
+                    "stakingDetails.lastCakeClaimTime",
+                    "stakingDetails.totalActualCakeStaked",
+                    "tokenDecimals"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawOriginalToken",
+                "Node": [
+                    701
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "originalToken",
+                    "stakingDetails",
+                    "stakingDetails.lastOriginalTokenClaimTime",
+                    "stakingDetails.totalOriginalTokenStaked"
+                ],
+                "Full Calculation Variables": [
+                    "originalToken",
+                    "stakingDetails",
+                    "stakingDetails.lastOriginalTokenClaimTime",
+                    "stakingDetails.totalOriginalTokenStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawCake",
+                "Node": [
+                    720
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "cakeLpToken",
+                    "stakingDetails",
+                    "stakingDetails.lastCakeClaimTime",
+                    "stakingDetails.totalActualCakeStaked",
+                    "stakingDetails.totalConvertedCakeStaked"
+                ],
+                "Full Calculation Variables": [
+                    "cakeLpToken",
+                    "stakingDetails",
+                    "stakingDetails.lastCakeClaimTime",
+                    "stakingDetails.totalActualCakeStaked",
+                    "stakingDetails.totalConvertedCakeStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,119 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "StakeInfo.nblStakeAmount"
+            ],
+            "User Stake Reward": [],
+            "User Stake Time": [
+                "StakeInfo.begin"
+            ],
+            "Stake Token Address": [
+                "nbl",
+                "nft",
+                "inscription"
+            ],
+            "Reward Token Address": []
+        },
+
+        "Functions": {
+            "Stake": [
+                "depositInscription",
+                "depositNbl",
+                "depositNft"
+            ],
+            "getReward": [
+                "harvest"
+            ],
+            "unStake": [
+                "emergencyWithdraw",
+                "withdrawNft"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "depositNft",
+                    "Calculation Variables": [
+                        "nft",
+                        "userStakeInfo.nftTokenId"
+                    ]
+                },
+                {
+                    "Function": "depositInscription",
+                    "Calculation Variables": [
+                        "inscription",
+                        "userStakeInfo.inscriptionId",
+                        "userStakeInfo.nftTokenId"
+                    ]
+                },
+                {
+                    "Function": "depositNbl",
+                    "Calculation Variables": [
+                        "nbl",
+                        "userStakeInfo.nblStakeAmount",
+                        "userStakeInfo.nftTokenId"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "harvest",
+                    "Calculation Variables": [
+                        "harvestPeroid",
+                        "stakebook",
+                        "userLastHarvestTime"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdrawNft",
+                    "Calculation Variables": [
+                        "nft",
+                        "userStakeInfo.nblStakeAmount",
+                        "aheadDiscounts.times",
+                        "inscription",
+                        "userStakeInfo.begin",
+                        "nbl",
+                        "userStakeInfo.nftTokenId",
+                        "aheadDiscounts.amount",
+                        "community",
+                        "userStakeInfo.inscriptionId"
+                    ]
+                },
+                {
+                    "Function": "emergencyWithdraw",
+                    "Calculation Variables": [
+                        "nbl",
+                        "userStakeInfo.nftTokenId",
+                        "nft",
+                        "userStakeInfo.nblStakeAmount",
+                        "userStakeInfo.inscriptionId",
+                        "inscription"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [
+            "depositInscription",
+            "depositNbl",
+            "emergencyWithdraw"
+        ],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

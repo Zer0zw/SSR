@@ -1,0 +1,86 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.firstDepositBlock",
+            "UserInfo.lastDepositBlock",
+            "UserInfo.lastWithdrawBlock",
+            "UserInfo.blockdelta"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "Bao"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "Bao.transfer(msg.sender, pending)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "_harvest(_pid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(75).div(100)",
+                "Condition": "if(user.blockdelta == 0 || block.number == user.lastDepositBlock)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(92).div(100)",
+                "Condition": "else if (user.blockdelta > 0 && user.blockdelta <= 274)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(96).div(100)",
+                "Condition": "else if (user.blockdelta >= 275 && user.blockdelta <= 6600)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(98).div(100)",
+                "Condition": "else if (user.blockdelta >= 6601 && user.blockdelta <= 19800)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(99).div(100)",
+                "Condition": "else if (user.blockdelta >= 19441 && user.blockdelta <= 33000)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(995).div(1000)",
+                "Condition": "else if (user.blockdelta >= 33001 && user.blockdelta <= 90720)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(9975).div(10000)",
+                "Condition": "else if (user.blockdelta >= 90721 && user.blockdelta <= 181440)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(9999).div(10000)",
+                "Condition": "else if (user.blockdelta > 181441)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount.mul(75).div(100)"
+            }
+        ]
+    }
+}

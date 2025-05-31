@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_totalStaked"
+        ],
+        "User Stake Reward": [
+            "_lockedRewards"
+        ],
+        "User Stake Time": [
+            "_unstakingTime"
+        ],
+        "Stake Token Address": [
+            "_stakingToken"
+        ],
+        "Reward Token Address": [
+            "_stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_mint(staker, mintedAmount)"
+            },
+            {
+                "Function": "stakeForUser",
+                "Node": "_mint(account, mintedAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_stakingToken.safeTransfer(caller, claimedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_stakingToken.safeTransfer(caller, amount)"
+            }
+        ]
+    }
+}

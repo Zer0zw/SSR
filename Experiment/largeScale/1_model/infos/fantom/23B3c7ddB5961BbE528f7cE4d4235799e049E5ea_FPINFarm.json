@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens",
+            "totalEarnedEth"
+        ],
+        "User Stake Time": [
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "trustedDepositTokenAddress"
+        ],
+        "Reward Token Address": [
+            "trustedRewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(Token(trustedDepositTokenAddress).transferFrom(msg.sender, address(this), amountToDeposit)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "require(Token(trustedRewardTokenAddress).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "updateAccount",
+                "Node": "require(Token(trustedRewardTokenAddress).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "updateAccount",
+                "Node": "require(Token(pancakeswapRouterV2.WETH()).transfer(account, pendingDivsEth)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(trustedDepositTokenAddress).transfer(msg.sender, amountToWithdraw)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(Token(trustedDepositTokenAddress).transfer(msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

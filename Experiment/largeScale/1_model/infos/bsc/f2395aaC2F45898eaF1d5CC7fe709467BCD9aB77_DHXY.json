@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeModel.amount",
+            "userMap.staketoken"
+        ],
+        "User Stake Reward": [
+            "userMap.income",
+            "stakeModel.hopereward"
+        ],
+        "User Stake Time": [
+            "stakeModel.startime",
+            "stakeModel.darwtime"
+        ],
+        "Stake Token Address": [
+            "_pairAddress"
+        ],
+        "Reward Token Address": [
+            "address(this)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IPancakePair(_pairAddress).transferFrom(msg.sender,stakeWallet, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "draw",
+                "Node": "userMap[msg.sender].income+=amount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(WBNB).transferFrom(transferWallet, stakes[msg.sender][index].account, stakes[msg.sender][index].usdt)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IERC20(address(this)).transferFrom(transferWallet, address(0),burnAmount"
+            }
+        ]
+    }
+}

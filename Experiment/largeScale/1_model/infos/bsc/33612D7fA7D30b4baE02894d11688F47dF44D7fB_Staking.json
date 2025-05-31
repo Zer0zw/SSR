@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "awardPer"
+        ],
+        "User Stake Time": [
+            "Stake.created"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IBEP20(token).transferFrom(user, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(token).transfer(user, amount + award - tax)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(token).transfer(user, amount - tax - punish)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(token).transfer(user, amount + award - tax)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(token).transfer(user, amount - tax - punish)"
+            }
+        ]
+    }
+}

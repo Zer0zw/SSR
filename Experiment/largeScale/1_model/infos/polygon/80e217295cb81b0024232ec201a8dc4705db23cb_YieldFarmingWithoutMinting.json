@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Farmer.balance"
+        ],
+        "User Stake Reward": [
+            "Farmer.rewards"
+        ],
+        "User Stake Time": [
+            "Farmer.startTime"
+        ],
+        "Stake Token Address": [
+            "Farm.lpToken"
+        ],
+        "Reward Token Address": [
+            "Farm.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "farm.lpToken.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "farm.token.transfer(farmer.farmerAddress, reward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "farm.token.transfer(farmer.farmerAddress, reward)"
+            },
+            {
+                "Function": "emergencyWithdrawal",
+                "Node": "farm.token.transfer(farmer.farmerAddress, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "farm.lpToken.transfer(farmer.farmerAddress, amount)"
+            },
+            {
+                "Function": "emergencyWithdrawal",
+                "Node": "farm.lpToken.transfer(farmer.farmerAddress, amount)"
+            }
+        ]
+    }
+}

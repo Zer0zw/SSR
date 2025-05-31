@@ -1,0 +1,121 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userTotalStaked",
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userTotalEarned",
+            "userInfo.amount"
+        ],
+        "User Stake Time": [
+            "userInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "processRequest",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1116
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TreasuryWallet",
+                    "poolInfos.apy",
+                    "poolInfos.lockDay",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "TreasuryWallet",
+                    "poolInfos.apy",
+                    "poolInfos.lockDay",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "processRequest",
+                "Node": [
+                    1146
+                ],
+                "Input": [
+                    "_approve",
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TreasuryWallet",
+                    "_owner",
+                    "poolInfos.apy",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "TreasuryWallet",
+                    "_owner",
+                    "poolInfos.apy",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1168
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount"
+                ],
+                "Control Variables": [
+                    "token",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "token",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

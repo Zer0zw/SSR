@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PoolInfo.totalStaked",
+            "GDT.balanceOf"
+        ],
+        "User Stake Reward": [
+            "PoolInfo.EarnRateSec",
+            "PoolInfo.APR"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lastUpdate"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.GDlptoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterETH",
+                "Node": "GDT.mint(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "enter",
+                "Node": "GDT.mint(msg.sender, amountAfterFee)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leaveETH",
+                "Node": "WETH.withdraw(amountSendOut)"
+            },
+            {
+                "Function": "leave",
+                "Node": "StakedToken.safeTransfer(msg.sender, amountSendOut)"
+            }
+        ]
+    }
+}

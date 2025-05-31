@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [
+            "claimedRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "shares[investor] += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "require(BUSD.transfer(investor, claimableNow), \"BUSD transfer failed\""
+            },
+            {
+                "Function": "claimRewardsFor",
+                "Node": "require(BUSD.transfer(investor, claimableNow), \"BUSD transfer failed\""
+            },
+            {
+                "Function": "compound",
+                "Node": "BUSD.transfer(msg.sender, claimableNow)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "totalShares -= amount"
+            }
+        ]
+    }
+}

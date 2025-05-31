@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "yieldPerDay"
+        ],
+        "User Stake Time": [
+            "_requiredStakeTime",
+            "StakedToken.stakingTimestamp",
+            "StakedToken.lastClaimTimestamp"
+        ],
+        "Stake Token Address": [
+            "zenApesContract"
+        ],
+        "Reward Token Address": [
+            "zenTokenContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "zenApesContract.transferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "zenApesContract.multiTransferFrom(msg.sender, address(this), tokenIds)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "zenTokenContract.mintAsController(msg.sender, claimAmount)"
+            },
+            {
+                "Function": "batchClaim",
+                "Node": "zenTokenContract.mintAsController(msg.sender, claimAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "zenApesContract.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "zenApesContract.multiTransferFrom(address(this), msg.sender, tokenIds)"
+            },
+            {
+                "Function": "ownerUnstakeBatch",
+                "Node": "zenApesContract.transferFrom(address(this), stakedTokens[uint16(cId)].tokenOwner, cId)"
+            }
+        ]
+    }
+}

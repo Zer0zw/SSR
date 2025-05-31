@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "bpTokenBal"
+        ],
+        "User Stake Reward": [
+            "rewardTokenBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "bpToken"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChefv2(MASTER_CHEF).deposit(poolId, bpTokenBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestCore",
+                "Node": "IMasterChefv2(MASTER_CHEF).harvest(poolId, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(bpToken).safeTransfer(vault, bpTokenBal - withdrawFee)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(bpToken).transfer(vault, bpTokenBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMasterChefv2(MASTER_CHEF).emergencyWithdraw(poolId, address(this))"
+            }
+        ]
+    }
+}

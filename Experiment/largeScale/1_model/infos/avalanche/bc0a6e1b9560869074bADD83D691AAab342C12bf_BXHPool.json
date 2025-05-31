@@ -1,0 +1,75 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.multLpRewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "bxh",
+            "multLpToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositBXHAndToken",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount)"
+            },
+            {
+                "Function": "depositBXH",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositBXHAndToken",
+                "Node": "safeBXHTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "depositBXHAndToken",
+                "Node": "IERC20(multLpToken).safeTransfer(_user, tokenPending)"
+            },
+            {
+                "Function": "depositBXH",
+                "Node": "safeBXHTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "withdrawBXHAndToken",
+                "Node": "safeBXHTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "withdrawBXHAndToken",
+                "Node": "IERC20(multLpToken).safeTransfer(_user, tokenPending)"
+            },
+            {
+                "Function": "withdrawBXH",
+                "Node": "safeBXHTransfer(_user, pendingAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBXHAndToken",
+                "Node": "pool.lpToken.safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "withdrawBXH",
+                "Node": "pool.lpToken.safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "emergencyWithdrawBXHAndToken",
+                "Node": "pool.lpToken.safeTransfer(_user, amount)"
+            },
+            {
+                "Function": "emergencyWithdrawBXH",
+                "Node": "pool.lpToken.safeTransfer(_user, amount)"
+            }
+        ]
+    }
+}

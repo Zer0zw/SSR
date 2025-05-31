@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pointsDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.createdAt",
+            "UserInfo.lastUpdateAt"
+        ],
+        "Stake Token Address": [
+            "spiToken"
+        ],
+        "Reward Token Address": [
+            "spiToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(spiToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "spiToken.transfer(msg.sender, amountToTransfer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "spiToken.transfer(msg.sender, userAmount)"
+            }
+        ]
+    }
+}

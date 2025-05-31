@@ -1,0 +1,69 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.busdStaked",
+            "User.bafDeposits.amount"
+        ],
+        "User Stake Reward": [
+            "User.refRewards",
+            "User.lotteryRewards",
+            "User.bafTokensToClaim"
+        ],
+        "User Stake Time": [
+            "User.busdStakeCheckpoint",
+            "User.bafCheckpoint"
+        ],
+        "Stake Token Address": [
+            "BUSD",
+            "BAF_TOKEN"
+        ],
+        "Reward Token Address": [
+            "BUSD",
+            "BAF_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBafTokens",
+                "Node": "BAF_TOKEN.transferFrom(msg.sender, address(this), bafAmount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "BUSD.transferFrom(msg.sender,address(this),busdAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawBafDividends",
+                "Node": "BAF_TOKEN.transfer(msg.sender,totalAmount)"
+            },
+            {
+                "Function": "claimBnbFee",
+                "Node": "payable(msg.sender).transfer(rewards)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(totalAmount)"
+            },
+            {
+                "Function": "withdrawRef",
+                "Node": "payable(msg.sender).transfer(value)"
+            },
+            {
+                "Function": "claimLotteryReward",
+                "Node": "payable(msg.sender).transfer(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeBafTokens",
+                "Node": "BAF_TOKEN.transfer(msg.sender, unstakedAmount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "BUSD.transfer(msg.sender,amount)"
+            }
+        ]
+    }
+}

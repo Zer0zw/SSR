@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingAmount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.startBlock"
+        ],
+        "Stake Token Address": [
+            "goldenAddress"
+        ],
+        "Reward Token Address": [
+            "rtoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(goldenAddress).transferFrom(address(msg.sender), address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(rtoken).transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(goldenAddress).transferFrom(address(this), msg.sender, tokenIds[i])"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IERC20(rtoken).transfer(msg.sender, pending)"
+            }
+        ]
+    }
+}

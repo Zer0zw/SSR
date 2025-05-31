@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "hasStake"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [
+            "_lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "_NFTaddr"
+        ],
+        "Reward Token Address": [
+            "_rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ERC721(_NFTaddr).safeTransferFrom(msg.sender,address(this),tokenids[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_rewardToken.transfer(msg.sender, leftReward )"
+            },
+            {
+                "Function": "govUpdate",
+                "Node": "_rewardToken.transfer(curAddr, leftReward )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "getReward",
+                "Node": "withdraw(_power >= balanceOfPower(msg.sender)?balanceOfPower(msg.sender):_power,msg.sender)"
+            },
+            {
+                "Function": "govUpdate",
+                "Node": "withdraw(_power >= balanceOfPower(curAddr)?balanceOfPower(curAddr):_power,curAddr)"
+            },
+            {
+                "Function": "inviteWithdraw",
+                "Node": "withdraw(amounts,ac)"
+            }
+        ]
+    }
+}

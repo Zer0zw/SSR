@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "userTokensHarvested"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ipefi"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ipefi.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeRewardTokenTransfer(pool.rewardToken, msg.sender, pending"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeRewardTokenTransfer(pool.rewardToken, msg.sender, pending"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ipefi.safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "ipefi.safeTransfer(address(msg.sender), amount"
+            }
+        ]
+    }
+}

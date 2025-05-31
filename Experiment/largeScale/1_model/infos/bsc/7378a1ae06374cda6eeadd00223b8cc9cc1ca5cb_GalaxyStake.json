@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LockInfo.amount"
+        ],
+        "User Stake Reward": [
+            "LockInfo.rewardAmount"
+        ],
+        "User Stake Time": [
+            "LockInfo.lockedAt",
+            "PoolInfo.duration"
+        ],
+        "Stake Token Address": [
+            "rewardToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "router.transferErc20(rewardToken, msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositBySale",
+                "Node": "router.transferErc20(rewardToken, msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardToken.safeTransfer(lockInfo.owner, rewardAmount)"
+            },
+            {
+                "Function": "harvests",
+                "Node": "rewardToken.safeTransfer(lockInfo.owner, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "rewardToken.safeTransfer(lockInfo.owner, _amount)"
+            },
+            {
+                "Function": "withdraws",
+                "Node": "rewardToken.safeTransfer(lockInfo.owner, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.sM.totalStaked",
+            "User.sT.totalStaked"
+        ],
+        "User Stake Reward": [
+            "User.sM.unClaimedTokens",
+            "User.sT.unClaimedTokens"
+        ],
+        "User Stake Time": [
+            "User.sM.checkpoint",
+            "User.sT.checkpoint"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBnb",
+                "Node": "_transfer(msg.sender, address(this), tokenAmount)"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "_transfer(msg.sender, address(this), tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimToken_M",
+                "Node": "_mint(msg.sender, tokenAmount)"
+            },
+            {
+                "Function": "claimToken_T",
+                "Node": "_mint(msg.sender, tokenAmount)"
+            },
+            {
+                "Function": "claimAirdrop",
+                "Node": "_mint(msg.sender, USER_AIRDROP)"
+            },
+            {
+                "Function": "claimAirdropM",
+                "Node": "_mint(msg.sender, amount)"
+            },
+            {
+                "Function": "airdrop",
+                "Node": "_mint(msg.sender, value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeToken",
+                "Node": "_transfer(address(this), msg.sender, tokenAmount)"
+            }
+        ]
+    }
+}

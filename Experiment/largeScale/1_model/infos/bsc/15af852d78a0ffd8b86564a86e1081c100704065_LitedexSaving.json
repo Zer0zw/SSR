@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposits.depositAmount"
+        ],
+        "User Stake Reward": [
+            "Deposits.rewards"
+        ],
+        "User Stake Time": [
+            "Deposits.depositTime",
+            "Deposits.endTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "require(_payMe(_account, amount), \"Litedex: Payment failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdraw",
+                "Node": "if (_payDirect(_account, _amount.add(_reward))"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "bool _principalPaid = _payDirect(_account, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "if (_payDirect(_account, _amount.add(_reward))"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "bool _principalPaid = _payDirect(_account, _amount)"
+            }
+        ]
+    }
+}

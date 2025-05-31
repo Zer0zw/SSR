@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "tokenToLastClaimedStake",
+            "tokenToLastClaimedPassive"
+        ],
+        "User Stake Time": [
+            "StakeData.unlockedTime"
+        ],
+        "Stake Token Address": [
+            "waveCatchers"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ERC721(waveCatchers).safeTransferFrom(_user, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPassiveYield",
+                "Node": "_mint(_user, rewards)"
+            },
+            {
+                "Function": "claimStakingRewards",
+                "Node": "_mint(_user, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC721(waveCatchers).safeTransferFrom(address(this), _user, tokenId)"
+            }
+        ]
+    }
+}

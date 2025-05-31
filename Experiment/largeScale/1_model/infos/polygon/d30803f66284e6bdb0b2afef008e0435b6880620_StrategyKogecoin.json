@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IKogecoin(masterChef).deposit(pid, _wantAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IKogecoin(masterChef).deposit(pid, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IKogecoin(masterChef).withdraw(pid, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IKogecoin(masterChef).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

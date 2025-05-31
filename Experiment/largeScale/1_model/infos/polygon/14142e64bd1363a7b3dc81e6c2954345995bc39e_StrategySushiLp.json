@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "totalDistributedValue"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IFossilFarmsChef(farmPool).deposit(poolId, _baseBal)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IFossilFarmsChef(farmPool).deposit(poolId, _baseBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IFossilFarmsChef(farmPool).deposit(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IFossilFarmsChef(farmPool).withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IFossilFarmsChef(farmPool).withdraw(poolId, _stakedAmount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IFossilFarmsChef(farmPool).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

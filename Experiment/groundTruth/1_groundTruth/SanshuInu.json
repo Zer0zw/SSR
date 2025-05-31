@@ -1,0 +1,135 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "userInfo.amount"
+            ],
+            "User Stake Reward": [
+                "userInfo.rewardDebt"
+            ],
+            "User Stake Time": [],
+            "Stake Token Address": [
+                "poolInfo.tokenContract"
+            ],
+            "Reward Token Address": [
+                "mFundToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "deposit"
+            ],
+            "getReward": [
+                "claimRewards",
+                "deposit",
+                "withdraw"
+            ],
+            "unStake": [
+                "emergencyWithdraw",
+                "withdraw"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "endBlock",
+                        "mFundPerBlock",
+                        "poolInfo.accMfundPerShare",
+                        "poolInfo.allocPoint",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.tokenContract",
+                        "totalAllocPoint",
+                        "userInfo.amount",
+                        "userInfo.rewardDebt"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claimRewards",
+                    "Calculation Variables": [
+                        "endBlock",
+                        "mFundPerBlock",
+                        "poolInfo.accMfundPerShare",
+                        "poolInfo.allocPoint",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.tokenContract",
+                        "totalAllocPoint",
+                        "userInfo.amount",
+                        "userInfo.rewardDebt"
+                    ]
+                },
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "endBlock",
+                        "mFundPerBlock",
+                        "poolInfo.accMfundPerShare",
+                        "poolInfo.allocPoint",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.tokenContract",
+                        "totalAllocPoint",
+                        "userInfo.amount",
+                        "userInfo.rewardDebt"
+                    ]
+                },
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "endBlock",
+                        "mFundPerBlock",
+                        "poolInfo.accMfundPerShare",
+                        "poolInfo.allocPoint",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.tokenContract",
+                        "totalAllocPoint",
+                        "userInfo.amount",
+                        "userInfo.rewardDebt"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "endBlock",
+                        "mFundPerBlock",
+                        "poolInfo.accMfundPerShare",
+                        "poolInfo.allocPoint",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.tokenContract",
+                        "totalAllocPoint",
+                        "userInfo.amount",
+                        "userInfo.rewardDebt"
+                    ]
+                },
+                {
+                    "Function": "emergencyWithdraw",
+                    "Calculation Variables": [
+                        "poolInfo.tokenContract",
+                        "userInfo.amount"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

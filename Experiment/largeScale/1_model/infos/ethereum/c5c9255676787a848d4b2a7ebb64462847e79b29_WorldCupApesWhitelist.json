@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToTokens",
+            "stakerToInitialTokens"
+        ],
+        "User Stake Reward": [
+            "stakerToTokens"
+        ],
+        "User Stake Time": [
+            "stakerToLastClaim"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "WCAToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "buy",
+                "Node": "USDT.safeTransferFrom(msg.sender, wallet, _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "WCAToken.transferFrom(owner(), _address, rewards)"
+            }
+        ],
+        "unStake": []
+    }
+}

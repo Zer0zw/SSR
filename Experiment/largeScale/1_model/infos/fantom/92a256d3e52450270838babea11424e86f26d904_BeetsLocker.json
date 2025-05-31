@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewardsForToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "fBeets"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(_rewardToken).safeTransfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IERC20(_rewardToken).safeTransfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": []
+    }
+}

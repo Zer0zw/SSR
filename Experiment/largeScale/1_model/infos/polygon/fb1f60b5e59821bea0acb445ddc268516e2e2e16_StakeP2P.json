@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.claimed"
+        ],
+        "User Stake Time": [
+            "StakeInfo.startTS",
+            "StakeInfo.endTS"
+        ],
+        "Stake Token Address": [
+            "p2pptoken"
+        ],
+        "Reward Token Address": [
+            "p2pptoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "p2pptoken.transferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "p2pptoken.transfer(_msgSender(), totalTokens)"
+            }
+        ],
+        "unStake": []
+    }
+}

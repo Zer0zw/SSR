@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "platformRewards"
+        ],
+        "User Stake Time": [
+            "DURATION"
+        ],
+        "Stake Token Address": [
+            "_stakingToken"
+        ],
+        "Reward Token Address": [
+            "_rewardsToken",
+            "_platformToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super._stake(_beneficiary, _amount)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "super._stake(_beneficiary, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "_claimReward",
+                "Node": "rewardsToken.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "_claimPlatformReward",
+                "Node": "platformToken.safeTransferFrom(address(platformTokenVendor), msg.sender, platformReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_withdraw(_amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user.amount"
+        ],
+        "User Stake Reward": [
+            "user.reward",
+            "user.rewardDebt"
+        ],
+        "User Stake Time": [
+            "_lastRewardTime",
+            "_endRewardTimeApplicable"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "pendingReward",
+                "Node": "return user.amount * _accRewardPerShare / 1e36 + user.reward - user.rewardDebt"
+            }
+        ],
+        "unStake": []
+    }
+}

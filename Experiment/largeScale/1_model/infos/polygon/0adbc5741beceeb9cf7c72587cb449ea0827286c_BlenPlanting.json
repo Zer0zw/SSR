@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "bs_balances"
+        ],
+        "User Stake Reward": [
+            "bs_rewards"
+        ],
+        "User Stake Time": [
+            "bs_lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "bs_stakingToken"
+        ],
+        "Reward Token Address": [
+            "bs_rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "plant",
+                "Node": "bool success = bs_stakingToken.transferFrom(msg.sender, address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "bool success = bs_rewardToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": "bool success = bs_stakingToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

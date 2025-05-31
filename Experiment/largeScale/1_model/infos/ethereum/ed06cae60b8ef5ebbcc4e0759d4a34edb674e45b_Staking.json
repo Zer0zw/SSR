@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.reflectionBalance",
+            "User.ohmsBalance"
+        ],
+        "User Stake Reward": [
+            "User.paidReflection"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ohms"
+        ],
+        "Reward Token Address": [
+            "ohms"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ohms.transferFrom(address(msg.sender), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "ohms.transfer(address(msg.sender), _ohmsReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "ohms.transfer(address(msg.sender), _ohmsReward)"
+            },
+            {
+                "Function": "restakeRewards",
+                "Node": "totalRewardReflection = totalRewardReflection.sub(_pendingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ohms.transfer(address(msg.sender), amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "ohms.transfer(address(msg.sender), ohmsAmount)"
+            }
+        ]
+    }
+}

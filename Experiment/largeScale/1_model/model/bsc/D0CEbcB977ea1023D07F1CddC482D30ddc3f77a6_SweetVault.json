@@ -1,0 +1,179 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stake"
+        ],
+        "User Stake Reward": [
+            "userInfo.autoPacocaShares"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime"
+        ],
+        "Stake Token Address": [
+            "STAKED_TOKEN"
+        ],
+        "Reward Token Address": [
+            "FARM_REWARD_TOKEN"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimRewards",
+            "withdraw"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1088,
+                    1089,
+                    1090,
+                    1091,
+                    1092
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "STAKED_TOKEN",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "userInfo.autoPacocaShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.rewardDebt",
+                    "userInfo.stake"
+                ],
+                "Full Calculation Variables": [
+                    "STAKED_TOKEN",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "userInfo.autoPacocaShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.rewardDebt",
+                    "userInfo.stake"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1186
+                ],
+                "Input": [
+                    "_shares",
+                    "_update"
+                ],
+                "Calculation Variables": [
+                    "AUTO_PACOCA"
+                ],
+                "Control Variables": [
+                    "AUTO_PACOCA",
+                    "accSharesPerStakedToken",
+                    "userInfo.autoPacocaShares",
+                    "userInfo.rewardDebt",
+                    "userInfo.stake"
+                ],
+                "Full Calculation Variables": [
+                    "AUTO_PACOCA",
+                    "accSharesPerStakedToken",
+                    "userInfo.autoPacocaShares",
+                    "userInfo.rewardDebt",
+                    "userInfo.stake"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    1186
+                ],
+                "Input": [
+                    "_shares",
+                    "_shares",
+                    "_update"
+                ],
+                "Calculation Variables": [
+                    "AUTO_PACOCA"
+                ],
+                "Control Variables": [
+                    "userInfo.stake",
+                    "userInfo.rewardDebt",
+                    "_status",
+                    "_ENTERED",
+                    "userInfo.autoPacocaShares",
+                    "accSharesPerStakedToken",
+                    "_NOT_ENTERED",
+                    "AUTO_PACOCA"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.stake",
+                    "userInfo.rewardDebt",
+                    "_status",
+                    "_ENTERED",
+                    "userInfo.autoPacocaShares",
+                    "accSharesPerStakedToken",
+                    "_NOT_ENTERED",
+                    "AUTO_PACOCA"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "earlyWithdrawFee"
+                ],
+                "Control Variables": [
+                    "IS_CAKE_STAKING",
+                    "STAKED_TOKEN",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "accSharesPerStakedToken",
+                    "earlyWithdrawFee",
+                    "userInfo.autoPacocaShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.rewardDebt",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "IS_CAKE_STAKING",
+                    "STAKED_TOKEN",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "accSharesPerStakedToken",
+                    "earlyWithdrawFee",
+                    "userInfo.autoPacocaShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.rewardDebt",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

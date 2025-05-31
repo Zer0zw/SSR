@@ -1,0 +1,66 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "UserInfo.amountDetail"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "pendingReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.createDates",
+            "UserInfo.typeContract"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingReward",
+                "Node": "rewardToken.safeTransfer(address(msg.sender), pending.mul(8).div(10))"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "rewardToken.safeTransfer(tpLeader, commissionAmount)"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "rewardToken.safeTransfer(lowlead, commissionAmountLead)"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "rewardToken.safeTransfer(_referrallevel1, commissionAmount1)"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "rewardToken.safeTransfer(_referrallevel2, commissionAmount2)"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "rewardToken.safeTransfer(_referrallevel3, commissionAmount3)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,162 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "allUserStakings.stakingAmt"
+        ],
+        "User Stake Reward": [
+            "userReward"
+        ],
+        "User Stake Time": [
+            "allUserStakings.stakingStartTime",
+            "allUserStakings.stakingEndTime"
+        ],
+        "Stake Token Address": [
+            "looTokenAddress"
+        ],
+        "Reward Token Address": [
+            "looTokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "staking"
+        ],
+        "getReward": [
+            "claimReward",
+            "withdrawProfit"
+        ],
+        "unStake": [
+            "forceUnStakingByIdWhenAccidental",
+            "unStaking"
+        ],
+        "Sensitive Functions": [
+            "forceStopMineWhenAccidental",
+            "setLooTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": [
+                    345
+                ],
+                "Input": [
+                    "_boss",
+                    "_planId",
+                    "_stakingAmt"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MIN_STAKING_AMT",
+                    "looTokenAddress",
+                    "stakingPool",
+                    "unlocked",
+                    "userService",
+                    "userStakingItems"
+                ],
+                "Full Calculation Variables": [
+                    "MIN_STAKING_AMT",
+                    "looTokenAddress",
+                    "stakingPool",
+                    "unlocked",
+                    "userService",
+                    "userStakingItems"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawProfit",
+                "Node": [
+                    381
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "looTokenAddress",
+                    "unlocked"
+                ],
+                "Full Calculation Variables": [
+                    "looTokenAddress",
+                    "unlocked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimReward",
+                "Node": [
+                    439
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "userReward"
+                ],
+                "Control Variables": [
+                    "looTokenAddress",
+                    "rewardsWallet",
+                    "userReward"
+                ],
+                "Full Calculation Variables": [
+                    "looTokenAddress",
+                    "rewardsWallet",
+                    "userReward"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStaking",
+                "Node": [
+                    543
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "looTokenAddress",
+                    "stakingPool",
+                    "unlocked"
+                ],
+                "Full Calculation Variables": [
+                    "looTokenAddress",
+                    "stakingPool",
+                    "unlocked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "forceUnStakingByIdWhenAccidental",
+                "Node": [
+                    629
+                ],
+                "Input": [
+                    "_stakeId"
+                ],
+                "Calculation Variables": [
+                    "allUserStakings.closed",
+                    "allUserStakings.staker",
+                    "allUserStakings.stakingAmt"
+                ],
+                "Control Variables": [
+                    "_owner",
+                    "allUserStakings.closed",
+                    "allUserStakings.staker",
+                    "allUserStakings.stakingAmt",
+                    "looTokenAddress",
+                    "stakingPool"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "allUserStakings.closed",
+                    "allUserStakings.staker",
+                    "allUserStakings.stakingAmt",
+                    "looTokenAddress",
+                    "stakingPool"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

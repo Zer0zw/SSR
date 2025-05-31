@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pairBal",
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "fBeetsBal",
+            "depositTokenBalance"
+        ],
+        "User Stake Time": [
+            "timestamp"
+        ],
+        "Stake Token Address": [
+            "lpToken",
+            "underlyingLP"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "secondRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChefv2(masterChef).deposit(poolId, pairBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IMasterChefv2(masterChef).harvest(poolId, address(this))"
+            },
+            {
+                "Function": "swapBribeToken",
+                "Node": "_swap(_token, rewardToken, _route, IERC20(_token).balanceOf(address(this)))"
+            },
+            {
+                "Function": "swapBribeTokenWithUniRouter",
+                "Node": "IUniRouterMinimal(_router).swapExactTokensForTokensSupportingFeeOnTransferTokens(IERC20(_path[0]).balanceOf(address(this)), 0, _path, address(this), block.timestamp + 600)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpToken).safeTransfer(vault, pairBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(lpToken).transfer(vault, pairBal)"
+            }
+        ]
+    }
+}

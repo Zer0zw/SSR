@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "starBalance",
+            "customBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "pledge"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_customLP).safeTransferFrom(msg.sender, address(this), customAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "safeWithdraw",
+                "Node": "IERC20(_customLP).safeTransfer(user, customBalance[_customLP][user])"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_customLP).safeTransfer(msg.sender, customAmount)"
+            }
+        ]
+    }
+}

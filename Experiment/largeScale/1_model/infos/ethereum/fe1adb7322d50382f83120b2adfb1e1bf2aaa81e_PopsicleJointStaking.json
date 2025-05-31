@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "UserInfo.remainingIceTokenReward",
+            "UserInfo.sushiRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "sushi",
+            "ice"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lpToken.approve(address(masterChef), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "sushi.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "ice.transfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "sushi.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "ice.transfer(_to, _amount)"
+            }
+        ]
+    }
+}

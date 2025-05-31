@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakeAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.stakeStartTime",
+            "UserInfo.stakePeriodIndex"
+        ],
+        "Stake Token Address": [
+            "hxto"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "hxto.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "hxto.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

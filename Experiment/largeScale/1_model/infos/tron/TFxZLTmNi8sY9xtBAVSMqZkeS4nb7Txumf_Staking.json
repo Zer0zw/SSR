@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenBalanceLedger"
+        ],
+        "User Stake Reward": [
+            "payoutsLDA",
+            "payoutsTRX"
+        ],
+        "User Stake Time": [
+            "lastDripTime",
+            "lastMintTime"
+        ],
+        "Stake Token Address": [
+            "trc20"
+        ],
+        "Reward Token Address": [
+            "trc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "tokenBalanceLedger[_customerAddress] =  tokenBalanceLedger[_customerAddress].add(_amountOfTokens)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "tokenBalanceLedger[_customerAddress] =  tokenBalanceLedger[_customerAddress].add(_amountOfTokens)"
+            },
+            {
+                "Function": "stakeTokens",
+                "Node": "tokenBalanceLedger[_customerAddress] =  tokenBalanceLedger[_customerAddress].add(_incomingLDA)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "trc20.transfer(_customerAddress, _dividends)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_customerAddress.transfer(_dividends)"
+            },
+            {
+                "Function": "roll",
+                "Node": "_tokens = jungle.buyFor.value(_dividends)(address(0), _customerAddress)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "tokenBalanceLedger[_customerAddress] = tokenBalanceLedger[_customerAddress].sub(_amountOfTokens)"
+            }
+        ]
+    }
+}

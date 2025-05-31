@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "AccountInfo.balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "AccountInfo.lastStakedTimestamp",
+            "AccountInfo.lastUnstakedTimestamp"
+        ],
+        "Stake Token Address": [
+            "bscsToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bscsToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "bscsToken.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

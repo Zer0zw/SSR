@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balance"
+        ],
+        "User Stake Reward": [
+            "rewardNOW"
+        ],
+        "User Stake Time": [
+            "stakeTime"
+        ],
+        "Stake Token Address": [
+            "ethContract"
+        ],
+        "Reward Token Address": [
+            "ethContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositEth",
+                "Node": "token2.transferFrom(msg.sender, address(this), depositamount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsETH",
+                "Node": "token2.transfer(msg.sender, rewardNOW)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawALL",
+                "Node": "token2.transfer(msg.sender, result)"
+            },
+            {
+                "Function": "withdrawALL",
+                "Node": "token2.transfer(msg.sender, result + amountTogo)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardAmount"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakingDays"
+        ],
+        "Stake Token Address": [
+            "poolInfo.stakeToken"
+        ],
+        "Reward Token Address": [
+            "CollarToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "(pool.stakeToken).transferFrom(msg.sender, address(this), _tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "CollarToken.transfer(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "(pool.stakeToken).transfer(msg.sender, user.stakeAmount)"
+            }
+        ]
+    }
+}

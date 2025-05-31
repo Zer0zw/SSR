@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "harvesting_stakers.amount_staked"
+        ],
+        "User Stake Reward": [
+            "reward_per_token"
+        ],
+        "User Stake Time": [
+            "harvesting_stakers.entry_epoch"
+        ],
+        "Stake Token Address": [
+            "stable1_address"
+        ],
+        "Reward Token Address": [
+            "stake1_address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking_stable1",
+                "Node": "ERC20(stable1_address).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest_rewards",
+                "Node": "ERC20(stake1_address).transfer(msg.sender, amount_vested)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstaking_stable1",
+                "Node": "ERC20(stable1_address).transfer(msg.sender, amount_to_unstake)"
+            }
+        ]
+    }
+}

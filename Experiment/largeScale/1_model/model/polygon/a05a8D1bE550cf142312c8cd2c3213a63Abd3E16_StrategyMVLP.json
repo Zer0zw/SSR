@@ -1,0 +1,187 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "native"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "beforeDeposit",
+            "harvest",
+            "managerHarvest"
+        ],
+        "unStake": [
+            "retireStrat",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1908
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "cooldown",
+                    "extraCooldownDuration",
+                    "mvlpManager"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "cooldown",
+                    "extraCooldownDuration",
+                    "mvlpManager"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "beforeDeposit",
+                "Node": [
+                    1978
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "cooldown",
+                    "extraCooldownDuration",
+                    "minter",
+                    "mvlpManager",
+                    "native"
+                ],
+                "Full Calculation Variables": [
+                    "cooldown",
+                    "extraCooldownDuration",
+                    "minter",
+                    "mvlpManager",
+                    "native"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "harvest",
+                "Node": [
+                    1978
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "harvestFees.partnerFee",
+                    "FULL_PERCENT",
+                    "native",
+                    "harvestFees.managerFee"
+                ],
+                "Control Variables": [
+                    "harvestFees.partnerFee",
+                    "native",
+                    "harvestFees.managerFee",
+                    "feeCollectors.managerFeeRecipient",
+                    "minter",
+                    "extraCooldownDuration",
+                    "mvlpManager",
+                    "FULL_PERCENT",
+                    "cooldown",
+                    "feeCollectors.partnerFeeRecipient"
+                ],
+                "Full Calculation Variables": [
+                    "harvestFees.partnerFee",
+                    "native",
+                    "harvestFees.managerFee",
+                    "feeCollectors.managerFeeRecipient",
+                    "minter",
+                    "extraCooldownDuration",
+                    "mvlpManager",
+                    "FULL_PERCENT",
+                    "cooldown",
+                    "feeCollectors.partnerFeeRecipient"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "managerHarvest",
+                "Node": [
+                    1978
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "cooldown",
+                    "extraCooldownDuration",
+                    "minter",
+                    "mvlpManager",
+                    "native"
+                ],
+                "Full Calculation Variables": [
+                    "cooldown",
+                    "extraCooldownDuration",
+                    "minter",
+                    "mvlpManager",
+                    "native"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1920
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "want"
+                ],
+                "Control Variables": [
+                    "vault",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "vault",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "retireStrat",
+                "Node": [
+                    2023
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "want"
+                ],
+                "Control Variables": [
+                    "chef",
+                    "vault",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "chef",
+                    "vault",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

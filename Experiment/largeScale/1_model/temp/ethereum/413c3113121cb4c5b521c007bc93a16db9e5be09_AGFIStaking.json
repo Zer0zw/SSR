@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "agfi"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "agfi.safeTransferFrom(_msgSender(), address(this), _amountMinusFee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeTokenTransfer(_token, _msgSender(), _pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeTokenTransfer(_token, _msgSender(), _pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "agfi.safeTransfer(_msgSender(), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "agfi.safeTransfer(_msgSender(), _amount)"
+            }
+        ]
+    }
+}

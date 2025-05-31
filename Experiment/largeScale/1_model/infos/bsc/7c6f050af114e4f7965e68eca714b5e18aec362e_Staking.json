@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "holdingXstaking"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "rewardsGiaPagati"
+        ],
+        "User Stake Time": [
+            "quandoStake"
+        ],
+        "Stake Token Address": [
+            "Token"
+        ],
+        "Reward Token Address": [
+            "Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "Token.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeprivate",
+                "Node": "Token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "Token.transfer(msg.sender, yourrewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Token.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

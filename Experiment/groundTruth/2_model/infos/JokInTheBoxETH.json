@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amountStaked"
+        ],
+        "User Stake Reward": [
+            "Staker.rewardsClaimed"
+        ],
+        "User Stake Time": [
+            "Stake.lockPeriod",
+            "Stake.stakedDay",
+            "Stake.unstakedDay"
+        ],
+        "Stake Token Address": [
+            "jokToken"
+        ],
+        "Reward Token Address": [
+            "jokToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "jokToken.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "require(jokToken.transfer(msg.sender, totalEarnings), \"Token transfer failed!\""
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(jokToken.transfer(msg.sender, currentStake.amountStaked), \"Token transfer failed!\""
+            }
+        ]
+    }
+}

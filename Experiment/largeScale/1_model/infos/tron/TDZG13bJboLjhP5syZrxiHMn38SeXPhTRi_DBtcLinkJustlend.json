@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "gBalanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "stoptime"
+        ],
+        "Stake Token Address": [
+            "btcToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.safeTransferFrom(address(msg.sender), address(this), amount.mul(abrate))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "token.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "token.safeTransfer(address(msg.sender), gBalanceOf[msg.sender])"
+            },
+            {
+                "Function": "exit",
+                "Node": "BtcMinePool(userFreMinePool[msg.sender]).transfer(IERC20(btcToken), msg.sender, usdtBalance.sub(fee))"
+            }
+        ]
+    }
+}

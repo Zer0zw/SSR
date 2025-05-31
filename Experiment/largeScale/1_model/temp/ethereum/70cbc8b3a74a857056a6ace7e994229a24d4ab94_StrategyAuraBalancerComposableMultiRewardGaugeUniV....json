@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output",
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IAuraBooster(booster).deposit(pid, wantBal, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IAuraRewardPool(rewardPool).getReward()"
+            },
+            {
+                "Function": "managerHarvest",
+                "Node": "IAuraRewardPool(rewardPool).getReward()"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IAuraRewardPool(rewardPool).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IAuraRewardPool(rewardPool).withdrawAndUnwrap(_amount - wantBal, false)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IAuraRewardPool(rewardPool).withdrawAndUnwrap(balanceOfPool(), false)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IAuraRewardPool(rewardPool).withdrawAndUnwrap(balanceOfPool(), false)"
+            }
+        ]
+    }
+}

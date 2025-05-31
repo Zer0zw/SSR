@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "epoch.distribute"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "Kronos"
+        ],
+        "Reward Token Address": [
+            "sKronos"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( sKronos ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(sKronos).safeTransfer(receiver, _amount )"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( Kronos ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IDiamondHand(diamondHand).deposit(msg.sender, _amount)"
+            }
+        ]
+    }
+}

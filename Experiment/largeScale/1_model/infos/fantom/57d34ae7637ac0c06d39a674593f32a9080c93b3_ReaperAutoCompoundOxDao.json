@@ -1,0 +1,62 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "SOLID",
+            "OXD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IOxPool(oxPool).depositLp(wantBalance)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IMultiRewards(stakingAddress).stake(wantBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "IMultiRewards(stakingAddress).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IMultiRewards(stakingAddress).withdraw(_withdrawAmount - wantBalance)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IOxPool(oxPool).withdrawLp(_withdrawAmount - wantBalance)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IMultiRewards(stakingAddress).exit()"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IOxPool(oxPool).withdrawLp(IOxPool(oxPool).balanceOf(address(this)))"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMultiRewards(stakingAddress).exit()"
+            },
+            {
+                "Function": "panic",
+                "Node": "IOxPool(oxPool).withdrawLp(IOxPool(oxPool).balanceOf(address(this)))"
+            }
+        ]
+    }
+}

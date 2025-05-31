@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "User.totalAmount"
+        ],
+        "User Stake Time": [
+            "User.depositTime",
+            "User.endTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(address(token), _msgSender(), address(this), _amount)"
+            },
+            {
+                "Function": "_stakeTokens",
+                "Node": "TransferHelper.safeTransferFrom(address(token), _msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "TransferHelper.safeTransferFrom(address(token), rewardingWallet, _address, claimcurrentReward)"
+            },
+            {
+                "Function": "claim",
+                "Node": "TransferHelper.safeTransferFrom(address(token), rewardingWallet, _address, claimcurrentReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnstakeTokens",
+                "Node": "token.transfer(_address, wUser.stakedAmount)"
+            },
+            {
+                "Function": "_unstakeTokens",
+                "Node": "token.transfer(_address, wUser.stakedAmount)"
+            },
+            {
+                "Function": "EarlyUnstake",
+                "Node": "token.transfer(_msgSender(), wUser.stakedAmount.sub(_fee))"
+            },
+            {
+                "Function": "_earlyUnstakeTokens",
+                "Node": "token.transfer(_msgSender(), wUser.stakedAmount.sub(_fee))"
+            }
+        ]
+    }
+}

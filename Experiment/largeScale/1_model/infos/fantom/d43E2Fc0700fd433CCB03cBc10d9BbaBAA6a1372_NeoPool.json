@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amountLP",
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardDebtMorph"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "mlqdrlp",
+            "mlqdr"
+        ],
+        "Reward Token Address": [
+            "wftm",
+            "morph"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(mlqdrlp).safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingReward",
+                "Node": "IERC20(wftm).safeTransfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "pendingMorph",
+                "Node": "IERC20(morph).safeTransfer(address(msg.sender), pendingMorphReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(mlqdrlp).safeTransfer(address(msg.sender), _amount)"
+            }
+        ]
+    }
+}

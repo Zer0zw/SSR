@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakes.amount"
+        ],
+        "User Stake Reward": [
+            "userStakes.apy"
+        ],
+        "User Stake Time": [
+            "userStakes.term"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_burn(_msgSender(), amount)"
+            },
+            {
+                "Function": "claimMintRewardAndStake",
+                "Node": "_mint(_msgSender(), ownReward.mul(95).div(100))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimMintReward",
+                "Node": "_mint(_msgSender(), rewardAmount.mul(95).div(100))"
+            },
+            {
+                "Function": "claimMintRewardAndShare",
+                "Node": "_mint(_msgSender(), ownReward.mul(95).div(100))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_mint(_msgSender(), userStake.amount + xenReward.mul(95).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_mint(_msgSender(), userStake.amount + xenReward.mul(95).div(100))"
+            }
+        ]
+    }
+}

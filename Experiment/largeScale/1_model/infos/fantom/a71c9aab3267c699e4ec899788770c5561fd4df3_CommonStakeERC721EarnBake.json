@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakingPower"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "erc721"
+        ],
+        "Reward Token Address": [
+            "bakeryToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "erc721.safeTransferFrom(_msgSender(), address(this), _tokenId)"
+            },
+            {
+                "Function": "batchStake",
+                "Node": "erc721.safeTransferFrom(_msgSender(), address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeBakeTransfer(_msgSender(), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "erc721.safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "batchUnstake",
+                "Node": "erc721.safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "erc721.safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "erc721.safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            }
+        ]
+    }
+}

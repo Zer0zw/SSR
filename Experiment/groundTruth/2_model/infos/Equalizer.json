@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalAmountDeposited"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastDepositBlockNr"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "provideLiquidity",
+                "Node": "_mint(msg.sender, receivedETokens)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "removeLiquidity",
+                "Node": "require(stakedToken.transfer(msg.sender, stakedTokensToTransfer), 'TRANSFER_STAKED_FAIL'"
+            }
+        ]
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.claimable"
+        ],
+        "User Stake Time": [
+            "Stake.since"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_burn(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStakes",
+                "Node": "_mint(msg.sender, amount_to_mint)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakes",
+                "Node": "_mint(msg.sender, amount_to_mint)"
+            }
+        ]
+    }
+}

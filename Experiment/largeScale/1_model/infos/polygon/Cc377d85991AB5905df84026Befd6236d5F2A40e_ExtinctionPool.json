@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "eMYT"
+        ],
+        "Reward Token Address": [
+            "REWARD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "transact",
+                "Node": "eMYT.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "transact",
+                "Node": "safeRewardTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "safeRewardTransfer",
+                "Node": "REWARD.safeTransfer(_to, rewardBalance)"
+            },
+            {
+                "Function": "safeRewardTransfer",
+                "Node": "REWARD.safeTransfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "transact",
+                "Node": "eMYT.safeTransfer(burnAddress, user.amount)"
+            }
+        ]
+    }
+}

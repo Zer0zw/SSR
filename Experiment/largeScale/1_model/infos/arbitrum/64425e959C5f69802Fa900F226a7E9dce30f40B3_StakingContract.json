@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakingInfo.amountStake"
+        ],
+        "User Stake Reward": [
+            "UserStakingInfo.claimedReward"
+        ],
+        "User Stake Time": [
+            "UserStakingInfo.stakingTime"
+        ],
+        "Stake Token Address": [
+            "XraiTokenAddress"
+        ],
+        "Reward Token Address": [
+            "XraiTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(XraiTokenAddress).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "require(IERC20(XraiTokenAddress).transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(IERC20(XraiTokenAddress).transfer(msg.sender, amountForTransfer)"
+            }
+        ]
+    }
+}

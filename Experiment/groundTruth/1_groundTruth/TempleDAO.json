@@ -1,0 +1,121 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "_balances"
+            ],
+            "User Stake Reward": [
+                "claimableRewards"
+            ],
+            "User Stake Time": [
+                "rewardData.lastUpdateTime"
+            ],
+            "Stake Token Address": [
+                "stakingToken"
+            ],
+            "Reward Token Address": [
+                "rewardTokens"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake",
+                "stakeAll",
+                "stakeFor"
+            ],
+            "getReward": [
+                "getReward",
+                "getRewards"
+            ],
+            "unStake": [
+                "migrateWithdraw",
+                "withdraw",
+                "withdrawAll"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stakeFor",
+                    "Calculation Variables": [
+                        "stakingToken"
+                    ]
+                },
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "stakingToken"
+                    ]
+                },
+                {
+                    "Function": "stakeAll",
+                    "Calculation Variables": [
+                        "stakingToken"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "getRewards",
+                    "Calculation Variables": [
+                        "claimableRewards",
+                        "rewardData",
+                        "rewardTokens",
+                        "userRewardPerTokenPaid",
+                        "rewardData.rewardPerTokenStored",
+                        "rewardData.lastUpdateTime"
+                    ]
+                },
+                {
+                    "Function": "getReward",
+                    "Calculation Variables": [
+                        "claimableRewards",
+                        "rewardData",
+                        "rewardTokens",
+                        "userRewardPerTokenPaid",
+                        "rewardData.rewardPerTokenStored",
+                        "rewardData.lastUpdateTime"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "stakingToken"
+                    ]
+                },
+                {
+                    "Function": "migrateWithdraw",
+                    "Calculation Variables": [
+                        "migrator",
+                        "stakingToken"
+                    ]
+                },
+                {
+                    "Function": "withdrawAll",
+                    "Calculation Variables": [
+                        "stakingToken"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

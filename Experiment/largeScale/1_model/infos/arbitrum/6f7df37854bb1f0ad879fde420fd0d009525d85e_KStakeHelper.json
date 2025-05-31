@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_value"
+        ],
+        "User Stake Reward": [
+            "Boardseat.rewardEarned"
+        ],
+        "User Stake Time": [
+            "BoardSnapshot.time"
+        ],
+        "Stake Token Address": [
+            "stakeETH",
+            "stakeUSDT"
+        ],
+        "Reward Token Address": [
+            "stakeETH",
+            "stakeUSDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": "stor.stakeFor(msg.sender, _to, _value)"
+            },
+            {
+                "Function": "stake",
+                "Node": "stor.stakeFor(msg.sender, msg.sender, _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "uint eth_amt = IStake(stakeETH).getRewardByHelper(msg.sender)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "uint usdt_amt = IStake(stakeUSDT).getRewardByHelper(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stor.withdraw(msg.sender, _index)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "stor.withdraw(msg.sender, 0)"
+            }
+        ]
+    }
+}

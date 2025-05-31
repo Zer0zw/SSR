@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pendingRewards",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onMDustReward",
+                "Node": "user.amount = lpTokenAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onMDustReward",
+                "Node": "rewardToken.safeTransfer(to, user.pendingRewards)"
+            }
+        ],
+        "unStake": []
+    }
+}

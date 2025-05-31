@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.staked"
+        ],
+        "User Stake Reward": [
+            "Stake.totalEarned",
+            "Stake.oldClaimableAmount"
+        ],
+        "User Stake Time": [
+            "Stake.lastStakedTime",
+            "Stake.lastUnStakedTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_token.transferFrom(msg.sender, locker, tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_token.transferFrom(locker, msg.sender, totalClaimableAmount)"
+            },
+            {
+                "Function": "emergency_withdraw",
+                "Node": "_token.transferFrom(locker, userAddress, totalClaimableAmount + unstakeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_token.transferFrom(locker, msg.sender, unstakeAmount)"
+            }
+        ]
+    }
+}

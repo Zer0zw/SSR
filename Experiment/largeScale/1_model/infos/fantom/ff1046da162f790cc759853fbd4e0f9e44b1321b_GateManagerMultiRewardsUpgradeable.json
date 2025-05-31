@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "RewardInfo.duration"
+        ],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": [
+            "RewardInfo.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositMoonPot",
+                "Node": "IERC20Upgradeable(underlying).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositMoonPot",
+                "Node": "IERC20Upgradeable(underlying).safeApprove(address(prizePool), amount - halvedAmount)"
+            },
+            {
+                "Function": "depositMoonPot",
+                "Node": "IERC20Upgradeable(underlying).safeApprove(address(mooToken), halvedAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20Upgradeable(token).safeTransfer(user, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "IGateManagerMultiRewards(ziggy).depositMoonPot(user, reward, address(0))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawMoonPotYieldShares",
+                "Node": "IERC20Upgradeable(underlying).safeTransfer(user, diff)"
+            },
+            {
+                "Function": "withdrawMoonPotYieldShares",
+                "Node": "IERC20Upgradeable(underlying).safeTransfer(user, shares)"
+            },
+            {
+                "Function": "withdrawInstantlyFromMoonPotPrizePool",
+                "Node": "prizePool.withdrawInstantlyFrom(msg.sender, amount, prizePoolControlledToken, exitFee)"
+            }
+        ]
+    }
+}

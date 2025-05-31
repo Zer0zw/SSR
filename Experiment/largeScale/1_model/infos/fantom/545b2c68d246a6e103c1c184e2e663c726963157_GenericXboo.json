@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedInMasterchef"
+        ],
+        "User Stake Reward": [
+            "rewardsEachSecond"
+        ],
+        "User Stake Time": [
+            "poolStarts",
+            "poolEnds"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "emissionToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "xboo.enter(balance)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "masterchef.deposit(pid, balanceOfXboo())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "masterchef.withdraw(pid, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "xboo.leave(Math.min(amountToFreeInXboo, balanceXboo))"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "want.safeTransfer(address(strategy), _liquidatedAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "xboo.leave(balanceXboo)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "want.safeTransfer(address(strategy), balanceOfBoo)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolID"
+        ],
+        "User Stake Reward": [
+            "bounty"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "liqToken"
+        ],
+        "Reward Token Address": [
+            "autoSellList"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "IERC20(liqToken).approve(chef, bal)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IChef(chef).deposit(poolID, bal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "automate",
+                "Node": "ERC20(autoSellList[i]).safeTransfer(msg.sender, pendingBounty[i])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "__Reduce",
+                "Node": "IChef(chef).withdrawAndHarvest(poolID, unstake, address(this))"
+            }
+        ]
+    }
+}

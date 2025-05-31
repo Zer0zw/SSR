@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposits.depositAmount"
+        ],
+        "User Stake Reward": [
+            "rewardA",
+            "rewardB"
+        ],
+        "User Stake Time": [
+            "Deposits.depositTime",
+            "Deposits.endTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddressA",
+            "tokenAddressB"
+        ],
+        "Reward Token Address": [
+            "tokenAddressA",
+            "tokenAddressB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "return _payMe(from, amount, token)"
+            },
+            {
+                "Function": "stakeBoth",
+                "Node": "bool stakeA = stake(amountA, tokenAddressA)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "bool paidA = _payDirect(from, rewardA, tokenAddressA)"
+            },
+            {
+                "Function": "withdrawBoth",
+                "Node": "bool withdrawA = withdraw(tokenAddressA)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "bool principalPaid = _payDirect(from, amount, token)"
+            },
+            {
+                "Function": "emergencyWithdrawBoth",
+                "Node": "bool withdrawA = emergencyWithdraw(tokenAddressA)"
+            }
+        ]
+    }
+}

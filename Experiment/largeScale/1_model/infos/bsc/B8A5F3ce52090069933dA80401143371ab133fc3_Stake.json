@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lpStakeAmount",
+            "StakeData.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "_profit"
+        ],
+        "User Stake Time": [
+            "lpStakeTime",
+            "StakeData.stakeTime"
+        ],
+        "Stake Token Address": [
+            "FMT",
+            "mainPairC"
+        ],
+        "Reward Token Address": [
+            "FMT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "LpStake",
+                "Node": "mainPairC.transferFrom(_sender, address(this), _stakeAmount)"
+            },
+            {
+                "Function": "addLpAndStake",
+                "Node": "TransferHelper.safeTransferFrom(address(FMT),_sender,address(this),amountFMT)"
+            },
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(address(FMT),_sender,address(this),_stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStaked",
+                "Node": "TransferHelper.safeTransferFrom(address(FMT),address(_tokenManager),_sender,_profit)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLpStaked",
+                "Node": "TransferHelper.safeTransfer(address(FMT),_sender,amountFMT)"
+            },
+            {
+                "Function": "withdrawStaked",
+                "Node": "TransferHelper.safeTransfer(address(FMT),_sender,_principal)"
+            }
+        ]
+    }
+}

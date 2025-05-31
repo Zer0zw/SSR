@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Record.amount"
+        ],
+        "User Stake Reward": [
+            "Record.gain",
+            "Record.gain2"
+        ],
+        "User Stake Time": [
+            "Record.from",
+            "Record.to"
+        ],
+        "Stake Token Address": [
+            "asset"
+        ],
+        "Reward Token Address": [
+            "asset2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "start",
+                "Node": "asset.safeTransferFrom(msg.sender, address(this), _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "end",
+                "Node": "asset.safeTransferFrom(getOwner(), msg.sender, _interest)"
+            },
+            {
+                "Function": "end",
+                "Node": "asset2.safeTransferFrom(getOwner(), msg.sender, _interest2)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "end",
+                "Node": "asset.safeTransfer(msg.sender, ledger[msg.sender][i].amount - _penalization)"
+            },
+            {
+                "Function": "end",
+                "Node": "asset.safeTransfer(msg.sender, ledger[msg.sender][i].amount)"
+            }
+        ]
+    }
+}

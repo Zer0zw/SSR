@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "balances"
+        ],
+        "User Stake Time": [
+            "checkpoints"
+        ],
+        "Stake Token Address": [
+            "NFTCollection"
+        ],
+        "Reward Token Address": [
+            "Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "NFTCollection.transferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "NFTCollection.transferFrom(msg.sender, address(this), tids[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "Token.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getAllRewards",
+                "Node": "Token.transfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "collect",
+                "Node": "Token.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "NFTCollection.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "NFTCollection.transferFrom(address(this), msg.sender, stakedTokens[msg.sender][i])"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "NFTCollection.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "emergencyWithdrawAll",
+                "Node": "NFTCollection.transferFrom(address(this), msg.sender, stakedTokens[msg.sender][i])"
+            }
+        ]
+    }
+}

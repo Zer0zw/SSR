@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "DURATION"
+        ],
+        "Stake Token Address": [
+            "_want"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, _amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "_mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "want.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdraw(address _cakeChef, uint256 _pid, uint256 _amount)",
+                "Node": "want.safeTransfer(msg.sender, remaining)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(_underlying).safeTransfer(msg.sender, _balance)"
+            }
+        ]
+    }
+}

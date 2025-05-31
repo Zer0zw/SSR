@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositAndStake",
+                "Node": "barnStaking.depositForSomeone(address(this), sharesToMint, msg.sender)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "underlying.safeTransfer(msg.sender, _amount.sub(fee))"
+            }
+        ]
+    }
+}

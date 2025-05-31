@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ParticipantData.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "ParticipantData.claimedTokens"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LPToken"
+        ],
+        "Reward Token Address": [
+            "HoneyToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLp",
+                "Node": "IERC20Upgradeable(address(LPToken)).safeTransferFrom(msg.sender, address(this), amount"
+            },
+            {
+                "Function": "stakeFromEth",
+                "Node": "IERC20Upgradeable(address(LPToken)).safeTransferFrom(msg.sender, address(this), amount"
+            },
+            {
+                "Function": "stakeFromToken",
+                "Node": "IERC20Upgradeable(token).transferFrom(msg.sender, address(this), tokenAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20Upgradeable(address(HoneyToken)).safeTransfer(msg.sender, rewardsToTransfer"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLp",
+                "Node": "IERC20Upgradeable(address(LPToken)).safeTransfer(msg.sender, amount"
+            },
+            {
+                "Function": "unstakeToEth",
+                "Node": "payable(msg.sender).call{value: ethAmount}("
+            },
+            {
+                "Function": "unstakeToToken",
+                "Node": "IERC20Upgradeable(token).transfer(msg.sender, tokenAmount"
+            }
+        ]
+    }
+}

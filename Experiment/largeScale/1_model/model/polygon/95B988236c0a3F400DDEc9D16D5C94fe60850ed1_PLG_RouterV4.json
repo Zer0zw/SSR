@@ -1,0 +1,132 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "invest.balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "invest.block_deposit",
+            "invest.block_withdraw",
+            "invest.block_break"
+        ],
+        "Stake Token Address": [
+            "plg_token"
+        ],
+        "Reward Token Address": [
+            "plg_token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositWithPermit"
+        ],
+        "getReward": [
+            "depositWithPermit"
+        ],
+        "unStake": [
+            "depositWithPermit"
+        ],
+        "Sensitive Functions": [
+            "factoryAddressSetting"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositWithPermit",
+                "Node": [
+                    196
+                ],
+                "Input": [
+                    "account",
+                    "referral",
+                    "value"
+                ],
+                "Calculation Variables": [
+                    "invest.balance",
+                    "invest.cycle"
+                ],
+                "Control Variables": [
+                    "invest.balance",
+                    "invest.cycle",
+                    "permit",
+                    "pool"
+                ],
+                "Full Calculation Variables": [
+                    "invest.balance",
+                    "invest.cycle",
+                    "permit",
+                    "pool"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositWithPermit",
+                "Node": [
+                    197
+                ],
+                "Input": [
+                    "account"
+                ],
+                "Calculation Variables": [
+                    "lockperiod",
+                    "rewardPerCycle",
+                    "invest.block_deposit",
+                    "invest.balance",
+                    "denominator"
+                ],
+                "Control Variables": [
+                    "refreward",
+                    "pool",
+                    "lockperiod",
+                    "invest.cycle",
+                    "rewardPerCycle",
+                    "invest.block_deposit",
+                    "invest.balance",
+                    "manager",
+                    "denominator"
+                ],
+                "Full Calculation Variables": [
+                    "refreward",
+                    "pool",
+                    "lockperiod",
+                    "invest.cycle",
+                    "rewardPerCycle",
+                    "invest.block_deposit",
+                    "invest.balance",
+                    "manager",
+                    "denominator"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "depositWithPermit",
+                "Node": [
+                    196
+                ],
+                "Input": [
+                    "account"
+                ],
+                "Calculation Variables": [
+                    "invest.balance",
+                    "invest.cycle"
+                ],
+                "Control Variables": [
+                    "invest.balance",
+                    "invest.cycle",
+                    "pool"
+                ],
+                "Full Calculation Variables": [
+                    "invest.balance",
+                    "invest.cycle",
+                    "pool"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

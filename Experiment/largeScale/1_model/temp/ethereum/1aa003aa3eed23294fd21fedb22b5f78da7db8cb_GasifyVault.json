@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Lock.amount"
+        ],
+        "User Stake Reward": [
+            "rewardsPool"
+        ],
+        "User Stake Time": [
+            "Lock.unlockTime"
+        ],
+        "Stake Token Address": [
+            "GasifyVaultAddress"
+        ],
+        "Reward Token Address": [
+            "GasifyVaultAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "GasifyVaultAddress.transferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unlock",
+                "Node": "GasifyVaultAddress.transfer(_msgSender(), _totalValue)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "GasifyVaultAddress.transfer(_msgSender(), _totalValue)"
+            }
+        ]
+    }
+}

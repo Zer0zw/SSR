@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.userNfts"
+        ],
+        "User Stake Reward": [
+            "UserInfo.userAccReward",
+            "UserInfo.userHarvestedReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "SPEED_NFT_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(SPEED_NFT_ADDRESS).safeTransferFrom(address(msg.sender), address(this), _tokenId)"
+            },
+            {
+                "Function": "batchStake",
+                "Node": "IERC721(SPEED_NFT_ADDRESS).safeTransferFrom(address(msg.sender), address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(REWARD_TOKEN_ADDRESS).safeTransfer(address(msg.sender), totalMiningInPool)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC721(SPEED_NFT_ADDRESS).safeTransferFrom(address(this), address(msg.sender), _tokenId)"
+            },
+            {
+                "Function": "batchUnStake",
+                "Node": "IERC721(SPEED_NFT_ADDRESS).safeTransferFrom(address(this), address(msg.sender), tokenIds[i])"
+            }
+        ]
+    }
+}

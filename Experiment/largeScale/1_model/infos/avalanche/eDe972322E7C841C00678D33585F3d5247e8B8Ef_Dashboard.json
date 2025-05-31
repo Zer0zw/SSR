@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "strategy.balanceOf",
+            "strategy.principalOf"
+        ],
+        "User Stake Reward": [
+            "strategy.earned",
+            "maximusChef.pendingMaximus"
+        ],
+        "User Stake Time": [
+            "strategy.depositedAt"
+        ],
+        "Stake Token Address": [
+            "strategy.stakingToken"
+        ],
+        "Reward Token Address": [
+            "strategy.rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "calculateProfit",
+                "Node": "profit = strategy.earned(account)"
+            },
+            {
+                "Function": "profitOfPool",
+                "Node": "profit = profitCalculated"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawableOf",
+                "Node": "return ILockedStrategy(pool).withdrawablePrincipalOf(account)"
+            },
+            {
+                "Function": "withdrawableOf",
+                "Node": "return IStrategy(pool).withdrawableBalanceOf(account)"
+            }
+        ]
+    }
+}

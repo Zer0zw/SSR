@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [
+            "stakingEndBlock"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "listRewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakeToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawReward",
+                "Node": "IERC20(_listRewardTokens[i]).safeTransfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "emergencyRewardTokenWithdraw",
+                "Node": "IERC20(_token).safeTransfer(msg.sender, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakeToken.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "stakeToken.safeTransfer(msg.sender, _stakedAmount)"
+            }
+        ]
+    }
+}

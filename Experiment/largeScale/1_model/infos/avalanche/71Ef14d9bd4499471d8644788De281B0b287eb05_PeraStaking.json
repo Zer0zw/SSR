@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.userStaked"
+        ],
+        "User Stake Reward": [
+            "tokenRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.userUnlockingTime",
+            "UserInfo.stakedTimestamp"
+        ],
+        "Stake Token Address": [
+            "TokenInfo.tokenInstance"
+        ],
+        "Reward Token Address": [
+            "TokenInfo.tokenInstance"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "initialStake",
+                "Node": "tokenList[0].tokenInstance.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "additionalStake",
+                "Node": "tokenList[0].tokenInstance.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAllRewards",
+                "Node": "tokenList[activeRewards.at(i)].tokenInstance.safeTransfer(msg.sender, _reward)"
+            },
+            {
+                "Function": "claimSingleReward",
+                "Node": "tokenList[_id].tokenInstance.safeTransfer(msg.sender, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "tokenList[0].tokenInstance.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "tokenList[0].tokenInstance.safeTransfer(msg.sender, userData[msg.sender].userStaked)"
+            }
+        ]
+    }
+}

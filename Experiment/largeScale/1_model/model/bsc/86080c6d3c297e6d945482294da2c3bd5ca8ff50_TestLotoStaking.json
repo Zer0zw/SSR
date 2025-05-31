@@ -1,0 +1,143 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "shares",
+            "distributions.amount"
+        ],
+        "User Stake Time": [
+            "timelock"
+        ],
+        "Stake Token Address": [
+            "dropToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "enter"
+        ],
+        "getReward": [
+            "claim",
+            "leave"
+        ],
+        "unStake": [
+            "leave"
+        ],
+        "Sensitive Functions": [
+            "updateTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "dropToken"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "dropToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1328
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_status",
+                    "claimed",
+                    "startClaimedIndex",
+                    "_NOT_ENTERED",
+                    "_ENTERED",
+                    "lastDistributionIndex",
+                    "_paused"
+                ],
+                "Full Calculation Variables": [
+                    "_status",
+                    "claimed",
+                    "startClaimedIndex",
+                    "_NOT_ENTERED",
+                    "_ENTERED",
+                    "lastDistributionIndex",
+                    "_paused"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "leave",
+                "Node": [
+                    1355
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "claimed",
+                    "lastDistributionIndex",
+                    "startClaimedIndex"
+                ],
+                "Full Calculation Variables": [
+                    "claimed",
+                    "lastDistributionIndex",
+                    "startClaimedIndex"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": [
+                    1183
+                ],
+                "Input": [
+                    "_share"
+                ],
+                "Calculation Variables": [
+                    "dropToken"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "dropToken",
+                    "timelock"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "dropToken",
+                    "timelock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

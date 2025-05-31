@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "allowedTokens"
+        ],
+        "Reward Token Address": [
+            "bivenToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "IERC20(_token).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueTokens",
+                "Node": "bivenToken.transfer(recipient, userTotalValue)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "IERC20(_token).transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

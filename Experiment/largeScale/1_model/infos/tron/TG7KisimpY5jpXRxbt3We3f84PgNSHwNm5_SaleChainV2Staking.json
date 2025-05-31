@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposits"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "_depositsTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeWin",
+                "Node": "_token.transferFrom(payee, address(this), tokenAmount)"
+            },
+            {
+                "Function": "stakeTo",
+                "Node": "require(stakeWin(user, amount), \"Stake to failed\")"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawUnfreeze",
+                "Node": "_token.transfer(payee, tokenAmount)"
+            },
+            {
+                "Function": "migrate",
+                "Node": "withdrawTo(nextPool, userBalance)"
+            }
+        ]
+    }
+}

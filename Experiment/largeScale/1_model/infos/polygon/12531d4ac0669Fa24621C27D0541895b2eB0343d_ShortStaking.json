@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.shortToken"
+        ],
+        "Reward Token Address": [
+            "nsdx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "user.amount = user.amount.add(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "nsdx.safeTransfer(_account, sendAmount)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_withdraw(_pid, 0, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "pool.shortToken.burn(_amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_withdraw(_pid, _amount, _realUser)"
+            }
+        ]
+    }
+}

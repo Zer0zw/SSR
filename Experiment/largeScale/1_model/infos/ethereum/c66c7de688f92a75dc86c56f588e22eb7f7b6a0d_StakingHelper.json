@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "DVault"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( DVault ).transferFrom( msg.sender, address(this), _amount )"
+            },
+            {
+                "Function": "stakeOneMonth",
+                "Node": "IERC20( DVault ).transferFrom( msg.sender, address(this), _amount )"
+            },
+            {
+                "Function": "stakeThreeMonths",
+                "Node": "IERC20( DVault ).transferFrom( msg.sender, address(this), _amount )"
+            },
+            {
+                "Function": "stakeSixMonths",
+                "Node": "IERC20( DVault ).transferFrom( msg.sender, address(this), _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "IStaking( staking ).claim( _recipient )"
+            },
+            {
+                "Function": "stakeOneMonth",
+                "Node": "IStaking( staking ).claim( _recipient )"
+            },
+            {
+                "Function": "stakeThreeMonths",
+                "Node": "IStaking( staking ).claim( _recipient )"
+            },
+            {
+                "Function": "stakeSixMonths",
+                "Node": "IStaking( staking ).claim( _recipient )"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "computeUserReward"
+        ],
+        "User Stake Time": [
+            "computeBlocksStaking"
+        ],
+        "Stake Token Address": [
+            "DAI_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "MANA_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mintNFT",
+                "Node": "DAI_TOKEN.transferFrom(msg.sender, address(this), MINT_PRICE)"
+            },
+            {
+                "Function": "stakeDai",
+                "Node": "DAI_TOKEN.approve(CURVE_SWAP_ADDRESS, daiAmount)"
+            },
+            {
+                "Function": "stakeDai",
+                "Node": "USD_BTC_ETH_TOKEN.approve(CURVE_GAUGE_ADDRESS, usdBtcEthAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "MANA_TOKEN.transfer(msg.sender, userReward)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,151 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [
+            "epoch.distribute"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry"
+        ],
+        "Stake Token Address": [
+            "COW"
+        ],
+        "Reward Token Address": [
+            "sCOW"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "unstake",
+            "unstakeFromCaller"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1011
+                ],
+                "Input": [
+                    "_amount",
+                    "_inviter",
+                    "_recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "COW",
+                    "epoch.distribute",
+                    "epoch.endBlock",
+                    "epoch.length",
+                    "epoch.number",
+                    "sCOW",
+                    "totalBonus",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons",
+                    "warmupInfo.lock",
+                    "warmupPeriod"
+                ],
+                "Full Calculation Variables": [
+                    "COW",
+                    "epoch.distribute",
+                    "epoch.endBlock",
+                    "epoch.length",
+                    "epoch.number",
+                    "sCOW",
+                    "totalBonus",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons",
+                    "warmupInfo.lock",
+                    "warmupPeriod"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1030
+                ],
+                "Input": [
+                    "_recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "epoch.number",
+                    "sCOW",
+                    "warmupContract",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons"
+                ],
+                "Full Calculation Variables": [
+                    "epoch.number",
+                    "sCOW",
+                    "warmupContract",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1062
+                ],
+                "Input": [
+                    "_amount",
+                    "_trigger"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "COW",
+                    "sCOW"
+                ],
+                "Full Calculation Variables": [
+                    "COW",
+                    "sCOW"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "unstakeFromCaller",
+                "Node": [
+                    1073
+                ],
+                "Input": [
+                    "_amount",
+                    "_to",
+                    "_trigger"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "COW",
+                    "_callers",
+                    "sCOW"
+                ],
+                "Full Calculation Variables": [
+                    "COW",
+                    "_callers",
+                    "sCOW"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

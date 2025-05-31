@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeValue"
+        ],
+        "User Stake Reward": [
+            "stakerPayouts"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "RWDS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeOld",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakereturn",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakenewreturn",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakenewreturnrequire",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakenew",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getMyRewards",
+                "Node": "distributor.getrewards(shareholder)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "token.transferFrom(address(this), msg.sender, amount)"
+            },
+            {
+                "Function": "unstakereturn",
+                "Node": "token.transferFrom(address(this), msg.sender, amount)"
+            },
+            {
+                "Function": "unstakereturnrequire",
+                "Node": "token.transferFrom(address(this), msg.sender, amount)"
+            }
+        ]
+    }
+}

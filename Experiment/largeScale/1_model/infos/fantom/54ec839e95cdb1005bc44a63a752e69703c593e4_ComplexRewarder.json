@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onLqdrReward",
+                "Node": "user.amount = lpToken"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onLqdrReward",
+                "Node": "rewardToken.safeTransfer(to, pending)"
+            }
+        ],
+        "unStake": []
+    }
+}

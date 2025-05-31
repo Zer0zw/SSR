@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "LoveBankERC20"
+        ],
+        "Reward Token Address": [
+            "sLoveBankERC20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(sLoveBankERC20).safeTransfer(warmupContract, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup(warmupContract).retrieve(_recipient, IsLoveBank(sLoveBankERC20).balanceForGons(info.gons))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(LoveBankERC20).safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20(LoveBankERC20).safeTransfer(msg.sender, info.deposit)"
+            }
+        ]
+    }
+}

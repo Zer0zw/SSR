@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingPool.balanceOf"
+        ],
+        "User Stake Reward": [
+            "mtaToken.balanceOf",
+            "wMaticToken.balanceOf"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "vault.underlying"
+        ],
+        "Reward Token Address": [
+            "mtaToken",
+            "wMaticToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingPool.stake(vault.balanceOf(address(this)))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingPool.claimReward()"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "mUSDToken.transfer(_recipient,mUSDToken.balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingPool.withdraw(_tokensToShares(_amount))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "vault.redeemCredits(_tokensToShares(_amount))"
+            }
+        ]
+    }
+}

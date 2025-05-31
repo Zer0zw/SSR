@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeUserStruct.stake"
+        ],
+        "User Stake Reward": [
+            "stakeUserStruct.harvested"
+        ],
+        "User Stake Time": [
+            "stakeUserStruct.stakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake_5",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake_10",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake_15",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest_5",
+                "Node": "token.mint(_user, harvestAmount.mul(98).div(100))"
+            },
+            {
+                "Function": "harvest_10",
+                "Node": "token.mint(_user, harvestAmount.mul(98).div(100))"
+            },
+            {
+                "Function": "harvest_15",
+                "Node": "token.mint(_user, harvestAmount.mul(98).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake_5",
+                "Node": "token.transfer(msg.sender, staker_5[msg.sender].stake)"
+            },
+            {
+                "Function": "unstake_10",
+                "Node": "token.transfer(msg.sender, staker_10[msg.sender].stake)"
+            },
+            {
+                "Function": "unstake_15",
+                "Node": "token.transfer(msg.sender, staker_15[msg.sender].stake)"
+            }
+        ]
+    }
+}

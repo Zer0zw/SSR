@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "bool success = ERC20(stakingToken).transferFrom(msg.sender, address(this), assets_"
+            },
+            {
+                "Function": "mint",
+                "Node": "bool success = ERC20(stakingToken).transferFrom(msg.sender, address(this), assets_"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compoundClaim",
+                "Node": "bool success = rewardsToken.transfer(address(this), reward"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "bool success = ERC20(rewardsToken).transfer(account, reward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "bool success = ERC20(stakingToken).transfer(receiver_, assets_"
+            },
+            {
+                "Function": "redeem",
+                "Node": "bool success = ERC20(stakingToken).transfer(receiver_, assets_"
+            }
+        ]
+    }
+}

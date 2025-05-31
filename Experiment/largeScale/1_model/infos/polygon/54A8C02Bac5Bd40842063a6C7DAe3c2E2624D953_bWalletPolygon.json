@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakedAmount",
+            "userStakedAmountMesh"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "WMATIC",
+            "MESH",
+            "USDC",
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "aEthWETH",
+            "MESH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMeshswap",
+                "Node": "meshContract.depositETH()"
+            },
+            {
+                "Function": "stakeETHAave",
+                "Node": "aaveContract.depositETH{value: msg.value}(aaveLendingPool, address(this), 0)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawETHMesh",
+                "Node": "meshContract.withdrawETH(maxUint)"
+            },
+            {
+                "Function": "unstakeETHAave",
+                "Node": "aaveContract.withdrawETH(aaveLendingPool, maxUint, address(this))"
+            }
+        ]
+    }
+}

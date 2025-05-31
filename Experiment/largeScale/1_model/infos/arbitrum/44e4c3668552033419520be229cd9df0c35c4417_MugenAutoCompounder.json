@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_asset.balanceOf(address(this))",
+            "stake.balanceOf(address(this))"
+        ],
+        "User Stake Reward": [
+            "stake.earned(address(this))"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MGN"
+        ],
+        "Reward Token Address": [
+            "WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "_mint(receiver, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compoundMGN",
+                "Node": "stake.compound(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "SafeERC20.safeTransfer(_asset, receiver, assets)"
+            }
+        ]
+    }
+}

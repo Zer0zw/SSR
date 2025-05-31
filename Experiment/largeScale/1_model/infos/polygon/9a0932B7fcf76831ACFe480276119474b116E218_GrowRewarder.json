@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IGrowStrategy.sharesOf"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pendingRewards",
+            "UserInfo.lockedRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.lockedRewardsUnlockedAt"
+        ],
+        "Stake Token Address": [
+            "GROW"
+        ],
+        "Reward Token Address": [
+            "GROW"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "notifyUserSharesUpdate",
+                "Node": "strategyUsers[strategyAddress][userAddress].blockRewardDebt = sharesUpdateTo.mul(strategies[strategyAddress].blockRewardAccGrowPerShare).div(_DECIMAL)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "settleAndGetRewards",
+                "Node": "GROW.safeTransfer(userAddress, rewardPending)"
+            },
+            {
+                "Function": "getRewards",
+                "Node": "settleAndGetRewards(msg.sender, userAddress, true)"
+            },
+            {
+                "Function": "getVaultReward",
+                "Node": "GROW.safeTransfer(vaultAddress, growReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "notifyUserSharesUpdate",
+                "Node": "checkNeedResetLockedRewards(strategyAddress, userAddress)"
+            }
+        ]
+    }
+}

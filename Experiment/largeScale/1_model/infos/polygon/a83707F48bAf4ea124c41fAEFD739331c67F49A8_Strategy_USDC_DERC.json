@@ -1,0 +1,69 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getAmountLPFromFarm"
+        ],
+        "User Stake Reward": [
+            "pendingYel"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "getRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_transfer(token0, lpToken, _desired0)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "_transfer(token1, lpToken, _desired1)"
+            },
+            {
+                "Function": "depositAsMigrate",
+                "Node": "_transfer(WMATIC, routerMain, getBalanceOfToken(WMATIC))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimYel",
+                "Node": "_transfer(YELtoken, _receiver, yelAmount)"
+            },
+            {
+                "Function": "autoCompound",
+                "Node": "_transfer(QUICKToken, routerReward, getBalanceOfToken(QUICKToken))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(lpToken, _receiver, getBalanceOfToken(lpToken))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(getRewardToken(), _receiver, getBalanceOfToken(getRewardToken()))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(QUICKToken, _receiver, getBalanceOfToken(QUICKToken))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(USDT, _receiver, getBalanceOfToken(USDT))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(WMATIC, _receiver, getBalanceOfToken(WMATIC))"
+            },
+            {
+                "Function": "migrate",
+                "Node": "_transfer(WMATIC, vault, getBalanceOfToken(WMATIC))"
+            }
+        ]
+    }
+}

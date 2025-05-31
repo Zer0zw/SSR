@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.stake_amount"
+        ],
+        "User Stake Reward": [
+            "User.APR"
+        ],
+        "User Stake Time": [
+            "User.staking_days"
+        ],
+        "Stake Token Address": [
+            "ERC20Token"
+        ],
+        "Reward Token Address": [
+            "ERC20Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Staking",
+                "Node": "IERC20(ERC20Token).transferFrom(msg.sender, address(this), stake_amount*1e18"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "UnStaking",
+                "Node": "IERC20(ERC20Token).transfer(msg.sender, result + user.stake_amount)"
+            }
+        ]
+    }
+}

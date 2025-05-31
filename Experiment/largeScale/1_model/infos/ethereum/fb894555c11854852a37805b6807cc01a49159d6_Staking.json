@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount",
+            "balances"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.rate",
+            "StakeInfo.coeff"
+        ],
+        "User Stake Time": [
+            "StakeInfo.startDate",
+            "StakeInfo.endDate"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(wliti.transferFrom(msg.sender, address(this), amount), \"transfer failed\")"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "require(wliti.transferFrom(msg.sender, address(this), amount), \"transfer failed\")"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(wliti.transfer(msg.sender, amount + reward), \"transfer failed\")"
+            },
+            {
+                "Function": "unstakeMany",
+                "Node": "require(wliti.transfer(msg.sender, totalAmount + totalReward), \"transfer failed\")"
+            }
+        ]
+    }
+}

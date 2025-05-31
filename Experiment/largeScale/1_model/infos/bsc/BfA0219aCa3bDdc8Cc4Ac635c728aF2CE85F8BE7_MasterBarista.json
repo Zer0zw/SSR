@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.bonusDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_stakeToken"
+        ],
+        "Reward Token Address": [
+            "latte"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_stakeToken).safeTransferFrom(address(_msgSender()), address(this), _amount"
+            },
+            {
+                "Function": "depositLatte",
+                "Node": "IERC20(address(latte)).safeTransferFrom(address(_msgSender()), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "bean.safeLatteTransfer(_for, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "bean.safeLatteTransfer(_for, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_stakeToken).safeTransfer(_msgSender(), _amount)"
+            },
+            {
+                "Function": "withdrawLatte",
+                "Node": "IERC20(address(latte)).safeTransfer(address(_msgSender()), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(_stakeToken).safeTransfer(address(_for), user.amount"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mapMemberStake.tokenValue"
+        ],
+        "User Stake Reward": [
+            "calcStakeCollecting"
+        ],
+        "User Stake Time": [
+            "mapMemberStake.startDay",
+            "mapMemberStake.endDay"
+        ],
+        "Stake Token Address": [
+            "stableCoin"
+        ],
+        "Reward Token Address": [
+            "stableCoin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "EnterStake",
+                "Node": "_burn(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "EndStake",
+                "Node": "IERC20( stableCoin ).safeTransfer( msg.sender, profit )"
+            },
+            {
+                "Function": "collectLendReturn",
+                "Node": "payable(lenderAddress).transfer(toBePaid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "EndStake",
+                "Node": "_mint(msg.sender, stakeReturn + bonusAmount)"
+            }
+        ]
+    }
+}

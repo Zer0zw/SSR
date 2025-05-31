@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "toBePaidMain",
+            "toBePaidMisc"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MainReward",
+            "MiscReward"
+        ],
+        "Reward Token Address": [
+            "MainReward",
+            "MiscReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addToken",
+                "Node": "_addToken(recipient, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimMainReward",
+                "Node": "claimToken(msg.sender,MainReward,0)"
+            },
+            {
+                "Function": "ClaimMiscReward",
+                "Node": "claimToken(msg.sender,MiscReward,0)"
+            },
+            {
+                "Function": "_claimBNBTo",
+                "Node": "_claimBNBTo(from, to, amountWei)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeToken",
+                "Node": "_removeToken(addr, amount)"
+            }
+        ]
+    }
+}

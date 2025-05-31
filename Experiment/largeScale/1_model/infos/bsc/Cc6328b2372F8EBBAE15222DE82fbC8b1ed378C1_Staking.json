@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Participant.sum"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Participant.timeUnlock"
+        ],
+        "Stake Token Address": [
+            "Participant.token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "if(getPair(pairName) == Lp){ ( , , timeTokenLock[msg.sender][txId].sum) = migrate(_sum) }"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "claimFund",
+                "Node": "if(timeTokenLock[msg.sender][_txID].token == Lp){ IERC20(newLp).transfer(msg.sender,timeTokenLock[msg.sender][_txID].sum ) }else{ IERC20(timeTokenLock[msg.sender][_txID].token).transfer(msg.sender,timeTokenLock[msg.sender][_txID].sum) }"
+            }
+        ]
+    }
+}

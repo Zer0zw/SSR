@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAmt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress",
+            "earnedAddress2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(wantAddress).safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "_harvest()"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IHarvester(harvesterAddress).harvest(strategyAddress)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unfarm",
+                "Node": "IAutoFarm(farmContractAddress).withdraw(pid, _wantAmt)"
+            }
+        ]
+    }
+}

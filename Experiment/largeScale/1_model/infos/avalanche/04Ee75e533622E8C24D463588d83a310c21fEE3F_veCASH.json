@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.lastRelease"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastRelease"
+        ],
+        "Stake Token Address": [
+            "_bc"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(_bc.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_mint(_addr, amount)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "_mint(_addr, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_bc.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

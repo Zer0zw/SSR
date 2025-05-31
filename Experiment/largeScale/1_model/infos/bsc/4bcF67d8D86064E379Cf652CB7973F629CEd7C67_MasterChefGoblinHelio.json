@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [
+            "rewardToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addShare",
+                "Node": "farming.deposit(farmingPid, balance, false, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reinvest",
+                "Node": "rewardToken.safeTransfer(rewardTo, bounty)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeShare",
+                "Node": "farming.withdraw(farmingPid, balance, true)"
+            },
+            {
+                "Function": "liquidate",
+                "Node": "baseToken.safeTransfer(msg.sender, wad)"
+            }
+        ]
+    }
+}

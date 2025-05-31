@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.claimed"
+        ],
+        "User Stake Time": [
+            "StakeInfo.durationSet"
+        ],
+        "Stake Token Address": [
+            "naughtyboyToken"
+        ],
+        "Reward Token Address": [
+            "naughtyboyToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "naughtyboyToken.transferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "naughtyboyToken.transfer(_msgSender(), totalTokens)"
+            }
+        ],
+        "unStake": []
+    }
+}

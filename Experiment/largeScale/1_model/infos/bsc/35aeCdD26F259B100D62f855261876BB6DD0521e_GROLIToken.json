@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeHolder.amount"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "stakeHolder.stakeTime"
+        ],
+        "Stake Token Address": [
+            "GRO"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "_mint(_msgSender(), _numberOfTokens.mul(GRO.decimalFactor()))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "_msgSender().transfer(reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "_msgSender().transfer(totalAmount)"
+            }
+        ]
+    }
+}

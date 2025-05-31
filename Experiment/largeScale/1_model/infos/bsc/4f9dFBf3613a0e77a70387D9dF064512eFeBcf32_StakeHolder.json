@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceUser"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStakeOne",
+                "Node": "IBEP20(stakingToken).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getMyRewards",
+                "Node": "IBEP20(stakingReward).transfer(_msgSender(), reward)"
+            },
+            {
+                "Function": "removeMyStake",
+                "Node": "IBEP20(stakingReward).transfer(_msgSender(), rewTotal)"
+            },
+            {
+                "Function": "removeMyStake",
+                "Node": "IBEP20(stakingReward).transfer(_msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeMyStake",
+                "Node": "IBEP20(stakingReward).transfer(_msgSender(), rewTotal)"
+            },
+            {
+                "Function": "removeMyStake",
+                "Node": "IBEP20(stakingReward).transfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

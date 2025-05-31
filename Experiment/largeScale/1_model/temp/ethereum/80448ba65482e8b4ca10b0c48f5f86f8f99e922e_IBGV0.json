@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IBGPlanDetails.stakedIBGTokens",
+            "cycleDetails.investment"
+        ],
+        "User Stake Reward": [
+            "IBGPlanDetails.IBGYieldIncome",
+            "cycleDetails.yieldRateValue"
+        ],
+        "User Stake Time": [
+            "cycleDetails.stakingPeriod",
+            "cycleDetails.investmentTime"
+        ],
+        "Stake Token Address": [
+            "ibg",
+            "usdt"
+        ],
+        "Reward Token Address": [
+            "ibg",
+            "bgbf"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_investment",
+                "Node": "TransferHelper.safeTransfer(address(usdt), treasuryWallet, currentPackAmount.mul((uint(100)).sub(ibgPercentage)).div(100)"
+            },
+            {
+                "Function": "commisionTransfer",
+                "Node": "TransferHelper.safeTransfer(address(usdt), directCommissionWallet, (distributeAmount.mul(10)).div(100)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawIBGYield",
+                "Node": "TransferHelper.safeTransfer(address(ibg), user, ((yieldAmount).mul(90)).div(100)"
+            },
+            {
+                "Function": "iBGYieldCommission",
+                "Node": "TransferHelper.safeTransfer(address(ibg), reciever, amount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawInvestment",
+                "Node": "TransferHelper.safeTransfer(address(ibg), user, totalInvestment"
+            },
+            {
+                "Function": "demotePack",
+                "Node": "users[user].currentPlan = newPlanUsdt"
+            }
+        ]
+    }
+}

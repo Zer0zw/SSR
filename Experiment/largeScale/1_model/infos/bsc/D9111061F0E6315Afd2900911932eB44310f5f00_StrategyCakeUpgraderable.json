@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal",
+            "sharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAmt"
+        ],
+        "User Stake Time": [
+            "lastEarnBlock"
+        ],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(wantAddress).safeTransferFrom(address(msg.sender), address(this), _wantAmt"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IPancakeswapFarm(farmContractAddress).withdraw(pid, 0)"
+            },
+            {
+                "Function": "convertDustToEarned",
+                "Node": "IPancakeRouter02(uniRouterAddress).swapExactTokensForTokensSupportingFeeOnTransferTokens(token0Amt, 0, token0ToEarnedPath, address(this), now + 60"
+            },
+            {
+                "Function": "convertDustToEarned",
+                "Node": "IPancakeRouter02(uniRouterAddress).swapExactTokensForTokensSupportingFeeOnTransferTokens(token1Amt, 0, token1ToEarnedPath, address(this), now + 60"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(wantAddress).safeTransfer(KalmFarmAddress, _wantAmt.sub(exitFee))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(wantAddress).safeTransfer(KalmFarmAddress, _wantAmt)"
+            }
+        ]
+    }
+}

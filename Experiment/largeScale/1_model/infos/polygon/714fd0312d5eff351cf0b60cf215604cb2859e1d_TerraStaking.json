@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStaked",
+            "balance"
+        ],
+        "User Stake Reward": [
+            "earned",
+            "rewards"
+        ],
+        "User Stake Time": [
+            "StakeInfo.timestamp"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.nftAddress"
+        ],
+        "Reward Token Address": [
+            "reward_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(pooldata.nftAddress).safeTransferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "reward_token.safeTransferFrom(owner(), msg.sender, rewards)"
+            },
+            {
+                "Function": "_unstakeMany",
+                "Node": "reward_token.safeTransferFrom(owner(), msg.sender, earned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstakeMany",
+                "Node": "IERC721(poolInfo[pid].nftAddress).safeTransferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeDetails.amount"
+        ],
+        "User Stake Reward": [
+            "stakeDetails.rewards"
+        ],
+        "User Stake Time": [
+            "stakeDetails.stakedTimestamp"
+        ],
+        "Stake Token Address": [
+            "_cwarNftAddress"
+        ],
+        "Reward Token Address": [
+            "_cwarTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFractionalNFT",
+                "Node": "IFRACTIONALTOKEN(_fractionalTokenAddress).safeTransferFrom(msg.sender, address(this), id, amount, \"\")"
+            },
+            {
+                "Function": "stakeNFT",
+                "Node": "ICWARNFT(_cwarNftAddress).safeTransferFrom(msg.sender, address(this), nftid, 1, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "ICWARTOKEN(_cwarTokenAddress).transferFrom(_cwarTokenHoldingAddress, account, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeFractionalNFT",
+                "Node": "IFRACTIONALTOKEN(_fractionalTokenAddress).safeTransferFrom(address(this), msg.sender, id, amount, \"\")"
+            },
+            {
+                "Function": "forceunstakeFractionalNFT",
+                "Node": "IFRACTIONALTOKEN(_fractionalTokenAddress).safeTransferFrom(address(this), account, nftid, amount, \"\")"
+            },
+            {
+                "Function": "unstakeNFT",
+                "Node": "ICWARNFT(_cwarNftAddress).safeTransferFrom(address(this), msg.sender, nftid, 1, \"\")"
+            },
+            {
+                "Function": "forceUnstakeNFT",
+                "Node": "ICWARNFT(_cwarNftAddress).safeTransferFrom(address(this), account, nftid, 1, \"\")"
+            }
+        ]
+    }
+}

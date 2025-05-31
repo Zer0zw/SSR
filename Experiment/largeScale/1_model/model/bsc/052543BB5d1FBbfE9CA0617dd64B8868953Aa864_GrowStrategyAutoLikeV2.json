@@ -1,0 +1,84 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userShares"
+        ],
+        "User Stake Reward": [
+            "remainingRewardTokenAmount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "STAKING_TOKEN"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "emergencyWithdraw",
+            "harvest",
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    2092
+                ],
+                "Input": [
+                    "harvestFromUnderlying"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    2117
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "STAKING_TOKEN",
+                    "totalShares",
+                    "userShares"
+                ],
+                "Control Variables": [
+                    "IS_EMERGENCY_MODE",
+                    "STAKING_TOKEN",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "totalShares",
+                    "userShares"
+                ],
+                "Full Calculation Variables": [
+                    "IS_EMERGENCY_MODE",
+                    "STAKING_TOKEN",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "totalShares",
+                    "userShares"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getAmountLPFromFarm"
+        ],
+        "User Stake Reward": [
+            "pendingYel"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "getRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_transfer(token0, lpToken, _desired0)\n_transfer(token1, lpToken, _desired1)"
+            },
+            {
+                "Function": "depositAsMigrate",
+                "Node": "_transfer(_token, lpToken, amount1)\nIWMATIC(WMATIC).transfer(lpToken, amount0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimYel",
+                "Node": "_transfer(YELtoken, _receiver, yelAmount)"
+            },
+            {
+                "Function": "_getRewardsFromFarm",
+                "Node": "IFarm(farm).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(lpToken, _receiver, getBalanceOfToken(lpToken))\n_transfer(_token, _receiver, getBalanceOfToken(_token))\n_transfer(USDT, _receiver, getBalanceOfToken(USDT))\n_transfer(token0, _receiver, getBalanceOfToken(token0))\n_transfer(token1, _receiver, getBalanceOfToken(token1))"
+            },
+            {
+                "Function": "requestWithdraw",
+                "Node": "pendingYel[_receiver] += yelAmount"
+            },
+            {
+                "Function": "migrate",
+                "Node": "_transfer(WMATIC, vault, getBalanceOfToken(WMATIC))"
+            }
+        ]
+    }
+}

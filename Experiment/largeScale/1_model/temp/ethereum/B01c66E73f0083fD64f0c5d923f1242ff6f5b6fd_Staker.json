@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "timePooled",
+            "internalTime"
+        ],
+        "Stake Token Address": [
+            "corbAddress"
+        ],
+        "Reward Token Address": [
+            "corbAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(corbAddress).mint(address(this), toMint)"
+            },
+            {
+                "Function": "stake",
+                "Node": "Uniswap(UNIROUTER).addLiquidityETH{ value: address(this).balance }(corbAddress, amountTokenDesired, 1, 1, address(this), INF)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokens",
+                "Node": "IERC20(corbAddress).mint(msg.sender, withdrawable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLPTokens",
+                "Node": "IERC20(poolAddress).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

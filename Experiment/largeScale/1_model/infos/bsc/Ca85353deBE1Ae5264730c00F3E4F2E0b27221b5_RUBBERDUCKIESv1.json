@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStake"
+        ],
+        "User Stake Reward": [
+            "stakingPool"
+        ],
+        "User Stake Time": [
+            "stakeUnlockDay"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_balances[sender]=_balances[sender].sub(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAndRemoveStake",
+                "Node": "_balances[msg.sender]=_balances[msg.sender].add(currentStake+userReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimAndRemoveStake",
+                "Node": "_balances[msg.sender]=_balances[msg.sender].add(currentStake+userReward)"
+            }
+        ]
+    }
+}

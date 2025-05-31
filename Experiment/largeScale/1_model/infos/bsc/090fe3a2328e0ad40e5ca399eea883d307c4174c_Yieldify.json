@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "toBePaid",
+            "totalPayout"
+        ],
+        "User Stake Time": [
+            "LastYieldTimestamp"
+        ],
+        "Stake Token Address": [
+            "address(this)"
+        ],
+        "Reward Token Address": [
+            "address(Stablecoin)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addToken",
+                "Node": "_addToken(address(this), yieldToken)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "treasury.transferStablecoin(account,dividents)"
+            },
+            {
+                "Function": "compound",
+                "Node": "treasury.swapForToken(currentAccount,dividents)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeToken",
+                "Node": "_removeToken(addr, amount)"
+            }
+        ]
+    }
+}

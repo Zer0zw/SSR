@@ -1,0 +1,75 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositBalances",
+            "stakedAmounts"
+        ],
+        "User Stake Reward": [
+            "cumulativeRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "myc",
+            "esMyc",
+            "bnMyc",
+            "mlp"
+        ],
+        "Reward Token Address": [
+            "esMyc",
+            "bnMyc",
+            "weth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMyc",
+                "Node": "IRewardTracker(stakedMycTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "stakeEsMyc",
+                "Node": "IRewardTracker(stakedMycTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "mintAndStakeMlp",
+                "Node": "IRewardTracker(feeMlpTracker).stakeForAccount(account, account, mlp, mlpAmount)"
+            },
+            {
+                "Function": "mintAndStakeMlpETH",
+                "Node": "IRewardTracker(feeMlpTracker).stakeForAccount(account, account, mlp, mlpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IRewardTracker(feeMycTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimEsMyc",
+                "Node": "IRewardTracker(stakedMycTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimFees",
+                "Node": "IRewardTracker(feeMycTracker).claimForAccount(account, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeMyc",
+                "Node": "IRewardTracker(stakedMycTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeEsMyc",
+                "Node": "IRewardTracker(stakedMycTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeAndRedeemMlp",
+                "Node": "IRewardTracker(feeMlpTracker).unstakeForAccount(account, mlp, _mlpAmount, account)"
+            },
+            {
+                "Function": "unstakeAndRedeemMlpETH",
+                "Node": "IRewardTracker(feeMlpTracker).unstakeForAccount(account, mlp, _mlpAmount, account)"
+            }
+        ]
+    }
+}

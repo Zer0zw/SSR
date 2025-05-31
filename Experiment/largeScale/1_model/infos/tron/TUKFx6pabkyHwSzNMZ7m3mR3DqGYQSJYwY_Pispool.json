@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Users.superpower",
+            "Users.loanpower"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "rewardsRefer"
+        ],
+        "User Stake Time": [
+            "Users.starttime",
+            "Users.loantime"
+        ],
+        "Stake Token Address": [
+            "usdt",
+            "pusd"
+        ],
+        "Reward Token Address": [
+            "pis"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "buySuperPower",
+                "Node": "usdt.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakePusd",
+                "Node": "pusd.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "pis.mint(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pusd.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

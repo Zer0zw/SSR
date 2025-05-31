@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "onJoeReward",
+                "Node": "if (isNative) {\n            uint256 balance = address(this).balance;\n            if (pending > balance) {\n                (bool success, ) = _user.call.value(balance)(\"\");\n                require(success, \"Transfer failed\");\n            } else {\n                (bool success, ) = _user.call.value(pending)(\"\");\n                require(success, \"Transfer failed\");\n            }\n        } else {\n            uint256 balance = rewardToken.balanceOf(address(this));\n            if (pending > balance) {\n                rewardToken.safeTransfer(_user, balance);\n            } else {\n                rewardToken.safeTransfer(_user, pending);\n            }\n        }"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "if (isNative) {\n            (bool success, ) = msg.sender.call.value(address(this).balance)(\"\");\n            require(success, \"Transfer failed\");\n        } else {\n            rewardToken.safeTransfer(address(msg.sender), rewardToken.balanceOf(address(this)));\n        }"
+            }
+        ]
+    }
+}

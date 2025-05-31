@@ -1,0 +1,162 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeCount"
+        ],
+        "User Stake Reward": [
+            "remainingRewards"
+        ],
+        "User Stake Time": [
+            "stakes.stakeDate",
+            "stakes.latestClaimDate"
+        ],
+        "Stake Token Address": [
+            "stakable"
+        ],
+        "Reward Token Address": [
+            "wallet"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1091
+                ],
+                "Input": [
+                    "stakeDatas"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "stakable"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "stakable"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    1129
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [
+                    "initialLockedDuration",
+                    "rarityMapping",
+                    "remainingRewards",
+                    "rewardMultiplier",
+                    "rewardPerSecs",
+                    "stakes.latestClaimDate",
+                    "stakes.stakeDate",
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.active",
+                    "tokenIdStakeIndexMapping.index",
+                    "totalRarity"
+                ],
+                "Control Variables": [
+                    "initialLockedDuration",
+                    "rarityMapping",
+                    "remainingRewards",
+                    "rewardMultiplier",
+                    "rewardPerSecs",
+                    "stakes.latestClaimDate",
+                    "stakes.stakeDate",
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.active",
+                    "tokenIdStakeIndexMapping.index",
+                    "totalRarity",
+                    "wallet"
+                ],
+                "Full Calculation Variables": [
+                    "initialLockedDuration",
+                    "rarityMapping",
+                    "remainingRewards",
+                    "rewardMultiplier",
+                    "rewardPerSecs",
+                    "stakes.latestClaimDate",
+                    "stakes.stakeDate",
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.active",
+                    "tokenIdStakeIndexMapping.index",
+                    "totalRarity",
+                    "wallet"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.index"
+                ],
+                "Control Variables": [
+                    "stakable",
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.index"
+                ],
+                "Full Calculation Variables": [
+                    "stakable",
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.index"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "account",
+                    "tokenIds"
+                ],
+                "Calculation Variables": [
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.index"
+                ],
+                "Control Variables": [
+                    "_owner",
+                    "stakable",
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.index"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "stakable",
+                    "stakes.tokenId",
+                    "tokenIdStakeIndexMapping.index"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

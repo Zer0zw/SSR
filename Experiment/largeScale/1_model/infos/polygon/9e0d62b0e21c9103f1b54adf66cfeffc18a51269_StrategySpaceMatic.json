@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IMasterchefv2(masterChef).deposit(pid, _wantAmount, referralAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IMasterchefv2(masterChef).deposit(pid, 0, referralAddress)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IMasterchefv2(masterChef).withdraw(pid, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IMasterchefv2(masterChef).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

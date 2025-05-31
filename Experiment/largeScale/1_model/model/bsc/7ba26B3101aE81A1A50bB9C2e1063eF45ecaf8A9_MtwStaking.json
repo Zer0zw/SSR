@@ -1,0 +1,154 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    466
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    461
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "rewardToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "rewardToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    482
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "rewardToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "rewardToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    488
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "totalStakedAmount",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "totalStakedAmount",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    503
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "userInfo.amount"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

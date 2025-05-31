@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "addressRewards",
+            "availableRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_PLAYMATES"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "PLAYMATES.transferFrom(_msgSender(), address(this), amount)"
+            },
+            {
+                "Function": "compoundAndStake",
+                "Node": "MANSIONSHEPLER.claimUtility(userNodes, address(this), amount, address(TAXMANAGER), _msgSender())"
+            }
+        ],
+        "getReward": [],
+        "unStake": []
+    }
+}

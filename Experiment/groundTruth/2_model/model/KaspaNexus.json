@@ -1,0 +1,147 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakes.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "userStakes.claimedReward"
+        ],
+        "User Stake Time": [
+            "userStakes.stakeTime"
+        ],
+        "Stake Token Address": [
+            "mainToken"
+        ],
+        "Reward Token Address": [
+            "mainToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "buyToken",
+            "buyTokenUSDC",
+            "buyTokenUSDT"
+        ],
+        "getReward": [
+            "claimRefReward",
+            "claimTokens"
+        ],
+        "unStake": [
+            "unStake"
+        ],
+        "Sensitive Functions": [
+            "updateToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claimTokens",
+                "Node": [
+                    445
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "users.claimAbleAmount",
+                    "users.claimedAmount"
+                ],
+                "Control Variables": [
+                    "isExist",
+                    "isPresaleEnded",
+                    "mainToken",
+                    "users.claimAbleAmount",
+                    "users.claimedAmount"
+                ],
+                "Full Calculation Variables": [
+                    "isExist",
+                    "isPresaleEnded",
+                    "mainToken",
+                    "users.claimAbleAmount",
+                    "users.claimedAmount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRefReward",
+                "Node": [
+                    457
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "users.refReward"
+                ],
+                "Control Variables": [
+                    "isExist",
+                    "isPresaleEnded",
+                    "mainToken",
+                    "users.refReward"
+                ],
+                "Full Calculation Variables": [
+                    "isExist",
+                    "isPresaleEnded",
+                    "mainToken",
+                    "users.refReward"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": [
+                    425
+                ],
+                "Input": [
+                    "_index"
+                ],
+                "Calculation Variables": [
+                    "APY",
+                    "distributedReward",
+                    "userStakes.claimedTokens",
+                    "userStakes.claimedReward",
+                    "userStakes.stakedTokens",
+                    "userStakes.isUnstake",
+                    "year",
+                    "percentDivider",
+                    "distrubuteAbleReward",
+                    "userStakes.stakeTime",
+                    "userStakes.unstakeTime"
+                ],
+                "Control Variables": [
+                    "APY",
+                    "distributedReward",
+                    "isPresaleEnded",
+                    "userStakes.claimedTokens",
+                    "userStakes.claimedReward",
+                    "userStakes.stakedTokens",
+                    "userStakes.isUnstake",
+                    "year",
+                    "percentDivider",
+                    "distrubuteAbleReward",
+                    "userStakes.stakeTime",
+                    "users.stakeCount",
+                    "mainToken",
+                    "userStakes.unstakeTime"
+                ],
+                "Full Calculation Variables": [
+                    "APY",
+                    "distributedReward",
+                    "isPresaleEnded",
+                    "userStakes.claimedTokens",
+                    "userStakes.claimedReward",
+                    "userStakes.stakedTokens",
+                    "userStakes.isUnstake",
+                    "year",
+                    "percentDivider",
+                    "distrubuteAbleReward",
+                    "userStakes.stakeTime",
+                    "users.stakeCount",
+                    "mainToken",
+                    "userStakes.unstakeTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

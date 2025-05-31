@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "firstStake",
+            "lastStake"
+        ],
+        "Stake Token Address": [
+            "VRGWContract"
+        ],
+        "Reward Token Address": [
+            "VRGWContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeToken",
+                "Node": "require(VRGWContract.transferFrom(msg.sender,address(this), numberOfTokens))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calculate",
+                "Node": "return reward.add(dailyReward.mul((block.timestamp - uint256(lastBuyTime)).div(86400)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "require(VRGWContract.transfer(msg.sender, stakes[msg.sender]))"
+            },
+            {
+                "Function": "unStake",
+                "Node": "require(VRGWContract.transfer(msg.sender, calculate(msg.sender)))"
+            }
+        ]
+    }
+}

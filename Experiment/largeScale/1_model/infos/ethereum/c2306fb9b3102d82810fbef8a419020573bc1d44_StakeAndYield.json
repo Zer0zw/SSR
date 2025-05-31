@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.balance"
+        ],
+        "User Stake Reward": [
+            "User.paidReward",
+            "User.yieldPaidReward"
+        ],
+        "User Stake Time": [
+            "User.exitStartTime"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "yieldRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFor",
+                "Node": "stakedToken.transferFrom(address(msg.sender), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "sendReward",
+                "Node": "rewardToken.transfer(userAddress, amount.sub(_daoShare))"
+            },
+            {
+                "Function": "sendReward",
+                "Node": "yieldRewardToken.transfer(userAddress, yieldAmount.sub(_yieldDaoShare))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfreeze",
+                "Node": "stakedToken.transfer(address(msg.sender), tokenAmount)"
+            },
+            {
+                "Function": "unfreeze",
+                "Node": "sendExitToken(msg.sender, exitAmount)"
+            },
+            {
+                "Function": "withdrawUnfreezed",
+                "Node": "stakedToken.transfer(address(msg.sender), user.withdrawable)"
+            },
+            {
+                "Function": "withdrawUnfreezed",
+                "Node": "sendExitToken(msg.sender, user.withdrawableExit)"
+            }
+        ]
+    }
+}

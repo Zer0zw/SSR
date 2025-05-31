@@ -1,0 +1,72 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerFistPrize, firstA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerSecondPrize, secondA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerThirdPrize, thirdA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerFourthPrize, fourthA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerFifthPrize, fifthA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerSixtPrize, sixthA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerSeventhPrize, seventhA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerEightPrize, eightA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerNinethPrize, ninthA)"
+            },
+            {
+                "Function": "withdrawPrize",
+                "Node": "rewardToken.safeTransfer(winnerTenthPrize, tenthA)"
+            },
+            {
+                "Function": "withdrawZwinners",
+                "Node": "otherWinners.push(holdersAmount[randomnumber])"
+            }
+        ],
+        "unStake": []
+    }
+}

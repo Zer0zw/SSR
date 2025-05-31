@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeProfile.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "userStakeProfile.claimedAmount"
+        ],
+        "User Stake Time": [
+            "userStakeProfile.lastBlockStaked"
+        ],
+        "Stake Token Address": [
+            "ToF"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "ToF.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "(bool os, ) = payable(msg.sender).call{value: reward}(\"\")"
+            },
+            {
+                "Function": "singleCompound",
+                "Node": "require(swapETHForTokens(address(this), address(ToF), reward),\"swapping failed\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "ToF.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

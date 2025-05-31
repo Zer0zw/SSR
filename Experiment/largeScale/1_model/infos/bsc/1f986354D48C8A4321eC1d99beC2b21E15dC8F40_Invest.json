@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "bronze_amount",
+            "silver_amount",
+            "gold_amount"
+        ],
+        "User Stake Reward": [
+            "allInvestments.claimable_reward"
+        ],
+        "User Stake Time": [
+            "allInvestments.DepositTime",
+            "allInvestments.expire_Time"
+        ],
+        "Stake Token Address": [
+            "usdt_address"
+        ],
+        "Reward Token Address": [
+            "token_address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "USDT(usdt_address).transferFrom(msg.sender,address(this),bronze_amount)"
+            },
+            {
+                "Function": "Stake",
+                "Node": "USDT(usdt_address).transferFrom(msg.sender,address(this),silver_amount)"
+            },
+            {
+                "Function": "Stake",
+                "Node": "USDT(usdt_address).transferFrom(msg.sender,address(this),gold_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "USDT(token_address).transfer(investor,_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "USDT(token_address).transfer(msg.sender,amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "STAKER.stakeBalance"
+        ],
+        "User Stake Reward": [
+            "STAKER.rewardPending"
+        ],
+        "User Stake Time": [
+            "STAKER.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "DIBI"
+        ],
+        "Reward Token Address": [
+            "DBL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "DEBIToken(DIBI).transferFrom(msg.sender,address(this),_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "DBLendToken(DBL).mint(msg.sender,earned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "DEBIToken(DIBI).transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "DEBIToken(DIBI).transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

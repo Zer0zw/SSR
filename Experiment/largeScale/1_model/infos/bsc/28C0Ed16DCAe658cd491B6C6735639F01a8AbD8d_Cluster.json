@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "DelegatorEarning.amount"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "mockToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestUserRewardsFromDelegators",
+                "Node": "delegator.delegator.harvestUserReward(msg.sender, user.lastDepositBlock, totalShares, user.shares)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, currentAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "stakingToken.safeTransfer(msg.sender, currentAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.numberNFTStaked",
+            "Staker.numberNFTStakedPerToken"
+        ],
+        "User Stake Reward": [
+            "Staker.rewardsEarned",
+            "Staker.rewardsReleased"
+        ],
+        "User Stake Time": [
+            "nftStakeRecords.nftStakeTime",
+            "nftStakeRecords.nftUnstakeTime"
+        ],
+        "Stake Token Address": [
+            "whitelistedTokens"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "IERC721(_whitelistedNFT).safeTransferFrom(_user, to_user, _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.transfer(_user, _payableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "IERC721(_whitelistedNFT).safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "IERC721(_whitelistedNFT).safeTransferFrom(address(this), approvedParty[_whitelistedNFT][_tokenId], _tokenId)"
+            },
+            {
+                "Function": "adminEmergencySafeUnstake",
+                "Node": "IERC721(_whitelistedNFT).safeTransferFrom(address(this), tokenOwner[_whitelistedNFT][_tokenId], _tokenId)"
+            },
+            {
+                "Function": "adminEmergencyUnstake",
+                "Node": "IERC721(_whitelistedNFT).transferFrom(address(this), tokenOwner[_whitelistedNFT][_tokenId], _tokenId)"
+            }
+        ]
+    }
+}

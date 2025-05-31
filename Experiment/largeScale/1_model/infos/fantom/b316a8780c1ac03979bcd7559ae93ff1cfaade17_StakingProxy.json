@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "Claim.gons"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "LUX"
+        ],
+        "Reward Token Address": [
+            "LUM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(LUX).approve(staking, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(LUM).transfer(_recipient, ILUM(LUM).balanceForGons(claimInfo.gons))"
+            }
+        ],
+        "unStake": []
+    }
+}

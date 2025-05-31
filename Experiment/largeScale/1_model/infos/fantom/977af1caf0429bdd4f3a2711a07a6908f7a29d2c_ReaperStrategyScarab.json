@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "GSCARAB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "GSCARAB_REWARDS_POOL.deposit(poolId, wantBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestCore",
+                "Node": "GSCARAB_REWARDS_POOL.deposit(poolId, 0)"
+            },
+            {
+                "Function": "_retireStrat",
+                "Node": "GSCARAB_REWARDS_POOL.deposit(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "want.safeTransfer(vault, _amount)"
+            },
+            {
+                "Function": "_retireStrat",
+                "Node": "want.safeTransfer(vault, wantBalance)"
+            },
+            {
+                "Function": "_reclaimWant",
+                "Node": "GSCARAB_REWARDS_POOL.emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

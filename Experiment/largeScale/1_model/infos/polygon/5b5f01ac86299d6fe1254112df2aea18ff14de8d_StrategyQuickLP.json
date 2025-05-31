@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "_rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "qlpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMagicBox(magicBoxToken).mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_rewardDistribution",
+                "Node": "IERC20(rewardToken).safeTransfer(address(governance), _rewardBalance)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "IStakingRewards(quickFarmChef).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstakeSome",
+                "Node": "IStakingRewards(quickFarmChef).withdraw(_amount)"
+            },
+            {
+                "Function": "_unstakeAll",
+                "Node": "IStakingRewards(quickFarmChef).exit()"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(qlpToken).transfer(address(governance), baseBal)"
+            }
+        ]
+    }
+}

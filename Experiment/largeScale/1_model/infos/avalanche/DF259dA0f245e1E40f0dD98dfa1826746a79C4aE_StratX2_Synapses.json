@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_farm",
+                "Node": "IERC20(wantAddress).safeIncreaseAllowance(farmContractAddress, wantAmt)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "_unfarm",
+                "Node": "ISynapse(farmContractAddress).withdraw(pid, _wantAmt,address(this))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Data.investment.investedAmount"
+        ],
+        "User Stake Reward": [
+            "Data.reward"
+        ],
+        "User Stake Time": [
+            "Data.investment.DepositTime",
+            "Data.investment.withdrawnTime"
+        ],
+        "Stake Token Address": [
+            "SMCcontract"
+        ],
+        "Reward Token Address": [
+            "BUSDcontract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "DUSD(SMCcontract).transferFrom(msg.sender,address(this),_investedamount*10**8"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "DUSD(BUSDcontract).transfer(msg.sender,Total_reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "DUSD(SMCcontract).transfer(msg.sender,amount* 10**8"
+            },
+            {
+                "Function": "unStake",
+                "Node": "DUSD(SMCcontract).transfer(msg.sender,amount30 * 10**8"
+            }
+        ]
+    }
+}

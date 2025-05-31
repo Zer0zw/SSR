@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStruct.balance",
+            "stakeRecord.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "userStruct.totalClaimed",
+            "stakeRecord.stakeTotalClaimed"
+        ],
+        "User Stake Time": [
+            "stakeRecord.period",
+            "stakeRecord.lockEndTime"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStake",
+                "Node": "USDT.transferFrom(msg.sender, owner(), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "USDT.transferFrom(owner(), msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlockStake",
+                "Node": "USDT.transferFrom(owner(), msg.sender, diff)"
+            },
+            {
+                "Function": "unlockStake",
+                "Node": "USDT.transferFrom(owner(), msg.sender, amountToSend)"
+            }
+        ]
+    }
+}

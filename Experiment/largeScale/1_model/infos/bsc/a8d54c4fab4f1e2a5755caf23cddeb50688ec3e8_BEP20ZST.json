@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_PledgeBalances"
+        ],
+        "User Stake Reward": [
+            "day_danwei",
+            "amounts"
+        ],
+        "User Stake Time": [
+            "_PledgeTimestamp"
+        ],
+        "Stake Token Address": [
+            "_tokenAddress"
+        ],
+        "Reward Token Address": [
+            "_tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "setPledge",
+                "Node": "_PledgeBalances[recipient]=_PledgeBalances[recipient].add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getProfit",
+                "Node": "return address(_tokenAddress).safeTransfer(_msgSender(), amounts)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "getPledge",
+                "Node": "return address(_tokenAddress).safeTransfer(_msgSender(),  _pledge)"
+            }
+        ]
+    }
+}

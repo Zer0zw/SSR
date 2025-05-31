@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stakeAmount",
+            "userSlot.amount_bcl"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "userInfo.staticRewards_claimed",
+            "userInfo.dynamicRewards"
+        ],
+        "User Stake Time": [
+            "userSlot.timestamp"
+        ],
+        "Stake Token Address": [
+            "Assets",
+            "bcl_addr"
+        ],
+        "Reward Token Address": [
+            "bcl_addr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeWithExactBCL",
+                "Node": "IBCL(Assets[assetId]).transferFrom(msg.sender,platform,asset_need * 1 / 100)"
+            },
+            {
+                "Function": "stakeWithExactMain",
+                "Node": "IBCL(Assets[assetId]).transferFrom(msg.sender,platform, mainAmount * 1 / 100)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "checkStatic",
+                "Node": "IBCL(bcl_addr).transfer(msg.sender, reward / 2 * 99 /100)"
+            },
+            {
+                "Function": "checkStatic_slot",
+                "Node": "IBCL(bcl_addr).transfer(msg.sender, reward / 2 * 99 /100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "IBCL(bcl_addr).transfer(msg.sender,temp_bcl)"
+            }
+        ]
+    }
+}

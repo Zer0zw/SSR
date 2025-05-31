@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalExcluded"
+        ],
+        "User Stake Time": [
+            "UserInfo.unlockBlock"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "uint received = _transferIn(token, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimReward",
+                "Node": "require(IERC20(reward).transfer(user, amount)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "_claimReward(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(IERC20(token).transfer(msg.sender, sendAmount)"
+            }
+        ]
+    }
+}

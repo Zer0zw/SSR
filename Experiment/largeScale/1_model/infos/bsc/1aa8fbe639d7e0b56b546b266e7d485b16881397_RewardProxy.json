@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "UserInfo.remainingYelTokenReward",
+            "UserInfo.bananaRewards"
+        ],
+        "User Stake Time": [
+            "_lastClaim"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "yel",
+            "banana"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lpToken.approve(address(masterApe), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "banana.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "yel.transfer(_to, rewardTokenBalance)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "yel.transfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "yel.transfer(sender, totalAccumulated)"
+            },
+            {
+                "Function": "exit",
+                "Node": "banana.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "yel.transfer(msg.sender, reward)"
+            }
+        ]
+    }
+}

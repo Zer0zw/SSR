@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUser"
+        ],
+        "User Stake Reward": [
+            "pointUser"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "TokenExchange"
+        ],
+        "Reward Token Address": [
+            "TokenReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TokenExchange.transfer(msg.sender, 1 ether)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "TokenReward.transfer(msg.sender, pointUser[owner]+_reward)"
+            },
+            {
+                "Function": "harvestBatch",
+                "Node": "TokenReward.transfer(msg.sender, pointUser[owner]+_reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(_collection).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

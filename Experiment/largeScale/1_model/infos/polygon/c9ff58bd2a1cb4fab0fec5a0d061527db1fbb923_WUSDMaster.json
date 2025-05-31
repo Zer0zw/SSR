@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wusdClaimAmount"
+        ],
+        "User Stake Reward": [
+            "usdcClaimAmount"
+        ],
+        "User Stake Time": [
+            "wusdClaimBlock",
+            "usdcClaimBlock"
+        ],
+        "Stake Token Address": [
+            "usdc"
+        ],
+        "Reward Token Address": [
+            "wusd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "wusd.mint(address(this), amountWithDecimals)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimWusd",
+                "Node": "wusd.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimUsdc",
+                "Node": "usdc.safeTransfer(msg.sender, usdcTransferAmount)"
+            },
+            {
+                "Function": "emergencyClaimUsdcAll",
+                "Node": "usdc.safeTransfer(msg.sender, usdcTransferAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "wusd.transferFrom(msg.sender, dead, amount)"
+            },
+            {
+                "Function": "emergencyRedeemAll",
+                "Node": "wusd.transferFrom(msg.sender, dead, amount)"
+            }
+        ]
+    }
+}

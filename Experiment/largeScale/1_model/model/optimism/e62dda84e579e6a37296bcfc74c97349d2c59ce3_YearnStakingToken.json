@@ -1,0 +1,97 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ASSET"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimRewards"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1535
+                ],
+                "Input": [
+                    "amount",
+                    "fromUnderlying",
+                    "recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "STAKING_REWARDS"
+                ],
+                "Full Calculation Variables": [
+                    "STAKING_REWARDS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    1571
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "REWARD_VAULT"
+                ],
+                "Control Variables": [
+                    "REWARD_TOKEN",
+                    "REWARD_VAULT",
+                    "STAKING_REWARDS",
+                    "rewardCollector"
+                ],
+                "Full Calculation Variables": [
+                    "REWARD_TOKEN",
+                    "REWARD_VAULT",
+                    "STAKING_REWARDS",
+                    "rewardCollector"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1555
+                ],
+                "Input": [
+                    "toUnderlying",
+                    "recipient",
+                    "amount",
+                    "maxSlippage"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "YEARN_VAULT",
+                    "STAKING_REWARDS"
+                ],
+                "Full Calculation Variables": [
+                    "YEARN_VAULT",
+                    "STAKING_REWARDS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

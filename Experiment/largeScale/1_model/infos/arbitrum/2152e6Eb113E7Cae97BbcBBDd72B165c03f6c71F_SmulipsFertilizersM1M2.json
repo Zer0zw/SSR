@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "StakingInfo.end"
+        ],
+        "Stake Token Address": [
+            "MAGIC_ADDRESS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "whitelistStake",
+                "Node": "IERC20(MAGIC_ADDRESS).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "publicStake",
+                "Node": "IERC20(MAGIC_ADDRESS).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(MAGIC_ADDRESS).transfer(msg.sender, totalAmount)"
+            }
+        ]
+    }
+}

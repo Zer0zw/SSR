@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPoolStakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserRewards"
+        ],
+        "User Stake Time": [
+            "PoolEndTime"
+        ],
+        "Stake Token Address": [
+            "CA2Token"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "CA2Token.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "Insert",
+                "Node": "CA2Token.safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "BUSD.safeTransfer(address(this), UserRewards[msg.sender])"
+            },
+            {
+                "Function": "ClaimCA2",
+                "Node": "CA2Token.safeTransfer(address(this), CA2UserReward)"
+            },
+            {
+                "Function": "Restake",
+                "Node": "CA2Token.safeTransfer(address(this), CA2UserReward)"
+            },
+            {
+                "Function": "RestakeLP",
+                "Node": "IERC20(CA2LPToken).safeApprove(CA2LPFarm, CA2LPToken.balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Exit",
+                "Node": "CA2Token.safeTransfer(msg.sender, UserPoolStakeAmount[msg.sender][PoolId])"
+            }
+        ]
+    }
+}

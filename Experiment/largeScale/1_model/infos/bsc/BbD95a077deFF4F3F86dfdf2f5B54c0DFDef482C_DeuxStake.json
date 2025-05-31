@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.rewardRatio"
+        ],
+        "User Stake Time": [
+            "Stake.since"
+        ],
+        "Stake Token Address": [
+            "deuxToken"
+        ],
+        "Reward Token Address": [
+            "deuxToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "deuxToken.safeTransferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "deuxToken.safeTransfer(_msgSender(), stakeAndReward)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "deuxToken.safeTransfer(_msgSender(), afterFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "deuxToken.safeTransfer(_msgSender(), stakeAndReward)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "deuxToken.safeTransfer(_msgSender(), afterFee)"
+            }
+        ]
+    }
+}

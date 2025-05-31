@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "idToBalance",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "lockToInterest",
+            "Stake.reward"
+        ],
+        "User Stake Time": [
+            "idToTerm",
+            "Stake.term"
+        ],
+        "Stake Token Address": [
+            "T2K"
+        ],
+        "Reward Token Address": [
+            "T2K"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(T2K.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "require(T2K.transfer(msg.sender, owed + stake_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(T2K.transfer(msg.sender, stake_amount - penalty)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(T2K.transfer(msg.sender, owed + stake_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(T2K.transfer(msg.sender, stake_amount - penalty)"
+            }
+        ]
+    }
+}

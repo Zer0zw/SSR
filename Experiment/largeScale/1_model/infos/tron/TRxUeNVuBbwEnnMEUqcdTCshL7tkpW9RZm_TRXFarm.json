@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "ffcTime"
+        ],
+        "Stake Token Address": [
+            "justLend"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "justLend.call.value(msg.value)(\"mint() payable\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, reward.sub(reward.div(fee)))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(rewardsDistribution, reward.div(fee))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "iJustLend.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdrawSun",
+                "Node": "IERC20(sunToken).safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

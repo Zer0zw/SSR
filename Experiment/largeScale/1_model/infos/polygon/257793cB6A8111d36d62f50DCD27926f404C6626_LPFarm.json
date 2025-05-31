@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "claimableRewards"
+        ],
+        "User Stake Time": [
+            "lastClaim"
+        ],
+        "Stake Token Address": [
+            "LP_TOKEN"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "SAFE_LP_TOKEN.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "SAFE_REWARD_TOKEN.safeTransfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "SAFE_LP_TOKEN.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

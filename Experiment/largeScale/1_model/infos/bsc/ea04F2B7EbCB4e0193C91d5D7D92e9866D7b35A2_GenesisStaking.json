@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.tokenIds"
+        ],
+        "User Stake Reward": [
+            "Staker.totalRewardsRelease",
+            "nftsStaked.rewards"
+        ],
+        "User Stake Time": [
+            "nftsStaked.stakeTime",
+            "nftsStaked.startStake"
+        ],
+        "Stake Token Address": [
+            "genesisNFT"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "genesisNFT.safeTransferFrom(_user, address(this), _tokenId"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "genesisNFT.safeTransferFrom(_user, address(this), genesisNFT.tokenOwnerByIndex(msg.sender,i)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "genesisNFT.safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "genesisNFT.safeTransferFrom(address(this), _user, _tokenId)"
+            }
+        ]
+    }
+}

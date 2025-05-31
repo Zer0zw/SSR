@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfeCRV"
+        ],
+        "User Stake Reward": [
+            "getPending"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "CRV",
+            "CVX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeTransfer(_vault, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "UniswapRouter(unirouter).swapExactTokensForTokens(IERC20(CRV).balanceOf(address(this)),0,swapCRV2ETHRouting,address(this),now.add(1800))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "UniswapRouter(unirouter).swapExactTokensForTokens(IERC20(CVX).balanceOf(address(this)),0,swapCVX2ETHRouting,address(this),now.add(1800))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "UniswapRouter(unirouter).swapExactTokensForTokens(_2bt, 0, swap2BTRouting, Controller(controller).rewards(), now.add(1800))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(_vault, balance)"
+            }
+        ]
+    }
+}

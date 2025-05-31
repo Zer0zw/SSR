@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakedLockInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakedLockInfo.unpaidRewards"
+        ],
+        "User Stake Time": [
+            "Lock.end"
+        ],
+        "Stake Token Address": [
+            "solace"
+        ],
+        "Reward Token Address": [
+            "solace"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "harvestLock",
+                "Node": "SafeERC20.safeTransfer(IERC20(solace), receiver, transferAmount)"
+            },
+            {
+                "Function": "harvestLocks",
+                "Node": "SafeERC20.safeTransfer(IERC20(solace), receiver, transferAmount)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "SafeERC20.safeTransfer(IERC20(solace), receiver, transferAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

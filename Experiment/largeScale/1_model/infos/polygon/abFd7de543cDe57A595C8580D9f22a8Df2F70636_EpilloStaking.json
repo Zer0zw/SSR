@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedUsers.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "remainingRewards"
+        ],
+        "User Stake Time": [
+            "_stakedUsers.stakedTime",
+            "lockTime"
+        ],
+        "Stake Token Address": [
+            "EpilloToken"
+        ],
+        "Reward Token Address": [
+            "EpilloToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeEpillo",
+                "Node": "EpilloToken.safeTransferFrom(msg.sender, address(this),_epillo.amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "EpilloToken.safeTransfer(msg.sender,_epillo.amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "EpilloToken.safeTransfer(msg.sender,totalAmount)"
+            }
+        ]
+    }
+}

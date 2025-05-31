@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterBelt(masterbelt).deposit(poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(output).balanceOf(address(this))"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(callFeeRecipient, callFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(beefyFeeRecipient, beefyFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMasterBelt(masterbelt).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

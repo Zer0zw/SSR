@@ -1,0 +1,76 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.pillDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTimestamp"
+        ],
+        "Stake Token Address": [
+            "schill"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.RewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "schill.safeTransferFrom(msg.sender, address(this), stakingAmountAfterFees"
+            },
+            {
+                "Function": "stakeTo",
+                "Node": "schill.safeTransferFrom(msg.sender, address(this), stakingAmountAfterFees"
+            },
+            {
+                "Function": "boostedStake",
+                "Node": "schill.safeTransferFrom(msg.sender, address(this), stakingAmountAfterFees"
+            },
+            {
+                "Function": "boostedStakeTo",
+                "Node": "schill.safeTransferFrom(msg.sender, address(this), stakingAmountAfterFees"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "safeTransfer(pool.RewardToken, to, pending + pendingPill)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "safeTransfer(pool.RewardToken, to, pending + pendingPill)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "safeTransfer(pool.RewardToken, to, pending + pendingPill)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "safeTransfer(schill, to, _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeTransfer(schill, to, _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeTransfer(schill, to, _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeTransfer(schill, to, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "schill.safeTransfer(address(msg.sender), oldUserAmount)"
+            }
+        ]
+    }
+}

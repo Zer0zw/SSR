@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStake.stakeBalance",
+            "user.totalStakedBalance"
+        ],
+        "User Stake Reward": [
+            "userStake.totalClaimedRewards",
+            "user.totalClaimedRewards"
+        ],
+        "User Stake Time": [
+            "userStake.lockDuration",
+            "userStake.unlockTime"
+        ],
+        "Stake Token Address": [
+            "baseTokenAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokensAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bool success = stakeToken.transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "bool success = rewardToken.transfer(msg.sender, unclaimedRewards"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "bool success = stakeToken.transfer(msg.sender, unstakableBalance"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "bool success = stakeToken.transfer(msg.sender, unstakableBalance"
+            }
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_totalStaked"
+        ],
+        "User Stake Reward": [
+            "_reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "trueFiPool"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TrueFarm(stakingFarm).stake(trueFiPool, _lpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "TrueFarm(stakingFarm).claim(trueFiTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "TrueFarm(stakingFarm).unstake(trueFiPool, _withdrawAmt)"
+            }
+        ]
+    }
+}

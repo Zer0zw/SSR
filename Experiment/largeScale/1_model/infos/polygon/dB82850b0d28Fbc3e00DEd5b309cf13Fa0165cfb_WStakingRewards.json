@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "stReward",
+            "enReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mint",
+                "Node": "IERC20(underlying).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "burn",
+                "Node": "IERC20(reward).safeTransfer(msg.sender, enReward.sub(stReward))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "burn",
+                "Node": "IERC20(underlying).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

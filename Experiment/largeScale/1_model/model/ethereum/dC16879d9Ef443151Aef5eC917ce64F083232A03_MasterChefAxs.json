@@ -1,0 +1,362 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt",
+            "userInfo.rewardAXSDebt",
+            "userInfo.rewardSLPDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "VEMP",
+            "SLP"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimAXS",
+            "claimSLP",
+            "pendingAXS",
+            "pendingSLP",
+            "pendingVEMP"
+        ],
+        "unStake": [],
+        "Sensitive Functions": [
+            "add",
+            "claimAXS",
+            "claimSLP",
+            "deposit"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    901
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lastTotalAXSReward",
+                    "poolInfo.lastTotalSLPReward",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "poolInfo.totalAXSReward",
+                    "poolInfo.totalSLPReward",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lastTotalAXSReward",
+                    "poolInfo.lastTotalSLPReward",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "poolInfo.totalAXSReward",
+                    "poolInfo.totalSLPReward",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingVEMP",
+                "Node": [
+                    793
+                ],
+                "Input": [
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "totalAXSStaked",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "totalAXSStaked",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "pendingAXS",
+                "Node": [
+                    807
+                ],
+                "Input": [
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "pendingSLP",
+                "Node": [
+                    821
+                ],
+                "Input": [
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "totalAXSStaked",
+                    "userInfo.amount",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "totalAXSStaked",
+                    "userInfo.amount",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimAXS",
+                "Node": [
+                    917
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lastTotalAXSReward",
+                    "poolInfo.lastTotalSLPReward",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "poolInfo.totalAXSReward",
+                    "poolInfo.totalSLPReward",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lastTotalAXSReward",
+                    "poolInfo.lastTotalSLPReward",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "poolInfo.totalAXSReward",
+                    "poolInfo.totalSLPReward",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lastTotalAXSReward",
+                    "poolInfo.lastTotalSLPReward",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "poolInfo.totalAXSReward",
+                    "poolInfo.totalSLPReward",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimSLP",
+                "Node": [
+                    930
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lastTotalAXSReward",
+                    "poolInfo.lastTotalSLPReward",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "poolInfo.totalAXSReward",
+                    "poolInfo.totalSLPReward",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lastTotalAXSReward",
+                    "poolInfo.lastTotalSLPReward",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "poolInfo.totalAXSReward",
+                    "poolInfo.totalSLPReward",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "VEMPPerBlock",
+                    "poolInfo.accAXSPerShare",
+                    "poolInfo.accSLPPerShare",
+                    "poolInfo.accVEMPPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastAXSRewardBalance",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lastSLPRewardBalance",
+                    "poolInfo.lastTotalAXSReward",
+                    "poolInfo.lastTotalSLPReward",
+                    "poolInfo.lpToken",
+                    "poolInfo.slpToken",
+                    "poolInfo.totalAXSReward",
+                    "poolInfo.totalSLPReward",
+                    "totalAXSStaked",
+                    "totalAXSUsedForPurchase",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardAXSDebt",
+                    "userInfo.rewardSLPDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": []
+    }
+}

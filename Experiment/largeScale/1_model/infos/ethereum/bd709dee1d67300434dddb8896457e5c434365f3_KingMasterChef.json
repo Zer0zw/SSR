@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebtSushi",
+            "UserInfo.rewardDebtKing"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sushi",
+            "king"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeSushiTransfer(msg.sender, pendingSushiReward)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "safeKingTransfer(msg.sender, pendingKingReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeSushiTransfer(msg.sender, pendingSushiReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeKingTransfer(msg.sender, pendingKingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

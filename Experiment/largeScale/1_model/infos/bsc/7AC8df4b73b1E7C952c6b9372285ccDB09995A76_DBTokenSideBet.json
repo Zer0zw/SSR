@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakedFirstTokenPerEvent",
+            "userStakedSecondTokenPerEvent"
+        ],
+        "User Stake Reward": [
+            "userEventReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "firstTeamToken",
+            "secondTeamToken"
+        ],
+        "Reward Token Address": [
+            "standardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "teamToken.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "standardToken.transfer(_msgSender(), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "teamToken.transfer(_msgSender(), userStakedTokens)"
+            }
+        ]
+    }
+}

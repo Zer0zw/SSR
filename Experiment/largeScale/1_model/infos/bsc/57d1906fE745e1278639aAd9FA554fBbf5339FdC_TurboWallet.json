@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "totalReturn"
+        ],
+        "User Stake Time": [
+            "staking_clock",
+            "ending_clock"
+        ],
+        "Stake Token Address": [
+            "deep"
+        ],
+        "Reward Token Address": [
+            "deep"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": "require(IERC20(deep).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReturns",
+                "Node": "IERC20(deep).transfer(msg.sender, totalReturn[msg.sender])"
+            }
+        ],
+        "unStake": []
+    }
+}

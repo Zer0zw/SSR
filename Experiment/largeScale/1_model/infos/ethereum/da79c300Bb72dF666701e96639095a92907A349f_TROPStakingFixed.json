@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardLocked",
+            "pendingTROP"
+        ],
+        "User Stake Time": [
+            "UserInfo.lockedPeriod",
+            "UserInfo.lpReleaseTime"
+        ],
+        "Stake Token Address": [
+            "trop"
+        ],
+        "Reward Token Address": [
+            "trop"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "trop.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "trop.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAndPayOutPending",
+                "Node": "safeTROPTransfer(from, paid)"
+            },
+            {
+                "Function": "claimAndRestake",
+                "Node": "user.amount = amountAfterDeposit"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "trop.safeTransfer(address(to), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "trop.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

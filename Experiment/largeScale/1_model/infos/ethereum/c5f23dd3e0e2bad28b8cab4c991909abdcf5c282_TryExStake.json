@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.claimed"
+        ],
+        "User Stake Time": [
+            "StakeInfo.startTS",
+            "StakeInfo.endTS"
+        ],
+        "Stake Token Address": [
+            "TryEx"
+        ],
+        "Reward Token Address": [
+            "TryEx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "TryEx.transferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "TryEx.transfer(_msgSender(), totalTokens)"
+            }
+        ],
+        "unStake": []
+    }
+}

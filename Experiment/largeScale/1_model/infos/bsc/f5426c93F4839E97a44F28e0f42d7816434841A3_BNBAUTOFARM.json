@@ -1,0 +1,78 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.deposits.amount",
+            "users.bafDeposits.amount",
+            "users.busdStaked"
+        ],
+        "User Stake Reward": [
+            "users.deposits.profit",
+            "users.bafDeposits.profit",
+            "users.refRewards",
+            "users.lotteryRewards"
+        ],
+        "User Stake Time": [
+            "users.deposits.start",
+            "users.deposits.finish",
+            "users.bafDeposits.start",
+            "users.bafDeposits.finish",
+            "users.busdStakeCheckpoint"
+        ],
+        "Stake Token Address": [
+            "BUSD",
+            "BAF_TOKEN"
+        ],
+        "Reward Token Address": [
+            "BUSD",
+            "BAF_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "BUSD.transferFrom(msg.sender,address(this),busdAmount)"
+            },
+            {
+                "Function": "stakeBafTokens",
+                "Node": "BAF_TOKEN.transferFrom(msg.sender, address(this), bafAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(totalAmount)"
+            },
+            {
+                "Function": "withdrawRef",
+                "Node": "payable(msg.sender).transfer(value)"
+            },
+            {
+                "Function": "claimLotteryReward",
+                "Node": "payable(msg.sender).transfer(amount)"
+            },
+            {
+                "Function": "claimBnbFee",
+                "Node": "payable(msg.sender).transfer(rewards)"
+            },
+            {
+                "Function": "withdrawBafDividends",
+                "Node": "BAF_TOKEN.transfer(msg.sender,totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "BUSD.transfer(msg.sender,amount)"
+            },
+            {
+                "Function": "unstakeBafTokens",
+                "Node": "BAF_TOKEN.transfer(msg.sender, unstakedAmount)"
+            },
+            {
+                "Function": "sellBafTokens",
+                "Node": "payable(msg.sender).transfer(amountToSell)"
+            }
+        ]
+    }
+}

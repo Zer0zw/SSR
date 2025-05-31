@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake.magePunkId"
+        ],
+        "User Stake Reward": [
+            "potionPerBlock"
+        ],
+        "User Stake Time": [
+            "stake.potionBrewedBlock"
+        ],
+        "Stake Token Address": [
+            "magePunk"
+        ],
+        "Reward Token Address": [
+            "potion"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_enterPalace",
+                "Node": "magePunk.safeTransferFrom(msg.sender, address(this), magePunkId"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_brewPotion",
+                "Node": "potion.transfer(receipt[magePunkId].owner, potionsMade)"
+            },
+            {
+                "Function": "collect",
+                "Node": "_brewPotion(magePunkId)"
+            },
+            {
+                "Function": "collectAll",
+                "Node": "_brewPotion(magePunkId[i])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_exitPalace",
+                "Node": "magePunk.safeTransferFrom(address(this), msg.sender, magePunkId"
+            }
+        ]
+    }
+}

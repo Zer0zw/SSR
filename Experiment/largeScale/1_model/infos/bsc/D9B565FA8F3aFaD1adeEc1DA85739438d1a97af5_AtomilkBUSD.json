@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalInits",
+            "Depo.amount"
+        ],
+        "User Stake Reward": [
+            "User.refBonus",
+            "Depo.amount"
+        ],
+        "User Stake Time": [
+            "User.startDate",
+            "Depo.depoTime"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStablecoins",
+                "Node": "BUSD.safeTransferFrom(msg.sender, address(this), amtx)"
+            },
+            {
+                "Function": "presale",
+                "Node": "BUSD.safeTransferFrom(msg.sender, address(this), amtx)"
+            },
+            {
+                "Function": "stakeRefBonus",
+                "Node": "user.depoList.push(Depo({ key: user.keyCounter, depoTime: block.timestamp, amount: user.refBonus, ref_address: dead, initialWithdrawn: false }))"
+            },
+            {
+                "Function": "compound",
+                "Node": "user.depoList.push(Depo({ key: user.keyCounter, depoTime: block.timestamp, amount: dividens, ref_address: dead, initialWithdrawn: false }))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "BUSD.safeTransfer(msg.sender, adjustedDivs)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInitial",
+                "Node": "BUSD.safeTransfer(msg.sender, net_amount)"
+            }
+        ]
+    }
+}

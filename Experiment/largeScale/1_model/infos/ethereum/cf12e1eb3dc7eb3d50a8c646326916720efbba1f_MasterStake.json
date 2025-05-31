@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStake._amountStaked"
+        ],
+        "User Stake Reward": [
+            "UserStake._rewardClaimed"
+        ],
+        "User Stake Time": [
+            "UserStake._startTime"
+        ],
+        "Stake Token Address": [
+            "coinToStake._address"
+        ],
+        "Reward Token Address": [
+            "coinToReward._address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(cs._address).transferFrom(sender,address(this),_stakeAmountWithDecimal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(cr._address).transfer(sender,availableHarvest)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(cr._address).transfer(sender,availableHarvest)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "IERC20(cr._address).transfer(sender,availableHarvest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC20(cs._address).transfer(sender,newUnStakeBal)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "IERC20(cs._address).transfer(sender,newUnStakeBalHarvest)"
+            }
+        ]
+    }
+}

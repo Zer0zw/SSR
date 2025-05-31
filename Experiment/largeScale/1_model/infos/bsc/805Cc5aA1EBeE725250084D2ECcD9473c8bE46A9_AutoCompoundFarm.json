@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.unlockBlock"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "MDB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(sender, nToMint, received)"
+            },
+            {
+                "Function": "_registerFirstPurchase",
+                "Node": "_mint(user, received, received)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "IYieldFarm(yieldFarm).claimRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, received)"
+            }
+        ]
+    }
+}

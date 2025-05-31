@@ -1,0 +1,141 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "UserInfo.amount"
+            ],
+            "User Stake Reward": [
+                "UserInfo.rewardDebt",
+                "UserInfo.rewardLockedUp"
+            ],
+            "User Stake Time": [
+                "UserInfo.depositTimestamp"
+            ],
+            "Stake Token Address": [
+                "PoolInfo.stakedToken"
+            ],
+            "Reward Token Address": [
+                "PoolInfo.rewardToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "deposit"
+            ],
+            "getReward": [
+                "deposit",
+                "withdraw"
+            ],
+            "unStake": [
+                "emergencyWithdraw",
+                "withdraw"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "BONUS_MULTIPLIER",
+                        "paused",
+                        "poolInfo.accTokenPerShare",
+                        "poolInfo.depositFeeBP",
+                        "poolInfo.harvestInterval",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.lockDeposit",
+                        "poolInfo.minDeposit",
+                        "poolInfo.rewardSupply",
+                        "poolInfo.rewardToken",
+                        "poolInfo.stakedAmount",
+                        "poolInfo.stakedToken",
+                        "poolInfo.tokenPerBlock",
+                        "userInfo.amount",
+                        "userInfo.depositTimestamp",
+                        "userInfo.nextHarvestUntil",
+                        "userInfo.rewardDebt",
+                        "userInfo.rewardLockedUp"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "paused",
+                        "poolInfo.lockDeposit",
+                        "poolInfo.accTokenPerShare",
+                        "poolInfo.harvestInterval",
+                        "poolInfo.rewardToken",
+                        "rewardReserve",
+                        "userInfo.amount",
+                        "userInfo.nextHarvestUntil",
+                        "userInfo.rewardDebt",
+                        "userInfo.rewardLockedUp"
+                    ]
+                },
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "paused",
+                        "poolInfo.lockDeposit",
+                        "poolInfo.accTokenPerShare",
+                        "poolInfo.harvestInterval",
+                        "poolInfo.rewardToken",
+                        "rewardReserve",
+                        "userInfo.amount",
+                        "userInfo.nextHarvestUntil",
+                        "userInfo.rewardDebt",
+                        "userInfo.rewardLockedUp"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "BONUS_MULTIPLIER",
+                        "poolInfo.accTokenPerShare",
+                        "poolInfo.harvestInterval",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.rewardSupply",
+                        "poolInfo.rewardToken",
+                        "poolInfo.stakedAmount",
+                        "poolInfo.stakedToken",
+                        "poolInfo.tokenPerBlock",
+                        "userInfo.amount",
+                        "userInfo.depositTimestamp",
+                        "userInfo.nextHarvestUntil",
+                        "userInfo.rewardDebt",
+                        "userInfo.rewardLockedUp",
+                        "withdrawFee.day",
+                        "withdrawFee.fee"
+                    ]
+                },
+                {
+                    "Function": "emergencyWithdraw",
+                    "Calculation Variables": [
+                        "poolInfo.stakedToken",
+                        "userInfo.amount"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

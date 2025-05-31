@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalSupply"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "ARX",
+            "WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(USDC).transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IArbiDexRouter(router).swapExactTokensForTokens(harvestedWETH, swapAmountsOut[swapAmountsOut.length-1], swapPath, address(this), block.timestamp+120)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(lpToken).transfer(treasury, totalSupply)"
+            }
+        ]
+    }
+}

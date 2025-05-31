@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeHolders",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "stakerClaimed",
+            "claimableglad"
+        ],
+        "User Stake Time": [
+            "Stake.lockedUntil",
+            "Stake.locked"
+        ],
+        "Stake Token Address": [
+            "LPToken"
+        ],
+        "Reward Token Address": [
+            "gladToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "LPToken.transferFrom(_address, address(this), _amount)"
+            },
+            {
+                "Function": "createStake",
+                "Node": "LPToken.transferFrom(_address, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimglad",
+                "Node": "gladToken.transfer(msg.sender, claimableglad)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "LPToken.transfer(_address, _amount)"
+            },
+            {
+                "Function": "withdrawStake",
+                "Node": "LPToken.transfer(_address, _amount)"
+            }
+        ]
+    }
+}

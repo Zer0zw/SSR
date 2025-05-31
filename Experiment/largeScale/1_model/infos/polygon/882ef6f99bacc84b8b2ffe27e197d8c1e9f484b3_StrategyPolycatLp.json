@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "pendingPaw"
+        ],
+        "User Stake Time": [
+            "lastClaimRewardTimestamp"
+        ],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IPolycatMasterChef(farmPool).deposit(poolId, _baseBal, false)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IPolycatMasterChef(farmPool).deposit(poolId, _baseBal, false)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardToLock",
+                "Node": "IPolycatMasterChef(farmPool).harvest(poolId)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "IKyberRewardLocker(rewardLocker).vestSchedulesInRange(_rewardToken, 0, vestingLength.sub(1))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IPolycatMasterChef(farmPool).withdraw(poolId, _amount, false)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IPolycatMasterChef(farmPool).withdraw(poolId, _stakedAmount, true)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IPolycatMasterChef(farmPool).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

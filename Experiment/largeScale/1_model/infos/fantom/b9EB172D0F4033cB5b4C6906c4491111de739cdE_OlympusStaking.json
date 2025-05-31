@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit",
+            "Claim.gons"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "OHM"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "OHM.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "return _send(_to, sOHM.balanceForGons(info.gons), _rebasing)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "OHM.safeTransfer(_to, amount_)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "OHM.safeTransfer(msg.sender, info.deposit)"
+            }
+        ]
+    }
+}

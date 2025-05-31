@@ -1,0 +1,26 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "NRK"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( NRK ).transferFrom( msg.sender, address(this), _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "canClaim",
+                "Node": "return IStaking( staking ).canClaim( msg.sender )"
+            }
+        ],
+        "unStake": []
+    }
+}

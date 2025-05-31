@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "masterLpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onArrayReward",
+                "Node": "rewardToken.safeTransfer(to, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onArrayReward",
+                "Node": "rewardToken.safeTransfer(to, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawToken",
+                "Node": "IERC20(token).safeTransfer(owner, amount)"
+            }
+        ]
+    }
+}

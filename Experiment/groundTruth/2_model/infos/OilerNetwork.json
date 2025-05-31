@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.tokenAmount"
+        ],
+        "User Stake Reward": [
+            "rewardPointsEarned",
+            "Stake.expectedStakingRewardPoints"
+        ],
+        "User Stake Time": [
+            "Stake.lockingPeriodInBlocks",
+            "Stake.startBlock"
+        ],
+        "Stake Token Address": [
+            "poolToken"
+        ],
+        "Reward Token Address": [
+            "oilerToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lockTokens",
+                "Node": "require(poolToken.transferFrom(msg.sender, address(this), tokenAmount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewards",
+                "Node": "_grantTokens(msg.sender, amountEarned_)"
+            },
+            {
+                "Function": "release",
+                "Node": "require(oilerToken.transfer(msg.sender, releasable))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlockTokens",
+                "Node": "require(poolToken.transfer(msg.sender, stakeAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "StakeData.storedRewards"
+        ],
+        "User Stake Time": [
+            "StakeData.timestamp"
+        ],
+        "Stake Token Address": [
+            "wolfpackToken"
+        ],
+        "Reward Token Address": [
+            "WOLFPACKRewardContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(wolfpackToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "recipient.transfer(rew)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(wolfpackToken.transfer(msg.sender, netWithdraw)"
+            }
+        ]
+    }
+}

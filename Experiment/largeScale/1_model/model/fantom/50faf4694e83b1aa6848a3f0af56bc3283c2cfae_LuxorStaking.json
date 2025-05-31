@@ -1,0 +1,137 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [
+            "warmupInfo.gons"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry"
+        ],
+        "Stake Token Address": [
+            "Luxor"
+        ],
+        "Reward Token Address": [
+            "Lumens"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "forfeit",
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    643
+                ],
+                "Input": [
+                    "_amount",
+                    "_recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Luxor",
+                    "isInitialized"
+                ],
+                "Full Calculation Variables": [
+                    "Luxor",
+                    "isInitialized"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    668
+                ],
+                "Input": [
+                    "_recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Lumens",
+                    "epoch.number",
+                    "isInitialized",
+                    "warmupContract",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons"
+                ],
+                "Full Calculation Variables": [
+                    "Lumens",
+                    "epoch.number",
+                    "isInitialized",
+                    "warmupContract",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    703
+                ],
+                "Input": [
+                    "_amount",
+                    "_trigger"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Lumens",
+                    "Luxor",
+                    "isInitialized"
+                ],
+                "Full Calculation Variables": [
+                    "Lumens",
+                    "Luxor",
+                    "isInitialized"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "forfeit",
+                "Node": [
+                    681
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Control Variables": [
+                    "Lumens",
+                    "Luxor",
+                    "isInitialized",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Full Calculation Variables": [
+                    "Lumens",
+                    "Luxor",
+                    "isInitialized",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

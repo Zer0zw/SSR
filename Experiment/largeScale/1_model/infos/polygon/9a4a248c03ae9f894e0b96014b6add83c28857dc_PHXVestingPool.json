@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfoMap.tokenBalance"
+        ],
+        "User Stake Reward": [
+            "userInfoMap.vestingTokenBalance",
+            "userInfoMap.acceleratedBalance"
+        ],
+        "User Stake Time": [
+            "userInfoMap.maxPeriodID",
+            "userInfoMap.lockedExpired"
+        ],
+        "Stake Token Address": [
+            "vestTokens"
+        ],
+        "Reward Token Address": [
+            "vestTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "userInfoMap[account].vestingTokenBalance = userInfoMap[account].vestingTokenBalance.add(balance)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "userInfoMap[account].vestingTokenBalance = userInfoMap[account].vestingTokenBalance.add(balance)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_redeem(msg.sender, token, amount)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_redeem(msg.sender, token, amount)"
+            }
+        ]
+    }
+}

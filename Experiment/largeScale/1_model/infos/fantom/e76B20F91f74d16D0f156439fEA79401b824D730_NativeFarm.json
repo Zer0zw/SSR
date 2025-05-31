@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "NATIVE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.want.safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(xNATIVE).safeTransfer(vault, newBal)"
+            },
+            {
+                "Function": "_harvestNativeTokens",
+                "Node": "IERC20(xNATIVE).safeTransfer(vault, newBal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), _wantAmt)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

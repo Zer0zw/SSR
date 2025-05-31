@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf",
+            "OrderInfo.amount"
+        ],
+        "User Stake Reward": [
+            "totalRewardEarn",
+            "OrderInfo.claimedReward"
+        ],
+        "User Stake Time": [
+            "OrderInfo.lockupDuration"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "rewardToken.transfer(address(msg.sender), getBusd)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(address(msg.sender), total)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "token.transfer(address(msg.sender) , total)"
+            }
+        ]
+    }
+}

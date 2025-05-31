@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "Ecclesiaseat.rewardEarned"
+        ],
+        "User Stake Time": [
+            "Ecclesiaseat.epochTimerStart"
+        ],
+        "Stake Token Address": [
+            "GoldShare"
+        ],
+        "Reward Token Address": [
+            "GoldCoin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "GoldCoin.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardRemaining",
+            "UserInfo.rewardWithdrawal"
+        ],
+        "User Stake Time": [
+            "UserInfo.startTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "payable(user.sponsor).transfer(referralReward)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "payable(owner()).transfer(teamReward)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "payable(owner()).transfer(withdrawFeeAmount)"
+            },
+            {
+                "Function": "withdrawReward",
+                "Node": "payable(msg.sender).transfer(reward - withdrawFeeAmount)"
+            },
+            {
+                "Function": "compoundReward",
+                "Node": "payable(msg.sender).transfer(reward)"
+            }
+        ],
+        "unStake": []
+    }
+}

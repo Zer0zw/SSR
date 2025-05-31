@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "canGetRewardMap"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakeTs"
+        ],
+        "Stake Token Address": [
+            "Luca"
+        ],
+        "Reward Token Address": [
+            "Luca"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStake",
+                "Node": "XLuca.mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withDrawReward",
+                "Node": "Luca.mint(msg.sender, rewardValue)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStake",
+                "Node": "safeLucaTransfer(address(msg.sender), userAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_principal",
+            "_shares"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [
+            "_depositedAt"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "_getRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "stakingToken.safeTransfer(msg.sender, withdrawAmount)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "uint256 penginAmount = PENGIN_CHEF.safePenginTransfer(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, withdrawAmount)"
+            }
+        ]
+    }
+}

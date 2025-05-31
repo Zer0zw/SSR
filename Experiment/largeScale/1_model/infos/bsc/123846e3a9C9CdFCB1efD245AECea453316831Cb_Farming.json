@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Farm.amount"
+        ],
+        "User Stake Reward": [
+            "_totalRewardDBA"
+        ],
+        "User Stake Time": [
+            "Farm.period",
+            "periods"
+        ],
+        "Stake Token Address": [
+            "Farm.token"
+        ],
+        "Reward Token Address": [
+            "address(tokenDBA)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "farmToken.transferFrom(msg.sender, address(this), amount"
+            },
+            {
+                "Function": "stakeBNB",
+                "Node": "payable(msg.sender).transfer(msg.value - amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unlock",
+                "Node": "tokenDBA.transfer(msg.sender, _totalRewardDBA"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "IERC20(farm.token).transfer(msg.sender, farm.amount)"
+            },
+            {
+                "Function": "unlock",
+                "Node": "payable(msg.sender).transfer(farm.amount)"
+            }
+        ]
+    }
+}

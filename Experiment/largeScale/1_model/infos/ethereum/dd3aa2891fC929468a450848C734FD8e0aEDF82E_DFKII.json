@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "uniswapLiquids"
+        ],
+        "User Stake Reward": [
+            "bonusWithdraw",
+            "profits4DFK1"
+        ],
+        "User Stake Time": [
+            "joinTime"
+        ],
+        "Stake Token Address": [
+            "liquidToken"
+        ],
+        "Reward Token Address": [
+            "token1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addLiquid",
+                "Node": "DTradeLiquids(liquidToken)._mint(msg.sender,mine_liquid)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDFK1Bonus",
+                "Node": "dfkii._mint(msg.sender,bonus)"
+            },
+            {
+                "Function": "withdrawBonus",
+                "Node": "dfkii._mint(msg.sender,realBonus)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeLiquid",
+                "Node": "TransferHelper.safeTransfer(address(uniAddr),msg.sender,amountUL)"
+            }
+        ]
+    }
+}

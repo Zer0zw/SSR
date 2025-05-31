@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeBalances"
+        ],
+        "User Stake Reward": [
+            "interest"
+        ],
+        "User Stake Time": [
+            "stakeBlock"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "transfer(address(this), value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "mintLCR(interestToPay)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "this.transfer(msg.sender, withdrawValue)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "farmToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeOnUnifarm",
+                "Node": "TransferHelpers.safeTransferFrom(farmToken, _msgSender(), cohortId, sAmount)"
+            },
+            {
+                "Function": "stakeOnUnifarm",
+                "Node": "TransferHelpers.safeTransferFrom(farmToken, _msgSender(), cohortId, sAmount)"
+            },
+            {
+                "Function": "stakeAndBuyBoosterPackOnUnifarm",
+                "Node": "TransferHelpers.safeTransferFrom(farmToken, _msgSender(), cohortId, sAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimOnUnifarm",
+                "Node": "TransferHelpers.safeTransferParentChainToken(fees.feeWalletAddress, fees.feeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeOnUnifarm",
+                "Node": "TransferHelpers.safeTransferParentChainToken(fees.feeWalletAddress, fees.feeAmount)"
+            },
+            {
+                "Function": "emergencyBurn",
+                "Node": "TransferHelpers.safeTransferParentChainToken(fees.feeWalletAddress, fees.feeAmount)"
+            }
+        ]
+    }
+}

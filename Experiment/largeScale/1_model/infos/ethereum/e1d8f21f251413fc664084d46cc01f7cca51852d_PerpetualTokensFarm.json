@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount",
+            "totalActiveStakeAmount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.rewardDebt",
+            "pending"
+        ],
+        "User Stake Time": [
+            "StakeInfo.depositTime",
+            "StakeInfo.withdrawTime"
+        ],
+        "Stake Token Address": [
+            "tokenStaked"
+        ],
+        "Reward Token Address": [
+            "erc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "tokenStaked.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "_erc20Transfer(msg.sender, pendingAmount, _epochId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "tokenStaked.safeTransfer(address(msg.sender), stake.amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "tokenStaked.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "tokenStaked.safeTransfer(address(msg.sender), stake.amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,155 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "pop"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakePop"
+        ],
+        "getReward": [
+            "claimPopRewards",
+            "claimRewards"
+        ],
+        "unStake": [
+            "notifyWithdraw",
+            "withdrawPop"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakePop",
+                "Node": [
+                    1834,
+                    1835,
+                    1836,
+                    1837
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "pop",
+                    "popStaker.amount",
+                    "popVault"
+                ],
+                "Full Calculation Variables": [
+                    "pop",
+                    "popStaker.amount",
+                    "popVault"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPopRewards",
+                "Node": [
+                    1879
+                ],
+                "Input": [
+                    "pool"
+                ],
+                "Calculation Variables": [
+                    "popStaker.amount",
+                    "popStaker.rewardDebt"
+                ],
+                "Control Variables": [
+                    "popStaker.amount",
+                    "popStaker.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "popStaker.amount",
+                    "popStaker.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    1895
+                ],
+                "Input": [
+                    "_poolId"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accPopPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.accPopPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accPopPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "notifyWithdraw",
+                "Node": [
+                    1811
+                ],
+                "Input": [
+                    "_account",
+                    "_amount",
+                    "_pid",
+                    "pool",
+                    "user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawPop",
+                "Node": [
+                    1845
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "user",
+                    "_account",
+                    "pool",
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "pop",
+                    "popStaker.amount",
+                    "popVault",
+                    "UINT256_MAX"
+                ],
+                "Full Calculation Variables": [
+                    "pop",
+                    "popStaker.amount",
+                    "popVault",
+                    "UINT256_MAX"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

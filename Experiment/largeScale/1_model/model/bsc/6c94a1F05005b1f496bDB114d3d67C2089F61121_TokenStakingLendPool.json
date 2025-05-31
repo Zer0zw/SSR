@@ -1,0 +1,296 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardReceived"
+        ],
+        "User Stake Time": [
+            "userDepositInfo.orderTime"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "poolInfo.bonusToken",
+            "iToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimAllReward",
+            "deposit"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "setBonus"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    2025
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "paused",
+                    "poolInfo.accITokenPerShare",
+                    "poolInfo.depositMax",
+                    "poolInfo.depositMin",
+                    "poolInfo.enableBonus",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardReceived"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "paused",
+                    "poolInfo.accITokenPerShare",
+                    "poolInfo.depositMax",
+                    "poolInfo.depositMin",
+                    "poolInfo.enableBonus",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardReceived"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    2017
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.allocPoint",
+                    "poolInfo.accITokenPerShare",
+                    "userInfo.rewardReceived",
+                    "decayTable",
+                    "userInfo.rewardDebt",
+                    "startBlock",
+                    "userInfo.amount",
+                    "decayPeriod",
+                    "poolInfo.enableBonus",
+                    "poolInfo.totalAmount",
+                    "poolInfo.lastRewardBlock",
+                    "decayRatio",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint"
+                ],
+                "Control Variables": [
+                    "poolInfo.allocPoint",
+                    "poolInfo.accITokenPerShare",
+                    "userInfo.rewardReceived",
+                    "decayTable",
+                    "userInfo.rewardDebt",
+                    "startBlock",
+                    "userInfo.amount",
+                    "decayPeriod",
+                    "poolInfo.enableBonus",
+                    "poolInfo.totalAmount",
+                    "poolInfo.lastRewardBlock",
+                    "decayRatio",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.allocPoint",
+                    "poolInfo.accITokenPerShare",
+                    "userInfo.rewardReceived",
+                    "decayTable",
+                    "userInfo.rewardDebt",
+                    "startBlock",
+                    "userInfo.amount",
+                    "decayPeriod",
+                    "poolInfo.enableBonus",
+                    "poolInfo.totalAmount",
+                    "poolInfo.lastRewardBlock",
+                    "decayRatio",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAllReward",
+                "Node": [
+                    2017
+                ],
+                "Input": [
+                    "_amount",
+                    "_user",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.totalAmount",
+                    "totalAllocPoint",
+                    "userInfo.rewardReceived",
+                    "poolInfo.allocPoint",
+                    "poolInfo.accITokenPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "decayTable",
+                    "userInfo.rewardDebt",
+                    "startBlock",
+                    "decayRatio",
+                    "userInfo.amount",
+                    "decayPeriod",
+                    "poolInfo.lpToken",
+                    "poolInfo.enableBonus"
+                ],
+                "Control Variables": [
+                    "userInfo.rewardReceived",
+                    "poolInfo.allocPoint",
+                    "poolInfo.accITokenPerShare",
+                    "decayTable",
+                    "userInfo.rewardDebt",
+                    "startBlock",
+                    "paused",
+                    "_status",
+                    "_NOT_ENTERED",
+                    "userInfo.amount",
+                    "decayPeriod",
+                    "poolInfo.enableBonus",
+                    "poolInfo.totalAmount",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo",
+                    "decayRatio",
+                    "_ENTERED",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.rewardReceived",
+                    "poolInfo.allocPoint",
+                    "poolInfo.accITokenPerShare",
+                    "decayTable",
+                    "userInfo.rewardDebt",
+                    "startBlock",
+                    "paused",
+                    "_status",
+                    "_NOT_ENTERED",
+                    "userInfo.amount",
+                    "decayPeriod",
+                    "poolInfo.enableBonus",
+                    "poolInfo.totalAmount",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo",
+                    "decayRatio",
+                    "_ENTERED",
+                    "poolInfo.lpToken",
+                    "totalAllocPoint"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    2129
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "userDepositInfo.amount",
+                    "userDepositInfo.orderTime"
+                ],
+                "Control Variables": [
+                    "decayPeriod",
+                    "decayRatio",
+                    "decayTable",
+                    "poolInfo.accITokenPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.enableBonus",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockSeconds",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "startBlock",
+                    "totalAllocPoint",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.orderTime",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "decayPeriod",
+                    "decayRatio",
+                    "decayTable",
+                    "poolInfo.accITokenPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.enableBonus",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockSeconds",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "startBlock",
+                    "totalAllocPoint",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.orderTime",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    2149
+                ],
+                "Input": [
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Order.amount"
+        ],
+        "User Stake Reward": [
+            "Order.stakedAndRewards"
+        ],
+        "User Stake Time": [
+            "Order.endTime"
+        ],
+        "Stake Token Address": [
+            "Order.token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(token).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeEth",
+                "Node": "_orderLists[id] = Order(msg.sender, token, amount, endTime, 0, 1)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(order.token).safeTransfer(msg.sender, orders[i].amount)"
+            },
+            {
+                "Function": "withdrawEth",
+                "Node": "payable(msg.sender).transfer(orders[i].amount)"
+            }
+        ]
+    }
+}

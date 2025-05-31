@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakesFor3Months.stake",
+            "stakesFor6Months.stake",
+            "stakesFor12Months.stake"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakesFor3Months.lockUpTime",
+            "stakesFor6Months.lockUpTime",
+            "stakesFor12Months.lockUpTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor3Months",
+                "Node": "_burn(msg.sender, _stake)"
+            },
+            {
+                "Function": "stakeFor6Months",
+                "Node": "_burn(msg.sender, _stake)"
+            },
+            {
+                "Function": "stakeFor12Months",
+                "Node": "_burn(msg.sender, _stake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStakeAfter3months",
+                "Node": "_mint(msg.sender, sum)"
+            },
+            {
+                "Function": "withdrawStakeAfter6months",
+                "Node": "_mint(msg.sender, sum)"
+            },
+            {
+                "Function": "withdrawStakeAfter12months",
+                "Node": "_mint(msg.sender, sum)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakeAfter3months",
+                "Node": "_mint(msg.sender, stakeToReceive)"
+            },
+            {
+                "Function": "withdrawStakeAfter6months",
+                "Node": "_mint(msg.sender, stakeToReceive)"
+            },
+            {
+                "Function": "withdrawStakeAfter12months",
+                "Node": "_mint(msg.sender, stakeToReceive)"
+            }
+        ]
+    }
+}

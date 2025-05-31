@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Depo.amt"
+        ],
+        "User Stake Reward": [
+            "User.refBonus",
+            "calcdiv"
+        ],
+        "User Stake Time": [
+            "Depo.depoTime"
+        ],
+        "Stake Token Address": [
+            "FTM_WETH_LP"
+        ],
+        "Reward Token Address": [
+            "FTM_WETH_LP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStableCoins",
+                "Node": "FTM_WETH_LP.safeTransfer(owner, stakeFee)"
+            },
+            {
+                "Function": "stakeNativeCurrencies",
+                "Node": "FTM_WETH_LP.safeTransfer(owner, stakeFee)"
+            },
+            {
+                "Function": "stakeRefBonus",
+                "Node": "FTM_WETH_LP.safeTransfer(msg.sender, amtz)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "FTM_WETH_LP.safeTransfer(msg.sender, adjustedAmt)"
+            },
+            {
+                "Function": "withdrawRefBonus",
+                "Node": "FTM_WETH_LP.safeTransfer(msg.sender, amtz)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInitial",
+                "Node": "FTM_WETH_LP.safeTransfer(msg.sender, transferAmt)"
+            }
+        ]
+    }
+}

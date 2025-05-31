@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeStore.principle"
+        ],
+        "User Stake Reward": [
+            "StakeStore.shares"
+        ],
+        "User Stake Time": [
+            "StakeStore.duration"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "rewardsToken.safeTransfer(target, finalReward)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "rewardsToken.safeTransfer(target, afterPenalty)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakingToken.safeTransfer(target, amount)"
+            },
+            {
+                "Function": "unstakeWithoutReward",
+                "Node": "stakingToken.safeTransfer(target, amount)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "stakingToken.safeTransfer(target, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfLPInGauge"
+        ],
+        "User Stake Reward": [
+            "pendingRewards",
+            "balanceOfTruRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "pool"
+        ],
+        "Reward Token Address": [
+            "tru"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "adjustPosition",
+                "Node": "pool.join(wantBalance.sub(_debtOutstanding))"
+            },
+            {
+                "Function": "adjustPosition",
+                "Node": "gauge.stake(IERC20(address(pool)), _balanceOfLP()"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "gauge.claim(tmp)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "gauge.claim(tmp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "gauge.unstake(IERC20(address(pool)), actualWithdrawn)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "pool.liquidExit(actualWithdrawn)"
+            },
+            {
+                "Function": "liquidateAllPositions",
+                "Node": "gauge.exit(tmp)"
+            },
+            {
+                "Function": "liquidateAllPositions",
+                "Node": "pool.liquidExit(_balanceOfLP())"
+            }
+        ]
+    }
+}

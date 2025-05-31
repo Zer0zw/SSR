@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IHopeChef(farmPool).depositWithRef(poolId, _baseBal, vaultMaster.reserveFund())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IHopeChef(farmPool).deposit(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IHopeChef(farmPool).withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IHopeChef(farmPool).withdrawAll(poolId)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IHopeChef(farmPool).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.habibiz"
+        ],
+        "User Stake Reward": [
+            "calculateOilRewards"
+        ],
+        "User Stake Time": [
+            "Staker.habibiz.stakedTimestamp"
+        ],
+        "Stake Token Address": [
+            "habibi"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ERC721Like(habibi).transferFrom(msg.sender, address(this), _habibiz[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_mint(msg.sender, oil)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_mint(msg.sender, oilRewards)"
+            },
+            {
+                "Function": "unstakeByIds",
+                "Node": "_mint(msg.sender, oilRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": "ERC721Like(habibi).transferFrom(address(this), msg.sender, tokenIds[i])"
+            },
+            {
+                "Function": "unstakeByIds",
+                "Node": "ERC721Like(habibi).transferFrom(address(this), msg.sender, _tokenIds[i])"
+            }
+        ]
+    }
+}

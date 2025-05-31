@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stake"
+        ],
+        "User Stake Reward": [
+            "Stake.notWithdrawn",
+            "Stake.totalRefReward"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "USDTContract"
+        ],
+        "Reward Token Address": [
+            "USDTContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(USDTContract).safeTransferFrom(msg.sender,address(this),_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(USDTContract).safeTransfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "claimContributeBonus",
+                "Node": "IERC20(USDTContract).safeTransfer(_msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCapital",
+                "Node": "IERC20(USDTContract).safeTransfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

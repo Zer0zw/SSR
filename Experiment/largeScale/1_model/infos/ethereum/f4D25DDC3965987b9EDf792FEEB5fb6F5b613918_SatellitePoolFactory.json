@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingTokens"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deploy",
+                "Node": "poolByStakingToken[stakingToken] = address(new SatellitePool(_liquidation, address(this), rewardsToken, stakingToken, _oracle, _sts, _lockDuration, _unlockPercent, _lockPercent, msg.sender, _decimalDiff))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "notifyRewardAmount",
+                "Node": "IERC20(rewardsToken).transfer(poolByStakingToken[stakingToken], rewardAmount)"
+            },
+            {
+                "Function": "notifyRewardAmount",
+                "Node": "StakingRewardsLock(poolByStakingToken[stakingToken]).notifyRewardAmount(rewardAmount, duration)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeStructs.StakeInfo.stakePrice"
+        ],
+        "User Stake Reward": [
+            "StakeStructs.StakeInfo.rewards"
+        ],
+        "User Stake Time": [
+            "StakeStructs.StakeInfo.endTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "StakeStructs.Reward.tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakeToken.safeTransferFrom(msg.sender, stakeTokenAdminAddress, cellInfo.stakePrice)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "rewardInstance.safeTransferFrom(stakeTokenAdminAddress, msg.sender, rewardAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "bonusInstance.safeTransferFrom(stakeTokenAdminAddress, msg.sender, bonusAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "rewardInstance.safeTransferFrom(stakeTokenAdminAddress, msg.sender, rewardAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "bonusInstance.safeTransferFrom(stakeTokenAdminAddress, msg.sender, bonusAmount)"
+            }
+        ]
+    }
+}

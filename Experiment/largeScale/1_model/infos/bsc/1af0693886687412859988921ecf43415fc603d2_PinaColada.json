@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_accountPoS"
+        ],
+        "User Stake Reward": [
+            "_virtualRewards"
+        ],
+        "User Stake Time": [
+            "_accountTs"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "EternalStaking",
+                "Node": "_balances[_msgSender()] = _balances[_msgSender()].sub(amount, \"BEP20: amount exceeds balance\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_balanceRewards",
+                "Node": "_balances[account] = _balances[account]+_rewards"
+            },
+            {
+                "Function": "_virtualRewards",
+                "Node": "return _rewards"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_stake",
+                "Node": "_balances[account] = _balances[account].sub(amount, \"BEP20: stake amount exceeds balance\")"
+            },
+            {
+                "Function": "_stakeFrom",
+                "Node": "_stake(account, amount)"
+            }
+        ]
+    }
+}

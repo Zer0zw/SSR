@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "unlockedRewards"
+        ],
+        "User Stake Time": [
+            "unlockStart",
+            "unlockEnd"
+        ],
+        "Stake Token Address": [
+            "rewardToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addRewards",
+                "Node": "_balances[account] = _balances[account].add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, availableReward)"
+            },
+            {
+                "Function": "getUnlockedReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeRewards",
+                "Node": "_balances[account] = _balances[account].sub(amount)"
+            }
+        ]
+    }
+}

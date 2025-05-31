@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked",
+            "Action.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Action.reward"
+        ],
+        "User Stake Time": [
+            "Action.stakedTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeByHash",
+                "Node": "token.transferFrom(msg.sender, address(this), amount * length)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "autoClaim",
+                "Node": "token.transfer(msg.sender, rwd)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "bonusPool += act.stakedAmount"
+            }
+        ]
+    }
+}

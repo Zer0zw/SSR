@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "usersData.totalStaked",
+            "UserDeposit.amount"
+        ],
+        "User Stake Reward": [
+            "usersData.totalRewardsClaimed",
+            "UserDeposit.claimedRewards"
+        ],
+        "User Stake Time": [
+            "UserDeposit.depositTime"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "amount = _transferSuportingFeeOnTransferTokens(stakedToken, msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "rewardToken.safeTransfer(msg.sender, pendingRewards)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "rewardToken.safeTransfer(msg.sender, pendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

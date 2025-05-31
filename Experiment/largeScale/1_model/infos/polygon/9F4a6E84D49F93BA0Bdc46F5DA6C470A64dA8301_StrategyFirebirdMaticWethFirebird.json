@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_wantAddress"
+        ],
+        "Reward Token Address": [
+            "_earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IFirebird(masterChef).depositWithRef(pid, _wantAmount, referralAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IFirebird(masterChef).depositWithRef(pid, 0, referralAddress)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IFirebird(masterChef).withdraw(pid, _amount)"
+            }
+        ]
+    }
+}

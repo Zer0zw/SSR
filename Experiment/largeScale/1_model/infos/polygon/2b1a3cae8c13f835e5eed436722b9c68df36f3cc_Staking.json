@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardAmount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "registry.tidalToken"
+        ],
+        "Reward Token Address": [
+            "registry.tidalToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(registry.tidalToken()).transferFrom(_msgSender(), address(this), amount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(registry.tidalToken()).transfer(_msgSender(), rewardTotal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawReady",
+                "Node": "IERC20(registry.tidalToken()).transfer(address(who_), request.amount)"
+            }
+        ]
+    }
+}

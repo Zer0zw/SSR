@@ -1,0 +1,166 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ftmtomb_staker.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tomb_wftm"
+        ],
+        "Reward Token Address": [
+            "tshare_address"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "harvest",
+            "swap_and_compound_and_stake"
+        ],
+        "unStake": [
+            "emergency_unstake",
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "set_addresses",
+            "swap_and_compound_and_stake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1466
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "shares_circ",
+                    "tomb_wftm"
+                ],
+                "Full Calculation Variables": [
+                    "shares_circ",
+                    "tomb_wftm"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1540
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "tshare_address"
+                ],
+                "Control Variables": [
+                    "last_harvested",
+                    "tshare_address",
+                    "tshare_pool"
+                ],
+                "Full Calculation Variables": [
+                    "last_harvested",
+                    "tshare_address",
+                    "tshare_pool"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "swap_and_compound_and_stake",
+                "Node": [
+                    1577
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "last_compounded",
+                    "path1",
+                    "path2",
+                    "spooky",
+                    "tomb",
+                    "tomb_wftm",
+                    "tombswap",
+                    "total_deposited",
+                    "tshare_address",
+                    "tshare_pool",
+                    "wftm"
+                ],
+                "Full Calculation Variables": [
+                    "last_compounded",
+                    "path1",
+                    "path2",
+                    "spooky",
+                    "tomb",
+                    "tomb_wftm",
+                    "tombswap",
+                    "total_deposited",
+                    "tshare_address",
+                    "tshare_pool",
+                    "wftm"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1513
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "shares_circ",
+                    "total_deposited"
+                ],
+                "Control Variables": [
+                    "ftmtomb_staker.shares",
+                    "shares_circ",
+                    "tomb_wftm",
+                    "total_deposited",
+                    "tshare_pool"
+                ],
+                "Full Calculation Variables": [
+                    "ftmtomb_staker.shares",
+                    "shares_circ",
+                    "tomb_wftm",
+                    "total_deposited",
+                    "tshare_pool"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergency_unstake",
+                "Node": [
+                    1526
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "ftmtomb_staker.shares"
+                ],
+                "Control Variables": [
+                    "ftmtomb_staker.shares",
+                    "shares_circ",
+                    "tomb_wftm",
+                    "tshare_pool"
+                ],
+                "Full Calculation Variables": [
+                    "ftmtomb_staker.shares",
+                    "shares_circ",
+                    "tomb_wftm",
+                    "tshare_pool"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

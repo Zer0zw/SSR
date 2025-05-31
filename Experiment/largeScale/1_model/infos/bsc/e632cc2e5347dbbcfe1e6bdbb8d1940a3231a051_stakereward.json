@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "usrHaveStake",
+            "stakeItem.hasStake"
+        ],
+        "User Stake Reward": [
+            "stakeInfo.rewards",
+            "stakeInfo.hasRewards"
+        ],
+        "User Stake Time": [
+            "stakeItem.stakeTime",
+            "stakeInfo.trueEndUpdateTime"
+        ],
+        "Stake Token Address": [
+            "lpToken",
+            "ticketToken"
+        ],
+        "Reward Token Address": [
+            "lpToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(lpToken).safeTransferFrom(msg.sender, address(this),lpAmounts)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(ticketToken).safeTransferFrom(msg.sender, address(this),ticketAmounts)"
+            },
+            {
+                "Function": "stakeTotal",
+                "Node": "IERC20(lpToken).safeTransferFrom(msg.sender, address(this),lpAmounts)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(lpToken).safeTransfer(msg.sender,rewardAmt)"
+            },
+            {
+                "Function": "getInviteReward",
+                "Node": "IERC20(lpToken).safeTransfer(msg.sender,rewardAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpToken).safeTransfer(msg.sender,withdrawAmount.mul(98).div(100))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpToken).safeTransfer(teamAddr,withdrawAmount.mul(2).div(100))"
+            }
+        ]
+    }
+}

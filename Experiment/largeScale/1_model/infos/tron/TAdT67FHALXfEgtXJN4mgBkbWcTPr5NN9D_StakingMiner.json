@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sprite"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "uint earned = safeSpriteTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "stakeTrx",
+                "Node": "stake(_pid, _amount)"
+            },
+            {
+                "Function": "stakeTRC20",
+                "Node": "stake(_pid, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "uint earned = safeSpriteTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(_amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.bonus"
+        ],
+        "User Stake Time": [
+            "Stake.startStaking",
+            "Stake.lastHarvest"
+        ],
+        "Stake Token Address": [
+            "lpTokenAddress_"
+        ],
+        "Reward Token Address": [
+            "mainToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(lpToken_.transferFrom(msg.sender, address(this), amount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "require(mainToken.transfer(msg.sender, value_)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(lpToken_.transfer(msg.sender, amount_)"
+            }
+        ]
+    }
+}

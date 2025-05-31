@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "customStakingBalance"
+        ],
+        "User Stake Reward": [
+            "totalClaimedRewards"
+        ],
+        "User Stake Time": [
+            "stakedTime"
+        ],
+        "Stake Token Address": [
+            "_link"
+        ],
+        "Reward Token Address": [
+            "_link"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "customStaking",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "customStaking",
+                "Node": "token.transfer(devwalletAddress, feeAmount)"
+            },
+            {
+                "Function": "customStaking",
+                "Node": "token.transfer(referredBy[msg.sender], reffeeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "token.transfer(recipient, balance)"
+            }
+        ],
+        "unStake": []
+    }
+}

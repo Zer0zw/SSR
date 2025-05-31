@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenBalanceLedger"
+        ],
+        "User Stake Reward": [
+            "profitPerShare",
+            "payoutsTo"
+        ],
+        "User Stake Time": [
+            "lastDripTime"
+        ],
+        "Stake Token Address": [
+            "pair"
+        ],
+        "Reward Token Address": [
+            "pair"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pair.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "purchaseTokens",
+                "Node": "tokenBalanceLedger[_customerAddress] =  tokenBalanceLedger[_customerAddress].add(_amountOfTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "pair.safeTransfer(_customerAddress, _dividends)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "payoutsTo[_customerAddress] +=  (int256) (_dividends.mul(magnitude))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "remove",
+                "Node": "pair.safeTransfer(_customerAddress, _taxedTokens)"
+            }
+        ]
+    }
+}

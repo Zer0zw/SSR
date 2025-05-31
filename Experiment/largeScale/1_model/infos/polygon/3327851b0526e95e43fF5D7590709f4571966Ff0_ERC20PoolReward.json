@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "User.accReward",
+            "User.claimed"
+        ],
+        "User Stake Time": [
+            "startDate",
+            "endDate"
+        ],
+        "Stake Token Address": [
+            "stakingContract.stakedToken()"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.transfer(msg.sender, _claimable)"
+            },
+            {
+                "Function": "compound",
+                "Node": "token.approve(address(stakingContract), _claimable)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "caviarReward",
+            "bubbleReward"
+        ],
+        "User Stake Time": [
+            "stakedAt"
+        ],
+        "Stake Token Address": [
+            "FishContractAddress"
+        ],
+        "Reward Token Address": [
+            "caviarAddress",
+            "bubbleAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFish",
+                "Node": "ERC721R(FishContractAddress).transferFrom(msg.sender, address(this), _id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "REWARD_TOKEN(caviarAddress).reward(msg.sender, caviarReward)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "REWARD_TOKEN(bubbleAddress).reward(msg.sender, bubbleReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeFish",
+                "Node": "ERC721R(FishContractAddress).transferFrom(address(this), msg.sender, _id)"
+            }
+        ]
+    }
+}

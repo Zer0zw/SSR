@@ -1,0 +1,108 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "orders.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "orders.time"
+        ],
+        "Stake Token Address": [
+            "coesLpToken"
+        ],
+        "Reward Token Address": [
+            "csrToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "reward"
+        ],
+        "unStake": [
+            "cancelStake"
+        ],
+        "Sensitive Functions": [
+            "updateCsrTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    329
+                ],
+                "Input": [
+                    "_amount",
+                    "_period"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "coesLpToken",
+                    "periodDays"
+                ],
+                "Full Calculation Variables": [
+                    "coesLpToken",
+                    "periodDays"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": [
+                    397
+                ],
+                "Input": [
+                    "_addr",
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_owner",
+                    "csrToken"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "csrToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelStake",
+                "Node": [
+                    352
+                ],
+                "Input": [
+                    "_index"
+                ],
+                "Calculation Variables": [
+                    "orders.amount",
+                    "orders.period",
+                    "orders.time"
+                ],
+                "Control Variables": [
+                    "coesLpToken",
+                    "orders.amount",
+                    "orders.period",
+                    "orders.time",
+                    "periodDays"
+                ],
+                "Full Calculation Variables": [
+                    "coesLpToken",
+                    "orders.amount",
+                    "orders.period",
+                    "orders.time",
+                    "periodDays"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "bags",
+            "nftTokenIds"
+        ],
+        "User Stake Reward": [
+            "bags",
+            "unclaimedBalance"
+        ],
+        "User Stake Time": [
+            "bags",
+            "lastStateChange"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addNewBag",
+                "Node": "nft.safeTransferFrom(msg.sender, address(this), _nftTokenIds[i])"
+            },
+            {
+                "Function": "_addToBag",
+                "Node": "nft.safeTransferFrom(msg.sender, address(this), _nftTokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardsToken.mint(msg.sender, _totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, _nftTokenIds[i].ids[j])"
+            }
+        ]
+    }
+}

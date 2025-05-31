@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.deposit(amount)"
+            },
+            {
+                "Function": "reDeposit",
+                "Node": "super.reDeposit()"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "treasury.withdrawRewards(rewardToken, _msgSender())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

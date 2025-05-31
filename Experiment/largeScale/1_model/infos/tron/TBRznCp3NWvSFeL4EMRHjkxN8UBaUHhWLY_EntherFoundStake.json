@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.investedAmount",
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "User.withdrawnAmount",
+            "Deposit.withdrawn"
+        ],
+        "User Stake Time": [
+            "User.checkpoint",
+            "Deposit.start"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "stakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investInPool",
+                "Node": "IERC20(stakeToken).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDailyYield",
+                "Node": "IERC20(stakeToken).transfer(_user,totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPrincipleAmount",
+                "Node": "IERC20(stakeToken).transfer(_user, totalAmount)"
+            }
+        ]
+    }
+}

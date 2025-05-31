@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits_lpTokensDeposited"
+        ],
+        "User Stake Reward": [
+            "owedTo"
+        ],
+        "User Stake Time": [
+            "deposits_depositTimestamp"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "NBASE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "bool ok = lpToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBASE",
+                "Node": "bool ok = NBASE.transfer(msg.sender, owed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLPTokens",
+                "Node": "bool ok = lpToken.transfer(msg.sender, deposited)"
+            }
+        ]
+    }
+}

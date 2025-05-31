@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStaked",
+            "Balance.balance"
+        ],
+        "User Stake Reward": [
+            "pendingCryo"
+        ],
+        "User Stake Time": [
+            "Balance.startTime",
+            "Balance.day"
+        ],
+        "Stake Token Address": [
+            "AMB"
+        ],
+        "Reward Token Address": [
+            "cryo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( AMB ).safeTransferFrom( _recipient, address(this), _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeemCryo",
+                "Node": "IERC20Mintable( cryo ).mint(_recipient, pendingCryo)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( AMB ).safeTransfer(msg.sender,_amount)"
+            }
+        ]
+    }
+}

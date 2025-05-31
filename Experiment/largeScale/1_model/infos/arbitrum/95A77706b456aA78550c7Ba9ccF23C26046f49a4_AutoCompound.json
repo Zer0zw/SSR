@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "ARX",
+            "WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20Metadata(lpToken).safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IArbiDexRouter(router).swapExactTokensForTokens(harvestedARX, amountOutARXMin, path, treasury, block.timestamp)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IArbiDexRouter(router).swapExactTokensForTokens(harvestedWETH, amountOutWETHMin, path, treasury, block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Metadata(lpToken).safeTransfer(address(msg.sender), adjustedAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20Metadata(lpToken).safeTransfer(address(msg.sender), adjustedAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake"
+        ],
+        "User Stake Reward": [
+            "UserS"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "require(stakeToken.transferFrom(msg.sender, address(this), _amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Redeem",
+                "Node": "kinectToken.transfer(tx.origin, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Withdrawl",
+                "Node": "stakeToken.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

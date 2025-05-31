@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "eps"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ILpStaker(stakingPool).deposit(poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouter(unirouter).swapExactTokensForTokens(toWbnb, 0, epsToWbnbRoute, address(this), now.add(600)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wbnb).safeTransfer(strategist, strategistFee)"
+            },
+            {
+                "Function": "swapRewards",
+                "Node": "IUniswapRouter(unirouter).swapExactTokensForTokens(epsBal, 0, epsToBusdRoute, address(this), now.add(600))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFee))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, pairBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "ILpStaker(stakingPool).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

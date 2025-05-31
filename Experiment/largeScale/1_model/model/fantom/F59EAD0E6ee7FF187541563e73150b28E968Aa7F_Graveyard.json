@@ -1,0 +1,138 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownedStakesBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakes.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "zombie"
+        ],
+        "Reward Token Address": [
+            "brain"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeMany"
+        ],
+        "getReward": [
+            "claimBrainsAndMaybeUnstake"
+        ],
+        "unStake": [
+            "claimBrainsAndMaybeUnstake",
+            "withdrawZombies"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMany",
+                "Node": [
+                    2415
+                ],
+                "Input": [
+                    "_tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "zombie"
+                ],
+                "Full Calculation Variables": [
+                    "zombie"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBrainsAndMaybeUnstake",
+                "Node": [
+                    2465
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "unstake"
+                ],
+                "Calculation Variables": [
+                    "CLAIM_TAX_PERCENTAGE"
+                ],
+                "Control Variables": [
+                    "CLAIM_TAX_PERCENTAGE",
+                    "brain",
+                    "numUpgradeSlots",
+                    "stakedUpgradesCount"
+                ],
+                "Full Calculation Variables": [
+                    "CLAIM_TAX_PERCENTAGE",
+                    "brain",
+                    "numUpgradeSlots",
+                    "stakedUpgradesCount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimBrainsAndMaybeUnstake",
+                "Node": [
+                    2449
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "unstake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CLAIM_TAX_PERCENTAGE",
+                    "stakedUpgradesCount",
+                    "stakes.owner",
+                    "stakes.staked",
+                    "stakes.startTimestamp",
+                    "stakes.tokenId",
+                    "zombie"
+                ],
+                "Full Calculation Variables": [
+                    "CLAIM_TAX_PERCENTAGE",
+                    "stakedUpgradesCount",
+                    "stakes.owner",
+                    "stakes.staked",
+                    "stakes.startTimestamp",
+                    "stakes.tokenId",
+                    "zombie"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawZombies",
+                "Node": [
+                    2478
+                ],
+                "Input": [
+                    "_tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "UNSTAKE_COOLDOWN_DURATION",
+                    "unstakeCooldowns.owner",
+                    "unstakeCooldowns.present",
+                    "unstakeCooldowns.startTimestamp",
+                    "unstakeCooldowns.tokenId",
+                    "zombie"
+                ],
+                "Full Calculation Variables": [
+                    "UNSTAKE_COOLDOWN_DURATION",
+                    "unstakeCooldowns.owner",
+                    "unstakeCooldowns.present",
+                    "unstakeCooldowns.startTimestamp",
+                    "unstakeCooldowns.tokenId",
+                    "zombie"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

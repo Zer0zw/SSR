@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "rewardPerToken"
+        ],
+        "User Stake Time": [
+            "minPeriodDuration"
+        ],
+        "Stake Token Address": [
+            "pika"
+        ],
+        "Reward Token Address": [
+            "pika"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "pika.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "pika.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pika.transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

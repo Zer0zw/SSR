@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "FFCv2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.want.safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "deposit(_pid, pool.want.balanceOf(msg.sender))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeFFCTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeFFCTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "safeFFCTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), _wantAmt)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "pool.want.safeTransfer(address(msg.sender), _wantAmt)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalInUnderlying"
+        ],
+        "User Stake Reward": [
+            "earnedAddress"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_vaultDeposit",
+                "Node": "IWault(stakingRewardsAddress).deposit(pid, _amount, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_vaultHarvest",
+                "Node": "IWault(stakingRewardsAddress).claim(pid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_vaultWithdraw",
+                "Node": "IWault(stakingRewardsAddress).withdraw(pid, _amount, true)"
+            },
+            {
+                "Function": "_emergencyVaultWithdraw",
+                "Node": "IWault(stakingRewardsAddress).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

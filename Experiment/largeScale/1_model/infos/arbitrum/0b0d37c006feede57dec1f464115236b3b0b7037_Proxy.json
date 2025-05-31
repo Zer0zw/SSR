@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "IUserPool.UserInfo.reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.token"
+        ],
+        "Reward Token Address": [
+            "zombie"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "add",
+                "Node": "poolInfo.push(PoolInfo({ token: _token, allocPoint: _allocPoint, lastRewardTime: _lastRewardTime, accZombiePerShare: 0, totalDepositedAmount: 0, depositFee: _depositFee, isStarted: _isStarted, isLP: isLP }))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeZombieTransfer(_sender, _pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Not explicitly found in the provided code"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "Not explicitly found in the provided code"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposits"
+        ],
+        "User Stake Reward": [
+            "User.compounds",
+            "User.total_ref_bonus"
+        ],
+        "User Stake Time": [
+            "User.deposit_time"
+        ],
+        "Stake Token Address": [
+            "FPADToken"
+        ],
+        "Reward Token Address": [
+            "FPADToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(FPADToken.transferFrom(_userAddress, address(this), _amount), \"FPAD token transfer failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "require(FPADToken.transferFrom(address(frensVaultAddress), _addr, _amt), \"Failed to transfer FPAD tokens\""
+            },
+            {
+                "Function": "claimReferral",
+                "Node": "require(FPADToken.transferFrom(address(frensVaultAddress), _addr, _amt), \"Failed to transfer FPAD tokens\""
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPrincipal",
+                "Node": "require(FPADToken.transfer(_addr, _withdraw_amt), \"Failed to transfer FPAD tokens\""
+            }
+        ]
+    }
+}

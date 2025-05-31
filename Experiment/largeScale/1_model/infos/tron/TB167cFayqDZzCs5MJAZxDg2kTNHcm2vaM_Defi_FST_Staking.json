@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.deposit_amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.totalGain"
+        ],
+        "User Stake Time": [
+            "userInfo.deposit_time"
+        ],
+        "Stake Token Address": [
+            "usdfAddress"
+        ],
+        "Reward Token Address": [
+            "usdfAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "tokenInterface(usdfAddress).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawGain",
+                "Node": "tokenInterface(usdfAddress).transfer_(_user, GainAmount * 9 / 10)"
+            },
+            {
+                "Function": "payToReferrer",
+                "Node": "tokenInterface(usdfAddress).transfer_(_refUser, amt)"
+            },
+            {
+                "Function": "checkNPay",
+                "Node": "tokenInterface(usdfAddress).transfer_(_user, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawGain",
+                "Node": "tokenInterface(usdfAddress).transfer_(_user, investAmount)"
+            },
+            {
+                "Function": "preExit",
+                "Node": "tokenInterface(usdfAddress).transfer_(_user, invAmt)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pending_list",
+            "pending_list2",
+            "allrewardList",
+            "allrewardList2"
+        ],
+        "User Stake Time": [
+            "staking_time",
+            "unlock_time"
+        ],
+        "Stake Token Address": [
+            "poolInfo0.lpToken"
+        ],
+        "Reward Token Address": [
+            "poolInfo0.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositByUser",
+                "Node": "pool.tokensList.lpToken.transferFrom(fromAddress, address(this), _depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(cake, _user, leftAmount)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(pool.tokensList.rewardToken, _user, leftAmount)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(cake, _user, rewardAmountForUser)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(cake, referer, rewardAmountForReferer)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(pool.tokensList.rewardToken, _user, rewardAmountForUser)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(pool.tokensList.rewardToken, referer, rewardAmountForReferer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.tokensList.lpToken.transfer(_user, _withdrawAmount)"
+            }
+        ]
+    }
+}

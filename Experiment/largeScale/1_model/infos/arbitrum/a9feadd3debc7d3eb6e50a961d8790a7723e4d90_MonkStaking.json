@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserData.amount"
+        ],
+        "User Stake Reward": [
+            "Reward.totalExcludedToken"
+        ],
+        "User Stake Time": [
+            "UserData.lockedTime"
+        ],
+        "Stake Token Address": [
+            "rewardToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "participate",
+                "Node": "require(rewardToken.transferFrom(_msgSender(), address(this), amount), \"token transfer failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "require(rewardToken.transfer(user, amountToken), \"token transfer failed\""
+            },
+            {
+                "Function": "_claim",
+                "Node": "require(rewardToken.transfer(user, amountToken), \"token transfer failed\""
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "require(rewardToken.transfer(_msgSender(), userData[_msgSender()].amount), \"token transfer failed\""
+            },
+            {
+                "Function": "emergencyUnlock",
+                "Node": "require(rewardToken.transfer(_msgSender(), userData[_msgSender()].amount), \"token transfer failed\""
+            }
+        ]
+    }
+}

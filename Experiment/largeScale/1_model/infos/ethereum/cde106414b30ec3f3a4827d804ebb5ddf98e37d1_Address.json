@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositTime",
+            "UserInfo.timelock"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "wen"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "safeWENTransfer(msg.sender, pending.mul(subrate))"
+            },
+            {
+                "Function": "depositWithLPlock",
+                "Node": "safeWENTransfer(msg.sender, pending.mul(subrate))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeWENTransfer(msg.sender, pending.mul(subrate))"
+            },
+            {
+                "Function": "depositWithLPlock",
+                "Node": "safeWENTransfer(msg.sender, pending.mul(subrate))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeWENTransfer(msg.sender, pending.mul(subrate))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

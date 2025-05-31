@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_StakedItem",
+            "tokenId"
+        ],
+        "User Stake Reward": [
+            "_StakedItem",
+            "emission"
+        ],
+        "User Stake Time": [
+            "_StakedItem",
+            "releaseTime"
+        ],
+        "Stake Token Address": [
+            "NFTToken"
+        ],
+        "Reward Token Address": [
+            "REWARDToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeToken",
+                "Node": "IERC721(token).transferFrom(msg.sender,address(this),tokenId)"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "IERC721(token).transferFrom(msg.sender,address(this),tokenId[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStake",
+                "Node": "IERC20(REWARDToken).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "IERC20(REWARDToken).transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelStake",
+                "Node": "IERC721(staking.token).transferFrom(address(this), msg.sender, staking.tokenId)"
+            }
+        ]
+    }
+}

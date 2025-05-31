@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStakedWant"
+        ],
+        "User Stake Reward": [
+            "_rewardToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(mdxBFarmBNB, _want)"
+            },
+            {
+                "Function": "_stakeWant",
+                "Node": "IERC20(want).safeApprove(mdxBFarmBNB, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(rewardToken).safeTransfer(msg.sender, _harvesterReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IMdxBFarm(mdxBFarmBNB).emergencyWithdraw(farmPid)"
+            }
+        ]
+    }
+}

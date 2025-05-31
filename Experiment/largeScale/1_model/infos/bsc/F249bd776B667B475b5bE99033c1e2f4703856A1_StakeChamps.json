@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.amount"
+        ],
+        "User Stake Reward": [
+            "Staker.reward",
+            "Staker.claimedRewards"
+        ],
+        "User Stake Time": [
+            "Staker.stakedAtTimestamp",
+            "Staker.unstakedAtTimestamp",
+            "Staker.rewardRedeemedAt"
+        ],
+        "Stake Token Address": [
+            "ChampsContract"
+        ],
+        "Reward Token Address": [
+            "ChampsContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ChampsContract.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "ChampsContract.safeTransfer(msg.sender, rewardsEarned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ChampsContract.safeTransfer(msg.sender, unstakeAmount)"
+            }
+        ]
+    }
+}

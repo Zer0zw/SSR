@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.rewardRatio"
+        ],
+        "User Stake Time": [
+            "Stake.since"
+        ],
+        "Stake Token Address": [
+            "mfetToken"
+        ],
+        "Reward Token Address": [
+            "mfetToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "mfetToken.safeTransferFrom(_msgSender(), address(this), stakeAmount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "mfetToken.safeTransferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "monthlyClaim",
+                "Node": "mfetToken.safeTransfer(_msgSender(), stakeMonthlyReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "mfetToken.safeTransfer(_msgSender(), stakeAndReward)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "mfetToken.safeTransfer(_msgSender(), afterFee)"
+            }
+        ]
+    }
+}

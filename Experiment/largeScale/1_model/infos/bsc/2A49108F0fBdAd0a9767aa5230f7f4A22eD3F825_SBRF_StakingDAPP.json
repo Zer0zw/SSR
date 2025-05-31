@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalancePlan1",
+            "stakingBalancePlan2",
+            "stakingBalancePlan3"
+        ],
+        "User Stake Reward": [
+            "totalStakedOfPlan1Apy",
+            "totalStakedOfPlan2Apy",
+            "totalStakedOfPlan3Apy"
+        ],
+        "User Stake Time": [
+            "stakingStartTime1",
+            "stakingStartTime2",
+            "stakingStartTime3"
+        ],
+        "Stake Token Address": [
+            "SBRF"
+        ],
+        "Reward Token Address": [
+            "SBRF"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "SBRF.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Reward",
+                "Node": "SBRF.transfer(msg.sender, interest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "SBRF.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

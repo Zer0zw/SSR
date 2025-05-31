@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [
+            "rewardToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken",
+            "wombatLpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addShare",
+                "Node": "wombatFarming.deposit(farmingPid, balance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reinvest",
+                "Node": "rewardToken.safeTransfer(rewardTo, bounty)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeShare",
+                "Node": "wombatFarming.withdraw(farmingPid, balance)"
+            },
+            {
+                "Function": "liquidate",
+                "Node": "SafeToken.safeTransferETH(msg.sender, wad)"
+            }
+        ]
+    }
+}

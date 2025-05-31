@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastGetReward"
+        ],
+        "Stake Token Address": [
+            "gpx"
+        ],
+        "Reward Token Address": [
+            "gpx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeGPXTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeGPXTransfer(referrer, referrerFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,164 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [
+            "userInfo.MEGAAtLastUserAction"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    920
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    961
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "callFee",
+                    "token"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "callFee",
+                    "masterhealer",
+                    "performanceFee",
+                    "token",
+                    "treasury"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "callFee",
+                    "masterhealer",
+                    "performanceFee",
+                    "token",
+                    "treasury"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1131
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "masterhealer",
+                    "token",
+                    "totalShares",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "masterhealer",
+                    "token",
+                    "totalShares",
+                    "userInfo.MEGAAtLastUserAction",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "masterhealer",
+                    "token",
+                    "totalShares",
+                    "userInfo.MEGAAtLastUserAction",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1131
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "token",
+                    "withdrawFee",
+                    "masterhealer",
+                    "totalShares"
+                ],
+                "Control Variables": [
+                    "userInfo.MEGAAtLastUserAction",
+                    "withdrawFeePeriod",
+                    "totalShares",
+                    "userInfo.shares",
+                    "token",
+                    "withdrawFee",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "masterhealer"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.MEGAAtLastUserAction",
+                    "withdrawFeePeriod",
+                    "totalShares",
+                    "userInfo.shares",
+                    "token",
+                    "withdrawFee",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "masterhealer"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

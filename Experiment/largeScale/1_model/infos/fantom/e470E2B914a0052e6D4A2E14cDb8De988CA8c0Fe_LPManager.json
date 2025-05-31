@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked",
+            "locked"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "RDL_FTM_POOL"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(_pool).transferFrom(msg.sender, address(DEPOSITOR), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimSolidRewards",
+                "Node": "DEPOSITOR.claimSolidRewards(msg.sender, _pools, _currentBalances)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "DEPOSITOR.withdrawLP(msg.sender, _pool, _amount, _totalDeposit)"
+            },
+            {
+                "Function": "unlock",
+                "Node": "DEPOSITOR.withdrawLP(msg.sender, RDL_FTM_POOL, _amount, _locked + staked[msg.sender][RDL_FTM_POOL])"
+            }
+        ]
+    }
+}

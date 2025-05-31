@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakingItem.stakingAmt"
+        ],
+        "User Stake Reward": [
+            "userReward"
+        ],
+        "User Stake Time": [
+            "UserStakingItem.stakingStartTime",
+            "UserStakingItem.stakingEndTime"
+        ],
+        "Stake Token Address": [
+            "looTokenAddress"
+        ],
+        "Reward Token Address": [
+            "looTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "IERC20(looTokenAddress).transferFrom(msg.sender, address(stakingPool), _stakingAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawProfit",
+                "Node": "IERC20(looTokenAddress).transfer(msg.sender, profit)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(looTokenAddress).transferFrom(rewardsWallet, msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStaking",
+                "Node": "stakingPool.unStake(looTokenAddress, msg.sender, totalUnStake)"
+            },
+            {
+                "Function": "forceUnStakingByIdWhenAccidental",
+                "Node": "stakingPool.unStake(looTokenAddress, stakingItem.staker, totalUnStake)"
+            }
+        ]
+    }
+}

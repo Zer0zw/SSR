@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedIndex"
+        ],
+        "User Stake Reward": [
+            "ClaimDataBase._bonusToClaim"
+        ],
+        "User Stake Time": [
+            "DataBase._StakedTime",
+            "DataBase._lastClaimed"
+        ],
+        "Stake Token Address": [
+            "NFT"
+        ],
+        "Reward Token Address": [
+            "R_Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeSingle",
+                "Node": "NFT.safeTransferFrom(account, address(this) , _tokenId,\"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "R_Token.transfer(account,subtotalReward)"
+            },
+            {
+                "Function": "claimBonus",
+                "Node": "R_Token.transfer(msg.sender,bonus)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeSingle",
+                "Node": "NFT.transferFrom(address(this),account, _tokenId)"
+            }
+        ]
+    }
+}

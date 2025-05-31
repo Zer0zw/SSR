@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "accountStakes"
+        ],
+        "User Stake Reward": [
+            "AccountRewardDetail.accruedReward"
+        ],
+        "User Stake Time": [
+            "AccountRewardDetail.lastClaimTime"
+        ],
+        "Stake Token Address": [
+            "kMCD"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mint",
+                "Node": "kUSD.mint(msgSender, kUSDAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, maturedReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "burn",
+                "Node": "kUSD.burn(msgSender, kUSDAmount)"
+            },
+            {
+                "Function": "burnMax",
+                "Node": "kUSD.burn(msgSender, vars.equivalentKUSDAmount)"
+            },
+            {
+                "Function": "liquidate",
+                "Node": "kUSD.burn(msgSender, vars.equivalentKUSDAmount)"
+            }
+        ]
+    }
+}

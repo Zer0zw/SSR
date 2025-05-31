@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDeposited"
+        ],
+        "User Stake Reward": [
+            "usersCompUSD",
+            "usersIncome"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "_ysl",
+            "_sysl"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IsYSL(_sysl).mintFor(address(this), emission)"
+            },
+            {
+                "Function": "earn",
+                "Node": "IsYSL(_sysl).mint(usersIncome)"
+            },
+            {
+                "Function": "sendReferralBonus",
+                "Node": "IsYSL(_sysl).mint(bonus)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "transferOut",
+                "Node": "IERC20(BUSD).safeTransfer(stratSwap, amountUSDAfter - amountUSDBefore)"
+            }
+        ]
+    }
+}

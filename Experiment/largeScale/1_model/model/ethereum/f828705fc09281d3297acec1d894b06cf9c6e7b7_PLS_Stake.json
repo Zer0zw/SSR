@@ -1,0 +1,122 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakers.rewardsClaimed",
+            "stakers.pending"
+        ],
+        "User Stake Time": [
+            "stakers.stakeDate"
+        ],
+        "Stake Token Address": [
+            "PLS"
+        ],
+        "Reward Token Address": [
+            "RW"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "STAKE_PLS"
+        ],
+        "getReward": [
+            "ClaimReward"
+        ],
+        "unStake": [
+            "UnStake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE_PLS",
+                "Node": [
+                    273
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PLS",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "PLS",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": [
+                    297
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "rewardPerPLS",
+                    "stakers.pending",
+                    "stakers.rewardsClaimed",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount"
+                ],
+                "Control Variables": [
+                    "RW",
+                    "minStakingPeriod",
+                    "rewardPerPLS",
+                    "stakers.pending",
+                    "stakers.rewardsClaimed",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount",
+                    "totalClaimedRewards"
+                ],
+                "Full Calculation Variables": [
+                    "RW",
+                    "minStakingPeriod",
+                    "rewardPerPLS",
+                    "stakers.pending",
+                    "stakers.rewardsClaimed",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount",
+                    "totalClaimedRewards"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnStake",
+                "Node": [
+                    317
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakers.pending",
+                    "stakers.stakedAmount"
+                ],
+                "Control Variables": [
+                    "PLS",
+                    "stakers.pending",
+                    "stakers.stakedAmount",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "PLS",
+                    "stakers.pending",
+                    "stakers.stakedAmount",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

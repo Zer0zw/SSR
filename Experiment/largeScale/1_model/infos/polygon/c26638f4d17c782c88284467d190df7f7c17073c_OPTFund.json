@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeStruct.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "calculateRewards"
+        ],
+        "User Stake Time": [
+            "stakeStruct.lastClaim"
+        ],
+        "Stake Token Address": [
+            "OPT3"
+        ],
+        "Reward Token Address": [
+            "OPT3"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositOPT3",
+                "Node": "IBEP20(OPT3).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IBEP20(OPT3).transfer(msg.sender, rewardsToClaim)"
+            },
+            {
+                "Function": "compoundRewards",
+                "Node": "idToDeposit[_id].stakedAmount = idToDeposit[_id].stakedAmount.add(rewardsToClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawDeposit",
+                "Node": "IBEP20(OPT3).transfer(msg.sender, amountToSend)"
+            }
+        ]
+    }
+}

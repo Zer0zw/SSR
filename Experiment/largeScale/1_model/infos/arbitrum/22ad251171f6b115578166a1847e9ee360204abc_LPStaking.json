@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "NFT.liquidity"
+        ],
+        "User Stake Reward": [
+            "rewardCalc"
+        ],
+        "User Stake Time": [
+            "NFT.startTime",
+            "NFT.endTime"
+        ],
+        "Stake Token Address": [
+            "UNISWAPPOSITIONMANAGER"
+        ],
+        "Reward Token Address": [
+            "CIP",
+            "DAI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "_helperNFT.safeTransferFrom(sender, address(this), _tokenID"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_helperCIP.transferFrom(rewardWallet, _recipient, cipRewards)"
+            },
+            {
+                "Function": "_sendRewards",
+                "Node": "_helperCIP.transferFrom(rewardWallet, _recipient, cipRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "_helperNFT.safeTransferFrom(address(this), _detail.owner, _tokenID)"
+            },
+            {
+                "Function": "maxTick",
+                "Node": "_helperNFT.safeTransferFrom(address(this), _msgSender(), _tokenID)"
+            }
+        ]
+    }
+}

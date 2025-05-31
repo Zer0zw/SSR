@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_usersTokens"
+        ],
+        "User Stake Reward": [
+            "TOKEN_REWARD_PERCENT_SILVER",
+            "TOKEN_REWARD_PERCENT_GOLD",
+            "TOKEN_REWARD_PERCENT_PLATINUM"
+        ],
+        "User Stake Time": [
+            "_tokenTotalDays"
+        ],
+        "Stake Token Address": [
+            "_tokenStakingAddress"
+        ],
+        "Reward Token Address": [
+            "itoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "itoken.transferFrom(msg.sender, address(this), tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStakedTokens",
+                "Node": "itoken.transfer(msg.sender,_finalTokenStakeWithdraw[stakingId])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakedTokens",
+                "Node": "itoken.transfer(msg.sender,_finalTokenStakeWithdraw[stakingId])"
+            }
+        ]
+    }
+}

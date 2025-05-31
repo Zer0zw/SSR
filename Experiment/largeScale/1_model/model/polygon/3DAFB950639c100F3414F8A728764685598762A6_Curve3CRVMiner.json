@@ -1,0 +1,234 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPToken"
+        ],
+        "User Stake Reward": [
+            "CRV",
+            "WMATIC"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LPToken"
+        ],
+        "Reward Token Address": [
+            "CRV",
+            "WMATIC"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addPosition",
+            "claimValue",
+            "stakeLP"
+        ],
+        "getReward": [
+            "claimValue",
+            "compoundHarvest"
+        ],
+        "unStake": [
+            "removeLiquidity",
+            "unstakeAllLP",
+            "unstakeLP"
+        ],
+        "Sensitive Functions": [
+            "compoundHarvest",
+            "init",
+            "reInit"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLP",
+                "Node": [
+                    833
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CURVE_GAUGE",
+                    "LPToken",
+                    "claimManager",
+                    "valueHolder"
+                ],
+                "Full Calculation Variables": [
+                    "CURVE_GAUGE",
+                    "LPToken",
+                    "claimManager",
+                    "valueHolder"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "addPosition",
+                "Node": [
+                    781,
+                    782,
+                    783,
+                    784,
+                    785
+                ],
+                "Input": [
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "valueHolder",
+                    "LPToken",
+                    "CURVE_GAUGE",
+                    "claimManager"
+                ],
+                "Full Calculation Variables": [
+                    "valueHolder",
+                    "LPToken",
+                    "CURVE_GAUGE",
+                    "claimManager"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimValue",
+                "Node": [
+                    833
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CURVE_GAUGE",
+                    "LPToken",
+                    "claimManager",
+                    "valueHolder"
+                ],
+                "Full Calculation Variables": [
+                    "CURVE_GAUGE",
+                    "LPToken",
+                    "claimManager",
+                    "valueHolder"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compoundHarvest",
+                "Node": [
+                    1022
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "CRV",
+                    "WMATIC",
+                    "claimFee",
+                    "performanceFee"
+                ],
+                "Control Variables": [
+                    "CRV",
+                    "WMATIC",
+                    "claimFee",
+                    "feeManager",
+                    "performanceFee"
+                ],
+                "Full Calculation Variables": [
+                    "CRV",
+                    "WMATIC",
+                    "claimFee",
+                    "feeManager",
+                    "performanceFee"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimValue",
+                "Node": [
+                    1014
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "WMATIC",
+                    "CRV",
+                    "claimFee",
+                    "performanceFee"
+                ],
+                "Control Variables": [
+                    "performanceFee",
+                    "claimManager",
+                    "WMATIC",
+                    "CRV",
+                    "claimFee",
+                    "feeManager"
+                ],
+                "Full Calculation Variables": [
+                    "performanceFee",
+                    "claimManager",
+                    "WMATIC",
+                    "CRV",
+                    "claimFee",
+                    "feeManager"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLP",
+                "Node": [
+                    840
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CURVE_GAUGE",
+                    "valueHolder"
+                ],
+                "Full Calculation Variables": [
+                    "CURVE_GAUGE",
+                    "valueHolder"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeAllLP",
+                "Node": [
+                    840
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CURVE_GAUGE",
+                    "valueHolder"
+                ],
+                "Full Calculation Variables": [
+                    "CURVE_GAUGE",
+                    "valueHolder"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "removeLiquidity",
+                "Node": [
+                    824
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CURVE",
+                    "CURVE_AAVE",
+                    "valueHolder"
+                ],
+                "Full Calculation Variables": [
+                    "CURVE",
+                    "CURVE_AAVE",
+                    "valueHolder"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

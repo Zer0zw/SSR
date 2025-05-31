@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.GDlptoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "GDT.mint(msg.sender, _amount)"
+            },
+            {
+                "Function": "enter",
+                "Node": "GDT.mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "StakedToken.transfer(msg.sender, amountOut)"
+            }
+        ]
+    }
+}

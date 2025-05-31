@@ -1,0 +1,119 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.poolBal"
+        ],
+        "User Stake Reward": [
+            "users.rewardUnWithdrawed",
+            "users.rewardEarned"
+        ],
+        "User Stake Time": [
+            "users.pool_deposit_time"
+        ],
+        "Stake Token Address": [
+            "tokenAddr"
+        ],
+        "Reward Token Address": [
+            "tokenAddr"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "PoolStake"
+        ],
+        "getReward": [
+            "claimPool"
+        ],
+        "unStake": [
+            "claimPool"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "PoolStake",
+                "Node": [
+                    142
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolMinStake",
+                    "tokenAddr"
+                ],
+                "Full Calculation Variables": [
+                    "poolMinStake",
+                    "tokenAddr"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPool",
+                "Node": [
+                    163
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "fullMaturityTime",
+                    "tokenAddr",
+                    "users.poolBal",
+                    "users.pool_deposit_time",
+                    "users.pool_payouts",
+                    "users.rewardEarned",
+                    "users.rewardUnWithdrawed"
+                ],
+                "Full Calculation Variables": [
+                    "fullMaturityTime",
+                    "tokenAddr",
+                    "users.poolBal",
+                    "users.pool_deposit_time",
+                    "users.pool_payouts",
+                    "users.rewardEarned",
+                    "users.rewardUnWithdrawed"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimPool",
+                "Node": [
+                    162
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "users.poolBal",
+                    "users.pool_deposit_time",
+                    "users.pool_payouts",
+                    "users.rewardEarned",
+                    "users.rewardUnWithdrawed"
+                ],
+                "Control Variables": [
+                    "fullMaturityTime",
+                    "tokenAddr",
+                    "users.poolBal",
+                    "users.pool_deposit_time",
+                    "users.pool_payouts",
+                    "users.rewardEarned",
+                    "users.rewardUnWithdrawed"
+                ],
+                "Full Calculation Variables": [
+                    "fullMaturityTime",
+                    "tokenAddr",
+                    "users.poolBal",
+                    "users.pool_deposit_time",
+                    "users.pool_payouts",
+                    "users.rewardEarned",
+                    "users.rewardUnWithdrawed"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.profit"
+        ],
+        "User Stake Time": [
+            "Deposit.time"
+        ],
+        "Stake Token Address": [
+            "busd"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "token.transferFrom(msg.sender, address(this), value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

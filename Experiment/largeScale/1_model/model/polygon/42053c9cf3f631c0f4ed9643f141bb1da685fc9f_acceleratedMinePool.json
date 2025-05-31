@@ -1,0 +1,138 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfoMap.pptBalance"
+        ],
+        "User Stake Reward": [
+            "userInfoMap.minerBalances"
+        ],
+        "User Stake Time": [
+            "userInfoMap.maxPeriodID"
+        ],
+        "Stake Token Address": [
+            "_operators"
+        ],
+        "Reward Token Address": [
+            "mineInfoMap"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "changePPTStake",
+            "transferPPTCoin"
+        ],
+        "getReward": [
+            "redeemMinerCoin"
+        ],
+        "unStake": [
+            "redeemOut"
+        ],
+        "Sensitive Functions": [
+            "changeAcceleratedInfo",
+            "changePPTStake",
+            "redeemMinerCoin",
+            "setManager",
+            "setMineCoinInfo",
+            "setOperator",
+            "transferPPTCoin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "changePPTStake",
+                "Node": [
+                    1413
+                ],
+                "Input": [
+                    "account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_operators",
+                    "managerIndex",
+                    "userInfoMap.pptBalance"
+                ],
+                "Full Calculation Variables": [
+                    "_operators",
+                    "managerIndex",
+                    "userInfoMap.pptBalance"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "transferPPTCoin",
+                "Node": [
+                    1413
+                ],
+                "Input": [
+                    "account",
+                    "recieptor"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_operators",
+                    "managerIndex",
+                    "userInfoMap.pptBalance"
+                ],
+                "Full Calculation Variables": [
+                    "_operators",
+                    "managerIndex",
+                    "userInfoMap.pptBalance"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeemMinerCoin",
+                "Node": [
+                    1186
+                ],
+                "Input": [
+                    "mineCoin",
+                    "recieptor",
+                    "mineCoin"
+                ],
+                "Calculation Variables": [
+                    "userInfoMap.minerBalances"
+                ],
+                "Control Variables": [
+                    "halted",
+                    "userInfoMap.minerBalances",
+                    "reentrancyLock"
+                ],
+                "Full Calculation Variables": [
+                    "halted",
+                    "userInfoMap.minerBalances",
+                    "reentrancyLock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeemOut",
+                "Node": [
+                    1132
+                ],
+                "Input": [
+                    "amount",
+                    "mineCoin"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "multiSignaturePositon",
+                    "proxyOriginPosition",
+                    "reentrancyLock"
+                ],
+                "Full Calculation Variables": [
+                    "multiSignaturePositon",
+                    "proxyOriginPosition",
+                    "reentrancyLock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

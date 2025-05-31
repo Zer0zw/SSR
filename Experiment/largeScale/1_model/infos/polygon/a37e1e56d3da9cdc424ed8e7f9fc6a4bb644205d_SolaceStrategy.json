@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "xsLockID"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "SOLACE"
+        ],
+        "Reward Token Address": [
+            "WMATIC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ISolaceLocker(rewards).createLock(address(this), _want, 0)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "ISolaceLocker(rewards).increaseAmount(xsLockID, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(harvestedToken).safeTransfer(strategist, feeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "ISolaceLocker(rewards).withdrawInPart(xsLockID, address(this), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "ISolaceLocker(rewards).withdrawInPart(_xsLockID, address(this), _amount)"
+            }
+        ]
+    }
+}

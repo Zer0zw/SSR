@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakes"
+        ],
+        "User Stake Reward": [
+            "collectionRewards"
+        ],
+        "User Stake Time": [
+            "StakedNFT.lockedUntil"
+        ],
+        "Stake Token Address": [
+            "StakedNFT.nftContract"
+        ],
+        "Reward Token Address": [
+            "GTRTL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "GTRTL.mint(_msgSender(), gTRTLDistribution)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "info.nftContract.safeTransferFrom(address(this), info.owner, info.tokenId)"
+            }
+        ]
+    }
+}

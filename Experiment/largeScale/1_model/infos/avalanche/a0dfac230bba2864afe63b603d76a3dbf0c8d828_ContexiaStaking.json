@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.firstTimeDeposited",
+            "UserInfo.lastTimeDeposited"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "con"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(poolInfo.lpToken).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_safeconTransfer(account, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_safeconTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdrawOnBehalf",
+                "Node": "_safeconTransfer(account, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(poolInfo.lpToken).transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdrawOnBehalf",
+                "Node": "IERC20(poolInfo.lpToken).transfer(account, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(poolInfo.lpToken).transfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

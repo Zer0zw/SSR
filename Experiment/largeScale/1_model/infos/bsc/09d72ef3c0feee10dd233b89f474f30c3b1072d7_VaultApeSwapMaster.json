@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposit"
+        ],
+        "User Stake Reward": [
+            "pending"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "poolDeposit",
+                "Node": "IApeMasterChef(chef).enterStaking(_amount)"
+            },
+            {
+                "Function": "poolDeposit",
+                "Node": "IApeMasterChef(chef).deposit(poolID, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "poolWithdraw",
+                "Node": "IApeMasterChef(chef).leaveStaking(_amount)"
+            },
+            {
+                "Function": "poolWithdraw",
+                "Node": "IApeMasterChef(chef).withdraw(poolID, _amount)"
+            }
+        ]
+    }
+}

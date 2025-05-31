@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserDetails.amount",
+            "userTotalStakedAmount"
+        ],
+        "User Stake Reward": [
+            "UserDetails.rewardAmount"
+        ],
+        "User Stake Time": [
+            "UserDetails.initialTime",
+            "UserDetails.endTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "retrieveToken(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "sendToken(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "sendToken(stakedAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "sendToken(amount)"
+            }
+        ]
+    }
+}

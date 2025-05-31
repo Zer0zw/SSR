@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amountLocked"
+        ],
+        "User Stake Reward": [
+            "UserInfo.amountLocked",
+            "rewardPercent"
+        ],
+        "User Stake Time": [
+            "UserInfo.userUnLockTime",
+            "rewardInterval"
+        ],
+        "Stake Token Address": [
+            "stakingVaultToken"
+        ],
+        "Reward Token Address": [
+            "rewardVaultToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lockStakingTokenToParticipate",
+                "Node": "stakingVaultToken.safeTransferFrom(msg.sender, address(this), _stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unLockStakingToken",
+                "Node": "rewardVaultToken.safeTransfer(msg.sender, _rewardsUnlocked)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unLockStakingToken",
+                "Node": "stakingVaultToken.safeTransfer(msg.sender, _amountUnlocked)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "stakingVaultToken.safeTransfer(msg.sender, _amountLocked)"
+            }
+        ]
+    }
+}

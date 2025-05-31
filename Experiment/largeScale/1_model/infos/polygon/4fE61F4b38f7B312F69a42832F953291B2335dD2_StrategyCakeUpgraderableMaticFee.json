@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal",
+            "sharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAmt"
+        ],
+        "User Stake Time": [
+            "lastEarnBlock"
+        ],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(wantAddress).safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IPancakeswapFarm(farmContractAddress).leaveStaking(0)"
+            },
+            {
+                "Function": "earn",
+                "Node": "IPancakeswapFarm(farmContractAddress).withdraw(pid, 0)"
+            },
+            {
+                "Function": "distributeFees",
+                "Node": "IERC20(earnedAddress).safeTransfer(govAddress, fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IPancakeswapFarm(farmContractAddress).leaveStaking(_wantAmt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IPancakeswapFarm(farmContractAddress).withdraw(pid, _wantAmt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(wantAddress).safeTransfer(GrandFarmAddress, _wantAmt)"
+            }
+        ]
+    }
+}

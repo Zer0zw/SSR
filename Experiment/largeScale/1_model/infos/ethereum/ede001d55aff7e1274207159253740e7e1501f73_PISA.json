@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardLocked",
+            "pendingPIS"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "pis"
+        ],
+        "Reward Token Address": [
+            "pis"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pis.transferFrom(address(msg.sender), address(this), _originAmount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "pis.transferFrom(address(msg.sender), address(this), _originAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAndPayOutPending",
+                "Node": "safePISTransfer(from, lockedAmount)"
+            },
+            {
+                "Function": "updateAndPayOutPending",
+                "Node": "safePISTransfer(from, paid)"
+            },
+            {
+                "Function": "claimAndRestake",
+                "Node": "safePISTransfer(msg.sender, _rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "safePISTransfer(address(to), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "safePISTransfer(address(msg.sender), withdrawnAmount)"
+            }
+        ]
+    }
+}

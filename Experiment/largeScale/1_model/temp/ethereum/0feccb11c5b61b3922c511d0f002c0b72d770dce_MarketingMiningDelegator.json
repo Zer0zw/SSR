@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "_revenue",
+            "_userDividend"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_tokenAddress"
+        ],
+        "Reward Token Address": [
+            "_SHARD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "delegateToImplementation(abi.encodeWithSignature(\"deposit(uint256,uint256)\", _pid, _amount))"
+            },
+            {
+                "Function": "depositETH",
+                "Node": "delegateToImplementation(abi.encodeWithSignature(\"depositETH(uint256)\", _pid))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingSHARD",
+                "Node": "delegateToViewImplementation(abi.encodeWithSignature(\"pendingSHARD(uint256,address)\", _pid, _user))"
+            },
+            {
+                "Function": "pendingSHARDByPids",
+                "Node": "delegateToViewImplementation(abi.encodeWithSignature(\"pendingSHARDByPids(uint256[],address)\", _pids, _user))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "delegateToImplementation(abi.encodeWithSignature(\"withdraw(uint256,uint256)\", _pid, _amount)"
+            },
+            {
+                "Function": "withdrawETH",
+                "Node": "delegateToImplementation(abi.encodeWithSignature(\"withdrawETH(uint256,uint256)\", _pid, _amount)"
+            }
+        ]
+    }
+}

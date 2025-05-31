@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeValue"
+        ],
+        "User Stake Reward": [
+            "stakerPayouts"
+        ],
+        "User Stake Time": [
+            "lastStakingTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "tokenUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "require(token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "require(tokenUSD.transferFrom(address(this), msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "require(token.transferFrom(address(this), msg.sender, amountAfterFee)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "details.amount"
+        ],
+        "User Stake Reward": [
+            "details.rewardReserve"
+        ],
+        "User Stake Time": [
+            "details.stakingTime"
+        ],
+        "Stake Token Address": [
+            "PRBToken"
+        ],
+        "Reward Token Address": [
+            "PRBToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "PRBToken.transferFrom(msg.sender, address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "PRBToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "PRBToken.transfer(msg.sender, user.amount)"
+            }
+        ]
+    }
+}

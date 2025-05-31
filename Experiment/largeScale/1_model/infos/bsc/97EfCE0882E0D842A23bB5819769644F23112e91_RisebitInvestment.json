@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Investor.balance"
+        ],
+        "User Stake Reward": [
+            "Investor.claimedRewards"
+        ],
+        "User Stake Time": [
+            "Investor.lastClaim",
+            "Investor.lastCompound"
+        ],
+        "Stake Token Address": [
+            "busd"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investCoin",
+                "Node": "IERC20(busd).transferFrom(msg.sender, address(this), investment)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(busd).transfer(msg.sender, claimAmount)"
+            },
+            {
+                "Function": "compound",
+                "Node": "No direct transfer statement for rewards, rewards are added to the balance"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(busd).transfer(msg.sender, claimAmount)"
+            }
+        ]
+    }
+}

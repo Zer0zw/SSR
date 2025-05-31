@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Record.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "Record.totalRewardAmount"
+        ],
+        "User Stake Time": [
+            "Record.stakeTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "withdrawToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakeToken).transferFrom(msg.sender,address(this),_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(withdrawToken).transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stakeToken).transfer(msg.sender,record.stakeAmount)"
+            }
+        ]
+    }
+}

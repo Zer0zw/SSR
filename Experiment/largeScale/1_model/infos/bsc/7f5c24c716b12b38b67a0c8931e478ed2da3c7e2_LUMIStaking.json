@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.end"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "lumi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "pool.lpToken.transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeLumiTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "compound",
+                "Node": "stake(_pid, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "pool.lpToken.transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.transfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

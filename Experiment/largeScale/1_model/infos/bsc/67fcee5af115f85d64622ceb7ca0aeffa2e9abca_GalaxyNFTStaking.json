@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStake"
+        ],
+        "User Stake Reward": [
+            "totalReward"
+        ],
+        "User Stake Time": [
+            "Package.lockUntil",
+            "Package.lockFrom"
+        ],
+        "Stake Token Address": [
+            "glfToken",
+            "usdtToken"
+        ],
+        "Reward Token Address": [
+            "glfToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "galaxyNft.setTokenLockUntil(_tokenIds[i], block.timestamp.add(lockingPeriod))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeGlfTokenTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "safeGlfTokenTransfer(msg.sender, totalPending)"
+            }
+        ],
+        "unStake": []
+    }
+}

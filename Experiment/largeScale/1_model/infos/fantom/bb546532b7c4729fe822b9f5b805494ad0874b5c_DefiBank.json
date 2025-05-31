@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "bankToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wftm"
+        ],
+        "Reward Token Address": [
+            "bankToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "IERC20(wftm).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": "IERC20(bankToken).transfer(recipient, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "IERC20(wftm).transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

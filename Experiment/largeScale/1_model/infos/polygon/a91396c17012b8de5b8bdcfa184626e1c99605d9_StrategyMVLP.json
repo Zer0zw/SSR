@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfWant"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "native"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "emit Deposit(balanceOf())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(native).safeTransfer(feeCollectors.managerFeeRecipient, managerFee)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(native).safeTransfer(feeCollectors.partnerFeeRecipient, partnerFee)"
+            },
+            {
+                "Function": "chargeHarvestFees",
+                "Node": "IERC20(native).safeTransfer(feeCollectors.managerFeeRecipient, managerFee)"
+            },
+            {
+                "Function": "chargeHarvestFees",
+                "Node": "IERC20(native).safeTransfer(feeCollectors.partnerFeeRecipient, partnerFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, b)"
+            },
+            {
+                "Function": "chargeWithdrawalFees",
+                "Node": "IERC20(want).safeTransfer(feeCollectors.managerFeeRecipient, managerFee)"
+            },
+            {
+                "Function": "chargeWithdrawalFees",
+                "Node": "IERC20(want).safeTransfer(feeCollectors.partnerFeeRecipient, partnerFee)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "acceptTransfer",
+                "Node": "IERC20(want).safeTransfer(prevStrat, 1)"
+            }
+        ]
+    }
+}

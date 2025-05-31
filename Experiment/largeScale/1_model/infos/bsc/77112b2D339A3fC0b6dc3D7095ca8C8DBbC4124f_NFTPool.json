@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.power"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake_(userInfo.node, value)"
+            },
+            {
+                "Function": "upgradeNode",
+                "Node": "super.stake_(msg.sender, userInfo.power)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "abandonNode",
+                "Node": "super.withdraw_(msg.sender, userInfo.power)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw_(userInfo.node, value)"
+            }
+        ]
+    }
+}

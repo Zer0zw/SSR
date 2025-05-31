@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "uintAmount"
+        ],
+        "User Stake Reward": [
+            "Player.rreward"
+        ],
+        "User Stake Time": [
+            "lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "usdt"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(rewardToken).safeTransfer(msg.sender,invpower[invpower.length - 1].div(5))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "govReward",
+                "Node": "IUniswapV2Router02(_uniswapV2Router).removeLiquidity(usdt, rewardToken, lastLP.div(stakeLength), 0, 0, allStake[allStake.length.sub(stakeLength).add(i)], block.timestamp.add(1800))"
+            },
+            {
+                "Function": "nodeReward",
+                "Node": "IUniswapV2Router02(_uniswapV2Router).removeLiquidity(usdt, rewardToken, _lpamount, 0, 0, noraddr, block.timestamp.add(1800))"
+            },
+            {
+                "Function": "surNodeReward",
+                "Node": "IUniswapV2Router02(_uniswapV2Router).removeLiquidity(usdt, rewardToken, surNodeLP.div(surLength), 0, 0, surNodeAddr.at(i), block.timestamp.add(1800))"
+            },
+            {
+                "Function": "creatorNode",
+                "Node": "IERC20(rewardToken).safeTransfer(creatorNodeAddr.at(i),amounts.div(creatorLength))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "restake",
+                "Node": "IUniswapV2Router02(_uniswapV2Router).removeLiquidity(usdt, rewardToken, retLP, 0, 0, msg.sender, block.timestamp.add(1800))"
+            }
+        ]
+    }
+}

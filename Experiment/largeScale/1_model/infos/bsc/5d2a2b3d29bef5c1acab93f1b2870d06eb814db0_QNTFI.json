@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStaked"
+        ],
+        "User Stake Reward": [
+            "weightedStakes"
+        ],
+        "User Stake Time": [
+            "stake.unlockDate",
+            "stake.stakeDate"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "weightedStakes[msg.sender]+=thisStake"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "weightedStakes[msg.sender]-=thisStake"
+            }
+        ]
+    }
+}

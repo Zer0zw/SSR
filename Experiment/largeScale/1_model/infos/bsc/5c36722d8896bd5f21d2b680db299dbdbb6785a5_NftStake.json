@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakes"
+        ],
+        "User Stake Time": [
+            "stakes"
+        ],
+        "Stake Token Address": [
+            "nfts"
+        ],
+        "Reward Token Address": [
+            "confAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "doStake",
+                "Node": "NFT(nft).transferFrom(_msgSender(), _back, tokenid)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(confAddr[nft]).transfer(_msgSender(), canClaim)"
+            }
+        ],
+        "unStake": []
+    }
+}

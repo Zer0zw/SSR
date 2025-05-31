@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Slot.depositWei",
+            "PoolStats.totalStakedWeiFor"
+        ],
+        "User Stake Reward": [
+            "PoolStats.totalRewardsWeiFor",
+            "PoolStats.rewards1WeiForSession"
+        ],
+        "User Stake Time": [
+            "Slot.lastUpdatedBlock",
+            "Slot.vacatedBlock"
+        ],
+        "Stake Token Address": [
+            "Pool.liquidityToken"
+        ],
+        "Reward Token Address": [
+            "Pulse.rewardToken1",
+            "Pulse.rewardToken2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "claimSlot",
+                "Node": "require(IERC20(pool.liquidityToken).transferFrom(msg.sender, address(this), newDeposit)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateSlot",
+                "Node": "require(IERC20(pulse.rewardToken1).transfer(slot.owner, rewards1)"
+            },
+            {
+                "Function": "updateSlot",
+                "Node": "require(IERC20(pulse.rewardToken2).transfer(slot.owner, rewards2)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawFromSlot",
+                "Node": "require(IERC20(pool.liquidityToken).transfer(owner, slot.depositWei)"
+            }
+        ]
+    }
+}

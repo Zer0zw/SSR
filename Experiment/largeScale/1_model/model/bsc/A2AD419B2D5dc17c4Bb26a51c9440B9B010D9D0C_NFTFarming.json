@@ -1,0 +1,151 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.numMinerNFTs"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt",
+            "timeLockReward"
+        ],
+        "User Stake Time": [
+            "lockedPeroid"
+        ],
+        "Stake Token Address": [
+            "minerNFT"
+        ],
+        "Reward Token Address": [
+            "melos"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "onERC1155BatchReceived",
+            "onERC1155BatchReceived"
+        ],
+        "getReward": [
+            "claim",
+            "withdrawReward"
+        ],
+        "unStake": [
+            "emergencyRetrieve",
+            "retrieve"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": [
+                    2979
+                ],
+                "Input": [
+                    "_maxRecords"
+                ],
+                "Calculation Variables": [
+                    "timeLockReward"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "timeLockReward"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "timeLockReward"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claim",
+                "Node": [
+                    2994
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "userInfo.rewardDebt",
+                    "userInfo.sumPower"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "userInfo.rewardDebt",
+                    "userInfo.sumPower"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "userInfo.rewardDebt",
+                    "userInfo.sumPower"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "retrieve",
+                "Node": [
+                    2892
+                ],
+                "Input": [
+                    "_ids"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "userInfo.numMinerNFTs",
+                    "userInfo.rewardDebt",
+                    "userInfo.sumPower"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "userInfo.numMinerNFTs",
+                    "userInfo.rewardDebt",
+                    "userInfo.sumPower"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyRetrieve",
+                "Node": [
+                    2935
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "userMinerNFTs"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.numMinerNFTs",
+                    "poolInfo.totalPower",
+                    "userInfo.numMinerNFTs",
+                    "userInfo.sumPower",
+                    "userMinerNFTs"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.numMinerNFTs",
+                    "poolInfo.totalPower",
+                    "userInfo.numMinerNFTs",
+                    "userInfo.sumPower",
+                    "userMinerNFTs"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

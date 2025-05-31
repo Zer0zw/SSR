@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalance"
+        ],
+        "User Stake Reward": [
+            "available"
+        ],
+        "User Stake Time": [
+            "lastUpdate"
+        ],
+        "Stake Token Address": [
+            "unity"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakedBalance[msg.sender] = amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_mint(msg.sender, available)"
+            },
+            {
+                "Function": "mint",
+                "Node": "_mint(msg.sender, available)"
+            },
+            {
+                "Function": "claimToxic",
+                "Node": "_mint(_to, amount)"
+            },
+            {
+                "Function": "claimGame",
+                "Node": "_mint(_to, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

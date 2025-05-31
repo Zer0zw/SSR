@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "what"
+        ],
+        "User Stake Time": [
+            "unlockDate"
+        ],
+        "Stake Token Address": [
+            "party"
+        ],
+        "Reward Token Address": [
+            "party"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, _amount)"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "party.transfer(msg.sender, what)"
+            },
+            {
+                "Function": "leave",
+                "Node": "party.transfer(msg.sender, what.sub(toBurn))"
+            }
+        ]
+    }
+}

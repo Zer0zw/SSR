@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalstakeduser",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.bonus",
+            "Stake.beforeExtendBonus",
+            "Stake.afterTimeBonus"
+        ],
+        "User Stake Time": [
+            "Stake.stakeTime",
+            "Stake.withdrawTime"
+        ],
+        "Stake Token Address": [
+            "wolveToken",
+            "amdToken"
+        ],
+        "Reward Token Address": [
+            "wolveToken",
+            "amdToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeWithWolve",
+                "Node": "wolveToken.transferFrom(msg.sender, owner, amount)"
+            },
+            {
+                "Function": "stakeWithAmd",
+                "Node": "amdToken.transferFrom(msg.sender, owner, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawInWolve",
+                "Node": "wolveToken.transferFrom(owner,msg.sender,user.stakerecord[count].bonus)"
+            },
+            {
+                "Function": "withdrawInWolve",
+                "Node": "amdToken.transferFrom(owner,msg.sender,user.stakerecord[count].bonus)"
+            },
+            {
+                "Function": "withdrawInAmd",
+                "Node": "wolveToken.transferFrom(owner,msg.sender,user.stakerecord[count].bonus)"
+            },
+            {
+                "Function": "withdrawInAmd",
+                "Node": "amdToken.transferFrom(owner,msg.sender,user.stakerecord[count].bonus)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInWolve",
+                "Node": "wolveToken.transferFrom(owner,msg.sender,user.stakerecord[count].amount)"
+            },
+            {
+                "Function": "withdrawInAmd",
+                "Node": "amdToken.transferFrom(owner,msg.sender,user.stakerecord[count].amount)"
+            }
+        ]
+    }
+}

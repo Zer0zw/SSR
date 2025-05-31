@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_usersTokens"
+        ],
+        "User Stake Reward": [
+            "_finalTokenStakeWithdraw"
+        ],
+        "User Stake Time": [
+            "_tokenTotalDays"
+        ],
+        "Stake Token Address": [
+            "ghost"
+        ],
+        "Reward Token Address": [
+            "ghost"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "ghost.transferFrom(msg.sender, address(this), tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStakedTokens",
+                "Node": "ghost.transferFrom(address(this), msg.sender,_finalTokenStakeWithdraw[stakingId])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakedTokens",
+                "Node": "ghost.transferFrom(address(this), msg.sender,_finalTokenStakeWithdraw[stakingId])"
+            }
+        ]
+    }
+}

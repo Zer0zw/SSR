@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPosition.totalAmount",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "UserPosition.rewardDebt"
+        ],
+        "User Stake Time": [
+            "Stake.startTime",
+            "Stake.timeLockEnd"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStake",
+                "Node": "IERC20(_token).safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "setStake",
+                "Node": "IERC20(_token).safeTransfer(_user, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getPendingRewards",
+                "Node": "pending = (((user.totalAmount * accCaplPerShare) / CAPL_PRECISION)) - user.rewardDebt"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_token).safeTransfer(_user, _amount)"
+            }
+        ]
+    }
+}

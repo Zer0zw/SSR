@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakes"
+        ],
+        "User Stake Reward": [
+            "treeSupply"
+        ],
+        "User Stake Time": [
+            "Stake.stakedOn"
+        ],
+        "Stake Token Address": [
+            "nftContract"
+        ],
+        "Reward Token Address": [
+            "tco2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "NFT(nftContract).transferFrom(msg.sender, address(this), tokenId_)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "NFT(nftContract).transferFrom(msg.sender, address(this), tokenId_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IGreenBond(tco2).mintGreenBond(msg.sender, _tco2Amount)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "IGreenBond(tco2).mintGreenBond(msg.sender, _tco2Amount)"
+            },
+            {
+                "Function": "harvestRange",
+                "Node": "IGreenBond(tco2).mintGreenBond(msg.sender, _tco2Amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "NFT(nftContract).transferFrom(address(this), msg.sender, tokenId_)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "NFT(nftContract).transferFrom(address(this), msg.sender, tokenId_)"
+            }
+        ]
+    }
+}

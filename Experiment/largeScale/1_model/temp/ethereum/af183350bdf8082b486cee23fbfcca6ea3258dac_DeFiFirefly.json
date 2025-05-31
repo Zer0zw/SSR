@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.staked"
+        ],
+        "User Stake Reward": [
+            "User.dividend",
+            "User.totalEarned"
+        ],
+        "User Stake Time": [
+            "User.stakeTimestamp"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "emit Transfer(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "emit Transfer(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectDividend",
+                "Node": "address(uint160(msg.sender)).transfer(_dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "emit Unstake(msg.sender, _amount)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "emit Unstake(msg.sender, _amount)"
+            }
+        ]
+    }
+}

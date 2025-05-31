@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Cluster.delegators"
+        ],
+        "User Stake Reward": [
+            "Cluster.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeAddress"
+        ],
+        "Reward Token Address": [
+            "PONDToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "delegate",
+                "Node": "transferRewards(_delegator, _pendingRewards)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "transferRewards(_delegator, _pendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "undelegate",
+                "Node": "transferRewards(_delegator, _pendingRewards)"
+            }
+        ]
+    }
+}

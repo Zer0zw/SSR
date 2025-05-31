@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.planReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakeTime",
+            "UserInfo.planDays"
+        ],
+        "Stake Token Address": [
+            "UserInfo.stakeToken"
+        ],
+        "Reward Token Address": [
+            "penkyToken",
+            "eliteToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_stakeToken).transferFrom(_msgSender(), address(this),_tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(user.stakeToken).transfer(msg.sender, reward )"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(user.stakeToken).transfer(getReferal[msg.sender], referalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(user.stakeToken).transfer(msg.sender, tokenAmount)"
+            }
+        ]
+    }
+}

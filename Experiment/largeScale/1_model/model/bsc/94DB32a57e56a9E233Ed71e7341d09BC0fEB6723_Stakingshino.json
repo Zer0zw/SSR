@@ -1,0 +1,139 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "userInfo.depositTime",
+            "userInfo.lockedTime"
+        ],
+        "Stake Token Address": [
+            "SHINO"
+        ],
+        "Reward Token Address": [
+            "rewardTokenInfo.token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest",
+            "harvestMultiple"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "Rewardtokenadd",
+            "updateSHINO"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    860
+                ],
+                "Input": [
+                    "_amount",
+                    "depositType"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "SHINO",
+                    "maxAmount",
+                    "minAmount",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.depositType",
+                    "userInfo.lockedTime",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "SHINO",
+                    "maxAmount",
+                    "minAmount",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.depositType",
+                    "userInfo.lockedTime",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    960
+                ],
+                "Input": [
+                    "_stakeID",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "rewardTokenInfo.token",
+                    "totalvaluelock"
+                ],
+                "Control Variables": [
+                    "userInfo.depositTime",
+                    "intervaLTime",
+                    "userInfo.nextHarvestUntil",
+                    "rewardTokenInfo.token",
+                    "userInfo.rewardLockedUp",
+                    "totalvaluelock"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.depositTime",
+                    "intervaLTime",
+                    "userInfo.nextHarvestUntil",
+                    "rewardTokenInfo.token",
+                    "userInfo.rewardLockedUp",
+                    "totalvaluelock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "harvestMultiple",
+                "Node": [
+                    960
+                ],
+                "Input": [
+                    "_stakeID",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "rewardTokenInfo.token",
+                    "totalvaluelock"
+                ],
+                "Control Variables": [
+                    "userInfo.depositTime",
+                    "intervaLTime",
+                    "userInfo.nextHarvestUntil",
+                    "rewardTokenInfo.token",
+                    "userInfo.rewardLockedUp",
+                    "totalvaluelock"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.depositTime",
+                    "intervaLTime",
+                    "userInfo.nextHarvestUntil",
+                    "rewardTokenInfo.token",
+                    "userInfo.rewardLockedUp",
+                    "totalvaluelock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": []
+    }
+}

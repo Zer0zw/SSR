@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "myFarmPuppy"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "initialFarm",
+            "totalSupply_initial"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "balances[msgSender()] = balances[msgSender()] + dummy - amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "balances[msgSender()] += dummy"
+            },
+            {
+                "Function": "unstake",
+                "Node": "balances[msgSender()] += dummy"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "balances[msgSender()] += dummy"
+            }
+        ]
+    }
+}

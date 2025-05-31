@@ -1,0 +1,196 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeInfo.nblStakeAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userStakeInfo.begin"
+        ],
+        "Stake Token Address": [
+            "nbl"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "depositInscription",
+            "depositNbl",
+            "depositNft"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdrawNft"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositNft",
+                "Node": [
+                    1871
+                ],
+                "Input": [
+                    "_index",
+                    "_tokenid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nft",
+                    "userStakeInfo.begin",
+                    "userStakeInfo.nblStakeAmount",
+                    "userStakeInfo.nftTokenId"
+                ],
+                "Full Calculation Variables": [
+                    "nft",
+                    "userStakeInfo.begin",
+                    "userStakeInfo.nblStakeAmount",
+                    "userStakeInfo.nftTokenId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositInscription",
+                "Node": [
+                    1892
+                ],
+                "Input": [
+                    "_index",
+                    "_inscriptionId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "inscription",
+                    "userStakeInfo.inscriptionId",
+                    "userStakeInfo.nftTokenId"
+                ],
+                "Full Calculation Variables": [
+                    "inscription",
+                    "userStakeInfo.inscriptionId",
+                    "userStakeInfo.nftTokenId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositNbl",
+                "Node": [
+                    1959
+                ],
+                "Input": [
+                    "_amount",
+                    "_index"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nbl",
+                    "userStakeInfo.nblStakeAmount",
+                    "userStakeInfo.nftTokenId"
+                ],
+                "Full Calculation Variables": [
+                    "nbl",
+                    "userStakeInfo.nblStakeAmount",
+                    "userStakeInfo.nftTokenId"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1903
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "harvestPeroid",
+                    "stakebook",
+                    "userLastHarvestTime"
+                ],
+                "Full Calculation Variables": [
+                    "harvestPeroid",
+                    "stakebook",
+                    "userLastHarvestTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawNft",
+                "Node": [
+                    1917
+                ],
+                "Input": [
+                    "_index"
+                ],
+                "Calculation Variables": [
+                    "userStakeInfo.nftTokenId",
+                    "aheadDiscounts.times",
+                    "userStakeInfo.nblStakeAmount",
+                    "aheadDiscounts.amount",
+                    "userStakeInfo.begin",
+                    "userStakeInfo.inscriptionId"
+                ],
+                "Control Variables": [
+                    "nft",
+                    "userStakeInfo.nblStakeAmount",
+                    "aheadDiscounts.times",
+                    "inscription",
+                    "userStakeInfo.begin",
+                    "nbl",
+                    "userStakeInfo.nftTokenId",
+                    "aheadDiscounts.amount",
+                    "community",
+                    "userStakeInfo.inscriptionId"
+                ],
+                "Full Calculation Variables": [
+                    "nft",
+                    "userStakeInfo.nblStakeAmount",
+                    "aheadDiscounts.times",
+                    "inscription",
+                    "userStakeInfo.begin",
+                    "nbl",
+                    "userStakeInfo.nftTokenId",
+                    "aheadDiscounts.amount",
+                    "community",
+                    "userStakeInfo.inscriptionId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1979
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "nbl"
+                ],
+                "Control Variables": [
+                    "nbl",
+                    "userStakeInfo.nftTokenId",
+                    "nft",
+                    "userStakeInfo.nblStakeAmount",
+                    "userStakeInfo.inscriptionId",
+                    "inscription",
+                    "userStakeInfo.begin"
+                ],
+                "Full Calculation Variables": [
+                    "nbl",
+                    "userStakeInfo.nftTokenId",
+                    "nft",
+                    "userStakeInfo.nblStakeAmount",
+                    "userStakeInfo.inscriptionId",
+                    "inscription",
+                    "userStakeInfo.begin"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

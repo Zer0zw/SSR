@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposits"
+        ],
+        "User Stake Reward": [
+            "rate",
+            "_depositBlocks"
+        ],
+        "User Stake Time": [
+            "expiration",
+            "_depositBlocks"
+        ],
+        "Stake Token Address": [
+            "stakingDestinationAddress"
+        ],
+        "Reward Token Address": [
+            "erc20Address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(stakingDestinationAddress).safeTransferFrom(msg.sender,address(this),tokenIds[i],\"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(erc20Address).transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(stakingDestinationAddress).safeTransferFrom(address(this), msg.sender,tokenIds[i],\"\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LP_BOUGHT"
+        ],
+        "User Stake Reward": [
+            "ZMBE_DISTRIBUTED"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PANCAKE_LP_TOKEN"
+        ],
+        "Reward Token Address": [
+            "ZMBE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stake(lpBought)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAndRestake",
+                "Node": "IBEP20(ZMBE).transfer(msg.sender, forDev)"
+            },
+            {
+                "Function": "claimAndRestake",
+                "Node": "IBEP20(ZMBE).transfer(DISTRIBUTOR, forDistribution)"
+            },
+            {
+                "Function": "sendRewardedNft",
+                "Node": "IERC721(tokenAddress).transferFrom(address(this), NFT_DISTRIBUTOR, REWARD_TOKEN_ID)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLpTokens",
+                "Node": "IBEP20(PANCAKE_LP_TOKEN).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawLpTokensFromPool",
+                "Node": "IDrFrankenstein(DR_FRANKENSTEIN).withdraw(POOL_ID, amount)"
+            },
+            {
+                "Function": "withdrawRemainingZmbe",
+                "Node": "IBEP20(ZMBE).transfer(msg.sender, IBEP20(ZMBE).balanceOf(address(this)))"
+            },
+            {
+                "Function": "withdrawRewardedNft",
+                "Node": "IERC721(tokenAddress).transferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

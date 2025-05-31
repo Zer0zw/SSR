@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.total_invested"
+        ],
+        "User Stake Reward": [
+            "User.total_withdrawn",
+            "User.totalClaimed"
+        ],
+        "User Stake Time": [
+            "User.depositTime",
+            "User.lastPayout"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bool success = token.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "user.total_invested = user.total_invested.add(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeTransferFrom(reserveWallet, _addr, amount)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "safeTransferFrom(reserveWallet, _addr, amount)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "safeTransferFrom(reserveWallet, _addr, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "safeTransferFrom(reserveWallet, msg.sender, _amount - penality)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "safeTransferFrom(reserveWallet, msg.sender, _amount)"
+            }
+        ]
+    }
+}

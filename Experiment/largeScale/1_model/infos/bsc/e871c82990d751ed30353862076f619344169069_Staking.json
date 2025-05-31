@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.initialInBUSD"
+        ],
+        "User Stake Reward": [
+            "Stake.rewardBUSD",
+            "Stake.gainedBUSD"
+        ],
+        "User Stake Time": [
+            "Stake.startTime",
+            "Stake.endTime"
+        ],
+        "Stake Token Address": [
+            "cocktailNFT"
+        ],
+        "Reward Token Address": [
+            "vodkaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "cocktailNFT.transferFrom(msg.sender, address(this), tokenIds[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "vodkaToken.transfer(msg.sender, _totalRewardTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "cocktailNFT.transferFrom(address(this), msg.sender, stake.tokenIds[i]"
+            }
+        ]
+    }
+}

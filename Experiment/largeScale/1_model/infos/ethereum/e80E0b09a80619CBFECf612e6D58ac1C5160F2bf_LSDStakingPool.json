@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserByLiquidity.balance"
+        ],
+        "User Stake Reward": [
+            "UserByLiquidity.earnedAmount"
+        ],
+        "User Stake Time": [
+            "UserByLiquidity.firstTime",
+            "UserByLiquidity.lastTime"
+        ],
+        "Stake Token Address": [
+            "uniLPAddress"
+        ],
+        "Reward Token Address": [
+            "lsdToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addLiquidity",
+                "Node": "lsdToken.transferFrom(msg.sender, address(this), _lsdTokenAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByLiquidity",
+                "Node": "lsdToken.transfer(msg.sender, excessAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeLiquidity",
+                "Node": "pair.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "removeLPToken",
+                "Node": "pair.transfer(msg.sender, getTotalLPTokenBalance())"
+            }
+        ]
+    }
+}

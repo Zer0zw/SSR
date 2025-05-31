@@ -1,0 +1,134 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "playersSnapshotBalances"
+        ],
+        "User Stake Reward": [
+            "farmedAmountSnapshots"
+        ],
+        "User Stake Time": [
+            "playersSnapshotDays"
+        ],
+        "Stake Token Address": [
+            "biswap"
+        ],
+        "Reward Token Address": [
+            "farmedTokensSnapshots"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimYield"
+        ],
+        "unStake": [
+            "cashout"
+        ],
+        "Sensitive Functions": [
+            "snapshotMoonshotDivs",
+            "sweepExpired"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    65
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "biswap",
+                    "biswapPool"
+                ],
+                "Full Calculation Variables": [
+                    "biswap",
+                    "biswapPool"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimYield",
+                "Node": [
+                    130
+                ],
+                "Input": [
+                    "index"
+                ],
+                "Calculation Variables": [
+                    "totalDepositSnapshots",
+                    "playersSnapshotDays",
+                    "playersSnapshotBalances",
+                    "farmedAmountSnapshots"
+                ],
+                "Control Variables": [
+                    "bones",
+                    "farmedTokensSnapshots",
+                    "lockPeriod",
+                    "playersSnapshotsClaimed",
+                    "playersSnapshotDays",
+                    "totalDepositSnapshots",
+                    "withdrawPeriod",
+                    "playersSnapshotBalances",
+                    "bonesStaking",
+                    "farmedAmountSnapshots"
+                ],
+                "Full Calculation Variables": [
+                    "bones",
+                    "farmedTokensSnapshots",
+                    "lockPeriod",
+                    "playersSnapshotsClaimed",
+                    "playersSnapshotDays",
+                    "totalDepositSnapshots",
+                    "withdrawPeriod",
+                    "playersSnapshotBalances",
+                    "bonesStaking",
+                    "farmedAmountSnapshots"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cashout",
+                "Node": [
+                    118
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "cashoutTax"
+                ],
+                "Control Variables": [
+                    "biswap",
+                    "biswapPool",
+                    "cashoutTax",
+                    "pendingFeesAlloc",
+                    "playersSnapshotBalances",
+                    "playersSnapshotDays",
+                    "pricePerShare",
+                    "totalShares"
+                ],
+                "Full Calculation Variables": [
+                    "biswap",
+                    "biswapPool",
+                    "cashoutTax",
+                    "pendingFeesAlloc",
+                    "playersSnapshotBalances",
+                    "playersSnapshotDays",
+                    "pricePerShare",
+                    "totalShares"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

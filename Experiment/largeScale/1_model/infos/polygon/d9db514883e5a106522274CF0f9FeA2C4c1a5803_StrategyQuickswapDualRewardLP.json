@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAAvailable",
+            "rewardsBAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output",
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IQuickDualRewards(rewardPool).stake(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IQuickDualRewards(rewardPool).getReward()"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_harvest(tx.origin)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_harvest(callFeeRecipient)"
+            },
+            {
+                "Function": "managerHarvest",
+                "Node": "_harvest(tx.origin)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IQuickDualRewards(rewardPool).withdraw(_amount.sub(wantBal))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IQuickDualRewards(rewardPool).withdraw(balanceOfPool())"
+            },
+            {
+                "Function": "panic",
+                "Node": "IQuickDualRewards(rewardPool).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

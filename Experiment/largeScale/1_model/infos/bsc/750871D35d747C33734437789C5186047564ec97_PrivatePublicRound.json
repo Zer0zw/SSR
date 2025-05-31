@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stake_amount"
+        ],
+        "User Stake Reward": [
+            "Stake.reward",
+            "Stake.totalReward"
+        ],
+        "User Stake Time": [
+            "Stake.stake_date",
+            "Stake.period"
+        ],
+        "Stake Token Address": [
+            "GIToken"
+        ],
+        "Reward Token Address": [
+            "USDToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "swap",
+                "Node": "ERC20(USDToken).safeTransferFrom(msg.sender, address(this), _value)"
+            },
+            {
+                "Function": "stake",
+                "Node": "ERC20(GIToken).safeTransferFrom(msg.sender, address(this), _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "ERC20(USDToken).safeTransfer(msg.sender, claimTotal)"
+            },
+            {
+                "Function": "depositReward",
+                "Node": "ERC20(USDToken).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC20(GIToken).safeTransfer(msg.sender, stake.stake_amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "ERC20(GIToken).safeTransfer(msg.sender, resultAmount)"
+            }
+        ]
+    }
+}

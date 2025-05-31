@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.transferFrom(user, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.transfer(user, reward)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "_stake(user, reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "rewardToken.transfer(user, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakingToken.transfer(user, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "stakingToken.transfer(user, userBalance)"
+            }
+        ]
+    }
+}

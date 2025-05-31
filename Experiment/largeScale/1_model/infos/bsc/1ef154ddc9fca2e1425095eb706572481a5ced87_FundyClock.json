@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Player.total_staked"
+        ],
+        "User Stake Reward": [
+            "Player.dividends"
+        ],
+        "User Stake Time": [
+            "Deposit.time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeToken",
+                "Node": "_balances[address(this)] = _balances[address(this)].sub(t)\n_balances[msg.sender] = _balances[msg.sender].add(t)\nemit Transfer(address(this), msg.sender, t)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "HarvestYields",
+                "Node": "addr.transfer(bnb)"
+            },
+            {
+                "Function": "Reinvest",
+                "Node": "No direct transfer statement for rewards as it reinvests the dividends back into staking"
+            },
+            {
+                "Function": "sendYields",
+                "Node": "dest.dividends = dest.dividends + amount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "SellToken",
+                "Node": "_balances[msg.sender] = _balances[msg.sender].sub(tokenamount)\n_balances[address(this)] = _balances[address(this)].add(tokenamount)\nemit Transfer(msg.sender, address(this), tokenamount)\naddr.transfer(bnb)"
+            }
+        ]
+    }
+}

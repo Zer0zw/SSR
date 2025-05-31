@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalancesToken",
+            "stakingBalancesLiquidity"
+        ],
+        "User Stake Reward": [
+            "availableRewardsToken",
+            "availableRewardsLiquidity"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenAddress",
+            "liquidityAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ERC20(liquidityAddress).transferFrom(msg.sender, address(this), pseudoAmount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "ERC20(liquidityAddress).transferFrom(msg.sender, address(this), pseudoAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "ERC20(tokenAddress).transfer(msg.sender, withdrawAmountLiquidity)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "ERC20(tokenAddress).transfer(msg.sender, withdrawAmountToken)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "ERC20(tokenAddress).transfer(msg.sender, withdrawAmountToken)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "ERC20(tokenAddress).transfer(msg.sender, withdrawAmountLiquidity)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC20(liquidityAddress).transfer(msg.sender, stakingBalancesLiquidity[msg.sender])"
+            },
+            {
+                "Function": "unstake",
+                "Node": "ERC20(tokenAddress).transfer(msg.sender, stakingBalancesToken[msg.sender])"
+            }
+        ]
+    }
+}

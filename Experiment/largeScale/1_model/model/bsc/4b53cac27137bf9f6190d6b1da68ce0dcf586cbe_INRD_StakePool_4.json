@@ -1,0 +1,114 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.poolBal"
+        ],
+        "User Stake Reward": [
+            "users.rewardUnWithdrawed",
+            "users.rewardEarned"
+        ],
+        "User Stake Time": [
+            "users.pool_deposit_time"
+        ],
+        "Stake Token Address": [
+            "tokenAddr"
+        ],
+        "Reward Token Address": [
+            "tokenAddr"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "PoolStake"
+        ],
+        "getReward": [
+            "PoolStake",
+            "claimPool"
+        ],
+        "unStake": [
+            "claimPool"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "PoolStake",
+                "Node": [
+                    203
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolMaxStake",
+                    "poolMinStake",
+                    "tokenAddr",
+                    "tokenDecimal"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolMaxStake",
+                    "poolMinStake",
+                    "tokenAddr",
+                    "tokenDecimal"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "claimPool",
+                "Node": [
+                    252
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "earlyPenalty",
+                    "poolRewardPercent",
+                    "users.poolBal",
+                    "users.pool_deposit_time",
+                    "users.pool_payouts",
+                    "users.rewardEarned",
+                    "users.rewardUnWithdrawed"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "earlyPenalty",
+                    "fullMaturityTime",
+                    "poolRewardPercent",
+                    "tokenAddr",
+                    "users.poolBal",
+                    "users.pool_deposit_time",
+                    "users.pool_payouts",
+                    "users.rewardEarned",
+                    "users.rewardUnWithdrawed"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "earlyPenalty",
+                    "fullMaturityTime",
+                    "poolRewardPercent",
+                    "tokenAddr",
+                    "users.poolBal",
+                    "users.pool_deposit_time",
+                    "users.pool_payouts",
+                    "users.rewardEarned",
+                    "users.rewardUnWithdrawed"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

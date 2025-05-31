@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastStakeTimes"
+        ],
+        "Stake Token Address": [
+            "yfv"
+        ],
+        "Reward Token Address": [
+            "vUSD",
+            "vETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.tokenStake(amount, actualStakeAmount)"
+            },
+            {
+                "Function": "stakeOnBehalf",
+                "Node": "super.tokenStakeOnBehalf(stakeFor, amount, actualStakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "vUSD.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "vETH.safeTransfer(msg.sender, reward.div(vETH_REWARD_FRACTION_RATE))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.tokenWithdraw(amount, actualWithdrawAmount)"
+            }
+        ]
+    }
+}

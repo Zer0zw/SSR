@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "reward1",
+            "reward2"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward1",
+            "reward2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "poolHelper.deposit(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "poolHelper.getReward()"
+            },
+            {
+                "Function": "_swapRewardToWant",
+                "Node": "IJoeRouter(uniRouter).swapExactTokensForTokens(rewardBal, 0, route, address(this), now)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "poolHelper.withdraw(amountToWithdraw, minAmount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "poolHelper.withdraw(stakingBal, minAmount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "TransferHelper.safeTransfer(want, vault, wantBal)"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "TransferHelper.safeTransfer(want, vault, wantBal)"
+            }
+        ]
+    }
+}

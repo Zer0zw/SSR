@@ -1,0 +1,69 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUserC1",
+            "tokensStakedByUserC2",
+            "tokensStakedByUserC3"
+        ],
+        "User Stake Reward": [
+            "coinAmountPerRewardUnitC1",
+            "coinAmountPerRewardUnitC2",
+            "coinAmountPerRewardUnitC3"
+        ],
+        "User Stake Time": [
+            "StakeInfoC1.stakedAtBlock",
+            "StakeInfoC2.stakedAtBlock",
+            "StakeInfoC3.stakedAtBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddressC1",
+            "collectionAddressC2",
+            "collectionAddressC3"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeC1",
+                "Node": "IERC721(collectionAddressC1).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeC2",
+                "Node": "IERC721(collectionAddressC2).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeC3",
+                "Node": "IERC721(collectionAddressC3).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestC1",
+                "Node": "_mint(_msgSender(), rewardAmountInLOFI)"
+            },
+            {
+                "Function": "harvestC2",
+                "Node": "_mint(_msgSender(), rewardAmountInLOFI)"
+            },
+            {
+                "Function": "harvestC3",
+                "Node": "_mint(_msgSender(), rewardAmountInLOFI)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeC1",
+                "Node": "IERC721(collectionAddressC1).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeC2",
+                "Node": "IERC721(collectionAddressC2).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeC3",
+                "Node": "IERC721(collectionAddressC3).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

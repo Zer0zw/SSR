@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "mklLpToken"
+        ],
+        "Reward Token Address": [
+            "mklToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "mklLpToken.transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "mklToken.transfer(_addr, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelStake",
+                "Node": "mklLpToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

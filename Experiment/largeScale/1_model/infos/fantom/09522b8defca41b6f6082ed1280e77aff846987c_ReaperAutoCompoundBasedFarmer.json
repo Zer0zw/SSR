@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "BSHARE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(MASTER_CHEF).deposit(poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_swapAndChargeFees",
+                "Node": "IERC20Upgradeable(WFTM).safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_swapAndChargeFees",
+                "Node": "IERC20Upgradeable(WFTM).safeTransfer(treasury, treasuryFeeToVault)"
+            },
+            {
+                "Function": "_swapAndChargeFees",
+                "Node": "IERC20Upgradeable(WFTM).safeTransfer(strategistRemitter, feeToStrategist)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Upgradeable(want).safeTransfer(vault, _amount - withdrawFee)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20Upgradeable(want).safeTransfer(vault, wantBalance)"
+            }
+        ]
+    }
+}

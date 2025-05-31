@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "_reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IStakingRewards(STAKING_REWARDS).stake(_amount)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IStakingRewards(STAKING_REWARDS).stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IStakingRewards(STAKING_REWARDS).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "IStakingRewards(STAKING_REWARDS).withdraw(_amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(_vault, balance)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "_withdrawSome(_totalWant)"
+            }
+        ]
+    }
+}

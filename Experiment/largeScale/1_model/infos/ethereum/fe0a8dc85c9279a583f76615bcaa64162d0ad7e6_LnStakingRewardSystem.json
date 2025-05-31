@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "simpleStaking"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "istaking.staking(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "simpleStaking.claim()"
+            },
+            {
+                "Function": "claim",
+                "Node": "istaking.claim()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelStaking",
+                "Node": "simpleStaking.cancelStaking(amount)"
+            },
+            {
+                "Function": "cancelStaking",
+                "Node": "simpleStaking.cancelStaking(userAmountInStaking)"
+            },
+            {
+                "Function": "cancelStaking",
+                "Node": "istaking.cancelStaking(amount)"
+            },
+            {
+                "Function": "cancelStaking",
+                "Node": "istaking.cancelStaking(userAmountInStaking)"
+            }
+        ]
+    }
+}

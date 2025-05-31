@@ -1,0 +1,122 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.totalStakingToken"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "graceToken"
+        ],
+        "Reward Token Address": [
+            "graceToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "start_staking"
+        ],
+        "getReward": [
+            "withdraw"
+        ],
+        "unStake": [
+            "sellToken"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "start_staking",
+                "Node": [
+                    242
+                ],
+                "Input": [
+                    "_programId",
+                    "position",
+                    "referrer",
+                    "walletUsedBusd"
+                ],
+                "Calculation Variables": [
+                    "tokenPrice"
+                ],
+                "Control Variables": [
+                    "graceToken",
+                    "stakingOn",
+                    "tokenPrice"
+                ],
+                "Full Calculation Variables": [
+                    "graceToken",
+                    "stakingOn",
+                    "tokenPrice"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    377
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakingPrograms_.dailyInterest",
+                    "stakingPrograms_.term",
+                    "users.currentPercent",
+                    "users.id",
+                    "users.programCount",
+                    "users.programs"
+                ],
+                "Control Variables": [
+                    "graceToken",
+                    "stakingPrograms_.dailyInterest",
+                    "stakingPrograms_.term",
+                    "users.currentPercent",
+                    "users.id",
+                    "users.programCount",
+                    "users.programs"
+                ],
+                "Full Calculation Variables": [
+                    "graceToken",
+                    "stakingPrograms_.dailyInterest",
+                    "stakingPrograms_.term",
+                    "users.currentPercent",
+                    "users.id",
+                    "users.programCount",
+                    "users.programs"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "sellToken",
+                "Node": [
+                    309
+                ],
+                "Input": [
+                    "tokenQty"
+                ],
+                "Calculation Variables": [
+                    "tokenPrice"
+                ],
+                "Control Variables": [
+                    "sellOn",
+                    "graceToken",
+                    "busdToken",
+                    "MINIMUM_SELL",
+                    "tokenPrice"
+                ],
+                "Full Calculation Variables": [
+                    "sellOn",
+                    "graceToken",
+                    "busdToken",
+                    "MINIMUM_SELL",
+                    "tokenPrice"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

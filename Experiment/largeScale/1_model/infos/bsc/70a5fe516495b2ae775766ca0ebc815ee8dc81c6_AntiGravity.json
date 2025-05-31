@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "toBePaid",
+            "_newDividentsOf"
+        ],
+        "User Stake Time": [
+            "_sellLock"
+        ],
+        "Stake Token Address": [
+            "_pancakePairAddress"
+        ],
+        "Reward Token Address": [
+            "_pancakeRouter.WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addToken",
+                "Node": "_balances[addr]=newAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "cBUSD",
+                "Node": "_pancakeRouter.swapExactETHForTokensSupportingFeeOnTransferTokens{value: amount}(0, path, addr, block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeToken",
+                "Node": "_balances[addr]=newAmount"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakeTokenAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.credit",
+            "UserInfo.xbcAmount"
+        ],
+        "User Stake Time": [
+            "UserInfo.startBlock",
+            "holdPeroid"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "stakerStrategy.xbc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositEth",
+                "Node": "IERC20(stakerStrategy.xbc()).safeTransferFrom(msg.sender, address(this), xbcAmount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(stakerStrategy.xbc()).safeTransferFrom(msg.sender, address(this), xbcAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "safeTransfer(address(stakeToken), msg.sender, ui.stakeTokenAmount)"
+            },
+            {
+                "Function": "withdrawEth",
+                "Node": "Address.sendValue(payable(msg.sender), ui.stakeTokenAmount)"
+            }
+        ]
+    }
+}

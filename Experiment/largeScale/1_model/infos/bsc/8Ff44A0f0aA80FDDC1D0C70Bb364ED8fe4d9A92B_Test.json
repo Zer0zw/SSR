@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_ordertoid",
+            "orderlist"
+        ],
+        "User Stake Reward": [
+            "income"
+        ],
+        "User Stake Time": [
+            "_ordertype",
+            "orderlist"
+        ],
+        "Stake Token Address": [
+            "TCaddress"
+        ],
+        "Reward Token Address": [
+            "usdtaddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "IERC20(TCaddress).transferFrom(msg.sender,address(this),orderamount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getstaking",
+                "Node": "IERC20(usdtaddress).transfer(msg.sender,orderamount.add(income(msg.sender,block.timestamp)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "getblanceOflp",
+                "Node": "IERC20(LPusdt).transfer(msg.sender,_lplocked[msg.sender][LPusdt])"
+            },
+            {
+                "Function": "getblanceOflp",
+                "Node": "IERC20(LPbnb).transfer(msg.sender,_lplocked[msg.sender][LPbnb])"
+            }
+        ]
+    }
+}

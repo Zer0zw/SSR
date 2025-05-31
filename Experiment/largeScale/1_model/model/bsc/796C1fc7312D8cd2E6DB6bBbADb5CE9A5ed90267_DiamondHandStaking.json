@@ -1,0 +1,107 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposits.amount"
+        ],
+        "User Stake Reward": [
+            "_deposits.totalRewardClaimed"
+        ],
+        "User Stake Time": [
+            "_deposits.stakedAt"
+        ],
+        "Stake Token Address": [
+            "KRONOS"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "withdrawAndClaimReward"
+        ],
+        "unStake": [
+            "withdrawAndClaimReward"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    587
+                ],
+                "Input": [
+                    "_to",
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "KRONOS",
+                    "stakingContractAddress"
+                ],
+                "Full Calculation Variables": [
+                    "KRONOS",
+                    "stakingContractAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAndClaimReward",
+                "Node": [
+                    648
+                ],
+                "Input": [
+                    "amount",
+                    "user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "treasury"
+                ],
+                "Full Calculation Variables": [
+                    "treasury"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAndClaimReward",
+                "Node": [
+                    643
+                ],
+                "Input": [
+                    "depositId"
+                ],
+                "Calculation Variables": [
+                    "_deposits.amount",
+                    "_deposits.isFinalized",
+                    "_deposits.stakedAt",
+                    "_deposits.totalRewardClaimed"
+                ],
+                "Control Variables": [
+                    "KRONOS",
+                    "_deposits.amount",
+                    "_deposits.isFinalized",
+                    "_deposits.stakedAt",
+                    "_deposits.totalRewardClaimed",
+                    "minLockTime"
+                ],
+                "Full Calculation Variables": [
+                    "KRONOS",
+                    "_deposits.amount",
+                    "_deposits.isFinalized",
+                    "_deposits.stakedAt",
+                    "_deposits.totalRewardClaimed",
+                    "minLockTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

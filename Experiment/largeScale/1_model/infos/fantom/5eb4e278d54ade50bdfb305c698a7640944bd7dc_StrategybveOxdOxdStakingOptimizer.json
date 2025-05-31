@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IMultiRewards(stakingAddress).balanceOf(userProxy)"
+        ],
+        "User Stake Reward": [
+            "IMultiRewards(stakingAddress).earned(getUserProxy(), reward)"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IUserProxy(userProxyInterface).depositLpAndStake(want, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IUserProxy(userProxyInterface).claimStakingRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAll",
+                "Node": "IUserProxy(userProxyInterface).unstakeLpAndWithdraw(want)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "IUserProxy(userProxyInterface).unstakeLpAndWithdraw(want, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeOneBalance",
+            "userStakeTwoBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userStakeOneTime",
+            "userStakeTwoTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeOne",
+                "Node": "_burn(msg.sender, amount)"
+            },
+            {
+                "Function": "stakeTwo",
+                "Node": "_burn(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakeOne",
+                "Node": "_mint(msg.sender , (userStakeOneBalance[msg.sender]) * (stakeOneAPY/100) / 12)"
+            },
+            {
+                "Function": "claimStakeTwo",
+                "Node": "_mint(msg.sender , (userStakeTwoBalance[msg.sender]) * (stakeTwoAPY/100) / 12)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimStakeOne",
+                "Node": "_mint(msg.sender , (userStakeOneBalance[msg.sender]) * (stakeOneAPY/100) / 12)"
+            },
+            {
+                "Function": "claimStakeTwo",
+                "Node": "_mint(msg.sender , (userStakeTwoBalance[msg.sender]) * (stakeTwoAPY/100) / 12)"
+            }
+        ]
+    }
+}

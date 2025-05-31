@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MSTRAddress",
+            "MAGAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMSTR",
+                "Node": "IERC20Upgradeable(MSTRAddress).safeTransferFrom(_msgSender(), address(this), _amount)"
+            },
+            {
+                "Function": "stakeMAG",
+                "Node": "IERC20Upgradeable(MAGAddress).safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstakeMSTR",
+                "Node": "IERC20Upgradeable(MSTRAddress).safeTransfer(_msgSender(), _amount)"
+            },
+            {
+                "Function": "unstakeMAG",
+                "Node": "IERC20Upgradeable(MAGAddress).safeTransfer(_msgSender(), _amount)"
+            }
+        ]
+    }
+}

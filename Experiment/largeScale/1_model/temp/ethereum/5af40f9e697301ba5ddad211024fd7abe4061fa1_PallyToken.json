@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "transferInStruct.amount"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "transferInStruct.time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "transfer",
+                "Node": "balances[_to] = balances[_to].add(_value)"
+            },
+            {
+                "Function": "transferFrom",
+                "Node": "balances[_to] = balances[_to].add(_value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "mint",
+                "Node": "balances[msg.sender] = balances[msg.sender].add(reward)"
+            }
+        ],
+        "unStake": []
+    }
+}

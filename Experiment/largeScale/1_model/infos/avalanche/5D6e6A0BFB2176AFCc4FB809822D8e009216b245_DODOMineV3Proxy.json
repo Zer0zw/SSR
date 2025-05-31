@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createDODOMineV3",
+                "Node": "IMineV3(newMineV3).directTransferOwnership(msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositRewardToVault",
+                "Node": "IDODOApproveProxy(_DODO_APPROVE_PROXY_).claimTokens(rewardToken, msg.sender, rewardVault, amount)"
+            },
+            {
+                "Function": "depositRewardToMine",
+                "Node": "IDODOApproveProxy(_DODO_APPROVE_PROXY_).claimTokens(rewardToken, msg.sender, mineV3, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

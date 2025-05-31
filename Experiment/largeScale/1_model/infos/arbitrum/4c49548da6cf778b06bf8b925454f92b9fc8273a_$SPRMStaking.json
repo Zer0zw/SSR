@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Data.totalInvestment",
+            "allInvestments.investedAmount"
+        ],
+        "User Stake Reward": [
+            "Data.reward",
+            "Data.totalWithdraw_reward"
+        ],
+        "User Stake Time": [
+            "Data.stakeTime",
+            "allInvestments.DepositTime",
+            "allInvestments.withdrawnTime"
+        ],
+        "Stake Token Address": [
+            "USDTcontract"
+        ],
+        "Reward Token Address": [
+            "USDTTOKENcontract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "IERC20(USDTcontract).transferFrom(msg.sender,address(this),_investedamount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "IERC20(USDTTOKENcontract).transfer(msg.sender,Total_reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC20(USDTcontract).transfer(msg.sender,amount)"
+            }
+        ]
+    }
+}

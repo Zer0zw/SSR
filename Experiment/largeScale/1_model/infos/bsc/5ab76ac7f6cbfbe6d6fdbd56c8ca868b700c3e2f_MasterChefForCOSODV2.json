@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pending_list",
+            "allrewardList"
+        ],
+        "User Stake Time": [
+            "staking_time",
+            "unlock_time"
+        ],
+        "Stake Token Address": [
+            "cosoNftToken"
+        ],
+        "Reward Token Address": [
+            "cake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "cosoNftToken.transferFrom(_user, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "swapConfig.farmAddress.depositByProxy(_user, _farm_pid, userLpAmount)"
+            },
+            {
+                "Function": "swapAndDepositFarm",
+                "Node": "swapConfig.farmAddress.depositByProxy(_user, _farm_pid, userLpAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "cosoNftToken.transferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "cosoNftToken.transferFrom(address(this), _user, userCosoList[i])"
+            }
+        ]
+    }
+}

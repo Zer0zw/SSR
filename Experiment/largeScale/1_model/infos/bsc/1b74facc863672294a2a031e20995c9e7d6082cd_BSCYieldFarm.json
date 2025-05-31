@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposits.amount"
+        ],
+        "User Stake Reward": [
+            "todeposits.harvested",
+            "todeposits.bonus"
+        ],
+        "User Stake Time": [
+            "Deposits.start",
+            "plans.time"
+        ],
+        "Stake Token Address": [
+            "Tokens.token"
+        ],
+        "Reward Token Address": [
+            "Tokens.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBNB",
+                "Node": "payable(contract_).transfer(_fee.div(2))"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "salt.safeTransfer(contract_, _fee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "payable(msg.sender).transfer(_withdrawn)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "salt.safeTransfer(msg.sender, _withdrawn)"
+            },
+            {
+                "Function": "manualCompounding",
+                "Node": "deposits[_userID][token.token].push(Deposits(3, _compound, block.timestamp))"
+            }
+        ],
+        "unStake": []
+    }
+}

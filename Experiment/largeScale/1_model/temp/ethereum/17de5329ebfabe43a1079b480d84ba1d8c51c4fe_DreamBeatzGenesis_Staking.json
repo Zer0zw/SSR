@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeIds"
+        ],
+        "User Stake Reward": [
+            "rewardMultiplier"
+        ],
+        "User Stake Time": [
+            "Stake.time"
+        ],
+        "Stake Token Address": [
+            "beatzNFT"
+        ],
+        "Reward Token Address": [
+            "beatzAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(beatzNFT).transferFrom(msg.sender, beatz_vault, id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(beatzAddress).stakeReward(msg.sender, reward)"
+            },
+            {
+                "Function": "claim_and_unstake",
+                "Node": "IERC20(beatzAddress).stakeReward(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim_and_unstake",
+                "Node": "IERC721(beatzNFT).transferFrom(beatz_vault, msg.sender, id)"
+            }
+        ]
+    }
+}

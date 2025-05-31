@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardReceived",
+            "UserInfo.pendingInviteReward",
+            "UserInfo.receivedInviteReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastRewardTime",
+            "DepositOrder.orderTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.bonusToken",
+            "iToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositIToken",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimUserReward",
+                "Node": "safeITokenTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "claimParentInviteReward",
+                "Node": "safeITokenTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "claimUserReward",
+                "Node": "safeBonusTransfer(_pid, _user, pendingAmount)"
+            },
+            {
+                "Function": "claimParentInviteReward",
+                "Node": "safeBonusTransfer(_pid, _user, pendingAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawIToken",
+                "Node": "pool.lpToken.safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "emergencyWithdrawIToken",
+                "Node": "pool.lpToken.safeTransfer(_user, amount)"
+            }
+        ]
+    }
+}

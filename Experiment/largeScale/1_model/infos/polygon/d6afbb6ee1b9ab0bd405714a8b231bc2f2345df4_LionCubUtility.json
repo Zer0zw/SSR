@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUserLionCubNFT",
+            "tokensStakedByUserNFTv2"
+        ],
+        "User Stake Reward": [
+            "pendingRewardsLionCubNFT",
+            "pendingRewardsNFTv2"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddressLionCubNFT",
+            "collectionAddressNFTv2"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLionCubNFT",
+                "Node": "IERC721(collectionAddressLionCubNFT).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeNFTv2",
+                "Node": "IERC721(collectionAddressNFTv2).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestLionCubNFT",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            },
+            {
+                "Function": "harvestNFTv2",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLionCubNFT",
+                "Node": "IERC721(collectionAddressLionCubNFT).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeNFTv2",
+                "Node": "IERC721(collectionAddressNFTv2).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

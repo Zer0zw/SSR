@@ -1,0 +1,161 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakings.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakings.claimedAmount"
+        ],
+        "User Stake Time": [
+            "stakings.lastBlockStaked"
+        ],
+        "Stake Token Address": [
+            "HULK"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "enterStaking"
+        ],
+        "getReward": [
+            "claim",
+            "leaveStaking",
+            "singleCompound"
+        ],
+        "unStake": [
+            "leaveStaking"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": [
+                    745
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "HULK"
+                ],
+                "Full Calculation Variables": [
+                    "HULK"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    827
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ETHPerBlock",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "ETHPerBlock",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": [
+                    827
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ETHPerBlock",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "ETHPerBlock",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "singleCompound",
+                "Node": [
+                    843
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "ETHPerBlock",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Control Variables": [
+                    "ETHPerBlock",
+                    "HULK",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "ETHPerBlock",
+                    "HULK",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": [
+                    785
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "earlyWithdrawFee"
+                ],
+                "Control Variables": [
+                    "ETHPerBlock",
+                    "HULK",
+                    "earlyWithdrawFee",
+                    "earlyWithdrawFeeTime",
+                    "stakings.claimedAmount",
+                    "stakings.lastBlockCompounded",
+                    "stakings.lastBlockStaked",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "ETHPerBlock",
+                    "HULK",
+                    "earlyWithdrawFee",
+                    "earlyWithdrawFeeTime",
+                    "stakings.claimedAmount",
+                    "stakings.lastBlockCompounded",
+                    "stakings.lastBlockStaked",
+                    "stakings.stakedAmount",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lockupTimer"
+        ],
+        "Stake Token Address": [
+            "pUSD"
+        ],
+        "Reward Token Address": [
+            "pUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lockPUSD",
+                "Node": "pUSD.transferFrom(stakeFrom, address(this), amount"
+            },
+            {
+                "Function": "lockPUSDFor",
+                "Node": "pUSD.transferFrom(stakeFrom, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectFor",
+                "Node": "pUSD.transfer(account, amount)"
+            },
+            {
+                "Function": "collect",
+                "Node": "pUSD.transfer(account, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPUSD",
+                "Node": "pUSD.transfer(sender, withdrawAmount.sub(haircutFee))"
+            },
+            {
+                "Function": "withdrawFor",
+                "Node": "pUSD.transfer(sender, withdrawAmount.sub(haircutFee))"
+            }
+        ]
+    }
+}

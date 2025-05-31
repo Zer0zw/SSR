@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "StakingInfo.unstakeDate"
+        ],
+        "Stake Token Address": [
+            "MVS"
+        ],
+        "Reward Token Address": [
+            "NPT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(MVS).transferFrom(msg.sender, address(this), tierAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "swap",
+                "Node": "IERC20(NPT).transfer(msg.sender, NPTAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(MVS).transfer(msg.sender, _stakingsInfo[msg.sender][id].amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStruct.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserStruct.pendingRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "arabella"
+        ],
+        "Reward Token Address": [
+            "USDC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "arabella.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "USDC.transfer(msg.sender, claimAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,133 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "curveLPToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "depositCollateral",
+            "depositCollateralFrom"
+        ],
+        "getReward": [
+            "processExtraYield",
+            "processYield",
+            "processYield"
+        ],
+        "unStake": [
+            "withdrawCollateral",
+            "withdrawOnLiquidation",
+            "withdrawOnLiquidation"
+        ],
+        "Sensitive Functions": [
+            "setConfiguration"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "processYield",
+                "Node": [
+                    2415
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CONVEX_BOOSTER",
+                    "_addressesProvider",
+                    "_incentiveRatio",
+                    "_vaultFee",
+                    "convexPoolId"
+                ],
+                "Full Calculation Variables": [
+                    "CONVEX_BOOSTER",
+                    "_addressesProvider",
+                    "_incentiveRatio",
+                    "_vaultFee",
+                    "convexPoolId"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "processExtraYield",
+                "Node": [
+                    2415
+                ],
+                "Input": [
+                    "_count",
+                    "_offset"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CONVEX_BOOSTER",
+                    "_addressesProvider",
+                    "_incentiveRatio",
+                    "_vaultFee",
+                    "convexPoolId"
+                ],
+                "Full Calculation Variables": [
+                    "CONVEX_BOOSTER",
+                    "_addressesProvider",
+                    "_incentiveRatio",
+                    "_vaultFee",
+                    "convexPoolId"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawOnLiquidation",
+                "Node": [
+                    2535
+                ],
+                "Input": [
+                    "_amount",
+                    "_to"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CONVEX_BOOSTER",
+                    "convexPoolId",
+                    "curveLPToken"
+                ],
+                "Full Calculation Variables": [
+                    "CONVEX_BOOSTER",
+                    "convexPoolId",
+                    "curveLPToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawCollateral",
+                "Node": [
+                    2535
+                ],
+                "Input": [
+                    "_to",
+                    "_asset",
+                    "_amount",
+                    "_amount",
+                    "_to"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CONVEX_BOOSTER",
+                    "curveLPToken",
+                    "convexPoolId"
+                ],
+                "Full Calculation Variables": [
+                    "CONVEX_BOOSTER",
+                    "curveLPToken",
+                    "convexPoolId"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.token"
+        ],
+        "Reward Token Address": [
+            "kush"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.token.safeTransferFrom(_sender, address(this), _amount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "pool.token.safeTransfer(taxCollector, fee1)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "pool.token.safeTransfer(gnosisSafeTreasury, fee2)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeKushTransfer(_sender, _pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeKushTransfer(_sender, _pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.token.safeTransfer(_sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.token.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

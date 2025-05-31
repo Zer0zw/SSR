@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "User.refBonus",
+            "User.totalRefBonus"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Deposit.plan.investingDays"
+        ],
+        "Stake Token Address": [
+            "ubxs"
+        ],
+        "Reward Token Address": [
+            "ubxs"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investTo",
+                "Node": "bool result = ubxs.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "investFor",
+                "Node": "bool result = ubxs.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "bool result = ubxs.transfer(msg.sender, totalWithdrawable)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "bool result = ubxs.transfer(msg.sender, totalWithdrawable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "bool result = ubxs.transfer(msg.sender, totalWithdrawable)"
+            }
+        ]
+    }
+}

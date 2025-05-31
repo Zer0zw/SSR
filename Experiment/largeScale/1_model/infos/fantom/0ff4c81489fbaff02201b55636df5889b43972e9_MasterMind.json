@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.averageBlockDeposit"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDeposit"
+        ],
+        "Stake Token Address": [
+            "Target.lockableToken"
+        ],
+        "Reward Token Address": [
+            "IAdapter.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.target.lockableToken(pool.targetPoolId).safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "_zapAndDeposit",
+                "Node": "IERC20(token).safeTransferFrom(address(msg.sender), address(pool.adapter), _amount)"
+            },
+            {
+                "Function": "_zapAndDepositRouted",
+                "Node": "IERC20(token).safeTransferFrom(address(msg.sender), address(pool.adapter), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewarder.claim(_pid, msg.sender, user.averageBlockDeposit, _to)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.target.lockableToken(pool.targetPoolId).safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdrawAndUnzapRouted",
+                "Node": "uint256 lpTokens = IAdapter(address(pool.adapter))._unzapAnyRouted(token, call, _pid, _amount, min_out, msg.sender)"
+            }
+        ]
+    }
+}

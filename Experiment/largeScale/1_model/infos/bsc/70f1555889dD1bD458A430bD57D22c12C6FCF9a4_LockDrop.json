@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "depositTime",
+            "startRewardTime",
+            "unlockTime"
+        ],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "uint256 lockAmount = _addLiquidity(_token, _amount, _minLpAmount)"
+            },
+            {
+                "Function": "depositETH",
+                "Node": "uint256 lockAmount = _addLiquidityETH(_amount, _minLpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "rewardToken.safeTransfer(_to, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lp.safeTransfer(_to, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "lp.safeTransfer(_to, amount)"
+            }
+        ]
+    }
+}

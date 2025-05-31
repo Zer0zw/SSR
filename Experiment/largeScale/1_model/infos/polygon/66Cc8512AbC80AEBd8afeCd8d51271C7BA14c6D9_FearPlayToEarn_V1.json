@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "playerStakes",
+            "playerTokens"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "nftToken",
+            "fearToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "playToEarnWithFear",
+                "Node": "require(fearToken.transferFrom(_msgSender(), address(this), stakeAmount)"
+            },
+            {
+                "Function": "playToEarnWithToken",
+                "Node": "nftToken.safeTransferFrom(_msgSender(), address(this), tokenId, amount, \"\")"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstakeFear",
+                "Node": "fearToken.transfer(_msgSender(), stake)"
+            },
+            {
+                "Function": "unstakeToken",
+                "Node": "nftToken.safeTransferFrom(address(this), _msgSender(), tokenId, stake, \"\")"
+            }
+        ]
+    }
+}

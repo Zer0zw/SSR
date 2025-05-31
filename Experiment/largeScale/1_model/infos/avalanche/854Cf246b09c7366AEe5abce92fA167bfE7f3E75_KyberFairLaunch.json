@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserRewardData.unclaimedReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20Ext(pool.stakeToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_lockReward(IERC20Ext(rewardTokens[i]), _to, _pending)"
+            },
+            {
+                "Function": "harvestMultiplePools",
+                "Node": "_lockReward(IERC20Ext(rTokens[i]), account, totalRewards[i])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Ext(pool.stakeToken).safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20Ext(pool.stakeToken).safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20Ext(pool.stakeToken).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

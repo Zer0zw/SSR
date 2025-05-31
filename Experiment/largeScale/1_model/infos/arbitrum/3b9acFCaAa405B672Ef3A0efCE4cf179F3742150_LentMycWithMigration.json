@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userPendingDeposits",
+            "trueBalanceOf"
+        ],
+        "User Stake Reward": [
+            "userCumulativeEthRewards",
+            "userEthRewardsClaimed"
+        ],
+        "User Stake Time": [
+            "cycleStartTime",
+            "userLastUpdated"
+        ],
+        "Stake Token Address": [
+            "asset"
+        ],
+        "Reward Token Address": [
+            "asset"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "asset.safeTransferFrom(from, address(this), assets)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "asset.safeTransferFrom(from, address(this), assets)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "Address.sendValue(payable(msg.sender), rewards)"
+            },
+            {
+                "Function": "_claimAsMyc",
+                "Node": "asset.transfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "asset.safeTransfer(user, assetTransfer)"
+            },
+            {
+                "Function": "_updateUser",
+                "Node": "asset.safeTransfer(user, assetTransfer)"
+            }
+        ]
+    }
+}

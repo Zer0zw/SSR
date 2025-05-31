@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Farmers.money"
+        ],
+        "User Stake Reward": [
+            "Farmers.timestamp"
+        ],
+        "User Stake Time": [
+            "Farmers.timestamp"
+        ],
+        "Stake Token Address": [
+            "stakeTokenAddress"
+        ],
+        "Reward Token Address": [
+            "yieldTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(stakeTokenAddress).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTokens",
+                "Node": "IERC20(yieldTokenAddress).transfer(msg.sender,  getUserYield(msg.sender))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(stakeTokenAddress).transfer(user, farmers[user].money)"
+            }
+        ]
+    }
+}

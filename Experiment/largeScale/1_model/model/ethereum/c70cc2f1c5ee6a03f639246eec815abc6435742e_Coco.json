@@ -1,0 +1,146 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "tokenToLastClaimedStake",
+            "stakeDatas.emission"
+        ],
+        "User Stake Time": [
+            "stakeDatas.unlockedTime"
+        ],
+        "Stake Token Address": [
+            "waveCatchers"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claimPassiveYield",
+            "claimStakingRewards",
+            "stake",
+            "unstake"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "setWaveCatchersAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    2047
+                ],
+                "Input": [
+                    "_lockupDays",
+                    "_tokenIds",
+                    "_user",
+                    "claimPassiveRewardsFirst"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakes",
+                    "validLockupPeriodsDays",
+                    "waveCatchers"
+                ],
+                "Full Calculation Variables": [
+                    "stakes",
+                    "validLockupPeriodsDays",
+                    "waveCatchers"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPassiveYield",
+                "Node": [
+                    2020
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    2020
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimStakingRewards",
+                "Node": [
+                    2034
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstake",
+                "Node": [
+                    2034
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    2060
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "_user",
+                    "claimStakingRewardsFirst"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakeDatas.unlockedTime",
+                    "stakes",
+                    "waveCatchers"
+                ],
+                "Full Calculation Variables": [
+                    "stakeDatas.unlockedTime",
+                    "stakes",
+                    "waveCatchers"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

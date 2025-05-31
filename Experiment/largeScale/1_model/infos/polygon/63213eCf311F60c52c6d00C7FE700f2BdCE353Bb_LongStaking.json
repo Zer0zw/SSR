@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "nsdx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "depositLP",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "nsdx.safeTransfer(_account, sendAmount)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "nsdx.safeTransfer(_account, sendAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(_realUser, _amount)"
+            },
+            {
+                "Function": "withdrawLP",
+                "Node": "pool.lpToken.safeTransfer(_realUser, _amount)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "swapRouter.removeLiquidity(address(tokenA), address(tokenB), _amount, _amountAMin, _amountBMin, _realUser, _deadline)"
+            }
+        ]
+    }
+}

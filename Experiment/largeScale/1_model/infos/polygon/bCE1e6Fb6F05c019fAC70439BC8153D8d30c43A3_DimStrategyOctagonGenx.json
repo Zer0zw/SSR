@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_dimDeposit",
+                "Node": "IOctagonPool(stakingRewardsAddress).deposit(_wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_dimHarvest",
+                "Node": "IOctagonPool(stakingRewardsAddress).withdraw(0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_dimWithdraw",
+                "Node": "IOctagonPool(stakingRewardsAddress).withdraw(_wantAmt)"
+            },
+            {
+                "Function": "_emergencyDimWithdraw",
+                "Node": "IOctagonPool(stakingRewardsAddress).emergencyWithdraw()"
+            }
+        ]
+    }
+}

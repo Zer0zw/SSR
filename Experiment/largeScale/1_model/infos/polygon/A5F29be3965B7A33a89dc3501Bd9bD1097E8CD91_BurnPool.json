@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "GREEN"
+        ],
+        "Reward Token Address": [
+            "REWARD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "transact",
+                "Node": "GREEN.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "transact",
+                "Node": "safeRewardTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "transact",
+                "Node": "GREEN.safeTransfer(burnAddress, user.amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "GREEN.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

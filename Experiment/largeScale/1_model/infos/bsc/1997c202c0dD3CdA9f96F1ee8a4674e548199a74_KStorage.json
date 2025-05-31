@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "Record.stake"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Record.expire"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": "lpToken.transferFrom(_from, address(this), _value)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.transfer(account, _value)"
+            }
+        ]
+    }
+}

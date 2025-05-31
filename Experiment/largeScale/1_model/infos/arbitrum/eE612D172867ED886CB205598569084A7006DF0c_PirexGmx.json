@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmounts"
+        ],
+        "User Stake Reward": [
+            "claimableReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "gmx",
+            "stakedGlp"
+        ],
+        "Reward Token Address": [
+            "gmxBaseReward",
+            "esGmx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositGmx",
+                "Node": "pxGmx.mint(receiver, postFeeAmount)"
+            },
+            {
+                "Function": "depositFsGlp",
+                "Node": "pxGlp.mint(receiver, postFeeAmount)"
+            },
+            {
+                "Function": "_depositGlp",
+                "Node": "pxGlp.mint(receiver, postFeeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimUserReward",
+                "Node": "pxGmx.mint(receiver, postFeeAmount)"
+            },
+            {
+                "Function": "claimUserReward",
+                "Node": "gmxBaseReward.safeTransfer(receiver, postFeeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_redeemPxGlp",
+                "Node": "pxGlp.burn(msg.sender, postFeeAmount)"
+            },
+            {
+                "Function": "redeemPxGlpETH",
+                "Node": "gmxRewardRouterV2.unstakeAndRedeemGlpETH(postFeeAmount, minOut, receiver)"
+            },
+            {
+                "Function": "redeemPxGlp",
+                "Node": "gmxRewardRouterV2.unstakeAndRedeemGlp(token, postFeeAmount, minOut, receiver)"
+            }
+        ]
+    }
+}

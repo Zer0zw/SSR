@@ -1,0 +1,123 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "Axiatoken"
+        ],
+        "Reward Token Address": [
+            "Axiatoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "StakeAxiaTokens"
+        ],
+        "getReward": [
+            "TakeDividends"
+        ],
+        "unStake": [
+            "UnstakeAxiaTokens"
+        ],
+        "Sensitive Functions": [
+            "tokenconfigs"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeAxiaTokens",
+                "Node": [
+                    333
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Axiatoken",
+                    "MINIMUM_STAKE",
+                    "info.scaledPayoutPerToken",
+                    "info.totalFrozen",
+                    "info.users",
+                    "stakingEnabled"
+                ],
+                "Full Calculation Variables": [
+                    "Axiatoken",
+                    "MINIMUM_STAKE",
+                    "info.scaledPayoutPerToken",
+                    "info.totalFrozen",
+                    "info.users",
+                    "stakingEnabled"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "TakeDividends",
+                "Node": [
+                    368
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "FLOAT_SCALAR",
+                    "MIN_DIVIDENDS_DUR",
+                    "info.scaledPayoutPerToken",
+                    "info.users"
+                ],
+                "Control Variables": [
+                    "Axiatoken",
+                    "FLOAT_SCALAR",
+                    "MIN_DIVIDENDS_DUR",
+                    "info.scaledPayoutPerToken",
+                    "info.users"
+                ],
+                "Full Calculation Variables": [
+                    "Axiatoken",
+                    "FLOAT_SCALAR",
+                    "MIN_DIVIDENDS_DUR",
+                    "info.scaledPayoutPerToken",
+                    "info.users"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnstakeAxiaTokens",
+                "Node": [
+                    351
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "UNSTAKE_FEE",
+                    "_burnedAmount",
+                    "actualValue"
+                ],
+                "Control Variables": [
+                    "Axiatoken",
+                    "UNSTAKE_FEE",
+                    "_burnedAmount",
+                    "actualValue",
+                    "info.scaledPayoutPerToken",
+                    "info.totalFrozen",
+                    "info.users"
+                ],
+                "Full Calculation Variables": [
+                    "Axiatoken",
+                    "UNSTAKE_FEE",
+                    "_burnedAmount",
+                    "actualValue",
+                    "info.scaledPayoutPerToken",
+                    "info.totalFrozen",
+                    "info.users"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

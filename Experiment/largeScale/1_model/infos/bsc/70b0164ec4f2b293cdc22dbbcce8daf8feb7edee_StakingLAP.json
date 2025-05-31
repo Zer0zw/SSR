@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "countTokenStaked"
+        ],
+        "User Stake Reward": [
+            "countTokenEarned"
+        ],
+        "User Stake Time": [
+            "countTimeStaked"
+        ],
+        "Stake Token Address": [
+            "contractLAP"
+        ],
+        "Reward Token Address": [
+            "contractLAP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "contractLAP.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawProfit",
+                "Node": "contractLAP.transfer(msg.sender, _profit)"
+            },
+            {
+                "Function": "withdrawStakedLAP",
+                "Node": "contractLAP.transfer(msg.sender, SafeMath.add(_count, _profit))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakedLAP",
+                "Node": "contractLAP.transfer(msg.sender, _count)"
+            }
+        ]
+    }
+}

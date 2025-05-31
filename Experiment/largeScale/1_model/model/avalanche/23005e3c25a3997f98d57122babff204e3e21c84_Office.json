@@ -1,0 +1,103 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownedStakesBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakes.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "developer"
+        ],
+        "Reward Token Address": [
+            "code"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeMany"
+        ],
+        "getReward": [
+            "claimCodesAndMaybeUnstake"
+        ],
+        "unStake": [
+            "withdrawDevelopers"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMany",
+                "Node": [
+                    2383
+                ],
+                "Input": [
+                    "_tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "developer"
+                ],
+                "Full Calculation Variables": [
+                    "developer"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimCodesAndMaybeUnstake",
+                "Node": [
+                    2406
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "unstake"
+                ],
+                "Calculation Variables": [
+                    "CLAIM_CODE_TAX_PERCENTAGE"
+                ],
+                "Control Variables": [
+                    "CLAIM_CODE_TAX_PERCENTAGE",
+                    "code"
+                ],
+                "Full Calculation Variables": [
+                    "CLAIM_CODE_TAX_PERCENTAGE",
+                    "code"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawDevelopers",
+                "Node": [
+                    2419
+                ],
+                "Input": [
+                    "_tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "UNSTAKE_COOLDOWN_DURATION",
+                    "developer",
+                    "unstakeCooldowns.owner",
+                    "unstakeCooldowns.present",
+                    "unstakeCooldowns.startTimestamp",
+                    "unstakeCooldowns.tokenId"
+                ],
+                "Full Calculation Variables": [
+                    "UNSTAKE_COOLDOWN_DURATION",
+                    "developer",
+                    "unstakeCooldowns.owner",
+                    "unstakeCooldowns.present",
+                    "unstakeCooldowns.startTimestamp",
+                    "unstakeCooldowns.tokenId"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wusdClaimAmount"
+        ],
+        "User Stake Reward": [
+            "wusdClaimAmount"
+        ],
+        "User Stake Time": [
+            "wusdClaimBlock"
+        ],
+        "Stake Token Address": [
+            "busd"
+        ],
+        "Reward Token Address": [
+            "roy"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "roy.mint(address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimROY",
+                "Node": "roy.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimBUSD",
+                "Node": "busd.safeTransfer(msg.sender, busdTransferAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "roy.transferFrom(msg.sender, dead, amount)"
+            },
+            {
+                "Function": "emergencyRedeemAll",
+                "Node": "roy.transferFrom(msg.sender, dead, amount)"
+            }
+        ]
+    }
+}

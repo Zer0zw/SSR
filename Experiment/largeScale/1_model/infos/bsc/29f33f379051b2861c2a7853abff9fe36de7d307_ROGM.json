@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.Coin"
+        ],
+        "User Stake Reward": [
+            "Staking.ArriveCoin"
+        ],
+        "User Stake Time": [
+            "Staking.Time",
+            "Staking.ArriveTime"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "SetStaking",
+                "Node": "_transfer(_msgSender(),address(this), stack)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "GetStaking",
+                "Node": "BUSD.transfer(msg.sender, bonus)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "GetStaking",
+                "Node": "_transfer(address(this),msg.sender, _stake.Coin)"
+            }
+        ]
+    }
+}

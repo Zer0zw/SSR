@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": [
+            "swapOutToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IStake(pool).stake(underlying, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IStake(pool).claimAllRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "IStake(pool).exit(stakingRewards, false)"
+            },
+            {
+                "Function": "exitAll",
+                "Node": "IStake(pool).exitAll(false)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.token"
+        ],
+        "Reward Token Address": [
+            "tshare"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.token.safeTransferFrom(_sender, address(this), _amount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "aquila.safeTransferFrom(_sender, address(this), _aquilaAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeTShareTransfer(_sender, _pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeTShareTransfer(_sender, _pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.token.safeTransfer(_sender, amountToUnstake)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "aquila.safeTransfer(_sender, _aquilaAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.token.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

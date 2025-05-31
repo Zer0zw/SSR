@@ -1,0 +1,158 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "vests.userVestAmt",
+            "mapUserVest_globalData.totalVestingAmount"
+        ],
+        "User Stake Reward": [
+            "vests.collected",
+            "vests.claimed"
+        ],
+        "User Stake Time": [
+            "vests.vestTime"
+        ],
+        "Stake Token Address": [
+            "contrAddr"
+        ],
+        "Reward Token Address": [
+            "contrAddr"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "buyAndVest",
+            "userVest"
+        ],
+        "getReward": [
+            "claimAll",
+            "claimRewards",
+            "reinvestAll",
+            "reinvestRewards"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "userVest",
+                "Node": [
+                    608
+                ],
+                "Input": [
+                    "vestAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "contrAddr",
+                    "noVestandBuyVest"
+                ],
+                "Full Calculation Variables": [
+                    "contrAddr",
+                    "noVestandBuyVest"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    687
+                ],
+                "Input": [
+                    "_stakeIndex"
+                ],
+                "Calculation Variables": [
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate"
+                ],
+                "Control Variables": [
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate"
+                ],
+                "Full Calculation Variables": [
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAll",
+                "Node": [
+                    711
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "vestID",
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate"
+                ],
+                "Control Variables": [
+                    "vestID",
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate"
+                ],
+                "Full Calculation Variables": [
+                    "vestID",
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "reinvestRewards",
+                "Node": [
+                    730
+                ],
+                "Input": [
+                    "_stakeIndex"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate",
+                    "vests.userVestAmt",
+                    "vests.userVestDay"
+                ],
+                "Full Calculation Variables": [
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate",
+                    "vests.userVestAmt",
+                    "vests.userVestDay"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "reinvestAll",
+                "Node": [
+                    772
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "vestID",
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate"
+                ],
+                "Full Calculation Variables": [
+                    "vestID",
+                    "vests.claimed",
+                    "vests.collected",
+                    "vests.lastUpdate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

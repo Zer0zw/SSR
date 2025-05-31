@@ -1,0 +1,123 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeLog.amount"
+        ],
+        "User Stake Reward": [
+            "claimlog.claimed"
+        ],
+        "User Stake Time": [
+            "stakeLog.Startime",
+            "stakeLog.lastclaimed"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "Ntoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stacking"
+        ],
+        "getReward": [
+            "claim",
+            "dailyRewardNative"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stacking",
+                "Node": [
+                    690
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "USDT",
+                    "minAmountStake",
+                    "stakeLog.amount",
+                    "users.registered"
+                ],
+                "Full Calculation Variables": [
+                    "USDT",
+                    "minAmountStake",
+                    "stakeLog.amount",
+                    "users.registered"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    716
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "USDT",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "minClaimTime",
+                    "stakeLog.Startime",
+                    "stakeLog.amount",
+                    "stakeLog.lastclaimed"
+                ],
+                "Full Calculation Variables": [
+                    "USDT",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "minClaimTime",
+                    "stakeLog.Startime",
+                    "stakeLog.amount",
+                    "stakeLog.lastclaimed"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "dailyRewardNative",
+                "Node": [
+                    742
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "dailyReward"
+                ],
+                "Control Variables": [
+                    "Ntoken",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "claimlog.claimed",
+                    "claimlog.lastclaimed",
+                    "dailyReward",
+                    "rewardgap",
+                    "users.registered"
+                ],
+                "Full Calculation Variables": [
+                    "Ntoken",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "claimlog.claimed",
+                    "claimlog.lastclaimed",
+                    "dailyReward",
+                    "rewardgap",
+                    "users.registered"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": []
+    }
+}

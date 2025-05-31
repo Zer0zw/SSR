@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "nftg"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.transferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "enterStaking",
+                "Node": "pool.lpToken.transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeNftGlobalTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeNftGlobalTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "enterStaking",
+                "Node": "safeNftGlobalTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": "safeNftGlobalTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": "pool.lpToken.transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.transfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

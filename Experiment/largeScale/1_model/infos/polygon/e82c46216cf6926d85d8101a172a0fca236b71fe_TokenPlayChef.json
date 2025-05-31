@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userLastDepositTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositWithRef",
+                "Node": "_lpToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "enterStaking",
+                "Node": "_lpToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "enterStakingWithRef",
+                "Node": "_lpToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestReward",
+                "Node": "_safeRewardTransfer(_account, _claimableAmount)"
+            },
+            {
+                "Function": "harvestAllRewards",
+                "Node": "_safeRewardTransfer(_account, _claimableAmount)"
+            },
+            {
+                "Function": "harvestAndRestake",
+                "Node": "_safeRewardTransfer(_account, _claimableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, _sentAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, _sentAmount)"
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, _sentAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _sentAmount)"
+            }
+        ]
+    }
+}

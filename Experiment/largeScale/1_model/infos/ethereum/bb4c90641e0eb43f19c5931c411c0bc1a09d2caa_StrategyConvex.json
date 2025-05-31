@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantBal"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "crv",
+            "cvx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "booster.deposit(pid, wantBal, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IConvexRewardPool(rewardPool).getReward()"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IConvexRewardPool(rewardPool).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IConvexRewardPool(rewardPool).withdrawAndUnwrap(_amount - wantBal, false)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IConvexRewardPool(rewardPool).withdrawAllAndUnwrap(false)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IConvexRewardPool(rewardPool).withdrawAllAndUnwrap(false)"
+            }
+        ]
+    }
+}

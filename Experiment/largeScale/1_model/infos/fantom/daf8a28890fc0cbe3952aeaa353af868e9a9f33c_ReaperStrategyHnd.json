@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "HND"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IERC20Upgradeable(cWant).safeTransfer(proxyDepositor, cWantBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestCore",
+                "Node": "wftm.safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "wftm.safeTransfer(msg.sender, callFeeToUser)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IERC20Upgradeable(want).safeTransfer(vault, _amount - 1)"
+            },
+            {
+                "Function": "_retireStrat",
+                "Node": "IERC20Upgradeable(want).safeTransfer(vault, wantBalance)"
+            }
+        ]
+    }
+}

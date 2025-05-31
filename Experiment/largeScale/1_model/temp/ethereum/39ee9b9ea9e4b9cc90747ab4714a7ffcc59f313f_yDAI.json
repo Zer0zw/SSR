@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked"
+        ],
+        "User Stake Reward": [
+            "deposited"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "yeldToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "yeldDAIInstance.mint(msg.sender, yeldDAIToReceive)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeemYeld",
+                "Node": "yeldToken.transfer(msg.sender, yeldToRedeem)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(token).safeTransfer(msg.sender, r)"
+            }
+        ]
+    }
+}

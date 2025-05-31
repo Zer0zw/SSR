@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userTotalShares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "token.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "migrate",
+                "Node": "token.approve(newVault, userTotalShares)"
+            }
+        ]
+    }
+}

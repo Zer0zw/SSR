@@ -1,0 +1,257 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardAmount"
+        ],
+        "User Stake Time": [
+            "poolInfo.lockForDays"
+        ],
+        "Stake Token Address": [
+            "poolInfo.token"
+        ],
+        "Reward Token Address": [
+            "blesToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimLaterReady",
+            "claimNow"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawEarly"
+        ],
+        "Sensitive Functions": [
+            "add"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1622,
+                    1623,
+                    1624,
+                    1625,
+                    1626
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PER_SHARE_SIZE",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockForDays",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance",
+                    "userInfo.amount",
+                    "userInfo.rewardAmount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "PER_SHARE_SIZE",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockForDays",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance",
+                    "userInfo.amount",
+                    "userInfo.rewardAmount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimNow",
+                "Node": [
+                    1779
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PER_SHARE_SIZE",
+                    "blesPrincipal",
+                    "blesToken",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance",
+                    "userInfo.amount",
+                    "userInfo.rewardAmount",
+                    "userInfo.rewardDebt",
+                    "voteStaking"
+                ],
+                "Full Calculation Variables": [
+                    "PER_SHARE_SIZE",
+                    "blesPrincipal",
+                    "blesToken",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance",
+                    "userInfo.amount",
+                    "userInfo.rewardAmount",
+                    "userInfo.rewardDebt",
+                    "voteStaking"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimLaterReady",
+                "Node": [
+                    1827
+                ],
+                "Input": [
+                    "_index"
+                ],
+                "Calculation Variables": [
+                    "claimRequestMap.amount",
+                    "claimRequestMap.executed",
+                    "claimRequestMap.time"
+                ],
+                "Control Variables": [
+                    "blesToken",
+                    "claimRequestMap.amount",
+                    "claimRequestMap.executed",
+                    "claimRequestMap.time",
+                    "claimWaitTime"
+                ],
+                "Full Calculation Variables": [
+                    "blesToken",
+                    "claimRequestMap.amount",
+                    "claimRequestMap.executed",
+                    "claimRequestMap.time",
+                    "claimWaitTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1690
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PER_SHARE_SIZE",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockForDays",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance",
+                    "userInfo.amount",
+                    "userInfo.rewardAmount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "PER_SHARE_SIZE",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockForDays",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance",
+                    "userInfo.amount",
+                    "userInfo.rewardAmount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawEarly",
+                "Node": [
+                    1742
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_pointer"
+                ],
+                "Calculation Variables": [
+                    "PER_SHARE_SIZE",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockForDays",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance"
+                ],
+                "Control Variables": [
+                    "PER_SHARE_SIZE",
+                    "lockedAmountMap",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockForDays",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance",
+                    "userInfo.amount",
+                    "userInfo.rewardAmount",
+                    "userInfo.rewardDebt",
+                    "userLockInfo.amount",
+                    "userLockInfo.pointer"
+                ],
+                "Full Calculation Variables": [
+                    "PER_SHARE_SIZE",
+                    "lockedAmountMap",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.endBlock",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lockForDays",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.startBlock",
+                    "poolInfo.token",
+                    "poolInfo.totalBalance",
+                    "userInfo.amount",
+                    "userInfo.rewardAmount",
+                    "userInfo.rewardDebt",
+                    "userLockInfo.amount",
+                    "userLockInfo.pointer"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

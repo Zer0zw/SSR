@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingNumber",
+            "NumberOfSharesHeld"
+        ],
+        "User Stake Reward": [
+            "AmountOfDividendWithdrawn",
+            "EntryNumber"
+        ],
+        "User Stake Time": [
+            "StakingTime",
+            "minimumStakingDays"
+        ],
+        "Stake Token Address": [
+            "tokenAaddress"
+        ],
+        "Reward Token Address": [
+            "tokenBaddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TokenA.transferFrom(msg.sender,address(this),_tokenId[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "TokenB.transfer(msg.sender,dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawChoose",
+                "Node": "TokenA.transferFrom(address(this),msg.sender ,_tokenId[i])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "geg"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount, _userAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "geg.safeTransfer(_userAddress, reward.mul(70).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "geg.safeTransfer(admin_address, reward.mul(30).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount, _userAddress)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(_userAddress), _userAddress)"
+            }
+        ]
+    }
+}

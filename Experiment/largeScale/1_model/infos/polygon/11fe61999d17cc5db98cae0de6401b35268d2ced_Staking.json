@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastWithdraw"
+        ],
+        "Stake Token Address": [
+            "fundamenta"
+        ],
+        "Reward Token Address": [
+            "fundamenta"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "fundamenta.burnFrom(msg.sender, _stake)"
+            },
+            {
+                "Function": "compoundRewards",
+                "Node": "stakes[msg.sender] = stakes[msg.sender].add(rewardsAccrued())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "fundamenta.mintTo(msg.sender, rewardsAccrued())"
+            },
+            {
+                "Function": "emergencyWithdrawRewardAndStakes",
+                "Node": "fundamenta.mintTo(msg.sender, rewardsAccrued().add(stakes[msg.sender]))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "fundamenta.mintTo(msg.sender, totalAccrued)"
+            },
+            {
+                "Function": "emergencyWithdrawRewardAndStakes",
+                "Node": "fundamenta.mintTo(msg.sender, rewardsAccrued().add(stakes[msg.sender]))"
+            }
+        ]
+    }
+}

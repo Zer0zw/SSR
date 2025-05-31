@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stake_amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.intAccrued",
+            "UserInfo.dynamicRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastTime"
+        ],
+        "Stake Token Address": [
+            "HDAO"
+        ],
+        "Reward Token Address": [
+            "HDAO"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(HDAO).transferFrom(_msgSender(),address(this),_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getStaticRewards",
+                "Node": "IERC20(HDAO).transfer(_msgSender(),interest)"
+            },
+            {
+                "Function": "getDynamicRewards",
+                "Node": "IERC20(HDAO).transfer(_msgSender(), rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(HDAO).transfer(_msgSender(), temp)"
+            }
+        ]
+    }
+}

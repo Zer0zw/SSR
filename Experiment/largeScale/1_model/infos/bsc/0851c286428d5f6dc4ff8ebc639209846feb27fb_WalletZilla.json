@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDetail.userLastAmountInvested"
+        ],
+        "User Stake Reward": [
+            "userDetail.amountEarnedByRef",
+            "userDetail.totalIncentiveEarned",
+            "userDetail.airdropReward",
+            "userRoyaltyIncome.usermanagerIncome",
+            "userRoyaltyIncome.userSeniorManagerIncome",
+            "userRoyaltyIncome.dailyTopFiveIncome"
+        ],
+        "User Stake Time": [
+            "userStakingDetail.expTime",
+            "userStakingDetail.timeOfLastAmountstakede"
+        ],
+        "Stake Token Address": [
+            "Busd"
+        ],
+        "Reward Token Address": [
+            "WZT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "InvestBusd",
+                "Node": "Busd.transferFrom(msg.sender,address(this),amtInvest)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "Busd.transfer(msg.sender,data)"
+            },
+            {
+                "Function": "claimAirdrop",
+                "Node": "WZT.transfer(msg.sender, UserDetail[msg.sender].airdropReward)"
+            }
+        ],
+        "unStake": []
+    }
+}

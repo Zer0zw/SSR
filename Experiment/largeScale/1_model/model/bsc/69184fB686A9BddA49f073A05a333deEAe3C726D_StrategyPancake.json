@@ -1,0 +1,133 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal",
+            "sharesTotal"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastEarnBlock"
+        ],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "earn"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1822,
+                    1823,
+                    1824,
+                    1825,
+                    1826
+                ],
+                "Input": [
+                    "_userAddress",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_owner",
+                    "_paused",
+                    "wantAddress"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "_paused",
+                    "wantAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": [
+                    2025
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "controllerFee",
+                    "controllerFeeMax"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "controllerFee",
+                    "controllerFeeMax",
+                    "earnedAddress",
+                    "govAddress",
+                    "isCAKEStaking",
+                    "isNativeVault",
+                    "onlyGov"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "controllerFee",
+                    "controllerFeeMax",
+                    "earnedAddress",
+                    "govAddress",
+                    "isCAKEStaking",
+                    "isNativeVault",
+                    "onlyGov"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1903
+                ],
+                "Input": [
+                    "_userAddress",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [
+                    "wantAddress",
+                    "wantLockedTotal"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_owner",
+                    "_status",
+                    "isNativeVault",
+                    "nativeFarmAddress",
+                    "sharesTotal",
+                    "wantAddress",
+                    "wantLockedTotal"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_owner",
+                    "_status",
+                    "isNativeVault",
+                    "nativeFarmAddress",
+                    "sharesTotal",
+                    "wantAddress",
+                    "wantLockedTotal"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

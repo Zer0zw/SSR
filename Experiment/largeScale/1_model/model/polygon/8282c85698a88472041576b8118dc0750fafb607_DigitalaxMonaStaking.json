@@ -1,0 +1,480 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.balance",
+            "stakers.lpBalance"
+        ],
+        "User Stake Reward": [
+            "stakers.monaRevenueRewardsPending",
+            "stakers.bonusMonaRevenueRewardsPending",
+            "stakers.tokenRevenueRewardsPending"
+        ],
+        "User Stake Time": [
+            "stakers.lastRewardUpdateTime"
+        ],
+        "Stake Token Address": [
+            "monaToken",
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "monaToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stakeAll",
+            "stakeAllLP",
+            "stakeLP"
+        ],
+        "getReward": [
+            "claimReward",
+            "unstake",
+            "unstakeLP"
+        ],
+        "unStake": [
+            "emergencyUnstake",
+            "emergencyUnstakeLP",
+            "unstake",
+            "unstakeLP"
+        ],
+        "Sensitive Functions": [
+            "initialize",
+            "setLPToken",
+            "setMonaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    3600,
+                    3601,
+                    3602,
+                    3603,
+                    3604
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "monaToken",
+                    "stakedMonaTotalForPool",
+                    "stakers.balance",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.lastBonusRewardPoints",
+                    "stakers.lastRewardPoints",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lpBalance"
+                ],
+                "Full Calculation Variables": [
+                    "monaToken",
+                    "stakedMonaTotalForPool",
+                    "stakers.balance",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.lastBonusRewardPoints",
+                    "stakers.lastRewardPoints",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lpBalance"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeLP",
+                "Node": [
+                    3616,
+                    3617,
+                    3618,
+                    3619,
+                    3620
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "lpToken",
+                    "monaToken",
+                    "stakedLPTotalForPool",
+                    "stakers.balance",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.lastBonusRewardPoints",
+                    "stakers.lastRewardPoints",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lpBalance"
+                ],
+                "Full Calculation Variables": [
+                    "lpToken",
+                    "monaToken",
+                    "stakedLPTotalForPool",
+                    "stakers.balance",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.lastBonusRewardPoints",
+                    "stakers.lastRewardPoints",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lpBalance"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    4053
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Control Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "tokensClaimable",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "tokensClaimable",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "unstake",
+                "Node": [
+                    4053
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Control Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "tokensClaimable",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "tokensClaimable",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "unstakeLP",
+                "Node": [
+                    4053
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Control Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "tokensClaimable",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.balance",
+                    "stakers.lpBalance",
+                    "bonusRewardsPerTokenPoints",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "stakers.monaRevenueRewardsPending",
+                    "tokensClaimable",
+                    "stakers.lastBonusRewardPoints",
+                    "rewardsContract",
+                    "pointMultiplier",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.tokenRevenueRewardsPending",
+                    "rewardsPerTokenPoints",
+                    "lastUpdateTime",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "monaToken",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.lastRewardPoints",
+                    "stakers.monaRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    3683
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "bonusRewardsPerTokenPoints",
+                    "earlyStakedMonaTotalForPool",
+                    "lastUpdateTime",
+                    "monaToken",
+                    "pointMultiplier",
+                    "rewardsContract",
+                    "rewardsPerTokenPoints",
+                    "stakedMonaTotalForPool",
+                    "stakers.balance",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.lastBonusRewardPoints",
+                    "stakers.lastRewardPoints",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.lpBalance",
+                    "stakers.monaRevenueRewardsPending",
+                    "stakers.monaRevenueRewardsReleased",
+                    "stakers.tokenRevenueRewardsPending",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Full Calculation Variables": [
+                    "bonusRewardsPerTokenPoints",
+                    "earlyStakedMonaTotalForPool",
+                    "lastUpdateTime",
+                    "monaToken",
+                    "pointMultiplier",
+                    "rewardsContract",
+                    "rewardsPerTokenPoints",
+                    "stakedMonaTotalForPool",
+                    "stakers.balance",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.lastBonusRewardPoints",
+                    "stakers.lastRewardPoints",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.lpBalance",
+                    "stakers.monaRevenueRewardsPending",
+                    "stakers.monaRevenueRewardsReleased",
+                    "stakers.tokenRevenueRewardsPending",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "unstakeLP",
+                "Node": [
+                    3705
+                ],
+                "Input": [
+                    "_amount",
+                    "_isLPToken"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "bonusRewardsPerTokenPoints",
+                    "earlyStakedLPTotalForPool",
+                    "lastUpdateTime",
+                    "lpToken",
+                    "pointMultiplier",
+                    "rewardsContract",
+                    "rewardsPerTokenPoints",
+                    "stakedMonaTotalForPool",
+                    "stakers.balance",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.lastBonusRewardPoints",
+                    "stakers.lastRewardPoints",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.lpBalance",
+                    "stakers.monaRevenueRewardsPending",
+                    "stakers.monaRevenueRewardsReleased",
+                    "stakers.tokenRevenueRewardsPending",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Full Calculation Variables": [
+                    "bonusRewardsPerTokenPoints",
+                    "earlyStakedLPTotalForPool",
+                    "lastUpdateTime",
+                    "lpToken",
+                    "pointMultiplier",
+                    "rewardsContract",
+                    "rewardsPerTokenPoints",
+                    "stakedMonaTotalForPool",
+                    "stakers.balance",
+                    "stakers.bonusMonaRevenueRewardsPending",
+                    "stakers.bonusMonaRevenueRewardsReleased",
+                    "stakers.isEarlyRewardsStaker",
+                    "stakers.lastBonusRewardPoints",
+                    "stakers.lastRewardPoints",
+                    "stakers.lastRewardUpdateTime",
+                    "stakers.lastTokenRewardPoints",
+                    "stakers.lpBalance",
+                    "stakers.monaRevenueRewardsPending",
+                    "stakers.monaRevenueRewardsReleased",
+                    "stakers.tokenRevenueRewardsPending",
+                    "stakers.tokenRevenueRewardsReleased",
+                    "tokenRewardsPerTokenPoints"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

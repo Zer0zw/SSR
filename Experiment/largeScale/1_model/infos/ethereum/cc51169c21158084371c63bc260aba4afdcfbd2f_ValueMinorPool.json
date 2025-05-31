@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.accumulatedStakingPower"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "value"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositOnBehalf",
+                "Node": "pool.lpToken.safeTransferFrom(farmer, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositOnBehalf",
+                "Node": "safeValueTransfer(farmer, actualPaid)"
+            },
+            {
+                "Function": "withdrawOnBehalf",
+                "Node": "safeValueTransfer(farmer, actualPaid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawOnBehalf",
+                "Node": "pool.lpToken.safeTransfer(farmer, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

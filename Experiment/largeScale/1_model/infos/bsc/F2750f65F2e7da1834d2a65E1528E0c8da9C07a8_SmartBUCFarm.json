@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TransferHelper.safeTransferFrom(address(pool.lpToken),address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "depositNFT",
+                "Node": "pool.amount = pool.amount.add(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeSushiTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeSushiTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "depositNFT",
+                "Node": "safeSushiTransfer(fromAddress, pending)"
+            },
+            {
+                "Function": "withdrawNFT",
+                "Node": "safeSushiTransfer(fromAddress, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(address(pool.lpToken),address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdrawNFT",
+                "Node": "user.amount = user.amount.sub(_amount)"
+            }
+        ]
+    }
+}

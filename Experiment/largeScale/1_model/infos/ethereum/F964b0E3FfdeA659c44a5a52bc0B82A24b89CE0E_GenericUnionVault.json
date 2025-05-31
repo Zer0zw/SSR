@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(_to, shares)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "_mint(_to, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "emit Harvest(msg.sender, _harvested)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(underlying).safeTransfer(_to, _withdrawable)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(underlying).safeTransfer(_to, _withdrawable)"
+            }
+        ]
+    }
+}

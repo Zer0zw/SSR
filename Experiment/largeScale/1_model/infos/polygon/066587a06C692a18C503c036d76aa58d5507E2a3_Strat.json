@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantBal"
+        ],
+        "User Stake Reward": [
+            "yelRewards"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "booster.deposit(pid, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(yel).safeTransfer(address(yeller), yelBal)"
+            },
+            {
+                "Function": "transferToYeller",
+                "Node": "IERC20(yel).safeTransfer(address(yeller), yelBal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IConvexRewardPool(rewardPool).emergencyWithdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "EMISSION_RATE"
+        ],
+        "User Stake Time": [
+            "tokenStakedAt_A",
+            "tokenStakedAt_B",
+            "tokenStakedAt_C"
+        ],
+        "Stake Token Address": [
+            "parentNFT_A",
+            "parentNFT_B",
+            "parentNFT_C"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeOne",
+                "Node": "parentNFT_A.safeTransferFrom(msg.sender, address(this), _tokenID)"
+            },
+            {
+                "Function": "stakeOne",
+                "Node": "parentNFT_B.safeTransferFrom(msg.sender, address(this), _tokenID)"
+            },
+            {
+                "Function": "stakeOne",
+                "Node": "parentNFT_C.safeTransferFrom(msg.sender, address(this), _tokenID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "_mint(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "parentNFT_A.safeTransferFrom(address(this), msg.sender, _tokenID)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "parentNFT_B.safeTransferFrom(address(this), msg.sender, _tokenID)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "parentNFT_C.safeTransferFrom(address(this), msg.sender, _tokenID)"
+            }
+        ]
+    }
+}

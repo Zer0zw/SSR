@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Data._stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Data._previousReward"
+        ],
+        "User Stake Time": [
+            "Data._time"
+        ],
+        "Stake Token Address": [
+            "S_Token"
+        ],
+        "Reward Token Address": [
+            "R_Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "S_Token.transferFrom(_person,address(this),_subtotal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "R_Token.transfer(msg.sender,final_reward.add(rec._previousReward))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "S_Token.transfer(msg.sender,rec._stakedAmount)"
+            }
+        ]
+    }
+}

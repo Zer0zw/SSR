@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "cake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IBEP20(lpToken).safeTransferFrom(address(msg.sender), address(devaddr), _amount)"
+            },
+            {
+                "Function": "enterStaking",
+                "Node": "IBEP20(lpToken).safeTransferFrom(address(msg.sender), address(devaddr), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "uint256 pending = user.amount.mul(caccCakePerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "uint256 pending = user.amount.mul(caccCakePerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "enterStaking",
+                "Node": "uint256 pending = user.amount.mul(caccCakePerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": "uint256 pending = user.amount.mul(caccCakePerShare).div(1e12).sub(user.rewardDebt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "user.amount = user.amount.sub(_amount)"
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": "user.amount = user.amount.sub(_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "user.amount = 0"
+            }
+        ]
+    }
+}

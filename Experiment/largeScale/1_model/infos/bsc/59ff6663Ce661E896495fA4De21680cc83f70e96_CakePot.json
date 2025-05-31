@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amounts"
+        ],
+        "User Stake Reward": [
+            "nRewards",
+            "ssrRewards",
+            "srRewards",
+            "rRewards"
+        ],
+        "User Stake Time": [
+            "period"
+        ],
+        "Stake Token Address": [
+            "CAKE"
+        ],
+        "Reward Token Address": [
+            "CAKE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "CAKE.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "exit",
+                "Node": "CAKE.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "CAKE.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

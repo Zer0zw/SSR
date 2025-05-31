@@ -1,0 +1,93 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "wksa"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount"
+            },
+            {
+                "Function": "stakeNKSN",
+                "Node": "nksnToken.safeTransferFrom(msg.sender, address(this), nksnId"
+            },
+            {
+                "Function": "stakeNKCN",
+                "Node": "nkcnToken.safeTransferFrom(msg.sender, address(this), nkcnId"
+            },
+            {
+                "Function": "stakeNKCM",
+                "Node": "nkcmToken.safeTransferFrom(msg.sender, address(this), nkcmId"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeWKSATransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeWKSATransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "stakeNKSN",
+                "Node": "safeWKSATransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdrawNKSN",
+                "Node": "safeWKSATransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "stakeNKCN",
+                "Node": "safeWKSATransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdrawNKCN",
+                "Node": "safeWKSATransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "stakeNKCM",
+                "Node": "safeWKSATransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdrawNKCM",
+                "Node": "safeWKSATransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount"
+            },
+            {
+                "Function": "withdrawNKSN",
+                "Node": "nksnToken.safeTransferFrom(address(this), msg.sender, nksnId"
+            },
+            {
+                "Function": "withdrawNKCN",
+                "Node": "nkcnToken.safeTransferFrom(address(this), msg.sender, nkcnId"
+            },
+            {
+                "Function": "withdrawNKCM",
+                "Node": "nkcmToken.safeTransferFrom(address(this), msg.sender, nkcmId"
+            }
+        ]
+    }
+}

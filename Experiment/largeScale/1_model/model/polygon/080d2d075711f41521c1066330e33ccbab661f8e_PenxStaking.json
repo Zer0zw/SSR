@@ -1,0 +1,134 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "workerAddressToInfo.stakedSet"
+        ],
+        "User Stake Reward": [
+            "workerAddressToInfo.accruedPENX"
+        ],
+        "User Stake Time": [
+            "workerAddressToInfo.stakingStart"
+        ],
+        "Stake Token Address": [
+            "PXLT"
+        ],
+        "Reward Token Address": [
+            "PENX"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addSchedules"
+        ],
+        "getReward": [
+            "withdrawPENX",
+            "withdrawPension"
+        ],
+        "unStake": [
+            "withdrawPension"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addSchedules",
+                "Node": [
+                    320
+                ],
+                "Input": [
+                    "amounts",
+                    "workers"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PXLT",
+                    "scheduler"
+                ],
+                "Full Calculation Variables": [
+                    "PXLT",
+                    "scheduler"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawPENX",
+                "Node": [
+                    343
+                ],
+                "Input": [
+                    "amount",
+                    "to"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PENX",
+                    "scheduler"
+                ],
+                "Full Calculation Variables": [
+                    "PENX",
+                    "scheduler"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawPension",
+                "Node": [
+                    385
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "withdrawFee",
+                    "workerAddressToInfo.accruedPENX",
+                    "workerAddressToInfo.stakedSet"
+                ],
+                "Control Variables": [
+                    "PENX",
+                    "scheduler",
+                    "withdrawFee",
+                    "workerAddressToInfo.accruedPENX",
+                    "workerAddressToInfo.stakedSet"
+                ],
+                "Full Calculation Variables": [
+                    "PENX",
+                    "scheduler",
+                    "withdrawFee",
+                    "workerAddressToInfo.accruedPENX",
+                    "workerAddressToInfo.stakedSet"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPension",
+                "Node": [
+                    412
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PXLT",
+                    "USDC",
+                    "issuanceModule",
+                    "scheduler",
+                    "withdrawFee",
+                    "workerAddressToInfo.accruedPENX",
+                    "workerAddressToInfo.stakedSet"
+                ],
+                "Full Calculation Variables": [
+                    "PXLT",
+                    "USDC",
+                    "issuanceModule",
+                    "scheduler",
+                    "withdrawFee",
+                    "workerAddressToInfo.accruedPENX",
+                    "workerAddressToInfo.stakedSet"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

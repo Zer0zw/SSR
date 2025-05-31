@@ -1,0 +1,135 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.activeDeposit",
+            "users.totalDeposits"
+        ],
+        "User Stake Reward": [
+            "users.pendingGains",
+            "users.totalGained"
+        ],
+        "User Stake Time": [
+            "users.startTime",
+            "users.lastClaimedDate"
+        ],
+        "Stake Token Address": [
+            "OXS"
+        ],
+        "Reward Token Address": [
+            "OXS"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "AddToStake",
+            "Stake"
+        ],
+        "getReward": [
+            "ClaimReward"
+        ],
+        "unStake": [
+            "StopStaking"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": [
+                    130
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "OXS"
+                ],
+                "Full Calculation Variables": [
+                    "OXS"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "AddToStake",
+                "Node": [
+                    144
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "OXS"
+                ],
+                "Full Calculation Variables": [
+                    "OXS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": [
+                    166
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakingRate",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains",
+                    "users.totalGained"
+                ],
+                "Control Variables": [
+                    "OXS",
+                    "stakingRate",
+                    "totalRewards",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains",
+                    "users.totalGained"
+                ],
+                "Full Calculation Variables": [
+                    "OXS",
+                    "stakingRate",
+                    "totalRewards",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains",
+                    "users.totalGained"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "StopStaking",
+                "Node": [
+                    187
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains"
+                ],
+                "Control Variables": [
+                    "OXS",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains"
+                ],
+                "Full Calculation Variables": [
+                    "OXS",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

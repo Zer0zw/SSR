@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pools.amount",
+            "stakers.Accountvaluelocked"
+        ],
+        "User Stake Reward": [
+            "totalRewards",
+            "pools.PoolRewardPercentage"
+        ],
+        "User Stake Time": [
+            "pools.releaseDate",
+            "storages.time"
+        ],
+        "Stake Token Address": [
+            "SBP"
+        ],
+        "Reward Token Address": [
+            "SBP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeSBP",
+                "Node": "SBP.transferFrom(msg.sender , address(this) , amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeSBP",
+                "Node": "SBP.transfer(msg.sender ,pools[msg.sender][StakeId].amount + reward )"
+            },
+            {
+                "Function": "earlyClaimSBP",
+                "Node": "SBP.transfer(msg.sender ,pools[msg.sender][StakeId].amount - penalty )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeSBP",
+                "Node": "SBP.transfer(msg.sender ,pools[msg.sender][StakeId].amount + reward )"
+            },
+            {
+                "Function": "earlyClaimSBP",
+                "Node": "SBP.transfer(msg.sender ,pools[msg.sender][StakeId].amount - penalty )"
+            }
+        ]
+    }
+}

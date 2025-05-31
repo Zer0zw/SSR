@@ -1,0 +1,131 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenHolders.tokensStaked"
+        ],
+        "User Stake Reward": [
+            "tokenHolders.tokensStaked",
+            "stakingRewards"
+        ],
+        "User Stake Time": [
+            "tokenHolders.dateStaked"
+        ],
+        "Stake Token Address": [
+            "_auditToken"
+        ],
+        "Reward Token Address": [
+            "_auditToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "redeem"
+        ],
+        "unStake": [
+            "redeem"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    2428
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_auditToken",
+                    "minAmount",
+                    "stakedAmount",
+                    "stakingDateEnd",
+                    "tokenHolders.blacklisted",
+                    "tokenHolders.dateStaked",
+                    "tokenHolders.tokensStaked"
+                ],
+                "Full Calculation Variables": [
+                    "_auditToken",
+                    "minAmount",
+                    "stakedAmount",
+                    "stakingDateEnd",
+                    "tokenHolders.blacklisted",
+                    "tokenHolders.dateStaked",
+                    "tokenHolders.tokensStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": [
+                    2460
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "multiplier",
+                    "stakingRewards",
+                    "tokenHolders.dateStaked",
+                    "tokenHolders.released",
+                    "tokenHolders.tokensStaked"
+                ],
+                "Control Variables": [
+                    "_auditToken",
+                    "depositContract",
+                    "multiplier",
+                    "stakingDateEnd",
+                    "stakingRewards",
+                    "tokenHolders.dateStaked",
+                    "tokenHolders.released",
+                    "tokenHolders.tokensStaked",
+                    "totalReleased"
+                ],
+                "Full Calculation Variables": [
+                    "_auditToken",
+                    "depositContract",
+                    "multiplier",
+                    "stakingDateEnd",
+                    "stakingRewards",
+                    "tokenHolders.dateStaked",
+                    "tokenHolders.released",
+                    "tokenHolders.tokensStaked",
+                    "totalReleased"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": [
+                    2472
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_auditToken",
+                    "stakedAmount",
+                    "stakingDateEnd",
+                    "tokenHolders.released",
+                    "tokenHolders.tokensStaked",
+                    "totalCancelled"
+                ],
+                "Full Calculation Variables": [
+                    "_auditToken",
+                    "stakedAmount",
+                    "stakingDateEnd",
+                    "tokenHolders.released",
+                    "tokenHolders.tokensStaked",
+                    "totalCancelled"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

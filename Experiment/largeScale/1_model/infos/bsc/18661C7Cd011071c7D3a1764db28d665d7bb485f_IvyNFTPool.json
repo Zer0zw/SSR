@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftsOfWallet"
+        ],
+        "User Stake Reward": [
+            "baseRate",
+            "NFT.endBlock",
+            "NFT.startBlock"
+        ],
+        "User Stake Time": [
+            "NFT.startBlock",
+            "NFT.endBlock"
+        ],
+        "Stake Token Address": [
+            "nftAddress"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeAll",
+                "Node": "nftAddress.safeTransferFrom(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "nftAddress.safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTokenReturn",
+                "Node": "token.transfer(account, tReturn)"
+            },
+            {
+                "Function": "claimTotalReturn",
+                "Node": "token.transfer(_msgSender(), tReturn)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAllNft",
+                "Node": "nftAddress.safeTransferFrom(address(this), _msgSender(), tokenIds[i])"
+            },
+            {
+                "Function": "unstakeNft",
+                "Node": "nftAddress.safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

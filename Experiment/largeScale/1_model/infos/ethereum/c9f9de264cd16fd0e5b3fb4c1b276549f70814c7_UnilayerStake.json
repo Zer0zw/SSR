@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeHolder.amountLocked"
+        ],
+        "User Stake Reward": [
+            "StakeHolder.reward"
+        ],
+        "User Stake Time": [
+            "Stake.start",
+            "Stake.end"
+        ],
+        "Stake Token Address": [
+            "UNILAYER"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "UNILAYER.transferFrom(msg.sender, address(this), payment)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(reward_temp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "UNILAYER.transfer(msg.sender, amt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "UNILAYER.transfer(msg.sender, holder.amountLocked)"
+            }
+        ]
+    }
+}

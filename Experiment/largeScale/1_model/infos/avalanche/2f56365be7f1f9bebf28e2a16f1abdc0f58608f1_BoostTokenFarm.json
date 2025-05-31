@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "balances"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "userPendingJoe"
+        ],
+        "User Stake Time": [
+            "PoolInfo.bonusStartTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(pool.lpToken).safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "mintUserRewardAndTeamReward",
+                "Node": "IReleaseSC(releaseSc).releaseToken(_user,userRward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "mintUserRewardAndTeamReward(_pid,msg.sender,pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), user.amount"
+            },
+            {
+                "Function": "boostwithdraw",
+                "Node": "IERC20(smelt).safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

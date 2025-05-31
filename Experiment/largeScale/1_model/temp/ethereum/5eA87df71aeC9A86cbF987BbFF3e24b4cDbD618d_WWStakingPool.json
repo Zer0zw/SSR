@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "calculateReward"
+        ],
+        "User Stake Time": [
+            "checkpoints"
+        ],
+        "Stake Token Address": [
+            "NFTCollection"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "NFTCollection.transferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "NFTCollection.transferFrom(msg.sender, address(this), tids[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_mint(msg.sender, reward)"
+            },
+            {
+                "Function": "getAllRewards",
+                "Node": "_mint(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "NFTCollection.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "NFTCollection.transferFrom(address(this), msg.sender, stakedTokens[msg.sender][i])"
+            }
+        ]
+    }
+}

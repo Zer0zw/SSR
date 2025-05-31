@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "chonkLPBalance"
+        ],
+        "User Stake Reward": [
+            "points"
+        ],
+        "User Stake Time": [
+            "lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "ChonkLPAddress"
+        ],
+        "Reward Token Address": [
+            "NFTAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(ChonkLPAddress).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "IChonkNFT(NFTAddress).mint(_msgSender(), _id, 1)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(ChonkLPAddress).transfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC20(ChonkLPAddress).transfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

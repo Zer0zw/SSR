@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UsersStruct.userTotalStaked",
+            "UserShoeInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "UsersStruct.userRewardEarned",
+            "UserShoeInfo.rewardsClaimed"
+        ],
+        "User Stake Time": [
+            "UserShoeInfo.stakedTime"
+        ],
+        "Stake Token Address": [
+            "irena"
+        ],
+        "Reward Token Address": [
+            "usdt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositTokens",
+                "Node": "require(irena.transferFrom(msg.sender,address(this),_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(usdt.transfer(msg.sender,exactAmount)"
+            },
+            {
+                "Function": "emergencyClaim",
+                "Node": "require(usdt.transfer(msg.sender,exactAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTokens",
+                "Node": "require(irena.transfer(msg.sender,(userShoeDetails[msg.sender][_shoePid].stakedAmount).sub(adminFee))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(irena.transfer(msg.sender,userShoeDetails[msg.sender][_shoePid].stakedAmount)"
+            }
+        ]
+    }
+}

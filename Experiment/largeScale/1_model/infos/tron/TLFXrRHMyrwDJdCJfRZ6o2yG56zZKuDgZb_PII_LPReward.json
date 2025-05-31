@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "InviteReward",
+            "waitClearn"
+        ],
+        "User Stake Time": [
+            "plyGetRewardTime"
+        ],
+        "Stake Token Address": [
+            "xCoin"
+        ],
+        "Reward Token Address": [
+            "xCoin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "waitClearn[msg.sender] = waitClearn[msg.sender].add(selfAmount)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "waitClearn[msg.sender] = waitClearn[msg.sender].add(InviteReward[msg.sender])"
+            },
+            {
+                "Function": "getReward",
+                "Node": "InviteReward[parent] = InviteReward[parent].add(parentAmount1)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "InviteReward[parent2] = InviteReward[parent2].add(parentAmount2)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super._withdraw(amount)"
+            },
+            {
+                "Function": "withdrawPIW",
+                "Node": "xCoin.safeTransfer(msg.sender,balanceAmount)"
+            }
+        ]
+    }
+}

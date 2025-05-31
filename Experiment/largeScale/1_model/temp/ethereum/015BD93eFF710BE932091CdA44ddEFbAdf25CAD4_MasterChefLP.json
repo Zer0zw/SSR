@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardLPDebt"
+        ],
+        "User Stake Time": [
+            "UserLockInfo.lockTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "VEMP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeVEMPTransfer(_user, pending)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransfer(_user, LPReward)"
+            },
+            {
+                "Function": "claimLP",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, LPReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "VEMP.transfer(msg.sender, userLock.amount.sub(burnAmount))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "VEMP.transfer(address(0x000000000000000000000000000000000000dEaD), burnAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "VEMP.transfer(msg.sender, userLock.amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingPositions.amount"
+        ],
+        "User Stake Reward": [
+            "StakingPositions.cumulativeReward",
+            "StakingPositions.pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StakingPositions.property"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mint",
+                "Node": "_safeMint(_owner, tokenIdCounter.current())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rewards",
+                "Node": "ILockup(registry().registries(\"Lockup\")).calculateWithdrawableInterestAmountByPosition(_tokenId)"
+            }
+        ],
+        "unStake": []
+    }
+}

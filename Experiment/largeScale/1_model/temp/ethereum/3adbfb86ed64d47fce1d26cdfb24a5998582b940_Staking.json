@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakingDetails.islApes",
+            "_stakingDetails.genApes"
+        ],
+        "User Stake Reward": [
+            "_stakingDetails.rewarded"
+        ],
+        "User Stake Time": [
+            "_stakingDetails.recent"
+        ],
+        "Stake Token Address": [
+            "_APE_ONLY_ISLAND_COLLECTION_CA",
+            "_GENESIS_APE_ONLY_CA"
+        ],
+        "Reward Token Address": [
+            "_APE_ONLY_ISLAND_TOKEN_CA"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeWithMultiplier",
+                "Node": "IERC721(_APE_ONLY_ISLAND_COLLECTION_CA).transferFrom(account, address(this), islApes[i])"
+            },
+            {
+                "Function": "stakeWithMultiplier",
+                "Node": "IERC721(_GENESIS_APE_ONLY_CA).transferFrom(account, address(this), genApes[i])"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC721(_APE_ONLY_ISLAND_COLLECTION_CA).safeTransferFrom(account, address(this), islApes[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "IERC20(_APE_ONLY_ISLAND_TOKEN_CA).transfer(account, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC721(_APE_ONLY_ISLAND_COLLECTION_CA).safeTransferFrom(address(this), account, islApeIDs[i])"
+            },
+            {
+                "Function": "unstake",
+                "Node": "ERC721(_GENESIS_APE_ONLY_CA).safeTransferFrom(address(this), account, genApeIDs[i])"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "ERC721(_APE_ONLY_ISLAND_COLLECTION_CA).safeTransferFrom(address(this), account, islApeIDs[i])"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "ERC721(_GENESIS_APE_ONLY_CA).safeTransferFrom(address(this), account, genApeIDs[i])"
+            }
+        ]
+    }
+}

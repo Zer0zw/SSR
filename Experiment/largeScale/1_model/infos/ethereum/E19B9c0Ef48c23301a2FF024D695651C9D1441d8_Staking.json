@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "HADES"
+        ],
+        "Reward Token Address": [
+            "sHADES"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "SafeERC20.safeTransfer(IERC20(sHADES), warmupContract, _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "StakingWarmup(warmupContract).retrieve(_recipient, sHades(sHADES).balanceForGons(info.gons)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "SafeERC20.safeTransfer(IERC20(HADES), msg.sender, _amount"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "SafeERC20.safeTransfer(IERC20(HADES), msg.sender, info.deposit"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "dailyReward"
+        ],
+        "User Stake Time": [
+            "Stake.startTime"
+        ],
+        "Stake Token Address": [
+            "walkn"
+        ],
+        "Reward Token Address": [
+            "walkn"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "walkn.safeTransferFrom(_msgSender(), address(this), stakes[_msgSender()].amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "walkn.safeTransfer(_msgSender(), totalPayout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "walkn.safeTransfer(_msgSender(), totalPayout)"
+            },
+            {
+                "Function": "emergencyWithdrawal",
+                "Node": "walkn.safeTransfer(_msgSender(), stakes[_msgSender()].amount)"
+            }
+        ]
+    }
+}

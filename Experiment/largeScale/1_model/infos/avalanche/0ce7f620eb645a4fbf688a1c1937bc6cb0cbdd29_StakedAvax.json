@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UnlockRequest.startedAt"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "submit",
+                "Node": "_mintShares(sender, shareAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "accrueRewards",
+                "Node": "totalPooledAvax = totalPooledAvax.add(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "requestUnlock",
+                "Node": "_transfer(msg.sender, address(this), shareAmount"
+            },
+            {
+                "Function": "redeem",
+                "Node": "(success, ) = msg.sender.call{ value: avaxAmount }(\"\")"
+            },
+            {
+                "Function": "redeemOverdueShares",
+                "Node": "_transfer(address(this), msg.sender, totalOverdueShares)"
+            }
+        ]
+    }
+}

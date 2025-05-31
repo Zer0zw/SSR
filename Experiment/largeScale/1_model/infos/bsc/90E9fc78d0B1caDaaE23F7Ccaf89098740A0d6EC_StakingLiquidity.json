@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Product.staking"
+        ],
+        "User Stake Reward": [
+            "Product.reward"
+        ],
+        "User Stake Time": [
+            "Product.stakingTime",
+            "Product.limit"
+        ],
+        "Stake Token Address": [
+            "tokenLP"
+        ],
+        "Reward Token Address": [
+            "tokenSrs"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "provide",
+                "Node": "require(IERC20(tokenLP).transferFrom(customer, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "require(IERC20(tokenSrs).transfer(customer,amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(IERC20(tokenLP).transfer(customer,product.staking))"
+            }
+        ]
+    }
+}

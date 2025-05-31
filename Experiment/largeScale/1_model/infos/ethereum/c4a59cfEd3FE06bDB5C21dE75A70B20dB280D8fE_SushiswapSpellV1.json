@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amtLPUser",
+            "amtLPBorrow"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "sushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addLiquidityWERC20",
+                "Node": "doPutCollateral(lp, IERC20(lp).balanceOf(address(this))"
+            },
+            {
+                "Function": "addLiquidityWMasterChef",
+                "Node": "bank.putCollateral(address(wmasterchef), id, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestWMasterChef",
+                "Node": "doRefund(sushi)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeLiquidityWERC20",
+                "Node": "doTakeCollateral(lp, amt.amtLPTake)"
+            },
+            {
+                "Function": "removeLiquidityWMasterChef",
+                "Node": "bank.takeCollateral(address(wmasterchef), collId, amt.amtLPTake)"
+            }
+        ]
+    }
+}

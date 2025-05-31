@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.tokensUnlockTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "erc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "erc20Transfer(msg.sender, pendingAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "erc20Transfer(msg.sender, pendingAmount.sub(fee))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "erc20Transfer(msg.sender, pendingAmount.sub(withdrawalFeePending))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.sub(withdrawalFeeDepositAmount)"
+            }
+        ]
+    }
+}

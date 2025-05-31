@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerObject.lpBalance"
+        ],
+        "User Stake Reward": [
+            "stakerObject.artisBalance"
+        ],
+        "User Stake Time": [
+            "stakerObject.startTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "artisToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectYield",
+                "Node": "artisToken.send(staker, yield, \"Yield Collected.\")"
+            },
+            {
+                "Function": "unstake",
+                "Node": "artisToken.send(msg.sender, yield.add(stakers[msg.sender].artisBalance), \"\")"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "artisToken.send(msg.sender, yield.add(stakers[msg.sender].artisBalance), \"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "lpToken.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "lpToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

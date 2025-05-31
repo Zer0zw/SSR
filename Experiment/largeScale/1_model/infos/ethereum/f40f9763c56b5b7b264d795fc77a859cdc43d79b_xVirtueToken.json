@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_staking.getUserVirtueStake"
+        ],
+        "User Stake Reward": [
+            "_getPendingETH"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_asset"
+        ],
+        "Reward Token Address": [
+            "_asset"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "SafeERC20.safeTransferFrom(_asset, caller, address(this), assets)"
+            },
+            {
+                "Function": "mint",
+                "Node": "SafeERC20.safeTransferFrom(_asset, caller, address(this), assets)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_claimVirtueRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "SafeERC20.safeTransfer(_asset, receiver, assets)"
+            },
+            {
+                "Function": "redeem",
+                "Node": "SafeERC20.safeTransfer(_asset, receiver, assets)"
+            }
+        ]
+    }
+}

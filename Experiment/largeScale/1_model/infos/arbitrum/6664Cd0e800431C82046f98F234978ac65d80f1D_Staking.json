@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "StakingInfo.amount",
+            "RestakingInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakingInfo.claimed"
+        ],
+        "User Stake Time": [
+            "StakingInfo.start",
+            "StakingInfo.period",
+            "RestakingInfo.start"
+        ],
+        "Stake Token Address": [
+            "mnlt"
+        ],
+        "Reward Token Address": [
+            "wmnlt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake14Days",
+                "Node": "wmnlt.mint(msg.sender, additionalAmount)"
+            },
+            {
+                "Function": "stake6Months",
+                "Node": "wmnlt.mint(msg.sender, additionalAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "wmnlt.transfer(msg.sender, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "mnlt.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

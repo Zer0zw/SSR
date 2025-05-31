@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingRewards.balanceOf"
+        ],
+        "User Stake Reward": [
+            "stakingRewards.earned"
+        ],
+        "User Stake Time": [
+            "stakingRewards.rewardsDuration",
+            "stakingRewards.periodFinish"
+        ],
+        "Stake Token Address": [
+            "torPool",
+            "c2pool"
+        ],
+        "Reward Token Address": [
+            "stakingRewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "getStakingInfo",
+                "Node": "No direct transfer statement found for staking in the provided code"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calWithdrawAndEarned",
+                "Node": "stakingRewards.earned(wallet)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "calWithdrawAndEarned",
+                "Node": "torPool.calc_withdraw_one_coin(bal,0)"
+            },
+            {
+                "Function": "calWithdrawAndEarned",
+                "Node": "c2pool.calc_withdraw_one_coin(daiusdc,0)"
+            },
+            {
+                "Function": "calWithdrawAndEarned",
+                "Node": "c2pool.calc_withdraw_one_coin(daiusdc,1)"
+            }
+        ]
+    }
+}

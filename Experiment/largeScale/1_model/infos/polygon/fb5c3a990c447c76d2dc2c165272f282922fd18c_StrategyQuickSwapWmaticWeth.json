@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalInUnderlying",
+            "wantLockedTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAddress"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_vaultDeposit",
+                "Node": "IQuickStake(quickSwapAddress).stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_vaultHarvest",
+                "Node": "IQuickStake(quickSwapAddress).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_vaultWithdraw",
+                "Node": "IQuickStake(quickSwapAddress).withdraw(_amount)"
+            },
+            {
+                "Function": "_emergencyVaultWithdraw",
+                "Node": "IQuickStake(quickSwapAddress).withdraw(totalInUnderlying())"
+            }
+        ]
+    }
+}

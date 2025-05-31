@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "addedToPoolByUser"
+        ],
+        "User Stake Reward": [
+            "rewardedFromPool"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "masterchef.poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "cake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_pool.lpToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "cake.transfer(msg.sender, _users_pending_cake)"
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": "cake.transfer(msg.sender, _added_by_user + _users_pending_cake)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "masterchef.poolInfo(_pid).lpToken.transfer(msg.sender, _added_by_user)"
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": "cake.transfer(msg.sender, _added_by_user + _users_pending_cake)"
+            }
+        ]
+    }
+}

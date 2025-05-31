@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakedAmountsStruct.amount"
+        ],
+        "User Stake Reward": [
+            "StakedAmountsStruct.totalWithdrawn"
+        ],
+        "User Stake Time": [
+            "StakedAmountsStruct.startStake",
+            "StakedAmountsStruct.lastClaimTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "token.safeTransfer(msg.sender, rewardUser)"
+            },
+            {
+                "Function": "compound",
+                "Node": "token.safeTransfer(treasuryWallet, reward.div(100).mul(15))"
+            }
+        ],
+        "unStake": []
+    }
+}

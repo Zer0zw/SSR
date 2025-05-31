@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeContract.totalStakedFor",
+            "Stake.actualAmount"
+        ],
+        "User Stake Reward": [
+            "Stake.stakePercentageBasisPoints"
+        ],
+        "User Stake Time": [
+            "StakeOption.stakeDuration",
+            "Stake.unlockedTimestamp"
+        ],
+        "Stake Token Address": [
+            "_stakingToken"
+        ],
+        "Reward Token Address": [
+            "_stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_stakingToken.transferFrom(_msgSender(), address(this), amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "_stakingToken.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStake",
+                "Node": "_stakingToken.mint(_msgSender(), stakeReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_stakingToken.transfer(_msgSender(), personalStake.actualAmount)"
+            },
+            {
+                "Function": "withdrawStake",
+                "Node": "_stakingToken.transfer(_msgSender(), personalStake.actualAmount)"
+            }
+        ]
+    }
+}

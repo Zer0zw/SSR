@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenUnderlying"
+        ],
+        "Reward Token Address": [
+            "tokenBorrowable"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterBorrowableAllIn",
+                "Node": "_mint(msg.sender, what)"
+            },
+            {
+                "Function": "enterBorrowable",
+                "Node": "_mint(msg.sender, what)"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rewardBorrowable",
+                "Node": "tokenBorrowable.transferFrom(msg.sender, address(this), balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "router.redeemETH(address(tokenBorrowable), what, msg.sender, 99999999999, new bytes(0))"
+            },
+            {
+                "Function": "leaveWithBorrowable",
+                "Node": "tokenBorrowable.transfer(msg.sender, what)"
+            }
+        ]
+    }
+}

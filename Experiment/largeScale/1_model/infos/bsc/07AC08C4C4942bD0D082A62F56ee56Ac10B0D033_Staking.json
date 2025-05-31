@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "SimpleStake.initialBalance",
+            "PrimeStake.initialBalance"
+        ],
+        "User Stake Reward": [
+            "SimpleStake.rewardWithdraw",
+            "PrimeStake.rewardWithdraw"
+        ],
+        "User Stake Time": [
+            "SimpleStake.startBlock",
+            "PrimeStake.startBlock"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "simpleStakeLaunch",
+                "Node": "IBEP20(token).transferFrom(isUser.user, address(this), _amount)"
+            },
+            {
+                "Function": "primeStakeLaunch",
+                "Node": "IBEP20(token).transferFrom(isUser.user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardSimpleStake",
+                "Node": "IBEP20(token).transfer(sender, isUser.rewardWithdraw)"
+            },
+            {
+                "Function": "withdrawRewardPrimeStake",
+                "Node": "IBEP20(token).transfer(sender, isUser.rewardWithdraw)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeMyTokenSimpleStake",
+                "Node": "IBEP20(token).transfer(isUser.user, isUser.initialBalance)"
+            },
+            {
+                "Function": "removeMyTokenPrimeStake",
+                "Node": "IBEP20(token).transfer(isUser.user, isUser.initialBalance)"
+            }
+        ]
+    }
+}

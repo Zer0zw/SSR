@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.frozen"
+        ],
+        "User Stake Reward": [
+            "User.scaledPayout"
+        ],
+        "User Stake Time": [
+            "User.staketime"
+        ],
+        "Stake Token Address": [
+            "OracleIndexFunds"
+        ],
+        "Reward Token Address": [
+            "Axiatoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "IERC20(OracleIndexFunds).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "TakeDividends",
+                "Node": "require(IERC20(Axiatoken).transfer(msg.sender, _dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "require(IERC20(OracleIndexFunds).transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

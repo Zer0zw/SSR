@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stakeAmount",
+            "userInfo.stakeNBTCAmount"
+        ],
+        "User Stake Reward": [
+            "userInfo.Claimed",
+            "userInfo.lockSpe"
+        ],
+        "User Stake Time": [
+            "userSlotSPE.stakeTime",
+            "userSlotNBTC.stakeTime"
+        ],
+        "Stake Token Address": [
+            "SpeToken"
+        ],
+        "Reward Token Address": [
+            "SpeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeWithSpe",
+                "Node": "require(SpeToken.transferFrom(msg.sender, address(this), amount_)"
+            },
+            {
+                "Function": "stakeWithNBTC",
+                "Node": "consumeNBTC(msg.sender, amount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStatic",
+                "Node": "SpeToken.transfer(msg.sender, temp * 99 / 100)"
+            },
+            {
+                "Function": "claimStaticAll",
+                "Node": "SpeToken.transfer(msg.sender, temp * 99 / 100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "SpeToken.transfer(msg.sender, tempAmount + (temp * 99 / 100))"
+            },
+            {
+                "Function": "unStake",
+                "Node": "SpeToken.transfer(msg.sender, tempAmount + (temp * 99 / 100))"
+            }
+        ]
+    }
+}

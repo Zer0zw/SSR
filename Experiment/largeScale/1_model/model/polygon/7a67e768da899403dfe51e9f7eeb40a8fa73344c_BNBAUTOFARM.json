@@ -1,0 +1,280 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.busdStaked",
+            "users.bafDeposits"
+        ],
+        "User Stake Reward": [
+            "users.refRewards",
+            "users.lotteryRewards",
+            "users.bafTokensToClaim"
+        ],
+        "User Stake Time": [
+            "users.busdStakeCheckpoint",
+            "users.bafCheckpoint"
+        ],
+        "Stake Token Address": [
+            "BUSD",
+            "BAF_TOKEN"
+        ],
+        "Reward Token Address": [
+            "BUSD",
+            "BAF_TOKEN"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stakeBafTokens"
+        ],
+        "getReward": [
+            "claimBnbFee",
+            "claimLotteryReward",
+            "withdraw",
+            "withdrawBafDividends",
+            "withdrawRef"
+        ],
+        "unStake": [
+            "unstake",
+            "unstakeBafTokens"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBafTokens",
+                "Node": [
+                    308
+                ],
+                "Input": [
+                    "bafAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BAF_TOKEN"
+                ],
+                "Full Calculation Variables": [
+                    "BAF_TOKEN"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    425
+                ],
+                "Input": [
+                    "busdAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BUSD",
+                    "STAKE_MIN_AMOUNT",
+                    "users.busdStakeCheckpoint",
+                    "users.busdStaked",
+                    "users.deposits",
+                    "users.feeCheckpoint"
+                ],
+                "Full Calculation Variables": [
+                    "BUSD",
+                    "STAKE_MIN_AMOUNT",
+                    "users.busdStakeCheckpoint",
+                    "users.busdStaked",
+                    "users.deposits",
+                    "users.feeCheckpoint"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawBafDividends",
+                "Node": [
+                    339
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "PERCENTS_DIVIDER",
+                    "TIME_STEP",
+                    "users.bafCheckpoint",
+                    "users.bafDeposits"
+                ],
+                "Control Variables": [
+                    "BAF_TOKEN",
+                    "PERCENTS_DIVIDER",
+                    "TIME_STEP",
+                    "users.bafCheckpoint",
+                    "users.bafDeposits"
+                ],
+                "Full Calculation Variables": [
+                    "BAF_TOKEN",
+                    "PERCENTS_DIVIDER",
+                    "TIME_STEP",
+                    "users.bafCheckpoint",
+                    "users.bafDeposits"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimBnbFee",
+                "Node": [
+                    469
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "bnbFee",
+                    "totalBusdStaked",
+                    "users.busdStaked",
+                    "users.feeCheckpoint"
+                ],
+                "Full Calculation Variables": [
+                    "bnbFee",
+                    "totalBusdStaked",
+                    "users.busdStaked",
+                    "users.feeCheckpoint"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    571
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PERCENTS_DIVIDER",
+                    "TIME_STEP",
+                    "WITHDRAWAL_LOTTERY_FEE",
+                    "bnbFee",
+                    "currentPot",
+                    "lotteryRound",
+                    "participantAdresses",
+                    "participants",
+                    "users.checkpoint",
+                    "users.deposits",
+                    "users.lotteryRewards"
+                ],
+                "Full Calculation Variables": [
+                    "PERCENTS_DIVIDER",
+                    "TIME_STEP",
+                    "WITHDRAWAL_LOTTERY_FEE",
+                    "bnbFee",
+                    "currentPot",
+                    "lotteryRound",
+                    "participantAdresses",
+                    "participants",
+                    "users.checkpoint",
+                    "users.deposits",
+                    "users.lotteryRewards"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawRef",
+                "Node": [
+                    600
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PERCENTS_DIVIDER",
+                    "WITHDRAWAL_LOTTERY_FEE",
+                    "bnbFee",
+                    "currentPot",
+                    "lotteryRound",
+                    "participantAdresses",
+                    "participants",
+                    "users.lotteryRewards",
+                    "users.refRewards",
+                    "users.totalBonus"
+                ],
+                "Full Calculation Variables": [
+                    "PERCENTS_DIVIDER",
+                    "WITHDRAWAL_LOTTERY_FEE",
+                    "bnbFee",
+                    "currentPot",
+                    "lotteryRound",
+                    "participantAdresses",
+                    "participants",
+                    "users.lotteryRewards",
+                    "users.refRewards",
+                    "users.totalBonus"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimLotteryReward",
+                "Node": [
+                    618
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "users.lotteryRewards"
+                ],
+                "Full Calculation Variables": [
+                    "users.lotteryRewards"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeBafTokens",
+                "Node": [
+                    363
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "users.bafCheckpoint",
+                    "users.bafDeposits"
+                ],
+                "Control Variables": [
+                    "BAF_TOKEN",
+                    "users.bafCheckpoint",
+                    "users.bafDeposits"
+                ],
+                "Full Calculation Variables": [
+                    "BAF_TOKEN",
+                    "users.bafCheckpoint",
+                    "users.bafDeposits"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstake",
+                "Node": [
+                    493
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "BUSD",
+                    "users.busdStakeCheckpoint",
+                    "users.busdStaked"
+                ],
+                "Control Variables": [
+                    "BUSD",
+                    "FINE_TIME",
+                    "bnbFee",
+                    "totalBusdStaked",
+                    "users.busdStakeCheckpoint",
+                    "users.busdStaked",
+                    "users.feeCheckpoint"
+                ],
+                "Full Calculation Variables": [
+                    "BUSD",
+                    "FINE_TIME",
+                    "bnbFee",
+                    "totalBusdStaked",
+                    "users.busdStakeCheckpoint",
+                    "users.busdStaked",
+                    "users.feeCheckpoint"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

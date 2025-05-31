@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.balance",
+            "Staker.tokenIds"
+        ],
+        "User Stake Reward": [
+            "Staker.rewardsEarned",
+            "Staker.tokenRevenueRewardsEarned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "parentNFT"
+        ],
+        "Reward Token Address": [
+            "rewardsToken",
+            "rewardsContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "parentNFT.safeTransferFrom(_user, address(this), _tokenId"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "parentNFT.safeTransferFrom(_user, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.transfer(_user, payableAmount)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(_tokens[i]).transfer(_user, rewardPayableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "parentNFT.safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "parentNFT.safeTransferFrom(address(this), _user, tokenIds[i])"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "parentNFT.safeTransferFrom(address(this), _user, _tokenId)"
+            }
+        ]
+    }
+}

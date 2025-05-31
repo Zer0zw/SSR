@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [
+            "_lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "_lpAddr"
+        ],
+        "Reward Token Address": [
+            "_plusAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakeinternal(amount * 100*1e15)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(_USDT).safeTransfer(msg.sender, reward )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_USDT).safeTransfer( msg.sender, _balances[msg.sender])"
+            }
+        ]
+    }
+}

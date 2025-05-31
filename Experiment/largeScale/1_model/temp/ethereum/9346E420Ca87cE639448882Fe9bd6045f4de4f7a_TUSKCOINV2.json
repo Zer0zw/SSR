@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amountStaked"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakedDate"
+        ],
+        "Stake Token Address": [
+            "v1Coin"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "nft.transferFrom(_user, address(this), _id)"
+            },
+            {
+                "Function": "batchStake",
+                "Node": "nft.transferFrom(_user, address(this), _ids[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getStakingRewards",
+                "Node": "claimableRewards += rewardForNftStaked"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "nft.transferFrom(address(this), _user, _id)"
+            },
+            {
+                "Function": "batchUnstake",
+                "Node": "nft.transferFrom(address(this), _user, _ids[i])"
+            }
+        ]
+    }
+}

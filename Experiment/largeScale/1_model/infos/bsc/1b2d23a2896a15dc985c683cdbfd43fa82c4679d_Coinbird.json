@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "myGooseFarm"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "balances[msg.sender] = balances[msg.sender] + dummy + myGooseFarm[msg.sender] - amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "balances[msg.sender] += dummy"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "balances[msg.sender] += myGooseFarm[msg.sender] + dummy"
+            }
+        ]
+    }
+}

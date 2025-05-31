@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LpTokenInfo.userStaked"
+        ],
+        "User Stake Reward": [
+            "LpTokenInfo.userRewardUnclaim"
+        ],
+        "User Stake Time": [
+            "LpTokenInfo.userRewardBlockNum"
+        ],
+        "Stake Token Address": [
+            "LpTokenInfo.pool"
+        ],
+        "Reward Token Address": [
+            "_can"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ITOKEN(lpt.pool).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "ITOKEN(_can).mint(reward, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ITOKEN(lpt.pool).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,95 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "players.total_staked"
+        ],
+        "User Stake Reward": [
+            "players.dividends"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "StakeToken"
+        ],
+        "getReward": [
+            "HarvestYields",
+            "Reinvest",
+            "sendYields"
+        ],
+        "unStake": [
+            "SellToken"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "HarvestYields",
+                "Node": [
+                    195
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "bnbRate",
+                    "isScheduled",
+                    "players.deposits",
+                    "players.dividends",
+                    "players.last_payout",
+                    "players.total_bnb_earned",
+                    "players.total_harvested",
+                    "players.total_sold",
+                    "tarifs.life_days",
+                    "tarifs.percent",
+                    "totalHarvested"
+                ],
+                "Full Calculation Variables": [
+                    "bnbRate",
+                    "isScheduled",
+                    "players.deposits",
+                    "players.dividends",
+                    "players.last_payout",
+                    "players.total_bnb_earned",
+                    "players.total_harvested",
+                    "players.total_sold",
+                    "tarifs.life_days",
+                    "tarifs.percent",
+                    "totalHarvested"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "sendYields",
+                "Node": [
+                    253
+                ],
+                "Input": [
+                    "_dest"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "players.deposits",
+                    "players.dividends",
+                    "players.last_payout",
+                    "players.total_harvested",
+                    "tarifs.life_days",
+                    "tarifs.percent"
+                ],
+                "Full Calculation Variables": [
+                    "players.deposits",
+                    "players.dividends",
+                    "players.last_payout",
+                    "players.total_harvested",
+                    "tarifs.life_days",
+                    "tarifs.percent"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

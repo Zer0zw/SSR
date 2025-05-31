@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeAmount"
+        ],
+        "User Stake Reward": [
+            "accumBoostedReward"
+        ],
+        "User Stake Time": [
+            "lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "sugar"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_stakeToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "sugar.safeTransfer(user, sugar.balanceOf(user).sub(beforeReward))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "sugar.safeTransfer(user, sugar.balanceOf(user).sub(beforeReward))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "_safeUnwrap(_stakeToken, _msgSender(), _amount)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_safeUnwrap(_stakeToken, _msgSender(), userStakeAmount)"
+            }
+        ]
+    }
+}

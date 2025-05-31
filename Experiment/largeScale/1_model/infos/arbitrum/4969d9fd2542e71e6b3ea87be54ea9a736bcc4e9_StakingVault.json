@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Staker.yieldRewardAmount"
+        ],
+        "User Stake Time": [
+            "Staker.firstStakeTimestamp",
+            "Staker.lastRewardTimestamp"
+        ],
+        "Stake Token Address": [
+            "tokenMNTE"
+        ],
+        "Reward Token Address": [
+            "tokenUSDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "tokenMNTE.transferFrom(_msgSender(), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "tokenUSDT.transfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "claim",
+                "Node": "tokenUSDT.transfer(_msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "tokenMNTE.transfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "tokenMNTE.transfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

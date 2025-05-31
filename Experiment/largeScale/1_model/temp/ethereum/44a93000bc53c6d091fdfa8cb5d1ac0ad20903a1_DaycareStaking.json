@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "skvllbabiezByOwner"
+        ],
+        "User Stake Reward": [
+            "Skvllbaby.accruedBalance"
+        ],
+        "User Stake Time": [
+            "Skvllbaby.lastClaimTimestamp"
+        ],
+        "Stake Token Address": [
+            "SkvllpvnkzDaycare"
+        ],
+        "Reward Token Address": [
+            "SkvllpvnkzTreasury"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "checkIn",
+                "Node": "SkvllpvnkzDaycare.safeTransferFrom( msg.sender, address(this), skvllbabyIds[i]"
+            },
+            {
+                "Function": "onERC721Received",
+                "Node": "SkvllpvnkzDaycare.safeTransferFrom( msg.sender, address(this), skvllbabyIds[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectRewards",
+                "Node": "SkvllpvnkzTreasury.transfer(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "checkOut",
+                "Node": "SkvllpvnkzDaycare.safeTransferFrom( address(this), msg.sender, skvllbabyIds[i]"
+            }
+        ]
+    }
+}

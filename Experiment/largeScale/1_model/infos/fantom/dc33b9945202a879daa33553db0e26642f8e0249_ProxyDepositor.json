@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ILiquidityGauge(gauge).balanceOf(address(this))"
+        ],
+        "User Stake Reward": [
+            "ILiquidityGauge(gauge).integrate_fraction(address(this))"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StrategyInfo.wantToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_depositToStake",
+                "Node": "ILiquidityGauge(gauge).deposit(tokenBalance, address(this), false)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_retrieveRewards",
+                "Node": "ITokenMinter(tokenMinter).mint(strategy.gauge)"
+            },
+            {
+                "Function": "_retrieveRewards",
+                "Node": "ILiquidityGauge(gauge).claim_rewards(address(this), msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawFromStake",
+                "Node": "IERC20Upgradeable(token).safeTransfer(msg.sender, balance)"
+            },
+            {
+                "Function": "_reclaimTokensOfStrategy",
+                "Node": "IERC20Upgradeable(token).safeTransfer(_strategy, tokenBal)"
+            }
+        ]
+    }
+}

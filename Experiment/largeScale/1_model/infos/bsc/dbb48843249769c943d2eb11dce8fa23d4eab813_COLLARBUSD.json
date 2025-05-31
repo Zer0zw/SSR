@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "investments.user_address",
+            "investments.invested"
+        ],
+        "User Stake Reward": [
+            "totalRewards.amount"
+        ],
+        "User Stake Time": [
+            "weekly.startTime",
+            "weekly.deadline",
+            "claimTime.startTime",
+            "claimTime.deadline"
+        ],
+        "Stake Token Address": [
+            "busd"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "busd.transferFrom(msg.sender, address(this), total_contract)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawal",
+                "Node": "busd.transfer(msg.sender, totalAmountToWithdraw)"
+            },
+            {
+                "Function": "claimDailyRewards",
+                "Node": "approvedWithdrawal[msg.sender] = userWithdrawal(msg.sender,value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "busd.transfer(msg.sender,UnstakeValueCore)"
+            }
+        ]
+    }
+}

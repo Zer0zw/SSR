@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "harvested11nrvPerUser",
+            "harvestedElePerUser"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "nrv11",
+            "ele"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "safeTokenTransfer(ele, _add, eleToPay)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "safeTokenTransfer(nrv11, _add, nrv11ToPay)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, _shares)"
+            },
+            {
+                "Function": "emergencyBurn",
+                "Node": "token.safeTransfer(msg.sender, balan)"
+            }
+        ]
+    }
+}

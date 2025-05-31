@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountJLP"
+        ],
+        "User Stake Reward": [
+            "rewardsToReinvest1",
+            "earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IStabilizeChef(CHEF).stake(IERC20(JOE_LP_TOKEN).balanceOf(address(this)))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(USDC).safeTransfer(IEpicVault(vault).rewards(), _fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IERC20(want).balanceOf(address(this)).sub(_before)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IERC20(want).balanceOf(address(this))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(vault, balance)"
+            }
+        ]
+    }
+}

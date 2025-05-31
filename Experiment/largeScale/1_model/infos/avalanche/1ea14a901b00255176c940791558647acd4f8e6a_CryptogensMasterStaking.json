@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "WAVAX"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "userStake",
+                "Node": "IWETH(WAVAX).deposit{ value: newStakingAction.stakeAmount }(newStakingAction.stakeAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "userUnstake",
+                "Node": "payable(stakingActions[requestId].user).transfer(amountToSend)"
+            },
+            {
+                "Function": "confirmStakeAction",
+                "Node": "payable(stakingActions[requestId].user).transfer(amountToSend)"
+            }
+        ]
+    }
+}

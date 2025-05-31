@@ -1,0 +1,173 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake.deposit_amount"
+        ],
+        "User Stake Reward": [
+            "stakehistory.deposit_amount"
+        ],
+        "User Stake Time": [
+            "stake.stake_creation_time"
+        ],
+        "Stake Token Address": [
+            "RCNT_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "RCNT_ADDRESS"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositRCNT"
+        ],
+        "getReward": [
+            "claimRewards",
+            "unstakeRCNT"
+        ],
+        "unStake": [
+            "unstakeRCNT"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositRCNT",
+                "Node": [
+                    437
+                ],
+                "Input": [
+                    "depositvalue",
+                    "pool_id"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "RCNT_ADDRESS",
+                    "stake.deposit_amount",
+                    "stake.stake_creation_time",
+                    "stakingpool.CURRENT_POOL_VALUE",
+                    "stakingpool.EMISSIONS_RATE",
+                    "stakingpool.MAX_POOL_VALUE",
+                    "txCount"
+                ],
+                "Full Calculation Variables": [
+                    "RCNT_ADDRESS",
+                    "stake.deposit_amount",
+                    "stake.stake_creation_time",
+                    "stakingpool.CURRENT_POOL_VALUE",
+                    "stakingpool.EMISSIONS_RATE",
+                    "stakingpool.MAX_POOL_VALUE",
+                    "txCount"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    506
+                ],
+                "Input": [
+                    "pool_id"
+                ],
+                "Calculation Variables": [
+                    "stake.deposit_amount",
+                    "stake.stake_creation_time",
+                    "stakingpool.EMISSIONS_RATE"
+                ],
+                "Control Variables": [
+                    "RCNT_ADDRESS",
+                    "stake.deposit_amount",
+                    "stake.stake_creation_time",
+                    "stakingpool.EMISSIONS_RATE"
+                ],
+                "Full Calculation Variables": [
+                    "RCNT_ADDRESS",
+                    "stake.deposit_amount",
+                    "stake.stake_creation_time",
+                    "stakingpool.EMISSIONS_RATE"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeRCNT",
+                "Node": [
+                    457
+                ],
+                "Input": [
+                    "pool_id",
+                    "withdrawvalue"
+                ],
+                "Calculation Variables": [
+                    "stake.deposit_amount",
+                    "stake.stake_creation_time",
+                    "stakingpool.CURRENT_POOL_VALUE",
+                    "stakingpool.EMISSIONS_RATE",
+                    "stakingpool.MINIMUM_DURATION",
+                    "stakingpool.TAX_RATE"
+                ],
+                "Control Variables": [
+                    "RCNT_ADDRESS",
+                    "stake.deposit_amount",
+                    "stake.stake_creation_time",
+                    "stakingpool.CURRENT_POOL_VALUE",
+                    "stakingpool.EMISSIONS_RATE",
+                    "stakingpool.MINIMUM_DURATION",
+                    "stakingpool.TAX_RATE"
+                ],
+                "Full Calculation Variables": [
+                    "RCNT_ADDRESS",
+                    "stake.deposit_amount",
+                    "stake.stake_creation_time",
+                    "stakingpool.CURRENT_POOL_VALUE",
+                    "stakingpool.EMISSIONS_RATE",
+                    "stakingpool.MINIMUM_DURATION",
+                    "stakingpool.TAX_RATE"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeRCNT",
+                "Node": [
+                    482
+                ],
+                "Input": [
+                    "pool_id",
+                    "withdrawvalue"
+                ],
+                "Calculation Variables": [
+                    "stakingpool.EMISSIONS_RATE",
+                    "stakingpool.TAX_RATE",
+                    "stakingpool.CURRENT_POOL_VALUE",
+                    "stakingpool.MINIMUM_DURATION"
+                ],
+                "Control Variables": [
+                    "txCount",
+                    "stakingpool.MINIMUM_DURATION",
+                    "stakingpool.TAX_RATE",
+                    "stakingpool.EMISSIONS_RATE",
+                    "stake.deposit_amount",
+                    "stakingpool.CURRENT_POOL_VALUE",
+                    "TOTAL_INTEREST_PAID",
+                    "stake.stake_creation_time",
+                    "RCNT_ADDRESS"
+                ],
+                "Full Calculation Variables": [
+                    "txCount",
+                    "stakingpool.MINIMUM_DURATION",
+                    "stakingpool.TAX_RATE",
+                    "stakingpool.EMISSIONS_RATE",
+                    "stake.deposit_amount",
+                    "stakingpool.CURRENT_POOL_VALUE",
+                    "TOTAL_INTEREST_PAID",
+                    "stake.stake_creation_time",
+                    "RCNT_ADDRESS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

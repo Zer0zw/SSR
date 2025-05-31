@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stash.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Stash.undelegatesAt"
+        ],
+        "Stake Token Address": [
+            "Token.addr"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStash",
+                "Node": "ERC20(tokenAddress).transferFrom(_delegator, address(this), _amount)"
+            },
+            {
+                "Function": "addToStash",
+                "Node": "ERC20(tokenAddress).transferFrom(_delegator, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawStash",
+                "Node": "ERC20(tokenAddress).transfer(_delegator, _amount)"
+            },
+            {
+                "Function": "withdrawStash(bytes32 _stashId, bytes32[] calldata _tokens, uint256[] calldata _amounts)",
+                "Node": "ERC20(tokenAddress).transfer(_delegator, _amount)"
+            }
+        ]
+    }
+}

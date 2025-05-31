@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeAmount"
+        ],
+        "User Stake Reward": [
+            "babyStake.totalClaimed"
+        ],
+        "User Stake Time": [
+            "babyStake.createdTime"
+        ],
+        "Stake Token Address": [
+            "busdAddress"
+        ],
+        "Reward Token Address": [
+            "kongV2Address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bool success = busd.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAllStakes",
+                "Node": "bool success = busd.transfer(msg.sender, busd.balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "bool success = busd.transfer(msg.sender, busd.balanceOf(address(this)))"
+            }
+        ]
+    }
+}

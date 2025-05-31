@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "Attachments.totalRewards",
+            "Attachments.sacredReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "anrToken"
+        ],
+        "Reward Token Address": [
+            "anrToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeSacredRelic",
+                "Node": "sacredRelicNftInstance.burn(tokenId, msg.sender, 1)"
+            },
+            {
+                "Function": "stakeSuperSacredRelic",
+                "Node": "sacredRelicNftInstance.burn(tokenId, msg.sender, 1)"
+            },
+            {
+                "Function": "stakeGoldenChalice",
+                "Node": "goldenChaliceNftInstance.balanceOf(msg.sender,tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stakeSacredRelic",
+                "Node": "poolApy[poolAddress] = poolApy[poolAddress] + apyAmount"
+            },
+            {
+                "Function": "stakeSuperSacredRelic",
+                "Node": "poolApy[poolAddress] = poolApy[poolAddress] + apyAmount"
+            },
+            {
+                "Function": "stakeGoldenChalice",
+                "Node": "poolApy[poolAddress] = poolApy[poolAddress] + reward"
+            },
+            {
+                "Function": "armsBoost",
+                "Node": "poolApy[poolAddress] = poolApy[poolAddress] + _armsBoostReward"
+            },
+            {
+                "Function": "redeemCollectibles",
+                "Node": "poolApy[poolAddress] = poolApy[poolAddress] + apyValue"
+            },
+            {
+                "Function": "stakeArtillery",
+                "Node": "poolApy[poolAddress] = poolApy[poolAddress] + apyValue"
+            }
+        ],
+        "unStake": []
+    }
+}

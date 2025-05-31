@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "joeAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount"
+            },
+            {
+                "Function": "stake",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeJoeTransfer(msg.sender, user.amount.mul(pool.accJoePerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "compound",
+                "Node": "safeJoeTransfer(msg.sender, user.amount.mul(pool.accJoePerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "stake",
+                "Node": "safeJoeTransfer(_user, user.amount.mul(pool.accJoePerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeJoeTransfer(msg.sender, user.amount.mul(pool.accJoePerShare).div(1e12).sub(user.rewardDebt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount.mul(95).div(100))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes",
+            "Locked.locked_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Locked.expire"
+        ],
+        "Stake Token Address": [
+            "BOLLY"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStake",
+                "Node": "bool transfer_from_done = BOLLY.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "bool transfer_done = BOLLY.transfer(msg.sender, expired_amount)"
+            },
+            {
+                "Function": "emergency_remove_stake",
+                "Node": "bool transfer_done = BOLLY.transfer(_user, locked_amount)"
+            }
+        ]
+    }
+}

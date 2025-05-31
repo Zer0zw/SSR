@@ -1,0 +1,266 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.lockedTokens"
+        ],
+        "User Stake Reward": [
+            "userInfo.lastRewardClaimTimeStamp"
+        ],
+        "User Stake Time": [
+            "LOCKING_PERIOD"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stakeAll",
+            "stakeOnBehalf",
+            "stakeOnBehalfGroup"
+        ],
+        "getReward": [
+            "claimRewards",
+            "claimTokens",
+            "stakeRewards"
+        ],
+        "unStake": [
+            "claimTokens",
+            "emergencyWithdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    187,
+                    188,
+                    189,
+                    190
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "EMERGENCY",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "EMERGENCY",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stakeOnBehalf",
+                "Node": [
+                    209,
+                    210,
+                    211,
+                    212
+                ],
+                "Input": [
+                    "amount",
+                    "stakeTimestamp",
+                    "target"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "EMERGENCY",
+                    "_owner",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "EMERGENCY",
+                    "_owner",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stakeOnBehalfGroup",
+                "Node": [
+                    209,
+                    210,
+                    211,
+                    212
+                ],
+                "Input": [
+                    "amount",
+                    "stakeTimestamp",
+                    "target"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "EMERGENCY",
+                    "_owner",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "EMERGENCY",
+                    "_owner",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stakeAll",
+                "Node": [
+                    221,
+                    222,
+                    223,
+                    224
+                ],
+                "Input": [
+                    "userAddress"
+                ],
+                "Calculation Variables": [
+                    "token"
+                ],
+                "Control Variables": [
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    327
+                ],
+                "Input": [
+                    "userAddress"
+                ],
+                "Calculation Variables": [
+                    "APY",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Control Variables": [
+                    "APY",
+                    "EMERGENCY",
+                    "prizePool",
+                    "token",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Full Calculation Variables": [
+                    "APY",
+                    "EMERGENCY",
+                    "prizePool",
+                    "token",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimTokens",
+                "Node": [
+                    338
+                ],
+                "Input": [
+                    "userAddress"
+                ],
+                "Calculation Variables": [
+                    "APY",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Control Variables": [
+                    "APY",
+                    "prizePool",
+                    "token",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Full Calculation Variables": [
+                    "APY",
+                    "prizePool",
+                    "token",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimTokens",
+                "Node": [
+                    289
+                ],
+                "Input": [
+                    "_id",
+                    "userAddress"
+                ],
+                "Calculation Variables": [
+                    "userInfo.UnlockTimeStamp",
+                    "userInfo.amountWithdrawTokens",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens",
+                    "userInfo.withdrawrequest"
+                ],
+                "Control Variables": [
+                    "EMERGENCY",
+                    "token",
+                    "userInfo.UnlockTimeStamp",
+                    "userInfo.amountWithdrawTokens",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens",
+                    "userInfo.withdrawrequest"
+                ],
+                "Full Calculation Variables": [
+                    "EMERGENCY",
+                    "token",
+                    "userInfo.UnlockTimeStamp",
+                    "userInfo.amountWithdrawTokens",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens",
+                    "userInfo.withdrawrequest"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    406
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amountWithdrawTokens",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Control Variables": [
+                    "EMERGENCY",
+                    "token",
+                    "userInfo.amountWithdrawTokens",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Full Calculation Variables": [
+                    "EMERGENCY",
+                    "token",
+                    "userInfo.amountWithdrawTokens",
+                    "userInfo.lastRewardClaimTimeStamp",
+                    "userInfo.lockedTokens"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

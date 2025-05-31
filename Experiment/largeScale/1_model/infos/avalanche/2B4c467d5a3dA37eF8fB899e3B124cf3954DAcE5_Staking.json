@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "Claim.gons"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "PULSE"
+        ],
+        "Reward Token Address": [
+            "STAR"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(STAR).safeTransfer(warmupContract, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup(warmupContract).retrieve(_recipient, ISTAR(STAR).balanceForGons(info.gons))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(PULSE).safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

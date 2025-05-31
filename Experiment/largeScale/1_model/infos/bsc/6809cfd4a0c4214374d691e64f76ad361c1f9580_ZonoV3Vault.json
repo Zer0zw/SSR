@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "token.safeTransfer(msg.sender, currentCallFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            }
+        ]
+    }
+}

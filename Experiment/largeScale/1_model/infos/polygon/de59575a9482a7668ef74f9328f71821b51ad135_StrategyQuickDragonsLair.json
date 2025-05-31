@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfWantD",
+            "balanceOfPoolD"
+        ],
+        "User Stake Reward": [
+            "outputBal"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want",
+            "QUICK"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IDragonsLair(dragonsLair).enter(wantBal)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IRewardPool(rewardPool).stake(wantDBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IRewardPool(rewardPool).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IRewardPool(rewardPool).withdraw(balanceOfPoolD())"
+            },
+            {
+                "Function": "panic",
+                "Node": "IDragonsLair(dragonsLair).leave(balanceOfWantD())"
+            }
+        ]
+    }
+}

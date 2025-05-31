@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pairBal"
+        ],
+        "User Stake Reward": [
+            "rewardBal"
+        ],
+        "User Stake Time": [
+            "timestamp"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(lpToken).safeTransfer(vault, pairBal.sub(withdrawFee))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20(wftm).safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20(wftm).safeTransfer(treasury, treasuryFeeToVault)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20(wftm).safeTransfer(strategistRemitter, feeToStrategist)"
+            },
+            {
+                "Function": "_swapSecondToken",
+                "Node": "IERC20(wftm).safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_swapSecondToken",
+                "Node": "IERC20(wftm).safeTransfer(treasury, treasuryFeeToVault)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpToken).safeTransfer(vault, pairBal.sub(withdrawFee))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(lpToken).transfer(vault, pairBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMasterChef(masterChef).emergencyWithdraw(poolId, address(this))"
+            }
+        ]
+    }
+}

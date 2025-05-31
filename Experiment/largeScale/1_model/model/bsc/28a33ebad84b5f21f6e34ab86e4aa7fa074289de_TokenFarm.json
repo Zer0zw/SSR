@@ -1,0 +1,187 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardClaimed"
+        ],
+        "User Stake Time": [
+            "userInfo.stakingTime"
+        ],
+        "Stake Token Address": [
+            "poolInfo.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "poolInfo.rewardTokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeTokens"
+        ],
+        "getReward": [
+            "claimableRewards",
+            "unstakeTokens"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "unstakeTokens"
+        ],
+        "Sensitive Functions": [
+            "addPool"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": [
+                    369
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.currentPoolSize",
+                    "poolInfo.maxContribution",
+                    "poolInfo.maxPoolSize",
+                    "poolInfo.poolActive",
+                    "poolInfo.poolType",
+                    "poolInfo.tokenAddress",
+                    "userInfo.amount",
+                    "userInfo.numberOfStakes",
+                    "userInfo.stakingTime"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.currentPoolSize",
+                    "poolInfo.maxContribution",
+                    "poolInfo.maxPoolSize",
+                    "poolInfo.poolActive",
+                    "poolInfo.poolType",
+                    "poolInfo.tokenAddress",
+                    "userInfo.amount",
+                    "userInfo.numberOfStakes",
+                    "userInfo.stakingTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimableRewards",
+                "Node": [
+                    389
+                ],
+                "Input": [
+                    "_pid",
+                    "_stakeNumber",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.rewardDen",
+                    "poolInfo.rewardNum",
+                    "poolInfo.rewardTokenAddress",
+                    "poolInfo.tokenAddress",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.rewardDen",
+                    "poolInfo.rewardNum",
+                    "poolInfo.rewardTokenAddress",
+                    "poolInfo.tokenAddress",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeTokens",
+                "Node": [
+                    389
+                ],
+                "Input": [
+                    "_pid",
+                    "_stakeNumber",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.rewardDen",
+                    "poolInfo.rewardNum",
+                    "poolInfo.rewardTokenAddress",
+                    "poolInfo.tokenAddress",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.rewardDen",
+                    "poolInfo.rewardNum",
+                    "poolInfo.rewardTokenAddress",
+                    "poolInfo.tokenAddress",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": [
+                    408
+                ],
+                "Input": [
+                    "_stakeNumber",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "userInfo.stakingTime",
+                    "poolInfo.rewardDen",
+                    "poolInfo.tokenAddress",
+                    "poolInfo.currentPoolSize",
+                    "poolInfo",
+                    "userInfo.amount",
+                    "poolInfo.rewardTokenAddress",
+                    "poolInfo.rewardNum"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.stakingTime",
+                    "poolInfo.rewardDen",
+                    "poolInfo.tokenAddress",
+                    "poolInfo.currentPoolSize",
+                    "poolInfo",
+                    "userInfo.amount",
+                    "poolInfo.rewardTokenAddress",
+                    "poolInfo.rewardNum"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    430
+                ],
+                "Input": [
+                    "_pid",
+                    "_stakeNumber"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.currentPoolSize",
+                    "poolInfo.emergencyFees",
+                    "poolInfo.tokenAddress",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.currentPoolSize",
+                    "poolInfo.emergencyFees",
+                    "poolInfo.tokenAddress",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

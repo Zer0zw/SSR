@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "expectedInterest"
+        ],
+        "User Stake Time": [
+            "initialStakingTimestamp"
+        ],
+        "Stake Token Address": [
+            "erc20Contract"
+        ],
+        "Reward Token Address": [
+            "erc20Contract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeAllTokensAndWithdrawInterestEarned",
+                "Node": "token.safeTransfer(msg.sender, interestToPayOut.add(amountToUnstake))"
+            },
+            {
+                "Function": "reinvestAlreadyStakedTokensAndInterestEarned",
+                "Node": "token.safeTransfer(msg.sender, expectedInterest[msg.sender].add(balances[msg.sender]))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAllTokensAndWithdrawInterestEarned",
+                "Node": "token.safeTransfer(msg.sender, interestToPayOut.add(amountToUnstake))"
+            },
+            {
+                "Function": "reinvestAlreadyStakedTokensAndInterestEarned",
+                "Node": "token.safeTransfer(msg.sender, expectedInterest[msg.sender].add(balances[msg.sender]))"
+            }
+        ]
+    }
+}

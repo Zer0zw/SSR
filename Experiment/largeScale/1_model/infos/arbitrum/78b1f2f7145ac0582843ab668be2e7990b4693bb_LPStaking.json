@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.stakedLiquidity"
+        ],
+        "User Stake Reward": [
+            "User.totalRewards",
+            "User.directRewards",
+            "User.referralRewards"
+        ],
+        "User Stake Time": [
+            "NFT.startTime",
+            "NFT.endTime",
+            "NFT.lastRewardTime",
+            "NFT.nextRewardTime"
+        ],
+        "Stake Token Address": [
+            "UNISWAPPOSITIONMANAGER"
+        ],
+        "Reward Token Address": [
+            "CIPPRO",
+            "DAI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "_helperNFT.safeTransferFrom(sender, address(this), _tokenID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_helperCIP.transferFrom(rewardWallet, _recipient, cipRewards)"
+            },
+            {
+                "Function": "_sendRewards",
+                "Node": "_helperCIP.transferFrom(rewardWallet, _recipient, cipRewards)"
+            },
+            {
+                "Function": "_sendRefRewards",
+                "Node": "_helperCIP.transferFrom(rewardWallet, _referral, cipRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "_helperNFT.safeTransferFrom(address(this), _detail.owner, _tokenID)"
+            },
+            {
+                "Function": "maxTick",
+                "Node": "_helperNFT.safeTransferFrom(address(this), _msgSender(), _tokenID)"
+            }
+        ]
+    }
+}

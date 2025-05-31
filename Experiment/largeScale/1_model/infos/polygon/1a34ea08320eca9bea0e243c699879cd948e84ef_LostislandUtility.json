@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUserLostislandClubNFT",
+            "tokensStakedByUserNFTv2"
+        ],
+        "User Stake Reward": [
+            "pendingRewardsLostislandClubNFT",
+            "pendingRewardsNFTv2"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddressLostislandClubNFT",
+            "collectionAddressNFTv2"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLostislandClubNFT",
+                "Node": "IERC721(collectionAddressLostislandClubNFT).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeNFTv2",
+                "Node": "IERC721(collectionAddressNFTv2).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestLostislandClubNFT",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            },
+            {
+                "Function": "harvestNFTv2",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLostislandClubNFT",
+                "Node": "IERC721(collectionAddressLostislandClubNFT).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeNFTv2",
+                "Node": "IERC721(collectionAddressNFTv2).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

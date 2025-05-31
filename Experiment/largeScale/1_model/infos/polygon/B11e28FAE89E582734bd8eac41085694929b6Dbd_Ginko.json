@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserData.stakingDeposit"
+        ],
+        "User Stake Reward": [
+            "computeUserReward"
+        ],
+        "User Stake Time": [
+            "UserData.stakingBlock"
+        ],
+        "Stake Token Address": [
+            "_ethereumTokenAddress"
+        ],
+        "Reward Token Address": [
+            "_ethereumTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_ethereumToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_ethereumToken.transfer(msg.sender, userReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_ethereumToken.transfer(msg.sender, stakingDeposit)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_ethereumToken.transfer(msg.sender, stakingDeposit)"
+            }
+        ]
+    }
+}

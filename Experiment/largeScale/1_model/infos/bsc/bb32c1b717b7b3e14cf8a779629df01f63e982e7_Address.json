@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "toBePaid",
+            "alreadyPaidShares"
+        ],
+        "User Stake Time": [
+            "_sellLock"
+        ],
+        "Stake Token Address": [
+            "_liquidityTokenAddress"
+        ],
+        "Reward Token Address": [
+            "_BUSDTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addToken",
+                "Node": "_balances[addr]=newAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimFarmedToken",
+                "Node": "_pancakeRouter.swapExactETHForTokensSupportingFeeOnTransferTokens{value: amount}(0, path, addr, block.timestamp)"
+            },
+            {
+                "Function": "BUSDWithdraw",
+                "Node": "claimFarmedToken(msg.sender, _BUSDTokenAddress)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeToken",
+                "Node": "_balances[addr]=newAmount"
+            }
+        ]
+    }
+}

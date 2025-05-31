@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits.amount"
+        ],
+        "User Stake Reward": [
+            "generatedYelds"
+        ],
+        "User Stake Time": [
+            "deposits.start"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "address(yeldToken)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "extractYELDEarningsWhileKeepingDeposit",
+                "Node": "yeldToken.transfer(msg.sender, generatedYelds)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "yeldToken.transfer(msg.sender, generatedYelds)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(token).safeTransfer(msg.sender, r)"
+            }
+        ]
+    }
+}

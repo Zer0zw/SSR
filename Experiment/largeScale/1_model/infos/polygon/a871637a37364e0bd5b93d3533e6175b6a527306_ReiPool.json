@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserData.stakingDeposit"
+        ],
+        "User Stake Reward": [
+            "CRV_TOKEN"
+        ],
+        "User Stake Time": [
+            "UserData.stakingBlock"
+        ],
+        "Stake Token Address": [
+            "GO_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "CRV_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "GO_TOKEN.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "CRV_TOKEN.transfer(msg.sender, userReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "GO_TOKEN.transfer(msg.sender, stakingDeposit)"
+            }
+        ]
+    }
+}

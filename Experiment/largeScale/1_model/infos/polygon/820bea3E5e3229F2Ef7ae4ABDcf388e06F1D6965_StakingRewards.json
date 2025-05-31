@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "DepositRecord.amount"
+        ],
+        "User Stake Reward": [
+            "DepositRecord.rewards",
+            "DepositRecord.rewardsToPay"
+        ],
+        "User Stake Time": [
+            "periodInDays"
+        ],
+        "Stake Token Address": [
+            "_skill"
+        ],
+        "Reward Token Address": [
+            "_skill"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_skill.transferFrom(msg.sender, address(tokenTimelock), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_computeRewards",
+                "Node": "_skill.transfer(address(tokenTimelock), rewardsToPay"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes.amount"
+        ],
+        "User Stake Reward": [
+            "stakes.unClaimedReward",
+            "stakes.rewardOut"
+        ],
+        "User Stake Time": [
+            "stakes.stakeTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "doTransferIn(staker, stakeToken, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "doTransferOut(rewardToken, staker, unclaimed.mul(70).div(100))"
+            },
+            {
+                "Function": "releaseReferralReward",
+                "Node": "doTransferOut(rewardToken, addrs[i].userAddress, addrs[i].reward.mul(70).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "doTransferOut(stakeToken, staker, amount)"
+            }
+        ]
+    }
+}

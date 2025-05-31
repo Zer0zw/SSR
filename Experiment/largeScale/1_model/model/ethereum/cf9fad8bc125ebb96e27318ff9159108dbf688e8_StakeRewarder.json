@@ -1,0 +1,146 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt",
+            "underpayment"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "poolInfo.token"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claim",
+            "claimMultiple"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "claim",
+            "claimMultiple",
+            "createPool",
+            "deposit",
+            "pokePool",
+            "pokePools",
+            "updatePool",
+            "withdraw"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1694,
+                    1695,
+                    1696,
+                    1697,
+                    1698
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.accPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.token",
+                    "poolInfo.total",
+                    "poolInfo.weight",
+                    "rewardPerBlock",
+                    "totalWeight",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.token",
+                    "poolInfo.total",
+                    "poolInfo.weight",
+                    "rewardPerBlock",
+                    "totalWeight",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1738
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.accPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.token",
+                    "poolInfo.total",
+                    "poolInfo.weight",
+                    "rewardPerBlock",
+                    "totalWeight",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accPerShare",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.token",
+                    "poolInfo.total",
+                    "poolInfo.weight",
+                    "rewardPerBlock",
+                    "totalWeight",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1762
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.token",
+                    "poolInfo.total",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.token",
+                    "poolInfo.total",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

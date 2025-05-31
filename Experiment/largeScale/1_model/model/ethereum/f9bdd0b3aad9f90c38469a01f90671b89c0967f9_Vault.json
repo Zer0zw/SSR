@@ -1,0 +1,373 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositTokenBalance"
+        ],
+        "User Stake Reward": [
+            "tokenDivsBalance",
+            "ethDivsBalance",
+            "platformTokenDivsBalance"
+        ],
+        "User Stake Time": [
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "TRUSTED_DEPOSIT_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "TRUSTED_PLATFORM_TOKEN_ADDRESS"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claim",
+            "claimCompoundDivs",
+            "claimEthDivs",
+            "claimPlatformTokenDivs",
+            "claimTokenDivs"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1182
+                ],
+                "Input": [
+                    "_amountOutMin_ethFeeBuyBack",
+                    "amount",
+                    "deadline"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status"
+                ],
+                "Full Calculation Variables": [
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimEthDivs",
+                "Node": [
+                    1078
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "POINT_MULTIPLIER",
+                    "depositTokenBalance",
+                    "ethDivsBalance",
+                    "lastEthDivPoints",
+                    "totalEthDivPoints"
+                ],
+                "Full Calculation Variables": [
+                    "POINT_MULTIPLIER",
+                    "depositTokenBalance",
+                    "ethDivsBalance",
+                    "lastEthDivPoints",
+                    "totalEthDivPoints"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimTokenDivs",
+                "Node": [
+                    1089
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "POINT_MULTIPLIER",
+                    "depositTokenBalance",
+                    "lastTokenDivPoints",
+                    "tokenDivsBalance",
+                    "totalTokenDivPoints"
+                ],
+                "Control Variables": [
+                    "POINT_MULTIPLIER",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "depositTokenBalance",
+                    "lastTokenDivPoints",
+                    "tokenDivsBalance",
+                    "totalTokenDivPoints"
+                ],
+                "Full Calculation Variables": [
+                    "POINT_MULTIPLIER",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "depositTokenBalance",
+                    "lastTokenDivPoints",
+                    "tokenDivsBalance",
+                    "totalTokenDivPoints"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimCompoundDivs",
+                "Node": [
+                    1120
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS"
+                ],
+                "Control Variables": [
+                    "TRUSTED_CTOKEN_ADDRESS",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "cTokenBalance",
+                    "depositTokenBalance",
+                    "totalCTokens",
+                    "totalTokensWithdrawnByUser"
+                ],
+                "Full Calculation Variables": [
+                    "TRUSTED_CTOKEN_ADDRESS",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "cTokenBalance",
+                    "depositTokenBalance",
+                    "totalCTokens",
+                    "totalTokensWithdrawnByUser"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimPlatformTokenDivs",
+                "Node": [
+                    1140
+                ],
+                "Input": [
+                    "_amountOutMin_platformTokens"
+                ],
+                "Calculation Variables": [
+                    "ONE_HUNDRED_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RETURN_PERCENT_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "TRUSTED_PLATFORM_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositTokenBalance",
+                    "holders",
+                    "lastClaimedTime",
+                    "platformTokenDivsBalance",
+                    "uniswapRouterV2"
+                ],
+                "Control Variables": [
+                    "ONE_HUNDRED_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RETURN_PERCENT_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "TRUSTED_PLATFORM_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositTokenBalance",
+                    "holders",
+                    "lastClaimedTime",
+                    "platformTokenDivsBalance",
+                    "uniswapRouterV2"
+                ],
+                "Full Calculation Variables": [
+                    "ONE_HUNDRED_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RETURN_PERCENT_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "TRUSTED_PLATFORM_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositTokenBalance",
+                    "holders",
+                    "lastClaimedTime",
+                    "platformTokenDivsBalance",
+                    "uniswapRouterV2"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claim",
+                "Node": [
+                    1078
+                ],
+                "Input": [
+                    "_amountOutMin_platformTokens"
+                ],
+                "Calculation Variables": [
+                    "lastClaimedTime",
+                    "platformTokenDivsBalance",
+                    "lastTokenDivPoints",
+                    "TRUSTED_PLATFORM_TOKEN_ADDRESS",
+                    "holders",
+                    "ONE_HUNDRED_X_100",
+                    "contractStartTime",
+                    "tokenDivsBalance",
+                    "REWARD_RETURN_PERCENT_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "REWARD_INTERVAL",
+                    "uniswapRouterV2",
+                    "POINT_MULTIPLIER",
+                    "totalTokenDivPoints",
+                    "depositTokenBalance"
+                ],
+                "Control Variables": [
+                    "ethDivsBalance",
+                    "platformTokenDivsBalance",
+                    "totalCTokens",
+                    "TRUSTED_PLATFORM_TOKEN_ADDRESS",
+                    "cTokenBalance",
+                    "ONE_HUNDRED_X_100",
+                    "tokenDivsBalance",
+                    "REWARD_RETURN_PERCENT_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "totalTokenDivPoints",
+                    "TRUSTED_CTOKEN_ADDRESS",
+                    "lastEthDivPoints",
+                    "lastClaimedTime",
+                    "totalTokensWithdrawnByUser",
+                    "lastTokenDivPoints",
+                    "holders",
+                    "contractStartTime",
+                    "REWARD_INTERVAL",
+                    "uniswapRouterV2",
+                    "POINT_MULTIPLIER",
+                    "totalEthDivPoints",
+                    "depositTokenBalance"
+                ],
+                "Full Calculation Variables": [
+                    "ethDivsBalance",
+                    "platformTokenDivsBalance",
+                    "totalCTokens",
+                    "TRUSTED_PLATFORM_TOKEN_ADDRESS",
+                    "cTokenBalance",
+                    "ONE_HUNDRED_X_100",
+                    "tokenDivsBalance",
+                    "REWARD_RETURN_PERCENT_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "totalTokenDivPoints",
+                    "TRUSTED_CTOKEN_ADDRESS",
+                    "lastEthDivPoints",
+                    "lastClaimedTime",
+                    "totalTokensWithdrawnByUser",
+                    "lastTokenDivPoints",
+                    "holders",
+                    "contractStartTime",
+                    "REWARD_INTERVAL",
+                    "uniswapRouterV2",
+                    "POINT_MULTIPLIER",
+                    "totalEthDivPoints",
+                    "depositTokenBalance"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1238
+                ],
+                "Input": [
+                    "_amountOutMin_ethFeeBuyBack",
+                    "_amountOutMin_tokenFeeBuyBack",
+                    "amount",
+                    "deadline"
+                ],
+                "Calculation Variables": [
+                    "FEE_PERCENT_X_100",
+                    "ONE_HUNDRED_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS"
+                ],
+                "Control Variables": [
+                    "FEE_PERCENT_X_100",
+                    "LOCKUP_DURATION",
+                    "ONE_HUNDRED_X_100",
+                    "TRUSTED_CTOKEN_ADDRESS",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "cTokenBalance",
+                    "depositTime",
+                    "depositTokenBalance",
+                    "totalCTokens",
+                    "totalDepositedTokens",
+                    "totalTokensWithdrawnByUser"
+                ],
+                "Full Calculation Variables": [
+                    "FEE_PERCENT_X_100",
+                    "LOCKUP_DURATION",
+                    "ONE_HUNDRED_X_100",
+                    "TRUSTED_CTOKEN_ADDRESS",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "cTokenBalance",
+                    "depositTime",
+                    "depositTokenBalance",
+                    "totalCTokens",
+                    "totalDepositedTokens",
+                    "totalTokensWithdrawnByUser"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1280
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "FEE_PERCENT_X_100",
+                    "ONE_HUNDRED_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS"
+                ],
+                "Control Variables": [
+                    "FEE_PERCENT_X_100",
+                    "LOCKUP_DURATION",
+                    "ONE_HUNDRED_X_100",
+                    "TRUSTED_CTOKEN_ADDRESS",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "cTokenBalance",
+                    "depositTime",
+                    "depositTokenBalance",
+                    "totalCTokens",
+                    "totalDepositedTokens",
+                    "totalTokensWithdrawnByUser"
+                ],
+                "Full Calculation Variables": [
+                    "FEE_PERCENT_X_100",
+                    "LOCKUP_DURATION",
+                    "ONE_HUNDRED_X_100",
+                    "TRUSTED_CTOKEN_ADDRESS",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "cTokenBalance",
+                    "depositTime",
+                    "depositTokenBalance",
+                    "totalCTokens",
+                    "totalDepositedTokens",
+                    "totalTokensWithdrawnByUser"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

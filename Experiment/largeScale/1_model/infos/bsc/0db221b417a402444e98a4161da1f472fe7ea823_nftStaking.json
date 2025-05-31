@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "level_token_arr"
+        ],
+        "User Stake Reward": [
+            "Order.reward"
+        ],
+        "User Stake Time": [
+            "Order.initTime",
+            "Order.lastTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "stake",
+                "Node": "safeTransferFrom(tokenAddress, msg.sender, address(this), level_token_arr[getTokenLevel(tokenId)])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeTransferFrom(tokenAddress, tokenPoolAddress, msg.sender, order.reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "safeTransferFrom(tokenAddress, tokenPoolAddress, msg.sender, order.reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "safeTransfer(tokenAddress, msg.sender, level_token_arr[level])"
+            },
+            {
+                "Function": "exit",
+                "Node": "nftToken.safeTransferFrom(address(this), msg.sender, order.tokenId)"
+            }
+        ]
+    }
+}

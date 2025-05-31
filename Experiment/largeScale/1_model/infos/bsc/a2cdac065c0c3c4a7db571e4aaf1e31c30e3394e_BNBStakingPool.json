@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "unclaimedReward",
+            "referralRewards.reward"
+        ],
+        "User Stake Time": [
+            "lastActionTime",
+            "depositTime",
+            "swaplock.time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "sendValueTo(_ref, ref_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardToken.transferFrom(address(this), msg.sender, rewardToSend)"
+            },
+            {
+                "Function": "compoundReward",
+                "Node": "balances[msg.sender] += rewardToCompound"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCapital",
+                "Node": "sendValueTo(msg.sender, _amountToSend)"
+            }
+        ]
+    }
+}

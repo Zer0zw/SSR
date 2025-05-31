@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [
+            "profit"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlyingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mint",
+                "Node": "underlyingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "mintFor",
+                "Node": "underlyingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardToken.safeTransfer(owner(), fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "underlyingToken.safeTransfer(msg.sender, share)"
+            },
+            {
+                "Function": "redeemUnderlying",
+                "Node": "underlyingToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

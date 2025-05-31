@@ -1,0 +1,164 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "_balances"
+            ],
+            "User Stake Reward": [
+                "harvested11nrvPerUser",
+                "harvestedElePerUser"
+            ],
+            "User Stake Time": [],
+            "Stake Token Address": [
+                "token"
+            ],
+            "Reward Token Address": [
+                "nrv11",
+                "ele"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "deposit",
+                "depositAll"
+            ],
+            "getReward": [
+                "claimRewards",
+                "deposit",
+                "depositAll",
+                "withdraw"
+            ],
+            "unStake": [
+                "emergencyBurn",
+                "withdraw",
+                "withdrawAll"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "token"
+                    ]
+                },
+                {
+                    "Function": "depositAll",
+                    "Calculation Variables": [
+                        "token"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claimRewards",
+                    "Calculation Variables": [
+                        "harvested11nrvPerUser",
+                        "harvestedElePerUser",
+                        "harvested11nrvPerShare",
+                        "harvestedElePerShare",
+                        "nrv11",
+                        "_balances",
+                        "ele",
+                        "_totalSupply"
+                    ]
+                },
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "harvested11nrvPerUser",
+                        "harvestedElePerUser",
+                        "harvested11nrvPerShare",
+                        "harvestedElePerShare",
+                        "nrv11",
+                        "_balances",
+                        "ele",
+                        "_totalSupply"
+                    ]
+                },
+                {
+                    "Function": "depositAll",
+                    "Calculation Variables": [
+                        "harvested11nrvPerUser",
+                        "harvestedElePerUser",
+                        "harvested11nrvPerShare",
+                        "harvestedElePerShare",
+                        "nrv11",
+                        "_balances",
+                        "ele",
+                        "_totalSupply"
+                    ]
+                },
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "harvested11nrvPerUser",
+                        "harvestedElePerUser",
+                        "harvested11nrvPerShare",
+                        "harvestedElePerShare",
+                        "nrv11",
+                        "_balances",
+                        "ele",
+                        "_totalSupply"
+                    ]
+                },
+                {
+                    "Function": "withdrawAll",
+                    "Calculation Variables": [
+                        "harvested11nrvPerUser",
+                        "harvestedElePerUser",
+                        "harvested11nrvPerShare",
+                        "harvestedElePerShare",
+                        "nrv11",
+                        "_balances",
+                        "ele",
+                        "_totalSupply"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "token"
+                    ]
+                },
+                {
+                    "Function": "withdrawAll",
+                    "Calculation Variables": [
+                        "token"
+                    ]
+                },
+                {
+                    "Function": "emergencyBurn",
+                    "Calculation Variables": [
+                        "_balances",
+                        "token"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [
+            "claimRewards"
+        ],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

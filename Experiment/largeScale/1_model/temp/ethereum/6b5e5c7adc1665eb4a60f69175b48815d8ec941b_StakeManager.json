@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStakedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "withdrawalDelay"
+        ],
+        "Stake Token Address": [
+            "protocolAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNft",
+                "Node": "IarNFT(getModule(\"ARNFT\")).transferFrom(_user, getModule(\"CLAIM\"), _nftId)"
+            },
+            {
+                "Function": "batchStakeNft",
+                "Node": "IarNFT(getModule(\"ARNFT\")).transferFrom(_user, getModule(\"CLAIM\"), _nftId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_addCovers",
+                "Node": "IRewardManager(getModule(\"REWARD\")).stake(_user, _coverPrice, _nftId)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawNft",
+                "Node": "IClaimManager(getModule(\"CLAIM\")).transferNft(nftOwner, _nftId)"
+            },
+            {
+                "Function": "_removeNft",
+                "Node": "IRewardManager(getModule(\"REWARD\")).withdraw(_user, _coverPrice, _nftId)"
+            },
+            {
+                "Function": "forceRemoveNft",
+                "Node": "IRewardManager(getModule(\"REWARD\")).withdraw(user, secondPrice, nftId)"
+            }
+        ]
+    }
+}

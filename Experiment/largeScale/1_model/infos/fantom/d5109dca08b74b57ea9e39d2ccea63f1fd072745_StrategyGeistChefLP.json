@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IGeistMasterChef(chef).deposit(want, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(output).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount))"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(yeastAddress, yeastFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(native).safeTransfer(partnerAddress, partnerFeeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            }
+        ]
+    }
+}

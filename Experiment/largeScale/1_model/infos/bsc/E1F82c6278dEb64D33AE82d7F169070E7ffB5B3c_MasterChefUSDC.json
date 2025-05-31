@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardUSDCDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "VEMP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "safeVEMPTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, USDCReward)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimUSDC",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, USDCReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "safeVEMPTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, USDCReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, user.amount)"
+            }
+        ]
+    }
+}

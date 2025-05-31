@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "withdrawAmount"
+        ],
+        "User Stake Time": [
+            "stakeDays"
+        ],
+        "Stake Token Address": [
+            "qub"
+        ],
+        "Reward Token Address": [
+            "nqubWrapper"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "qub.safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "nqubWrapper.safeTransfer(msg.sender, withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "qub.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

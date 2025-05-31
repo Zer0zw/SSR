@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenToIsStaked"
+        ],
+        "User Stake Reward": [
+            "multiplier"
+        ],
+        "User Stake Time": [
+            "tokenToWhenStaked"
+        ],
+        "Stake Token Address": [
+            "shoopContract"
+        ],
+        "Reward Token Address": [
+            "shoopContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "tokenToWhenStaked[_tokenId] = block.timestamp"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "tokenToWhenStaked[_tokenIds[i]] = block.timestamp"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "tokenToWhenStaked[_tokenId] = block.timestamp"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "_mintShoop(_totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "tokenToIsStaked[_tokenId] = false"
+            },
+            {
+                "Function": "unStakeBatch",
+                "Node": "_mintShoop(_totalRewards)"
+            }
+        ]
+    }
+}

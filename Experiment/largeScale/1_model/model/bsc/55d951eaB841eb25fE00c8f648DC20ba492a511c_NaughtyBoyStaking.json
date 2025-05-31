@@ -1,0 +1,95 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfos.amount"
+        ],
+        "User Stake Reward": [
+            "stakeInfos.claimed"
+        ],
+        "User Stake Time": [
+            "stakeInfos.durationSet"
+        ],
+        "Stake Token Address": [
+            "naughtyboyToken"
+        ],
+        "Reward Token Address": [
+            "naughtyboyToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeToken"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [],
+        "Sensitive Functions": [
+            "setTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    337
+                ],
+                "Input": [
+                    "_planDuration",
+                    "stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "addressStaked",
+                    "naughtyboyToken",
+                    "planExpired"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "addressStaked",
+                    "naughtyboyToken",
+                    "planExpired"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    315
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.durationSet",
+                    "stakeInfos.endTS"
+                ],
+                "Control Variables": [
+                    "addressStaked",
+                    "interestRate",
+                    "naughtyboyToken",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.durationSet",
+                    "stakeInfos.endTS"
+                ],
+                "Full Calculation Variables": [
+                    "addressStaked",
+                    "interestRate",
+                    "naughtyboyToken",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.durationSet",
+                    "stakeInfos.endTS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt",
+            "_lockedRewards"
+        ],
+        "User Stake Time": [
+            "userStartVestingStamp",
+            "startVestingStamp"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "GOV"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "poolInfo[_pid].lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "balanceOf[_pid] = balanceOf[_pid].add(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "safeGOVTransfer",
+                "Node": "GOV.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "sendValueIfPossible",
+                "Node": "recipient.call{ value: amount }(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "lpToken.safeTransfer(address(msg.sender), _amount)"
+            }
+        ]
+    }
+}

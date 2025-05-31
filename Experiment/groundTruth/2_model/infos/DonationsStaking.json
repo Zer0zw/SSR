@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardEarn",
+            "UserInfo.rewardMinted"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastRewardTime",
+            "UserInfo.multiplierResetTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "iToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_mint(_msgSender(), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rewardsMinted",
+                "Node": "GoodReserveCDai(nameService.getAddress(\"RESERVE\")).mintRewardFromRR(_token, _user, amount)"
+            },
+            {
+                "Function": "mintReward",
+                "Node": "GoodReserveCDai(nameService.getAddress(\"RESERVE\")).mintRewardFromRR(_token, _user, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "require(token.transfer(_msgSender(), tokenWithdraw), \"withdraw transfer failed\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "cERC20(cDaiAddress).transfer(_target, tokenReturn)"
+            }
+        ]
+    }
+}

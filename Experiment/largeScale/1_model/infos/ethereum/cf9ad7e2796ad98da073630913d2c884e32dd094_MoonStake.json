@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeData.amount"
+        ],
+        "User Stake Reward": [
+            "currentReward"
+        ],
+        "User Stake Time": [
+            "StakeData.stakeTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "crops"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lpToken.safeTransferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "depositMoondayETH",
+                "Node": "moonETHToken.safeTransferFrom(msg.sender, address(this), lpRequired.mul(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20Custom(crops).farmMint(msg.sender, reward)"
+            },
+            {
+                "Function": "claimBurns",
+                "Node": "moonETHToken.transfer(msg.sender, divs)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawMoondayETH",
+                "Node": "moonETHToken.transfer(msg.sender, lpReturn)"
+            }
+        ]
+    }
+}

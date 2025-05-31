@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "amountHarvested"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "DQUICK"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(rewards, uint256(-1))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(harvestedToken).safeTransfer(strategist, feeAmount)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "Not explicitly shown in the provided code"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "Not explicitly shown in the provided code"
+            },
+            {
+                "Function": "migrate",
+                "Node": "Not explicitly shown in the provided code"
+            }
+        ]
+    }
+}

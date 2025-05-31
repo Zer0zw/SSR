@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "shares",
+            "Distribution.amount"
+        ],
+        "User Stake Time": [
+            "timelock"
+        ],
+        "Stake Token Address": [
+            "dropToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "IERC20(dropToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_deliverFunds(_user, claimedAmount, \"TestLoto Staking: Can't send BNB\")"
+            },
+            {
+                "Function": "_claim",
+                "Node": "_deliverFunds(_user, claimedAmount, \"TestLoto Staking: Can't send BNB\")"
+            },
+            {
+                "Function": "_claimAndExit",
+                "Node": "_deliverFunds(_user, claimedAmount, \"TestLoto Staking: Can't send BNB\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "IERC20(dropToken).safeTransfer(msg.sender, what)"
+            }
+        ]
+    }
+}

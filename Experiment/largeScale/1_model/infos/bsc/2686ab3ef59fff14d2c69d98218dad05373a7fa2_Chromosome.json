@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.bananaRewards",
+            "UserInfo.remainingYelTokenReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.startClaimedYEL"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "banana",
+            "yel"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_payBananas(sender)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_payYels(sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "super.withdraw(amountLP)"
+            }
+        ]
+    }
+}

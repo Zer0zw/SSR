@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_locked_balances",
+            "LockedStake.amount"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "totalClaimedRewards"
+        ],
+        "User Stake Time": [
+            "LockedStake.ending_timestamp"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLocked",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.transfer(msg.sender, reward.sub(minting_fee_amount))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.transfer(owner_mintingfee_address, minting_fee_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLocked",
+                "Node": "stakingToken.safeTransfer(msg.sender, theAmount)"
+            },
+            {
+                "Function": "withdrawLocked",
+                "Node": "stakingToken.safeTransfer(msg.sender, theAmount / 2)"
+            },
+            {
+                "Function": "withdrawLocked",
+                "Node": "stakingToken.safeTransfer(owner_address, theAmount / 2)"
+            }
+        ]
+    }
+}

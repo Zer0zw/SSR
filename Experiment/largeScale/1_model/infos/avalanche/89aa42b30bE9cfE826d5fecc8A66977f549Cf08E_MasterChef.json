@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "rewardsCollected"
+        ],
+        "User Stake Time": [
+            "secondsInStaking"
+        ],
+        "Stake Token Address": [
+            "triangleToken"
+        ],
+        "Reward Token Address": [
+            "triangleToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNode",
+                "Node": "triangleNode.stakeNode(nodeID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "triangleToken.mintFromRewards(calculatedRewards,msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNode",
+                "Node": "triangleNode.removeNodeStake(nodeID)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PledgeOrder.amount"
+        ],
+        "User Stake Reward": [
+            "PledgeOrder.income",
+            "PledgeOrder.rewardsIncome"
+        ],
+        "User Stake Time": [
+            "PledgeOrder.lastPledgeTime"
+        ],
+        "Stake Token Address": [
+            "PledgeList.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "PledgeList.awardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "pledge[pledgeType].token.transferFrom(sender, _thisAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawal",
+                "Node": "pledge[pledgeType].token.transfer(sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "pledge[pledgeType].token.transfer(sender, amount - penalty)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "pledge[pledgeType].token.transfer(address(0x000000000000000000000000000000000000dEaD), penalty)"
+            }
+        ]
+    }
+}

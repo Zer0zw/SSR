@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(xWant).safeTransfer(vault, xWantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(native).safeTransfer(callFeeRecipient, callFeeAmount)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(native).safeTransfer(beefyFeeRecipient, beefyFeeAmount)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(native).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(xWant).safeTransfer(vault, xWantBal)"
+            }
+        ]
+    }
+}

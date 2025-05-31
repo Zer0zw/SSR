@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.USD.totalStaked",
+            "users.DUC.totalStaked"
+        ],
+        "User Stake Reward": [
+            "users.USD.unClaimedTokens",
+            "users.DUC.unClaimedTokens"
+        ],
+        "User Stake Time": [
+            "stakesBUSD.startTimeStake"
+        ],
+        "Stake Token Address": [
+            "busd",
+            "duc"
+        ],
+        "Reward Token Address": [
+            "duc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "busd.transferFrom(msg.sender, address(_vault), _amount"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "duc.transferFrom(msg.sender, address(_vault), tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimToken_USD",
+                "Node": "_vault.transferBUSD(msg.sender, tokenAmount)"
+            },
+            {
+                "Function": "claimToken_DUC",
+                "Node": "_vault.transferDUC(msg.sender, tokenAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeToken",
+                "Node": "_vault.transferDUC(msg.sender, tokenAmount)"
+            },
+            {
+                "Function": "removeLiquidity",
+                "Node": "_vault.transferBUSD(msg.sender, tokenAmount)"
+            }
+        ]
+    }
+}

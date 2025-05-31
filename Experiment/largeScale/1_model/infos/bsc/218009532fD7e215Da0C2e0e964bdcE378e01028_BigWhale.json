@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stake"
+        ],
+        "User Stake Reward": [
+            "Stake.notWithdrawn"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stake[_msgSender()].stake += msg.value"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "stake[_msgSender()].stake += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "payable(_msgSender()).transfer(amount - fee)"
+            },
+            {
+                "Function": "withdrawCapital",
+                "Node": "payable(_msgSender()).transfer(amount - fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCapital",
+                "Node": "payable(_msgSender()).transfer(amount - fee)"
+            }
+        ]
+    }
+}

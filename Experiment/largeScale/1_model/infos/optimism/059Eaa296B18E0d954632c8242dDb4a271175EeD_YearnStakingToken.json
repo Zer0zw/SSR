@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "receivedShares"
+        ],
+        "User Stake Reward": [
+            "claimed"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ASSET"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(recipient, receivedShares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "SafeERC20.safeTransfer(REWARD_TOKEN, msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(YEARN_VAULT).safeTransfer(recipient, amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "received = YEARN_VAULT.withdraw(amount, recipient, maxSlippage)"
+            }
+        ]
+    }
+}

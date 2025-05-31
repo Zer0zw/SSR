@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownedStakesBalance"
+        ],
+        "User Stake Reward": [
+            "_getCodesAccruedFor"
+        ],
+        "User Stake Time": [
+            "StakeDetails.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "developer"
+        ],
+        "Reward Token Address": [
+            "code"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMany",
+                "Node": "developer.transferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimCodesAndMaybeUnstake",
+                "Node": "code.mint(_msgSender(), totalClaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawDevelopers",
+                "Node": "developer.transferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

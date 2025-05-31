@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_shares",
+            "_principal"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "CAKE"
+        ],
+        "Reward Token Address": [
+            "_stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "CAKE.safeTransferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "CAKE.safeTransferFrom(msg.sender, address(this), CAKE.balanceOf(msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "CAKE.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "CAKE_MASTER_CHEF.enterStaking(cakeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "CAKE.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "CAKE.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawUnderlying",
+                "Node": "CAKE.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

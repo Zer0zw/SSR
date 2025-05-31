@@ -1,0 +1,167 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [
+            "pendingRewards"
+        ],
+        "User Stake Time": [
+            "deposit_time",
+            "locking_time"
+        ],
+        "Stake Token Address": [
+            "MetalShiba"
+        ],
+        "Reward Token Address": [
+            "MetalShiba"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "farmTokens",
+            "farmTokens_andlock"
+        ],
+        "getReward": [
+            "issueInterestToken"
+        ],
+        "unStake": [
+            "unfarmTokens"
+        ],
+        "Sensitive Functions": [
+            "set_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farmTokens_andlock",
+                "Node": [
+                    105
+                ],
+                "Input": [
+                    "_amount",
+                    "stakeholder",
+                    "start_time"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MetalShiba",
+                    "is_auth",
+                    "is_farmable",
+                    "locked_amount",
+                    "owner"
+                ],
+                "Full Calculation Variables": [
+                    "MetalShiba",
+                    "is_auth",
+                    "is_farmable",
+                    "locked_amount",
+                    "owner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "farmTokens",
+                "Node": [
+                    129
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MetalShiba",
+                    "cooldown_time",
+                    "is_farmable",
+                    "last_tx",
+                    "updatesGas"
+                ],
+                "Full Calculation Variables": [
+                    "MetalShiba",
+                    "cooldown_time",
+                    "is_farmable",
+                    "last_tx",
+                    "updatesGas"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": [
+                    225
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MetalShiba",
+                    "_precision",
+                    "balance",
+                    "deposit_time",
+                    "is_farmable",
+                    "is_farmer",
+                    "lastsync",
+                    "max_sync_interval",
+                    "pendingRewards",
+                    "token_reward",
+                    "total_Rewards",
+                    "total_staked"
+                ],
+                "Full Calculation Variables": [
+                    "MetalShiba",
+                    "_precision",
+                    "balance",
+                    "deposit_time",
+                    "is_farmable",
+                    "is_farmer",
+                    "lastsync",
+                    "max_sync_interval",
+                    "pendingRewards",
+                    "token_reward",
+                    "total_Rewards",
+                    "total_staked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfarmTokens",
+                "Node": [
+                    193
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "balance",
+                    "cooldown_time",
+                    "is_farmer",
+                    "last_tx",
+                    "lastsync",
+                    "locked",
+                    "locked_amount",
+                    "max_sync_interval",
+                    "token_reward",
+                    "unlocked_amount"
+                ],
+                "Full Calculation Variables": [
+                    "balance",
+                    "cooldown_time",
+                    "is_farmer",
+                    "last_tx",
+                    "lastsync",
+                    "locked",
+                    "locked_amount",
+                    "max_sync_interval",
+                    "token_reward",
+                    "unlocked_amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

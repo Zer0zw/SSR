@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.currentStaked"
+        ],
+        "User Stake Reward": [
+            "users.rewardSettled",
+            "users.rewardReleased",
+            "users.rewardWithdrawn"
+        ],
+        "User Stake Time": [
+            "users.lastWithdrawTime"
+        ],
+        "Stake Token Address": [
+            "pools.stakeTokenAddr"
+        ],
+        "Reward Token Address": [
+            "pools.rewardTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(pools[0].stakeToken.transfer(msg.sender, users[msg.sender].currentStaked), \"stake token transfer out failed!!\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "require(pools[0].rewardToken.transfer(msg.sender, released), \"reward token transfer failed!!\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "stake",
+                "Node": "require(pools[0].stakeToken.transfer(msg.sender, users[msg.sender].currentStaked), \"stake token transfer out failed!!\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "require(pools[0].rewardToken.transfer(msg.sender, released), \"reward token transfer failed!!\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ],
+        "Reward Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBanana",
+                "Node": "IBananaPool(BANANA_POOL).depositTo(0, bananaToStake, address(this))"
+            },
+            {
+                "Function": "stakeGanana",
+                "Node": "IGnanaPool(GNANA_POOL).deposit(IBEP20(GNANA_TOKEN).balanceOf(address(this)))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestBanana",
+                "Node": "IBananaPool(BANANA_POOL).deposit(0, 0)"
+            },
+            {
+                "Function": "harvestGnana",
+                "Node": "IGnanaPool(GNANA_POOL).withdraw(0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBanana",
+                "Node": "IBananaPool(BANANA_POOL).withdraw(0, amount)"
+            },
+            {
+                "Function": "withdrawGnana",
+                "Node": "IGnanaPool(GNANA_POOL).withdraw(_amount)"
+            }
+        ]
+    }
+}

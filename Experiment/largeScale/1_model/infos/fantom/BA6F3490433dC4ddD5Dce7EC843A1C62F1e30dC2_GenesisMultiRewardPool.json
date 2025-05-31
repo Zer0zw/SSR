@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositTime",
+            "PoolInfo.lockedTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.token"
+        ],
+        "Reward Token Address": [
+            "darko",
+            "dboo",
+            "duah"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimReward",
+                "Node": "_safeTokenTransfer(darko, _account, _darkoAmt)"
+            },
+            {
+                "Function": "_claimReward",
+                "Node": "_safeTokenTransfer(dboo, _account, _dbooAmt)"
+            },
+            {
+                "Function": "_claimReward",
+                "Node": "_safeTokenTransfer(duah, _account, _duahAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "pool.token.safeTransfer(_account, _amount)"
+            }
+        ]
+    }
+}

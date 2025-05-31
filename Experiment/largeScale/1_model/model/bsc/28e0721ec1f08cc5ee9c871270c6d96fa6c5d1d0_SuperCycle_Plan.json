@@ -1,0 +1,158 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfos.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "userInfos.rewardEarned",
+            "userInfos.rewardsEarned"
+        ],
+        "User Stake Time": [
+            "stakeInfos.lockEndTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "registerNStake",
+            "stakeNext"
+        ],
+        "getReward": [
+            "withdrawReward"
+        ],
+        "unStake": [
+            "withdrawReturn"
+        ],
+        "Sensitive Functions": [
+            "changeTokenaddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerNStake",
+                "Node": [
+                    251
+                ],
+                "Input": [
+                    "_amount",
+                    "_referrerID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "tokenAddress",
+                    "userInfos.id",
+                    "userInfos.joined",
+                    "userInfos.referral",
+                    "userInfos.referralCount",
+                    "userInfos.referrerID",
+                    "userInfos.rewardEarned",
+                    "userInfos.rewardsEarned"
+                ],
+                "Full Calculation Variables": [
+                    "tokenAddress",
+                    "userInfos.id",
+                    "userInfos.joined",
+                    "userInfos.referral",
+                    "userInfos.referralCount",
+                    "userInfos.referrerID",
+                    "userInfos.rewardEarned",
+                    "userInfos.rewardsEarned"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeNext",
+                "Node": [
+                    324
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "tokenAddress",
+                    "userInfos.joined",
+                    "userInfos.referrerID"
+                ],
+                "Full Calculation Variables": [
+                    "tokenAddress",
+                    "userInfos.joined",
+                    "userInfos.referrerID"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": [
+                    443
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "userInfos.id",
+                    "userInfos.referral",
+                    "userInfos.referralCount",
+                    "userInfos.rewardEarned"
+                ],
+                "Control Variables": [
+                    "tokenAddress",
+                    "userInfos.id",
+                    "userInfos.referral",
+                    "userInfos.referralCount",
+                    "userInfos.rewardEarned"
+                ],
+                "Full Calculation Variables": [
+                    "tokenAddress",
+                    "userInfos.id",
+                    "userInfos.referral",
+                    "userInfos.referralCount",
+                    "userInfos.rewardEarned"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawReturn",
+                "Node": [
+                    411
+                ],
+                "Input": [
+                    "stakeIndex"
+                ],
+                "Calculation Variables": [
+                    "stakeInfos.lockEndTime",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalRoiWithdrawn",
+                    "stakeInfos.unStaked"
+                ],
+                "Control Variables": [
+                    "stakeInfos.lockEndTime",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalRoiWithdrawn",
+                    "stakeInfos.unStaked",
+                    "tokenAddress",
+                    "totalUserWithdrawal",
+                    "totalWithdrawl"
+                ],
+                "Full Calculation Variables": [
+                    "stakeInfos.lockEndTime",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalRoiWithdrawn",
+                    "stakeInfos.unStaked",
+                    "tokenAddress",
+                    "totalUserWithdrawal",
+                    "totalWithdrawl"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

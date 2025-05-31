@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake._amount"
+        ],
+        "User Stake Reward": [
+            "ReceivedRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeAvax",
+                "Node": "Stakes[stakesCount]._staker = msg.sender"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakeRewards",
+                "Node": "payable(msg.sender).transfer( _rewardshare )"
+            },
+            {
+                "Function": "claimStakeRewardsForStaker",
+                "Node": "payable(_staker).transfer(_rewardshare)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "StakerEmergencyWithdrawal",
+                "Node": "payable( Stakes[_stakenumber]._staker).transfer(  _lesstooutstanding )"
+            },
+            {
+                "Function": "protocolCashout",
+                "Node": "payable(msg.sender).transfer(  _cashoutAmount )"
+            }
+        ]
+    }
+}

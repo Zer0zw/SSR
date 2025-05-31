@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Participant.sum"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Participant.timeUnlock"
+        ],
+        "Stake Token Address": [
+            "Participant.token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(tokens[pairName]).transferFrom(msg.sender, address(this), _sum"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "claimFund",
+                "Node": "IERC20(timeTokenLock[msg.sender][_txID].token).transfer(msg.sender, timeTokenLock[msg.sender][_txID].sum"
+            }
+        ]
+    }
+}

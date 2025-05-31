@@ -1,0 +1,64 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user.totalOriginalTokenStaked",
+            "user.totalActualCakeStaked"
+        ],
+        "User Stake Reward": [
+            "calculateUserOriginalTokenEarnings",
+            "calculateUserCakeEarnings"
+        ],
+        "User Stake Time": [
+            "user.lastOriginalTokenClaimTime",
+            "user.lastCakeClaimTime"
+        ],
+        "Stake Token Address": [
+            "originalToken",
+            "cakeLpToken"
+        ],
+        "Reward Token Address": [
+            "originalToken",
+            "cakeLpToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositOriginalToken",
+                "Node": "originalToken.transferFrom(msg.sender,address(this),cA)"
+            },
+            {
+                "Function": "depositOriginalToken",
+                "Node": "originalToken.transferFrom(msg.sender,vice,mA)"
+            },
+            {
+                "Function": "depositCake",
+                "Node": "cakeLpToken.transferFrom(msg.sender,address(this),_amount)"
+            },
+            {
+                "Function": "depositCake",
+                "Node": "originalToken.transferFrom(address(this),vice,mA)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimOriginalTokenEarnings",
+                "Node": "originalToken.transferFrom(address(this),msg.sender,currentPercentageReturns)"
+            },
+            {
+                "Function": "claimCakeTokenEarnings",
+                "Node": "originalToken.transferFrom(address(this),msg.sender,currentPercentageReturns)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawOriginalToken",
+                "Node": "originalToken.transferFrom(address(this),msg.sender,_amount)"
+            },
+            {
+                "Function": "withdrawCake",
+                "Node": "cakeLpToken.transferFrom(address(this),msg.sender,_amount)"
+            }
+        ]
+    }
+}

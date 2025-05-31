@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_wantAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_wantAddress"
+        ],
+        "Reward Token Address": [
+            "_earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IGravity(masterChef).deposit(_wantAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IGravity(masterChef).deposit(0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IGravity(masterChef).withdraw(_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IGravity(masterChef).emergencyWithdraw()"
+            }
+        ]
+    }
+}

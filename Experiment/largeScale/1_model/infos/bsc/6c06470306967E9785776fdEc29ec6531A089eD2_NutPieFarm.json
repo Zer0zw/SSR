@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "harvestTime",
+            "startBlockHarvest"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "nut"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount"
+            },
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeIncreaseAllowance(pool.strat, _amount.sub(depositFee))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IStrategy(pool.strat).deposit(_amount.sub(depositFee))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "payOrLockupPendingNut",
+                "Node": "safeNutTransfer(msg.sender, totalRewards)"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "nut.mint(referrer, refBonusEarned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount"
+            }
+        ]
+    }
+}

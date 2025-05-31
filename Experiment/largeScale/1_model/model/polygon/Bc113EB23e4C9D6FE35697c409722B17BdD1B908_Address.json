@@ -1,0 +1,214 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userInfo.unstakeRequestTimestamp"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sera"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "pendingSera"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "unstakeClaim",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "migrate"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1198
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "poolInfo.accSeraPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "seraPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.isWhitelist",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "poolInfo.accSeraPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "seraPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.isWhitelist",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingSera",
+                "Node": [
+                    1152
+                ],
+                "Input": [
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "poolInfo.accSeraPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "seraPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "poolInfo.accSeraPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "seraPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1226
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "poolInfo.accSeraPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "seraPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.isWhitelist",
+                    "userInfo.rewardDebt",
+                    "userInfo.unstakeRequestAmount",
+                    "userInfo.unstakeRequestTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "poolInfo.accSeraPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "seraPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.isWhitelist",
+                    "userInfo.rewardDebt",
+                    "userInfo.unstakeRequestAmount",
+                    "userInfo.unstakeRequestTimestamp"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "unstakeClaim",
+                "Node": [
+                    1250
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.unstakeRequestAmount",
+                    "userInfo.unstakeRequestTimestamp"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.unstakeRequestAmount",
+                    "userInfo.unstakeRequestTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.unstakeRequestAmount",
+                    "userInfo.unstakeRequestTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1261
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.isWhitelist",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "userInfo.amount",
+                    "userInfo.isWhitelist",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "poolInfo.totalAmount",
+                    "userInfo.amount",
+                    "userInfo.isWhitelist",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

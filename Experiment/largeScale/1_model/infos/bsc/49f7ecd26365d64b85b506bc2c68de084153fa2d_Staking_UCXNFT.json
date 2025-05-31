@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balancesBUSD"
+        ],
+        "User Stake Reward": [
+            "rewardsBUSD"
+        ],
+        "User Stake Time": [
+            "stakingTimeBUSD"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake30Days",
+                "Node": "BUSD.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake365Days",
+                "Node": "BUSD.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "BUSD.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "No explicit transfer statement found for unstaking, balance is updated but tokens are not transferred back to the user in the provided code"
+            }
+        ]
+    }
+}

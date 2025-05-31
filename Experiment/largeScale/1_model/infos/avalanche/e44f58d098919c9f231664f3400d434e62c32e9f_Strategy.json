@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lpStaker.userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deployFunds",
+                "Node": "stargateRouter.addLiquidity(poolID, _amount, address(this))"
+            },
+            {
+                "Function": "_stakeLP",
+                "Node": "lpStaker.deposit(stakingID, _amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimAndSellRewards",
+                "Node": "openflowSdk.swap()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_freeFunds",
+                "Node": "lpStaker.withdraw(stakingID, _lpAmount)"
+            },
+            {
+                "Function": "_freeFunds",
+                "Node": "stargateRouter.instantRedeemLocal(uint16(poolID), _lpAmount, address(this))"
+            }
+        ]
+    }
+}

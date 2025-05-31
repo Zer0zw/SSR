@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "jefes.mount"
+        ],
+        "User Stake Reward": [
+            "copper_tokensPerBlock",
+            "SILVER_tokensPerBlock",
+            "GOLD_tokensPerBlock",
+            "DIAMOND_tokensPerBlock"
+        ],
+        "User Stake Time": [
+            "stake.stakedFromBlock"
+        ],
+        "Stake Token Address": [
+            "nftToken"
+        ],
+        "Reward Token Address": [
+            "erc20Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "_stakeNFT",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_payoutStake(tokenId)"
+            },
+            {
+                "Function": "_payoutStake",
+                "Node": "erc20Token.transfer(receipt[tokenId].owner, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeNFT",
+                "Node": "nftToken.safeTransferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "_unStakeNFT",
+                "Node": "nftToken.safeTransferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

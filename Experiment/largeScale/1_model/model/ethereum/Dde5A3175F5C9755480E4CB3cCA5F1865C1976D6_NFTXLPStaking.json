@@ -1,0 +1,121 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "vaultStakingInfo.stakingToken"
+        ],
+        "Reward Token Address": [
+            "vaultStakingInfo.rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimRewards",
+            "emergencyClaimAndMigrate"
+        ],
+        "unStake": [
+            "emergencyExit",
+            "emergencyExitAndClaim",
+            "exit",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    3511
+                ],
+                "Input": [
+                    "amount",
+                    "vaultId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "defaultPairedToken",
+                    "pairedToken",
+                    "stakingTokenProvider",
+                    "uniLikeExchange",
+                    "vaultStakingInfo",
+                    "vaultStakingInfo.rewardToken",
+                    "vaultStakingInfo.stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "defaultPairedToken",
+                    "pairedToken",
+                    "stakingTokenProvider",
+                    "uniLikeExchange",
+                    "vaultStakingInfo",
+                    "vaultStakingInfo.rewardToken",
+                    "vaultStakingInfo.stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    3517
+                ],
+                "Input": [
+                    "vaultId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "vaultStakingInfo"
+                ],
+                "Full Calculation Variables": [
+                    "vaultStakingInfo"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyClaimAndMigrate",
+                "Node": [
+                    3435
+                ],
+                "Input": [
+                    "vaultId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "rewardDistTokenImpl",
+                    "vaultStakingInfo"
+                ],
+                "Full Calculation Variables": [
+                    "rewardDistTokenImpl",
+                    "vaultStakingInfo"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    3523
+                ],
+                "Input": [
+                    "amount",
+                    "vaultId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "vaultStakingInfo"
+                ],
+                "Full Calculation Variables": [
+                    "vaultStakingInfo"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

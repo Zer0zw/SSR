@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "AmountLock",
+            "amount"
+        ],
+        "User Stake Reward": [
+            "AmountLock",
+            "amount"
+        ],
+        "User Stake Time": [
+            "AmountLock",
+            "unlockTime"
+        ],
+        "Stake Token Address": [
+            "CCSX"
+        ],
+        "Reward Token Address": [
+            "CCOIN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "IERC20(CCSX).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStake",
+                "Node": "IERC20(CCOIN).transfer(address(msg.sender), _amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

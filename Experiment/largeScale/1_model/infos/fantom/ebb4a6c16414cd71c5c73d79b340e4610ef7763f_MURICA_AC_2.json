@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "freedom_usdc_lp_staker.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "freedom_usdc_lp"
+        ],
+        "Reward Token Address": [
+            "freedom"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(freedom_usdc_lp).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(freedom).transfer(msg.sender,incentive)"
+            },
+            {
+                "Function": "swap_and_compound_and_stake",
+                "Node": "IERC20(freedom_usdc_lp).transfer(msg.sender,IERC20(freedom_usdc_lp).balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(freedom_usdc_lp).transfer(owner, amount_to_give.div(2000))"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IERC20(freedom_usdc_lp).transfer(msg.sender, 1999*amount_to_give.div(2000))"
+            },
+            {
+                "Function": "emergency_unstake",
+                "Node": "IERC20(freedom_usdc_lp).transfer(msg.sender, to_give)"
+            }
+        ]
+    }
+}

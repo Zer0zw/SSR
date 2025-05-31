@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposits.amount"
+        ],
+        "User Stake Reward": [
+            "User.seedincome",
+            "User.totalBonus",
+            "User.roiincome"
+        ],
+        "User Stake Time": [
+            "User.deposits.start",
+            "Plan.time"
+        ],
+        "Stake Token Address": [
+            "nextbtc_TOKEN"
+        ],
+        "Reward Token Address": [
+            "nextbtc_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "next_TOKEN.transferFrom(address(msg.sender),address(this), _amount)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "next_TOKEN.transferFrom(address(msg.sender),address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "next_TOKEN.transfer(msg.sender,totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

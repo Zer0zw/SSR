@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.amount"
+        ],
+        "User Stake Reward": [
+            "Staking.profitPending",
+            "Staking.claimed"
+        ],
+        "User Stake Time": [
+            "Staking.updateAt"
+        ],
+        "Stake Token Address": [
+            "bookToken"
+        ],
+        "Reward Token Address": [
+            "bookToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bookToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakingRewards",
+                "Node": "bookToken.safeTransfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "bookToken.safeTransfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "bookToken.safeTransfer(msg.sender, stakings[msg.sender].amount)"
+            }
+        ]
+    }
+}

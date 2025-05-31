@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "vaultTotalExtraRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "asset"
+        ],
+        "Reward Token Address": [
+            "gmxBaseReward",
+            "pxGmx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFsGlp",
+                "Node": "stakedGlp.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositGlp",
+                "Node": "erc20Token.safeTransferFrom(msg.sender, address(this), tokenAmount)"
+            },
+            {
+                "Function": "depositGlpETH",
+                "Node": "No explicit transfer statement for ETH as it uses msg.value"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "asset.safeTransfer(msg.sender, pxGlpIncentive)"
+            },
+            {
+                "Function": "compound",
+                "Node": "pxGmx.safeTransfer(msg.sender, pxGmxIncentive)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "previewRedeem",
+                "Node": "No explicit transfer statement, calculates redeemable amount"
+            },
+            {
+                "Function": "maxWithdraw",
+                "Node": "No explicit transfer statement, calculates maximum withdrawable assets"
+            }
+        ]
+    }
+}

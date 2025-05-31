@@ -1,0 +1,257 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "unlockedVestingAmounts",
+            "claimedAmounts"
+        ],
+        "User Stake Time": [
+            "userInfo.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "claimableToken",
+            "esToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositVesting"
+        ],
+        "getReward": [
+            "harvestMany",
+            "withdrawVesting"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    817
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewarders",
+                    "poolInfo.totalLp",
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewarders",
+                    "poolInfo.totalLp",
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositVesting",
+                "Node": [
+                    843
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "esToken"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "esToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestMany",
+                "Node": [
+                    826
+                ],
+                "Input": [
+                    "_pids"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewarders",
+                    "poolInfo.totalLp",
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewarders",
+                    "poolInfo.totalLp",
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawVesting",
+                "Node": [
+                    798
+                ],
+                "Input": [
+                    "_receiver",
+                    "_account"
+                ],
+                "Calculation Variables": [
+                    "unlockedVestingAmounts",
+                    "claimedAmounts",
+                    "vestingDuration",
+                    "lastVestingUpdateTimes",
+                    "lockedVestingAmounts"
+                ],
+                "Control Variables": [
+                    "unlockedVestingAmounts",
+                    "SIG_TRANSFER",
+                    "lastVestingUpdateTimes",
+                    "_ENTERED",
+                    "esToken",
+                    "lockedVestingAmounts",
+                    "claimableToken",
+                    "claimedAmounts",
+                    "_status",
+                    "_NOT_ENTERED",
+                    "vestingDuration",
+                    "totalLockedVestingAmount",
+                    "ZERO_ADDRESS"
+                ],
+                "Full Calculation Variables": [
+                    "unlockedVestingAmounts",
+                    "SIG_TRANSFER",
+                    "lastVestingUpdateTimes",
+                    "_ENTERED",
+                    "esToken",
+                    "lockedVestingAmounts",
+                    "claimableToken",
+                    "claimedAmounts",
+                    "_status",
+                    "_NOT_ENTERED",
+                    "vestingDuration",
+                    "totalLockedVestingAmount",
+                    "ZERO_ADDRESS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    700
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "cooldownDuration",
+                    "poolInfo.enableCooldown",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalLp",
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "cooldownDuration",
+                    "poolInfo.enableCooldown",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalLp",
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    762
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "cooldownDuration",
+                    "poolInfo",
+                    "poolInfo.enableCooldown",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewarders",
+                    "poolInfo.totalLp",
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "cooldownDuration",
+                    "poolInfo",
+                    "poolInfo.enableCooldown",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewarders",
+                    "poolInfo.totalLp",
+                    "userInfo.amount",
+                    "userInfo.startTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

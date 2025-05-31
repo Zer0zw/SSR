@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDetails.TokensDeposited"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userDetails.trxTime"
+        ],
+        "Stake Token Address": [
+            "currentToken"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "IERC20(currentToken).transferFrom(msg.sender, address(this), currentPriceAll)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "userWithdrawProfit",
+                "Node": "IERC20(currentToken).transfer(msg.sender, withdrawableAmount)"
+            },
+            {
+                "Function": "autoWithdraw",
+                "Node": "IERC20(currentToken).transfer(user, withdrawableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(currentToken).transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "transferUsersBalanceToOwner",
+                "Node": "IERC20(currentToken).transfer(InActiveUser, userBalance)"
+            }
+        ]
+    }
+}

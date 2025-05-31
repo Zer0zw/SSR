@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_shares",
+            "_principal"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [
+            "_depositedAt"
+        ],
+        "Stake Token Address": [
+            "BUNNY"
+        ],
+        "Reward Token Address": [
+            "BUNNY"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_stakingToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "_stakingToken.safeTransferFrom(msg.sender, address(this), _stakingToken.balanceOf(msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IBunnyPool(BUNNY_POOL).deposit(harvested)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "_stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawUnderlying",
+                "Node": "_stakingToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

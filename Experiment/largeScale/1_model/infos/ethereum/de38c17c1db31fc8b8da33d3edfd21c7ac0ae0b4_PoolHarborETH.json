@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userData.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "userData.earnedAmount"
+        ],
+        "User Stake Time": [
+            "userData.stakeTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakeAmount = distributeETHCommission(_msgSender(),msg.value,refShare)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "payable(userStore.user).sendValue(reward)"
+            },
+            {
+                "Function": "multiClaim",
+                "Node": "payable(userStore.user).sendValue(reward)"
+            },
+            {
+                "Function": "booster",
+                "Node": "payable(userStore.user).sendValue(reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "payable(userStore.user).sendValue(reward.add(userStore.stakeAmount))"
+            },
+            {
+                "Function": "multiWithdraw",
+                "Node": "payable(userStore.user).sendValue(reward.add(userStore.stakeAmount))"
+            }
+        ]
+    }
+}

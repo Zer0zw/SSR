@@ -1,0 +1,160 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_users.liquidity"
+        ],
+        "User Stake Reward": [
+            "_users.wethBonus",
+            "_users.tokenBonus"
+        ],
+        "User Stake Time": [
+            "_users.start",
+            "_users.release"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "weth",
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addLiquidity",
+            "relockLiquidity"
+        ],
+        "getReward": [
+            "withdrawUserBonus"
+        ],
+        "unStake": [
+            "withdrawLiquidity",
+            "withdrawUserLP"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addLiquidity",
+                "Node": [
+                    813
+                ],
+                "Input": [
+                    "_id",
+                    "_multiplier",
+                    "_term"
+                ],
+                "Calculation Variables": [
+                    "iUniswapV2Factory",
+                    "token",
+                    "weth"
+                ],
+                "Control Variables": [
+                    "_users.liquidity",
+                    "_users.migrated",
+                    "_users.period",
+                    "_users.release",
+                    "_users.start",
+                    "cap",
+                    "iUniswapV2Factory",
+                    "migratedToLQDY",
+                    "token",
+                    "uToken2",
+                    "weth"
+                ],
+                "Full Calculation Variables": [
+                    "_users.liquidity",
+                    "_users.migrated",
+                    "_users.period",
+                    "_users.release",
+                    "_users.start",
+                    "cap",
+                    "iUniswapV2Factory",
+                    "migratedToLQDY",
+                    "token",
+                    "uToken2",
+                    "weth"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawUserBonus",
+                "Node": [
+                    1189
+                ],
+                "Input": [
+                    "_user",
+                    "releasedAmount",
+                    "_user",
+                    "_id",
+                    "_id",
+                    "releasedAmount",
+                    "_id"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_users.wethBonus",
+                    "_users.start",
+                    "_users.tokenBonus",
+                    "migratedToLQDY",
+                    "_pendingBonusesWeth",
+                    "_users.wethWithdrawn",
+                    "_users.tokenWithdrawn",
+                    "_users.release",
+                    "_pendingBonusesToken",
+                    "uToken2",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_users.wethBonus",
+                    "_users.start",
+                    "_users.tokenBonus",
+                    "migratedToLQDY",
+                    "_pendingBonusesWeth",
+                    "_users.wethWithdrawn",
+                    "_users.tokenWithdrawn",
+                    "_users.release",
+                    "_pendingBonusesToken",
+                    "uToken2",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawUserLP",
+                "Node": [
+                    1108
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "_users.liquidity",
+                    "_users.migrated",
+                    "_users.period",
+                    "_users.release"
+                ],
+                "Control Variables": [
+                    "_providers",
+                    "_users.liquidity",
+                    "_users.migrated",
+                    "_users.period",
+                    "_users.release",
+                    "lpToken"
+                ],
+                "Full Calculation Variables": [
+                    "_providers",
+                    "_users.liquidity",
+                    "_users.migrated",
+                    "_users.period",
+                    "_users.release",
+                    "lpToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

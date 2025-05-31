@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IStakingRewards(singleStaking).stake(balanceOfWant())"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IStakingRewards(singleStaking).stake(balanceOfWant())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IStakingRewards(singleStaking).getReward()"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IStakingRewards(singleStaking).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IStakingRewards(singleStaking).withdraw(amount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IStakingRewards(singleStaking).withdraw(balanceOfPool())"
+            },
+            {
+                "Function": "panic",
+                "Node": "IStakingRewards(singleStaking).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "nyc"
+        ],
+        "Reward Token Address": [
+            "nyc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeNCYTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeNCYTransfer(project1, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeNCYTransfer(referrer, referrerFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

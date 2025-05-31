@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeDetails.stakedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakeDetails.endTime"
+        ],
+        "Stake Token Address": [
+            "usdc"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "usdc.safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "usdc.safeTransfer(account, totalAmount)"
+            },
+            {
+                "Function": "withdrawWithoutEarn",
+                "Node": "usdc.safeTransfer(account, totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "usdc.safeTransfer( msg.sender, idToStake[_tokenId].stakedAmount[msg.sender]"
+            }
+        ]
+    }
+}

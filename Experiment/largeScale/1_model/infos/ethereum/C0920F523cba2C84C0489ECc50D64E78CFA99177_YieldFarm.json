@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.lptAmount"
+        ],
+        "User Stake Reward": [
+            "User.pendedTwa",
+            "User.twaAdjust"
+        ],
+        "User Stake Time": [
+            "User.lastUpdateBlock",
+            "User.vestingBlock"
+        ],
+        "Stake Token Address": [
+            "Pool.lpToken"
+        ],
+        "Reward Token Address": [
+            "twa"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_vestUserTwa",
+                "Node": "_transferTwa(msg.sender, newlyVested)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, user.lptAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "stakers.yield"
+        ],
+        "User Stake Time": [
+            "stakers.last_yield_time"
+        ],
+        "Stake Token Address": [
+            "WBNB"
+        ],
+        "Reward Token Address": [
+            "BTCB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "DepositBNB",
+                "Node": "SwapBNBToBTC(bnb)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CollectYields",
+                "Node": "bool s = IERC20(BTCB).transfer(user, y)"
+            },
+            {
+                "Function": "FarmMyYield",
+                "Node": "CollectYields()"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,187 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "vai"
+        ],
+        "Reward Token Address": [
+            "xvs"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claim",
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "claim",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "setBidaoInfo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    700
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_notEntered",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "vai"
+                ],
+                "Full Calculation Variables": [
+                    "_notEntered",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "vai"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    763
+                ],
+                "Input": [
+                    "account"
+                ],
+                "Calculation Variables": [
+                    "accXBIDPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "accXBIDPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "accXBIDPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claim",
+                "Node": [
+                    763
+                ],
+                "Input": [
+                    "account"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "accXBIDPerShare",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "userInfo.amount",
+                    "accXBIDPerShare",
+                    "userInfo.rewardDebt",
+                    "_notEntered"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.amount",
+                    "accXBIDPerShare",
+                    "userInfo.rewardDebt",
+                    "_notEntered"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    763
+                ],
+                "Input": [
+                    "account"
+                ],
+                "Calculation Variables": [
+                    "accXBIDPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "accXBIDPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "accXBIDPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": [
+                    737
+                ],
+                "Input": [
+                    "_amount",
+                    "account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "vai"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "vai"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    737
+                ],
+                "Input": [
+                    "_amount",
+                    "account",
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "vai",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "_notEntered"
+                ],
+                "Full Calculation Variables": [
+                    "vai",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "_notEntered"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

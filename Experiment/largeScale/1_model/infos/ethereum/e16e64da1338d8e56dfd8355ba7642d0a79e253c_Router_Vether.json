@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "iERC20(getPool(token)).balanceOf(msg.sender)"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "Pool_Vether(pool)._mint(_member, _units)"
+            },
+            {
+                "Function": "stakeForMember",
+                "Node": "Pool_Vether(pool)._mint(_member, _units)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_handleTransferOut(token, _outputToken, pool, member)"
+            },
+            {
+                "Function": "unstakeExact",
+                "Node": "_handleTransferOut(token, _outputToken, pool, member)"
+            },
+            {
+                "Function": "unstakeAsymmetric",
+                "Node": "_handleTransferOut(token, _outputToken, pool, msg.sender)"
+            },
+            {
+                "Function": "unstakeExactAsymmetric",
+                "Node": "_handleTransferOut(token, _outputToken, pool, msg.sender)"
+            }
+        ]
+    }
+}

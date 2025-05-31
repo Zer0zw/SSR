@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.tokenIds",
+            "NFTInfo.amount"
+        ],
+        "User Stake Reward": [
+            "NFTInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "PoolInfo.startBlock",
+            "PoolInfo.endBlock"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.nftAddress"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.nftAddress.safeTransferFrom(_msgSender(), address(this), _tokenId)"
+            },
+            {
+                "Function": "depositMultiple",
+                "Node": "pool.nftAddress.safeTransferFrom(_msgSender(), address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeTransferTokenFromThis(token, nft.owner, pending)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "safeTransferTokenFromThis(token, nft.owner, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.nftAddress.safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "withdrawMultiple",
+                "Node": "pool.nftAddress.safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStake",
+            "Income.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "User.totalHarvest",
+            "Income.totalHarvest"
+        ],
+        "User Stake Time": [
+            "Income.blockNumber",
+            "Income.lastTimeWithdraw"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "JSB.transfer(incomes[_timeStake].staker, profit)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "JSB.transfer(incomes[_timeStake].staker, incomes[_timeStake].stakeAmount)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "JSB.transfer(incomes[_timeStake].staker, profit)"
+            }
+        ]
+    }
+}

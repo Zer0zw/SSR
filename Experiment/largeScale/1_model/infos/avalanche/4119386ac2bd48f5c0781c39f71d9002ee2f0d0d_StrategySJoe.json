@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "rewardBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IStableJoeStaking(staking).deposit(wantBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "TransferHelper.safeTransfer(want, vault, withdrawAmount.sub(fee))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(want, vault, withdrawAmount.sub(fee)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "TransferHelper.safeTransfer(want, vault, wantBalance)"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "TransferHelper.safeTransfer(want, vault, wantBalance)"
+            }
+        ]
+    }
+}

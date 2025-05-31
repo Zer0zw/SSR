@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "DepositInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.lpRewardsDebt"
+        ],
+        "User Stake Time": [
+            "DepositInfo.depositTime",
+            "DepositInfo.unlockTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "CORSACv2ERC20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeInPool",
+                "Node": "pool.lpToken.safeTransferFrom(msg.sender, address(this), amount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimPending",
+                "Node": "CORSACv2ERC20.safeTransfer(msg.sender, pendingAmount)"
+            },
+            {
+                "Function": "_claimPending",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, pendingAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawUnlockedDeposit",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), deposit.amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount"
+            },
+            {
+                "Function": "unstakeWithPenalty",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender),deposit.amount.sub(penaltyAmount))"
+            }
+        ]
+    }
+}

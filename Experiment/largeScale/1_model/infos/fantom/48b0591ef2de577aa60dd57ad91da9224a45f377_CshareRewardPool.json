@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userLastDepositTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "cshare"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_lpToken.safeTransferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestReward",
+                "Node": "_safeSkyGTransfer(_account, _pending.add(_boost))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_safeSkyGTransfer(_account, _half_boosted_pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(_account, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

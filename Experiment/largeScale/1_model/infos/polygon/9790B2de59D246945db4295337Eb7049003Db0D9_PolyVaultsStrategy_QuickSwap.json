@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal",
+            "sharesTotal"
+        ],
+        "User Stake Reward": [
+            "pendingHarvest"
+        ],
+        "User Stake Time": [
+            "lastEarnTime"
+        ],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(wantAddress).safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            },
+            {
+                "Function": "_farm",
+                "Node": "IStakingRewards(farmContractAddress).stake(wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IStakingRewards(farmContractAddress).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IStakingRewards(farmContractAddress).withdraw(_wantAmt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(wantAddress).safeTransfer(address(msg.sender), _wantAmt)"
+            }
+        ]
+    }
+}

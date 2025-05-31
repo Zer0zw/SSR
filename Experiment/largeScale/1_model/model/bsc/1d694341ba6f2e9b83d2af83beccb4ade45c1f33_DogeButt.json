@@ -1,0 +1,161 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "toBePaidMain",
+            "toBePaidMisc"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MainReward",
+            "MiscReward"
+        ],
+        "Reward Token Address": [
+            "MainReward",
+            "MiscReward"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "BurnTokens",
+            "constructor",
+            "transfer",
+            "transferFrom"
+        ],
+        "getReward": [
+            "ClaimMainReward",
+            "ClaimMiscReward",
+            "CreateLPandBNB",
+            "transfer",
+            "transferFrom"
+        ],
+        "unStake": [
+            "BurnTokens",
+            "transfer",
+            "transferFrom"
+        ],
+        "Sensitive Functions": [
+            "ChangeMainReward",
+            "ChangeMiscReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "ClaimMainReward",
+                "Node": [
+                    559
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MainReward"
+                ],
+                "Full Calculation Variables": [
+                    "MainReward"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "ClaimMiscReward",
+                "Node": [
+                    565
+                ],
+                "Input": [
+                    "to",
+                    "amountWei",
+                    "from"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "StakeMulti",
+                    "Staker",
+                    "_pancakeRouter",
+                    "MiscReward",
+                    "_isWithdrawing"
+                ],
+                "Full Calculation Variables": [
+                    "StakeMulti",
+                    "Staker",
+                    "_pancakeRouter",
+                    "MiscReward",
+                    "_isWithdrawing"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "CreateLPandBNB",
+                "Node": [
+                    578
+                ],
+                "Input": [
+                    "amountWei",
+                    "from",
+                    "to"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "StakeMulti",
+                    "Staker",
+                    "_isWithdrawing"
+                ],
+                "Full Calculation Variables": [
+                    "StakeMulti",
+                    "Staker",
+                    "_isWithdrawing"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "transferFrom",
+                "Node": [
+                    578
+                ],
+                "Input": [
+                    "amountWei",
+                    "from",
+                    "to"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "StakeMulti",
+                    "Staker",
+                    "_isWithdrawing"
+                ],
+                "Full Calculation Variables": [
+                    "StakeMulti",
+                    "Staker",
+                    "_isWithdrawing"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "transfer",
+                "Node": [
+                    578
+                ],
+                "Input": [
+                    "amountWei",
+                    "from",
+                    "to"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "StakeMulti",
+                    "Staker",
+                    "_isWithdrawing"
+                ],
+                "Full Calculation Variables": [
+                    "StakeMulti",
+                    "Staker",
+                    "_isWithdrawing"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

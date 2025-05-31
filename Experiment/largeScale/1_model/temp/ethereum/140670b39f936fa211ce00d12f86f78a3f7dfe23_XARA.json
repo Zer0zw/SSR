@@ -1,0 +1,78 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerBag"
+        ],
+        "User Stake Reward": [
+            "X_RewardsPerMonth",
+            "L_RewardsPerMonth",
+            "C_RewardsPerMonth",
+            "B_RewardsPerMonth",
+            "Z_RewardsPerMonth"
+        ],
+        "User Stake Time": [
+            "stakedTimestamp",
+            "stakedOGtime"
+        ],
+        "Stake Token Address": [
+            "stakedContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeXARA",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeCity",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeLand",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeVR",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "multiStakeXARA",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "multiStakeCity",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "multiStakeLand",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "multiStakeVR",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "multiStakeAll",
+                "Node": "ERC721(contractAddress).proxyTransfer(_msgSender(), address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_mint(_msgSender(), rewardDue)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "ERC721(stakedContract[index]).proxyTransfer(address(this), _msgSender(), stakedTokenId[index])"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "ERC721(stakedContract[index]).proxyTransfer(address(this), _msgSender(), stakedTokenId[index])"
+            }
+        ]
+    }
+}

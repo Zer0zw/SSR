@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "ClaimInfo.claimed"
+        ],
+        "User Stake Time": [
+            "StakeInfo.Startime",
+            "StakeInfo.lastclaimed"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "Ntoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stacking",
+                "Node": "bool success = USDT.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "USDT.transfer(msg.sender, _claim)"
+            },
+            {
+                "Function": "dailyRewardNative",
+                "Node": "Ntoken.transfer(msg.sender, dailyReward)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,256 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount_native_staked.amount_staked",
+            "amount_native_usdc_staked.amount_staked",
+            "amount_native_ftm_staked.amount_staked"
+        ],
+        "User Stake Reward": [
+            "vest_to_native_stakers",
+            "vest_to_native_ftm_stakers",
+            "vest_to_native_stable_stakers"
+        ],
+        "User Stake Time": [
+            "amount_native_staked.entry_epoch",
+            "amount_native_usdc_staked.entry_epoch",
+            "amount_native_ftm_staked.entry_epoch"
+        ],
+        "Stake Token Address": [
+            "native_token",
+            "protocol_token_stable",
+            "protocol_token_ftm"
+        ],
+        "Reward Token Address": [
+            "usdc",
+            "native_token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "staking_asset_native",
+            "staking_protocol_token_ftm",
+            "staking_protocol_token_stable"
+        ],
+        "getReward": [
+            "harvest_rewards_ftm_native",
+            "harvest_rewards_native",
+            "harvest_rewards_stable_native"
+        ],
+        "unStake": [
+            "unstaking_asset_native",
+            "unstaking_protocol_token_ftm",
+            "unstaking_protocol_token_stable"
+        ],
+        "Sensitive Functions": [
+            "set_ftm_address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking_asset_native",
+                "Node": [
+                    1180
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "native_token"
+                ],
+                "Full Calculation Variables": [
+                    "native_token"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "staking_protocol_token_stable",
+                "Node": [
+                    1191
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "protocol_token_stable"
+                ],
+                "Full Calculation Variables": [
+                    "protocol_token_stable"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "staking_protocol_token_ftm",
+                "Node": [
+                    1201
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "protocol_token_ftm"
+                ],
+                "Full Calculation Variables": [
+                    "protocol_token_ftm"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest_rewards_native",
+                "Node": [
+                    1342
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "amount_native_staked.amount_staked",
+                    "amount_native_staked.entry_epoch",
+                    "vest_to_native_stakers"
+                ],
+                "Control Variables": [
+                    "amount_native_staked.amount_staked",
+                    "amount_native_staked.entry_epoch",
+                    "usdc",
+                    "vest_to_native_stakers",
+                    "which_epoch"
+                ],
+                "Full Calculation Variables": [
+                    "amount_native_staked.amount_staked",
+                    "amount_native_staked.entry_epoch",
+                    "usdc",
+                    "vest_to_native_stakers",
+                    "which_epoch"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "harvest_rewards_ftm_native",
+                "Node": [
+                    1356
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "amount_native_ftm_staked.amount_staked",
+                    "amount_native_ftm_staked.entry_epoch",
+                    "vest_to_native_ftm_stakers"
+                ],
+                "Control Variables": [
+                    "amount_native_ftm_staked.amount_staked",
+                    "amount_native_ftm_staked.entry_epoch",
+                    "native_token",
+                    "vest_to_native_ftm_stakers",
+                    "which_epoch"
+                ],
+                "Full Calculation Variables": [
+                    "amount_native_ftm_staked.amount_staked",
+                    "amount_native_ftm_staked.entry_epoch",
+                    "native_token",
+                    "vest_to_native_ftm_stakers",
+                    "which_epoch"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "harvest_rewards_stable_native",
+                "Node": [
+                    1370
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "amount_native_usdc_staked.amount_staked",
+                    "amount_native_usdc_staked.entry_epoch",
+                    "vest_to_native_stable_stakers"
+                ],
+                "Control Variables": [
+                    "amount_native_usdc_staked.amount_staked",
+                    "amount_native_usdc_staked.entry_epoch",
+                    "native_token",
+                    "vest_to_native_stable_stakers",
+                    "which_epoch"
+                ],
+                "Full Calculation Variables": [
+                    "amount_native_usdc_staked.amount_staked",
+                    "amount_native_usdc_staked.entry_epoch",
+                    "native_token",
+                    "vest_to_native_stable_stakers",
+                    "which_epoch"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstaking_asset_native",
+                "Node": [
+                    1213
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "amount_native_staked.amount_staked",
+                    "amount_native_staked.entry_epoch"
+                ],
+                "Control Variables": [
+                    "amount_native_staked.amount_staked",
+                    "amount_native_staked.entry_epoch",
+                    "deposited_native_balance",
+                    "native_token"
+                ],
+                "Full Calculation Variables": [
+                    "amount_native_staked.amount_staked",
+                    "amount_native_staked.entry_epoch",
+                    "deposited_native_balance",
+                    "native_token"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstaking_protocol_token_stable",
+                "Node": [
+                    1223
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "amount_native_usdc_staked.amount_staked",
+                    "amount_native_usdc_staked.entry_epoch"
+                ],
+                "Control Variables": [
+                    "amount_native_usdc_staked.amount_staked",
+                    "amount_native_usdc_staked.entry_epoch",
+                    "protocol_token_stable"
+                ],
+                "Full Calculation Variables": [
+                    "amount_native_usdc_staked.amount_staked",
+                    "amount_native_usdc_staked.entry_epoch",
+                    "protocol_token_stable"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstaking_protocol_token_ftm",
+                "Node": [
+                    1233
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "amount_native_ftm_staked.amount_staked",
+                    "amount_native_ftm_staked.entry_epoch"
+                ],
+                "Control Variables": [
+                    "amount_native_ftm_staked.amount_staked",
+                    "amount_native_ftm_staked.entry_epoch",
+                    "protocol_token_ftm"
+                ],
+                "Full Calculation Variables": [
+                    "amount_native_ftm_staked.amount_staked",
+                    "amount_native_ftm_staked.entry_epoch",
+                    "protocol_token_ftm"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

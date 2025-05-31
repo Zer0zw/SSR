@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stakeholder.shares"
+        ],
+        "User Stake Reward": [
+            "Stakeholder.rewards"
+        ],
+        "User Stake Time": [
+            "Stakeholder.lastClaimTimestamp"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardToken.transfer(msg.sender, stakeholderByAddress[msg.sender].rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "token.transfer(msg.sender, stakeholderByAddress[msg.sender].unstakeShares)"
+            }
+        ]
+    }
+}

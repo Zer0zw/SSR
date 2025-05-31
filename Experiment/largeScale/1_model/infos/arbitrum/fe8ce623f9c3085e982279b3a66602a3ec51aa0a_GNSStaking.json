@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shareBalance"
+        ],
+        "User Stake Reward": [
+            "pendingRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeTransferFrom(vault, address(this), wantBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "uint256 claimedRewards = siloIncentivesController.claimRewardsToSelf(assets, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBalance)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(want).safeTransfer(_msgSender(), wantBalance)"
+            }
+        ]
+    }
+}

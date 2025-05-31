@@ -1,0 +1,256 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pools.amounts_NoAffiliate",
+            "pools.amounts_Affiliate"
+        ],
+        "User Stake Reward": [
+            "origin.amount",
+            "bonus2th.amount",
+            "bonus2th.affiliateAmount",
+            "bonus1thAmount"
+        ],
+        "User Stake Time": [
+            "pools.startTime",
+            "pools.duration"
+        ],
+        "Stake Token Address": [
+            "pools.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "HODLAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositMATICWithAffiliate",
+            "depositMATICWithoutAffiliate",
+            "depositTokensWithAffiliate",
+            "depositTokensWithoutAffiliate"
+        ],
+        "getReward": [
+            "claimBonus1thHODLTokens",
+            "claimBonus2thHODLTokens",
+            "claimOriginHODLTokens"
+        ],
+        "unStake": [],
+        "Sensitive Functions": [
+            "changeHODLAddress",
+            "updatePool"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositTokensWithoutAffiliate",
+                "Node": [
+                    496
+                ],
+                "Input": [
+                    "_amt",
+                    "_poolindex"
+                ],
+                "Calculation Variables": [
+                    "pools.addresses_NoAffiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.count_NoAffiliate",
+                    "pools.decimals",
+                    "pools.tokenAddress",
+                    "pools.totalAmount_NoAffiliate"
+                ],
+                "Control Variables": [
+                    "pools.addresses_NoAffiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.count_NoAffiliate",
+                    "pools.decimals",
+                    "pools.tokenAddress",
+                    "pools.totalAmount_NoAffiliate"
+                ],
+                "Full Calculation Variables": [
+                    "pools.addresses_NoAffiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.count_NoAffiliate",
+                    "pools.decimals",
+                    "pools.tokenAddress",
+                    "pools.totalAmount_NoAffiliate"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "depositTokensWithAffiliate",
+                "Node": [
+                    513
+                ],
+                "Input": [
+                    "_affiliateAddress",
+                    "_amt",
+                    "_poolindex"
+                ],
+                "Calculation Variables": [
+                    "pools.addresses_Affiliate",
+                    "pools.amounts_Affiliate",
+                    "pools.count_Affiliate",
+                    "pools.decimals",
+                    "pools.tokenAddress",
+                    "pools.totalAmount_Affiliate"
+                ],
+                "Control Variables": [
+                    "pools.addresses_Affiliate",
+                    "pools.amounts_Affiliate",
+                    "pools.count_Affiliate",
+                    "pools.decimals",
+                    "pools.tokenAddress",
+                    "pools.totalAmount_Affiliate"
+                ],
+                "Full Calculation Variables": [
+                    "pools.addresses_Affiliate",
+                    "pools.amounts_Affiliate",
+                    "pools.count_Affiliate",
+                    "pools.decimals",
+                    "pools.tokenAddress",
+                    "pools.totalAmount_Affiliate"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "depositMATICWithoutAffiliate",
+                "Node": [
+                    531
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "pools.addresses_NoAffiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.count_NoAffiliate",
+                    "pools.totalAmount_NoAffiliate"
+                ],
+                "Full Calculation Variables": [
+                    "pools.addresses_NoAffiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.count_NoAffiliate",
+                    "pools.totalAmount_NoAffiliate"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositMATICWithAffiliate",
+                "Node": [
+                    545
+                ],
+                "Input": [
+                    "_affiliateAddress"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "pools.addresses_Affiliate",
+                    "pools.amounts_Affiliate",
+                    "pools.count_Affiliate",
+                    "pools.totalAmount_Affiliate"
+                ],
+                "Full Calculation Variables": [
+                    "pools.addresses_Affiliate",
+                    "pools.amounts_Affiliate",
+                    "pools.count_Affiliate",
+                    "pools.totalAmount_Affiliate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimOriginHODLTokens",
+                "Node": [
+                    681
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "pools.amounts_Affiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.totalAmount_Affiliate",
+                    "pools.totalAmount_NoAffiliate",
+                    "pools.totalHODLamount"
+                ],
+                "Control Variables": [
+                    "HODLAddress",
+                    "enableIndividual",
+                    "pools.amounts_Affiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.totalAmount_Affiliate",
+                    "pools.totalAmount_NoAffiliate",
+                    "pools.totalHODLamount"
+                ],
+                "Full Calculation Variables": [
+                    "HODLAddress",
+                    "enableIndividual",
+                    "pools.amounts_Affiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.totalAmount_Affiliate",
+                    "pools.totalAmount_NoAffiliate",
+                    "pools.totalHODLamount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimBonus1thHODLTokens",
+                "Node": [
+                    689
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DEFAULT_1TH_HODL_AMOUNT",
+                    "pools.count_Affiliate"
+                ],
+                "Control Variables": [
+                    "DEFAULT_1TH_HODL_AMOUNT",
+                    "HODLAddress",
+                    "pools.count_Affiliate"
+                ],
+                "Full Calculation Variables": [
+                    "DEFAULT_1TH_HODL_AMOUNT",
+                    "HODLAddress",
+                    "pools.count_Affiliate"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimBonus2thHODLTokens",
+                "Node": [
+                    696
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DEFAULT_2TH_HODL_AMOUNT",
+                    "pools.amounts_Affiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.totalAmount_Affiliate",
+                    "pools.totalAmount_NoAffiliate",
+                    "pools.totalHODLamount",
+                    "totalAffiliateUserHODLamount"
+                ],
+                "Control Variables": [
+                    "DEFAULT_2TH_HODL_AMOUNT",
+                    "HODLAddress",
+                    "pools.amounts_Affiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.totalAmount_Affiliate",
+                    "pools.totalAmount_NoAffiliate",
+                    "pools.totalHODLamount",
+                    "totalAffiliateUserHODLamount"
+                ],
+                "Full Calculation Variables": [
+                    "DEFAULT_2TH_HODL_AMOUNT",
+                    "HODLAddress",
+                    "pools.amounts_Affiliate",
+                    "pools.amounts_NoAffiliate",
+                    "pools.totalAmount_Affiliate",
+                    "pools.totalAmount_NoAffiliate",
+                    "pools.totalHODLamount",
+                    "totalAffiliateUserHODLamount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

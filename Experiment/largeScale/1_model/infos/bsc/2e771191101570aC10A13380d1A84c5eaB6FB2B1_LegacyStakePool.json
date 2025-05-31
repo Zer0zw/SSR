@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeBalance"
+        ],
+        "User Stake Reward": [
+            "paidRewards"
+        ],
+        "User Stake Time": [
+            "startDate"
+        ],
+        "Stake Token Address": [
+            "LST_Token"
+        ],
+        "Reward Token Address": [
+            "LST_Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "LST.safeTransferFrom(staker, address(this), amount"
+            },
+            {
+                "Function": "extendStake",
+                "Node": "LST.safeTransferFrom(staker, address(this), amount"
+            },
+            {
+                "Function": "extendStakeFromReward",
+                "Node": "totalDepositedLST += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "LST.safeTransferFrom(address(this), staker, _amountToStaker"
+            },
+            {
+                "Function": "withdrawUnstake",
+                "Node": "LST.safeTransferFrom(address(this), staker, _amountToStaker"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawUnstake",
+                "Node": "LST.safeTransferFrom(address(this), staker, stakeBalance[staker]"
+            },
+            {
+                "Function": "resetUser",
+                "Node": "LST.safeTransferFrom(address(this), staker, stakeBalance[staker]"
+            }
+        ]
+    }
+}

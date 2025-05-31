@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Share.amount"
+        ],
+        "User Stake Reward": [
+            "Reward.totalRealised"
+        ],
+        "User Stake Time": [
+            "Share.stakedTime"
+        ],
+        "Stake Token Address": [
+            "sDEFI",
+            "slDEFI"
+        ],
+        "Reward Token Address": [
+            "DEFI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addShares",
+                "Node": "shares[shareholder].amount += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_distributeReward",
+                "Node": "payable(shareholder).call{ value: amount }('')"
+            },
+            {
+                "Function": "_distributeReward",
+                "Node": "uniswapV2Router.swapExactETHForTokens{ value: amount }((_tokensToReceiveNoSlip * (100 - compoundBuySlippage)) / 100, path, shareholder, block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeShares",
+                "Node": "shares[shareholder].amount -= removeAmount"
+            }
+        ]
+    }
+}

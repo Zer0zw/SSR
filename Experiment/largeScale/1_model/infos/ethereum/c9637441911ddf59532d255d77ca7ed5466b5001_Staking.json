@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staker.amount"
+        ],
+        "User Stake Reward": [
+            "staker.pendingreward"
+        ],
+        "User Stake Time": [
+            "staker.lockedtime"
+        ],
+        "Stake Token Address": [
+            "shoefy"
+        ],
+        "Reward Token Address": [
+            "shoefy"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "shoefy.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "shoefy.transfer(msg.sender, finalamount)"
+            }
+        ]
+    }
+}

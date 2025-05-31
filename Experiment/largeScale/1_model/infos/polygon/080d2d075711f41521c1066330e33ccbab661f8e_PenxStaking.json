@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "WorkerInfo.stakedSet"
+        ],
+        "User Stake Reward": [
+            "WorkerInfo.accruedPENX"
+        ],
+        "User Stake Time": [
+            "WorkerInfo.stakingStart"
+        ],
+        "Stake Token Address": [
+            "PXLT"
+        ],
+        "Reward Token Address": [
+            "PENX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addSchedules",
+                "Node": "PXLT.transferFrom(msg.sender, address(this), totalAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawPENX",
+                "Node": "PENX.transfer(to, amount)"
+            },
+            {
+                "Function": "withdrawPension",
+                "Node": "PENX.transfer(msg.sender, info.accruedPENX)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPension",
+                "Node": "USDC.transfer(msg.sender, totalUSDC)"
+            }
+        ]
+    }
+}

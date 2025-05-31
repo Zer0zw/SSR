@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amount"
+        ],
+        "User Stake Reward": [
+            "User.reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "hmineToken"
+        ],
+        "Reward Token Address": [
+            "currencyToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(hmineToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(currencyToken).safeTransfer(msg.sender, _claimAmount)"
+            },
+            {
+                "Function": "compound",
+                "Node": "IERC20(currencyToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(hmineToken).safeTransfer(msg.sender, _80percent)"
+            }
+        ]
+    }
+}

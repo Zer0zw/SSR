@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Investor.investedAmount",
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Investor.withdrawAmount"
+        ],
+        "User Stake Time": [
+            "Plans.time",
+            "Deposit.depositAt",
+            "Deposit.withdrawPrincipleAt"
+        ],
+        "Stake Token Address": [
+            "AsiannetAddress"
+        ],
+        "Reward Token Address": [
+            "AsiannetAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "AsiannetAddress.transferPrice(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "_token.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimPrinciple",
+                "Node": "AsiannetAddress.transferPrice(address(this), msg.sender, depositAmount[id])"
+            }
+        ]
+    }
+}

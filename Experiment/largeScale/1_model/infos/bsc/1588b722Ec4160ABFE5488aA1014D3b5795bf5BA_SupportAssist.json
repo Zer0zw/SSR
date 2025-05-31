@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "uData.amountOf"
+        ],
+        "User Stake Reward": [
+            "lpReward.earned"
+        ],
+        "User Stake Time": [
+            "config.cycle"
+        ],
+        "Stake Token Address": [
+            "tokenA",
+            "tokenB"
+        ],
+        "Reward Token Address": [
+            "tokenB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "tokenA.transferFrom(_msgSender(), address(this), amount0)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "USDT.transferFrom(_msgSender(), address(this), amountU)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "tokenB.transfer(_account, _income)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "tokenB.transfer(_account, amountB - feeB)"
+            },
+            {
+                "Function": "exit",
+                "Node": "USDT.transfer(_account, amountU - feeU)"
+            }
+        ]
+    }
+}

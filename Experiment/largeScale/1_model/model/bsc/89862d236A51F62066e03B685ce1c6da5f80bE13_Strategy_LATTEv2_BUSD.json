@@ -1,0 +1,147 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "pendingYel"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "YELtoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositAsMigrate",
+            "receive"
+        ],
+        "getReward": [
+            "claimYel"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "migrate",
+            "requestWithdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claimYel",
+                "Node": [
+                    903
+                ],
+                "Input": [
+                    "_receiver"
+                ],
+                "Calculation Variables": [
+                    "pendingYel"
+                ],
+                "Control Variables": [
+                    "YELtoken",
+                    "pendingYel",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "YELtoken",
+                    "pendingYel",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    912
+                ],
+                "Input": [
+                    "_receiver"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_owner",
+                    "farm",
+                    "lpToken",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "farm",
+                    "lpToken",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "requestWithdraw",
+                "Node": [
+                    924
+                ],
+                "Input": [
+                    "_percent",
+                    "_receiver"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WBNB",
+                    "YELtoken",
+                    "farm",
+                    "lpToken",
+                    "pendingFee",
+                    "pendingRewardsFee",
+                    "pendingYel",
+                    "routerLP",
+                    "routerMain",
+                    "token0",
+                    "token1",
+                    "toleranceLevelPercent",
+                    "vault",
+                    "yelLiquidityRouter"
+                ],
+                "Full Calculation Variables": [
+                    "WBNB",
+                    "YELtoken",
+                    "farm",
+                    "lpToken",
+                    "pendingFee",
+                    "pendingRewardsFee",
+                    "pendingYel",
+                    "routerLP",
+                    "routerMain",
+                    "token0",
+                    "token1",
+                    "toleranceLevelPercent",
+                    "vault",
+                    "yelLiquidityRouter"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "migrate",
+                "Node": [
+                    932
+                ],
+                "Input": [
+                    "_percent"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WBNB",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "WBNB",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

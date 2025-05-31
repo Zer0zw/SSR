@@ -1,0 +1,149 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "requestNextStakingPeriod",
+            "stake"
+        ],
+        "getReward": [
+            "calcNewBalances"
+        ],
+        "unStake": [
+            "requestExitAtEndOfCurrentStakingPeriod",
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "setStakeContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    400
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "owner",
+                    "requestStake",
+                    "sc",
+                    "totalStaked",
+                    "users"
+                ],
+                "Full Calculation Variables": [
+                    "owner",
+                    "requestStake",
+                    "sc",
+                    "totalStaked",
+                    "users"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "requestNextStakingPeriod",
+                "Node": [
+                    494
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "depositedBalances",
+                    "paused",
+                    "requestStake"
+                ],
+                "Full Calculation Variables": [
+                    "depositedBalances",
+                    "paused",
+                    "requestStake"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calcNewBalances",
+                "Node": [
+                    437,
+                    438,
+                    439,
+                    440
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "owner",
+                    "sc",
+                    "stakedBalances",
+                    "totalStaked",
+                    "users"
+                ],
+                "Full Calculation Variables": [
+                    "owner",
+                    "sc",
+                    "stakedBalances",
+                    "totalStaked",
+                    "users"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    420
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "owner",
+                    "requestUnStake",
+                    "sc",
+                    "totalStaked",
+                    "users"
+                ],
+                "Full Calculation Variables": [
+                    "owner",
+                    "requestUnStake",
+                    "sc",
+                    "totalStaked",
+                    "users"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "requestExitAtEndOfCurrentStakingPeriod",
+                "Node": [
+                    503
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "paused",
+                    "requestUnStake",
+                    "stakedBalances"
+                ],
+                "Full Calculation Variables": [
+                    "paused",
+                    "requestUnStake",
+                    "stakedBalances"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "checkPendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "adjustPosition",
+                "Node": "IStakingRewards(STAKING_REWARDS).stake(balance.sub(_debtOutstanding))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "prepareReturn",
+                "Node": "IStakingRewards(STAKING_REWARDS).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "prepareReturn",
+                "Node": "IStakingRewards(STAKING_REWARDS).withdraw(_debtPayment)"
+            },
+            {
+                "Function": "adjustPosition",
+                "Node": "IStakingRewards(STAKING_REWARDS).withdraw(_debtOutstanding.sub(balance))"
+            },
+            {
+                "Function": "liquidatePosition",
+                "Node": "IStakingRewards(STAKING_REWARDS).withdraw(toWithdraw)"
+            },
+            {
+                "Function": "liquidateAllPositions",
+                "Node": "IStakingRewards(STAKING_REWARDS).withdraw(_totalWant)"
+            }
+        ]
+    }
+}

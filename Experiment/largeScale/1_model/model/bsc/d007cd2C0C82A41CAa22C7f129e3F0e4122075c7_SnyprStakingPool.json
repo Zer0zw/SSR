@@ -1,0 +1,188 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerSize.amount"
+        ],
+        "User Stake Reward": [
+            "walletClaimed",
+            "walletClaimedRewardToken"
+        ],
+        "User Stake Time": [
+            "stakerSize.timeStakedFor",
+            "stakerSize.stakeTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimReturn",
+            "reinvestReturn"
+        ],
+        "unStake": [
+            "claimStaking"
+        ],
+        "Sensitive Functions": [
+            "updateTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    609
+                ],
+                "Input": [
+                    "amount",
+                    "apyTime",
+                    "type_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_token",
+                    "activePoolsArray",
+                    "lockCounts.totalInPool",
+                    "openStaking",
+                    "pools.amountPooled",
+                    "pools.minStake",
+                    "pools.pool"
+                ],
+                "Full Calculation Variables": [
+                    "_token",
+                    "activePoolsArray",
+                    "lockCounts.totalInPool",
+                    "openStaking",
+                    "pools.amountPooled",
+                    "pools.minStake",
+                    "pools.pool"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReturn",
+                "Node": [
+                    734
+                ],
+                "Input": [
+                    "poolNo"
+                ],
+                "Calculation Variables": [
+                    "calculationTime",
+                    "pools.apyNoLock",
+                    "pools.pool",
+                    "stakers.amount",
+                    "stakers.apyTime",
+                    "stakers.poolNo",
+                    "stakers.stakeTime",
+                    "stakers.timeStakedFor"
+                ],
+                "Control Variables": [
+                    "_token",
+                    "calculationTime",
+                    "pools.apyNoLock",
+                    "pools.pool",
+                    "stakers.amount",
+                    "stakers.apyTime",
+                    "stakers.poolNo",
+                    "stakers.stakeTime",
+                    "stakers.timeStakedFor",
+                    "stakers.wallet",
+                    "walletClaimed"
+                ],
+                "Full Calculation Variables": [
+                    "_token",
+                    "calculationTime",
+                    "pools.apyNoLock",
+                    "pools.pool",
+                    "stakers.amount",
+                    "stakers.apyTime",
+                    "stakers.poolNo",
+                    "stakers.stakeTime",
+                    "stakers.timeStakedFor",
+                    "stakers.wallet",
+                    "walletClaimed"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "reinvestReturn",
+                "Node": [
+                    753
+                ],
+                "Input": [
+                    "poolNo"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "calculationTime",
+                    "canReinvest",
+                    "pools.apyNoLock",
+                    "pools.pool",
+                    "stakers.amount",
+                    "stakers.apyTime",
+                    "stakers.poolNo",
+                    "stakers.stakeTime",
+                    "stakers.timeStakedFor"
+                ],
+                "Full Calculation Variables": [
+                    "calculationTime",
+                    "canReinvest",
+                    "pools.apyNoLock",
+                    "pools.pool",
+                    "stakers.amount",
+                    "stakers.apyTime",
+                    "stakers.poolNo",
+                    "stakers.stakeTime",
+                    "stakers.timeStakedFor"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimStaking",
+                "Node": [
+                    706
+                ],
+                "Input": [
+                    "poolNo"
+                ],
+                "Calculation Variables": [
+                    "stakers.amount",
+                    "stakers.apyTime",
+                    "stakers.poolNo",
+                    "stakers.timeStakedFor"
+                ],
+                "Control Variables": [
+                    "_token",
+                    "isStaker",
+                    "poolShare",
+                    "stakers.amount",
+                    "stakers.apyTime",
+                    "stakers.poolNo",
+                    "stakers.timeStakedFor"
+                ],
+                "Full Calculation Variables": [
+                    "_token",
+                    "isStaker",
+                    "poolShare",
+                    "stakers.amount",
+                    "stakers.apyTime",
+                    "stakers.poolNo",
+                    "stakers.timeStakedFor"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

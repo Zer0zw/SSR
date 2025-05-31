@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.mandatoryTimeToServe"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "giftDeposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "addAndExtendStake",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "token.safeTransfer(_caller, currentCallFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            },
+            {
+                "Function": "transferStakeToAnotherWallet",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            },
+            {
+                "Function": "hopStakeToAnotherPool",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            }
+        ]
+    }
+}

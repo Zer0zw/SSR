@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "stakeAmounts"
+        ],
+        "User Stake Reward": [
+            "_balancesRewardEquivalent",
+            "earned"
+        ],
+        "User Stake Time": [
+            "weightedStakeDate"
+        ],
+        "Stake Token Address": [
+            "stakingLPToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeWithPermit",
+                "Node": "IBEP20(stakingLPToken).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IBEP20(stakingLPToken).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "IBEP20(stakingLPToken).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "withdrawAndGetReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(stakingLPToken).safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawAndGetReward",
+                "Node": "IBEP20(stakingLPToken).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakeRewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "lastClock"
+        ],
+        "Stake Token Address": [
+            "mcnToken"
+        ],
+        "Reward Token Address": [
+            "mcnToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": "require(ERC20Interface(mcnToken).transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "require(ERC20Interface(mcnToken).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": "ERC20Interface(mcnToken).transfer(msg.sender, totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC20Interface(mcnToken).transfer(msg.sender, afterTax)"
+            }
+        ]
+    }
+}

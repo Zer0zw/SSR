@@ -1,0 +1,184 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt",
+            "referralRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "migrate"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1059
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accTokenPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpSupply",
+                    "poolInfo.lpToken",
+                    "tokenPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accTokenPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpSupply",
+                    "poolInfo.lpToken",
+                    "tokenPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1121
+                ],
+                "Input": [
+                    "user",
+                    "pool"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "referralRewards",
+                    "referralRelationships"
+                ],
+                "Full Calculation Variables": [
+                    "referralRewards",
+                    "referralRelationships"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    1121
+                ],
+                "Input": [
+                    "user",
+                    "pool"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "referralRewards",
+                    "referralRelationships"
+                ],
+                "Full Calculation Variables": [
+                    "referralRewards",
+                    "referralRelationships"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1077
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accTokenPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpSupply",
+                    "poolInfo.lpToken",
+                    "tokenPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "bonusEndBlock",
+                    "poolInfo.accTokenPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpSupply",
+                    "poolInfo.lpToken",
+                    "tokenPerBlock",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1099
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": [
+            "_allowedRewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_deposit(amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "_deposit(IERC20(underlying).balanceOf(msg.sender))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_getReward(account, tokens, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_withdraw(amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "_withdraw(balanceOf[msg.sender])"
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": "_withdraw(amount)"
+            }
+        ]
+    }
+}

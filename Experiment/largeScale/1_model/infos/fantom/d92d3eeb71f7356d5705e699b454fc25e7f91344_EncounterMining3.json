@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "count"
+        ],
+        "User Stake Reward": [
+            "loot",
+            "miningYield",
+            "miningBonus"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "roles"
+        ],
+        "Reward Token Address": [
+            "copperAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(roles[roleIndex]).transferFrom(msg.sender, address(this), tokenID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawal",
+                "Node": "IAssetBox(copperAddress).mint(roleIndex, tokenId, mined)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawal",
+                "Node": "IERC721(roles[roleIndex]).transferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

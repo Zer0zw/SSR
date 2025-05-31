@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpPair"
+        ],
+        "Reward Token Address": [
+            "wex"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(masterchef).deposit(poolId, pairBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IMasterChef(masterchef).harvest(poolId, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpPair).safeTransfer(vault, pairBal.sub(withdrawalFee))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(lpPair).transfer(vault, pairBal)"
+            }
+        ]
+    }
+}

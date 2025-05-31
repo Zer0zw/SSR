@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "F_ETH",
+            "F_LUSD"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lqtyToken"
+        ],
+        "Reward Token Address": [
+            "lusdToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lqtyToken.sendToLQTYStaking(msg.sender, _LQTYamount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "lusdToken.transfer(msg.sender, LUSDGain)"
+            },
+            {
+                "Function": "stake",
+                "Node": "_sendETHGainToUser(ETHGain)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "lusdToken.transfer(msg.sender, LUSDGain)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_sendETHGainToUser(ETHGain)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "lqtyToken.transfer(msg.sender, LQTYToWithdraw)"
+            }
+        ]
+    }
+}

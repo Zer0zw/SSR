@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenStakeBalanceLedger_"
+        ],
+        "User Stake Reward": [
+            "totalPayout"
+        ],
+        "User Stake Time": [
+            "stakeTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "holdStake",
+                "Node": "tokenBalanceLedger_[msg.sender] = SafeMath.sub(tokenBalanceLedger_[msg.sender], _amount)"
+            },
+            {
+                "Function": "reStake",
+                "Node": "tokenBalanceLedger_[msg.sender] = SafeMath.sub(tokenBalanceLedger_[msg.sender], _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDailyStakeInternal",
+                "Node": "tokenBalanceLedger_[_customerAddress] = SafeMath.add(tokenBalanceLedger_[_customerAddress],to_payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "tokenBalanceLedger_[_customerAddress] = SafeMath.add(tokenBalanceLedger_[_customerAddress],_amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "tokenBalanceLedger_[_customerAddress] = SafeMath.add(tokenBalanceLedger_[_customerAddress],penalty)"
+            }
+        ]
+    }
+}

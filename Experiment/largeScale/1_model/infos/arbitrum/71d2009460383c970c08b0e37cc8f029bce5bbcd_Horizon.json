@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "PassengerSeat.rewardEarned"
+        ],
+        "User Stake Time": [
+            "PassengerSeat.epochTimerStart"
+        ],
+        "Stake Token Address": [
+            "firmament"
+        ],
+        "Reward Token Address": [
+            "empyreal"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "super.stakeFor(_recipient, amount)"
+            },
+            {
+                "Function": "stakeForMany",
+                "Node": "super.stakeFor(member, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(empyreal()).safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

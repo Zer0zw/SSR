@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_farmDeposit",
+                "Node": "IERC20(stakeToken).safeIncreaseAllowance(masterChef, amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "_farmWithdraw",
+                "Node": "IFarm(masterChef).withdraw(pid, amount)"
+            },
+            {
+                "Function": "_farmEmergencyWithdraw",
+                "Node": "IFarm(masterChef).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

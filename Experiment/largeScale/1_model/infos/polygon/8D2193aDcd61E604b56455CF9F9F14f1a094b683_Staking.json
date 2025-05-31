@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staker.amount"
+        ],
+        "User Stake Reward": [
+            "staker.reward",
+            "staker.total_reward"
+        ],
+        "User Stake Time": [
+            "staker.stakeTime"
+        ],
+        "Stake Token Address": [
+            "CSPN"
+        ],
+        "Reward Token Address": [
+            "CSPN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "CSPN.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "CSPN.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "CSPN.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

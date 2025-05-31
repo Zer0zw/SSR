@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "boofiBalance"
+        ],
+        "User Stake Reward": [
+            "bloodPending",
+            "amountHarvestedByUser"
+        ],
+        "User Stake Time": [
+            "timeStart",
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "boofiToken"
+        ],
+        "Reward Token Address": [
+            "bloodToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "boofiToken.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "convertAndStakeErc20",
+                "Node": "boofiToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IBloodERC20(bloodToken).mintTokens(msg.sender, amountHarvested)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "boofiToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

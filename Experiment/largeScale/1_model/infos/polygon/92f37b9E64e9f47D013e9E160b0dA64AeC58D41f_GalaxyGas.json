@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUser"
+        ],
+        "User Stake Reward": [
+            "toClaim"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(collectionAddress).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "IERC721(collectionAddress).safeTransferFrom(_msgSender(), address(this), tokenIds[currentId])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            },
+            {
+                "Function": "harvestBatch",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(collectionAddress).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "IERC721(collectionAddress).safeTransferFrom(address(this), _msgSender(), tokenIds[currentId])"
+            }
+        ]
+    }
+}

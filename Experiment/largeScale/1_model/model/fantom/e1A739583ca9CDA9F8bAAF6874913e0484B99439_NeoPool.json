@@ -1,0 +1,156 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amountLP",
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt",
+            "userInfo.rewardDebtMorph"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "mlqdrlp",
+            "mlqdr"
+        ],
+        "Reward Token Address": [
+            "wftm",
+            "morph"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    953
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "mlqdrlp",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardDebtMorph"
+                ],
+                "Full Calculation Variables": [
+                    "mlqdrlp",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardDebtMorph"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    967
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "accWFTMPerShare",
+                    "accMorphPerShare",
+                    "userInfo.amount",
+                    "mlqdrlp",
+                    "userInfo.rewardDebtMorph",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "wftm",
+                    "morph",
+                    "userInfo.rewardDebt",
+                    "accWFTMPerShare",
+                    "accMorphPerShare",
+                    "userInfo.rewardDebtMorph",
+                    "mlqdrlp",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "wftm",
+                    "morph",
+                    "userInfo.rewardDebt",
+                    "accWFTMPerShare",
+                    "accMorphPerShare",
+                    "userInfo.rewardDebtMorph",
+                    "mlqdrlp",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    985
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "accWFTMPerShare",
+                    "mlqdrlp",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "accWFTMPerShare",
+                    "mlqdrlp",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "wftm"
+                ],
+                "Full Calculation Variables": [
+                    "accWFTMPerShare",
+                    "mlqdrlp",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "wftm"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    989
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "accWFTMPerShare",
+                    "mlqdrlp",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "accWFTMPerShare",
+                    "mlqdrlp",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

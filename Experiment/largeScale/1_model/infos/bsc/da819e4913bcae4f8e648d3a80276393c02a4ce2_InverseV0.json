@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes",
+            "StakingCycle.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakerRewards",
+            "StakingReward.stakingReward"
+        ],
+        "User Stake Time": [
+            "stakeDetails",
+            "ClaimDetails.lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "XIV"
+        ],
+        "Reward Token Address": [
+            "XIV"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "TransferHelper.safeTransferFrom(address(XIV), _msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "TransferHelper.safeTransfer(address(XIV), _msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "TransferHelper.safeTransfer(address(XIV), _msgSender(), amount)"
+            }
+        ]
+    }
+}

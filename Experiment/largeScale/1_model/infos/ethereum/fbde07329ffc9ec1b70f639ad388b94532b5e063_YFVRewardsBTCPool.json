@@ -1,0 +1,62 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "yfv"
+        ],
+        "Reward Token Address": [
+            "yfv",
+            "vUSD",
+            "vETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.tokenStake(amount)"
+            },
+            {
+                "Function": "stakeReward",
+                "Node": "IYFVStake(rewardStake).stakeOnBehalf(msg.sender, reward)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "yfv.safeTransfer(msg.sender, actualPaid)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "yfv.safeTransfer(referrer, commission)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "vUSD.safeTransfer(msg.sender, reward.div(vUSD_REWARD_FRACTION_RATE))"
+            },
+            {
+                "Function": "claimVETHReward",
+                "Node": "vETH.safeTransfer(msg.sender, claimAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.tokenWithdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

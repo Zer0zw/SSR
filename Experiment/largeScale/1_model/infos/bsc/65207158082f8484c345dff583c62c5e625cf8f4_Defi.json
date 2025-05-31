@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Users.profit",
+            "Users.compounding"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "_joinToken"
+        ],
+        "Reward Token Address": [
+            "_joinToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "_joinToken.safeTransferFrom(msg.sender, address(this), amountIp)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "_joinToken.safeTransfer(msg.sender, reciAm)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStaking",
+                "Node": "_joinToken.safeTransfer(msg.sender, _stake[msg.sender].amount)"
+            },
+            {
+                "Function": "unStaking",
+                "Node": "_joinToken.safeTransfer(msg.sender, _stake[msg.sender].amount - ((_stake[msg.sender].amount * 30) / 100))"
+            }
+        ]
+    }
+}

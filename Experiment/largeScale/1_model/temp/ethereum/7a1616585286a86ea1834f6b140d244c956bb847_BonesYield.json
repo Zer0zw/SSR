@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposits"
+        ],
+        "User Stake Reward": [
+            "lastClaim"
+        ],
+        "User Stake Time": [
+            "ContractSettings.start",
+            "ContractSettings.end"
+        ],
+        "Stake Token Address": [
+            "stakingContractAddress"
+        ],
+        "Reward Token Address": [
+            "ERC20ContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(stakingContractAddress).safeTransferFrom(msg.sender, address(this), _tokenIds[i], \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(ERC20ContractAddress).transfer(msg.sender, totalUnclaimedRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(stakingContractAddress).safeTransferFrom(address(this), msg.sender, _tokenIds[i], \"\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeData.amount"
+        ],
+        "User Stake Reward": [
+            "StakeData.collected"
+        ],
+        "User Stake Time": [
+            "StakeData.stakeTime"
+        ],
+        "Stake Token Address": [
+            "contrAddr"
+        ],
+        "Reward Token Address": [
+            "contrAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "transferFrom(msg.sender, address(0), _amount)"
+            },
+            {
+                "Function": "stakeInt",
+                "Node": "No explicit transfer statement found, it updates stake data directly"
+            },
+            {
+                "Function": "refStake",
+                "Node": "No explicit transfer statement found, it updates stake data directly"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_mint(msg.sender, reward)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "No direct transfer to user, instead stakes the reward into a new stake"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "No explicit unStake function found",
+                "Node": "No unStake function identified in the provided contract"
+            }
+        ]
+    }
+}

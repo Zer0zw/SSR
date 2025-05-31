@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, currentShares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "masterchef.withdraw(0, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            }
+        ]
+    }
+}

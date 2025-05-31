@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount",
+            "_deposits[depositIndex].tokensNumber"
+        ],
+        "User Stake Reward": [
+            "Deposit.accumulatedYield"
+        ],
+        "User Stake Time": [
+            "Deposit.unlock",
+            "Deposit.updatedAt"
+        ],
+        "Stake Token Address": [
+            "_nftContract"
+        ],
+        "Reward Token Address": [
+            "_etnaContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_nftContract.safeTransferFrom(userAddress, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawYield",
+                "Node": "_etnaContract.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "_nftContract.safeTransferFrom(address(this), userAddress, tokenIds[i])"
+            }
+        ]
+    }
+}

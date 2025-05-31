@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "stakerRewardsToClaim"
+        ],
+        "User Stake Time": [
+            "stakersCooldowns"
+        ],
+        "Stake Token Address": [
+            "STAKED_TOKEN"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(STAKED_TOKEN).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "REWARD_TOKEN.safeTransferFrom(REWARDS_VAULT, to, amountToClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "IERC20(STAKED_TOKEN).safeTransfer(to, amountToRedeem)"
+            }
+        ]
+    }
+}

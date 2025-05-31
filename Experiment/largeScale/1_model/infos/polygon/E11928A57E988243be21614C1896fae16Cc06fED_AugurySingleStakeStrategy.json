@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_want"
+        ],
+        "User Stake Reward": [
+            "pendingOmen"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(rewards).deposit(poolId, _want, strategist)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, IERC20(WMATIC).balanceOf(address(this))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, _maticFee)"
+            }
+        ],
+        "unStake": []
+    }
+}

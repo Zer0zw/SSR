@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_users.depositAmountInPYDEX"
+        ],
+        "User Stake Reward": [
+            "_users.totalRewardPaid"
+        ],
+        "User Stake Time": [
+            "_users.depositTime"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "pydexToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "BUSD.safeTransferFrom(msg.sender, address(this), depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "PYDEXReserve.withdrawPydex(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pydexToken.safeTransfer(msg.sender, capitalAmount)"
+            }
+        ]
+    }
+}

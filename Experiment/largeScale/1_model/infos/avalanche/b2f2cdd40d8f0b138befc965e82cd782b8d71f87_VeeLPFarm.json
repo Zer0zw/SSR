@@ -1,0 +1,75 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "UserInfo.lockingAmount",
+            "UserInfo.unlockedAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "vee"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(pool.lpToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositBehalf",
+                "Node": "IERC20(pool.lpToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimVee",
+                "Node": "safeRewardsTransfer(_account, pending)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "safeRewardsTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "depositBehalf",
+                "Node": "safeRewardsTransfer(_account, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeRewardsTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdrawDuplex",
+                "Node": "safeRewardsTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool.lpToken).safeApprove(veeHub, _amountInternal)"
+            },
+            {
+                "Function": "withdrawDuplex",
+                "Node": "IERC20(pool.lpToken).safeApprove(veeHub, _amountInternal)"
+            },
+            {
+                "Function": "withdrawDuplex",
+                "Node": "IERC20(pool.lpToken).safeTransfer(msg.sender, _amountExternal)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(msg.sender, unlockedAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(pool.lpToken).safeApprove(veeHub, lockingAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedOf"
+        ],
+        "User Stake Reward": [
+            "_allReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "usdAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "updateStaked",
+                "Node": "ILiteReward(liteRewardAddress).updateStaked(token, account, beforeStaked, afterStaked)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeReward",
+                "Node": "IDepositUSD(depositAddress).takeReward(usdAddress, \"invite\", _invite, _reward)"
+            }
+        ],
+        "unStake": []
+    }
+}

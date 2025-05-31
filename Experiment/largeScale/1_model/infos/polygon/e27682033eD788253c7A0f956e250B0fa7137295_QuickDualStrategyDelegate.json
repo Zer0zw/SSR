@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfLP"
+        ],
+        "User Stake Reward": [
+            "earnPending"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeLpPair"
+        ],
+        "Reward Token Address": [
+            "earnTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IQuickDualChef(stakeRewards).stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IQuickDualChef(stakeRewards).getReward()"
+            },
+            {
+                "Function": "transferEarn2Gatling",
+                "Node": "TransferHelper.safeTransfer(earnTokenAddr, address(stakeGatling), _tokenAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(stakeLpPair, address(stakeGatling),_amount)"
+            },
+            {
+                "Function": "burn",
+                "Node": "TransferHelper.safeTransfer(stakeLpPair, stakeLpPair, bal)"
+            },
+            {
+                "Function": "exit",
+                "Node": "TransferHelper.safeTransfer(stakeLpPair, stakeGatling, IERC20(stakeLpPair).balanceOf(address(this)))"
+            }
+        ]
+    }
+}

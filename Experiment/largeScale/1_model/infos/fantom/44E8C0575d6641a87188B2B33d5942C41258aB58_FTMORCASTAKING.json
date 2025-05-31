@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStakedTokensForThisAddress",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.claimableReward"
+        ],
+        "User Stake Time": [
+            "Stake.stakedDays",
+            "Stake.since",
+            "Stake.dueDate"
+        ],
+        "Stake Token Address": [
+            "FTMORCA_TOKEN"
+        ],
+        "Reward Token Address": [
+            "FTMORCA_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(FTMORCA_TOKEN).transferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "stakeFromTokenContract",
+                "Node": "IERC20(FTMORCA_TOKEN).transferFrom(staker, address(this), _amount"
+            },
+            {
+                "Function": "stakeAllFromTokenContract",
+                "Node": "IERC20(FTMORCA_TOKEN).transferFrom(staker, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimFromTokenContract",
+                "Node": "IERC20(FTMORCA_TOKEN).transfer(staker, totalWithdrawalAmount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "IERC20(FTMORCA_TOKEN).transfer(msg.sender, totalWithdrawalAmount"
+            },
+            {
+                "Function": "unstakeFromTokenContract",
+                "Node": "IERC20(FTMORCA_TOKEN).transfer(staker, totalWithdrawalAmount"
+            },
+            {
+                "Function": "unstakeAllFromTokenContract",
+                "Node": "IERC20(FTMORCA_TOKEN).transfer(staker, totalWithdrawalAmount"
+            }
+        ]
+    }
+}

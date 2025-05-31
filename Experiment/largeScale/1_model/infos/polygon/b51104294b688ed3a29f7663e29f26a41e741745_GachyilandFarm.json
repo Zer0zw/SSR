@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "Deposits.totalPayoutAmount",
+            "Deposits.periodPayoutAmount",
+            "Deposits.payoutsDone"
+        ],
+        "User Stake Time": [
+            "Deposits.lockTime",
+            "Deposits.unlockTime"
+        ],
+        "Stake Token Address": [
+            "gachyilandAddress"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "gachyilandAddress.transferFrom(msg.sender, address(this), _nftID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardToken.mint(msg.sender, amountToPay)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "gachyilandAddress.transferFrom(address(this), msg.sender, _nftID)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "gachyilandAddress.transferFrom(address(this), msg.sender, _nftID)"
+            }
+        ]
+    }
+}

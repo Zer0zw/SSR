@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "envToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "require(envToken.transferFrom(msg.sender, address(this), _amount), \"Token transfer failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rewardTokens",
+                "Node": "rewardToken.transfer(recipient, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "require(envToken.transfer(msg.sender, balance), \"Token transfer failed.\")"
+            },
+            {
+                "Function": "releaseStakes2StakeHolders",
+                "Node": "envToken.transfer(recipient, balance)"
+            }
+        ]
+    }
+}

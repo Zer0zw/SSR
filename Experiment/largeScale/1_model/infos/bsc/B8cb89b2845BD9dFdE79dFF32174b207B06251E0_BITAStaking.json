@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositTime"
+        ],
+        "Stake Token Address": [
+            "bitaToken"
+        ],
+        "Reward Token Address": [
+            "bitaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(bitaToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(bitaToken).safeTransfer(msg.sender, availableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withDraw",
+                "Node": "IERC20(bitaToken).safeTransfer(msg.sender, availableAmount)"
+            }
+        ]
+    }
+}

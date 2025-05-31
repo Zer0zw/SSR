@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Player.total_staked",
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Player.dividends",
+            "Player.ref_bonus"
+        ],
+        "User Stake Time": [
+            "Deposit.time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "PlantSeeds",
+                "Node": "player.deposits.push(Deposit({ tarif: 20, amount: tokenamount, time: uint40(block.timestamp) }))"
+            },
+            {
+                "Function": "RePlant",
+                "Node": "player.deposits.push(Deposit({ tarif: 20, amount: tokenamount, time: uint40(block.timestamp) }))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Harvest",
+                "Node": "addr.transfer(bnb)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Sell",
+                "Node": "addr.transfer(bnb)"
+            }
+        ]
+    }
+}

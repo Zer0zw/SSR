@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staker.amount"
+        ],
+        "User Stake Reward": [
+            "staker.rate"
+        ],
+        "User Stake Time": [
+            "staker.lockedtime"
+        ],
+        "Stake Token Address": [
+            "atari"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "atari.transferFrom(msg.sender,address(this),amount)"
+            },
+            {
+                "Function": "buyforstakingwithexactEHTforToken",
+                "Node": "payable(owner()).transfer(msg.value)"
+            },
+            {
+                "Function": "buyforstakingwithexactUsdtforToken",
+                "Node": "usdt.safeTransferFrom(msg.sender,owner(),amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "atari.transfer(msg.sender,_stakers[msg.sender].amount)"
+            }
+        ]
+    }
+}

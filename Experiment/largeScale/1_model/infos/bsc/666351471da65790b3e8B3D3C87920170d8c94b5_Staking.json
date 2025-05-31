@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userTotalStaked",
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userTotalEarned",
+            "UserInfo.amount"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(address(msg.sender), TreasuryWallet, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "processRequest",
+                "Node": "token.transferFrom(TreasuryWallet, address(msg.sender), user.amount.add(reward))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "No direct transfer statement found for claiming rewards within the function"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "token.safeTransfer(address(msg.sender), amount"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "No direct transfer statement found for unstaking within the function"
+            }
+        ]
+    }
+}

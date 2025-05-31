@@ -1,0 +1,126 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "positions.tokenStaked"
+        ],
+        "User Stake Reward": [
+            "positions.tokenInterest"
+        ],
+        "User Stake Time": [
+            "positions.unlockDate",
+            "positions.createdDate"
+        ],
+        "Stake Token Address": [
+            "VMT"
+        ],
+        "Reward Token Address": [
+            "VMT"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [],
+        "unStake": [
+            "emergencyWithdraw",
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    204
+                ],
+                "Input": [
+                    "numDays",
+                    "tokenAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "VMT",
+                    "tiers"
+                ],
+                "Full Calculation Variables": [
+                    "VMT",
+                    "tiers"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    266
+                ],
+                "Input": [
+                    "positionId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "VMT",
+                    "positions.open",
+                    "positions.positionId",
+                    "positions.tokenInterest",
+                    "positions.tokenStaked",
+                    "positions.unlockDate",
+                    "positions.walletAddress",
+                    "totalInterest",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "VMT",
+                    "positions.open",
+                    "positions.positionId",
+                    "positions.tokenInterest",
+                    "positions.tokenStaked",
+                    "positions.unlockDate",
+                    "positions.walletAddress",
+                    "totalInterest",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    286
+                ],
+                "Input": [
+                    "positionId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "VMT",
+                    "positions.createdDate",
+                    "positions.open",
+                    "positions.positionId",
+                    "positions.tokenInterest",
+                    "positions.tokenStaked",
+                    "positions.unlockDate",
+                    "positions.walletAddress",
+                    "totalInterest",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "VMT",
+                    "positions.createdDate",
+                    "positions.open",
+                    "positions.positionId",
+                    "positions.tokenInterest",
+                    "positions.tokenStaked",
+                    "positions.unlockDate",
+                    "positions.walletAddress",
+                    "totalInterest",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

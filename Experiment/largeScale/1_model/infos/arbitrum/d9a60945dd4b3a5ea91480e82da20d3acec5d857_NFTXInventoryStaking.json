@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount",
+            "xTokensMinted"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "timelockLength",
+            "DEFAULT_LOCKTIME"
+        ],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "baseToken.safeTransferFrom(msg.sender, address(xToken), _amount)"
+            },
+            {
+                "Function": "timelockMintFor",
+                "Node": "baseToken.safeTransferFrom(msg.sender, address(xToken), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "receiveRewards",
+                "Node": "IERC20Upgradeable(baseToken).safeTransferFrom(msg.sender, deployedXToken, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "uint256 baseTokensRedeemed = xToken.burnXTokens(msg.sender, _share)"
+            }
+        ]
+    }
+}

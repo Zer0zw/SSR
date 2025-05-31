@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "UserInfo.nextHarvestUntil"
+        ],
+        "Stake Token Address": [
+            "FarmInfo.inputToken"
+        ],
+        "Reward Token Address": [
+            "RewardInfo.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "farmInfo.inputToken.safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "farmInfo.inputToken.safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            },
+            {
+                "Function": "depositWithPermit",
+                "Node": "farmInfo.inputToken.safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            },
+            {
+                "Function": "depositForWithPermit",
+                "Node": "farmInfo.inputToken.safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "payOrLockupPendingReward",
+                "Node": "_safeRewardTransfer(_withdrawer, totalRewards, rewardInfo.rewardToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "farmInfo.inputToken.safeTransfer(address(_withdrawer), _amount.sub(withdrawalFee))"
+            },
+            {
+                "Function": "withdrawFor",
+                "Node": "farmInfo.inputToken.safeTransfer(address(_withdrawer), _amount.sub(withdrawalFee))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "farmInfo.inputToken.safeTransfer(address(_msgSender()), user.amount)"
+            }
+        ]
+    }
+}

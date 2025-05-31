@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftHolderInfo.amount",
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [
+            "nftHolderInfo.boostedAmount"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry"
+        ],
+        "Stake Token Address": [
+            "NFTGM"
+        ],
+        "Reward Token Address": [
+            "sNFTGM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( sNFTGM ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IsNFTGM( sNFTGM ).balanceForGons( info.gons ) )"
+            },
+            {
+                "Function": "rebase",
+                "Node": "IERC20( sNFTGM ).transfer(nftHolder, nftHolderInfo[nftHolder].amount - nftHolderInfo[nftHolder].boostedAmount)"
+            },
+            {
+                "Function": "rebase",
+                "Node": "INFTGMToken( NFTGM ).mint(address(this), nftHolderInfo[nftHolder].amount - nftHolderInfo[nftHolder].boostedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( NFTGM ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20( NFTGM ).safeTransfer( msg.sender, info.deposit )"
+            }
+        ]
+    }
+}

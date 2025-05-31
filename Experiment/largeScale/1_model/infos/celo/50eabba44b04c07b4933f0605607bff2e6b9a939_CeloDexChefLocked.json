@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userLastDepositTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "clx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositWithRef",
+                "Node": "_lpToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestReward",
+                "Node": "_safeClxTransfer(_account, _claimableAmount)"
+            },
+            {
+                "Function": "_harvestReward",
+                "Node": "IERC20(clx).safeIncreaseAllowance(address(locker), _lockAmount)"
+            },
+            {
+                "Function": "_harvestReward",
+                "Node": "ITokenLocker(locker).lock(_account, _lockAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "_lpToken.safeTransfer(_account, _sentAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_lpToken.safeTransfer(address(msg.sender), _sentAmount)"
+            }
+        ]
+    }
+}

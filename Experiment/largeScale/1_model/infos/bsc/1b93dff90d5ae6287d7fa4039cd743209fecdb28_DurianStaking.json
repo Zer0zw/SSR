@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StakeToken"
+        ],
+        "Reward Token Address": [
+            "RewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "super.Deposit(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "RewardToken.safeTransfer(msg.sender, claimreward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Withdraw",
+                "Node": "super.Withdraw(amount)"
+            },
+            {
+                "Function": "Exit",
+                "Node": "super.Exit()"
+            }
+        ]
+    }
+}

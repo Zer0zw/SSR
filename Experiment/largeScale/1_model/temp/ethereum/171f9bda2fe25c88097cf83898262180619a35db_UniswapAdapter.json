@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lockedAmount"
+        ],
+        "User Stake Reward": [
+            "rewardToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lockableToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "adapter.lockableToken(poolId).approve(adapter.poolAddress(poolId), uint256(-1))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IUniswapPool(adapter.poolAddress(poolId)).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IUniswapPool(adapter.poolAddress(poolId)).withdraw(amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IUniswapPool(adapter.poolAddress(poolId)).withdraw(IUniswapPool(adapter.poolAddress(poolId)).balanceOf(address(this)))"
+            }
+        ]
+    }
+}

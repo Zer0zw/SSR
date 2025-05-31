@@ -1,0 +1,135 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "userStakes.stakedTokens"
+            ],
+            "User Stake Reward": [
+                "userStakes.claimedReward",
+                "users.refReward"
+            ],
+            "User Stake Time": [
+                "userStakes.stakeTime",
+                "userStakes.unstakeTime"
+            ],
+            "Stake Token Address": [
+                "mainToken"
+            ],
+            "Reward Token Address": [
+                "mainToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "buyToken",
+                "buyTokenUSDC",
+                "buyTokenUSDT"
+            ],
+            "getReward": [
+                "claimRefReward",
+                "claimTokens",
+                "unStake"
+            ],
+            "unStake": [
+                "unStake"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "buyToken",
+                    "Calculation Variables": [
+                        "currentStage",
+                        "priceFeed",
+                        "phases"
+                    ]
+                },
+                {
+                    "Function": "buyTokenUSDT",
+                    "Calculation Variables": [
+                        "currentStage",
+                        "phases"
+                    ]
+                },
+                {
+                    "Function": "buyTokenUSDC",
+                    "Calculation Variables": [
+                        "currentStage",
+                        "phases"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claimRefReward",
+                    "Calculation Variables": [
+                        "isExist",
+                        "isPresaleEnded",
+                        "mainToken",
+                        "users.refReward"
+                    ]
+                },
+                {
+                    "Function": "claimTokens",
+                    "Calculation Variables": [
+                        "isExist",
+                        "isPresaleEnded",
+                        "mainToken",
+                        "users.claimAbleAmount"
+                    ]
+                },
+                {
+                    "Function": "unStake",
+                    "Calculation Variables": [
+                        "APY",
+                        "distributedReward",
+                        "isPresaleEnded",
+                        "userStakes.stakedTokens",
+                        "userStakes.isUnstake",
+                        "year",
+                        "percentDivider",
+                        "distrubuteAbleReward",
+                        "userStakes.stakeTime",
+                        "users.stakeCount",
+                        "mainToken"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unStake",
+                    "Calculation Variables": [
+                        "APY",
+                        "distributedReward",
+                        "isPresaleEnded",
+                        "userStakes.stakedTokens",
+                        "userStakes.isUnstake",
+                        "year",
+                        "percentDivider",
+                        "distrubuteAbleReward",
+                        "userStakes.stakeTime",
+                        "users.stakeCount",
+                        "mainToken"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

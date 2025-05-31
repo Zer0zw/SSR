@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens",
+            "userSSGTPeggedByNFT"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "ssgtTokenAddress"
+        ],
+        "Reward Token Address": [
+            "ssgtTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(IERC20(ssgtTokenAddress).transferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "require(IERC20(ssgtTokenAddress).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "claimDivs",
+                "Node": "updateAccount(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(IERC20(ssgtTokenAddress).transfer(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "withdrawWithNFT",
+                "Node": "require(IERC20(ssgtTokenAddress).transfer(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "withdraw(_amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "withdrawWithNFT(_tokenId[i])"
+            }
+        ]
+    }
+}

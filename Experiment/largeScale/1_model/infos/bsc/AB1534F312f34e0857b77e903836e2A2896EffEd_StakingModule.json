@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.value"
+        ],
+        "User Stake Reward": [
+            "Stake.rewardValue"
+        ],
+        "User Stake Time": [
+            "Stake.startTime",
+            "Stake.timePeriod"
+        ],
+        "Stake Token Address": [
+            "getBaseContract"
+        ],
+        "Reward Token Address": [
+            "getBaseContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addTimeStake",
+                "Node": "getBaseContract().transferFrom(_msgSender(), address(this), value)"
+            },
+            {
+                "Function": "addMultiplierStake",
+                "Node": "getBaseContract().transferFrom(_msgSender(), address(this), value)"
+            },
+            {
+                "Function": "addCombinedStake",
+                "Node": "getBaseContract().transferFrom(_msgSender(), address(this), value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeRewards",
+                "Node": "getBaseContract().transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "getBaseContract().transferFrom(address(this), _msgSender(), withdrawAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LiquidityMiningTypes.AccountRewardsIndicators.lpTokenBalance"
+        ],
+        "User Stake Reward": [
+            "_allocatedPwTokens"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20Upgradeable(lpToken).transferFrom(msgSender, address(this), lpTokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_transferRewardsToPowerToken(msgSender, rewardsAmount)"
+            },
+            {
+                "Function": "claimAllocatedPwTokens",
+                "Node": "_transferRewardsToPowerToken(msgSender, allocatedRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_unstake(lpToken, lpTokenAmount, true)"
+            },
+            {
+                "Function": "unstakeAndAllocatePwTokens",
+                "Node": "_unstake(lpToken, lpTokenAmount, false)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStaked"
+        ],
+        "User Stake Reward": [
+            "userDividends",
+            "userRealized"
+        ],
+        "User Stake Time": [
+            "userStart"
+        ],
+        "Stake Token Address": [
+            "parentToken"
+        ],
+        "Reward Token Address": [
+            "dividendToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "try parentToken.setStakingAmount(msg.sender, amount_, 0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compoundDividends",
+                "Node": "dividendToken.transfer(user_, compoundAmount)"
+            },
+            {
+                "Function": "harvestDividends",
+                "Node": "dividendToken.transfer(user_, unpaidDividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTokens",
+                "Node": "try parentToken.setStakingAmount(msg.sender, amount_, 1)"
+            }
+        ]
+    }
+}

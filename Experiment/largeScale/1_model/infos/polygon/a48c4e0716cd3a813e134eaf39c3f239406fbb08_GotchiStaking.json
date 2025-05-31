@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "NFTSOfMember"
+        ],
+        "User Stake Reward": [
+            "TokenPerReward"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "Collection"
+        ],
+        "Reward Token Address": [
+            "Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "IERC20(Token).transferFrom(msg.sender, Owner, (TokenCost))"
+            },
+            {
+                "Function": "StakeBatch",
+                "Node": "IERC20(Token).transferFrom(msg.sender, Owner, (TokenCost))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Harvest",
+                "Node": "safeTransfertoken(msg.sender, Reward)"
+            },
+            {
+                "Function": "HarvestBatch",
+                "Node": "safeTransfertoken(msg.sender, Reward)"
+            },
+            {
+                "Function": "XXX",
+                "Node": "safeTransfertoken(address(OwnerAddress), Reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Unstake",
+                "Node": "IERC721(Collection).safeTransferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "UnstakeBatch",
+                "Node": "IERC721(Collection).safeTransferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "XXX",
+                "Node": "IERC721(Collection).safeTransferFrom(address(this), address(OwnerAddress), TokenId)"
+            }
+        ]
+    }
+}

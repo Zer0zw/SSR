@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.score"
+        ],
+        "User Stake Time": [
+            "Stake.totalStakeTime"
+        ],
+        "Stake Token Address": [
+            "vrt"
+        ],
+        "Reward Token Address": [
+            "snacks"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "iVrt.transferFrom(msg.sender, address(this), depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "iSnacks.mint(user, rewardAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "iSnacks.mint(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "iVrt.transfer(msg.sender, userStake.amount)"
+            }
+        ]
+    }
+}

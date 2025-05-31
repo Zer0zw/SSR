@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "daylyReward"
+        ],
+        "User Stake Time": [
+            "Stake.stakeAt",
+            "Stake.unStakeAt"
+        ],
+        "Stake Token Address": [
+            "VIMContract"
+        ],
+        "Reward Token Address": [
+            "rewardSource"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IBEP20(VIMContract).transferFrom(msg.sender,address(this),amount * 10**18)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IBEP20(VIMContract).transferFrom(rewardSource,lstStake[stakeId].user,reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(VIMContract).transfer(lstStake[stakeId].user, lstStake[stakeId].amount * 10**18)"
+            }
+        ]
+    }
+}

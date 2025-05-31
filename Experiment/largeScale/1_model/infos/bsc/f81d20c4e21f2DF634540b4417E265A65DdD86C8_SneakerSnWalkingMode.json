@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Walk.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "Walk.profitAmount"
+        ],
+        "User Stake Time": [
+            "Walk.created"
+        ],
+        "Stake Token Address": [
+            "snkAddress"
+        ],
+        "Reward Token Address": [
+            "snkAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "require(token.transferFrom(spender, address(this), value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawProfitWalk",
+                "Node": "require(IERC20Full(snkAddress).mint(walks[walkId].user, amount)"
+            },
+            {
+                "Function": "_withdrawProfitWalk",
+                "Node": "require(IERC20Full(snkAddress).transfer(walks[walkId].user, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_closeWalk",
+                "Node": "require(IERC20Full(snkAddress).mint(walks[walkId].user, profitTokensAmount + walks[walkId].stakeAmount)"
+            },
+            {
+                "Function": "_closeWalk",
+                "Node": "require(IERC20Full(snkAddress).transfer(walks[walkId].user, profitTokensAmount + walks[walkId].stakeAmount)"
+            }
+        ]
+    }
+}

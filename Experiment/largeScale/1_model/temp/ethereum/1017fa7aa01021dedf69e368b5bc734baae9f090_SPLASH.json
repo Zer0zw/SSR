@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "super.transfer(stakingContract, _stake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeRewardsFee",
+                "Node": "super.transfer(stakeholder, value * stakeOf(stakeholder)/totalStakes())"
+            },
+            {
+                "Function": "distributeHoldFee",
+                "Node": "super.transfer(holder, value * balanceOf(holder)/(totalHold()))"
+            },
+            {
+                "Function": "payMyRef",
+                "Node": "super.transfer(referrer, value)"
+            }
+        ],
+        "unStake": []
+    }
+}

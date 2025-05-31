@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingAmount",
+            "StakingDao.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "StakingDao.time"
+        ],
+        "Stake Token Address": [
+            "usdtTokenAddress"
+        ],
+        "Reward Token Address": [
+            "mpeTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "_getUsdtContract().transferFrom(user, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "pickupStaking",
+                "Node": "_getUsdtContract().transfer(user, amountA)"
+            }
+        ]
+    }
+}

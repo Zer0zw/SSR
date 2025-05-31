@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amounts"
+        ],
+        "User Stake Reward": [
+            "nRewards",
+            "ssrRewards",
+            "srRewards",
+            "rRewards"
+        ],
+        "User Stake Time": [
+            "weights"
+        ],
+        "Stake Token Address": [
+            "DUBU"
+        ],
+        "Reward Token Address": [
+            "DUBU"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "DUBU.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "exit",
+                "Node": "DUBU.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "DUBU.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

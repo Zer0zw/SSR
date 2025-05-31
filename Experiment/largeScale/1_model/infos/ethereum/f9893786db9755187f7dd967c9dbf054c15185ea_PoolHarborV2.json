@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userData.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "userData.earnedAmount"
+        ],
+        "User Stake Time": [
+            "userData.stakeTime"
+        ],
+        "Stake Token Address": [
+            "usdt",
+            "dapp"
+        ],
+        "Reward Token Address": [
+            "rewardTokenInfo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "usdt.safeTransferFrom(user,address(this),depositAmount"
+            },
+            {
+                "Function": "booster",
+                "Node": "usdt.safeTransferFrom(user,address(this),depositAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "shareReward(rewardToken,userStore.user,amountOut)"
+            },
+            {
+                "Function": "booster",
+                "Node": "shareReward(rewardToken,userStore.user,reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "shareReward(rewardToken,userStore.user,amountOut)"
+            }
+        ]
+    }
+}

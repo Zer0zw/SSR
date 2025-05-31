@@ -1,0 +1,182 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LP_BOUGHT"
+        ],
+        "User Stake Reward": [
+            "TOKEN_DISTRIBUTED"
+        ],
+        "User Stake Time": [
+            "BOOSTER_DURATION"
+        ],
+        "Stake Token Address": [
+            "LP_TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "firstDeposit"
+        ],
+        "getReward": [
+            "compound"
+        ],
+        "unStake": [
+            "withdrawLpTokensFromMasterChef",
+            "withdrawLpTokensFromProxyPool"
+        ],
+        "Sensitive Functions": [
+            "sendRemainingTokensToDistributor",
+            "setLPToken",
+            "setToken",
+            "withdrawRemainingTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "firstDeposit",
+                "Node": [
+                    349
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BNB_RECEIVED",
+                    "LP_BOUGHT",
+                    "ROUTER",
+                    "SLIPPAGE",
+                    "TOKEN",
+                    "TOKEN_BOUGHT",
+                    "WRAPPED_BNB",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "BNB_RECEIVED",
+                    "LP_BOUGHT",
+                    "ROUTER",
+                    "SLIPPAGE",
+                    "TOKEN",
+                    "TOKEN_BOUGHT",
+                    "WRAPPED_BNB",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    375
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BNB_RECEIVED",
+                    "LP_BOUGHT",
+                    "ROUTER",
+                    "SLIPPAGE",
+                    "TOKEN",
+                    "TOKEN_BOUGHT",
+                    "WRAPPED_BNB",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status"
+                ],
+                "Full Calculation Variables": [
+                    "BNB_RECEIVED",
+                    "LP_BOUGHT",
+                    "ROUTER",
+                    "SLIPPAGE",
+                    "TOKEN",
+                    "TOKEN_BOUGHT",
+                    "WRAPPED_BNB",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": [
+                    390
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "BOOSTER_PERCENTAGE",
+                    "DEV_PERCENTAGE",
+                    "RESTAKE_PERCENTAGE",
+                    "TOKEN"
+                ],
+                "Control Variables": [
+                    "BOOSTER_PERCENTAGE",
+                    "BOUNTY",
+                    "DEV",
+                    "DEV_PERCENTAGE",
+                    "DISTRIBUTOR",
+                    "RESTAKE_PERCENTAGE",
+                    "TOKEN"
+                ],
+                "Full Calculation Variables": [
+                    "BOOSTER_PERCENTAGE",
+                    "BOUNTY",
+                    "DEV",
+                    "DEV_PERCENTAGE",
+                    "DISTRIBUTOR",
+                    "RESTAKE_PERCENTAGE",
+                    "TOKEN"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLpTokensFromProxyPool",
+                "Node": [
+                    444
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FARM_BOOSTER_PROXY",
+                    "POOL_ID",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "FARM_BOOSTER_PROXY",
+                    "POOL_ID",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawLpTokensFromMasterChef",
+                "Node": [
+                    448
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MASTERCHEF",
+                    "POOL_ID",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "MASTERCHEF",
+                    "POOL_ID",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

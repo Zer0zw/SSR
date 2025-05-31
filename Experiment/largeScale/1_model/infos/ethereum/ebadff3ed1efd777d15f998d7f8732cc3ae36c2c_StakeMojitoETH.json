@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "USER.stakedAmount",
+            "USER.MyTotalStaked"
+        ],
+        "User Stake Reward": [
+            "USER.TotalMRewarded"
+        ],
+        "User Stake Time": [
+            "USER.creationTime",
+            "USER.lastClaim"
+        ],
+        "Stake Token Address": [
+            "stakeTokenAdd"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "require(COC(stakeTokenAdd).transferFrom(msg.sender, address(this), tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CLAIMREWARD",
+                "Node": "require(MOJITO(rewardToken).transfer(msg.sender,rewardToGive)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WITHDRAW",
+                "Node": "require(COC(stakeTokenAdd).transfer(msg.sender, tokens.sub(_unstakingFee))"
+            }
+        ]
+    }
+}

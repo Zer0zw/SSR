@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deploy",
+                "Node": "address stakingReward = address(new LpStakingRewards(/*_rewardsDistribution=*/ address(this), rewardsToken, stakingToken, pool, poolId, earnToken, startTime))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "notifyRewardAmount",
+                "Node": "LpStakingRewards(stakingReward).notifyRewardAmount(rewardAmount)"
+            },
+            {
+                "Function": "claim",
+                "Node": "LpStakingRewards(stakingReward).claim(to)"
+            },
+            {
+                "Function": "claimOf",
+                "Node": "LpStakingRewards(stakingReward).claimOf(account, to)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "burn",
+                "Node": "LpStakingRewards(stakingReward).burn(amount)"
+            }
+        ]
+    }
+}

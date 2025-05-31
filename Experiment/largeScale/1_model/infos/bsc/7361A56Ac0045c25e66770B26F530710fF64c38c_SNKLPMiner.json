@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf",
+            "OrderInfo.amount"
+        ],
+        "User Stake Reward": [
+            "OrderInfo.reward"
+        ],
+        "User Stake Time": [
+            "OrderInfo.start",
+            "OrderInfo.end"
+        ],
+        "Stake Token Address": [
+            "SNKLP"
+        ],
+        "Reward Token Address": [
+            "SNK"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(SNKLP).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(SNK).safeTransfer(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(SNKLP).safeTransfer(msg.sender, totalLPs)"
+            }
+        ]
+    }
+}

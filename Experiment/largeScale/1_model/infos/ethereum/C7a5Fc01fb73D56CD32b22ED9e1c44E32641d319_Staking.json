@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_orderAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StakingRequest.nftAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_transferNFT(schema, nftAddress, msg.sender, address(this), tokenId, amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "_transferNFT(schema, nftAddress, address(this), msg.sender, tokenId, amount)"
+            }
+        ]
+    }
+}

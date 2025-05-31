@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "OHM"
+        ],
+        "Reward Token Address": [
+            "sOHM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( wsOHM ).transfer(_recipient, _wsOHMAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "IStaking( staking ).claim( address(this) )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unwrapAndUnstake",
+                "Node": "IERC20( OHM ).transfer(_recipient, _amountsOHM)"
+            }
+        ]
+    }
+}

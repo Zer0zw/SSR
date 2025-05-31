@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.balance"
+        ],
+        "User Stake Reward": [
+            "User.claimAmount"
+        ],
+        "User Stake Time": [
+            "User.lastTime"
+        ],
+        "Stake Token Address": [
+            "lsdToken"
+        ],
+        "Reward Token Address": [
+            "lsdToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLSD",
+                "Node": "lsdTokenVELSD.mint(msg.sender, _lsdTokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "lsdToken.transfer(msg.sender, excessAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLSD",
+                "Node": "lsdToken.transfer(msg.sender, _veLSDAmount)"
+            }
+        ]
+    }
+}

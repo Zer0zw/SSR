@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastStaked"
+        ],
+        "Stake Token Address": [
+            "pool.lpToken"
+        ],
+        "Reward Token Address": [
+            "DBX",
+            "DBC",
+            "vDBX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpToken.transfer(_account, userAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "DBX.transfer(_account, pending.mul(50).div(100))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "Vaults(vaults).mintRewards(poolId, amountOut[2], DBC, _account)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "Vaults(vaults).mintRewards(poolId, pending.mul(20).div(100), vDBX, _account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.transfer(_account, userAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "lpToken.transfer(_account, userAmount)"
+            }
+        ]
+    }
+}

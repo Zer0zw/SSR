@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Record.stake"
+        ],
+        "User Stake Reward": [
+            "extPowMap"
+        ],
+        "User Stake Time": [
+            "Record.expire"
+        ],
+        "Stake Token Address": [
+            "etn"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "etn.transferFrom(msg.sender,address(this), _value)"
+            },
+            {
+                "Function": "stakeWithAdvice",
+                "Node": "etn.transferFrom(msg.sender,address(this), _value)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "etn.transfer( msg.sender, toUser)"
+            }
+        ]
+    }
+}

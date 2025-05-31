@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "cleoStaked",
+            "cobraStaked"
+        ],
+        "User Stake Reward": [
+            "cleoStake.stakeOwed",
+            "cobraStake.stakeOwed"
+        ],
+        "User Stake Time": [
+            "cleoStake.value",
+            "cobraStake.value"
+        ],
+        "Stake Token Address": [
+            "cleop",
+            "cleo"
+        ],
+        "Reward Token Address": [
+            "cleo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeCleos",
+                "Node": "cleop.transferFrom(msg.sender, address(this), tokenIds[i])"
+            },
+            {
+                "Function": "_stakeCobras",
+                "Node": "cleop.transferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimFromCleo",
+                "Node": "cleo.mint(msg.sender, owed)"
+            },
+            {
+                "Function": "_claimFromCobra",
+                "Node": "cleo.mint(msg.sender, owed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_claimFromCleo",
+                "Node": "cleop.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            },
+            {
+                "Function": "_claimFromCobra",
+                "Node": "cleop.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            },
+            {
+                "Function": "rescue",
+                "Node": "cleop.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            }
+        ]
+    }
+}

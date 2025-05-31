@@ -1,0 +1,197 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.lastRewardBlock"
+        ],
+        "User Stake Time": [
+            "userInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    431
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    425
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "rewardPercentage",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Control Variables": [
+                    "BLOCKS_PER_DAY",
+                    "rewardPercentage",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "rewardPercentage",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    449
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "rewardPercentage",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Control Variables": [
+                    "BLOCKS_PER_DAY",
+                    "lockTime",
+                    "rewardPercentage",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "lockTime",
+                    "rewardPercentage",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    457
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BLOCKS_PER_DAY",
+                    "lockTime",
+                    "rewardPercentage",
+                    "token",
+                    "totalStakedAmount",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKS_PER_DAY",
+                    "lockTime",
+                    "rewardPercentage",
+                    "token",
+                    "totalStakedAmount",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    472
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "feeAddress1",
+                    "feeAddress2",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "feeAddress1",
+                    "feeAddress2",
+                    "lockTime",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "withdrawFee"
+                ],
+                "Full Calculation Variables": [
+                    "feeAddress1",
+                    "feeAddress2",
+                    "lockTime",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "withdrawFee"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

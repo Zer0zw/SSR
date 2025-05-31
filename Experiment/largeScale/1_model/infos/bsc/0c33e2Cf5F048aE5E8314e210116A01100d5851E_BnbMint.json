@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.staked"
+        ],
+        "User Stake Reward": [
+            "User.unclaimed",
+            "User.bonus"
+        ],
+        "User Stake Time": [
+            "User.stakepoint"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "commissionWallet.transfer(msg.value.mul(MARKETING_FEE).div(PERCENT_DIVISOR))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "msg.sender.transfer(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "msg.sender.transfer(amount)"
+            }
+        ]
+    }
+}

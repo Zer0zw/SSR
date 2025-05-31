@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "box1Balance",
+            "box2Balance",
+            "box3Balance"
+        ],
+        "User Stake Reward": [
+            "rewardCountDue",
+            "rewardCount"
+        ],
+        "User Stake Time": [
+            "box1DepositDate",
+            "box2DepositDate",
+            "box3DepositDate"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStake",
+                "Node": "gemCaveTokenI.transferFrom(from, stakeWallet, tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pullStake",
+                "Node": "gemCaveTokenI.transferFrom(rewardWallet, from, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "pullStake",
+                "Node": "gemCaveTokenI.transferFrom(stakeWallet, from, tokenAmount)"
+            }
+        ]
+    }
+}

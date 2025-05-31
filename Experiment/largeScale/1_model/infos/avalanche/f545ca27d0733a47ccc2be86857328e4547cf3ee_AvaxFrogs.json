@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedFrogsByAddress"
+        ],
+        "User Stake Reward": [
+            "rewardPayouts"
+        ],
+        "User Stake Time": [
+            "stakedFrogLastClaimDate"
+        ],
+        "Stake Token Address": [
+            "spawn"
+        ],
+        "Reward Token Address": [
+            "spawn"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "transferFrom(msg.sender, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeMultiple",
+                "Node": "transferFrom(msg.sender, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "spawn.transfer(tokenOwner, currentReward)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "spawn.transfer(tokenOwner, currentReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(address(this)).transferFrom(address(this), msg.sender, _tokenId"
+            },
+            {
+                "Function": "unstakeMultiple",
+                "Node": "IERC721(address(this)).transferFrom(address(this), msg.sender, _tokenIds[i]"
+            }
+        ]
+    }
+}

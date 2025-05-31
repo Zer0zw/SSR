@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.accruedReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "stakingRewardsRewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "compound",
+                "Node": "stakingRewardsStakingToken.safeApprove(address(stakingRewards), stakingTokenDiff.balDiff)"
+            },
+            {
+                "Function": "compound",
+                "Node": "stakingRewards.stake(stakingTokenDiff.balDiff)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "converter.convert(address(token0), token0Balance, 100, BCNT, minBCNTAmountConverted, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingRewardsStakingToken.safeTransfer(msg.sender, amountToWithdrawFromStakingRewards)"
+            },
+            {
+                "Function": "withdrawWithLP",
+                "Node": "lp.safeTransfer(msg.sender, lpAmount)"
+            }
+        ]
+    }
+}

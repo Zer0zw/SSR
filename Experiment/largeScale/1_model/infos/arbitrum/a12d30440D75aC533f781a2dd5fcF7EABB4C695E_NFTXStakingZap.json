@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance",
+            "count"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lpLockTime",
+            "inventoryLockTime"
+        ],
+        "Stake Token Address": [
+            "vault",
+            "assetAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "provideInventory721",
+                "Node": "inventoryStaking.timelockMintFor(vaultId, count * BASE, msg.sender, inventoryLockTime)"
+            },
+            {
+                "Function": "provideInventory1155",
+                "Node": "inventoryStaking.timelockMintFor(vaultId, count * BASE, msg.sender, inventoryLockTime)"
+            },
+            {
+                "Function": "addLiquidity721ETHTo",
+                "Node": "lpStaking.timelockDepositFor(vaultId, to, liquidity, lpLockTime)"
+            },
+            {
+                "Function": "addLiquidity1155ETHTo",
+                "Node": "lpStaking.timelockDepositFor(vaultId, to, liquidity, lpLockTime)"
+            },
+            {
+                "Function": "addLiquidity721To",
+                "Node": "lpStaking.timelockDepositFor(vaultId, to, liquidity, lpLockTime)"
+            },
+            {
+                "Function": "addLiquidity1155To",
+                "Node": "lpStaking.timelockDepositFor(vaultId, to, liquidity, lpLockTime)"
+            }
+        ],
+        "getReward": [],
+        "unStake": []
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "userReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "contractSPOOD"
+        ],
+        "Reward Token Address": [
+            "contractSPOOD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "balances[msg.sender] += value"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateRewards",
+                "Node": "balances[user] += userReward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "SpooderToken(contractSPOOD).transferFrom(stakeWallet, msg.sender, value)"
+            }
+        ]
+    }
+}

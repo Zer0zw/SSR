@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeTracker.virginStaked"
+        ],
+        "User Stake Reward": [
+            "stakeTracker.rewards"
+        ],
+        "User Stake Time": [
+            "stakeTracker.lastBlockChecked"
+        ],
+        "Stake Token Address": [
+            "virginLPAddress"
+        ],
+        "Reward Token Address": [
+            "virginAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "virginLPToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_mint(msg.sender, reward.div(20).mul(15))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "virginLPToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

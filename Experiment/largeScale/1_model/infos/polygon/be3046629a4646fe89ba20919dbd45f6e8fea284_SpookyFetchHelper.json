@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserFarmData.staked"
+        ],
+        "User Stake Reward": [
+            "RewardEarningsData.earnings"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LpData.tokenBalanceInLp",
+            "LpData.quoteBalanceInLp"
+        ],
+        "Reward Token Address": [
+            "RewardTokenData.rewardToken",
+            "RewardEarningsData.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "fetchUserFarmData",
+                "Node": "MasterChef(masterchef).userInfo(pid, user)"
+            },
+            {
+                "Function": "fetchUserFarmData",
+                "Node": "MasterChefV2(masterchefv2).userInfo(pid, user)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "fetchUserFarmData",
+                "Node": "MasterChef(masterchef).pendingAXO(pid, user)"
+            },
+            {
+                "Function": "fetchUserFarmData",
+                "Node": "MasterChefV2(masterchefv2).pendingAXO(pid, user)"
+            },
+            {
+                "Function": "_fetchRewarderEarningsData",
+                "Node": "rewarder.pendingTokens(pid, user, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "fetchUserLpData",
+                "Node": "lp.allowance(user, _versionedMasterchef(version))"
+            },
+            {
+                "Function": "fetchUserLpData",
+                "Node": "lp.balanceOf(user)"
+            }
+        ]
+    }
+}

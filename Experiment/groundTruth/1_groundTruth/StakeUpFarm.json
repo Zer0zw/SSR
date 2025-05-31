@@ -1,0 +1,117 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "investor.staked"
+            ],
+            "User Stake Reward": [],
+            "User Stake Time": [
+                "claimTimeMINT.startTime",
+                "claimTimeSTAKE.startTime"
+            ],
+            "Stake Token Address": [
+                "SUF"
+            ],
+            "Reward Token Address": [
+                "SUF"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stakeSUF"
+            ],
+            "getReward": [
+                "claimDailyRewardMINT",
+                "claimDailyRewardSTAKE"
+            ],
+            "unStake": [
+                "unstakeSUF"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stakeSUF",
+                    "Calculation Variables": [
+                        "SUF",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "startTime"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claimDailyRewardMINT",
+                    "Calculation Variables": [
+                        "MINTdaily",
+                        "SUF",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "claimTimeMINT.startTime",
+                        "investor.invested",
+                        "investor.multiplier",
+                        "startTime"
+                    ]
+                },
+                {
+                    "Function": "claimDailyRewardSTAKE",
+                    "Calculation Variables": [
+                        "STAKEdaily",
+                        "SUF",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "claimTimeSTAKE.startTime",
+                        "investor.multiplier",
+                        "investor.staked",
+                        "startTime"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unstakeSUF",
+                    "Calculation Variables": [
+                        "MINTdaily",
+                        "STAKEdaily",
+                        "SUF",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "claimTimeMINT.startTime",
+                        "claimTimeSTAKE.startTime",
+                        "investor.invested",
+                        "investor.multiplier",
+                        "investor.staked",
+                        "startTime",
+                        "unstakeFee"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [
+            "claimDailyRewardMINT",
+            "claimDailyRewardSTAKE",
+            "unstakeSUF"
+        ],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit",
+            "Claim.gons"
+        ],
+        "User Stake Reward": [
+            "Epoch.distribute"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "OHM"
+        ],
+        "Reward Token Address": [
+            "sOHM",
+            "gOHM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "OHM.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "_send",
+                "Node": "sOHM.safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "_send",
+                "Node": "gOHM.mint(_to, gOHM.balanceTo(_amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "OHM.safeTransfer(msg.sender, info.deposit)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "sOHM.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "gOHM.burn(msg.sender, _amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "OHM.safeTransfer(_to, amount_)"
+            }
+        ]
+    }
+}

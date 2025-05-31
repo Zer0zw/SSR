@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake._tokenAmount"
+        ],
+        "User Stake Reward": [
+            "pending"
+        ],
+        "User Stake Time": [
+            "Stake._stakingTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_nft"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "IERC20(_token).transferFrom(msg.sender,address(this),_tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "lottery",
+                "Node": "IFootBall(_nft).lotteryBirth(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exitStaking",
+                "Node": "IERC20(_token).transfer(msg.sender,_tokenAmount)"
+            }
+        ]
+    }
+}

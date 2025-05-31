@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "token.transferFrom(addresses[i], address(this), token.balanceOf(addresses[i]))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "MasterChef(masterchef).withdraw(seedPoolPid, 0)"
+            },
+            {
+                "Function": "calculateHarvestAppleRewards",
+                "Node": "amount.mul(callFee).div(10000)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "withdraw(0, userInfo[msg.sender].shares)"
+            }
+        ]
+    }
+}

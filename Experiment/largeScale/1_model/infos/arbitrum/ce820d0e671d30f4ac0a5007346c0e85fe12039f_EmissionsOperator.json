@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.unclaimedReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositAverageTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "STBZ"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(_msgSender(), address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "STBZ.safeTransfer(_msgSender(), reward)"
+            },
+            {
+                "Function": "pushReward",
+                "Node": "STBZ.safeTransfer(recipient, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(_msgSender(), amount"
+            }
+        ]
+    }
+}

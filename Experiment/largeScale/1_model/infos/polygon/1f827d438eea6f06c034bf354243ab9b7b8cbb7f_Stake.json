@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "noStaked"
+        ],
+        "User Stake Reward": [
+            "rewardAmountPerBlock"
+        ],
+        "User Stake Time": [
+            "Tx.blockStaked"
+        ],
+        "Stake Token Address": [
+            "minter"
+        ],
+        "Reward Token Address": [
+            "g4n9"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "StakeLib.bringHere(tokenId, minter)"
+            },
+            {
+                "Function": "stakeMul",
+                "Node": "StakeLib.bringHereMul(tokenIds, minter)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "StakeLib.payout(msg.sender, amount, g4n9, admin)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "StakeLib.payout(stakeDetails[tokenId].staker, StakeLib.calculate(rewardAmountPerBlock, block.number - stakeDetails[tokenId].blockStaked), g4n9, admin)"
+            },
+            {
+                "Function": "unstakeMul",
+                "Node": "StakeLib.payout(stakeDetails[tokenIds[0]].staker, StakeLib.calculate(rewardAmountPerBlock, calculateTotal(tokenIds)), g4n9, admin)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "StakeLib.sendBack(tokenId, minter, stakeDetails[tokenId].staker)"
+            },
+            {
+                "Function": "unstakeMul",
+                "Node": "StakeLib.sendBackMul(tokenIds, minter, stakeDetails[tokenIds[0]].staker)"
+            }
+        ]
+    }
+}

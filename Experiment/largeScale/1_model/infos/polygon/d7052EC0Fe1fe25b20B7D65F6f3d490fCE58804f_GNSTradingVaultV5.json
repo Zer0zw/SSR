@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.daiDeposited"
+        ],
+        "User Stake Reward": [
+            "User.debtDai",
+            "User.debtMatic"
+        ],
+        "User Stake Time": [
+            "User.withdrawBlock"
+        ],
+        "Stake Token Address": [
+            "storageT.dai"
+        ],
+        "Reward Token Address": [
+            "storageT.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositDai",
+                "Node": "require(storageT.dai().transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "require(storageT.dai().transfer(msg.sender, pendingRewardDai()))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "payable(msg.sender).transfer(pendingMatic)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawDai",
+                "Node": "require(storageT.dai().transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

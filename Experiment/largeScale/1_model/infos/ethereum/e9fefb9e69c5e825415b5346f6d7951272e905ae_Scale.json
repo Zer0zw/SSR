@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeBalances.stakeBalance"
+        ],
+        "User Stake Reward": [
+            "_tokensToMint"
+        ],
+        "User Stake Time": [
+            "stakeBalances.initialStakeTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakeBalances[_user].stakeBalance = _value"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "transfer( _user, _stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "mint(msg.sender, _tokensToMint)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "balances[msg.sender] = balances[msg.sender].add(stakeBalances[msg.sender].stakeBalance"
+            }
+        ]
+    }
+}

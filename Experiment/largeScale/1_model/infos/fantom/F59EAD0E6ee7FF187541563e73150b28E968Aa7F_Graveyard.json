@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownedStakesBalance"
+        ],
+        "User Stake Reward": [
+            "brainAmounts"
+        ],
+        "User Stake Time": [
+            "StakeDetails.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "zombie"
+        ],
+        "Reward Token Address": [
+            "brain"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMany",
+                "Node": "zombie.transferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBrainsAndMaybeUnstake",
+                "Node": "brain.mint(_msgSender(), totalClaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimBrainsAndMaybeUnstake",
+                "Node": "zombie.transferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "withdrawZombies",
+                "Node": "zombie.transferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

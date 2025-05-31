@@ -1,0 +1,100 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "_userInfos.amount",
+                "_userRecords.amount"
+            ],
+            "User Stake Reward": [
+                "_userRecords.reward"
+            ],
+            "User Stake Time": [
+                "_userRecords.start",
+                "_userRecords.end"
+            ],
+            "Stake Token Address": [
+                "_tokenAddress"
+            ],
+            "Reward Token Address": [
+                "_tokenAddress"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "claimTeamReward"
+            ],
+            "unStake": [
+                "unStake"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "_pause",
+                        "_amountUnit",
+                        "token",
+                        "_minAmount"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claimTeamReward",
+                    "Calculation Variables": [
+                        "MAX",
+                        "_feeDivFactor",
+                        "_levelConfigs.amount",
+                        "_levelConfigs.rewardRate",
+                        "_levelConfigs.teamAmount",
+                        "_levelLength",
+                        "_tokenAddress",
+                        "_userInfos.amount",
+                        "_userInfos.levelClaimed",
+                        "_userInfos.teamAmount"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unStake",
+                    "Calculation Variables": [
+                        "_tokenAddress",
+                        "_userRecords.amount",
+                        "_userRecords.end",
+                        "_userRecords.feeAmount",
+                        "_userRecords.pid",
+                        "_userRecords.reward",
+                        "_userRecords.status"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [
+            "claimTeamReward"
+        ],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": [
+            "claimTeamReward",
+            "claimToken"
+        ]
+    }
+}
+        

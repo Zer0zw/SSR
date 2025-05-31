@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IBxhPool.UserPoolInfo.amount",
+            "_stakeAmount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken",
+            "lpTokenNew"
+        ],
+        "Reward Token Address": [
+            "bxhToken",
+            "bonusToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "upgrade",
+                "Node": "pool.lpTokenNew.stakeByDelegate( _stakeAmount, msg.sender )"
+            },
+            {
+                "Function": "upgrade",
+                "Node": "bxhPoolNew.depositByDelegate( pool.pidNew , msg.sender, _stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "upgrade",
+                "Node": "bxhToken.transfer( msg.sender , pendingReward)"
+            },
+            {
+                "Function": "upgrade",
+                "Node": "bonusToken.transfer( msg.sender , pendingReward)"
+            }
+        ],
+        "unStake": []
+    }
+}

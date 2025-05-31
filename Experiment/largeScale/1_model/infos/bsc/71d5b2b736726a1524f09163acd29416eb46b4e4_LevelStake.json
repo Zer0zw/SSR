@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.cooldowns"
+        ],
+        "Stake Token Address": [
+            "LVL"
+        ],
+        "Reward Token Address": [
+            "LGO"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "LVL.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_safeTransferLGO(_to, _pendingReward)"
+            },
+            {
+                "Function": "stake",
+                "Node": "_safeTransferLGO(_to, pending)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_safeTransferLGO(_to, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(LVL).safeTransfer(_to, amountToUnstake)"
+            }
+        ]
+    }
+}

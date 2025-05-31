@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [
+            "earnings"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "HPOS10i"
+        ],
+        "Reward Token Address": [
+            "HyperRingtoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "require( IERC20(HPOS10i).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(HyperRingtoken).transfer(sender, earned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "IERC20(HPOS10i).transfer(msg.sender, balance *980/1000)"
+            },
+            {
+                "Function": "unstakeTokens",
+                "Node": "IERC20(HPOS10i).transfer(taxAccount, balance *20/1000)"
+            }
+        ]
+    }
+}

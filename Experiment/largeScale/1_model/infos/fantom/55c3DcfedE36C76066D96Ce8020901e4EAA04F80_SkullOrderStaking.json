@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "Memberseat.rewardEarned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "IERC721(nft).safeTransferFrom(_account, address(this), _tokenId)"
+            },
+            {
+                "Function": "stake",
+                "Node": "_stake(msg.sender, _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "_safeRewardTransfer(msg.sender, _earned)"
+            },
+            {
+                "Function": "_safeRewardTransfer",
+                "Node": "_reward.safeTransfer(_to, _rewardBal)"
+            },
+            {
+                "Function": "_safeRewardTransfer",
+                "Node": "_reward.safeTransfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IERC721(nft).safeTransferFrom(address(this), _account, _tokenId)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_withdraw(msg.sender, _tokenIds[i])"
+            }
+        ]
+    }
+}

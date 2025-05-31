@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.stakes.amount"
+        ],
+        "User Stake Reward": [
+            "Staker.totalReward"
+        ],
+        "User Stake Time": [
+            "Staker.stakes.term"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "balances[msg.sender] = balances[msg.sender].sub(_amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "balances[referer] = balances[referer].add(refAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "balances[msg.sender] = balances[msg.sender].add(amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserFarm.deposited"
+        ],
+        "User Stake Reward": [
+            "Farm.pending"
+        ],
+        "User Stake Time": [
+            "CreateFarmParams.lockPeriod"
+        ],
+        "Stake Token Address": [
+            "CreateFarmParams.lpToken"
+        ],
+        "Reward Token Address": [
+            "CreateFarmParams.erc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "Farm farmInstance = Farm(farmAddress)\nfarmInstance.deposit(0, amount, msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pending",
+                "Node": "Farm farmInstance = Farm(farm)\nuint256 pendingRewards = farmInstance.pending(0, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Farm farmInstance = Farm(farmAddress)\nfarmInstance.withdraw(0, amount, msg.sender)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "Farm farmInstance = Farm(farmAddress)\nfarmInstance.emergencyWithdraw(0, msg.sender)"
+            }
+        ]
+    }
+}

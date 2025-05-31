@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceInProxyDepositor"
+        ],
+        "User Stake Reward": [
+            "claimableRewardOfStrategy"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "HND"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IERC20Upgradeable(cWant).safeTransfer(proxyDepositor, cWantBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestCore",
+                "Node": "wftm.safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_harvestCore",
+                "Node": "wftm.safeTransfer(treasury, treasuryFeeToVault)"
+            },
+            {
+                "Function": "_harvestCore",
+                "Node": "wftm.safeTransfer(strategistRemitter, feeToStrategist)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IERC20Upgradeable(want).safeTransfer(vault, _amount - 1)"
+            },
+            {
+                "Function": "_retireStrat",
+                "Node": "IERC20Upgradeable(want).safeTransfer(vault, wantBalance)"
+            },
+            {
+                "Function": "_reclaimWant",
+                "Node": "CErc20I(cWant).redeemUnderlying(wantAmount)"
+            }
+        ]
+    }
+}

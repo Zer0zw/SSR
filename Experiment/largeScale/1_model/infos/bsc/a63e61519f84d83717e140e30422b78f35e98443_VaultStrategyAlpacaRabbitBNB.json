@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_shares",
+            "_principal"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [
+            "_depositedAt"
+        ],
+        "Stake Token Address": [
+            "ALPACA_TOKEN",
+            "RABBIT_TOKEN"
+        ],
+        "Reward Token Address": [
+            "ALPACA_TOKEN",
+            "RABBIT_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_shares[msg.sender] = _shares[msg.sender].add(shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "payable(msg.sender).transfer(withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "payable(msg.sender).transfer(withdrawAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(withdrawAmount)"
+            }
+        ]
+    }
+}

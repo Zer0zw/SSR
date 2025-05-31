@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.staked"
+        ],
+        "User Stake Reward": [
+            "Stake.total_earn"
+        ],
+        "User Stake Time": [
+            "Stake.start_time",
+            "Stake.due_time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "accounts[queue_user].balance += queue_balance"
+            },
+            {
+                "Function": "stake",
+                "Node": "current_stake_balance += available_amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakeProfit",
+                "Node": "account.balance += claim_amount"
+            },
+            {
+                "Function": "claimStakeProfit",
+                "Node": "account.remaining_earn += remaining_balance"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "account.balance -= amount"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.send(withdraw_amount)"
+            }
+        ]
+    }
+}

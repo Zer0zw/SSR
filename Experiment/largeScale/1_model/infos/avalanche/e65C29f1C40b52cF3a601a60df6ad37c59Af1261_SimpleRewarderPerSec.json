@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.unpaidRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "onJoeReward",
+                "Node": "if (isNative) {\n            uint256 balance = address(this).balance;\n            if (pending > balance) {\n                (bool success, ) = _user.call.value(balance)(\"\");\n                require(success, \"Transfer failed\");\n                user.unpaidRewards = pending - balance;\n            } else {\n                (bool success, ) = _user.call.value(pending)(\"\");\n                require(success, \"Transfer failed\");\n                user.unpaidRewards = 0;\n            }\n        } else {\n            uint256 balance = rewardToken.balanceOf(address(this));\n            if (pending > balance) {\n                rewardToken.safeTransfer(_user, balance);\n                user.unpaidRewards = pending - balance;\n            } else {\n                rewardToken.safeTransfer(_user, pending);\n                user.unpaidRewards = 0;\n            }"
+            }
+        ],
+        "unStake": []
+    }
+}

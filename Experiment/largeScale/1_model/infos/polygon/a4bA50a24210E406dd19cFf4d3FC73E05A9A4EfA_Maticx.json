@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.profit"
+        ],
+        "User Stake Time": [
+            "Deposit.startAt",
+            "Deposit.finishAt"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "msg.sender.transfer(totalAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawForProfit",
+                "Node": "msg.sender.transfer(totalAmount)"
+            },
+            {
+                "Function": "withdrawForBonus",
+                "Node": "msg.sender.transfer(totalAmount)"
+            },
+            {
+                "Function": "withdrawForLotto",
+                "Node": "msg.sender.transfer(totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawForDeposit",
+                "Node": "msg.sender.transfer(totalAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_tokenStaked"
+        ],
+        "User Stake Reward": [
+            "_rewardTallyBefore"
+        ],
+        "User Stake Time": [
+            "_tokenStakedAt"
+        ],
+        "Stake Token Address": [
+            "_stakeToken"
+        ],
+        "Reward Token Address": [
+            "_loaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(_stakeToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_loaToken.transfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "stake",
+                "Node": "require(_loaToken.transfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "require(_loaToken.transfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeWithoutRewards",
+                "Node": "require(_stakeToken.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "unstakeWithoutRewards",
+                "Node": "_stakeToken.transfer(_treasury, withdrawAmount - amount)"
+            }
+        ]
+    }
+}

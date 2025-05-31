@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.amount"
+        ],
+        "User Stake Reward": [
+            "Staker.withdrawn"
+        ],
+        "User Stake Time": [
+            "Staker.createdAt"
+        ],
+        "Stake Token Address": [
+            "_YIIFIToken"
+        ],
+        "Reward Token Address": [
+            "_YIIFIToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "require(_YIIFIToken.transferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "require(_YIIFIToken.transfer(_msgSender(), roi)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(_YIIFIToken.transfer(_msgSender(), total))"
+            }
+        ]
+    }
+}

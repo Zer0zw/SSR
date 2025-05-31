@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "userShares"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "sGLP"
+        ],
+        "Reward Token Address": [
+            "feeGlpTrackerRewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(sGLP, msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "_behalfOf.call{ value: totalReward }(\"\")"
+            },
+            {
+                "Function": "recoverETH",
+                "Node": "msg.sender.call{ value: toUser }(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "TransferHelper.safeTransfer(sGLP, msg.sender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardAmount"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lockForDays"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.token"
+        ],
+        "Reward Token Address": [
+            "blesToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.token.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimNow",
+                "Node": "blesToken.transfer(address(msg.sender), _amount.sub(rewardBurn)"
+            },
+            {
+                "Function": "claimLaterReady",
+                "Node": "blesToken.transfer(address(msg.sender), request.amount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.token.safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "withdrawEarly",
+                "Node": "pool.token.safeTransfer(address(msg.sender), realAmount"
+            }
+        ]
+    }
+}

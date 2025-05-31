@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IRewardTracker(stakedAlpTracker).depositBalances(_account, glp)"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "glpManager.lastAddedAt(_sender).add(glpManager.cooldownDuration())"
+        ],
+        "Stake Token Address": [
+            "glp"
+        ],
+        "Reward Token Address": [
+            "feeAlpTracker"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_transfer",
+                "Node": "IRewardTracker(feeAlpTracker).stakeForAccount(_sender, _recipient, glp, _amount)"
+            },
+            {
+                "Function": "_transfer",
+                "Node": "IRewardTracker(stakedAlpTracker).stakeForAccount(_recipient, _recipient, feeAlpTracker, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "_transfer",
+                "Node": "IRewardTracker(stakedAlpTracker).unstakeForAccount(_sender, feeAlpTracker, _amount, _sender)"
+            },
+            {
+                "Function": "_transfer",
+                "Node": "IRewardTracker(feeAlpTracker).unstakeForAccount(_sender, glp, _amount, _sender)"
+            }
+        ]
+    }
+}

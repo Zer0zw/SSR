@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_a[user][0]"
+        ],
+        "User Stake Reward": [
+            "_a[user][1]"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_c[0]"
+        ],
+        "Reward Token Address": [
+            "_c[1]"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "doStake",
+                "Node": "IERC20(_c[0]).transferFrom(_msgSender(), _c[2], unum)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimCoin",
+                "Node": "IERC20(coin).transfer(user, cannum * 9 / 10)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "doExchange",
+                "Node": "IERC20(_c[0]).transfer(_msgSender(), allusdt)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "USER.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "USER.totalEarned"
+        ],
+        "User Stake Time": [
+            "USER.creationTime"
+        ],
+        "Stake Token Address": [
+            "rewtkn"
+        ],
+        "Reward Token Address": [
+            "rewtkn"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "require(REWARDTOKEN(rewtkn).transferFrom(msg.sender, address(this), tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CLAIMREWARD",
+                "Node": "Mojito(address(this)).transfer(msg.sender,finalreward)"
+            },
+            {
+                "Function": "CLAIMREWARD",
+                "Node": "Mojito(address(this)).transfer(msg.sender,rewardcal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WITHDRAW",
+                "Node": "require(REWARDTOKEN(rewtkn).transfer(msg.sender, tokens.sub(_unstakingFee))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.totalRealised"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakingToken).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "IERC20(stakingToken).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "IERC20(stakingToken).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "realise",
+                "Node": "IERC20(rewardToken).transfer(staker, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(stakingToken).transfer(staker, amount)"
+            },
+            {
+                "Function": "forceUnstake",
+                "Node": "IERC20(stakingToken).transfer(account, amount)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "IERC20(stakingToken).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "emergencyUnstakeAll",
+                "Node": "IERC20(stakingToken).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

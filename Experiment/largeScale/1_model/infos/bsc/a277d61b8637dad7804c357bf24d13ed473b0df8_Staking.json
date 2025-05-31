@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staking_num"
+        ],
+        "User Stake Reward": [
+            "PoolInfo.RewardNum"
+        ],
+        "User Stake Time": [
+            "staking_time"
+        ],
+        "Stake Token Address": [
+            "stakingNftAddress"
+        ],
+        "Reward Token Address": [
+            "RewardAddress",
+            "RewardNft"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNft",
+                "Node": "stakingNftAddress.transferFrom(msg.sender, address(this), num3[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "widthdrawNft",
+                "Node": "RewardAddress.safeTransferFrom(address(this), msg.sender, reward_num)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "widthdrawNft",
+                "Node": "stakingNftAddress.transferFrom(address(this), msg.sender, staking_token_id[msg.sender][_poolId][i])"
+            },
+            {
+                "Function": "widthdrawNftWithoutReward",
+                "Node": "stakingNftAddress.transferFrom(address(this), msg.sender, staking_token_id[msg.sender][_poolId][i])"
+            }
+        ]
+    }
+}

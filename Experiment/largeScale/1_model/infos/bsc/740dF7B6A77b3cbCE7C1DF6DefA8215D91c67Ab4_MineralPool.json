@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "accountsTokens"
+        ],
+        "User Stake Reward": [
+            "tokensRewards"
+        ],
+        "User Stake Time": [
+            "lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardsContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "INFTToken(stakeToken).updateStatus(tokenId, miningStatus)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IToken(rewardsContract).additional(msg.sender, trueRewards)"
+            },
+            {
+                "Function": "claimAllReward",
+                "Node": "IToken(rewardsContract).additional(msg.sender, trueRewards)"
+            },
+            {
+                "Function": "_claimTokenReward",
+                "Node": "IToken(rewardsContract).additional(msg.sender, trueRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAndClaim",
+                "Node": "INFTToken(stakeToken).updateStatus(tokenId, idleStatus)"
+            },
+            {
+                "Function": "withdrawAllAndClaim",
+                "Node": "INFTToken(stakeToken).updateStatus(tokenId, idleStatus)"
+            },
+            {
+                "Function": "_withdrawAndClaim",
+                "Node": "INFTToken(stakeToken).updateStatus(tokenId, idleStatus)"
+            }
+        ]
+    }
+}

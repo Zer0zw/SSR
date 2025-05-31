@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalCamelStaked",
+            "totalBanditStaked"
+        ],
+        "User Stake Reward": [
+            "goldPerBandit",
+            "unaccountedRewards"
+        ],
+        "User Stake Time": [
+            "Stake.value"
+        ],
+        "Stake Token Address": [
+            "camelit"
+        ],
+        "Reward Token Address": [
+            "gold"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addManyToPool",
+                "Node": "camelit.transferFrom(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "_addCamelitToPool",
+                "Node": "emit TokenStaked(account, tokenId, block.timestamp)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimManyFromPool",
+                "Node": "gold.mint(_msgSender(), owed)"
+            },
+            {
+                "Function": "_claimCamelFromPool",
+                "Node": "goldPerBandit += toBandits / totalBanditStaked"
+            },
+            {
+                "Function": "_claimBanditFromPool",
+                "Node": "emit BanditClaimed(tokenId, owed, unstake)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimManyFromPool",
+                "Node": "camelit.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            },
+            {
+                "Function": "rescue",
+                "Node": "camelit.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            }
+        ]
+    }
+}

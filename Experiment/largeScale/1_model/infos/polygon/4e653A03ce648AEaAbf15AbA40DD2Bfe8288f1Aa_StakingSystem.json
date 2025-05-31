@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.tokenIds"
+        ],
+        "User Stake Reward": [
+            "Staker.balance",
+            "Staker.rewardsReleased"
+        ],
+        "User Stake Time": [
+            "Staker.tokenStakingCoolDown"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nft.safeTransferFrom(_user, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "nft.safeTransferFrom(_user, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "uniswapHandler.swapTokensWithFees(rewardAmount, _user)"
+            },
+            {
+                "Function": "claimAllRewards",
+                "Node": "uniswapHandler.swapTokensWithFees(rewardAmount, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nft.safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "nft.safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "nft.safeTransferFrom(address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "nft.safeTransferFrom(address(this), _user, _tokenId)"
+            }
+        ]
+    }
+}

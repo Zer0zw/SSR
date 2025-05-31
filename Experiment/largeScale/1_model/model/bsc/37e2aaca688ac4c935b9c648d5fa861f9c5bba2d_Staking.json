@@ -1,0 +1,148 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "countTokenStaked"
+        ],
+        "User Stake Reward": [
+            "autoRewardSum"
+        ],
+        "User Stake Time": [
+            "countTimeStaked"
+        ],
+        "Stake Token Address": [
+            "contractSAWA"
+        ],
+        "Reward Token Address": [
+            "contractSAWA"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "performUpkeep",
+            "withdrawProfit"
+        ],
+        "unStake": [
+            "withdrawStakedSAWA"
+        ],
+        "Sensitive Functions": [
+            "setAddressContractSAWA"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    166
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "contractSAWA",
+                    "countTimeStaked",
+                    "countTokenStaked",
+                    "percent"
+                ],
+                "Full Calculation Variables": [
+                    "contractSAWA",
+                    "countTimeStaked",
+                    "countTokenStaked",
+                    "percent"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawProfit",
+                "Node": [
+                    196
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "countTimeStaked",
+                    "countTokenStaked",
+                    "percent"
+                ],
+                "Control Variables": [
+                    "contractSAWA",
+                    "countTimeStaked",
+                    "countTokenStaked",
+                    "percent"
+                ],
+                "Full Calculation Variables": [
+                    "contractSAWA",
+                    "countTimeStaked",
+                    "countTokenStaked",
+                    "percent"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "performUpkeep",
+                "Node": [
+                    333
+                ],
+                "Input": [
+                    "_adr"
+                ],
+                "Calculation Variables": [
+                    "countTimeStaked",
+                    "countTokenStaked",
+                    "decriment",
+                    "percent"
+                ],
+                "Control Variables": [
+                    "contractSAWA",
+                    "countTimeStaked",
+                    "countTokenStaked",
+                    "decriment",
+                    "percent"
+                ],
+                "Full Calculation Variables": [
+                    "contractSAWA",
+                    "countTimeStaked",
+                    "countTokenStaked",
+                    "decriment",
+                    "percent"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakedSAWA",
+                "Node": [
+                    208
+                ],
+                "Input": [
+                    "_count",
+                    "_reinvestSwitcher"
+                ],
+                "Calculation Variables": [
+                    "percent",
+                    "countTokenStaked",
+                    "countTimeStaked"
+                ],
+                "Control Variables": [
+                    "countTimeStaked",
+                    "percent",
+                    "countTokenStaked",
+                    "contractSAWA"
+                ],
+                "Full Calculation Variables": [
+                    "countTimeStaked",
+                    "percent",
+                    "countTokenStaked",
+                    "contractSAWA"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

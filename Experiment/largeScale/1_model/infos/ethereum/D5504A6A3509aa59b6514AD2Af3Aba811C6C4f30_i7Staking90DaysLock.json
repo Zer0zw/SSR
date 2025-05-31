@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardsPendingClaim",
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "TRUSTED_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "TRUSTED_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(Token(TRUSTED_TOKEN_ADDRESS).transferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "require(Token(TRUSTED_TOKEN_ADDRESS).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "reInvest",
+                "Node": "depositedTokens[msg.sender] = depositedTokens[msg.sender].add(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(TRUSTED_TOKEN_ADDRESS).transfer(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(Token(TRUSTED_TOKEN_ADDRESS).transfer(msg.sender, amountAfterFee)"
+            }
+        ]
+    }
+}

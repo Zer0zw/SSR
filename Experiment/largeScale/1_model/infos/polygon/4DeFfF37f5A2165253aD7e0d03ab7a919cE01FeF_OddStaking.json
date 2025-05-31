@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingsByOwner"
+        ],
+        "User Stake Reward": [
+            "StakingInfoOdds.rewards"
+        ],
+        "User Stake Time": [
+            "StakingInfo.timestamp"
+        ],
+        "Stake Token Address": [
+            "oddContract"
+        ],
+        "Reward Token Address": [
+            "pickles"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "oddContract.transferFrom(msg.sender, address(this), _id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimOddRewards",
+                "Node": "require(pickles.transfer(msg.sender, netRewards))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "oddContract.transferFrom(address(this), msg.sender, _id)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "oddContract.transferFrom(address(this), msg.sender, _id)"
+            },
+            {
+                "Function": "emergencyUnstakeByUser",
+                "Node": "oddContract.transferFrom(address(this), msg.sender, _id)"
+            }
+        ]
+    }
+}

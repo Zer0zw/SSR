@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "customStakingBalance",
+            "customStakingBalance2"
+        ],
+        "User Stake Reward": [
+            "Vault1",
+            "Vault2",
+            "Vault3"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "customStakingTime",
+            "customStakingTime2"
+        ],
+        "Stake Token Address": [
+            "testToken"
+        ],
+        "Reward Token Address": [
+            "testToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "testToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "customStaking",
+                "Node": "testToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "customStaking2",
+                "Node": "testToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "testToken.transfer(msg.sender, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "testToken.transfer(msg.sender, balance)"
+            },
+            {
+                "Function": "customUnstake",
+                "Node": "testToken.transfer(msg.sender, balance)"
+            },
+            {
+                "Function": "customUnstake2",
+                "Node": "testToken.transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

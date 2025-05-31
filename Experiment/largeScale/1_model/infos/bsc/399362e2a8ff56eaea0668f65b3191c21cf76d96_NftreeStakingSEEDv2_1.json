@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakes"
+        ],
+        "User Stake Reward": [
+            "treeSupply"
+        ],
+        "User Stake Time": [
+            "Stake.stakedOn"
+        ],
+        "Stake Token Address": [
+            "nftContract"
+        ],
+        "Reward Token Address": [
+            "seed"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "NFT(nftContract).transferFrom(msg.sender, address(this), tokenId_)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "NFT(nftContract).transferFrom(msg.sender, address(this), tokenId_[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ISEED(seed).mint(msg.sender, _seedAmount)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "ISEED(seed).mint(msg.sender, _seedAmount)"
+            },
+            {
+                "Function": "harvestRange",
+                "Node": "ISEED(seed).mint(msg.sender, _seedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "NFT(nftContract).transferFrom(address(this), msg.sender, tokenId_)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "NFT(nftContract).transferFrom(address(this), msg.sender, tokenId_[i])"
+            }
+        ]
+    }
+}

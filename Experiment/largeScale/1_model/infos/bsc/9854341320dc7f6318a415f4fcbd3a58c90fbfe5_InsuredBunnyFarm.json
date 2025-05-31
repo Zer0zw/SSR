@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "dividends",
+            "chipsDividends"
+        ],
+        "User Stake Time": [
+            "lastDripTime",
+            "payoutEndTime"
+        ],
+        "Stake Token Address": [
+            "bunny"
+        ],
+        "Reward Token Address": [
+            "wbnb",
+            "chips"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(bunny.transferFrom(address(farmer), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimYield",
+                "Node": "wbnb.transfer(farmer, dividends)"
+            },
+            {
+                "Function": "claimYield",
+                "Node": "chips.transfer(farmer, chipsDividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cashout",
+                "Node": "require(bunny.transfer(farmer, gained)"
+            },
+            {
+                "Function": "cashout",
+                "Node": "chips.transfer(farmer, (farmersCashout * chipsCompPerCake) / 1000)"
+            },
+            {
+                "Function": "withdrawAfterSystemClosed",
+                "Node": "bunny.transfer(msg.sender, bunny.balanceOf(address(this)))"
+            }
+        ]
+    }
+}

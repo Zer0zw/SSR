@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "toBePaid",
+            "alreadyPaidShares"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_pancakePairAddress"
+        ],
+        "Reward Token Address": [
+            "RewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addToken",
+                "Node": "_balances[addr] = newAmount"
+            },
+            {
+                "Function": "_regularTransfer",
+                "Node": "_addToken(recipient, taxedAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "RewardsToken.transfer(msg.sender, swapForToken(dividents))"
+            },
+            {
+                "Function": "_autoPayout",
+                "Node": "RewardsToken.transfer(current, payoutShare)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeToken",
+                "Node": "_balances[addr] = newAmount"
+            }
+        ]
+    }
+}

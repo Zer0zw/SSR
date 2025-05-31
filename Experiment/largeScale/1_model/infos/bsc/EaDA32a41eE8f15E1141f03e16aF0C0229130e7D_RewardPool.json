@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastRewardBlock"
+        ],
+        "Stake Token Address": [
+            "Hera"
+        ],
+        "Reward Token Address": [
+            "Hera"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(Hera).transferFrom(address(msg.sender), blackHole, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IHERA(Hera).mint(address(msg.sender), _amount.sub(withdrawFee))"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "IHERA(Hera).mint(referrer, commissionAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IHERA(Hera).mint(address(msg.sender), _amount.sub(withdrawFee))"
+            }
+        ]
+    }
+}

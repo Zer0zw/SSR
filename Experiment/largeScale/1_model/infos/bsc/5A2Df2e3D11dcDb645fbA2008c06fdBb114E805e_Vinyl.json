@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked"
+        ],
+        "User Stake Reward": [
+            "_unclaimedBalance",
+            "totalEarnedByAccount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "swapPair"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super._transfer(_msgSender(), address(this), amount)"
+            },
+            {
+                "Function": "restake",
+                "Node": "_stake(account, artist, _unclaimedBalance[account])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "super._transfer(address(this), account, _unclaimedBalance[account])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "if (takeFeesOnUnstake) _transfer(address(this), account, amount) else super._transfer(address(this), account, amount)"
+            }
+        ]
+    }
+}

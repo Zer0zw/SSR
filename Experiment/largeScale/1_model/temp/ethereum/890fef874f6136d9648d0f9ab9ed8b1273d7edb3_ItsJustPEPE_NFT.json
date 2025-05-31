@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userBlanacesForDay",
+            "userBlanacesForWeek",
+            "userBlanacesForMonth"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardsForDay",
+            "UserInfo.rewardsForWeek",
+            "UserInfo.rewardsForMonth"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastUpdatedForDay",
+            "UserInfo.lastUpdatedForWeek",
+            "UserInfo.lastUpdatedForMonth"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeForDay",
+                "Node": "safeTransferFrom(_msgSender(), address(this), tokenIdList[i])"
+            },
+            {
+                "Function": "stakeForWeek",
+                "Node": "safeTransferFrom(_msgSender(), address(this), tokenIdList[i])"
+            },
+            {
+                "Function": "stakeForMonth",
+                "Node": "safeTransferFrom(_msgSender(), address(this), tokenIdList[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardToken.transfer(_msgSender(), earnedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeForDay",
+                "Node": "_safeTransfer(address(this), _msgSender(), tokenIdList[i], \"\")"
+            },
+            {
+                "Function": "unstakeForWeek",
+                "Node": "_safeTransfer(address(this), _msgSender(), tokenIdList[i], \"\")"
+            },
+            {
+                "Function": "unstakeForMonth",
+                "Node": "_safeTransfer(address(this), _msgSender(), tokenIdList[i], \"\")"
+            }
+        ]
+    }
+}

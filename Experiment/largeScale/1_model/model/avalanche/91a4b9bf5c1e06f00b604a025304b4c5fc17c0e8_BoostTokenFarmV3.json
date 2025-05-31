@@ -1,0 +1,581 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount",
+            "balances"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "boostDeposit",
+            "deposit"
+        ],
+        "getReward": [
+            "boostDeposit",
+            "boostwithdraw",
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "boostDeposit",
+            "boostEmergencyWithdraw",
+            "boostwithdraw",
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "setDefrostAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1880
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "halted",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.bonusStartTime",
+                    "poolInfo.currentSupply",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.newStartBlock",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.totalDebtReward",
+                    "reentrancyLock",
+                    "tokenFarm",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "halted",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.bonusStartTime",
+                    "poolInfo.currentSupply",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.newStartBlock",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.totalDebtReward",
+                    "reentrancyLock",
+                    "tokenFarm",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "boostDeposit",
+                "Node": [
+                    2158
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.bonusStartTime",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.totalDebtReward",
+                    "smelt",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.bonusStartTime",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.totalDebtReward",
+                    "smelt",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    2112
+                ],
+                "Input": [
+                    "_pid",
+                    "_reward",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "releaseSc",
+                    "rewardToken"
+                ],
+                "Full Calculation Variables": [
+                    "releaseSc",
+                    "rewardToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    2112
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_reward",
+                    "_user",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Control Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "halted",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "releaseSc",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "reentrancyLock",
+                    "rewardToken",
+                    "poolInfo.bonusEndBlock",
+                    "tokenFarm",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "halted",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "releaseSc",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "reentrancyLock",
+                    "rewardToken",
+                    "poolInfo.bonusEndBlock",
+                    "tokenFarm",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "boostwithdraw",
+                "Node": [
+                    2112
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_reward",
+                    "_user",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Control Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "halted",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "releaseSc",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "reentrancyLock",
+                    "rewardToken",
+                    "poolInfo.bonusEndBlock",
+                    "tokenFarm",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "halted",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "releaseSc",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "reentrancyLock",
+                    "rewardToken",
+                    "poolInfo.bonusEndBlock",
+                    "tokenFarm",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "boostDeposit",
+                "Node": [
+                    2112
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_reward",
+                    "_user",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Control Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "halted",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "releaseSc",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "reentrancyLock",
+                    "rewardToken",
+                    "poolInfo.bonusEndBlock",
+                    "tokenFarm",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.bonusStartBlock",
+                    "halted",
+                    "userInfo.rewardDebt",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "poolInfo.totalDebtReward",
+                    "releaseSc",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "reentrancyLock",
+                    "rewardToken",
+                    "poolInfo.bonusEndBlock",
+                    "tokenFarm",
+                    "poolInfo.lastRewardBlock",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1916
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "halted",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.totalDebtReward",
+                    "reentrancyLock",
+                    "tokenFarm",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "halted",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.totalDebtReward",
+                    "reentrancyLock",
+                    "tokenFarm",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "boostDeposit",
+                "Node": [
+                    1916
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "halted",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.totalDebtReward",
+                    "reentrancyLock",
+                    "tokenFarm",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "halted",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.totalDebtReward",
+                    "reentrancyLock",
+                    "tokenFarm",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "boostwithdraw",
+                "Node": [
+                    2173
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "totalsupply",
+                    "poolInfo.bonusStartBlock",
+                    "halted",
+                    "userInfo.rewardDebt",
+                    "smelt",
+                    "userInfo.amount",
+                    "poolInfo.bonusEndBlock",
+                    "tokenFarm",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lpToken",
+                    "balances",
+                    "poolInfo.totalDebtReward",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "reentrancyLock",
+                    "poolInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "totalsupply",
+                    "poolInfo.bonusStartBlock",
+                    "halted",
+                    "userInfo.rewardDebt",
+                    "smelt",
+                    "userInfo.amount",
+                    "poolInfo.bonusEndBlock",
+                    "tokenFarm",
+                    "userInfo.extRewardDebt",
+                    "poolInfo.rewardPerBlock",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lpToken",
+                    "balances",
+                    "poolInfo.totalDebtReward",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.currentSupply",
+                    "reentrancyLock",
+                    "poolInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1937
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt"
+                ],
+                "Control Variables": [
+                    "halted",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "reentrancyLock",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "halted",
+                    "poolInfo.accRewardPerShare",
+                    "poolInfo.bonusEndBlock",
+                    "poolInfo.bonusStartBlock",
+                    "poolInfo.currentSupply",
+                    "poolInfo.extFarmInfo",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardPerBlock",
+                    "reentrancyLock",
+                    "userInfo.amount",
+                    "userInfo.extRewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "boostEmergencyWithdraw",
+                "Node": [
+                    2231
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "balances"
+                ],
+                "Control Variables": [
+                    "balances",
+                    "halted",
+                    "reentrancyLock",
+                    "smelt",
+                    "tokenFarm",
+                    "totalsupply"
+                ],
+                "Full Calculation Variables": [
+                    "balances",
+                    "halted",
+                    "reentrancyLock",
+                    "smelt",
+                    "tokenFarm",
+                    "totalsupply"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

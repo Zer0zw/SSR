@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pendingGuppy"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTimestamp"
+        ],
+        "Stake Token Address": [
+            "fry"
+        ],
+        "Reward Token Address": [
+            "guppy"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "fry.transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_safeGuppyTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_safeGuppyTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "fry.transfer(msg.sender, frySurvival)"
+            }
+        ]
+    }
+}

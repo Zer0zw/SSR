@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStaked"
+        ],
+        "User Stake Reward": [
+            "userPaid"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lp.transferFrom(user, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "reward.mint(user, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lp.transfer(user, amount)"
+            }
+        ]
+    }
+}

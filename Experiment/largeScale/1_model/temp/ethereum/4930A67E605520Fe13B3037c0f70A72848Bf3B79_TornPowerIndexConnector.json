@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "receivedReward",
+            "rewardsToReinvest"
+        ],
+        "User Stake Time": [
+            "_lastClaimRewardsAt",
+            "_lastChangeStakeAt"
+        ],
+        "Stake Token Address": [
+            "UNDERLYING"
+        ],
+        "Reward Token Address": [
+            "UNDERLYING"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_stakeImpl(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_claimImpl()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "_redeemImpl(_amount)"
+            }
+        ]
+    }
+}

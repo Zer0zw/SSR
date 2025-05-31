@@ -1,0 +1,83 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedEqual",
+            "stakedEsEqual",
+            "equityAmount"
+        ],
+        "User Stake Reward": [
+            "cumulativeRewards",
+            "transferredCumulativeRewards"
+        ],
+        "User Stake Time": [
+            "averageStakedAmounts",
+            "transferredAverageStakedAmounts"
+        ],
+        "Stake Token Address": [
+            "equal",
+            "esEqual",
+            "equity"
+        ],
+        "Reward Token Address": [
+            "equal",
+            "esEqual",
+            "weth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeEqual",
+                "Node": "IRewardTracker(stakedEqualTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "stakeEsEqual",
+                "Node": "IRewardTracker(stakedEqualTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "mintAndStakeEquity",
+                "Node": "IRewardTracker(feeEquityTracker).stakeForAccount(account, account, equity, equityAmount)"
+            },
+            {
+                "Function": "mintAndStakeEquityETH",
+                "Node": "IRewardTracker(feeEquityTracker).stakeForAccount(account, account, equity, equityAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IRewardTracker(feeEqualTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimEsEqual",
+                "Node": "IRewardTracker(stakedEqualTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimFees",
+                "Node": "IRewardTracker(feeEqualTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "handleRewards",
+                "Node": "IVester(equalVester).claimForAccount(account, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeEqual",
+                "Node": "IRewardTracker(stakedEqualTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeEsEqual",
+                "Node": "IRewardTracker(stakedEqualTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeAndRedeemEquity",
+                "Node": "IEquityManager(equityManager).removeLiquidityForAccount(account, _tokenOut, _equityAmount, _minOut, _receiver)"
+            },
+            {
+                "Function": "unstakeAndRedeemEquityETH",
+                "Node": "IEquityManager(equityManager).removeLiquidityForAccount(account, weth, _equityAmount, _minOut, address(this))"
+            }
+        ]
+    }
+}

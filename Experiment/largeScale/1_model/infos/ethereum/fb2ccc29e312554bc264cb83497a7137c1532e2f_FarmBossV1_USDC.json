@@ -1,0 +1,92 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": [
+            "CRVToken",
+            "ALPHA_TOKEN",
+            "_COMP",
+            "IDLEToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit_gauge",
+                "Node": "_approveMax(_crv3PoolToken, _crv3Gauge)"
+            },
+            {
+                "Function": "add_liquidity_3",
+                "Node": "_approveMax(underlying, _crv3Pool)"
+            },
+            {
+                "Function": "add_liquidity_4",
+                "Node": "_approveMax(underlying, _crvSUSDPool)"
+            },
+            {
+                "Function": "add_liquidity_u_3",
+                "Node": "_approveMax(underlying, _crvAavePool)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(underlying).safeApprove(_ahUSDC, type(uint256).max)"
+            },
+            {
+                "Function": "mint_ctoken",
+                "Node": "_approveMax(underlying, _compUSDC)"
+            },
+            {
+                "Function": "mint_idle",
+                "Node": "_approveMax(underlying, _idleBestUSDCv4)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim_rewards",
+                "Node": "_approveMax(_SNXToken, SushiswapRouter)"
+            },
+            {
+                "Function": "claim",
+                "Node": "_approveMax(ALPHA_TOKEN, SushiswapRouter)"
+            },
+            {
+                "Function": "claim_COMP",
+                "Node": "_approveMax(_COMP, SushiswapRouter)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw_gauge",
+                "Node": "_approveMax(_crv3PoolToken, _crv3Gauge)"
+            },
+            {
+                "Function": "remove_liquidity_one",
+                "Node": "_approveMax(_crv3PoolToken, _crv3Pool)"
+            },
+            {
+                "Function": "remove_liquidity_4",
+                "Node": "_approveMax(_crvSUSDToken, _crvSUSDWithdraw)"
+            },
+            {
+                "Function": "remove_liquidity_one_burn",
+                "Node": "_approveMax(_crvAaveToken, _crvAavePool)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(underlying).safeApprove(_yearnUSDC, type(uint256).max)"
+            },
+            {
+                "Function": "redeem_ctoken",
+                "Node": "_approveMax(underlying, _compUSDC)"
+            },
+            {
+                "Function": "redeem_idle",
+                "Node": "_approveMax(underlying, _idleBestUSDCv4)"
+            }
+        ]
+    }
+}

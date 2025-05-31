@@ -1,0 +1,409 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositAmount",
+            "totalDepositAmount"
+        ],
+        "User Stake Reward": [
+            "mintAmount",
+            "dividendAmount",
+            "totalMintAmount",
+            "totalDividendAmount"
+        ],
+        "User Stake Time": [
+            "userDepositInfo.depositTime",
+            "userDepositInfo.withdrawTime"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "miningToken",
+            "dividendToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claim",
+            "claimAllNodeReward",
+            "claimAllReferralReward"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "addPool",
+            "initialize",
+            "setDividendTokenContract",
+            "setMiningTokenContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1935
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "enableContract",
+                    "inviteContract",
+                    "poolInfo",
+                    "poolInfo.accDividendTokenPerShare",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.dividendTokenPerBlock",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "enableContract",
+                    "inviteContract",
+                    "poolInfo",
+                    "poolInfo.accDividendTokenPerShare",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.dividendTokenPerBlock",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1972
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.lastUpdateBlock",
+                    "currentAccMiningTokenPerShare",
+                    "poolInfo.dividendTokenPerBlock",
+                    "poolInfo.accMiningTokenPerShare",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.pid",
+                    "poolInfo.miningTokenPerBlock",
+                    "userDepositInfo.onGoing",
+                    "poolInfo.lpToken",
+                    "userDepositInfo.amount",
+                    "currentAccDividendTokenPerShare",
+                    "poolInfo.accDividendTokenPerShare",
+                    "userDepositInfo.dividendRewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.lastUpdateBlock",
+                    "currentAccMiningTokenPerShare",
+                    "totalMintAmount",
+                    "poolInfo.dividendTokenPerBlock",
+                    "poolInfo.accMiningTokenPerShare",
+                    "userDepositInfo.miningRewardDebt",
+                    "miningToken",
+                    "userDepositInfo.pid",
+                    "poolInfo.miningTokenPerBlock",
+                    "userDepositInfo.onGoing",
+                    "poolInfo",
+                    "enableContract",
+                    "poolInfo.lpToken",
+                    "userDepositInfo.amount",
+                    "poolInfo.accDividendTokenPerShare",
+                    "userDepositInfo.dividendRewardDebt",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "userDepositInfo.depositBlock",
+                    "dividendToken",
+                    "userDepositInfo.lpToken",
+                    "dividendAmount",
+                    "_ENTERED",
+                    "mintAmount",
+                    "depositAmount",
+                    "currentAccDividendTokenPerShare",
+                    "totalDividendAmount",
+                    "_paused"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lastUpdateBlock",
+                    "currentAccMiningTokenPerShare",
+                    "totalMintAmount",
+                    "poolInfo.dividendTokenPerBlock",
+                    "poolInfo.accMiningTokenPerShare",
+                    "userDepositInfo.miningRewardDebt",
+                    "miningToken",
+                    "userDepositInfo.pid",
+                    "poolInfo.miningTokenPerBlock",
+                    "userDepositInfo.onGoing",
+                    "poolInfo",
+                    "enableContract",
+                    "poolInfo.lpToken",
+                    "userDepositInfo.amount",
+                    "poolInfo.accDividendTokenPerShare",
+                    "userDepositInfo.dividendRewardDebt",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "userDepositInfo.depositBlock",
+                    "dividendToken",
+                    "userDepositInfo.lpToken",
+                    "dividendAmount",
+                    "_ENTERED",
+                    "mintAmount",
+                    "depositAmount",
+                    "currentAccDividendTokenPerShare",
+                    "totalDividendAmount",
+                    "_paused"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimAllReferralReward",
+                "Node": [
+                    1857
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "currentAccMiningTokenPerShare",
+                    "inviteContract",
+                    "mintAmount",
+                    "poolInfo",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock",
+                    "rateDenominator",
+                    "refferalRewardPercent",
+                    "userClaimedReferralRewards",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.lpToken",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.onGoing",
+                    "userDepositInfo.pid"
+                ],
+                "Control Variables": [
+                    "currentAccMiningTokenPerShare",
+                    "inviteContract",
+                    "mintAmount",
+                    "poolInfo",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock",
+                    "rateDenominator",
+                    "refferalRewardPercent",
+                    "userClaimedReferralRewards",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.lpToken",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.onGoing",
+                    "userDepositInfo.pid"
+                ],
+                "Full Calculation Variables": [
+                    "currentAccMiningTokenPerShare",
+                    "inviteContract",
+                    "mintAmount",
+                    "poolInfo",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock",
+                    "rateDenominator",
+                    "refferalRewardPercent",
+                    "userClaimedReferralRewards",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.lpToken",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.onGoing",
+                    "userDepositInfo.pid"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimAllNodeReward",
+                "Node": [
+                    1864
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "currentAccMiningTokenPerShare",
+                    "inviteContract",
+                    "mintAmount",
+                    "nodeRewardPercent",
+                    "poolInfo",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock",
+                    "rateDenominator",
+                    "userClaimedNodeRewards",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.lpToken",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.onGoing",
+                    "userDepositInfo.pid"
+                ],
+                "Control Variables": [
+                    "currentAccMiningTokenPerShare",
+                    "inviteContract",
+                    "mintAmount",
+                    "nodeRewardPercent",
+                    "poolInfo",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock",
+                    "rateDenominator",
+                    "userClaimedNodeRewards",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.lpToken",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.onGoing",
+                    "userDepositInfo.pid"
+                ],
+                "Full Calculation Variables": [
+                    "currentAccMiningTokenPerShare",
+                    "inviteContract",
+                    "mintAmount",
+                    "nodeRewardPercent",
+                    "poolInfo",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock",
+                    "rateDenominator",
+                    "userClaimedNodeRewards",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.lpToken",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.onGoing",
+                    "userDepositInfo.pid"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1999
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "currentAccDividendTokenPerShare",
+                    "currentAccMiningTokenPerShare",
+                    "depositAmount",
+                    "dividendToken",
+                    "enableContract",
+                    "miningToken",
+                    "poolInfo",
+                    "poolInfo.accDividendTokenPerShare",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.dividendTokenPerBlock",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.dividendRewardDebt",
+                    "userDepositInfo.lpToken",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.onGoing",
+                    "userDepositInfo.pid"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "currentAccDividendTokenPerShare",
+                    "currentAccMiningTokenPerShare",
+                    "depositAmount",
+                    "dividendToken",
+                    "enableContract",
+                    "miningToken",
+                    "poolInfo",
+                    "poolInfo.accDividendTokenPerShare",
+                    "poolInfo.accMiningTokenPerShare",
+                    "poolInfo.dividendTokenPerBlock",
+                    "poolInfo.lastUpdateBlock",
+                    "poolInfo.lpToken",
+                    "poolInfo.miningTokenPerBlock",
+                    "userDepositInfo.amount",
+                    "userDepositInfo.depositBlock",
+                    "userDepositInfo.dividendRewardDebt",
+                    "userDepositInfo.lpToken",
+                    "userDepositInfo.miningRewardDebt",
+                    "userDepositInfo.onGoing",
+                    "userDepositInfo.pid"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    2011
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "depositAmount"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "depositAmount",
+                    "emergencyWithdrawSwitch",
+                    "enableContract",
+                    "poolInfo",
+                    "poolInfo.lpToken"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "depositAmount",
+                    "emergencyWithdrawSwitch",
+                    "enableContract",
+                    "poolInfo",
+                    "poolInfo.lpToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

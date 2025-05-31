@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount",
+            "_userShare"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "VEMP"
+        ],
+        "Reward Token Address": [
+            "VEMP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "xVEMP.mint(_msgSender(), _amount)"
+            },
+            {
+                "Function": "enter",
+                "Node": "xVEMP.mint(_msgSender(), _userShare)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "notifyRewardAmount",
+                "Node": "VEMP.transferFrom(_msgSender(), address(this), _balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "VEMP.transfer(_msgSender(), _userShare)"
+            }
+        ]
+    }
+}

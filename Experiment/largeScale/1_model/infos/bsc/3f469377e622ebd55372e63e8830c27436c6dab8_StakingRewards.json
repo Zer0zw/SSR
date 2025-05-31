@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStruct.stakedBal1",
+            "userStruct.stakedBal2",
+            "userStruct.stakedBal3"
+        ],
+        "User Stake Reward": [
+            "IntervalRewardsOf1",
+            "IntervalRewardsOf2",
+            "IntervalRewardsOf3"
+        ],
+        "User Stake Time": [
+            "userStruct.stakedTime1",
+            "userStruct.stakedTime2",
+            "userStruct.stakedTime3"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake1",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stake2",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stake3",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward1",
+                "Node": "stakingToken.safeTransfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "withdrawReward2",
+                "Node": "stakingToken.safeTransfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "withdrawReward3",
+                "Node": "stakingToken.safeTransfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake1",
+                "Node": "stakingToken.safeTransfer(msg.sender, user[msg.sender].stakedBal1)"
+            },
+            {
+                "Function": "unstake2",
+                "Node": "stakingToken.safeTransfer(msg.sender, user[msg.sender].stakedBal2)"
+            },
+            {
+                "Function": "unstake3",
+                "Node": "stakingToken.safeTransfer(msg.sender, user[msg.sender].stakedBal3)"
+            }
+        ]
+    }
+}

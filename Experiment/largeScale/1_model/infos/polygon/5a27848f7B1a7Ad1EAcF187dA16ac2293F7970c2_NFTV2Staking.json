@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedNftsCount"
+        ],
+        "User Stake Reward": [
+            "calculateRewardsAmount"
+        ],
+        "User Stake Time": [
+            "IStakedNFT.lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "nft_"
+        ],
+        "Reward Token Address": [
+            "gfx_"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "nft_.transferNFT(address(this), _nftId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimGFXRewards",
+                "Node": "gfx_.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimAllNfts",
+                "Node": "gfx_.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimNFTById",
+                "Node": "nft_.transferNFT(nftOwner, _nftId)"
+            },
+            {
+                "Function": "claimAllNfts",
+                "Node": "nft_.transferNFT(nfts[i].nftOwner, nfts[i].nftId)"
+            }
+        ]
+    }
+}

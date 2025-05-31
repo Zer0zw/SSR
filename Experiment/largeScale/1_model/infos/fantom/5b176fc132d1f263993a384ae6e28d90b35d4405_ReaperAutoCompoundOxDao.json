@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "SOLID",
+            "OXD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IOxPool(oxPool).depositLp(wantBalance)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IMultiRewards(stakingAddress).stake(wantBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20Upgradeable(WFTM).safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20Upgradeable(WFTM).safeTransfer(treasury, treasuryFeeToVault)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20Upgradeable(WFTM).safeTransfer(strategistRemitter, feeToStrategist)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Upgradeable(want).safeTransfer(vault, wantBalance - withdrawFee)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20Upgradeable(want).safeTransfer(vault, wantBal)"
+            }
+        ]
+    }
+}

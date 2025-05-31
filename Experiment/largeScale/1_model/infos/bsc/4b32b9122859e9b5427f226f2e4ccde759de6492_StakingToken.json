@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeData._balance"
+        ],
+        "User Stake Reward": [
+            "stakeData._reward"
+        ],
+        "User Stake Time": [
+            "stakeData._duration"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "ERC20Interface.safeTransferFrom(walletAddress, projectOwner, _stake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withDrawal",
+                "Node": "ERC20Interface.safeTransferFrom(projectOwner, msg.sender, (_balance+firstReward))"
+            },
+            {
+                "Function": "withDrawal",
+                "Node": "ERC20Interface.safeTransferFrom(projectOwner, msg.sender, _rewardSlab)"
+            },
+            {
+                "Function": "withDrawalAdmin",
+                "Node": "ERC20Interface.safeTransferFrom(projectOwner, projectOwner, (_balance+firstReward))"
+            },
+            {
+                "Function": "withDrawalAdmin",
+                "Node": "ERC20Interface.safeTransferFrom(projectOwner, projectOwner, _rewardSlab)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withDrawal",
+                "Node": "ERC20Interface.safeTransferFrom(projectOwner, msg.sender, (_balance+firstReward))"
+            },
+            {
+                "Function": "withDrawalAdmin",
+                "Node": "ERC20Interface.safeTransferFrom(projectOwner, projectOwner, (_balance+firstReward))"
+            }
+        ]
+    }
+}

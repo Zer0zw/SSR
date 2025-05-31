@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.withdrawn"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Deposit.checkpoint"
+        ],
+        "Stake Token Address": [
+            "blrsToken"
+        ],
+        "Reward Token Address": [
+            "bullBNBToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBlrsTokens",
+                "Node": "blrsToken.transferFrom(msg.sender,owner,amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "winthdrawBullBnbTokens",
+                "Node": "bullBNBToken.transferFrom(owner,userAddress,dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "blrsToken.transferFrom(owner,userAddress,user.deposits[i].amount)"
+            }
+        ]
+    }
+}

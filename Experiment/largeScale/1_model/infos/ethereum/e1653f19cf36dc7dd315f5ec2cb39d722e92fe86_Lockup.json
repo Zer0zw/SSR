@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getStorageValue"
+        ],
+        "User Stake Reward": [
+            "_calculateWithdrawableInterestAmount",
+            "RewardPrices.reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "config.token"
+        ],
+        "Reward Token Address": [
+            "config.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lockup",
+                "Node": "emit Lockedup(_from, _property, _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawInterest",
+                "Node": "require(erc20.mint(msg.sender, value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IProperty(_property).withdraw(msg.sender, _amount)"
+            }
+        ]
+    }
+}

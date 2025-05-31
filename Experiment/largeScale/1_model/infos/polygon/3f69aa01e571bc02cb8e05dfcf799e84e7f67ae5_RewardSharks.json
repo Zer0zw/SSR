@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalTokens"
+        ],
+        "User Stake Reward": [
+            "totalTokens"
+        ],
+        "User Stake Time": [
+            "Sharks.stakingTimeStamp"
+        ],
+        "Stake Token Address": [
+            "rewardTokenAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "ownerTokenList[_address].push(_tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "totalTokens[_shark.ownerAddress] += amountReward"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "totalTokens[_shark.ownerAddress] += amountReward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeNFT",
+                "Node": "removeTokenFromOwnerList(_tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,202 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "poolInfo.totalStaked"
+        ],
+        "User Stake Time": [
+            "poolInfo.lastUpdate"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "poolInfo.GDlptoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "enter"
+        ],
+        "getReward": [
+            "_claim",
+            "cycleRewardsETH",
+            "cycleRewardsETHandEsBfr"
+        ],
+        "unStake": [
+            "leave"
+        ],
+        "Sensitive Functions": [
+            "_claim",
+            "_cycleRewardsETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": [
+                    1635
+                ],
+                "Input": [
+                    "_pid",
+                    "_amountin"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.lastUpdate",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalStaked",
+                    "poolInfo.EarnRateSec",
+                    "poolInfo.vaultcap",
+                    "poolInfo.BlpFees",
+                    "poolInfo.rewardStart",
+                    "poolInfo.GDlptoken",
+                    "poolInfo.stakable"
+                ],
+                "Control Variables": [
+                    "poolInfo.lastUpdate",
+                    "_NOT_ENTERED",
+                    "poolInfo.BlpFees",
+                    "poolInfo.rewardStart",
+                    "_ENTERED",
+                    "poolInfo.GDlptoken",
+                    "poolInfo.stakable",
+                    "_status",
+                    "poolInfo.vaultcap",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalStaked",
+                    "poolInfo.EarnRateSec"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lastUpdate",
+                    "_NOT_ENTERED",
+                    "poolInfo.BlpFees",
+                    "poolInfo.rewardStart",
+                    "_ENTERED",
+                    "poolInfo.GDlptoken",
+                    "poolInfo.stakable",
+                    "_status",
+                    "poolInfo.vaultcap",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalStaked",
+                    "poolInfo.EarnRateSec"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "cycleRewardsETH",
+                "Node": [
+                    1451
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "USDC",
+                    "_RewardRouter",
+                    "compoundPercentage"
+                ],
+                "Full Calculation Variables": [
+                    "USDC",
+                    "_RewardRouter",
+                    "compoundPercentage"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "cycleRewardsETHandEsBfr",
+                "Node": [
+                    1451
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "USDC",
+                    "_RewardRouter",
+                    "compoundPercentage"
+                ],
+                "Full Calculation Variables": [
+                    "USDC",
+                    "_RewardRouter",
+                    "compoundPercentage"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "_claim",
+                "Node": [
+                    1458
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "USDC",
+                    "_RewardRouter",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "USDC",
+                    "_RewardRouter",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": [
+                    1693
+                ],
+                "Input": [
+                    "_pid",
+                    "_share"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.APR",
+                    "poolInfo.EarnRateSec",
+                    "poolInfo.GDlptoken",
+                    "poolInfo.lastUpdate",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardStart",
+                    "poolInfo.totalStaked",
+                    "poolInfo.withdrawable"
+                ],
+                "Control Variables": [
+                    "Blp",
+                    "USDCPRICE",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.APR",
+                    "poolInfo.EarnRateSec",
+                    "poolInfo.GDlptoken",
+                    "poolInfo.lastUpdate",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardStart",
+                    "poolInfo.totalStaked",
+                    "poolInfo.withdrawable",
+                    "slippage"
+                ],
+                "Full Calculation Variables": [
+                    "Blp",
+                    "USDCPRICE",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.APR",
+                    "poolInfo.EarnRateSec",
+                    "poolInfo.GDlptoken",
+                    "poolInfo.lastUpdate",
+                    "poolInfo.lpToken",
+                    "poolInfo.rewardStart",
+                    "poolInfo.totalStaked",
+                    "poolInfo.withdrawable",
+                    "slippage"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

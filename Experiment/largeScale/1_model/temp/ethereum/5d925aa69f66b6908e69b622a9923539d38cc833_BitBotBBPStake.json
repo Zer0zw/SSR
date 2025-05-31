@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "USER.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "USER.lastDividends",
+            "USER.remainder"
+        ],
+        "User Stake Time": [
+            "farmTime"
+        ],
+        "Stake Token Address": [
+            "BBP"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "require(IERC20(BBP).transferFrom(msg.sender, address(lpLockAddress), tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CLAIMREWARD",
+                "Node": "msg.sender.transfer(owing)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WITHDRAW",
+                "Node": "require(IERC20(BBP).transfer(msg.sender, tokens)"
+            }
+        ]
+    }
+}

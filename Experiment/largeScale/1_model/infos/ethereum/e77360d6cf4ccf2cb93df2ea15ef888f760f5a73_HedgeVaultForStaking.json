@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Account.balance"
+        ],
+        "User Stake Reward": [
+            "Account.rewardCursor",
+            "Account.claimed"
+        ],
+        "User Stake Time": [
+            "StakeChannel.unlockBlock"
+        ],
+        "Stake Token Address": [
+            "xtoken"
+        ],
+        "Reward Token Address": [
+            "DCU_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(xtoken, msg.sender, address(this), uint(amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "DCU(DCU_TOKEN_ADDRESS).mint(to, reward)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "DCU(DCU_TOKEN_ADDRESS).mint(to, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(xtoken, msg.sender, amount)"
+            }
+        ]
+    }
+}

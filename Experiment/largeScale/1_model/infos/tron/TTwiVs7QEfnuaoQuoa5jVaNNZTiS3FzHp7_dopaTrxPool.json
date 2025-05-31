@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.balance",
+            "User.totalStake"
+        ],
+        "User Stake Reward": [
+            "User.unStakeBonus",
+            "User.refUnstakeBonus"
+        ],
+        "User Stake Time": [
+            "User.updateTime"
+        ],
+        "Stake Token Address": [
+            "dopaToken"
+        ],
+        "Reward Token Address": [
+            "dopaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "freeze",
+                "Node": "devAddr.transfer(amount.mul(devBonusRate).div(PERCENTS_DIVIDER))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getHarvest",
+                "Node": "mintAndTransfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfreeze",
+                "Node": "msg.sender.transfer(amount.sub(amount.mul(devBonusRate).div(PERCENTS_DIVIDER))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "claimed"
+        ],
+        "User Stake Time": [
+            "lastUpdated"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "tokenAddress.safeTransferFrom(_msgSender(), address(this), amount_"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "tokenAddress.safeTransfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "_compound",
+                "Node": "balanceOf[_msgSender()] += amount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "tokenAddress.safeTransfer(_msgSender(), amount_)"
+            }
+        ]
+    }
+}

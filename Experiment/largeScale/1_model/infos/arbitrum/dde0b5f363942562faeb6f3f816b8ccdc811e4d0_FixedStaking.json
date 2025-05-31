@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakeRewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "timeOfStake"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(token).transfer(feeAddress, stakingTax))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": "require(IERC20(token).transfer(msg.sender, totalReward)"
+            },
+            {
+                "Function": "withdrawReferral",
+                "Node": "require(IERC20(token).transfer(msg.sender, totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(token).transfer(msg.sender, afterTax)"
+            }
+        ]
+    }
+}

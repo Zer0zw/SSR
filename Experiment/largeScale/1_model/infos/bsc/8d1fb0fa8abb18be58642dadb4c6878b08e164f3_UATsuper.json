@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mapMemberStake.tokenValue"
+        ],
+        "User Stake Reward": [
+            "calcStakeCollecting"
+        ],
+        "User Stake Time": [
+            "mapMemberStake.startDay",
+            "mapMemberStake.endDay"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "EnterStake",
+                "Node": "_burn(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ExitLobby",
+                "Node": "_mint(msg.sender, tokensToPay)"
+            },
+            {
+                "Function": "EndStake",
+                "Node": "payable(msg.sender).transfer(profit)"
+            },
+            {
+                "Function": "collectLendReturn",
+                "Node": "payable(lenderAddress).transfer(toBePaid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "EndStake",
+                "Node": "_mint(msg.sender, stakeReturn + bonusAmount)"
+            },
+            {
+                "Function": "buyStakeRequest",
+                "Node": "_mint(msg.sender, mapMemberStake[sellerAddress][stakeId].tokenValue)"
+            }
+        ]
+    }
+}

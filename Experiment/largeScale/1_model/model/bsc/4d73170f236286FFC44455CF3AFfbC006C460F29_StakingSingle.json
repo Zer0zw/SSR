@@ -1,0 +1,152 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "productInfo.staking"
+        ],
+        "User Stake Reward": [
+            "productInfo.reward"
+        ],
+        "User Stake Time": [
+            "productInfo.limit",
+            "productInfo.stakingTime"
+        ],
+        "Stake Token Address": [
+            "tokenSrs"
+        ],
+        "Reward Token Address": [
+            "tokenSrs"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "provide"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "managerWithdraw",
+            "withDraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "setTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "provide",
+                "Node": [
+                    356
+                ],
+                "Input": [
+                    "amount",
+                    "customer",
+                    "round"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "isStartStaking",
+                    "tokenSrs"
+                ],
+                "Full Calculation Variables": [
+                    "isStartStaking",
+                    "tokenSrs"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    388
+                ],
+                "Input": [
+                    "amount",
+                    "customer",
+                    "round"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "tokenSrs"
+                ],
+                "Full Calculation Variables": [
+                    "tokenSrs"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    402
+                ],
+                "Input": [
+                    "customer",
+                    "round"
+                ],
+                "Calculation Variables": [
+                    "productInfo.extracted",
+                    "productInfo.reward",
+                    "productInfo.staking"
+                ],
+                "Control Variables": [
+                    "productInfo.extracted",
+                    "productInfo.reward",
+                    "productInfo.staking",
+                    "tokenSrs"
+                ],
+                "Full Calculation Variables": [
+                    "productInfo.extracted",
+                    "productInfo.reward",
+                    "productInfo.staking",
+                    "tokenSrs"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withDraw",
+                "Node": [
+                    410
+                ],
+                "Input": [
+                    "amount",
+                    "customer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "approva",
+                    "tokenSrs"
+                ],
+                "Full Calculation Variables": [
+                    "approva",
+                    "tokenSrs"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "managerWithdraw",
+                "Node": [
+                    414
+                ],
+                "Input": [
+                    "amount",
+                    "customer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "manager",
+                    "tokenSrs"
+                ],
+                "Full Calculation Variables": [
+                    "manager",
+                    "tokenSrs"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

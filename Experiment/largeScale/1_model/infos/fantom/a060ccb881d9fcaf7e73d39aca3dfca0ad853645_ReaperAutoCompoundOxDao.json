@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "SOLID",
+            "OXD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMultiRewards(stakingAddress).stake(wantBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "IMultiRewards(stakingAddress).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IMultiRewards(stakingAddress).withdraw(_withdrawAmount - wantBalance)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IMultiRewards(stakingAddress).exit()"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMultiRewards(stakingAddress).exit()"
+            }
+        ]
+    }
+}

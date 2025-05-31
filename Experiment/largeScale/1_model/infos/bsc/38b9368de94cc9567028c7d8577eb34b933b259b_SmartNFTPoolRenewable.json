@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "usersRewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakedToken.safeTransferFrom(msg.sender, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "stakedToken.safeTransferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardToken.safeTransfer(address(msg.sender), actualStakingReward)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "rewardToken.safeTransfer(address(msg.sender), actualStakingReward)"
+            },
+            {
+                "Function": "claimPrevRewards",
+                "Node": "rwd.transfer(address(msg.sender), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakedToken.safeTransferFrom(address(this), msg.sender, _tokenId)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "stakedToken.safeTransferFrom(address(this), msg.sender, _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstakeALL",
+                "Node": "stakedToken.safeTransferFrom(address(this), msg.sender, _tokenId)"
+            }
+        ]
+    }
+}

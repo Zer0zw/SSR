@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeInfo.balance"
+        ],
+        "User Stake Reward": [
+            "ClaimableInfo.amount"
+        ],
+        "User Stake Time": [
+            "UserStakeInfo.stakedTimestamp",
+            "UserStakeInfo.lastClaimTimestamp"
+        ],
+        "Stake Token Address": [
+            "UserStakeInfo.asset"
+        ],
+        "Reward Token Address": [
+            "ClaimableInfo.reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(asset).safeTransferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "assetRewards[asset].dripToken.safeTransferFrom(rewardWallet, account, _claimableAmount)"
+            },
+            {
+                "Function": "claim",
+                "Node": "assetRewards[asset].dripToken.safeTransferFrom(rewardWallet, account, _claimableAmount)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "assetRewards[asset].dripToken.safeTransferFrom(rewardWallet, account, _claimableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(asset).safeTransfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

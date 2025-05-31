@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Share.amount"
+        ],
+        "User Stake Reward": [
+            "Reward.totalRealised"
+        ],
+        "User Stake Time": [
+            "Share.lockedTime"
+        ],
+        "Stake Token Address": [
+            "shareholderToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "tokenContract.transferFrom(shareholder, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_distributeReward",
+                "Node": "(success,) = receiver.call{ value: amount }('')"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "_distributeReward(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "IERC20(shareholderToken).transfer(shareholder, _amount)"
+            }
+        ]
+    }
+}

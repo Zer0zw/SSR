@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.balance"
+        ],
+        "User Stake Reward": [
+            "User.scaledPayout"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositFrom",
+                "Node": "users[msg.sender].balance = users[msg.sender].balance.add(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "WETH.safeTransfer(address(msg.sender), _dividends)"
+            },
+            {
+                "Function": "reinvestWithMinimalAmountOut",
+                "Node": "WETH.approve(address(uniswapRouter), dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

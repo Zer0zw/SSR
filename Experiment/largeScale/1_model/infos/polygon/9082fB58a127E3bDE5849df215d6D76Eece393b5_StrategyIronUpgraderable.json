@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAmt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(wantAddress).safeTransferFrom(address(msg.sender), address(this), _wantAmt"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IERC20(earnedAddress).safeTransfer(govAddress, fee)"
+            },
+            {
+                "Function": "earn",
+                "Node": "IPancakeRouter02(uniRouterAddress).swapExactTokensForTokensSupportingFeeOnTransferTokens(earnedAmt.div(2), 0, earnedToToken0Path, address(this), now + 60"
+            },
+            {
+                "Function": "earn",
+                "Node": "IPancakeRouter02(uniRouterAddress).swapExactTokensForTokensSupportingFeeOnTransferTokens(earnedAmt.div(2), 0, earnedToToken1Path, address(this), now + 60"
+            },
+            {
+                "Function": "earn",
+                "Node": "IPancakeRouter02(uniRouterAddress).addLiquidity(token0Address, token1Address, token0Amt, token1Amt, 0, 0, address(this), now + 60"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(wantAddress).safeTransfer(GrandFarmAddress, _wantAmt)"
+            }
+        ]
+    }
+}

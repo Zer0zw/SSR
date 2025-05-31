@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedShips"
+        ],
+        "User Stake Reward": [
+            "AsteroidInfo.rewardAmount"
+        ],
+        "User Stake Time": [
+            "ShipInfo.lastClaimedTimestamp"
+        ],
+        "Stake Token Address": [
+            "whitelistedShip"
+        ],
+        "Reward Token Address": [
+            "AsteroidInfo.rewardAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeNft",
+                "Node": "stakedShips[from].add(shipId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardOf",
+                "Node": "IERC20(rewardAddress).transfer(_msgSender(), rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNft",
+                "Node": "whitelistedShip.safeTransferFrom(address(this), _msgSender(), shipId)"
+            }
+        ]
+    }
+}

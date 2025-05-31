@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakerInfo.amount",
+            "StakerInfo.amounts"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "StakerInfo.startStakeTime",
+            "StakerInfo.times"
+        ],
+        "Stake Token Address": [
+            "dnxcToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require (dnxcToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "dnxcToken.transfer(msg.sender, user.amount)"
+            }
+        ]
+    }
+}

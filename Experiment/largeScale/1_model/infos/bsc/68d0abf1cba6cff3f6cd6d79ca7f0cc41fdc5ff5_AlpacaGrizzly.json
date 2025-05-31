@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount",
+            "ibTokenStakedAmount"
+        ],
+        "User Stake Reward": [
+            "earnedHoney",
+            "earnedBnb"
+        ],
+        "User Stake Time": [
+            "lastStakeRewardsCall",
+            "lastStakeRewardsDuration"
+        ],
+        "Stake Token Address": [
+            "depositToken",
+            "AlpacaVault"
+        ],
+        "Reward Token Address": [
+            "HoneyToken",
+            "AlpacaRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "AlpacaVault.deposit{value: amountToken}(amountToken)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "AlpacaVault.deposit{value: amountToken}(amountToken)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_stakeRewards",
+                "Node": "DEX.convertTokenToEth(currentRewards, address(AlpacaRewardToken))"
+            },
+            {
+                "Function": "stakeAlpacaRewards",
+                "Node": "DEX.convertEthToToken{value: tokenReInvestShare}(address(depositToken))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_transferEth(msg.sender, amountWithdrawn)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "_transferEth(msg.sender, amountWithdrawn)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "depositToken.safeTransfer(msg.sender, amountWithdrawn)"
+            }
+        ]
+    }
+}

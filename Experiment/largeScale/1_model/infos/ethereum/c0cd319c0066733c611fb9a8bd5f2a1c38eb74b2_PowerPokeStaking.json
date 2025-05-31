@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "_lastDepositChange"
+        ],
+        "Stake Token Address": [
+            "CVP_TOKEN"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createDeposit",
+                "Node": "CVP_TOKEN.transferFrom(msg.sender, address(this), amount_)"
+            },
+            {
+                "Function": "executeDeposit",
+                "Node": "No direct transfer statement found for staking in this function"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "slashHDH",
+                "Node": "CVP_TOKEN.transfer(reservoir, reservoirReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "executeWithdrawal",
+                "Node": "CVP_TOKEN.transfer(to_, amount)"
+            }
+        ]
+    }
+}

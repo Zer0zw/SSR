@@ -1,0 +1,84 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedSkull",
+            "stakedEsSkull",
+            "stakedBnSkull",
+            "slpAmount"
+        ],
+        "User Stake Reward": [
+            "cumulativeRewards",
+            "transferredCumulativeRewards"
+        ],
+        "User Stake Time": [
+            "averageStakedAmounts",
+            "transferredAverageStakedAmounts"
+        ],
+        "Stake Token Address": [
+            "skull",
+            "esSkull",
+            "bnSkull",
+            "slp"
+        ],
+        "Reward Token Address": [
+            "esSkull",
+            "weth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeSkull",
+                "Node": "IRewardTracker(stakedSkullTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "stakeEsSkull",
+                "Node": "IRewardTracker(stakedSkullTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "mintAndStakeSlp",
+                "Node": "IRewardTracker(feeSlpTracker).stakeForAccount(account, account, slp, slpAmount)"
+            },
+            {
+                "Function": "mintAndStakeSlpETH",
+                "Node": "IRewardTracker(feeSlpTracker).stakeForAccount(account, account, slp, slpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IRewardTracker(feeSkullTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimEsSkull",
+                "Node": "IRewardTracker(stakedSkullTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimFees",
+                "Node": "IRewardTracker(feeSkullTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "handleRewards",
+                "Node": "IVester(skullVester).claimForAccount(account, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeSkull",
+                "Node": "IRewardTracker(stakedSkullTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeEsSkull",
+                "Node": "IRewardTracker(stakedSkullTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeAndRedeemSlp",
+                "Node": "IRewardTracker(feeSlpTracker).unstakeForAccount(account, slp, _slpAmount, account)"
+            },
+            {
+                "Function": "unstakeAndRedeemSlpETH",
+                "Node": "IRewardTracker(feeSlpTracker).unstakeForAccount(account, slp, _slpAmount, account)"
+            }
+        ]
+    }
+}

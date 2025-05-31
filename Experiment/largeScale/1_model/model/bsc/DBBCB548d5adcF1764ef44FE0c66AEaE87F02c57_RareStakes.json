@@ -1,0 +1,198 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ledger.staked",
+            "ledger.stakedNoRewards"
+        ],
+        "User Stake Reward": [
+            "ledger.pending",
+            "ledger.claimed"
+        ],
+        "User Stake Time": [
+            "ledger.origin",
+            "ledger.from",
+            "ledger.lastClaimed"
+        ],
+        "Stake Token Address": [
+            "mainToken"
+        ],
+        "Reward Token Address": [
+            "mainToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stakeUsd"
+        ],
+        "getReward": [
+            "campaignFailed",
+            "claim"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    699
+                ],
+                "Input": [
+                    "stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "claimEnabled",
+                    "ledger.claimed",
+                    "ledger.from",
+                    "ledger.lastClaimed",
+                    "ledger.origin",
+                    "ledger.staked",
+                    "ledger.stakedNoRewards",
+                    "ledger.stakedUsd",
+                    "mainToken",
+                    "postTargetRewards",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "claimEnabled",
+                    "ledger.claimed",
+                    "ledger.from",
+                    "ledger.lastClaimed",
+                    "ledger.origin",
+                    "ledger.staked",
+                    "ledger.stakedNoRewards",
+                    "ledger.stakedUsd",
+                    "mainToken",
+                    "postTargetRewards",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeUsd",
+                "Node": [
+                    699
+                ],
+                "Input": [
+                    "usdAmount",
+                    "stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ledger.stakedNoRewards",
+                    "ledger.staked",
+                    "ledger.stakedUsd",
+                    "ledger.lastClaimed",
+                    "USDT",
+                    "swapRouter",
+                    "totalStaked",
+                    "claimEnabled",
+                    "ledger.origin",
+                    "mainToken",
+                    "ledger.from",
+                    "ledger.claimed",
+                    "postTargetRewards"
+                ],
+                "Full Calculation Variables": [
+                    "ledger.stakedNoRewards",
+                    "ledger.staked",
+                    "ledger.stakedUsd",
+                    "ledger.lastClaimed",
+                    "USDT",
+                    "swapRouter",
+                    "totalStaked",
+                    "claimEnabled",
+                    "ledger.origin",
+                    "mainToken",
+                    "ledger.from",
+                    "ledger.claimed",
+                    "postTargetRewards"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    719
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "YEAR_SECONDS",
+                    "interestRate",
+                    "ledger.claimed",
+                    "ledger.from",
+                    "ledger.lastClaimed",
+                    "ledger.pending",
+                    "ledger.staked",
+                    "ledger.stakedNoRewards",
+                    "maturity",
+                    "postTargetRewards"
+                ],
+                "Control Variables": [
+                    "YEAR_SECONDS",
+                    "claimEnabled",
+                    "interestRate",
+                    "ledger.claimed",
+                    "ledger.from",
+                    "ledger.lastClaimed",
+                    "ledger.pending",
+                    "ledger.staked",
+                    "ledger.stakedNoRewards",
+                    "mainToken",
+                    "maturity",
+                    "postTargetRewards"
+                ],
+                "Full Calculation Variables": [
+                    "YEAR_SECONDS",
+                    "claimEnabled",
+                    "interestRate",
+                    "ledger.claimed",
+                    "ledger.from",
+                    "ledger.lastClaimed",
+                    "ledger.pending",
+                    "ledger.staked",
+                    "ledger.stakedNoRewards",
+                    "mainToken",
+                    "maturity",
+                    "postTargetRewards"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "campaignFailed",
+                "Node": [
+                    898
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "ledger.claimed",
+                    "ledger.staked",
+                    "users"
+                ],
+                "Control Variables": [
+                    "_owner",
+                    "ended",
+                    "ledger.claimed",
+                    "ledger.staked",
+                    "mainToken",
+                    "users"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "ended",
+                    "ledger.claimed",
+                    "ledger.staked",
+                    "mainToken",
+                    "users"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

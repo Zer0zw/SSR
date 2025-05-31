@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.balance"
+        ],
+        "User Stake Reward": [
+            "Stake.claimedReward"
+        ],
+        "User Stake Time": [
+            "Stake.startStake",
+            "Stake.checkPoint"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ERC20token.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "ERC20token.safeTransfer(thisAccount, claimAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

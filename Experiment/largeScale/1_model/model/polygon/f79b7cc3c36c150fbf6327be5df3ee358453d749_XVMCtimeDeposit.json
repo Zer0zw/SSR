@@ -1,0 +1,289 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "dummyToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "giftDeposit"
+        ],
+        "getReward": [
+            "harvest",
+            "harvestWithRebalance"
+        ],
+        "unStake": [
+            "hopStakeToAnotherPool",
+            "transferStakeToAnotherWallet",
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    972
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "giftDeposit",
+                "Node": [
+                    1012
+                ],
+                "Input": [
+                    "_amount",
+                    "_recipientAddress"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1052
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "callFee",
+                    "dummyToken",
+                    "token"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "callFee",
+                    "dummyToken",
+                    "masterchef",
+                    "poolID",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "callFee",
+                    "dummyToken",
+                    "masterchef",
+                    "poolID",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "harvestWithRebalance",
+                "Node": [
+                    1074
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "callFeeWithBonus",
+                    "dummyToken",
+                    "token"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "callFeeWithBonus",
+                    "dummyToken",
+                    "governanceContract",
+                    "masterchef",
+                    "poolID",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "callFeeWithBonus",
+                    "dummyToken",
+                    "governanceContract",
+                    "masterchef",
+                    "poolID",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1260
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "masterchef",
+                    "poolID",
+                    "token",
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "dummyToken",
+                    "masterchef",
+                    "poolID",
+                    "token",
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "dummyToken",
+                    "masterchef",
+                    "poolID",
+                    "token",
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1260
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "masterchef",
+                    "poolID",
+                    "token",
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "dummyToken",
+                    "masterchef",
+                    "poolID",
+                    "token",
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "dummyToken",
+                    "masterchef",
+                    "poolID",
+                    "token",
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "hopStakeToAnotherPool",
+                "Node": [
+                    1342
+                ],
+                "Input": [
+                    "_poolAddress",
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "dummyToken",
+                    "masterchef",
+                    "poolID",
+                    "token",
+                    "totalShares",
+                    "trustedPool6",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "dummyToken",
+                    "masterchef",
+                    "poolID",
+                    "token",
+                    "totalShares",
+                    "trustedPool6",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.delegatingSharesToProposalID",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

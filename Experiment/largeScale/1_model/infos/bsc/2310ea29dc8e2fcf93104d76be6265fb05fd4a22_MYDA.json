@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stake.collateral"
+        ],
+        "User Stake Reward": [
+            "_stake.activeRew",
+            "_stake.pendingRew"
+        ],
+        "User Stake Time": [
+            "_stake.date",
+            "_stake.rewDate"
+        ],
+        "Stake Token Address": [
+            "_general._stakeAddress"
+        ],
+        "Reward Token Address": [
+            "_general._stakeAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_transfer(recipient, address(0), (_stakeConfig[tier].collateral * qty), 0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_stakeProcess",
+                "Node": "_transfer(_general._stakeAddress, recipient, stakeReward + refRew, 1)"
+            },
+            {
+                "Function": "_stakeProcess",
+                "Node": "_transfer(address(0), recipient, stakeReward + refRew, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_stakeProcess",
+                "Node": "_transfer(address(0), recipient, collateral, 0)"
+            }
+        ]
+    }
+}

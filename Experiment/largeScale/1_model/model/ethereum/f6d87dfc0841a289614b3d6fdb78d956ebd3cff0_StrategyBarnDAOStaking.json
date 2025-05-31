@@ -1,0 +1,204 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "emissionToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "harvest",
+            "tend"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "harvest",
+            "migrate",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "cloneBarnDAOStrategy",
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "tend",
+                "Node": [
+                    1728
+                ],
+                "Input": [
+                    "_debtOutstanding"
+                ],
+                "Calculation Variables": [
+                    "want"
+                ],
+                "Control Variables": [
+                    "emergencyExit",
+                    "staking",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "emergencyExit",
+                    "staking",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "harvest",
+                "Node": [
+                    1728
+                ],
+                "Input": [
+                    "_debtOutstanding"
+                ],
+                "Calculation Variables": [
+                    "want"
+                ],
+                "Control Variables": [
+                    "emergencyExit",
+                    "staking",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "emergencyExit",
+                    "staking",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1685,
+                    1686,
+                    1687,
+                    1688,
+                    1689,
+                    1690,
+                    1691
+                ],
+                "Input": [
+                    "_debtOutstanding",
+                    "_amount",
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "sushiswapRouter",
+                    "farmingContract",
+                    "sellCounter",
+                    "usdc",
+                    "emissionToken"
+                ],
+                "Full Calculation Variables": [
+                    "sushiswapRouter",
+                    "farmingContract",
+                    "sellCounter",
+                    "usdc",
+                    "emissionToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1742,
+                    1743,
+                    1744,
+                    1745
+                ],
+                "Input": [
+                    "_amountNeeded"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "staking",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "staking",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "harvest",
+                "Node": [
+                    1760
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "staking",
+                    "want"
+                ],
+                "Control Variables": [
+                    "staking",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "staking",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1767
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "staking",
+                    "strategist",
+                    "vault",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "staking",
+                    "strategist",
+                    "vault",
+                    "want"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "migrate",
+                "Node": [
+                    1773
+                ],
+                "Input": [
+                    "_newStrategy"
+                ],
+                "Calculation Variables": [
+                    "staking",
+                    "want"
+                ],
+                "Control Variables": [
+                    "staking",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "staking",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

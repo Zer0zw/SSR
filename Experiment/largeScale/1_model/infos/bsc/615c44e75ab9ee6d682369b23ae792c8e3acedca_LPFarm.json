@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenBalanceLedger"
+        ],
+        "User Stake Reward": [
+            "profitPerShare",
+            "payoutsTo"
+        ],
+        "User Stake Time": [
+            "lastDripTime"
+        ],
+        "Stake Token Address": [
+            "bep20"
+        ],
+        "Reward Token Address": [
+            "bep20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "return purchaseTokens(msg.sender, _amount)"
+            },
+            {
+                "Function": "purchaseTokens",
+                "Node": "uint256 _amountOfTokens = _purchaseTokens(_customerAddress, _taxedTokens)"
+            },
+            {
+                "Function": "_purchaseTokens",
+                "Node": "tokenBalanceLedger[_customerAddress] =  tokenBalanceLedger[_customerAddress].add(_amountOfTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "bep20.transfer(_customerAddress, _dividends)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "uint256 _tokens = purchaseTokens(_customerAddress, _dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "remove",
+                "Node": "tokenBalanceLedger[_customerAddress] = tokenBalanceLedger[_customerAddress].sub(_amountOfTokens)"
+            }
+        ]
+    }
+}

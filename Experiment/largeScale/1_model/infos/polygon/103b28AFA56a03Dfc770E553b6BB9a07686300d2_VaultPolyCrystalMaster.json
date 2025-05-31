@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo"
+        ],
+        "User Stake Reward": [
+            "pendingCrystal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "poolDeposit",
+                "Node": "IPolyCrystalMasterChef(chef).deposit(poolID, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getTotalPending",
+                "Node": "IPolyCrystalMasterChef(chef).pendingCrystal(poolID, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "poolWithdraw",
+                "Node": "IPolyCrystalMasterChef(chef).withdraw(poolID, _amount)"
+            }
+        ]
+    }
+}

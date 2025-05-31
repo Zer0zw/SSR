@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "myStakes.active",
+            "deposits.amount"
+        ],
+        "User Stake Reward": [
+            "myStakes.harvest",
+            "todeposits.bonus"
+        ],
+        "User Stake Time": [
+            "deposits.start",
+            "myStakes.checkpoint"
+        ],
+        "Stake Token Address": [
+            "tokens.token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBNB",
+                "Node": "doStaking(referrer, plan, _amount, 0)"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "doStaking(referrer, plan, _amount, tokenID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "payable(msg.sender).transfer(_withdrawn)"
+            },
+            {
+                "Function": "manualCompounding",
+                "Node": "insertStaking(3, _compound, tokenID)"
+            }
+        ],
+        "unStake": []
+    }
+}

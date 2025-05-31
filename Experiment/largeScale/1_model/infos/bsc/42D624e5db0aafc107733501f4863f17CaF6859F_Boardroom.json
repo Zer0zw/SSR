@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "Boardseat.rewardEarned"
+        ],
+        "User Stake Time": [
+            "Boardseat.epochTimerStart"
+        ],
+        "Stake Token Address": [
+            "FISH"
+        ],
+        "Reward Token Address": [
+            "CHIP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "CHIP.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "FISH.safeTransfer(msg.sender, amount.sub(feeAmount))"
+            },
+            {
+                "Function": "exit",
+                "Node": "FISH.safeTransfer(msg.sender, amount.sub(feeAmount))"
+            }
+        ]
+    }
+}

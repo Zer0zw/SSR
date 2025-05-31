@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastGetReward"
+        ],
+        "Stake Token Address": [
+            "ssdt"
+        ],
+        "Reward Token Address": [
+            "ssdt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeSSDTTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeSSDTTransfer(project1, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeSSDTTransfer(project2, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeSSDTTransfer(project3, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeSSDTTransfer(project4, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeSSDTTransfer(project5, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeSSDTTransfer(referrer, referrerFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

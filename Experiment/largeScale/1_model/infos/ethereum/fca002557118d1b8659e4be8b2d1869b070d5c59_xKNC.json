@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getFundKncBalanceTwei"
+        ],
+        "User Stake Reward": [
+            "withdrawableKncFees",
+            "withdrawableEthFees"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "knc"
+        ],
+        "Reward Token Address": [
+            "knc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mint",
+                "Node": "return super._mint(msg.sender, mintAmount)"
+            },
+            {
+                "Function": "mintWithToken",
+                "Node": "return super._mint(msg.sender, mintAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "knc.safeTransfer(owner(), kncFees)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "burn",
+                "Node": "knc.safeTransfer(msg.sender, proRataKnc.sub(fee))"
+            },
+            {
+                "Function": "burn",
+                "Node": "(bool success, ) = msg.sender.call.value(valToSend)(\"\")"
+            }
+        ]
+    }
+}

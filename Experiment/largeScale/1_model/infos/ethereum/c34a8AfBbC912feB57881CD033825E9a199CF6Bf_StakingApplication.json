@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "claimAmount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "account.invoke(address(vault), 0, methodData)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "bytes memory methodResult = account.invoke(address(vault), 0, methodData)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "account.invoke(address(vault), 0, methodData)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "account.invoke(address(vault), 0, methodData)"
+            }
+        ]
+    }
+}

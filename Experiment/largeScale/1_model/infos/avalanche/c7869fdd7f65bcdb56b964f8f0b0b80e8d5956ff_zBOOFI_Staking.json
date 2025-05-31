@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [
+            "harvested",
+            "pendingBOOFI"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ZBOOFI"
+        ],
+        "Reward Token Address": [
+            "BOOFI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ZBOOFI.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositTo",
+                "Node": "ZBOOFI.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositWithPermit",
+                "Node": "ZBOOFI.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositToWithPermit",
+                "Node": "ZBOOFI.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "BOOFI.safeTransfer(to, userPendingRewards)"
+            },
+            {
+                "Function": "harvestTo",
+                "Node": "BOOFI.safeTransfer(to, userPendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ZBOOFI.safeTransfer(to, amount)"
+            },
+            {
+                "Function": "withdrawTo",
+                "Node": "ZBOOFI.safeTransfer(to, amount)"
+            }
+        ]
+    }
+}

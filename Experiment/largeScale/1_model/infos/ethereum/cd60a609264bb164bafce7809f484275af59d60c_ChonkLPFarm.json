@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "brainBalance"
+        ],
+        "User Stake Reward": [
+            "points"
+        ],
+        "User Stake Time": [
+            "lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "ChonkAddress"
+        ],
+        "Reward Token Address": [
+            "NFTAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(ChonkAddress).transferFrom(_msgSender(), address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "IChonkNFT(NFTAddress).mint(_msgSender(), _id, 1)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(ChonkAddress).transfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC20(ChonkAddress).transfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

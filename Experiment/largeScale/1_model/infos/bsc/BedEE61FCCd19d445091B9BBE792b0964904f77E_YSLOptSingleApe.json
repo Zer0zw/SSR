@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDeposited"
+        ],
+        "User Stake Reward": [
+            "usersCompUSD"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "BUSD",
+            "YSL",
+            "sYSL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "transferIn",
+                "Node": "userDeposited[_user] += amountLPAfter - amountLPBefore"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IsYSL(_sysl).mint(usersIncome)"
+            },
+            {
+                "Function": "earn",
+                "Node": "ILock(lockContract).lock(usersIncome, 90 days, _user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "transferOut",
+                "Node": "IERC20(BUSD).safeTransfer(_msgSender(), amountUSDAfter - amountUSDBefore)"
+            }
+        ]
+    }
+}

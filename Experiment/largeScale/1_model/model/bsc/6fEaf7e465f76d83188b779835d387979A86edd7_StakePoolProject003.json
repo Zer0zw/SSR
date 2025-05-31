@@ -1,0 +1,119 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "envToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeTokens"
+        ],
+        "getReward": [
+            "rewardTokens"
+        ],
+        "unStake": [
+            "releaseStakes2StakeHolders",
+            "unstakeTokens"
+        ],
+        "Sensitive Functions": [
+            "setRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": [
+                    256,
+                    257,
+                    258,
+                    259
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "envToken",
+                    "feeAmt",
+                    "wholeRewardTokenAmts"
+                ],
+                "Full Calculation Variables": [
+                    "envToken",
+                    "feeAmt",
+                    "wholeRewardTokenAmts"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rewardTokens",
+                "Node": [
+                    320
+                ],
+                "Input": [
+                    "_rewardAmount"
+                ],
+                "Calculation Variables": [
+                    "stakers",
+                    "stakingBalance",
+                    "totalStakedEnvTokenAmts"
+                ],
+                "Control Variables": [
+                    "_owner",
+                    "rewardToken",
+                    "stakers",
+                    "stakingBalance",
+                    "totalStakedEnvTokenAmts",
+                    "wholeRewardTokenAmts"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "rewardToken",
+                    "stakers",
+                    "stakingBalance",
+                    "totalStakedEnvTokenAmts",
+                    "wholeRewardTokenAmts"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "releaseStakes2StakeHolders",
+                "Node": [
+                    335
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakers",
+                    "stakingBalance"
+                ],
+                "Control Variables": [
+                    "_owner",
+                    "envToken",
+                    "stakers",
+                    "stakingBalance",
+                    "wholeRewardTokenAmts"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "envToken",
+                    "stakers",
+                    "stakingBalance",
+                    "wholeRewardTokenAmts"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

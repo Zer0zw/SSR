@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "rewardsStorage"
+        ],
+        "User Stake Time": [
+            "Stake.startTimestamp",
+            "Stake.completionTimestamp"
+        ],
+        "Stake Token Address": [
+            "BioFiTokenAddress"
+        ],
+        "Reward Token Address": [
+            "BioFiTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "require(BioFiToken.transferFrom(msg.sender, address(this), BioFiTokenAmount)"
+            },
+            {
+                "Function": "topUpStake",
+                "Node": "require(BioFiToken.transferFrom(msg.sender, address(this), BioFiTokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "closeStake",
+                "Node": "BioFiToken.transfer(msg.sender, totalPayable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "closeStake",
+                "Node": "BioFiToken.transfer(msg.sender, totalPayable)"
+            }
+        ]
+    }
+}

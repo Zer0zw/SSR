@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPack.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "UserPack.totalRewardClaimed",
+            "UserPack.unClaimedAmt"
+        ],
+        "User Stake Time": [
+            "UserPack.stakedTime",
+            "UserPack.packageBoughtTime"
+        ],
+        "Stake Token Address": [
+            "STC_Addr"
+        ],
+        "Reward Token Address": [
+            "STC_Addr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(STC_Addr.transferFrom(msg.sender, address(this), stcAmountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardAmount",
+                "Node": "require(STC_Addr.transfer(msg.sender, rewardAmount))"
+            },
+            {
+                "Function": "claimAffiliateReward",
+                "Node": "require(BUSD.transfer(msg.sender, afReward))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimCapital",
+                "Node": "require(STC_Addr.transfer(msg.sender, stkAmnt))"
+            }
+        ]
+    }
+}

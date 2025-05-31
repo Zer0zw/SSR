@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TokenHolder.tokensStaked"
+        ],
+        "User Stake Reward": [
+            "TokenHolder.tokensStaked",
+            "stakingRewards"
+        ],
+        "User Stake Time": [
+            "TokenHolder.dateStaked"
+        ],
+        "Stake Token Address": [
+            "_auditToken"
+        ],
+        "Reward Token Address": [
+            "_auditToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(_auditToken).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "IERC20(_auditToken).safeTransfer(depositContract, amountToTransfer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "IERC20(_auditToken).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

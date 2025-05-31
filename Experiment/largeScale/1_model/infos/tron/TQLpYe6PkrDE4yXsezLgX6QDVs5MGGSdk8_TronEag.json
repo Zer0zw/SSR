@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.balance",
+            "User.totalStake"
+        ],
+        "User Stake Reward": [
+            "User.unStakeBonus",
+            "User.refUnstakeBonus"
+        ],
+        "User Stake Time": [
+            "User.updateTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "freeze",
+                "Node": "user.balance = user.balance.add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getHarvest",
+                "Node": "rewardToken.safeTransfer(_account, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfreeze",
+                "Node": "msg.sender.transfer(amount.sub(amount.mul(devBonusRate).div(PERCENTS_DIVIDER)))"
+            }
+        ]
+    }
+}

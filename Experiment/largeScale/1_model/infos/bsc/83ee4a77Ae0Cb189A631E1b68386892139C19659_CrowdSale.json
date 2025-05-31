@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakedAmount",
+            "stakingInvestmentInfo.principalAmount",
+            "stakingInvestmentInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "planStage.restakeReward",
+            "stakingInvestmentInfo.stakedAmount"
+        ],
+        "User Stake Time": [
+            "planStage.investmentDuration",
+            "stakingInvestmentInfo.stakingAt",
+            "stakingInvestmentInfo.unstakingAt"
+        ],
+        "Stake Token Address": [
+            "EPIX_Contract"
+        ],
+        "Reward Token Address": [
+            "EPIX_Contract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "EPIX_Contract.transferByCrowdSaler(userAddress,StakeOwner, amount)"
+            },
+            {
+                "Function": "stakeByLockedTokens",
+                "Node": "EPIX_Contract.updateLockedAmount(userAddress, availableLockedAmount,2)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unStaking",
+                "Node": "EPIX_Contract.transferByCrowdSaler(StakeOwner,userAddress, stakedAmount)"
+            },
+            {
+                "Function": "cancelStaking",
+                "Node": "EPIX_Contract.transferByCrowdSaler(StakeOwner,userAddress, principalAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "validators.amount"
+        ],
+        "User Stake Reward": [
+            "validators.reward",
+            "validators.delegatorsReward"
+        ],
+        "User Stake Time": [
+            "validators.activationEpoch",
+            "validators.deactivationEpoch"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": "_transferAndTopUp(user, msg.sender, heimdallFee, amount)"
+            },
+            {
+                "Function": "restake",
+                "Node": "_transferTokenFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "_liquidateRewards(validatorId, msg.sender)"
+            },
+            {
+                "Function": "claimFee",
+                "Node": "_transferToken(msg.sender, withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeClaim",
+                "Node": "_transferToken(msg.sender, amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_liquidateRewards(validatorId, msg.sender)"
+            }
+        ]
+    }
+}

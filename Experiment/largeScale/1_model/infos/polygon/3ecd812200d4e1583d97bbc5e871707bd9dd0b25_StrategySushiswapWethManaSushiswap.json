@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ISushiStake(masterChef).deposit(pid, _wantAmount, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ISushiStake(masterChef).harvest(pid, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ISushiStake(masterChef).withdraw(pid, _amount, address(this))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "PoolInfo.endOfEpochBlock"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpToken[_pid].safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardsToken.safeTransfer(_to, _pendingRewards)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "rewardsToken.safeTransfer(_to, _pendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken[_pid].safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "lpToken[_pid].safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "lpToken[_pid].safeTransfer(_to, amount)"
+            }
+        ]
+    }
+}

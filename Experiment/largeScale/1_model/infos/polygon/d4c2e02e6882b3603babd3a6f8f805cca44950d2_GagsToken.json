@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUserGags_3d",
+            "tokensStakedByUserGags_v2"
+        ],
+        "User Stake Reward": [
+            "coinAmountPerRewardUnitGags_3d",
+            "coinAmountPerRewardUnitGags_v2"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddressGags_3d",
+            "collectionAddressGags_v2"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeGags_3d",
+                "Node": "IERC721(collectionAddressGags_3d).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeGags_v2",
+                "Node": "IERC721(collectionAddressGags_v2).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestGags_3d",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            },
+            {
+                "Function": "harvestGags_v2",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeGags_3d",
+                "Node": "IERC721(collectionAddressGags_3d).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeGags_v2",
+                "Node": "IERC721(collectionAddressGags_v2).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user.amount"
+        ],
+        "User Stake Reward": [
+            "pendingSTG"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IStargateChef(chef).deposit(chefId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "IStargateChef(chef).deposit(chefId, 0)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "IStargateChef(chef).deposit(chefId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IStargateChef(chef).withdraw(chefId, toWithdraw)"
+            },
+            {
+                "Function": "_prepareRetirement",
+                "Node": "IStargateChef(chef).withdraw(chefId, balanceOfPool())"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "amount"
+        ],
+        "User Stake Time": [
+            "rewardCycleTimestamp"
+        ],
+        "Stake Token Address": [
+            "sxp"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "event Stake(address indexed staker, uint256 indexed amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "event Claim(address indexed toAddress, uint256 indexed amount, uint256 indexed nonce)"
+            },
+            {
+                "Function": "ApproveClaim",
+                "Node": "event ApproveClaim(address indexed toAddress, uint256 indexed amount, uint256 indexed nonce)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Withdraw",
+                "Node": "event Withdraw(address indexed toAddress, uint256 indexed amount)"
+            }
+        ]
+    }
+}

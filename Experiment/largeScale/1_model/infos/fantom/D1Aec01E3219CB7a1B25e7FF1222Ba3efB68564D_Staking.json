@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedCount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pendingBar"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "StakingItem.contractAddress"
+        ],
+        "Reward Token Address": [
+            "barToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(_nftContract).transferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "barToken.transfer(msg.sender, userPendingBar * 10**12)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(item.contractAddress).transferFrom(address(this), msg.sender, item.tokenId)"
+            }
+        ]
+    }
+}

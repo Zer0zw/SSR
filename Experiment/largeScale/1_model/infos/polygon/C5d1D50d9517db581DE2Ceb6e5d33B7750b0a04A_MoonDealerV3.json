@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_staking"
+        ],
+        "User Stake Reward": [
+            "_alloc"
+        ],
+        "User Stake Time": [
+            "_lastDepositedTime"
+        ],
+        "Stake Token Address": [
+            "moonToken"
+        ],
+        "Reward Token Address": [
+            "moonToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositWithPercentage",
+                "Node": "moonToken.safeTransferFrom(user, address(this), _amount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "moonToken.safeTransferFrom(user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "returnFunds",
+                "Node": "moonToken.safeTransfer(address(msg.sender), injectAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "moonToken.safeTransfer(_user, _transferAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "moonToken.safeTransfer(_user, _transferAmount)"
+            }
+        ]
+    }
+}

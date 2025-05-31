@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingDetails.initialTokenAmount",
+            "StakingDetails.withdrawnAmount"
+        ],
+        "User Stake Reward": [
+            "voteEscrowedBalance",
+            "_withdrawnRewards"
+        ],
+        "User Stake Time": [
+            "StakingDetails.depositTime",
+            "StakingDetails.numOfMonths"
+        ],
+        "Stake Token Address": [
+            "everRiseToken"
+        ],
+        "Reward Token Address": [
+            "claimRiseToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "increaseVeAmount(staker, remaining, numOfMonths, true)"
+            },
+            {
+                "Function": "increaseStake",
+                "Node": "increaseVeAmount(staker, amount, numOfMonths, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "require(everRiseToken.transfer(staker, rewards))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "_removeStake(staker, nftId, lookupIndex, stakeDetails)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "decreaseVeAmount(staker, amount, stakeDetails.numOfMonths, true)"
+            },
+            {
+                "Function": "earlyWithdraw",
+                "Node": "decreaseVeAmount(staker, amount, stakeDetails.numOfMonths, true)"
+            },
+            {
+                "Function": "bridgeStakeNftOut",
+                "Node": "_removeStake(fromAddress, nftId, lookupIndex, stakeDetails)"
+            }
+        ]
+    }
+}

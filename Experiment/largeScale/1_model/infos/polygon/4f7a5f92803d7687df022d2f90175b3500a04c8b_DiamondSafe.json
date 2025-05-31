@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf_"
+        ],
+        "User Stake Reward": [
+            "dividendsOf"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositTo",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "stakingToken.transfer(_user, _dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.transfer(_user, _dividends)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lpAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tradedToken",
+            "reserveToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLiquidity",
+                "Node": "IERC20Upgradeable(address(uniswapV2Pair)).transferFrom(_msgSender(), address(this), lpAmount"
+            },
+            {
+                "Function": "addAndStakeLiquidity",
+                "Node": "IERC20Upgradeable(tradedToken).transferFrom(_msgSender(), address(this), amountTradedToken)"
+            },
+            {
+                "Function": "addAndStakeLiquidity",
+                "Node": "IERC20Upgradeable(reserveToken).transferFrom(_msgSender(), address(this), amountReserveToken)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "uniswapV2Pair.transfer(account, amount2Redeem)"
+            },
+            {
+                "Function": "redeemAndRemoveLiquidity",
+                "Node": "_fractionAmountSend(tradedToken, amountA, 0, stakingProducedBy, sender)"
+            },
+            {
+                "Function": "redeemAndRemoveLiquidity",
+                "Node": "_fractionAmountSend(reserveToken, amountB, 0, stakingProducedBy, sender)"
+            }
+        ]
+    }
+}

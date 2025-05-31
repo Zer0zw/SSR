@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "Claim.gons"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "SITH"
+        ],
+        "Reward Token Address": [
+            "DARK"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "DARK.safeTransfer( address(warmupContract), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "warmupContract.retrieve( _recipient,  amount)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "warmupContract.retrieve( address(this),  DARKBalance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "SITH.safeTransfer( msg.sender, _amount)"
+            }
+        ]
+    }
+}

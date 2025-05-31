@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user.totalAmount"
+        ],
+        "User Stake Reward": [
+            "pendingCapl"
+        ],
+        "User Stake Time": [
+            "_startTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "capl"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_token).safeTransferFrom(msg.sender, vaultAddress, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "capl.mint(_user, pendingCapl)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "vault.withdraw(_token, _user, amount, newRewardDebt)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "isToken0RewardsToken",
+            "token0",
+            "token1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lp.safeApprove(address(stakingRewards), lpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "exit",
+                "Node": "stakingRewards.getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "lp.transfer(mainContract, lpAmount + convertedLPAmount)"
+            }
+        ]
+    }
+}

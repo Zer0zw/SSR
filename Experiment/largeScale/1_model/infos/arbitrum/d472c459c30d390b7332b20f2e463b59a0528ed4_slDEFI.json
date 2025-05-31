@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amountStakeToken"
+        ],
+        "User Stake Reward": [
+            "singleSideTokenAmount"
+        ],
+        "User Stake Time": [
+            "_aprLockOptions.lockTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "DEFI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_stakeLp(msg.sender, _amount, _lockOptIndex, true)"
+            },
+            {
+                "Function": "zapAndStakeETHOnly",
+                "Node": "_stakeLp(msg.sender, _lpBalanceToStake, _lockOptIndex, false)"
+            },
+            {
+                "Function": "zapAndStakeETHAndDEFI",
+                "Node": "_stakeLp(msg.sender, _lpBalanceToStake, _lockOptIndex, false)"
+            },
+            {
+                "Function": "zapAndStakeDEFIOnly",
+                "Node": "_stakeLp(msg.sender, _lpBalanceToStake, _lockOptIndex, false)"
+            }
+        ],
+        "getReward": [],
+        "unStake": []
+    }
+}

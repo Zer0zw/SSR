@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositAmount",
+            "totalDepositAmount"
+        ],
+        "User Stake Reward": [
+            "mintAmount",
+            "dividendAmount",
+            "totalMintAmount",
+            "totalDividendAmount",
+            "userTotalClaimedReferralRewards",
+            "userTotalClaimedNodeRewards"
+        ],
+        "User Stake Time": [
+            "DepositInfo.depositTime",
+            "DepositInfo.withdrawTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "miningToken",
+            "dividendToken",
+            "refferalRewardToken",
+            "nodeRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "poolInfo[_pid].lpToken.safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeMiningTokenTransfer(_msgSender(), deservedMiningReward)"
+            },
+            {
+                "Function": "claim",
+                "Node": "safeDividendTokenTransfer(_msgSender(), deservedDividendReward)"
+            },
+            {
+                "Function": "claimAllReferralReward",
+                "Node": "safeMiningTokenTransfer(_msgSender(), pendingReward)"
+            },
+            {
+                "Function": "claimAllNodeReward",
+                "Node": "safeMiningTokenTransfer(_msgSender(), pendingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "poolInfo[_pid].lpToken.safeTransfer(_msgSender(), getTotalRedeemableLPAmount(_pid, _msgSender()))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "poolInfo[_pid].lpToken.safeTransfer(_msgSender(), depositAmount[_pid][_msgSender()])"
+            }
+        ]
+    }
+}

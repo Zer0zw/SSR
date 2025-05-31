@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userLastDepositTime"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "pok"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_nft.safeTransferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestReward",
+                "Node": "_safepokTransfer(_account, _claimableAmount)"
+            },
+            {
+                "Function": "harvestAllRewards",
+                "Node": "_safepokTransfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "BRC721(nft).safeTransferFrom(address(this), msg.sender, user.tokenId)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "BRC721(nft).safeTransferFrom(address(this), msg.sender, user.tokenId)"
+            }
+        ]
+    }
+}

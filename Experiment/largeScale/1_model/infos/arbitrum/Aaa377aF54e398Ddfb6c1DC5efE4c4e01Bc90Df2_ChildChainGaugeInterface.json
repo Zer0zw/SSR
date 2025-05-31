@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "UserRewardData.userEarnedStored"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stake"
+        ],
+        "Reward Token Address": [
+            "rewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "balanceOf[msg.sender] += amount"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "balanceOf[msg.sender] += amount"
+            },
+            {
+                "Function": "depositAndOptIn",
+                "Node": "balanceOf[msg.sender] += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "userRewardData[account][tokens[i]].userEarnedStored = 0"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "balanceOf[msg.sender] -= amount"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "balanceOf[msg.sender] = 0"
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": "balanceOf[msg.sender] -= amount"
+            }
+        ]
+    }
+}

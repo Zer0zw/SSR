@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.earn_staked"
+        ],
+        "User Stake Time": [
+            "StakeInfo.time"
+        ],
+        "Stake Token Address": [
+            "StakeInfo.meta"
+        ],
+        "Reward Token Address": [
+            "StakeInfo.meta"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "metaToken.safeTransferFrom(msg.sender, address(this), payAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPending",
+                "Node": "metaToken.safeTransfer(msg.sender, stakeInfo.earn_staked)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "metaToken.safeTransfer(msg.sender, _profitTotal)"
+            }
+        ]
+    }
+}

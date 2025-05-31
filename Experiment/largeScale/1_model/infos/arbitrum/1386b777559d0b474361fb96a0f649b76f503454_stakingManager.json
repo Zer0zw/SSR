@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PoolStaker.amount"
+        ],
+        "User Stake Reward": [
+            "PoolStaker.Harvestedrewards",
+            "userLockedRewards"
+        ],
+        "User Stake Time": [
+            "PoolStaker.stakedTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "stakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakeToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositByPresale",
+                "Node": "stakeToken.safeTransferFrom(presaleContract, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestRewards",
+                "Node": "stakeToken.safeTransfer(_user, rewardsToHarvest)"
+            },
+            {
+                "Function": "_harvestRewards",
+                "Node": "stakeToken.safeTransfer(_user, rewardsToHarvest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakeToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

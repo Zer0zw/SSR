@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user_investment_details.invested"
+        ],
+        "User Stake Reward": [
+            "userTotalRewards.amount"
+        ],
+        "User Stake Time": [
+            "weeklyWithdraw.deadline",
+            "claimDaily.deadline"
+        ],
+        "Stake Token Address": [
+            "USDC"
+        ],
+        "Reward Token Address": [
+            "USDC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "USDCinterface.transferFrom(msg.sender, address(this), total_contract)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawal",
+                "Node": "USDCinterface.transfer(msg.sender, totalAmountToWithdraw)"
+            },
+            {
+                "Function": "claimDailyRewards",
+                "Node": "approvedWithdrawal[msg.sender] = userWithdrawal(msg.sender, value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "USDCinterface.transfer(msg.sender, UnstakeValueCore)"
+            }
+        ]
+    }
+}

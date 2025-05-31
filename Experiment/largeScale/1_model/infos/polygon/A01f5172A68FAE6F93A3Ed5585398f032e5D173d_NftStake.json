@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "playerNfts1.mount",
+            "playerNfts2.mount"
+        ],
+        "User Stake Reward": [
+            "tokensPerBlock",
+            "tokensPerBlock2"
+        ],
+        "User Stake Time": [
+            "_Nft1.stakedFromBlock",
+            "_Nft2.stakedFromBlock"
+        ],
+        "Stake Token Address": [
+            "nftToken",
+            "nftToken2"
+        ],
+        "Reward Token Address": [
+            "erc20Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeNFT",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "_stakeNFT2",
+                "Node": "nftToken2.safeTransferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_payoutStake",
+                "Node": "erc20Token.transfer(Nft1[tokenId].owner, payout)"
+            },
+            {
+                "Function": "_payoutStake2",
+                "Node": "erc20Token.transfer(Nft2[tokenId].owner, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unStakeNFT",
+                "Node": "nftToken.safeTransferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "_unStakeNFT2",
+                "Node": "nftToken2.safeTransferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "feePerTokenStaked",
+            "snapshots"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "feeTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IToken(stakeToken).sendToTokenStaking(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_sendRewards",
+                "Node": "SafeToken.safeTransfer(feeToken, msg.sender, tokenGain)"
+            },
+            {
+                "Function": "_sendRewards",
+                "Node": "SafeToken.safeTransferETH(_user, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "SafeToken.safeTransfer(stakeToken, msg.sender, withdrawable)"
+            }
+        ]
+    }
+}

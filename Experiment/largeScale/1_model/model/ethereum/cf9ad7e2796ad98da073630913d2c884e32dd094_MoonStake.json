@@ -1,0 +1,196 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeList.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakeList.stakeTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "crops"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositMoondayETH",
+            "stake"
+        ],
+        "getReward": [
+            "claim",
+            "claimBurns"
+        ],
+        "unStake": [
+            "withdrawMoondayETH"
+        ],
+        "Sensitive Functions": [
+            "setLPTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    395
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "lpToken"
+                ],
+                "Full Calculation Variables": [
+                    "lpToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositMoondayETH",
+                "Node": [
+                    426
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "moonETHToken",
+                    "moonday",
+                    "userList.moondayEthStaked",
+                    "userList.percentage",
+                    "userList.percentageSnapshot",
+                    "userList.reserveConstant",
+                    "weth"
+                ],
+                "Full Calculation Variables": [
+                    "moonETHToken",
+                    "moonday",
+                    "userList.moondayEthStaked",
+                    "userList.percentage",
+                    "userList.percentageSnapshot",
+                    "userList.reserveConstant",
+                    "weth"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    494
+                ],
+                "Input": [
+                    "_index"
+                ],
+                "Calculation Variables": [
+                    "crops",
+                    "lpToken",
+                    "moonday",
+                    "stakeList.amount",
+                    "stakeList.stakeTime",
+                    "userList.percentage"
+                ],
+                "Control Variables": [
+                    "crops",
+                    "lpToken",
+                    "moonday",
+                    "stakeList.amount",
+                    "stakeList.stakeTime",
+                    "userList.percentage"
+                ],
+                "Full Calculation Variables": [
+                    "crops",
+                    "lpToken",
+                    "moonday",
+                    "stakeList.amount",
+                    "stakeList.stakeTime",
+                    "userList.percentage"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimBurns",
+                "Node": [
+                    535
+                ],
+                "Input": [
+                    "_week"
+                ],
+                "Calculation Variables": [
+                    "burnList.finalPercentageSnapshot",
+                    "burnList.totalBurn",
+                    "burnList.totalFees",
+                    "userList.burnStake"
+                ],
+                "Control Variables": [
+                    "burnList.finalPercentageSnapshot",
+                    "burnList.totalBurn",
+                    "burnList.totalFees",
+                    "burnLock",
+                    "moonETHToken",
+                    "userList.burnStake"
+                ],
+                "Full Calculation Variables": [
+                    "burnList.finalPercentageSnapshot",
+                    "burnList.totalBurn",
+                    "burnList.totalFees",
+                    "burnLock",
+                    "moonETHToken",
+                    "userList.burnStake"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawMoondayETH",
+                "Node": [
+                    479
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "moonETHToken",
+                    "userList.moondayEthStaked",
+                    "userList.percentage",
+                    "userList.percentageSnapshot",
+                    "userList.reserveConstant"
+                ],
+                "Control Variables": [
+                    "burnCount",
+                    "burnList.finalPercentageSnapshot",
+                    "burnList.finalReserveSnapshot0",
+                    "burnList.finalReserveSnapshot1",
+                    "burnList.percentageSnapshot",
+                    "burnList.totalFees",
+                    "moonETHToken",
+                    "userList.moondayEthStaked",
+                    "userList.percentage",
+                    "userList.percentageSnapshot",
+                    "userList.reserveConstant"
+                ],
+                "Full Calculation Variables": [
+                    "burnCount",
+                    "burnList.finalPercentageSnapshot",
+                    "burnList.finalReserveSnapshot0",
+                    "burnList.finalReserveSnapshot1",
+                    "burnList.percentageSnapshot",
+                    "burnList.totalFees",
+                    "moonETHToken",
+                    "userList.moondayEthStaked",
+                    "userList.percentage",
+                    "userList.percentageSnapshot",
+                    "userList.reserveConstant"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

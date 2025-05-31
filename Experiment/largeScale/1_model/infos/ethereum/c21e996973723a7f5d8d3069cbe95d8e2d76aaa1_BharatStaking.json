@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeHolder.amount"
+        ],
+        "User Stake Reward": [
+            "stakeHolder.amount",
+            "rate"
+        ],
+        "User Stake Time": [
+            "stakeHolder.stakeTime",
+            "baseStakeTime"
+        ],
+        "Stake Token Address": [
+            "erc20ContractAddress"
+        ],
+        "Reward Token Address": [
+            "bharatContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "erc20ContractAddress.safeTransferFrom(msg.sender, address(this), numTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "bharatContract.rewardMint(msg.sender, rewardOf(msg.sender))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "erc20ContractAddress.safeTransfer(msg.sender, stakes[msg.sender].amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.balance"
+        ],
+        "User Stake Reward": [
+            "User.referralEarnings",
+            "User.scaledPayout"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "info.users[msg.sender].balance += tokens"
+            },
+            {
+                "Function": "_stake",
+                "Node": "info.users[msg.sender].balance += tokens"
+            },
+            {
+                "Function": "restake",
+                "Node": "info.users[msg.sender].balance += tokens"
+            },
+            {
+                "Function": "_restake",
+                "Node": "info.users[msg.sender].balance += tokens"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "info.busd.transfer(msg.sender, _rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "info.busd.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "info.busd.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

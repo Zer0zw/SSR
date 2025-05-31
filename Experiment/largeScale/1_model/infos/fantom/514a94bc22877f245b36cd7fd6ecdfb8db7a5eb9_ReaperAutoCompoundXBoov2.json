@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolXBOOBalance"
+        ],
+        "User Stake Reward": [
+            "accCatDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "BOO"
+        ],
+        "Reward Token Address": [
+            "WFTM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "XBOO.enter(booBalance)"
+            },
+            {
+                "Function": "_aceLabDeposit",
+                "Node": "IAceLab(aceLab).deposit(_poolId, _XBOOAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20Upgradeable(USDC).safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_payMagicatDepositors",
+                "Node": "IERC20Upgradeable(BOO).transfer(magicatsHandler, magicatPayout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "BOO.safeTransfer(vault, _amount)"
+            },
+            {
+                "Function": "_aceLabWithdraw",
+                "Node": "IAceLab(aceLab).withdraw(_poolId, _XBOOAmount)"
+            }
+        ]
+    }
+}

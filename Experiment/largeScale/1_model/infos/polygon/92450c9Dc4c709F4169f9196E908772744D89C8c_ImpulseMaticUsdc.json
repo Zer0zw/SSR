@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantTotal"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "initialize",
+                "Node": "super.initialize(_wantToken, _router, _stakingRewards, _underlyingTokens, _rewardToken)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getRewards",
+                "Node": "stakingRewards.getReward()"
+            },
+            {
+                "Function": "_getRewards",
+                "Node": "IdQuick(dQuick).leave(curBalance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "migrateImpulse",
+                "Node": "stakingRewards.exit()"
+            },
+            {
+                "Function": "migrateImpulse",
+                "Node": "rewardToken.safeTransfer(treasury, rewardCommission)"
+            },
+            {
+                "Function": "migrateImpulse",
+                "Node": "_depositLpToken(totBalance)"
+            }
+        ]
+    }
+}

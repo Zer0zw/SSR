@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "Time"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "Time.transferFrom( msg.sender, address(this), _amount )"
+            },
+            {
+                "Function": "stake",
+                "Node": "staking.stake( _amount, recipient )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "staking.claim( recipient )"
+            }
+        ],
+        "unStake": []
+    }
+}

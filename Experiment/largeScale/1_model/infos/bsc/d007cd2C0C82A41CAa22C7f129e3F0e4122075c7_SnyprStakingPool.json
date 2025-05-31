@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.amount"
+        ],
+        "User Stake Reward": [
+            "walletClaimed",
+            "walletClaimedRewardToken"
+        ],
+        "User Stake Time": [
+            "Staker.timeStakedFor",
+            "Staker.stakeTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_token.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReturn",
+                "Node": "_token.transfer(account, returnAmount)"
+            },
+            {
+                "Function": "reinvestReturn",
+                "Node": "stakers[_msgSender()][poolNo].amount += returnAmount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimStaking",
+                "Node": "_token.transfer(_msgSender(), amountToWithdraw)"
+            }
+        ]
+    }
+}

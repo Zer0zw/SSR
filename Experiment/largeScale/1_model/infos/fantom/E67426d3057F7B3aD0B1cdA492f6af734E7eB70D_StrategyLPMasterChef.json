@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farmDeposit",
+                "Node": "farm.deposit(poolId, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "beforeHarvest",
+                "Node": "farm.deposit(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "farmWithdraw",
+                "Node": "farm.withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "farmEmergencyWithdraw",
+                "Node": "farm.emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

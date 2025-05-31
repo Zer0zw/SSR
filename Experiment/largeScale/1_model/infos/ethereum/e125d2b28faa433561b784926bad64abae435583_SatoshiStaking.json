@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToRunner"
+        ],
+        "User Stake Reward": [
+            "totalRewards"
+        ],
+        "User Stake Time": [
+            "runnersTimeStaked"
+        ],
+        "Stake Token Address": [
+            "RUNNERS_ADDRESS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeRunnersById",
+                "Node": "_satoshiRunnersContract.transferFrom(msg.sender, address(this), id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAll",
+                "Node": "_mint(msg.sender, totalRewards > remaining ? remaining : totalRewards)"
+            },
+            {
+                "Function": "unstakeRunnersByIds",
+                "Node": "_mint(msg.sender, totalRewards > remaining ? remaining : totalRewards)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_mint(msg.sender, totalRewards > remaining ? remaining : totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeRunnersByIds",
+                "Node": "_satoshiRunnersContract.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_satoshiRunnersContract.transferFrom(address(this), msg.sender, id)"
+            }
+        ]
+    }
+}

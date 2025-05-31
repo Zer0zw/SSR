@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amountStaked"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.rewardPercentage"
+        ],
+        "User Stake Time": [
+            "StakeInfo.startTimestamp",
+            "stakeLockDuration"
+        ],
+        "Stake Token Address": [
+            "tokenContract"
+        ],
+        "Reward Token Address": [
+            "tokenContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(tokenContract.transferFrom(msg.sender, address(this), _amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "require(tokenContract.transfer(msg.sender, stakeRewards))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "require(tokenContract.transfer(_address, withdrawAmount))"
+            }
+        ]
+    }
+}

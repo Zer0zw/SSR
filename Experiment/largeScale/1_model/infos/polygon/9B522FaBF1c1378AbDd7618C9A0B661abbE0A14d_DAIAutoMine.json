@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalInits",
+            "Depo.amt"
+        ],
+        "User Stake Reward": [
+            "User.refBonus"
+        ],
+        "User Stake Time": [
+            "User.startDate",
+            "Depo.depoTime"
+        ],
+        "Stake Token Address": [
+            "DAI"
+        ],
+        "Reward Token Address": [
+            "DAI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStablecoins",
+                "Node": "DAI.safeTransferFrom(msg.sender, address(this), amtx)"
+            },
+            {
+                "Function": "stakeRefBonus",
+                "Node": "user.depoList.push(Depo({ key: user.keyCounter, depoTime: block.timestamp, amt: refferalAmount, reffy: ref, initialWithdrawn: false }))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "DAI.safeTransfer(msg.sender, adjustedAmt)"
+            },
+            {
+                "Function": "withdrawRefBonus",
+                "Node": "DAI.safeTransfer(msg.sender, amtz)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInitial",
+                "Node": "DAI.safeTransfer(msg.sender, transferAmt)"
+            }
+        ]
+    }
+}

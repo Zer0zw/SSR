@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "getHarvestable"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(rewards).deposit(poolId, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_getReward()"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IMasterChef(rewards).withdraw(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IMasterChef(rewards).withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IMasterChef(rewards).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

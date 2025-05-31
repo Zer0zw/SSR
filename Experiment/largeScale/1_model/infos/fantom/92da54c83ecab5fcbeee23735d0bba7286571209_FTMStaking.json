@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountFTMx"
+        ],
+        "User Stake Reward": [
+            "Rewards.lockupExtraReward",
+            "Rewards.lockupBaseReward",
+            "Rewards.unlockedReward"
+        ],
+        "User Stake Time": [
+            "WithdrawalRequest.requestTime"
+        ],
+        "Stake Token Address": [
+            "FTMX"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "FTMX.mint(msg.sender, ftmxAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsAll",
+                "Node": "Vault(vault).claimRewards()"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "Vault(vault).claimRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "payable(user).transfer(totalAmount)"
+            },
+            {
+                "Function": "withdrawMatured",
+                "Node": "_withdrawVault(vault, 0, true)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.lastHarvestTimestamp",
+            "PoolInfo.rate"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakedTimestamp",
+            "UserInfo.lastHarvestTimestamp"
+        ],
+        "Stake Token Address": [
+            "mdaoToken"
+        ],
+        "Reward Token Address": [
+            "mproToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "mdaoToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "mintMPro(msg.sender, _value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "mdaoToken.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "currentStakeInfo.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardPointBalance"
+        ],
+        "User Stake Time": [
+            "currentStakeInfo.lastUpdated"
+        ],
+        "Stake Token Address": [
+            "DurhamInuToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokensOnly",
+                "Node": "DurhamInuToken.transferFrom(_address, address(this), tokenAmount)"
+            },
+            {
+                "Function": "stakeTokensAndNft",
+                "Node": "DurhamInuToken.transferFrom(_address, address(this), tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "msg.sender.call{value: ethReward}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "DurhamInuToken.transfer(_address, stakedTokens)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IERC721(stakedNftAddress).transferFrom(address(this), _address, stakedNftId)"
+            }
+        ]
+    }
+}

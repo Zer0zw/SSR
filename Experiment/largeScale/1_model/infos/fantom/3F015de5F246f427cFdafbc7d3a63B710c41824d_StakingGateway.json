@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "bal"
+        ],
+        "User Stake Reward": [
+            "_earnedRewardAmount"
+        ],
+        "User Stake Time": [
+            "_begin",
+            "_finish"
+        ],
+        "Stake Token Address": [
+            "hugsPool",
+            "c2pool"
+        ],
+        "Reward Token Address": [
+            "stakingRewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "getStakingInfo",
+                "Node": "stakingRewards.earned(wallet)"
+            },
+            {
+                "Function": "calWithdrawAndEarned",
+                "Node": "stakingRewards.earned(wallet)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "calWithdrawAndEarned",
+                "Node": "hugsPool.calc_withdraw_one_coin(bal,0)"
+            },
+            {
+                "Function": "calWithdrawAndEarned",
+                "Node": "c2pool.calc_withdraw_one_coin(daiusdc,0)"
+            },
+            {
+                "Function": "calWithdrawAndEarned",
+                "Node": "c2pool.calc_withdraw_one_coin(daiusdc,1)"
+            }
+        ]
+    }
+}

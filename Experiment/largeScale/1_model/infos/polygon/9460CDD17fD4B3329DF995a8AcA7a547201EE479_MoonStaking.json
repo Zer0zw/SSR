@@ -1,0 +1,66 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerPetAmounts",
+            "Staker.stakedAPE",
+            "Staker.stakedTREASURY",
+            "Staker.stakedBREEDING",
+            "Staker.stakedPET"
+        ],
+        "User Stake Reward": [
+            "Staker.accumulatedAmount",
+            "Staker.currentYield"
+        ],
+        "User Stake Time": [
+            "Staker.lastCheckpoint"
+        ],
+        "Stake Token Address": [
+            "ApeNft",
+            "LootNft",
+            "PetNft",
+            "TreasuryNft",
+            "BreedingNft"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake721",
+                "Node": "IERC721(contractAddress).safeTransferFrom(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "stake1155",
+                "Node": "PetNft.safeBatchTransferFrom(_msgSender(), address(this), tokenIds, amounts, \"\")"
+            },
+            {
+                "Function": "stakeApesWithLoots",
+                "Node": "IERC721(address(ApeNft)).safeTransferFrom(_msgSender(), address(this), apeIds[i])"
+            },
+            {
+                "Function": "addLootToStakedApes",
+                "Node": "IERC721(address(LootNft)).safeTransferFrom(_msgSender(), address(this), lootIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "accumulate",
+                "Node": "_stakers[staker].accumulatedAmount += getCurrentReward(staker)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake721",
+                "Node": "IERC721(contractAddress).safeTransferFrom(address(this), _msgSender(), tokenIds[i])"
+            },
+            {
+                "Function": "unstake1155",
+                "Node": "PetNft.safeBatchTransferFrom(address(this), _msgSender(), tokenIds, transferAmounts, \"\")"
+            },
+            {
+                "Function": "removeLootFromStakedApes",
+                "Node": "IERC721(address(LootNft)).safeTransferFrom(address(this), _msgSender(), ape_loot)"
+            }
+        ]
+    }
+}

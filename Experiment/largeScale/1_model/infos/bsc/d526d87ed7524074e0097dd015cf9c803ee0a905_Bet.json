@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [
+            "stakerLastGetRewardPeriod"
+        ],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "stakingRewards.rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lp.safeApprove(address(stakingRewards), lpAmount)"
+            },
+            {
+                "Function": "stakeWithLP",
+                "Node": "lp.safeApprove(address(stakingRewards), lpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, bonusShare)"
+            },
+            {
+                "Function": "liquidityProviderGetBonus",
+                "Node": "rewardToken.safeTransfer(liquidityProvider, lpBonusShare)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "converter.removeLiquidityAndConvert(IPancakePair(address(lp)), amount, minToken0AmountConverted, minToken1AmountConverted, token0Percentage, msg.sender)"
+            },
+            {
+                "Function": "exit",
+                "Node": "converter.removeLiquidityAndConvert(IPancakePair(address(lp)), amount, minToken0AmountConverted, minToken1AmountConverted, token0Percentage, msg.sender)"
+            },
+            {
+                "Function": "exitWithLP",
+                "Node": "withdrawWithLP(_balances[msg.sender])"
+            }
+        ]
+    }
+}

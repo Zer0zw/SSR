@@ -1,0 +1,106 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "userInfo.amount"
+            ],
+            "User Stake Reward": [
+                "userInfo.pointsDebt"
+            ],
+            "User Stake Time": [
+                "userInfo.createdAt",
+                "userInfo.lastUpdateAt"
+            ],
+            "Stake Token Address": [
+                "spiToken"
+            ],
+            "Reward Token Address": [
+                "spiToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "claim",
+                "unstake"
+            ],
+            "unStake": [
+                "unstake"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_paused",
+                        "_status",
+                        "maxAmount",
+                        "minimumAmount",
+                        "spiToken"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claim",
+                    "Calculation Variables": [
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "emissionRate",
+                        "spiToken",
+                        "userInfo.amount",
+                        "userInfo.lastUpdateAt",
+                        "userInfo.pointsDebt"
+                    ]
+                },
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "emissionRate",
+                        "spiToken",
+                        "userInfo.amount",
+                        "userInfo.lastUpdateAt",
+                        "userInfo.pointsDebt"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "lockTime",
+                        "spiToken",
+                        "userInfo.amount",
+                        "userInfo.createdAt"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

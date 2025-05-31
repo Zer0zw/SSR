@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "currentRewardsOf"
+        ],
+        "User Stake Time": [
+            "stakedAt"
+        ],
+        "Stake Token Address": [
+            "erc721"
+        ],
+        "Reward Token Address": [
+            "erc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "erc721.safeTransferFrom(msg.sender, address(this), tokenId, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "erc20.mint(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "erc721.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "erc20.mint(msg.sender, totalRewards)"
+            }
+        ]
+    }
+}

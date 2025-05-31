@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "getStakeTotalUnclaimed"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ALCX_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "ALCX_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "alcx.safeTransferFrom(msg.sender, address(this), _alcxAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "alcx.safeTransfer(msg.sender, harvestFeeAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "alcx.safeTransfer(msg.sender, withdrawnAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "alcx.safeTransfer(msg.sender, withdrawnAmount)"
+            }
+        ]
+    }
+}

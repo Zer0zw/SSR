@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "registeredTokens"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "handleAction",
+                "Node": "user.amount = _balance"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_mint(_user, pending)"
+            },
+            {
+                "Function": "handleAction",
+                "Node": "_mint(_user, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "handleAction",
+                "Node": "user.amount = _balance"
+            }
+        ]
+    }
+}

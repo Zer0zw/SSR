@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDeposited"
+        ],
+        "User Stake Reward": [
+            "currentRewardUSD",
+            "currentReward"
+        ],
+        "User Stake Time": [
+            "lastEarn"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "BUSD",
+            "sYSL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IsYSL(_sysl).mint(usersIncome)"
+            },
+            {
+                "Function": "earn",
+                "Node": "ILock(lockContract).lock(usersIncome, 90 days, _user)"
+            },
+            {
+                "Function": "sendReferralBonus",
+                "Node": "IsYSL(_sysl).mint(bonus)"
+            },
+            {
+                "Function": "sendReferralBonus",
+                "Node": "ILock(lockContract).lock(bonus, 90 days, creator)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.approve(_msgSender(), _amount)"
+            },
+            {
+                "Function": "transferOut",
+                "Node": "IERC20(BUSD).safeTransfer(stratSwap, amountUSDAfter - amountUSDBefore)"
+            }
+        ]
+    }
+}

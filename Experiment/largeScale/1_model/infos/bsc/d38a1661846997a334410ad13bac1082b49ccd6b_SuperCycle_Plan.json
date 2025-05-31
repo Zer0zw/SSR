@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardEarned",
+            "userInfo.rewardsEarned"
+        ],
+        "User Stake Time": [
+            "stakeInfo.lockEndTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerNStake",
+                "Node": "tokenInterface(tokenAddress).transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stakeNext",
+                "Node": "tokenInterface(tokenAddress).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "tokenInterface(tokenAddress).transfer(msg.sender, totalSum)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawReturn",
+                "Node": "tokenInterface(tokenAddress).transfer(msg.sender, temp.totalRoiWithdrawn)"
+            }
+        ]
+    }
+}

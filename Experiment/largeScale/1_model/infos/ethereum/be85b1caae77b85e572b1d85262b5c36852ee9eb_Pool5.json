@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "liquiditytoken1"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "place",
+                "Node": "require(Token(liquiditytoken1).transferFrom(msg.sender, address(this), amountToStake), \"Insufficient Token Allowance\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "require(Token(tokenAddress).transfer(account, unclaimedDivs), \"Could not transfer tokens\""
+            },
+            {
+                "Function": "claimYields",
+                "Node": "updateAccount(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "lift",
+                "Node": "require(Token(liquiditytoken1).transfer(msg.sender, amountAfterFee), \"Could not transfer tokens\")"
+            }
+        ]
+    }
+}

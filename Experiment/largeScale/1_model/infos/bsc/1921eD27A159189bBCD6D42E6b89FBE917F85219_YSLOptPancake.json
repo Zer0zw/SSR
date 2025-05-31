@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDeposited"
+        ],
+        "User Stake Reward": [
+            "currentRewardUSD",
+            "currentReward"
+        ],
+        "User Stake Time": [
+            "lastEarn"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "sYSL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpToken.safeTransferFrom(_msgSender(), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "ILock(lockContract).lock(usersIncome, 180 days, _user)"
+            },
+            {
+                "Function": "mintBonus",
+                "Node": "ILock(lockContract).lock(bonus, 180 days, creator)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.approve(_msgSender(), _amount)"
+            },
+            {
+                "Function": "transferOut",
+                "Node": "IERC20(BUSD).safeTransfer(stratSwap, amountUSDAfter - amountUSDBefore)"
+            }
+        ]
+    }
+}

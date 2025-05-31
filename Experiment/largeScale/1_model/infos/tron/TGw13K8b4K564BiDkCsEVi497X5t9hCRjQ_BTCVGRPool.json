@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "tokenAddr"
+        ],
+        "Reward Token Address": [
+            "BTCToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            },
+            {
+                "Function": "stakeTo",
+                "Node": "require(_stakeTo(user, amount), \"stake to failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "BTCToken.transfer(msg.sender, trueReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "withdrawAndGetReward",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            },
+            {
+                "Function": "migrate",
+                "Node": "super.withdrawTo(nextPool, userBalance)"
+            }
+        ]
+    }
+}

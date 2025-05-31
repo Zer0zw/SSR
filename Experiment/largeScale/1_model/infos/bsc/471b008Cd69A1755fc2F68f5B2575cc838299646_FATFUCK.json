@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerAmount"
+        ],
+        "User Stake Reward": [
+            "stakingContract.viewtotalDividends"
+        ],
+        "User Stake Time": [
+            "stakingLock",
+            "stakingStarted",
+            "stakingEnded"
+        ],
+        "Stake Token Address": [
+            "address(this)"
+        ],
+        "Reward Token Address": [
+            "stakingContract.getRAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokensShort",
+                "Node": "stakingContract.setShare(sender, stakerAmount[sender])"
+            },
+            {
+                "Function": "stakeTokensLong",
+                "Node": "stakingContract.setShare(sender, longStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakingPayout",
+                "Node": "stakingContract.claimStakingPayout(shareholder)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "stakingContract.setShare(sender, stakerAmount[sender])"
+            },
+            {
+                "Function": "unstakeTokensAll",
+                "Node": "stakingContract.setShare(sender, stakerAmount[sender])"
+            }
+        ]
+    }
+}

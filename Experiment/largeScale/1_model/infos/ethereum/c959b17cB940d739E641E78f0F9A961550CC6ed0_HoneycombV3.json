@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.mined",
+            "UserInfo.collected"
+        ],
+        "User Stake Time": [
+            "CollectingInfo.collectableTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.stakingToken"
+        ],
+        "Reward Token Address": [
+            "honeyToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.stakingToken.safeTransferFrom(address(msg.sender), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectHoney",
+                "Node": "safeHoneyTransfer(batch, pid, msg.sender, total)"
+            },
+            {
+                "Function": "instantCollectHoney",
+                "Node": "safeHoneyTransfer(batch, pid, msg.sender, user.mined.mul(portion).div(10000))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.stakingToken.safeTransfer(address(msg.sender), amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.stakingToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

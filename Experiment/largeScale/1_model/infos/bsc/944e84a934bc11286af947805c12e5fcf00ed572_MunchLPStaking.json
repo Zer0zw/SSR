@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositTime"
+        ],
+        "Stake Token Address": [
+            "_lpToken"
+        ],
+        "Reward Token Address": [
+            "_munchToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_lpToken.safeTransferFrom(address(msg.sender), address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "erc20Transfer(msg.sender, pendingAmount, user.percentToCharity)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "erc20Transfer(msg.sender, pendingAmount, user.percentToCharity)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_lpToken.safeTransfer(address(msg.sender), amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_lpToken.safeTransfer(address(msg.sender), user.amount"
+            }
+        ]
+    }
+}

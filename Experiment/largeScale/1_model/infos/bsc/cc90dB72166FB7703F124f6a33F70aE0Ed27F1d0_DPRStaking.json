@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user_usdt_staking_amount"
+        ],
+        "User Stake Reward": [
+            "user_swap_amount"
+        ],
+        "User Stake Time": [
+            "user_staking_time"
+        ],
+        "Stake Token Address": [
+            "usdc"
+        ],
+        "Reward Token Address": [
+            "dpr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "usdc.safeTransferFrom(msg.sender, address(this), staking_amount"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "adminWithdrawUserFund",
+                "Node": "usdc.safeTransfer(user, user_usdt_staking_amount[user])"
+            },
+            {
+                "Function": "migrate",
+                "Node": "migrate_address.migrate(msg.sender, staking_amount)"
+            }
+        ]
+    }
+}

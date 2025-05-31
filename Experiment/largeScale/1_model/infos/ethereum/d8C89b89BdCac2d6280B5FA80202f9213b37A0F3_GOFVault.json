@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserAssets.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserAssets.payout",
+            "UserAssets.totalRewardPaid"
+        ],
+        "User Stake Time": [
+            "lastDepositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "GOF"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "GOF.safeTransfer(msg.sender, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "kaijuStake",
+            "KongStake"
+        ],
+        "User Stake Reward": [
+            "KongReward",
+            "owed"
+        ],
+        "User Stake Time": [
+            "Stake.value"
+        ],
+        "Stake Token Address": [
+            "KongKaiju"
+        ],
+        "Reward Token Address": [
+            "Gamma"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakekaijus",
+                "Node": "KongKaiju.transferFrom(msg.sender, address(this), tokenIds[i]"
+            },
+            {
+                "Function": "_stakeKongs",
+                "Node": "KongKaiju.transferFrom(msg.sender, address(this), tokenIds[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimFromStake",
+                "Node": "Gamma.mint(msg.sender, owed)"
+            },
+            {
+                "Function": "_claimFromKaiju",
+                "Node": "Gamma.mint(msg.sender, owed)"
+            },
+            {
+                "Function": "_claimFromKong",
+                "Node": "Gamma.mint(msg.sender, owed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "rescue",
+                "Node": "KongKaiju.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            },
+            {
+                "Function": "_claimFromKaiju",
+                "Node": "KongKaiju.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            },
+            {
+                "Function": "_claimFromKong",
+                "Node": "KongKaiju.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            }
+        ]
+    }
+}

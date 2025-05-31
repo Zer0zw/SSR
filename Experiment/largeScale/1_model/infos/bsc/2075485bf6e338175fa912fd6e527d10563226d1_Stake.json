@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakedTokensByPlan",
+            "userStakedTokensByContract"
+        ],
+        "User Stake Reward": [
+            "FixedStake.interestRate"
+        ],
+        "User Stake Time": [
+            "FixedStake.createdDate",
+            "FixedStake.maturityDate"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, maturityToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, maturityToken)"
+            }
+        ]
+    }
+}

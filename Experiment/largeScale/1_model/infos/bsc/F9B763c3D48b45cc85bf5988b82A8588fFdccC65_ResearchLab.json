@@ -1,0 +1,68 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "UserInfo.bridgedAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pendingUnlocked",
+            "UserInfo.pendingLocked",
+            "UserInfo.lockedAmount",
+            "UserInfo.vestedAmount"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTime",
+            "UserInfo.depositBlock"
+        ],
+        "Stake Token Address": [
+            "UserInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "ecto"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "poolToken[_pid].lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "depositBridge",
+                "Node": "poolToken[_pid].lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "safeFundTransfer(msg.sender, pendingUnlocked)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "safeFundTransfer(msg.sender, pendingUnlocked)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "user.lpToken.safeTransfer(address(msg.sender), _amount.mul(100 - withdrawFeePercent).div(100)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "user.lpToken.safeTransfer(feeAddress, _amount.mul(withdrawFeePercent).div(100))"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "user.lpToken.safeTransfer(address(msg.sender), _amount.mul(100 - withdrawFeePercent).div(100))"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "user.lpToken.safeTransfer(feeAddress, _amount.mul(withdrawFeePercent).div(100))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "user.lpToken.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "guavasEarnedLifetime"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "daiToken"
+        ],
+        "Reward Token Address": [
+            "dappToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "daiToken.transferFrom(msg.sender, address(this), _harambeTokenId)"
+            },
+            {
+                "Function": "stakeTokensManual",
+                "Node": "daiToken.transferFrom(msg.sender, address(this), _harambeTokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueTokens",
+                "Node": "dappToken.transfer(recipient, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "daiToken.transferFrom(address(this), msg.sender, _harambeTokenId)"
+            }
+        ]
+    }
+}

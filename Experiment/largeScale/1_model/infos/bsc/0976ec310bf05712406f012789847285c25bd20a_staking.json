@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposit.amount"
+        ],
+        "User Stake Reward": [
+            "user.referralRewardsWBNB",
+            "user.referralRewardsBUSD",
+            "user.totalRewardWithdrawBUSD",
+            "user.totalRewardWithdrawWBNB"
+        ],
+        "User Stake Time": [
+            "deposit.depositTime"
+        ],
+        "Stake Token Address": [
+            "tokens"
+        ],
+        "Reward Token Address": [
+            "tokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "IERC20(token).transferFrom(msg.sender, address(this), amount.sub(tax))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardBUSD",
+                "Node": "IERC20(tokens[0]).transfer(msg.sender, totalRewards.sub(taxR))"
+            },
+            {
+                "Function": "withdrawRewardWBNB",
+                "Node": "IERC20(tokens[1]).transfer(msg.sender, totalRewards.sub(taxR))"
+            },
+            {
+                "Function": "withdrawReferralReward",
+                "Node": "IERC20(token).transfer(msg.sender, totalDeposit)"
+            },
+            {
+                "Function": "withdrawDevReward",
+                "Node": "IERC20(token).transfer(msg.sender, totalDeposit)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTokensBUSD",
+                "Node": "IERC20(tokens[0]).transfer(msg.sender, totalDeposit.sub(tax))"
+            },
+            {
+                "Function": "withdrawTokensWBNB",
+                "Node": "IERC20(tokens[1]).transfer(msg.sender, totalDeposit.sub(tax))"
+            }
+        ]
+    }
+}

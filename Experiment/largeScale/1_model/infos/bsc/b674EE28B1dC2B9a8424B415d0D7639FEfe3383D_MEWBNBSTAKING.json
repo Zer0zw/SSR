@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardBusdDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastTimeDeposit",
+            "UserInfo.lockingTime"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "busdToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakedToken.safeTransferFrom(address(msg.sender), address(this), _amount.sub(fee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), pending.add(lockingReward))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "busdToken.safeTransfer(address(msg.sender), pendingBusd)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), pending.add(lockingReward))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "busdToken.safeTransfer(address(msg.sender), pendingBusd)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), _amount.sub(fee))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), amountToTransfer.sub(fee))"
+            }
+        ]
+    }
+}

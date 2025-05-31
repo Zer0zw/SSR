@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "vtx"
+        ],
+        "Reward Token Address": [
+            "vtx",
+            "xptp"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(xptp).transfer(IController(controller).treasury(), _xptp)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wavax).safeTransfer(IController(controller).treasury(), _wavax)"
+            }
+        ],
+        "unStake": []
+    }
+}

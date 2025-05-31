@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_principal"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [
+            "_depositedAt"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_shares[msg.sender] = _shares[msg.sender].add(shares)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "No direct transfer statement found, as it's an override function without implementation details"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "vestPool.vest(_user, minted)"
+            },
+            {
+                "Function": "_claimAndVest",
+                "Node": "rewardToken.safeTransfer(_user, minted)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "No direct transfer statement found, as it calls withdraw(_principal[msg.sender]) which includes the transfer"
+            }
+        ]
+    }
+}

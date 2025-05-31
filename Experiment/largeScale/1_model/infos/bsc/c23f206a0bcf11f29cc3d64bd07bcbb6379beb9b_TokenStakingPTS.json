@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "StakingSchedule.amountTotal"
+        ],
+        "User Stake Time": [
+            "StakingSchedule.start"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "tokenAddress.transferFrom(from, address(this), amount)"
+            },
+            {
+                "Function": "_stakeTokens",
+                "Node": "tokenAddress.transferFrom(from, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsFromAllMyStakings",
+                "Node": "tokenAddress.transfer(beneficiary, totalReleaseableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "tokenAddress.transfer(beneficiary, totalReleaseableAmount)"
+            },
+            {
+                "Function": "_unstakeTokens",
+                "Node": "tokenAddress.transfer(beneficiary, totalReleaseableAmount)"
+            }
+        ]
+    }
+}

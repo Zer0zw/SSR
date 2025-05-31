@@ -1,0 +1,179 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.lastRewardTimestamp"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "soldait"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1259,
+                    1260,
+                    1261,
+                    1262,
+                    1263
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.depositFeeBP",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.depositFeeBP",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1246
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "perDaysecond",
+                    "soldaitApy",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "perDaysecond",
+                    "soldaitApy",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "perDaysecond",
+                    "soldaitApy",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    1246
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "perDaysecond",
+                    "soldaitApy",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "perDaysecond",
+                    "soldaitApy",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "perDaysecond",
+                    "soldaitApy",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1291
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "soldait",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "soldait",
+                    "userInfo.amount",
+                    "userInfo.lastRewardTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1305
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount"
+                ],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "soldait",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "soldait",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

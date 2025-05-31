@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenStakes",
+            "amount"
+        ],
+        "User Stake Reward": [
+            "gemsReward",
+            "creditsReward"
+        ],
+        "User Stake Time": [
+            "genesisBlock",
+            "lastBlockClaimed"
+        ],
+        "Stake Token Address": [
+            "tokenContractAddress"
+        ],
+        "Reward Token Address": [
+            "cargoGems",
+            "cargoCredits"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "cargoGems.transferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "cargoGems.transfer(msg.sender, amountToWithdraw)"
+            },
+            {
+                "Function": "claim",
+                "Node": "cargoCredits.increaseBalance(msg.sender, creditsReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "cargoGems.transfer(msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

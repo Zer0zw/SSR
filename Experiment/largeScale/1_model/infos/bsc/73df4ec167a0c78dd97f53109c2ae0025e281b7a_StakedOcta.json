@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.reward"
+        ],
+        "User Stake Time": [
+            "Deposit.startTime",
+            "Deposit.endTime"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakedToken.safeTransferFrom(address(msg.sender), address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), user.deposits[depositNumber].withdrawn"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), user.deposits[depositNumber].amount"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "swapTokensForToken(user.deposits[depositNumber].reward, tokenAddress, address(msg.sender)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), (user.deposits[depositNumber].amount).mul(80).div(100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), user.deposits[depositNumber].withdrawn"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), user.deposits[depositNumber].amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), (user.deposits[depositNumber].amount).mul(80).div(100"
+            }
+        ]
+    }
+}

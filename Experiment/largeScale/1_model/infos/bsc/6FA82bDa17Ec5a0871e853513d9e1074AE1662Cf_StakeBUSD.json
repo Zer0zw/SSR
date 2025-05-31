@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Baker.beans"
+        ],
+        "User Stake Reward": [
+            "Baker.totalPayout"
+        ],
+        "User Stake Time": [
+            "Baker.firstDeposit",
+            "Baker.bakedAt",
+            "Baker.ateAt"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "buyBeans",
+                "Node": "IERC20(BUSD).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "eat",
+                "Node": "IERC20(BUSD).transfer(msg.sender, bnbToEat)"
+            }
+        ],
+        "unStake": []
+    }
+}

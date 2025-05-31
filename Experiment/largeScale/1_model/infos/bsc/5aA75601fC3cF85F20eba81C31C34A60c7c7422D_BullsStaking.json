@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeRequiredOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Stake.timeAt",
+            "Stake.lockPeriodUntil"
+        ],
+        "Stake Token Address": [
+            "bullsToken"
+        ],
+        "Reward Token Address": [
+            "bullsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(bullsToken).transferFrom(msg.sender, address(this), stakeRequired)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAvailableReward",
+                "Node": "IERC20(bullsToken).transferFrom(owner(), msg.sender, bullsReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(bullsToken).transfer(msg.sender, stakeRequiredOf[msg.sender])"
+            }
+        ]
+    }
+}

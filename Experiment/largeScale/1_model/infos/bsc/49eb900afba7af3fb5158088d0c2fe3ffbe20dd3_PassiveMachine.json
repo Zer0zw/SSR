@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amountStaked",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "User.refBonus",
+            "calcEarnings"
+        ],
+        "User Stake Time": [
+            "Stake.timeStamp",
+            "Stake.timeToExpire"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "contractTx(false, _amountToReceive, msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": "contractTx(false, _amountToReceive, msg.sender)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "contractTx(false, reward, msg.sender)"
+            }
+        ],
+        "unStake": []
+    }
+}

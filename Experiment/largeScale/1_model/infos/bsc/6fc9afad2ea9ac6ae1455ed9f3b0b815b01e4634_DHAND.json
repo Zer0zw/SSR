@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_liquidityBalances"
+        ],
+        "User Stake Reward": [
+            "dividendMap"
+        ],
+        "User Stake Time": [
+            "Client.joinTime"
+        ],
+        "Stake Token Address": [
+            "PancakePair"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addPledge",
+                "Node": "IPancakePair(PancakePair).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDividend",
+                "Node": "_transfer(address(this), msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removePledge",
+                "Node": "IPancakePair(PancakePair).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

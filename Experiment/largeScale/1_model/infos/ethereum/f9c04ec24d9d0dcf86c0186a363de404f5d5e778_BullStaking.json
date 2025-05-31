@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakes"
+        ],
+        "User Stake Reward": [
+            "rewardBalance",
+            "earlyWithdrawReward"
+        ],
+        "User Stake Time": [
+            "stakingStarts",
+            "stakingEnds",
+            "withdrawStarts",
+            "withdrawEnds"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "if (_payTo(staker, address(this), remaining))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawEarly",
+                "Node": "if (_payDirect(from, payOut))"
+            },
+            {
+                "Function": "_withdrawAfterClose",
+                "Node": "if (_payDirect(from, payOut))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawEarly",
+                "Node": "if (_payDirect(from, payOut))"
+            },
+            {
+                "Function": "_withdrawAfterClose",
+                "Node": "if (_payDirect(from, payOut))"
+            }
+        ]
+    }
+}

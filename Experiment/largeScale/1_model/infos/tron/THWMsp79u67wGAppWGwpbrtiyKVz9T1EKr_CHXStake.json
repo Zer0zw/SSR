@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "_userTime"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "FHToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(USDT).safeTransferFrom(msg.sender, mk, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeTransfer(parent, projectfee)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeTransfer(Level_2_address, Level_2_Fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "getReward()"
+            }
+        ]
+    }
+}

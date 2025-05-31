@@ -1,0 +1,120 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "customStakingBalance"
+        ],
+        "User Stake Reward": [
+            "myProfit",
+            "Remainingstaking"
+        ],
+        "User Stake Time": [
+            "staking_start_time",
+            "staking_end_time"
+        ],
+        "Stake Token Address": [
+            "Usdt"
+        ],
+        "Reward Token Address": [
+            "Usdt"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeTokens"
+        ],
+        "getReward": [
+            "dailyreward",
+            "instantReward",
+            "stakeTokens"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": [
+                    107
+                ],
+                "Input": [
+                    "_amount",
+                    "_ref"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MIN_STAKE",
+                    "Usdt"
+                ],
+                "Full Calculation Variables": [
+                    "MIN_STAKE",
+                    "Usdt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "instantReward",
+                "Node": [
+                    149
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Remainingstaking",
+                    "Usdt"
+                ],
+                "Full Calculation Variables": [
+                    "Remainingstaking",
+                    "Usdt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeTokens",
+                "Node": [
+                    149
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Remainingstaking",
+                    "Usdt"
+                ],
+                "Full Calculation Variables": [
+                    "Remainingstaking",
+                    "Usdt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "dailyreward",
+                "Node": [
+                    180
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "Remainingstaking"
+                ],
+                "Control Variables": [
+                    "Remainingstaking",
+                    "Usdt",
+                    "staking_end_time"
+                ],
+                "Full Calculation Variables": [
+                    "Remainingstaking",
+                    "Usdt",
+                    "staking_end_time"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

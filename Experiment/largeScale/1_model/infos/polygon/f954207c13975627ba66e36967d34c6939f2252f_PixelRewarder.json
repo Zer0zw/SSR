@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt1",
+            "UserInfo.rewardDebt2"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lastRewardTime"
+        ],
+        "Stake Token Address": [
+            "masterLpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken1",
+            "rewardToken2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "onSushiReward",
+                "Node": "rewardToken1.safeTransfer(to, pending1)"
+            },
+            {
+                "Function": "onSushiReward",
+                "Node": "rewardToken2.safeTransfer(to, pending2)"
+            }
+        ],
+        "unStake": []
+    }
+}

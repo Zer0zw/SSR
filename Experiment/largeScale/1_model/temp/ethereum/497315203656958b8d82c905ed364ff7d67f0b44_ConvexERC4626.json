@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "convexRewards.balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewardTokens"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_asset"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "afterDeposit",
+                "Node": "require(convexBooster.deposit(pid, amount, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "beforeClaim",
+                "Node": "require(convexRewards.getReward(address(this), true)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "beforeWithdraw",
+                "Node": "require(convexRewards.withdrawAndUnwrap(amount, false)"
+            }
+        ]
+    }
+}

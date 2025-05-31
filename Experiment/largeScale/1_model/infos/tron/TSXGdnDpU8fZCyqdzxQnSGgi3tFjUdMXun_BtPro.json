@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.freezeAmount"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "periodFinish",
+            "starttime"
+        ],
+        "Stake Token Address": [
+            "uToken"
+        ],
+        "Reward Token Address": [
+            "btTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investIn",
+                "Node": "u.transferFrom(msg.sender,address(this),value)"
+            },
+            {
+                "Function": "fixedDepositMining",
+                "Node": "takeInner(destructionAddr,miningAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "btToken.transfer(msg.sender, staticReward)"
+            },
+            {
+                "Function": "getBonus",
+                "Node": "btToken.transfer(msg.sender, dynReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawProfit",
+                "Node": "takeInner(msg.sender,resultMoney)"
+            },
+            {
+                "Function": "marketIncentives",
+                "Node": "takeInner(marketAddr,resultMoney)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakingData.amountStaked"
+        ],
+        "User Stake Reward": [
+            "UserStakingData.storedReward",
+            "UserStakingData.guaranteedReward"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(rewardToken.transfer(user, reward), \"Sending reward failed\")"
+            },
+            {
+                "Function": "exit",
+                "Node": "require(rewardToken.transfer(user, reward), \"Sending reward failed\")"
+            },
+            {
+                "Function": "payRewardToUser",
+                "Node": "require(rewardToken.transfer(user, reward), \"Sending reward failed\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(stakingToken.transfer(msg.sender, amount - penaltyAmount), \"Transferring staked token back to sender failed\")"
+            },
+            {
+                "Function": "exit",
+                "Node": "require(stakingToken.transfer(msg.sender, amount - penaltyAmount), \"Transferring staked token back to sender failed\")"
+            },
+            {
+                "Function": "forceExitUser",
+                "Node": "stakingToken.transfer(user, userData.amountStaked)"
+            }
+        ]
+    }
+}

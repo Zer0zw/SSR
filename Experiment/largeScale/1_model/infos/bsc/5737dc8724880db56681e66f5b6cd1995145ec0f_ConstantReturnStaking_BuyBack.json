@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardsPendingClaim",
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "TRUSTED_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "TRUSTED_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(TRUSTED_TOKEN_ADDRESS).transfer(msg.sender, amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "require(IERC20(TRUSTED_TOKEN_ADDRESS).transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(IERC20(TRUSTED_TOKEN_ADDRESS).transfer(msg.sender, amountToWithdraw)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "require(IERC20(TRUSTED_TOKEN_ADDRESS).transfer(msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

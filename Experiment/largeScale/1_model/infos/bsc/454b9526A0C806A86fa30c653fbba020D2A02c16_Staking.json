@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "_tokenBalances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastUpdate"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "collectionContract.transferFrom(msg.sender, address(this), tokenIds[i])"
+            },
+            {
+                "Function": "stakeUMW",
+                "Node": "ERC20(stakingToken).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(RewardToken(rewardToken).transferFrom(address(this), msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeToken",
+                "Node": "collectionContract.transferFrom(address(this), msg.sender, tokenIds[i])"
+            },
+            {
+                "Function": "unstakeUMW",
+                "Node": "ERC20(stakingToken).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.balance",
+            "User.totalTokenBalance"
+        ],
+        "User Stake Reward": [
+            "User.claimPerSecond",
+            "User.totalRewards"
+        ],
+        "User Stake Time": [
+            "User.lastClaim"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_transferFrom(token, address(this), amount)"
+            },
+            {
+                "Function": "zapAndDeposit",
+                "Node": "_transferFrom(token_, zapper, amount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "_transferFrom(token, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_send(user, adjustedPendingTokens)"
+            },
+            {
+                "Function": "compound",
+                "Node": "No direct transfer statement, updates user's tracked balance and shares instead"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "assassinate",
+                "Node": "_send(user, adjustedUserTokens)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "_send(user, adjustedPendingTokens)"
+            }
+        ]
+    }
+}

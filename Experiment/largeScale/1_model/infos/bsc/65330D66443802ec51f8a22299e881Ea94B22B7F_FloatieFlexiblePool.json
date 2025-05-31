@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "bonusToken"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "bonusToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "bonusToken.mint(msg.sender, currentAmount * bonusMultiplier / 100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            }
+        ]
+    }
+}

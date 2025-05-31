@@ -1,0 +1,142 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "pendingYel"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositAsMigrate",
+            "receive"
+        ],
+        "getReward": [
+            "autoCompound",
+            "claimYel"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "migrate"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claimYel",
+                "Node": [
+                    875
+                ],
+                "Input": [
+                    "_receiver"
+                ],
+                "Calculation Variables": [
+                    "pendingYel"
+                ],
+                "Control Variables": [
+                    "YELtoken",
+                    "pendingYel",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "YELtoken",
+                    "pendingYel",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "autoCompound",
+                "Node": [
+                    1039
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WMATIC",
+                    "pendingFeeKIRO",
+                    "USDT",
+                    "router",
+                    "pendingFeeWMATIC",
+                    "routerReward",
+                    "farm",
+                    "toleranceLevelPercent",
+                    "token1",
+                    "withdrawFee",
+                    "routerMain",
+                    "pendingFee"
+                ],
+                "Full Calculation Variables": [
+                    "WMATIC",
+                    "pendingFeeKIRO",
+                    "USDT",
+                    "router",
+                    "pendingFeeWMATIC",
+                    "routerReward",
+                    "farm",
+                    "toleranceLevelPercent",
+                    "token1",
+                    "withdrawFee",
+                    "routerMain",
+                    "pendingFee"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    886
+                ],
+                "Input": [
+                    "_receiver"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "vault",
+                    "WMATIC",
+                    "USDT",
+                    "lpToken",
+                    "farm",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "vault",
+                    "WMATIC",
+                    "USDT",
+                    "lpToken",
+                    "farm",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "migrate",
+                "Node": [
+                    904
+                ],
+                "Input": [
+                    "_percent"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WMATIC",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "WMATIC",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getLPStaked"
+        ],
+        "User Stake Reward": [
+            "getPendingBonus",
+            "getPendingEnterToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LPToken"
+        ],
+        "Reward Token Address": [
+            "PAUTO",
+            "WMATIC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addPosition",
+                "Node": "tokenBEP20.transferFrom(msg.sender, address(this), available_amount)"
+            },
+            {
+                "Function": "stakeLP",
+                "Node": "AUTOFARM.deposit(pid, balance_LP)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimValue",
+                "Node": "WMATIC.transfer(claimManager, WMATIC.balanceOf(address(this)))"
+            },
+            {
+                "Function": "compoundHarvest",
+                "Node": "WMATIC.transfer(feeManager, performanceToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLP",
+                "Node": "AUTOFARM.withdraw(pid, amount)"
+            },
+            {
+                "Function": "unstakeAllLP",
+                "Node": "AUTOFARM.withdraw(pid, staked_balance_LP)"
+            }
+        ]
+    }
+}

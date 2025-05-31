@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStakedByWallet",
+            "hblockStaked.amount"
+        ],
+        "User Stake Reward": [
+            "totalInterestPaidToWallet",
+            "hblockStaked.tipo"
+        ],
+        "User Stake Time": [
+            "hblockStaked.time"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "rewardPoolAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IHamperBlock(_token).transferFrom(msg.sender,address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IHamperBlock(_token).transfer(msg.sender,amount_to_paid)"
+            }
+        ]
+    }
+}

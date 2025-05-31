@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "playerStakedAmount"
+        ],
+        "User Stake Reward": [
+            "playerStakeRecordAmount"
+        ],
+        "User Stake Time": [
+            "playerStakeRecordStartTime",
+            "playerStakeRecordEndTime"
+        ],
+        "Stake Token Address": [
+            "poolStakingToken"
+        ],
+        "Reward Token Address": [
+            "poolStakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "poolStakeDeposit",
+                "Node": "IERC20(poolStakingToken[poolID]).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_poolStakeWithdraw",
+                "Node": "IERC20(poolStakingToken[poolID]).transfer(player, redeemable)"
+            },
+            {
+                "Function": "forcePlayerToWithdraw",
+                "Node": "IERC20(poolStakingToken[poolID]).transfer(player, redeemable)"
+            },
+            {
+                "Function": "forcePlayerToWithdrawWholePool",
+                "Node": "IERC20(poolStakingToken[poolID]).transfer(player, redeemable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_poolStakeWithdraw",
+                "Node": "IERC20(poolStakingToken[poolID]).transfer(player, amountToUnstake)"
+            },
+            {
+                "Function": "forcePlayerToWithdraw",
+                "Node": "IERC20(poolStakingToken[poolID]).transfer(player, amountToUnstake)"
+            },
+            {
+                "Function": "forcePlayerToWithdrawWholePool",
+                "Node": "IERC20(poolStakingToken[poolID]).transfer(player, amountToUnstake)"
+            }
+        ]
+    }
+}

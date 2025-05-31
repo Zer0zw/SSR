@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakingRecords",
+            "amountStaked"
+        ],
+        "User Stake Reward": [
+            "_unlocks"
+        ],
+        "User Stake Time": [
+            "_stakingRecords",
+            "blockNumber"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_mintUnlocked(_msgSender(), unlockedAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimUnlocked",
+                "Node": "_mintUnlocked(_msgSender(), unlockedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_pushToken(token, _msgSender(), amount)"
+            }
+        ]
+    }
+}

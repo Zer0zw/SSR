@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakerSeat.balance"
+        ],
+        "User Stake Reward": [
+            "StakerSeat.rewardEarned"
+        ],
+        "User Stake Time": [
+            "StakerSeat.epochTimerStart"
+        ],
+        "Stake Token Address": [
+            "pool"
+        ],
+        "Reward Token Address": [
+            "tree"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(pool).transferFrom(msg.sender, address(this), amount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(tree).transfer(msg.sender, staker_.rewardEarned)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "IERC20(tree).transfer(msg.sender, staker_.rewardEarned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool).transfer(msg.sender, amount_)"
+            }
+        ]
+    }
+}

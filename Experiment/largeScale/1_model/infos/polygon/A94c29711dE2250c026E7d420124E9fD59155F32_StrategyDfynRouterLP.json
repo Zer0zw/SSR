@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantBal"
+        ],
+        "User Stake Reward": [
+            "outputBal"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IStakingRewards(masterchef).stake(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IStakingRewards(masterchef).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IStakingRewards(masterchef).withdraw(_amount.sub(wantBal))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IStakingRewards(masterchef).withdraw(balanceOfPool())"
+            },
+            {
+                "Function": "panic",
+                "Node": "IStakingRewards(masterchef).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "outputBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMirrorWorld(mirrorWorld).enter(wantBal)"
+            },
+            {
+                "Function": "depositxBOO",
+                "Node": "IAce(ace).deposit(poolId, xbooBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wrapped).safeTransfer(msg.sender, callFeeAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wrapped).safeTransfer(feeBatchAddress, feeBatchAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wrapped).safeTransfer(insuranceFund, insuranceAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wrapped).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantbal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantbal.sub(withdrawalFeeAmount))"
+            }
+        ]
+    }
+}

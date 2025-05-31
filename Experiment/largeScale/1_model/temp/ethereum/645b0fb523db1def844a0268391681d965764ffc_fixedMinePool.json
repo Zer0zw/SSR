@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfoMap._FPTABalance",
+            "userInfoMap._FPTBBalance"
+        ],
+        "User Stake Reward": [
+            "userInfoMap.minerBalances"
+        ],
+        "User Stake Time": [
+            "userInfoMap.lockedExpired",
+            "userInfoMap.maxPeriodID"
+        ],
+        "Stake Token Address": [
+            "_FPTA",
+            "_FPTB"
+        ],
+        "Reward Token Address": [
+            "mineCoin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFPTA",
+                "Node": "SafeERC20.safeTransferFrom(oToken,msg.sender, address(this), settlementAmount)"
+            },
+            {
+                "Function": "stakeFPTB",
+                "Node": "SafeERC20.safeTransferFrom(oToken,msg.sender, address(this), settlementAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeemMinerCoin",
+                "Node": "_redeem(recieptor,mineCoin,amount)"
+            },
+            {
+                "Function": "redeemPremium",
+                "Node": "_redeem(msg.sender,premiumCoin,amount)"
+            },
+            {
+                "Function": "redeemPremiumCoin",
+                "Node": "_redeem(msg.sender,premiumCoin,amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeFPTA",
+                "Node": "_redeem(msg.sender,_FPTA,amount)"
+            },
+            {
+                "Function": "unstakeFPTB",
+                "Node": "_redeem(msg.sender,_FPTB,amount)"
+            }
+        ]
+    }
+}

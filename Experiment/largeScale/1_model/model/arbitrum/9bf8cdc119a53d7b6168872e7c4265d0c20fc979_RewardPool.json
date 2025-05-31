@@ -1,0 +1,220 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositTime"
+        ],
+        "Stake Token Address": [
+            "poolInfo.depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "deposit"
+        ],
+        "getReward": [
+            "earlyWithdraw",
+            "withdraw"
+        ],
+        "unStake": [
+            "earlyWithdraw",
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1001
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accTokenPerShare",
+                    "poolInfo.depositToken",
+                    "poolInfo.isStarted"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "bToken",
+                    "poolInfo.accTokenPerShare",
+                    "poolInfo.depositToken",
+                    "poolInfo.isStarted",
+                    "userInfo.amount",
+                    "userInfo.lastDepositTime",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "bToken",
+                    "poolInfo.accTokenPerShare",
+                    "poolInfo.depositToken",
+                    "poolInfo.isStarted",
+                    "userInfo.amount",
+                    "userInfo.lastDepositTime",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1024
+                ],
+                "Input": [
+                    "_account",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.depositToken",
+                    "rewardToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.depositToken",
+                    "rewardToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "earlyWithdraw",
+                "Node": [
+                    1045
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "insFund",
+                    "poolInfo.depositToken",
+                    "rewardToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "withdrawEarlyFee"
+                ],
+                "Full Calculation Variables": [
+                    "insFund",
+                    "poolInfo.depositToken",
+                    "rewardToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "withdrawEarlyFee"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1028
+                ],
+                "Input": [
+                    "_account",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.depositToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.depositToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "earlyWithdraw",
+                "Node": [
+                    1050
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "withdrawEarlyFee"
+                ],
+                "Control Variables": [
+                    "poolInfo.depositToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "withdrawEarlyFee"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.depositToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "withdrawEarlyFee"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1062
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "emergency",
+                    "poolInfo.depositToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "emergency",
+                    "poolInfo.depositToken",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "NFTToken"
+        ],
+        "Reward Token Address": [
+            "milk"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFarmingToken",
+                "Node": "NFTToken.safeTransferFrom(address(msg.sender), address(this), pool.nftId, _amount, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositFarmingToken",
+                "Node": "safeMilkTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdrawFarmingToken",
+                "Node": "safeMilkTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawFarmingToken",
+                "Node": "NFTToken.safeTransferFrom(address(msg.sender), address(this), pool.nftId, _amount, _data)"
+            },
+            {
+                "Function": "emergencyWithdrawFarmingToken",
+                "Node": "NFTToken.safeTransferFrom(address(this), address(msg.sender), pool.nftId, user.amount, _datat)"
+            }
+        ]
+    }
+}

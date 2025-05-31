@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfo.stakedAmount",
+            "userTotalStaking"
+        ],
+        "User Stake Reward": [
+            "rewardCap"
+        ],
+        "User Stake Time": [
+            "stakeInfo.startTime",
+            "poolStartTime",
+            "stakeDuration"
+        ],
+        "Stake Token Address": [
+            "stakeInfo.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(tokenAddress).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "require(IERC20(stakingDetails[userAddress].tokenAddress[stakeId]).transfer(stakingDetails[userAddress].referrer[stakeId], refEarned)"
+            },
+            {
+                "Function": "_rewardCalculation",
+                "Node": "require(IERC20(rewardToken).transfer(stakingDetails[userAddress].referrer[stakeId], refEarned)"
+            },
+            {
+                "Function": "sendToken",
+                "Node": "require(IERC20(tokenAddress).transfer(userAddress, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC20(stakingDetails[userAddress].tokenAddress[stakeId]).transfer(userAddress, stakedAmount"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "IERC20(stakingDetails[userAddress].tokenAddress[stakeId]).transfer(userAddress, stakeAmount"
+            }
+        ]
+    }
+}

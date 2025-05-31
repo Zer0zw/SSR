@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "underlying"
+        ],
+        "User Stake Reward": [
+            "rewardToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investAllUnderlying",
+                "Node": "underlying.approve(address(rewardPool), underlying.balanceOf(address(this)))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doHardWork",
+                "Node": "rewardPool.getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAllToVault",
+                "Node": "IERC20(underlying).safeTransfer(vault, underlying.balanceOf(address(this)))"
+            },
+            {
+                "Function": "withdrawToVault",
+                "Node": "IERC20(underlying).safeTransfer(vault, amount)"
+            }
+        ]
+    }
+}

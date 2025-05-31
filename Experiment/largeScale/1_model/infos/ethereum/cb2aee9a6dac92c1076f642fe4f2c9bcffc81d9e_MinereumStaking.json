@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mneSentPerDay"
+        ],
+        "User Stake Reward": [
+            "Bonus",
+            "AddressBonus"
+        ],
+        "User Stake Time": [
+            "daysParticipated"
+        ],
+        "Stake Token Address": [
+            "mneContract"
+        ],
+        "Reward Token Address": [
+            "mneContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "startStaking",
+                "Node": "mneContract.transfer(_address, _amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "PayoutStaking",
+                "Node": "mneContract.transfer(_address, amountToPay)"
+            },
+            {
+                "Function": "PayoutBonus",
+                "Node": "mneContract.transfer(_address, AddressBonus[msg.sender])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "TransferAllFundsOut",
+                "Node": "mneContract.transfer(_address, _amount)"
+            }
+        ]
+    }
+}

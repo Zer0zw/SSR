@@ -1,0 +1,72 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStrategy",
+            "StandardStrategyParticipant.amount",
+            "GrizzlyStrategyParticipant.amount",
+            "StablecoinStrategyParticipant.amount"
+        ],
+        "User Stake Reward": [
+            "earnedHoney",
+            "earnedBnb",
+            "stakedHoney"
+        ],
+        "User Stake Time": [
+            "lastStakeRewardsCall",
+            "lastStakeRewardsDuration"
+        ],
+        "Stake Token Address": [
+            "LPToken",
+            "TokenA",
+            "TokenB"
+        ],
+        "Reward Token Address": [
+            "HoneyToken",
+            "RewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "StakingContract.deposit(PoolID, lpValue)"
+            },
+            {
+                "Function": "depositFromToken",
+                "Node": "StakingContract.deposit(PoolID, lpValue)"
+            },
+            {
+                "Function": "depositLp",
+                "Node": "StakingContract.deposit(PoolID, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "standardStrategyClaimHoney",
+                "Node": "HoneyToken.claimTokens(tokens + additionalTokens)"
+            },
+            {
+                "Function": "grizzlyStrategyClaimHoney",
+                "Node": "HoneyToken.claimTokens(tokens + additionalTokens)"
+            },
+            {
+                "Function": "grizzlyStrategyClaimLP",
+                "Node": "StakingPool.rewardLP(honeyBnbLpAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_transferEth(msg.sender, amountWithdrawn)"
+            },
+            {
+                "Function": "withdrawToToken",
+                "Node": "IERC20Upgradeable(token).safeTransfer(msg.sender, tokenAmountWithdrawn)"
+            },
+            {
+                "Function": "withdrawToLp",
+                "Node": "LPToken.transfer(msg.sender, amountWithdrawn)"
+            }
+        ]
+    }
+}

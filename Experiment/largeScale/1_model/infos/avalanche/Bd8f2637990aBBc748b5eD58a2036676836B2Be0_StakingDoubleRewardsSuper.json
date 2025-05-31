@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "deposits"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "harvested"
+        ],
+        "User Stake Time": [
+            "periodFinish",
+            "rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken",
+            "rewardTokenPNG"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "_safeRewardTokenTransfer(rewardToken, msg.sender, userPendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pangolinMiniChef.withdraw(pangolinPid, lpFromShares, msg.sender)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stakes.amount",
+            "userstakes"
+        ],
+        "User Stake Reward": [
+            "Stakes.claimed",
+            "totalRewardsClaimed"
+        ],
+        "User Stake Time": [
+            "Stakes.months",
+            "Stakes.startTime",
+            "Stakes.endTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "vipStake",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "token.transfer(msg.sender, clamt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "token.transfer(msg.sender, stakeamt + rewards)"
+            }
+        ]
+    }
+}

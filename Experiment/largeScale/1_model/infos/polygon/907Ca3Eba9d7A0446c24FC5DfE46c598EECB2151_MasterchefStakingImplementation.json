@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_underlying"
+        ],
+        "Reward Token Address": [
+            "_underlyingOutput"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investAllUnderlying",
+                "Node": "IERC20(underlying()).approve(rewardPool(), IERC20(underlying()).balanceOf(address(this)))"
+            },
+            {
+                "Function": "investAllUnderlying",
+                "Node": "IMasterchef(rewardPool()).enterStaking(IERC20(underlying()).balanceOf(address(this)))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doHardWork",
+                "Node": "IMasterchef(rewardPool()).enterStaking(0)"
+            },
+            {
+                "Function": "_collectFees",
+                "Node": "notifyProfitInRewardToken(current.sub(_former))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAllToVault",
+                "Node": "IMasterchef(rewardPool()).leaveStaking(balanceInContract)"
+            },
+            {
+                "Function": "withdrawAllToVault",
+                "Node": "IERC20(underlying()).safeTransfer(vault(), IERC20(underlying()).balanceOf(address(this)))"
+            },
+            {
+                "Function": "withdrawToVault",
+                "Node": "IMasterchef(rewardPool()).leaveStaking(Math.min(balanceInContract, needToWithdraw))"
+            },
+            {
+                "Function": "withdrawToVault",
+                "Node": "IERC20(underlying()).safeTransfer(vault(), amount)"
+            }
+        ]
+    }
+}

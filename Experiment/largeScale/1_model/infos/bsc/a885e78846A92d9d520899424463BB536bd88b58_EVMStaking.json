@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.pendingAmount"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "evmToken"
+        ],
+        "Reward Token Address": [
+            "evmToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "evmToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "evmToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "evmToken.safeTransfer(feeWallet, _harvestFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "evmToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "evmToken.safeTransfer(feeWallet, unStakeFee)"
+            }
+        ]
+    }
+}

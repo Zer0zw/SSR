@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakeAmount",
+            "_RstakeAmount"
+        ],
+        "User Stake Reward": [
+            "EWallet",
+            "_claimedRewards"
+        ],
+        "User Stake Time": [
+            "TimeLock.unlockTime",
+            "StakeMeta.timestamp"
+        ],
+        "Stake Token Address": [
+            "ROTHS"
+        ],
+        "Reward Token Address": [
+            "ROTHS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(ROTHS).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "transferToEWallet(_stakeHub[stakeid].initiator, tokens)"
+            },
+            {
+                "Function": "_claimStakeT1",
+                "Node": "transferToEWallet(_stakeHub[stakeid].initiator, tokens)"
+            },
+            {
+                "Function": "_claimStakeT2",
+                "Node": "transferToEWallet(_stakeHub[stakeid].initiator, tokens)"
+            },
+            {
+                "Function": "_claimStakeT3",
+                "Node": "transferToEWallet(_stakeHub[stakeid].initiator, tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(ROTHS).transfer(_msgSender(),amount)"
+            },
+            {
+                "Function": "_claimTimeStake",
+                "Node": "transferToEWallet(_stakeHub[stakeid].initiator, _timeLock[stakeid].amount)"
+            }
+        ]
+    }
+}

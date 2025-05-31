@@ -1,0 +1,206 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedBalances.ETHStaked"
+        ],
+        "User Stake Reward": [
+            "_stakedBalances.rewards"
+        ],
+        "User Stake Time": [
+            "_stakedBalances.lastBlockChecked"
+        ],
+        "Stake Token Address": [
+            "ETHAddress"
+        ],
+        "Reward Token Address": [
+            "CRTAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "mintSqETH"
+        ],
+        "getReward": [
+            "getRewards",
+            "withdrawCRT",
+            "withdrawETH"
+        ],
+        "unStake": [
+            "withdrawCRT",
+            "withdrawETH"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mintSqETH",
+                "Node": [
+                    1104
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "StartingTimestamp",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "poolIsOpen",
+                    "rewardsVar"
+                ],
+                "Full Calculation Variables": [
+                    "StartingTimestamp",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "poolIsOpen",
+                    "rewardsVar"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewards",
+                "Node": [
+                    1157
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CRT_TOKEN",
+                    "_stakedBalances",
+                    "_stakedBalances.rewards",
+                    "rewardsVar"
+                ],
+                "Full Calculation Variables": [
+                    "CRT_TOKEN",
+                    "_stakedBalances",
+                    "_stakedBalances.rewards",
+                    "rewardsVar"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawCRT",
+                "Node": [
+                    1137
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "CRT_TOKEN"
+                ],
+                "Control Variables": [
+                    "CRT",
+                    "CRT_TOKEN",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "poolIsOpen",
+                    "rewardsVar"
+                ],
+                "Full Calculation Variables": [
+                    "CRT",
+                    "CRT_TOKEN",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "poolIsOpen",
+                    "rewardsVar"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawETH",
+                "Node": [
+                    1149
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CRT",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "rewardsVar",
+                    "targetETH"
+                ],
+                "Full Calculation Variables": [
+                    "CRT",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "rewardsVar",
+                    "targetETH"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCRT",
+                "Node": [
+                    1137
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "CRT_TOKEN"
+                ],
+                "Control Variables": [
+                    "CRT",
+                    "CRT_TOKEN",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "poolIsOpen",
+                    "rewardsVar"
+                ],
+                "Full Calculation Variables": [
+                    "CRT",
+                    "CRT_TOKEN",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "poolIsOpen",
+                    "rewardsVar"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawETH",
+                "Node": [
+                    1149
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CRT",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "rewardsVar",
+                    "targetETH"
+                ],
+                "Full Calculation Variables": [
+                    "CRT",
+                    "_stakedBalances",
+                    "_stakedBalances.ETHStaked",
+                    "_totalETHStaked",
+                    "rewardsVar",
+                    "targetETH"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

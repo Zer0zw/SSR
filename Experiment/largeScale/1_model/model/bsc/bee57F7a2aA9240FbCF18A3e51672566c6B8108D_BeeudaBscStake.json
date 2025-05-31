@@ -1,0 +1,154 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakeRewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "lastClock"
+        ],
+        "Stake Token Address": [
+            "Beeuda"
+        ],
+        "Reward Token Address": [
+            "Beeuda"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "registerAndStake",
+            "stake"
+        ],
+        "getReward": [
+            "withdrawEarnings"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": [
+                    132
+                ],
+                "Input": [
+                    "_amount",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Beeuda",
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax"
+                ],
+                "Full Calculation Variables": [
+                    "Beeuda",
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    154
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Beeuda",
+                    "active",
+                    "minimumStakeValue",
+                    "registered"
+                ],
+                "Full Calculation Variables": [
+                    "Beeuda",
+                    "active",
+                    "minimumStakeValue",
+                    "registered"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": [
+                    191
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes"
+                ],
+                "Control Variables": [
+                    "Beeuda",
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "Beeuda",
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    175
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "unstakingTaxRate"
+                ],
+                "Control Variables": [
+                    "Beeuda",
+                    "lastClock",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Full Calculation Variables": [
+                    "Beeuda",
+                    "lastClock",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

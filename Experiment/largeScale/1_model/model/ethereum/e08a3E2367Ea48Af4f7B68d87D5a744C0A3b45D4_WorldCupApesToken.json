@@ -1,0 +1,161 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToTokenIds"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "tokenIdTimeStaked"
+        ],
+        "Stake Token Address": [
+            "WCAAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "stakeByIds"
+        ],
+        "getReward": [
+            "claimAll",
+            "claimByTokenId"
+        ],
+        "unStake": [
+            "unstakeAll",
+            "unstakeByIds"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeByIds",
+                "Node": [
+                    924
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WCAIERC721",
+                    "_stakingLive",
+                    "endTimestamp",
+                    "maxWalletStaked",
+                    "tokenIdToStaker"
+                ],
+                "Full Calculation Variables": [
+                    "WCAIERC721",
+                    "_stakingLive",
+                    "endTimestamp",
+                    "maxWalletStaked",
+                    "tokenIdToStaker"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByTokenId",
+                "Node": [
+                    985
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [
+                    "emissionRate",
+                    "endTimestamp",
+                    "tokenIdTimeStaked"
+                ],
+                "Control Variables": [
+                    "emissionRate",
+                    "endTimestamp",
+                    "startUnstakeTimestamp",
+                    "tokenIdTimeStaked",
+                    "tokenIdToStaker"
+                ],
+                "Full Calculation Variables": [
+                    "emissionRate",
+                    "endTimestamp",
+                    "startUnstakeTimestamp",
+                    "tokenIdTimeStaked",
+                    "tokenIdToStaker"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAll",
+                "Node": [
+                    1004
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "emissionRate",
+                    "endTimestamp",
+                    "stakerToTokenIds",
+                    "tokenIdTimeStaked"
+                ],
+                "Control Variables": [
+                    "emissionRate",
+                    "endTimestamp",
+                    "stakerToTokenIds",
+                    "startUnstakeTimestamp",
+                    "tokenIdTimeStaked"
+                ],
+                "Full Calculation Variables": [
+                    "emissionRate",
+                    "endTimestamp",
+                    "stakerToTokenIds",
+                    "startUnstakeTimestamp",
+                    "tokenIdTimeStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": [
+                    940
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakerToTokenIds"
+                ],
+                "Control Variables": [
+                    "WCAIERC721",
+                    "stakerToTokenIds",
+                    "startUnstakeTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "WCAIERC721",
+                    "stakerToTokenIds",
+                    "startUnstakeTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeByIds",
+                "Node": [
+                    962
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WCAIERC721",
+                    "startUnstakeTimestamp",
+                    "tokenIdToStaker"
+                ],
+                "Full Calculation Variables": [
+                    "WCAIERC721",
+                    "startUnstakeTimestamp",
+                    "tokenIdToStaker"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

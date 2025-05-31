@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_lpAmt"
+        ],
+        "User Stake Reward": [
+            "_rewards",
+            "_wavax"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "curveLpToken"
+        ],
+        "Reward Token Address": [
+            "CRV",
+            "WAVAX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ICurveFi_2(curvePool).add_liquidity(amounts, _maxSlip, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_swapUniswapWithDetailConfig(CRV, WAVAX, _rewards, 1, path, sushiRouter)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_swapUniswapWithDetailConfig(WAVAX, want, _wavax, 1, path, sushiRouter)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "ICurveFi_2(curvePool).remove_liquidity_one_coin(requiredLpAmt, 0, maxSlippage, true)"
+            }
+        ]
+    }
+}

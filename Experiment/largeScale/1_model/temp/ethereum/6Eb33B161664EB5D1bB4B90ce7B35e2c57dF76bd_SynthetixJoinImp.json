@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "val"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "gem_"
+        ],
+        "Reward Token Address": [
+            "bonus_"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "join",
+                "Node": "pool.stake(val)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "crop",
+                "Node": "pool.getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "pool.withdraw(val)"
+            },
+            {
+                "Function": "flee",
+                "Node": "pool.withdraw(val)"
+            },
+            {
+                "Function": "cage",
+                "Node": "pool.withdraw(total)"
+            }
+        ]
+    }
+}

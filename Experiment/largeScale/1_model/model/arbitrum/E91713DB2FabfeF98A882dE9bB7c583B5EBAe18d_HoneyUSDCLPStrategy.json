@@ -1,0 +1,142 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalDeposits"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "reinvest"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "withdraw"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    755
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "REQUIRE_REINVEST_BEFORE_DEPOSIT",
+                    "depositToken",
+                    "totalDeposits"
+                ],
+                "Full Calculation Variables": [
+                    "REQUIRE_REINVEST_BEFORE_DEPOSIT",
+                    "depositToken",
+                    "totalDeposits"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reinvest",
+                "Node": [
+                    855
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "BIPS_DIVISOR",
+                    "REINVEST_REWARD_BIPS"
+                ],
+                "Control Variables": [
+                    "arbi",
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "pid",
+                    "stakingContract",
+                    "MIN_TOKENS_TO_REINVEST",
+                    "rewardToken",
+                    "REINVEST_REWARD_BIPS"
+                ],
+                "Full Calculation Variables": [
+                    "arbi",
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "pid",
+                    "stakingContract",
+                    "MIN_TOKENS_TO_REINVEST",
+                    "rewardToken",
+                    "REINVEST_REWARD_BIPS"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    855
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "BIPS_DIVISOR",
+                    "REINVEST_REWARD_BIPS"
+                ],
+                "Control Variables": [
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "REINVEST_REWARD_BIPS",
+                    "pid",
+                    "rewardToken",
+                    "stakingContract"
+                ],
+                "Full Calculation Variables": [
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "REINVEST_REWARD_BIPS",
+                    "pid",
+                    "rewardToken",
+                    "stakingContract"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    768
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "depositToken",
+                    "totalDeposits"
+                ],
+                "Full Calculation Variables": [
+                    "depositToken",
+                    "totalDeposits"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

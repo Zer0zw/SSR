@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pendingRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositedAt"
+        ],
+        "Stake Token Address": [
+            "parentNFT"
+        ],
+        "Reward Token Address": [
+            "rastaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "parentNFT.transferFrom(msg.sender, address(this), _tokenIds[i])"
+            },
+            {
+                "Function": "stakeRasta",
+                "Node": "rastaToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rastaToken.safeTransfer(to, amount.sub(feeAmount))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStack",
+                "Node": "parentNFT.transferFrom(address(this), msg.sender, _tokenIds[i])"
+            },
+            {
+                "Function": "unStack",
+                "Node": "rastaToken.safeTransfer(msg.sender, user.amount)"
+            },
+            {
+                "Function": "withdrawRasta",
+                "Node": "rastaToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

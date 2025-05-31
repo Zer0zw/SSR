@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountFBX",
+            "amountFireFBX"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "FBX"
+        ],
+        "Reward Token Address": [
+            "EP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, uint256(1e18 * amountFBX / withdrawalRate))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsAndBalance",
+                "Node": "uint256 rewards = EP.claimRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "FBX.safeTransfer(msg.sender, amountFBX)"
+            }
+        ]
+    }
+}

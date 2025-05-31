@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "DepositInfo.amountGain"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Plan.time"
+        ],
+        "Stake Token Address": [
+            "glaTokenAddress"
+        ],
+        "Reward Token Address": [
+            "glaMinter"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeGLA",
+                "Node": "IGLAToken(glaTokenAddress).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_unstakeAfterMaturity",
+                "Node": "IGLAToken(glaTokenAddress).transfer(msg.sender, withdrawalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstakeAfterMaturity",
+                "Node": "IGLAToken(glaTokenAddress).transfer(msg.sender, withdrawalAmount)"
+            },
+            {
+                "Function": "_unstakeBeforeMaturity",
+                "Node": "IGLAToken(glaTokenAddress).transfer(msg.sender, principal)"
+            }
+        ]
+    }
+}

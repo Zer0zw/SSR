@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo"
+        ],
+        "User Stake Reward": [
+            "pendingBanana"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "additionalReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "poolDeposit",
+                "Node": "IApeMiniChefV2_polygon(chef).deposit(poolID, _amount, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getTotalPending",
+                "Node": "IApeMiniChefV2_polygon(chef).pendingBanana(poolID, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "poolWithdraw",
+                "Node": "IApeMiniChefV2_polygon(chef).withdrawAndHarvest(poolID, _amount, address(this))"
+            }
+        ]
+    }
+}

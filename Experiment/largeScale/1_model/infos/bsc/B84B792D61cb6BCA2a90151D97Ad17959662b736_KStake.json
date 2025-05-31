@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "store",
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "Boardseat",
+            "rewardEarned"
+        ],
+        "User Stake Time": [
+            "BoardSnapshot",
+            "time"
+        ],
+        "Stake Token Address": [
+            "kToken"
+        ],
+        "Reward Token Address": [
+            "kToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": "store.stakeFor(msg.sender, _to, _value)"
+            },
+            {
+                "Function": "stake",
+                "Node": "store.stakeFor(msg.sender, _to, _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "kToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "store.withdraw(msg.sender, _index)"
+            }
+        ]
+    }
+}

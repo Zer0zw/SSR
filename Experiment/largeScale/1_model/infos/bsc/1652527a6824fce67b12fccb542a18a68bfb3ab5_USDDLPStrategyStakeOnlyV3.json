@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getLPInStaker"
+        ],
+        "User Stake Reward": [
+            "rewardList"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenList.token"
+        ],
+        "Reward Token Address": [
+            "EPX_ADDRESS",
+            "USDD_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "tokenList[0].token.safeTransfer(_receiver, _balance)"
+            },
+            {
+                "Function": "stakeLP",
+                "Node": "tokenList[0].token.safeApprove(address(staker), _bal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestRewards",
+                "Node": "epx.safeTransfer(_receiver, rewards)"
+            },
+            {
+                "Function": "checkAndSwapToken",
+                "Node": "bnb.safeTransfer(_executor, executorAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "tokenList[i].token.safeTransfer(_receiver, _bal)"
+            },
+            {
+                "Function": "unstakeLP",
+                "Node": "staker.withdraw(address(tokenList[0].token), _bal, false)"
+            }
+        ]
+    }
+}

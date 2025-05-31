@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.pillDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTimestamp"
+        ],
+        "Stake Token Address": [
+            "schill"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.RewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "schill.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "schill.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_deposit",
+                "Node": "safeTransfer(pool.RewardToken, to, pending + pendingPill)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "safeTransfer(pool.RewardToken, to, pending + pendingPill)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "safeTransfer(schill, to, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "schill.safeTransfer(address(msg.sender), oldUserAmount)"
+            },
+            {
+                "Function": "emergencyPillWithdraw",
+                "Node": "pill.transferFrom(address(this), msg.sender, userMPs)"
+            }
+        ]
+    }
+}

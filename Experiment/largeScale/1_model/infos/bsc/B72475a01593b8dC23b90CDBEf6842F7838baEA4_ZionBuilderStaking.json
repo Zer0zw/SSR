@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pendingRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositedAt"
+        ],
+        "Stake Token Address": [
+            "parentNFT"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "parentNFT.transferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardToken.safeTransfer(to, amount.sub(feeAmount))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "parentNFT.transferFrom(address(this), msg.sender, _tokenId)"
+            }
+        ]
+    }
+}

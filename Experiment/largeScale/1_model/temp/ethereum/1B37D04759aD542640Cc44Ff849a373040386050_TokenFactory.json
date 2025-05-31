@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_lpToken"
+        ],
+        "Reward Token Address": [
+            "meed"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_lpAddress).safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "_safeMeedTransfer(msg.sender, pendingUserReward)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_safeMeedTransfer(msg.sender, pendingUserReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_lpAddress).safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(_lpAddress).safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

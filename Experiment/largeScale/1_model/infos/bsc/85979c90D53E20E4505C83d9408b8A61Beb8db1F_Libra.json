@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakes"
+        ],
+        "User Stake Reward": [
+            "_userStakeWeight"
+        ],
+        "User Stake Time": [
+            "_stakeLastChangeTime"
+        ],
+        "Stake Token Address": [
+            "_tempStakeAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "increaseStake",
+                "Node": "_transferToExcluded(msg.sender,_tempStakeAddress,amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "shareRewards",
+                "Node": "_tokenTransfer(owner(),sender,_shareTimes[sender]*_shareTimes[sender].mul(50000*10**_decimals),false)"
+            },
+            {
+                "Function": "shareRewards",
+                "Node": "_tokenTransfer(owner(),p,_parentRewards,false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelStake",
+                "Node": "transferFromTempStake(msg.sender,unStake)"
+            }
+        ]
+    }
+}

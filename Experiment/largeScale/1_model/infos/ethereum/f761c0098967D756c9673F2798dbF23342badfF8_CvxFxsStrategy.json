@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "_fxsBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "CURVE_CVXFXS_FXS_LP_TOKEN"
+        ],
+        "Reward Token Address": [
+            "FXS_TOKEN",
+            "CVX_TOKEN",
+            "CRV_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(booster.deposit(PID, _amount, true))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(FXS_TOKEN).safeTransfer(_caller, incentiveAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(FXS_TOKEN).safeTransfer(IGenericVault(vault).platform(), feeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(CURVE_CVXFXS_FXS_LP_TOKEN).safeTransfer(vault, _amount)"
+            }
+        ]
+    }
+}

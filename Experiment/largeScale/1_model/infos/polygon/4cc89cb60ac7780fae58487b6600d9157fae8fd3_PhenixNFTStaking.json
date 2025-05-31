@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeholderTokens"
+        ],
+        "User Stake Reward": [
+            "stakeholderTotalRewards"
+        ],
+        "User Stake Time": [
+            "Stake.endStakeTimestamp"
+        ],
+        "Stake Token Address": [
+            "erc721Token"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "stakeMapping[_tokenId] = Stake(_tokenId, msg.sender, block.timestamp, endStakeTimestamp, nftIdRewardMultiplier[_tokenId], stakingTimeCommitmentMapping[_seconds], dailyRewardRate)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(rewardToken).transfer(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "stakeMapping[_tokenId] = Stake(_tokenId, address(0), block.timestamp, 0, nftIdRewardMultiplier[_tokenId], Commitment(0, 0), dailyRewardRate)"
+            }
+        ]
+    }
+}

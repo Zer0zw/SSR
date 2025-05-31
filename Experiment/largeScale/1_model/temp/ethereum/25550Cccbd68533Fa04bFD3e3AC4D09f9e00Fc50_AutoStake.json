@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "share"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lpToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "lpToken.safeTransfer(msg.sender, toTransfer)"
+            },
+            {
+                "Function": "forceGreyListedExit",
+                "Node": "lpToken.safeTransfer(greylistEscrow, toTransfer)"
+            }
+        ]
+    }
+}

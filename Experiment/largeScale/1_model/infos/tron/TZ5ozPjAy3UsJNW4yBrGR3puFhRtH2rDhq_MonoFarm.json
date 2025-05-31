@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.farmedToken"
+        ],
+        "User Stake Reward": [
+            "userInfo.farmedToken"
+        ],
+        "User Stake Time": [
+            "userInfo.lockableDays"
+        ],
+        "Stake Token Address": [
+            "wyzthTOKEN"
+        ],
+        "Reward Token Address": [
+            "wyzthTOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "wyzthTOKEN.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeTransferWYZ(msg.sender, wyzthReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": "safeTransferWYZ(msg.sender, wyzthReward)"
+            }
+        ]
+    }
+}

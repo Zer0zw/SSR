@@ -1,0 +1,62 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.valueRewardDebt",
+            "UserInfo.vusdRewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastStakeTime"
+        ],
+        "Stake Token Address": [
+            "valueToken"
+        ],
+        "Reward Token Address": [
+            "valueToken",
+            "vUSD",
+            "vETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "valueToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositYFV",
+                "Node": "yfvToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "buyShares",
+                "Node": "valueToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositShares",
+                "Node": "IERC20(address(this)).transferFrom(msg.sender, address(this), _shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "safeValueMint(msg.sender, actualPaid)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "safeVusdMint(msg.sender, _pendingVusd)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(address(this)).transfer(msg.sender, _actualWithdraw)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "valueToken.transfer(msg.sender, r)"
+            }
+        ]
+    }
+}

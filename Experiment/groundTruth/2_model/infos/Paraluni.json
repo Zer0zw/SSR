@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "t42"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositInternal",
+                "Node": "pool.lpToken.safeTransferFrom(address(payer), address(this), _amount)"
+            },
+            {
+                "Function": "depositByAddLiquidityInternal",
+                "Node": "IERC20(_lpAddress).balanceOf(address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "safeT42Transfer(msg.sender, pending.sub(fee))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawInternal",
+                "Node": "IERC20(lpToken).safeTransfer(_operator, actual_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), saved_amount.sub(fee))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftInfo.tokenId"
+        ],
+        "User Stake Reward": [
+            "rewardPerDay90",
+            "rewardPerDay180",
+            "rewardPerDay360"
+        ],
+        "User Stake Time": [
+            "nftInfo.stakeTime",
+            "nftInfo.unstakeTime"
+        ],
+        "Stake Token Address": [
+            "stakingNft"
+        ],
+        "Reward Token Address": [
+            "rewardingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "stakingNft.transferFrom(_msgSender() , address(this) , tokenId)"
+            },
+            {
+                "Function": "stake",
+                "Node": "_stake(tokenId , tier)"
+            },
+            {
+                "Function": "stakeMany",
+                "Node": "_stake(tokenIds[i] , tier)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_unstake",
+                "Node": "rewardingToken.transferFrom(rewardingTokenWallet , _msgSender() , reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "stakingNft.transferFrom(address(this),_msgSender() , tokenId)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_unstake(tokenId , tier)"
+            },
+            {
+                "Function": "unstakeMany",
+                "Node": "_unstake(tokenIds[i] , tier)"
+            }
+        ]
+    }
+}

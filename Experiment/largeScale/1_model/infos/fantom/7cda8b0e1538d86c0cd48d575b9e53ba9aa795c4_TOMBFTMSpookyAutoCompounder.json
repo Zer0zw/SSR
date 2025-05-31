@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ftmtomb_staker.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tomb_wftm"
+        ],
+        "Reward Token Address": [
+            "tshare_address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(tomb_wftm).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(tshare_address).transfer(msg.sender,incentive)"
+            },
+            {
+                "Function": "swap_and_compound_and_stake",
+                "Node": "IERC20(tomb_wftm).transfer(msg.sender,IERC20(tomb_wftm).balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(tomb_wftm).transfer(msg.sender, amount_to_give)"
+            }
+        ]
+    }
+}

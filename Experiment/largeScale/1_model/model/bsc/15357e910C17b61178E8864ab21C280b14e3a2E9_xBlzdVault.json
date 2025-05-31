@@ -1,0 +1,152 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    886
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    928
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "callFee",
+                    "token"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "callFee",
+                    "pid",
+                    "token",
+                    "treasury",
+                    "yetiMaster"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "callFee",
+                    "pid",
+                    "token",
+                    "treasury",
+                    "yetiMaster"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1054
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "pid",
+                    "token",
+                    "totalShares",
+                    "yetiMaster"
+                ],
+                "Control Variables": [
+                    "pid",
+                    "token",
+                    "totalShares",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "userInfo.xBlzdAtLastUserAction",
+                    "yetiMaster"
+                ],
+                "Full Calculation Variables": [
+                    "pid",
+                    "token",
+                    "totalShares",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "userInfo.xBlzdAtLastUserAction",
+                    "yetiMaster"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1054
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "totalShares",
+                    "token",
+                    "pid",
+                    "yetiMaster"
+                ],
+                "Control Variables": [
+                    "yetiMaster",
+                    "userInfo.lastUserActionTime",
+                    "totalShares",
+                    "userInfo.shares",
+                    "token",
+                    "pid",
+                    "userInfo.xBlzdAtLastUserAction"
+                ],
+                "Full Calculation Variables": [
+                    "yetiMaster",
+                    "userInfo.lastUserActionTime",
+                    "totalShares",
+                    "userInfo.shares",
+                    "token",
+                    "pid",
+                    "userInfo.xBlzdAtLastUserAction"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

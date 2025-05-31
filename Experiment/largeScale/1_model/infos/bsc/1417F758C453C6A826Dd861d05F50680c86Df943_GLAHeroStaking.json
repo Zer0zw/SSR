@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountHeroStaking"
+        ],
+        "User Stake Reward": [
+            "HeroStakingData.rewardEstimate"
+        ],
+        "User Stake Time": [
+            "Plan.time"
+        ],
+        "Stake Token Address": [
+            "glaHeroAddress"
+        ],
+        "Reward Token Address": [
+            "glaTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeHero",
+                "Node": "IGLAHeroNFT(glaHeroAddress).transferFrom(owner, address(this), heroIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(glaTokenAddress).transfer(msg.sender, heroesStakingData[heroId].rewardEstimate)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IGLAHeroNFT(glaHeroAddress).transferFrom(address(this), msg.sender, heroId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IGLAHeroNFT(glaHeroAddress).transferFrom(address(this), msg.sender, heroIds[i])"
+            }
+        ]
+    }
+}

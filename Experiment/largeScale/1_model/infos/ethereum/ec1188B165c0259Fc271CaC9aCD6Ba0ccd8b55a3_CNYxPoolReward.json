@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [
+            "lastUserAction"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "Synth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(IERC20(pool.lpToken).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(Synth.transfer(_user, owedSynth)"
+            },
+            {
+                "Function": "claimRewardInternal",
+                "Node": "require(Synth.transfer(_user, owedSynth)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(poolInfo[_poolID].lpToken.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

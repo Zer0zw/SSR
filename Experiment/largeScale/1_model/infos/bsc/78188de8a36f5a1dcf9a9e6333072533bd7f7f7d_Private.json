@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.received"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "_joinToken"
+        ],
+        "Reward Token Address": [
+            "_rewaedtoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "_joinToken.safeTransferFrom(msg.sender, address(this), amountIp)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "tge",
+                "Node": "_rewaedtoken.safeTransfer(msg.sender, _stake[msg.sender].amount)"
+            },
+            {
+                "Function": "cliam",
+                "Node": "_rewaedtoken.safeTransfer(msg.sender, reci)"
+            }
+        ],
+        "unStake": []
+    }
+}

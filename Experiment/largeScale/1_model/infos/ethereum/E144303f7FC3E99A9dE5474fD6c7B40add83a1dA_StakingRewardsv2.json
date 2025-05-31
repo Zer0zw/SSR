@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "unlockEpoch"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLockedFor",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), stakeAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, currentRewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "stakingToken.safeTransfer(user, amount)"
+            },
+            {
+                "Function": "_withdrawFor",
+                "Node": "stakingToken.safeTransfer(user, amount)"
+            }
+        ]
+    }
+}

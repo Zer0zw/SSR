@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "OmaxDeposit.depositValue"
+        ],
+        "User Stake Reward": [
+            "percentageRewardForTimelock"
+        ],
+        "User Stake Time": [
+            "OmaxDeposit.timeLockInSeconds"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositOmax",
+                "Node": "_token.transferFrom(msg.sender, address(this), amountToLockInWei)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDeposit",
+                "Node": "_token.transferFrom(marketingWallet, msg.sender, omaxDeposits[depositId].depositValue + (omaxDeposits[depositId].depositValue.mul(percentageRewardForTimelock[omaxDeposits[depositId].timeLockInSeconds]).div(100)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawDeposit",
+                "Node": "_token.transferFrom(marketingWallet, msg.sender, omaxDeposits[depositId].depositValue + (omaxDeposits[depositId].depositValue.mul(percentageRewardForTimelock[omaxDeposits[depositId].timeLockInSeconds]).div(100)))"
+            },
+            {
+                "Function": "forceWithdrawDeposit",
+                "Node": "_token.transfer(msg.sender, omaxDeposits[depositId].depositValue - (omaxDeposits[depositId].depositValue.mul(lockFeePenalisation).div(100)))"
+            }
+        ]
+    }
+}

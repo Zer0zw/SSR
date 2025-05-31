@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "ReferralRewards._rewards"
+        ],
+        "User Stake Time": [
+            "Referral.startTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "stakingBalance[msg.sender] += msg.value"
+            },
+            {
+                "Function": "restakeRewards",
+                "Node": "stakingBalance[msg.sender] += _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawTokens",
+                "Node": "payable(msg.sender).transfer(_amount - _amount * 25 / 100)"
+            }
+        ],
+        "unStake": []
+    }
+}

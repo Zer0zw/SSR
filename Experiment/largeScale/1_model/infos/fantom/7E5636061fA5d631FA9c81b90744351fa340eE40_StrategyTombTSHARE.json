@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "masonry.balanceOf"
+        ],
+        "User Stake Reward": [
+            "masonry.earned"
+        ],
+        "User Stake Time": [
+            "depositTime",
+            "withdrawTime"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "masonry.stake(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(native).safeTransfer(callFeeRecipient, callFeeAmount)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(native).safeTransfer(beefyFeeRecipient, beefyFeeAmount)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(native).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "startUnlockWindow",
+                "Node": "masonry.exit()"
+            }
+        ]
+    }
+}

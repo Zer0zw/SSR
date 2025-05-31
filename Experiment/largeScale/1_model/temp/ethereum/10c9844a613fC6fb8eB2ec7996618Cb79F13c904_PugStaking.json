@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "pugToken"
+        ],
+        "Reward Token Address": [
+            "pugToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(pugToken).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "IERC20(_pugToken).transfer(to, toTransfer)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "transferRewards(msg.sender, pendingReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "transferRewards(msg.sender, pendingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pugToken).transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

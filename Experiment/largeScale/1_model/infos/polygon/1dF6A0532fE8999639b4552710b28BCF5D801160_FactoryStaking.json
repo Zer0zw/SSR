@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedCustomerFactories"
+        ],
+        "User Stake Reward": [
+            "_stakedMinterPoints",
+            "getAllRewards"
+        ],
+        "User Stake Time": [
+            "_stakedMinterTimestamp",
+            "_stakedFactories"
+        ],
+        "Stake Token Address": [
+            "factories"
+        ],
+        "Reward Token Address": [
+            "manager"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "sendFactoryToStaking",
+                "Node": "factories.transferFrom(msg.sender, address(this), factory)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "growAllFactories",
+                "Node": "manager.sendTokens(msg.sender, getAllRewards(msg.sender))"
+            },
+            {
+                "Function": "growFactory",
+                "Node": "manager.sendTokens(msg.sender, getRewardPerFactory(msg.sender, factory))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeFactoryFromStaking",
+                "Node": "factories.transferFrom(address(this), msg.sender, factory)"
+            }
+        ]
+    }
+}

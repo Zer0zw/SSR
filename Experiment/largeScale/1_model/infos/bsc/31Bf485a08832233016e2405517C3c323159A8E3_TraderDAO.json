@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserRewardAmount",
+            "UserAmountToClaim"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "USDT.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "Insert",
+                "Node": "UserList[UserIdCounter] = userAddress"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "USDT.safeTransfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Withdraw",
+                "Node": "USDT.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

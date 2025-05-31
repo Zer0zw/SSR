@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "StakeInfo.duration",
+            "StakeInfo.stakedTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "IERC20Metadata(address(stakingToken)).transferFrom(_msgSender(), address(this), amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20Metadata(address(stakingToken)).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20Metadata(address(stakingToken)).transfer(_msgSender(), reward - reward * claimFee / 1000)"
+            },
+            {
+                "Function": "compound",
+                "Node": "NFToken.updateToken(stakedUserList[_string2byte32(name)].NFTId, stakedUserList[_string2byte32(name)].amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeNFT",
+                "Node": "IERC721(token).transferFrom(address(this), _msgSender(), stakedUserList[_string2byte32(name)].NFTStakingId)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "IERC20Metadata(address(stakingToken)).transfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

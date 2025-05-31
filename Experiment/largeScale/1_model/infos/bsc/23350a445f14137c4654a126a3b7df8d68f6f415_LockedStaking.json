@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.totalAmount",
+            "UserTransaction.amount"
+        ],
+        "User Stake Reward": [
+            "UserTransaction.rewardPerDay",
+            "UserTransaction.earlyRewardFirstMonth",
+            "UserTransaction.earlyRewardFollowingMonth"
+        ],
+        "User Stake Time": [
+            "UserTransaction.lockedUntil",
+            "UserTransaction.startTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transfer(msg.sender, unclaimed)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "token.transfer(msg.sender, unclaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "token.transfer(msg.sender, _totalAmount)"
+            }
+        ]
+    }
+}

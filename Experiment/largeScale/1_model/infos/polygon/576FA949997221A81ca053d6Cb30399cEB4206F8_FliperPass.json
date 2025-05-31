@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalNFTStaked"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Stake.value"
+        ],
+        "Stake Token Address": [
+            "fliperpass"
+        ],
+        "Reward Token Address": [
+            "fliper"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "fliperpass.transferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "fliperpass.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            }
+        ]
+    }
+}

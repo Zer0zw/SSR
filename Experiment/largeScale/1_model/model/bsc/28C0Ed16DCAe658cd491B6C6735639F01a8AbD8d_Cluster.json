@@ -1,0 +1,143 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "mockToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvestUserRewardsFromDelegators"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1427
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "minDeposit",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "minDeposit",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestUserRewardsFromDelegators",
+                "Node": [
+                    1548
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "delegators.delegator",
+                    "delegators.isActive",
+                    "totalShares",
+                    "userInfo.lastDepositBlock",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "delegators.delegator",
+                    "delegators.isActive",
+                    "totalShares",
+                    "userInfo.lastDepositBlock",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1537
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "stakingToken",
+                    "totalShares"
+                ],
+                "Control Variables": [
+                    "stakingToken",
+                    "timeLock",
+                    "totalShares",
+                    "userInfo.buzzAtLastUserAction",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "stakingToken",
+                    "timeLock",
+                    "totalShares",
+                    "userInfo.buzzAtLastUserAction",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1537
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "totalShares",
+                    "stakingToken"
+                ],
+                "Control Variables": [
+                    "userInfo.buzzAtLastUserAction",
+                    "stakingToken",
+                    "timeLock",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "totalShares"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.buzzAtLastUserAction",
+                    "stakingToken",
+                    "timeLock",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "totalShares"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

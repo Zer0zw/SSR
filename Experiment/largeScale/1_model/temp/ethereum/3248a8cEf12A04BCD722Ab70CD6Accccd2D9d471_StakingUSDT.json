@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Stake.since"
+        ],
+        "Stake Token Address": [
+            "usdtContract"
+        ],
+        "Reward Token Address": [
+            "usdtContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "usdt.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStake",
+                "Node": "usdt.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "usdt.transfer(msg.sender, reward)"
+            }
+        ]
+    }
+}

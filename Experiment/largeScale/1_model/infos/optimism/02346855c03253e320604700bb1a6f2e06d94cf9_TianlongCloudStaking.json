@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftHolder"
+        ],
+        "User Stake Reward": [
+            "holderCollected"
+        ],
+        "User Stake Time": [
+            "nftHolderStaking"
+        ],
+        "Stake Token Address": [
+            "nftDragon"
+        ],
+        "Reward Token Address": [
+            "tokenDragon"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeDragon",
+                "Node": "nftDragon.safeTransferFrom(msg.sender, address(this), 0, _amount, \"\""
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "tokenDragon.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nftDragon.safeTransferFrom(address(this), msg.sender, 0, _amount, \"\""
+            },
+            {
+                "Function": "unstake",
+                "Node": "tokenDragon.transfer(msg.sender, reward)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountLocked"
+        ],
+        "User Stake Reward": [
+            "accomulatedRewards"
+        ],
+        "User Stake Time": [
+            "lockingTime"
+        ],
+        "Stake Token Address": [
+            "lockToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lockLiquidity",
+                "Node": "IERC20(lockToken).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "extractEarnings",
+                "Node": "IERC20(rewardToken).transfer(msg.sender, remaining)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "extractLiquidity",
+                "Node": "IERC20(lockToken).transfer(msg.sender, locked)"
+            }
+        ]
+    }
+}

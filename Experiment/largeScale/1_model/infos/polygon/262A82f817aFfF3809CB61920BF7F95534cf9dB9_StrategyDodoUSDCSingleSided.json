@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_want"
+        ],
+        "User Stake Reward": [
+            "_pendingDodo"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "dodo_usdt_usdc_lp"
+        ],
+        "Reward Token Address": [
+            "dodo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IDodoMine(rewards).deposit(_want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IDodoMine(rewards).claimAllRewards()"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IDodoMine(rewards).claimAllRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IDodoMine(rewards).withdraw(_amount)"
+            }
+        ]
+    }
+}

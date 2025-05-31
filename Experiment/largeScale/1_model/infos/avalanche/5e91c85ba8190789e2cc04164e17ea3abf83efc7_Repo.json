@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "unlockAmounts"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "unlockTimestamps"
+        ],
+        "Stake Token Address": [
+            "code"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "code.transferToRepo(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "quickUnstake",
+                "Node": "code.transfer(msg.sender, output)"
+            },
+            {
+                "Function": "claimDelayedUnstake",
+                "Node": "code.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

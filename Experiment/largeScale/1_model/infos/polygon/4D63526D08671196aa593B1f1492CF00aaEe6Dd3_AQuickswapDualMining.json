@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "rewardA",
+            "rewardB"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "rewardTokenA",
+            "rewardTokenB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingDualRewards.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewardAndCharge",
+                "Node": "rewardTokenB.safeTransfer(collector, feeB)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "stakingDualRewards.getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "stakingDualRewards.exit()"
+            }
+        ]
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.totalStake"
+        ],
+        "User Stake Reward": [
+            "Stake.unclaimedRewards",
+            "Stake.claimedRewards"
+        ],
+        "User Stake Time": [
+            "Stake.lastUpdateTime",
+            "Stake.lastDepositTime"
+        ],
+        "Stake Token Address": [
+            "TURDTOKENLPToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TURDTOKENLPToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TURDTOKENLPToken.safeTransfer(msg.sender, _amountToWithdraw)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "TURDTOKENLPToken.safeTransfer(msg.sender, stakeOfUser[msg.sender].totalStake)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lpToken"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.unpaidRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "masterLpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "onPoolReward",
+                "Node": "pool.rewardToken.safeTransfer(to, balance)"
+            },
+            {
+                "Function": "onPoolReward",
+                "Node": "pool.rewardToken.safeTransfer(to, pending)"
+            },
+            {
+                "Function": "reclaimTokens",
+                "Node": "IERC20(token).safeTransfer(to, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

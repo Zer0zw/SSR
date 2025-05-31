@@ -1,0 +1,73 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "dividendsCollected"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "Auto"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IAutoFarmV2(autofarm).deposit(poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokens(vaultHoldersFee, 0, AutoToWbnbRoute, vaultRewardsPool, block.timestamp.add(300))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokens(tradingCompFee, 0, AutoToWbnbRoute, tradingCompWallet, block.timestamp.add(300))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokens(treasuryFee, 0, AutoToWbnbRoute, treasuryWallet, block.timestamp.add(300))"
+            },
+            {
+                "Function": "addLiquidity",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokens(autoBal, 0, AutoToWantTokenRoute, address(this), block.timestamp.add(300))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFee))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "_retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "_retireStratEmergency",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IAutoFarmV2(autofarm).withdraw(poolId, 2**256 - 1)"
+            },
+            {
+                "Function": "panicEmergency",
+                "Node": "IAutoFarmV2(autofarm).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

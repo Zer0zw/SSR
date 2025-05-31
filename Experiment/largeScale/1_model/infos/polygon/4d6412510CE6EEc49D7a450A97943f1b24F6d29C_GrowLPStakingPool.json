@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userShares"
+        ],
+        "User Stake Reward": [
+            "remainingRewardTokenAmount"
+        ],
+        "User Stake Time": [
+            "lastRewardTimestamp"
+        ],
+        "Stake Token Address": [
+            "STAKING_TOKEN"
+        ],
+        "Reward Token Address": [
+            "rawRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "STAKING_TOKEN.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositTo",
+                "Node": "STAKING_TOKEN.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "addReward",
+                "Node": "STAKING_TOKEN.safeTransferFrom(msg.sender, address(this), reward)"
+            },
+            {
+                "Function": "checkIfNeedGetRewardAndZapToLP",
+                "Node": "rawRewardToken.balanceOf(address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "STAKING_TOKEN.safeTransfer(to, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "STAKING_TOKEN.safeTransfer(to, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TokenStaked"
+        ],
+        "User Stake Reward": [
+            "totalreward"
+        ],
+        "User Stake Time": [
+            "Stake.value"
+        ],
+        "Stake Token Address": [
+            "Goku"
+        ],
+        "Reward Token Address": [
+            "GOKUToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addTokensToStake",
+                "Node": "Goku.transferFrom(msg.sender, address(this), tokenIds[i])"
+            },
+            {
+                "Function": "_stakeTokenbyId",
+                "Node": "TokenStaked[account].push(Stake({ owner: account, tokenId: uint16(tokenId), value: uint80(block.timestamp) }))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimFromStake",
+                "Node": "GOKUToken.mint(msg.sender, owed)"
+            },
+            {
+                "Function": "_claimbyTokenId",
+                "Node": "TokenStaked[msg.sender][StakedTokenIndices[tokenId]] = Stake({ owner: msg.sender, tokenId: uint16(tokenId), value: timestamp })"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_claimbyTokenId",
+                "Node": "Goku.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStruct.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserStruct.pendingRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "arabella"
+        ],
+        "Reward Token Address": [
+            "USDC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "arabella.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "arabella.transfer(0x000000000000000000000000000000000000dEaD, arabellaBalance.mul(45).div(100))"
+            },
+            {
+                "Function": "stake",
+                "Node": "arabella.transfer(0xbF5DE398e4e4F6e6cBe7C9D0b5EC0d131E2c3789, arabellaBalance.mul(10).div(100))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "USDC.transfer(msg.sender, claimAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

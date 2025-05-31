@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Investor.investedAmount",
+            "Deposit.amountSpend"
+        ],
+        "User Stake Reward": [
+            "Investor.withdrawAmount",
+            "totalRewardProvided"
+        ],
+        "User Stake Time": [
+            "Investor.investedAt",
+            "Deposit.spendAt"
+        ],
+        "Stake Token Address": [
+            "TCA_Token"
+        ],
+        "Reward Token Address": [
+            "TCA_Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeAmount",
+                "Node": "TCA_Token.transferPrice(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "TCA_Token.transferPrice(address(this), msg.sender, claimableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimPrinciple",
+                "Node": "TCA_Token.transferPrice(address(this), msg.sender, generatedPrinciple)"
+            }
+        ]
+    }
+}

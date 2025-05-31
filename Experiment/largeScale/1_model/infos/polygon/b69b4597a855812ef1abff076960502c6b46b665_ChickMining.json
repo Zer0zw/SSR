@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardToClaim"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "miningToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositERC20",
+                "Node": "erc20.safeTransferFrom(address(msg.sender), address(this), _amount"
+            },
+            {
+                "Function": "depositNFT",
+                "Node": "erc721.safeTransferFrom(address(msg.sender), address(this), tokenId"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeMiningTokenTransfer(msg.sender, user.rewardToClaim)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "safeMiningTokenTransfer(msg.sender, user.rewardToClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawERC20",
+                "Node": "erc20.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdrawNFT",
+                "Node": "erc721.safeTransferFrom(address(this), address(msg.sender), tokenId"
+            },
+            {
+                "Function": "emergencyWithdrawERC20",
+                "Node": "erc20.safeTransfer(address(msg.sender), user.amount)"
+            },
+            {
+                "Function": "emergencyWithdrawNFT",
+                "Node": "erc721.safeTransferFrom(address(this), address(msg.sender), tokenId"
+            }
+        ]
+    }
+}

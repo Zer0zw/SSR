@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "imx"
+        ],
+        "Reward Token Address": [
+            "xImx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "tokens = IPoolToken(xImx).mint(msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "IReservesDistributor(reservesDistributor).claim()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNoClaim",
+                "Node": "amount = IPoolToken(xImx).redeem(msg.sender)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "amount = IPoolToken(xImx).redeem(msg.sender)"
+            }
+        ]
+    }
+}

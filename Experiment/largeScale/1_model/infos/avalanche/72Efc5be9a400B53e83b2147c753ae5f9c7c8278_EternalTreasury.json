@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalances"
+        ],
+        "User Stake Reward": [
+            "reserveBalances"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "eternal"
+        ],
+        "Reward Token Address": [
+            "eternal"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(eternal.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "require(eternal.transfer(_msgSender(), convertToStaked(reserveAmount))"
+            },
+            {
+                "Function": "settleGage",
+                "Node": "require(eternal.transfer(receiver, amountETRNL * dRisk / (10 ** 4))"
+            },
+            {
+                "Function": "fundEternalLiquidGage",
+                "Node": "require(eternal.transfer(receiver, providedETRNL * dRisk / (10 ** 4))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(eternal.transfer(_msgSender(), convertToStaked(reserveAmount))"
+            }
+        ]
+    }
+}

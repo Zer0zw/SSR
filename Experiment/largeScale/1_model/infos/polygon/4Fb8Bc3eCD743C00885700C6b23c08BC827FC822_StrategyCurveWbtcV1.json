@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_lpAmt"
+        ],
+        "User Stake Reward": [
+            "_rewards",
+            "_wmatic"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "usdc",
+            "curveLpToken"
+        ],
+        "Reward Token Address": [
+            "CRV",
+            "WMATIC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ICurveFi_2(curvePool).add_liquidity(amounts, _maxSlip, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_swapUniswap(WMATIC, want, IERC20(WMATIC).balanceOf(address(this)))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "buybackAndNotify(WMATIC, _buybackLpAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "ICurveFi_2(curvePool).remove_liquidity_one_coin(requiredLpAmt, 0, maxSlippage)"
+            }
+        ]
+    }
+}

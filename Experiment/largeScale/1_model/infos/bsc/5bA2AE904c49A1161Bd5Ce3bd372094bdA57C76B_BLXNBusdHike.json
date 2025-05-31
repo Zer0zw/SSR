@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalInits"
+        ],
+        "User Stake Reward": [
+            "User.refBonus"
+        ],
+        "User Stake Time": [
+            "User.startDate",
+            "User.lastWith"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "BLXNStake",
+                "Node": "BUSD.safeTransferFrom(msg.sender, address(this), amtx)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "BLXNCollect",
+                "Node": "BUSD.safeTransfer(msg.sender, x)"
+            },
+            {
+                "Function": "BLXNTakeRef",
+                "Node": "BUSD.safeTransfer(msg.sender, amtz)"
+            }
+        ],
+        "unStake": []
+    }
+}

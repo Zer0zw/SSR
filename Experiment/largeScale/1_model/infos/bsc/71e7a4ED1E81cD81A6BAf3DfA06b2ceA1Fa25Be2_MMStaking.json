@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.total_deposit"
+        ],
+        "User Stake Reward": [
+            "User.unclaimed"
+        ],
+        "User Stake Time": [
+            "User.deposit_time"
+        ],
+        "Stake Token Address": [
+            "MYTH_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "MYTH_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(MYTH_TOKEN_ADDRESS).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "IERC20(MYTH_TOKEN_ADDRESS).transferFrom(owner, msg.sender, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IERC20(MYTH_TOKEN_ADDRESS).transferFrom(owner, _addr, users[_addr].unclaimed)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "IERC20(MYTH_TOKEN_ADDRESS).transferFrom(address(this), _addr, users[_addr].unstaked)"
+            }
+        ]
+    }
+}

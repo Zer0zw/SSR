@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "stakingRewardPool"
+        ],
+        "User Stake Time": [
+            "startBlock"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_transfer",
+                "Node": "_balances[recipient] =  _balances[recipient].add(amount.sub(_tAmount.add(_lAmount)))"
+            },
+            {
+                "Function": "mint",
+                "Node": "_balances[account] = _balances[account].add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_addReward",
+                "Node": "_balances[account] = _balance.add(reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_transfer",
+                "Node": "_balances[recipient] =  _balances[recipient].add(amount.sub(_tAmount.add(_lAmount)))"
+            }
+        ]
+    }
+}

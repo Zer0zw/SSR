@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_degoBalances",
+            "_stakeBalances"
+        ],
+        "User Stake Reward": [
+            "_rewards",
+            "_rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "_lastStakedTime",
+            "_nextHarvestUntil"
+        ],
+        "Stake Token Address": [
+            "_gegoToken"
+        ],
+        "Reward Token Address": [
+            "_rewardERC20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "_gegoToken.safeTransferFrom(msg.sender, address(this), gegoId"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_rewardERC20.safeTransfer(msg.sender, leftReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "_gegoToken.safeTransferFrom(address(this), msg.sender, gegoId)"
+            }
+        ]
+    }
+}

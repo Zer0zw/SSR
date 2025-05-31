@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftHistory",
+            "nftNum"
+        ],
+        "User Stake Reward": [
+            "nftHistory",
+            "earnedUSDT"
+        ],
+        "User Stake Time": [
+            "stakingHistory",
+            "stakedTime"
+        ],
+        "Stake Token Address": [
+            "incomeIsland"
+        ],
+        "Reward Token Address": [
+            "incomeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingProperty",
+                "Node": "incomeIsland.safeTransferFrom(msg.sender, address(this), _nftType, 1, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unStakingProperty",
+                "Node": "incomeToken.transfer(msg.sender, utility.getIncomeTokenFromBNB(utility.getBnbTokenFromDollar(_earnedUSDT)))"
+            },
+            {
+                "Function": "unStakingProperty",
+                "Node": "incomeToken.transfer(msg.sender, utility.getIncomeTokenFromBNB(utility.getBnbTokenFromDollar((_earnedUSDT * (100 - marketingPros)) / 100)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakingProperty",
+                "Node": "incomeIsland.safeTransferFrom(address(this), msg.sender, _nftType, 1, \"\")"
+            }
+        ]
+    }
+}

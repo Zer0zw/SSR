@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userShares"
+        ],
+        "User Stake Reward": [
+            "pendingRewardsPreShare",
+            "rewardsPreSharePreBlock"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rawRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingToken.safeTransferFrom(userAddress, address(this), amount"
+            },
+            {
+                "Function": "depositTo",
+                "Node": "stakingToken.safeTransferFrom(userAddress, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "addReward",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), reward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(to, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "stakingToken.safeTransfer(to, amount)"
+            }
+        ]
+    }
+}

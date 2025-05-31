@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "rewardsToken"
+        ],
+        "User Stake Time": [
+            "lastTimeUserStaked"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), _amount * (10**9))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReturns",
+                "Node": "rewardsToken.transfer(msg.sender, reward - rewardTax )"
+            },
+            {
+                "Function": "claimReturns",
+                "Node": "stakingToken.transfer(msg.sender, (stakingBalance[msg.sender] - stakingTax) * (10**9))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnstakeTokenUrgently",
+                "Node": "stakingToken.transfer(msg.sender, stakingBalance[msg.sender] * (10**9))"
+            }
+        ]
+    }
+}

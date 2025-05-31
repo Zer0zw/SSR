@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "pendingCake"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IJetMasterChef(farmPool).deposit(poolId, _baseBal)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IJetMasterChef(farmPool).deposit(poolId, _baseBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IJetMasterChef(farmPool).deposit(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IJetMasterChef(farmPool).withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IJetMasterChef(farmPool).withdraw(poolId, _stakedAmount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IJetMasterChef(farmPool).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

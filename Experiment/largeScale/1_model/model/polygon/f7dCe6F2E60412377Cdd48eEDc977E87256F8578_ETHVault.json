@@ -1,0 +1,259 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositAll"
+        ],
+        "getReward": [
+            "calculateHarvestAppleRewards",
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    2032
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "addressInfo",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "addressInfo",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositAll",
+                "Node": [
+                    2061
+                ],
+                "Input": [
+                    "from",
+                    "to"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "addressInfo",
+                    "addressInfo._inner",
+                    "admin",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "addressInfo",
+                    "addressInfo._inner",
+                    "admin",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    2381
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "admin",
+                    "masterchef",
+                    "seedPoolPid"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "admin",
+                    "masterchef",
+                    "seedPoolPid"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "calculateHarvestAppleRewards",
+                "Node": [
+                    2261
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BONUS_MULTIPLIER",
+                    "applePerBlock",
+                    "callFee",
+                    "masterchef",
+                    "poolInfo.accApplePerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "seedPoolPid",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "BONUS_MULTIPLIER",
+                    "applePerBlock",
+                    "callFee",
+                    "masterchef",
+                    "poolInfo.accApplePerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "seedPoolPid",
+                    "totalAllocPoint",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    2320
+                ],
+                "Input": [
+                    "_pid",
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "token",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "MAX_CALL_FEE",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "addressInfo",
+                    "callFee",
+                    "masterchef",
+                    "seedPoolPid",
+                    "token",
+                    "totalShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardLockedUp",
+                    "userInfo.shares",
+                    "userInfo.treeAtLastUserAction",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "MAX_CALL_FEE",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "addressInfo",
+                    "callFee",
+                    "masterchef",
+                    "seedPoolPid",
+                    "token",
+                    "totalShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardLockedUp",
+                    "userInfo.shares",
+                    "userInfo.treeAtLastUserAction",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    2102
+                ],
+                "Input": [
+                    "_pid",
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "withdrawFee",
+                    "token"
+                ],
+                "Control Variables": [
+                    "userInfo.rewardLockedUp",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.nextHarvestUntil",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "addressInfo",
+                    "userInfo.shares",
+                    "_ENTERED",
+                    "seedPoolPid",
+                    "totalShares",
+                    "callFee",
+                    "MAX_CALL_FEE",
+                    "masterchef",
+                    "withdrawFee",
+                    "token",
+                    "withdrawFeePeriod",
+                    "userInfo.treeAtLastUserAction"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.rewardLockedUp",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.nextHarvestUntil",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "addressInfo",
+                    "userInfo.shares",
+                    "_ENTERED",
+                    "seedPoolPid",
+                    "totalShares",
+                    "callFee",
+                    "MAX_CALL_FEE",
+                    "masterchef",
+                    "withdrawFee",
+                    "token",
+                    "withdrawFeePeriod",
+                    "userInfo.treeAtLastUserAction"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

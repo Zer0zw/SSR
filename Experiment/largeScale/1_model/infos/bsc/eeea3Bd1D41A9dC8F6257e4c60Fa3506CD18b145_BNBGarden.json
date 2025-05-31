@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UsersKey"
+        ],
+        "User Stake Reward": [
+            "UsersKey"
+        ],
+        "User Stake Time": [
+            "UsersKey"
+        ],
+        "Stake Token Address": [
+            "TOKEN_MAIN"
+        ],
+        "Reward Token Address": [
+            "TOKEN_MAIN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "transferForGood(address ref, uint256 amtx)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "transferForGood(address adr, uint256 amtx)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "transferForGood(msg.sender, withdrawAmount)"
+            },
+            {
+                "Function": "withdrawRefBonus",
+                "Node": "transferForGood(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": "transferForGood(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawInitial",
+                "Node": "transferForGood(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "supplies"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastUpdate"
+        ],
+        "Stake Token Address": [
+            "TANKTOKENAddress"
+        ],
+        "Reward Token Address": [
+            "TANKTOKENAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ITankToken(TANKTOKENAddress).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updatePool",
+                "Node": "ITankToken(TANKTOKENAddress).mint(address(this), rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ITankToken(TANKTOKENAddress).transfer(msg.sender, withrawAmount)"
+            }
+        ]
+    }
+}

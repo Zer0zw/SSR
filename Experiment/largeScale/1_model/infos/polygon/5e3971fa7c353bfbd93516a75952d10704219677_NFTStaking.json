@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStaked"
+        ],
+        "User Stake Reward": [
+            "VaultInfo.tokenRewards"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "VaultInfo.nft"
+        ],
+        "Reward Token Address": [
+            "VaultInfo.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "targetVault.nft.transferFrom(msg.sender, address(this), tokenId"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "targetVault.token.mint(account, earned)"
+            },
+            {
+                "Function": "claimForAddress",
+                "Node": "targetVault.token.mint(account, earned)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "targetVault.token.mint(account, earned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstakeMany",
+                "Node": "targetVault.nft.transferFrom(address(this), account, tokenId)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "targetVault.nft.transferFrom(address(this), account, tokenId)"
+            }
+        ]
+    }
+}

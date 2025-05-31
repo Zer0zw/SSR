@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "stakeLPRewards",
+            "inviteRewards",
+            "newMillionRewardWithdrawed"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakeTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.deposit(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "safeTransfer(msg.sender, totalReward)"
+            },
+            {
+                "Function": "earn",
+                "Node": "safeTransfer(msg.sender, stakeLPReward)"
+            },
+            {
+                "Function": "earn",
+                "Node": "safeTransfer(msg.sender, inviteReward)"
+            },
+            {
+                "Function": "earn",
+                "Node": "safeTransfer(msg.sender, newMillionReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

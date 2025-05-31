@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.numberNFTStaked",
+            "Staker.numberNFTStakedPerToken"
+        ],
+        "User Stake Reward": [
+            "Staker.rewardsEarned",
+            "Staker.rewardsReleased",
+            "Staker.rewardTokensRewardsEarned",
+            "Staker.rewardTokensRewardsReleased"
+        ],
+        "User Stake Time": [
+            "nftStakeRecords.nftStakeTime",
+            "nftStakeRecords.nftUnstakeTime",
+            "amountOfTimeSpecificNFTHasBeenStakedTotal",
+            "amountOfTimeContractNFTsHaveBeenStakedTotal",
+            "amountOfStakingTimeAllNFTsHaveBeenStaked"
+        ],
+        "Stake Token Address": [
+            "whitelistedTokens"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sendNFT(_whitelistedNFT, _user, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "sendNFT(_whitelistedNFTs[i], _msgSender(), address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.transfer(_user, _payableAmount)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(_tokens[i]).transfer(_user, rewardPayableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "sendNFT(_whitelistedNFT, address(this), _user, _tokenId)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "sendNFT(_whitelistedNFTs[i], address(this), _msgSender(), _tokenIds[i])"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "sendNFT(_whitelistedNFT, address(this), _msgSender(), _tokenId)"
+            }
+        ]
+    }
+}

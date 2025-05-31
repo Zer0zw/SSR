@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPProvider.tknAmount",
+            "LPProvider.lpShare",
+            "TokenLocker.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "LPProvider.lastClaim",
+            "LPProvider.lockUpTo",
+            "TokenLocker.lockUpTo"
+        ],
+        "Stake Token Address": [
+            "_tokenFTMLP",
+            "_letToken"
+        ],
+        "Reward Token Address": [
+            "_letToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLP",
+                "Node": "I(tkn).transferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getRewards",
+                "Node": "I(_treasury).getRewards(a, toClaim)"
+            },
+            {
+                "Function": "_getLockRewards",
+                "Node": "I(_treasury).getRewards(a, toClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLp",
+                "Node": "I(_tokenFTMLP).transfer(address(msg.sender), amount*9/10)"
+            },
+            {
+                "Function": "unlock",
+                "Node": "I(_letToken).transfer(msg.sender,amount*19/20)"
+            }
+        ]
+    }
+}

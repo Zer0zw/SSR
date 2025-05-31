@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "claimTokens"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "receiptToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "poolHelper.depositMarket(want, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "masterPenpie.multiclaimSpecPNP(lps, tokens, claimPNP)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "poolHelper.withdrawMarket(want, amount)"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "poolHelper.withdrawMarket(want, bal)"
+            }
+        ]
+    }
+}

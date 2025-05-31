@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_accountTotalMapping",
+            "_balances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "_timestamps"
+        ],
+        "Stake Token Address": [
+            "mbaTokenAddress"
+        ],
+        "Reward Token Address": [
+            "mbaTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(mbaTokenAddress).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "interest",
+                "Node": "IERC20(mbaTokenAddress).transfer(account, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(mbaTokenAddress).transfer(msg.sender, withdrawAmount)"
+            }
+        ]
+    }
+}

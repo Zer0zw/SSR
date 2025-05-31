@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.totalStaked",
+            "UserInfo.stakedAmountPerTime"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "StakeInfo.stakedAt",
+            "StakeInfo.lockEndAt"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "vulcToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "pool.lpToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "pool.lpToken.safeTransfer(_msgSender(), amountToClaim)"
+            },
+            {
+                "Function": "claim",
+                "Node": "safeVulcTransfer(_msgSender(), rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(_msgSender(), totalStaked)"
+            }
+        ]
+    }
+}

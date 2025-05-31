@@ -1,0 +1,101 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeOwner.gen0.tokens",
+            "stakeOwner.gen2.tokens",
+            "stakeOwner.rfpremium.tokens",
+            "stakeOwner.rfunleaded.tokens",
+            "stakeOwner.spaceship.tokens"
+        ],
+        "User Stake Reward": [
+            "stakeOwner.gen0.rewards",
+            "stakeOwner.gen2.rewards",
+            "stakeOwner.rfpremium.rewards",
+            "stakeOwner.rfunleaded.rewards",
+            "stakeOwner.spaceship.rewards"
+        ],
+        "User Stake Time": [
+            "stakeOwner.gen0.rewardStartTime",
+            "stakeOwner.gen2.rewardStartTime",
+            "stakeOwner.rfpremium.rewardStartTime",
+            "stakeOwner.rfunleaded.rewardStartTime",
+            "stakeOwner.spaceship.rewardStartTime"
+        ],
+        "Stake Token Address": [
+            "gen0",
+            "gen2",
+            "PlatinumFrenzBoost",
+            "GoldFrenzBoost",
+            "spaceshipaddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeGen0",
+                "Node": "genesis0.transferFrom( msg.sender, address(this),data[i])"
+            },
+            {
+                "Function": "stakeGen2",
+                "Node": "genesis2.transferFrom( msg.sender, address(this),data[i])"
+            },
+            {
+                "Function": "stakeRFPremium",
+                "Node": "RFPremium.transferFrom( msg.sender, address(this),data[i])"
+            },
+            {
+                "Function": "stakeRFUnleaded",
+                "Node": "RFUnleaded.transferFrom( msg.sender, address(this),data[i])"
+            },
+            {
+                "Function": "stakeSpaceship",
+                "Node": "spaceship.transferFrom( msg.sender, address(this),data[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimGen0Reward",
+                "Node": "No direct transfer statement found, rewards are calculated and reset"
+            },
+            {
+                "Function": "claimGen2Reward",
+                "Node": "No direct transfer statement found, rewards are calculated and reset"
+            },
+            {
+                "Function": "claimRFPremiumReward",
+                "Node": "No direct transfer statement found, rewards are calculated and reset"
+            },
+            {
+                "Function": "claimRFUnleadedReward",
+                "Node": "No direct transfer statement found, rewards are calculated and reset"
+            },
+            {
+                "Function": "claimSpaceshipReward",
+                "Node": "No direct transfer statement found, rewards are calculated and reset"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeGen0",
+                "Node": "genesis0.transferFrom(address(this),msg.sender,tokenID)"
+            },
+            {
+                "Function": "unstakeGen2",
+                "Node": "genesis2.transferFrom(address(this),msg.sender,tokenID)"
+            },
+            {
+                "Function": "unstakeRFPremium",
+                "Node": "RFPremium.transferFrom(address(this),msg.sender,tokenID)"
+            },
+            {
+                "Function": "unstakeRFUnleaded",
+                "Node": "RFUnleaded.transferFrom(address(this),msg.sender,tokenID)"
+            },
+            {
+                "Function": "unstakeSpaceship",
+                "Node": "spaceship.transferFrom(address(this),msg.sender,tokenID)"
+            }
+        ]
+    }
+}

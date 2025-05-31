@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MONZA"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onKamiReward",
+                "Node": "user.amount = lpToken"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onKamiReward",
+                "Node": "rewardToken.safeTransfer(to, pending)"
+            }
+        ],
+        "unStake": []
+    }
+}

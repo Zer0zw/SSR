@@ -1,0 +1,119 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeValue"
+        ],
+        "User Stake Reward": [
+            "stakerPayouts"
+        ],
+        "User Stake Time": [
+            "lastStakingTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "tokenUSD"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "enterStaking"
+        ],
+        "getReward": [
+            "leaveStaking"
+        ],
+        "unStake": [
+            "leaveStaking"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": [
+                    231,
+                    232,
+                    233,
+                    234
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakeValue",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "stakeValue",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "leaveStaking",
+                "Node": [
+                    286,
+                    287,
+                    288,
+                    289
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DISTRIBUTION_MULTIPLIER",
+                    "stakerPayouts",
+                    "tokenUSD"
+                ],
+                "Full Calculation Variables": [
+                    "DISTRIBUTION_MULTIPLIER",
+                    "stakerPayouts",
+                    "tokenUSD"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": [
+                    266,
+                    267,
+                    268,
+                    269
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "feeBPS"
+                ],
+                "Control Variables": [
+                    "feeBPS",
+                    "lastStakingTime",
+                    "profitPerShare",
+                    "stakeValue",
+                    "stakingFeePeriod",
+                    "token",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "feeBPS",
+                    "lastStakingTime",
+                    "profitPerShare",
+                    "stakeValue",
+                    "stakingFeePeriod",
+                    "token",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

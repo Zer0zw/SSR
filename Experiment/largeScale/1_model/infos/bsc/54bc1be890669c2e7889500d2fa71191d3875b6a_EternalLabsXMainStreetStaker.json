@@ -1,0 +1,75 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ],
+        "Reward Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TOTAL_BANANA_STAKED += stakeBanana(bananaDistribution[0])"
+            },
+            {
+                "Function": "deposit",
+                "Node": "TOTAL_GNANA_STAKED += stakeGanana()"
+            },
+            {
+                "Function": "stakeRemainingBanana",
+                "Node": "IBananaPool(BANANA_POOL).deposit(0, remainingBanana)"
+            },
+            {
+                "Function": "stakeRemainingGnana",
+                "Node": "IGnanaPool(GNANA_POOL).deposit(gnanaToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "IBEP20(BANANA_TOKEN).transfer(BOUNTY, bananaForBounty)"
+            },
+            {
+                "Function": "compound",
+                "Node": "IBEP20(BANANA_TOKEN).transfer(FUNDING_WALLET, bananaForFund)"
+            },
+            {
+                "Function": "compound",
+                "Node": "IBEP20(BANANA_TOKEN).transfer(ETERNALLABS_TREASURY, bananaForEternalLabs)"
+            },
+            {
+                "Function": "compound",
+                "Node": "IBEP20(MAINST_TOKEN).transfer(DISTRIBUTOR, mainst)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBanana",
+                "Node": "IBEP20(BANANA_TOKEN).transfer(msg.sender, IBEP20(BANANA_TOKEN).balanceOf(address(this)))"
+            },
+            {
+                "Function": "withdrawLeftOverBanana",
+                "Node": "IBEP20(BANANA_TOKEN).transfer(msg.sender, IBEP20(BANANA_TOKEN).balanceOf(address(this)))"
+            },
+            {
+                "Function": "withdrawGnana",
+                "Node": "IBEP20(GNANA_TOKEN).transfer(msg.sender, IBEP20(GNANA_TOKEN).balanceOf(address(this)))"
+            },
+            {
+                "Function": "withdrawLeftOverGnana",
+                "Node": "IBEP20(GNANA_TOKEN).transfer(msg.sender, IBEP20(GNANA_TOKEN).balanceOf(address(this)))"
+            },
+            {
+                "Function": "withdrawRemainingMainstreet",
+                "Node": "IBEP20(MAINST_TOKEN).transfer(msg.sender, IBEP20(MAINST_TOKEN).balanceOf(address(this)))"
+            }
+        ]
+    }
+}

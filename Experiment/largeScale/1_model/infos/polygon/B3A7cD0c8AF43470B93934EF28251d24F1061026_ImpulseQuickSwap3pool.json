@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantTotal",
+            "wantTotalForEach"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantTokens"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "quickToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositInUnderlying",
+                "Node": "IERC20(underlyings[i]).safeTransferFrom(_msgSender(), address(this), _amounts[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IERC20(_token).transfer(_msgSender(), balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInOneUnderlying",
+                "Node": "IERC20(_underlying).safeTransfer(_receiver, IERC20(_underlying).balanceOf(address(this))"
+            }
+        ]
+    }
+}

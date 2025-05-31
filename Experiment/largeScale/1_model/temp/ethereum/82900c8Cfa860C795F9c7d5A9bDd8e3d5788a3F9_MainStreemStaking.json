@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_depositedAmount"
+        ],
+        "User Stake Reward": [
+            "_depositedAmount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MainStreemToken"
+        ],
+        "Reward Token Address": [
+            "MainStreemToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "MainStreemToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_depositedAmount[stakers[i]] += rewardAmount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "MainStreemToken.transfer(msg.sender, userWithdrawAmount)"
+            }
+        ]
+    }
+}

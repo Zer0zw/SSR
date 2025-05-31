@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mappingStakeInfo1.amountTokens",
+            "mappingStakeInfo2.amountTokens",
+            "mappingStakeInfo3.amountTokens",
+            "mappingStakeInfo4.amountTokens"
+        ],
+        "User Stake Reward": [
+            "totalAmountRewardsClaimed"
+        ],
+        "User Stake Time": [
+            "mappingStakeInfo1.startStake",
+            "mappingStakeInfo2.startStake",
+            "mappingStakeInfo3.startStake",
+            "mappingStakeInfo4.startStake"
+        ],
+        "Stake Token Address": [
+            "addressCFarm"
+        ],
+        "Reward Token Address": [
+            "addressCFarm"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(addressCFarm).transferFrom(staker, address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(addressCFarm).transfer(staker, amountRewardClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(addressCFarm).transfer(staker, amountTokens)"
+            }
+        ]
+    }
+}

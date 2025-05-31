@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserStakeInfo.invitePendingRewards",
+            "UserStakeInfo.stakePendingRewards"
+        ],
+        "User Stake Time": [
+            "UserStakeInfo.startBlock"
+        ],
+        "Stake Token Address": [
+            "PoolStakeInfo.token"
+        ],
+        "Reward Token Address": [
+            "PoolRewardInfo.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(poolStakeInfo.token).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "provideReward",
+                "Node": "IERC20(token).safeTransfer(user, reward)"
+            },
+            {
+                "Function": "provideReward",
+                "Node": "you.mint(user, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unStake",
+                "Node": "IERC20(poolStakeInfo.token).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

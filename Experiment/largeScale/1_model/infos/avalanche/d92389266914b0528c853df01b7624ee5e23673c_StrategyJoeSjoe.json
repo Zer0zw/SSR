@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "sjoe"
+        ],
+        "Reward Token Address": [
+            "usdc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "harvest",
+                "Node": "IStableJoeStaking(sjoe).deposit(0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(snob).safeTransfer(feeDistributor, _share)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(snob).safeTransfer(IController(controller).treasury(), _snob.sub(_share))"
+            }
+        ],
+        "unStake": []
+    }
+}

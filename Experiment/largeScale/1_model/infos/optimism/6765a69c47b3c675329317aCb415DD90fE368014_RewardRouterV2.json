@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nitAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "nit"
+        ],
+        "Reward Token Address": [
+            "feeNitTracker"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mintAndStakeNit",
+                "Node": "IRewardTracker(feeNitTracker).stakeForAccount(account, account, nit, nitAmount)"
+            },
+            {
+                "Function": "mintAndStakeNitETH",
+                "Node": "IRewardTracker(feeNitTracker).stakeForAccount(account, account, nit, nitAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IRewardTracker(feeNitTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "handleRewards",
+                "Node": "IRewardTracker(feeNitTracker).claimForAccount(account, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAndRedeemNit",
+                "Node": "INitManager(nitManager).removeLiquidityForAccount(account, _tokenOut, _nitAmount, _minOut, _receiver)"
+            },
+            {
+                "Function": "unstakeAndRedeemNitETH",
+                "Node": "INitManager(nitManager).removeLiquidityForAccount(account, weth, _nitAmount, _minOut, address(this))"
+            }
+        ]
+    }
+}

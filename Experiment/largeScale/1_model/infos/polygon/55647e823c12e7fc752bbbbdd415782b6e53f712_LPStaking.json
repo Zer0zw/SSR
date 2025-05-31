@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.emissions"
+        ],
+        "User Stake Time": [
+            "Stake.cooldown"
+        ],
+        "Stake Token Address": [
+            "LP_ERC20_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "ERC20_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require (_amount > 0 && LP_ERC20.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ERC20.mint(msg.sender, _stake.emissions)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "ERC20.mint(msg.sender, emissions(_stake))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(_stake.active && LP_ERC20.transfer(msg.sender, _stake.amount)"
+            }
+        ]
+    }
+}

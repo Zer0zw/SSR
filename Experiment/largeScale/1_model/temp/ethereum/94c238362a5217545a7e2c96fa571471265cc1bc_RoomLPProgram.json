@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [
+            "endTime"
+        ],
+        "Stake Token Address": [
+            "roomLPToken"
+        ],
+        "Reward Token Address": [
+            "roomToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "roomLPToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "roomToken.transferFrom(roomTokenRewardsReservoirAddress, msg.sender, reward)"
+            },
+            {
+                "Function": "_executeRewardTransfer",
+                "Node": "roomToken.transferFrom(roomTokenRewardsReservoirAddress, msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "roomLPToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

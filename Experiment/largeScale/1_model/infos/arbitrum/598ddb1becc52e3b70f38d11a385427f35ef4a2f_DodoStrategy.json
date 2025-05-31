@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "getHarvestable"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IDODOMine(rewards).deposit(want, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WETH).safeTransfer(strategist, _weth_fee)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IDODOMine(rewards).claimAll()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IDODOMine(rewards).withdraw(want, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IDODOMine(rewards).emergencyWithdraw(want)"
+            }
+        ]
+    }
+}

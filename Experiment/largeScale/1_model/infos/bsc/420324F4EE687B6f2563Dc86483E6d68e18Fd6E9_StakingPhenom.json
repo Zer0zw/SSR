@@ -1,0 +1,68 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.amount"
+        ],
+        "User Stake Reward": [
+            "Staking.StakingPeriod"
+        ],
+        "User Stake Time": [
+            "Staking.StakingMonths",
+            "Staking.daysRemains"
+        ],
+        "Stake Token Address": [
+            "_depositToken"
+        ],
+        "Reward Token Address": [
+            "_depositToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "transferTokenToStaking",
+                "Node": "_depositToken.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "transferFrozenToStaking",
+                "Node": "No direct transfer statement, activates existing stakes"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawPercents",
+                "Node": "_depositToken.mint(user, amount * 75 / 100)"
+            },
+            {
+                "Function": "withdrawPercentsForPeriod",
+                "Node": "_depositToken.mint(user, amount * 75 / 100)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.mint(user, amount * 75 / 100)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.transfer(user, bAmount)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.mint(user, amountUSDT * 75 / 100)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.mint(user, bAmountUSDT)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.transfer(user, bAmount)"
+            },
+            {
+                "Function": "withdrawOneStakingPercents",
+                "Node": "_depositToken.mint(user, bAmountUSDT)"
+            }
+        ]
+    }
+}

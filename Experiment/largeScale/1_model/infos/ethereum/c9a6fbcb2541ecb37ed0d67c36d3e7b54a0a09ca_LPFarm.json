@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_shares"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "sushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "degenLpToken.mint(msg.sender, _shares)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "degenLpToken.mint(msg.sender, _shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "lpToken.transfer(msg.sender, _rewards.div(2))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "lpToken.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

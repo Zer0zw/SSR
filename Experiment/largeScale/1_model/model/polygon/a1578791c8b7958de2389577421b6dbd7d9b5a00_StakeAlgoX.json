@@ -1,0 +1,91 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfos.amount"
+        ],
+        "User Stake Reward": [
+            "stakeInfos.claimed"
+        ],
+        "User Stake Time": [
+            "stakeInfos.startTS",
+            "stakeInfos.endTS",
+            "planDuration"
+        ],
+        "Stake Token Address": [
+            "AlgoX"
+        ],
+        "Reward Token Address": [
+            "AlgoX"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeToken"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    386
+                ],
+                "Input": [
+                    "stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "AlgoX",
+                    "_paused",
+                    "addressStaked",
+                    "planExpired"
+                ],
+                "Full Calculation Variables": [
+                    "AlgoX",
+                    "_paused",
+                    "addressStaked",
+                    "planExpired"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    368
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Control Variables": [
+                    "AlgoX",
+                    "addressStaked",
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Full Calculation Variables": [
+                    "AlgoX",
+                    "addressStaked",
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

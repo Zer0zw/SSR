@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ComputingPowerBalance",
+            "ActivatedComputingPower"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "ReferralRewardAmount"
+        ],
+        "User Stake Time": [
+            "UserCreatedDate"
+        ],
+        "Stake Token Address": [
+            "AACB"
+        ],
+        "Reward Token Address": [
+            "AACB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Activate",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "AACB.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": []
+    }
+}

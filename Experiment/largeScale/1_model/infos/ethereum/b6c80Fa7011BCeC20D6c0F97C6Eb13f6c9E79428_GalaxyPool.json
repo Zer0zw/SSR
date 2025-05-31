@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalDeposited"
+        ],
+        "User Stake Reward": [
+            "claimableRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingContract"
+        ],
+        "Reward Token Address": [
+            "rewardsContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IBigBang(BigBang).stake(pid, msg.sender, address(this), _amount, _tier)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IBigBang(BigBang).claimRewards(pid, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IBigBang(BigBang).unstake(pid, _user, totalDeposited)"
+            }
+        ]
+    }
+}

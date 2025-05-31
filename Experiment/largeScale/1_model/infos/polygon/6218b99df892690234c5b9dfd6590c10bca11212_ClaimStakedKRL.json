@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "userTimeLock"
+        ],
+        "Stake Token Address": [
+            "KRL"
+        ],
+        "Reward Token Address": [
+            "KRL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "KRL.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "KRL.transfer(account, reward)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "KRL.transfer(account, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "KRL.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

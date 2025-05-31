@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo0.tokenPoint",
+            "userInfo1.tokenPoint"
+        ],
+        "User Stake Reward": [
+            "tokenPL0",
+            "tokenPL1"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "lpToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransfer(lpToken.token0(), address(lpToken), amountA"
+            },
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransfer(lpToken.token1(), address(lpToken), amountB"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reimburseIlAmount",
+                "Node": "TransferHelper.safeTransfer(lpToken.token1(), to, reimAmount"
+            },
+            {
+                "Function": "reimburseIlAmount",
+                "Node": "TransferHelper.safeTransfer(lpToken.token0(), to, reimAmount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "untakeToken",
+                "Node": "TransferHelper.safeTransfer(tokenCurrent, masterCaller(), _withdrawableAmount"
+            },
+            {
+                "Function": "redimeSwap",
+                "Node": "TransferHelper.safeTransfer(sellToken, address(lpToken), amountIn"
+            }
+        ]
+    }
+}

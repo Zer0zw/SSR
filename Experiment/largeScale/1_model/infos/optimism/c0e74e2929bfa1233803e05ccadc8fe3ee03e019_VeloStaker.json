@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalSupply"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "native"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "claimVeEmissions",
+                "Node": "_mint(address(beVeloRewardPool), gap)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "router.swapExactTokensForTokens(tokenBal, 0, routes[rewardsGauge.bribeTokens[j]], address(this), block.timestamp)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "router.swapExactTokensForTokens(tokenBal, 0, routes[rewardsGauge.feeTokens[k]], address(this), block.timestamp)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_mint(address(beVeloRewardPool), gap)"
+            }
+        ],
+        "unStake": []
+    }
+}

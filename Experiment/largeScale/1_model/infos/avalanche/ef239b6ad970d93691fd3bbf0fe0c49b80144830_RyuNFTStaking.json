@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownedStakesBalance"
+        ],
+        "User Stake Reward": [
+            "StakeDetails.startTimestamp",
+            "getDayReward"
+        ],
+        "User Stake Time": [
+            "StakeDetails.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "ryuToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "batchStake",
+                "Node": "nft.safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stake",
+                "Node": "nft.safeTransferFrom(_msgSender(), address(this), tokenId)"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "nft.safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "ryuToken.transfer(_msgSender(), totalClaimed)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "ryuToken.mint(_msgSender(), totalClaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nft.safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

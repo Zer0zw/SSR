@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "gogoRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "stakingToken.safeTransfer(msg.sender, reward - _fee(reward))"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "stakingToken.safeTransfer(feeReceiver, _fee(reward))"
+            },
+            {
+                "Function": "getGogoReward",
+                "Node": "rewardsToken.safeTransfer(account, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer((msg.sender), amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, amount + reward - _fee(reward))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(feeReceiver, _fee(reward))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,122 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakers.rewardsClaimed",
+            "stakers.pending"
+        ],
+        "User Stake Time": [
+            "stakers.stakeDate"
+        ],
+        "Stake Token Address": [
+            "DPAD"
+        ],
+        "Reward Token Address": [
+            "RW"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "STAKE_DPAD"
+        ],
+        "getReward": [
+            "ClaimReward"
+        ],
+        "unStake": [
+            "UnStake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE_DPAD",
+                "Node": [
+                    277
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DPAD",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "DPAD",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": [
+                    301
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "rewardPerDPAD",
+                    "stakers.pending",
+                    "stakers.rewardsClaimed",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount"
+                ],
+                "Control Variables": [
+                    "RW",
+                    "minStakingPeriod",
+                    "rewardPerDPAD",
+                    "stakers.pending",
+                    "stakers.rewardsClaimed",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount",
+                    "totalClaimedRewards"
+                ],
+                "Full Calculation Variables": [
+                    "RW",
+                    "minStakingPeriod",
+                    "rewardPerDPAD",
+                    "stakers.pending",
+                    "stakers.rewardsClaimed",
+                    "stakers.stakeDate",
+                    "stakers.stakedAmount",
+                    "totalClaimedRewards"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnStake",
+                "Node": [
+                    321
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakers.pending",
+                    "stakers.stakedAmount"
+                ],
+                "Control Variables": [
+                    "DPAD",
+                    "stakers.pending",
+                    "stakers.stakedAmount",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "DPAD",
+                    "stakers.pending",
+                    "stakers.stakedAmount",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

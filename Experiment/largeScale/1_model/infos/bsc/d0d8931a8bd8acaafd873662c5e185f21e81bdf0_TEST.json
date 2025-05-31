@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "_calculateProfit",
+            "profitPerStakePrevious"
+        ],
+        "User Stake Time": [
+            "Stake.time"
+        ],
+        "Stake Token Address": [
+            "targetToken"
+        ],
+        "Reward Token Address": [
+            "targetToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_tokenTransfer(_msgSender(), address(this), _amount, false)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestStake",
+                "Node": "bool isSuccess = token.transfer(_msgSender(), profit + profitPerStakePrevious[_msgSender()])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "bool isSuccess = token.transfer(msg.sender, amountWithdraw)"
+            }
+        ]
+    }
+}

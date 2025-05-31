@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "NFT_STAKING_WEEKLY_REWARD_AMOUNT",
+            "NFT_HOLDING_WEEKLY_REWARD_AMOUNT"
+        ],
+        "User Stake Time": [
+            "StakingData.timestamp"
+        ],
+        "Stake Token Address": [
+            "_genzeeContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNfts",
+                "Node": "_genzeeContract.transferFrom(msg.sender, address(this), genzeeId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakedNftRewards",
+                "Node": "_mint(msg.sender, totalRewards)"
+            },
+            {
+                "Function": "claimNftHoldRewards",
+                "Node": "_mint(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNfts",
+                "Node": "_genzeeContract.transferFrom(address(this), stake.ownerAddress, genzeeId)"
+            }
+        ]
+    }
+}

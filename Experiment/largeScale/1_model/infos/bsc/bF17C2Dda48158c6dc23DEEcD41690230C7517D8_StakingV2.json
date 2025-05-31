@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Dep.deposito"
+        ],
+        "User Stake Reward": [
+            "Dep.factor"
+        ],
+        "User Stake Time": [
+            "Dep.tiempo"
+        ],
+        "Stake Token Address": [
+            "MARKET_CONTRACT"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "MARKET_CONTRACT.NoStakingCard(_msgSender(), _carta)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "retirable",
+                "Node": "payable(_msgSender()).transfer(_value)"
+            },
+            {
+                "Function": "retirableBlock",
+                "Node": "payable(_msgSender()).transfer(_value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "retiro",
+                "Node": "payable(_msgSender()).transfer(_value)"
+            }
+        ]
+    }
+}

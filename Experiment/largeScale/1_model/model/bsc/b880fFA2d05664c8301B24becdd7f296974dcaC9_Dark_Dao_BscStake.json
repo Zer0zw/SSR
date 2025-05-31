@@ -1,0 +1,157 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakeRewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "lastClock",
+            "lockTime"
+        ],
+        "Stake Token Address": [
+            "Dark_Dao"
+        ],
+        "Reward Token Address": [
+            "Dark_Dao"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "registerAndStake",
+            "stake"
+        ],
+        "getReward": [
+            "withdrawEarnings"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": [
+                    133
+                ],
+                "Input": [
+                    "_amount",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Dark_Dao",
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax"
+                ],
+                "Full Calculation Variables": [
+                    "Dark_Dao",
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    156
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Dark_Dao",
+                    "active",
+                    "minimumStakeValue",
+                    "registered"
+                ],
+                "Full Calculation Variables": [
+                    "Dark_Dao",
+                    "active",
+                    "minimumStakeValue",
+                    "registered"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": [
+                    195
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes"
+                ],
+                "Control Variables": [
+                    "Dark_Dao",
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "Dark_Dao",
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    179
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "unstakingTaxRate"
+                ],
+                "Control Variables": [
+                    "Dark_Dao",
+                    "lastClock",
+                    "lockTime",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Full Calculation Variables": [
+                    "Dark_Dao",
+                    "lastClock",
+                    "lockTime",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

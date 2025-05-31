@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pair.lpToken(_pool.token).balanceOf(_account)",
+            "pair.debtOf(_pool.token, _account)"
+        ],
+        "User Stake Reward": [
+            "rewardSnapshot[pid][_account]"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_pool.token"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "_distributeReward",
+                "Node": "_transferReward(_account, _pendingAccountReward(pid, _account))"
+            }
+        ],
+        "unStake": []
+    }
+}

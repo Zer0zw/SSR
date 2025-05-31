@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "incomes.lastDeposit"
+        ],
+        "User Stake Reward": [
+            "incomes.profitSystem",
+            "incomes.profitReference",
+            "incomes.totalReceive"
+        ],
+        "User Stake Time": [
+            "incomes.lastTimeDeposit",
+            "incomes.lastTimeWithdraw"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "_bonusToken(msg.sender, msg.value)"
+            },
+            {
+                "Function": "pushSomeThings",
+                "Node": "_bonusToken(userAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "payable(_add).transfer(value * 99 / 100)"
+            }
+        ],
+        "unStake": []
+    }
+}

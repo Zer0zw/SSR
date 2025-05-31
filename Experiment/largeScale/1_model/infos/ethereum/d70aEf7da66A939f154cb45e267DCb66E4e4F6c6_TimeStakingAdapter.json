@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStacked"
+        ],
+        "User Stake Reward": [
+            "amount"
+        ],
+        "User Stake Time": [
+            "userLastReward"
+        ],
+        "Stake Token Address": [
+            "STACKING_POOL_TIME",
+            "STACKING_POOL_TIME_ETH_LP"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "getBalance",
+                "Node": "totalBalance += ITimeWarpPool(STACKING_POOL_TIME).userStacked(account)"
+            },
+            {
+                "Function": "getBalance",
+                "Node": "totalBalance += balanceLP / totalSupply * reserve0"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getBalance",
+                "Node": "totalBalance += amount"
+            }
+        ],
+        "unStake": []
+    }
+}

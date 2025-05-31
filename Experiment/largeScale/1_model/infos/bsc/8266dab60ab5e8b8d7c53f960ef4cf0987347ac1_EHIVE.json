@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.staked"
+        ],
+        "User Stake Reward": [
+            "Staker.earned"
+        ],
+        "User Stake Time": [
+            "Staker.start"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_burn(msg.sender, stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_mint(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_mint(msg.sender, _stakers[msg.sender][validator].staked.add(reward))"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_mint(msg.sender, _stakers[msg.sender][validator].staked)"
+            }
+        ]
+    }
+}

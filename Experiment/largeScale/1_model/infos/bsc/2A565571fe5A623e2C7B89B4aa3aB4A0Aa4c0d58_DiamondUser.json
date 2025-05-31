@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Staking.claimedReward"
+        ],
+        "User Stake Time": [
+            "Staking.stakingTime",
+            "Staking.userlockTime",
+            "Staking.unstakeTime"
+        ],
+        "Stake Token Address": [
+            "HPG"
+        ],
+        "Reward Token Address": [
+            "HPG"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lockStake",
+                "Node": "userInfo[user].stakedAmount = amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "HPG.transfer(user, withdrawAble)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "userInfo[user].stakedAmount = 0"
+            }
+        ]
+    }
+}

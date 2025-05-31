@@ -1,0 +1,185 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakeBalances"
+        ],
+        "User Stake Reward": [
+            "mintedRewards",
+            "remainingRewards"
+        ],
+        "User Stake Time": [
+            "_stakes.stakedMonthes",
+            "_stakes.stakedExpireAt"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stake"
+        ],
+        "getReward": [
+            "addRelation",
+            "distribute",
+            "distribute"
+        ],
+        "unStake": [
+            "burnExpiredStake",
+            "burnExpiredStake",
+            "withdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1071
+                ],
+                "Input": [
+                    "amount",
+                    "forAccount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "isBlackListed",
+                    "stakeEnabled",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "isBlackListed",
+                    "stakeEnabled",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distribute",
+                "Node": [
+                    1203
+                ],
+                "Input": [
+                    "amount",
+                    "grandpaAmount",
+                    "incentiveAmount",
+                    "parentAmount",
+                    "to",
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_parents",
+                    "_paused",
+                    "_stakes.firstCallTime",
+                    "isBlackListed",
+                    "stakeEnabled"
+                ],
+                "Full Calculation Variables": [
+                    "_parents",
+                    "_paused",
+                    "_stakes.firstCallTime",
+                    "isBlackListed",
+                    "stakeEnabled"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "addRelation",
+                "Node": [
+                    1242
+                ],
+                "Input": [
+                    "amount",
+                    "child",
+                    "grandpaAmount",
+                    "parentAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_parents",
+                    "_stakes.firstCallTime",
+                    "stakeEnabled",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "_parents",
+                    "_stakes.firstCallTime",
+                    "stakeEnabled",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1143
+                ],
+                "Input": [
+                    "to"
+                ],
+                "Calculation Variables": [
+                    "_stakeBalances"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "_stakeBalances",
+                    "_stakes.stakedExpireAt",
+                    "_stakes.stakedMonthes",
+                    "isBlackListed",
+                    "stakingToken",
+                    "withdrawEnabled"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "_stakeBalances",
+                    "_stakes.stakedExpireAt",
+                    "_stakes.stakedMonthes",
+                    "isBlackListed",
+                    "stakingToken",
+                    "withdrawEnabled"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "burnExpiredStake",
+                "Node": [
+                    1156
+                ],
+                "Input": [
+                    "account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "_stakeBalances",
+                    "burnEnabled",
+                    "createTime",
+                    "isBlackListed",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "_stakeBalances",
+                    "burnEnabled",
+                    "createTime",
+                    "isBlackListed",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

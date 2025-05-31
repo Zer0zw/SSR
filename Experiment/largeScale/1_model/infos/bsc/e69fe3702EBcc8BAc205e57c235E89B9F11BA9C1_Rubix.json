@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakingBalance"
+        ],
+        "User Stake Reward": [
+            "InvestorData.EarnedRbx"
+        ],
+        "User Stake Time": [
+            "InvestorData.rTime"
+        ],
+        "Stake Token Address": [
+            "_oldRBX"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "_balances[msg.sender] = _balances[msg.sender].sub(_amount.add(depositFee))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_balances[msg.sender] = _balances[msg.sender].add(_pendingBalance(msg.sender))"
+            },
+            {
+                "Function": "claim",
+                "Node": "_balances[msg.sender] = _balances[msg.sender].add(_pendingBalance(msg.sender).add(_stakingBalance[msg.sender])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_balances[msg.sender] = _balances[msg.sender].add(_stakingBalance[msg.sender].sub(withdrawFee))"
+            }
+        ]
+    }
+}

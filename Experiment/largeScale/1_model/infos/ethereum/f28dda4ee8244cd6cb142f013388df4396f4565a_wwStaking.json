@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositTime",
+            "UserInfo.unstakeStartTime"
+        ],
+        "Stake Token Address": [
+            "wwToken"
+        ],
+        "Reward Token Address": [
+            "wwToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "IERC20(wwToken).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wwToken).safeTransfer(msg.sender, outAmount)"
+            },
+            {
+                "Function": "claim",
+                "Node": "IERC20(wwToken).safeTransfer(msg.sender, receiveAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeToken",
+                "Node": "IERC20(wwToken).safeTransfer(msg.sender, outAmount)"
+            },
+            {
+                "Function": "claim",
+                "Node": "IERC20(wwToken).safeTransfer(msg.sender, receiveAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "vaultSharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAddress"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IQuickswap(masterChef).stake(_wantAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IQuickswap(masterChef).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IQuickswap(masterChef).withdraw(_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IQuickswap(masterChef).withdraw(vaultSharesTotal())"
+            }
+        ]
+    }
+}

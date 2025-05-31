@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStake"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeT"
+        ],
+        "Reward Token Address": [
+            "governanceT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "adjustPosition",
+                "Node": "stakeT.stake(toInvest)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "prepareReturn",
+                "Node": "governanceT.getReward()"
+            },
+            {
+                "Function": "prepareMigration",
+                "Node": "governanceT.getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "liquidatePosition",
+                "Node": "stakeT.unstake((Math.min(balanceStaked, _amountNeeded - balanceWant)))"
+            },
+            {
+                "Function": "prepareMigration",
+                "Node": "stakeT.unstake(balanceOfStake())"
+            }
+        ]
+    }
+}

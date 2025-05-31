@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmount"
+        ],
+        "User Stake Reward": [
+            "rewardsEarned"
+        ],
+        "User Stake Time": [
+            "startTime",
+            "interval"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "sendToken(user, stakedToken, stakedToken, rewardsEarned)"
+            },
+            {
+                "Function": "_rewardCalculation",
+                "Node": "sendToken(user, stakedToken, rewardToken, rewardsEarned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC20(tokenAddress[stakeId]).transfer(user, stakedAmount[stakeId])"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "IERC20(tokenAddress[stakeId]).transfer(userAddress, stakedAmount[stakeId])"
+            }
+        ]
+    }
+}

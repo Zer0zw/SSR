@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "holderUnlockTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.transferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "stakeNft",
+                "Node": "nft.transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "rewardToken.transfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "rewardToken.transfer(payable(address(msg.sender)), pending)"
+            },
+            {
+                "Function": "unstakeNft",
+                "Node": "rewardToken.transfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "claim",
+                "Node": "dividendTracker.processAccount(payable(msg.sender), false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.transfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "unstakeNft",
+                "Node": "nft.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.transfer(address(msg.sender), _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "curveLPToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_depositToYieldPool",
+                "Node": "SturdyInternalAsset(internalAssetToken).mint(address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "processYield",
+                "Node": "IERC20(_asset).safeTransfer(yieldManager, yieldAmount)"
+            },
+            {
+                "Function": "processExtraYield",
+                "Node": "IERC20(_asset).safeTransfer(yieldManager, yieldAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IERC20(curveLPToken).safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "withdrawOnLiquidation",
+                "Node": "IERC20(curveLPToken).safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "_withdrawFromYieldPool",
+                "Node": "IERC20(curveLPToken).safeTransfer(_to, _amount)"
+            }
+        ]
+    }
+}

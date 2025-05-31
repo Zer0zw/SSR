@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "hashRateToken"
+        ],
+        "Reward Token Address": [
+            "hashRateToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeWithPermit",
+                "Node": "IERC20(hashRateToken).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(hashRateToken).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IPOWToken(hashRateToken).claimReward(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(hashRateToken).safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC20(hashRateToken).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

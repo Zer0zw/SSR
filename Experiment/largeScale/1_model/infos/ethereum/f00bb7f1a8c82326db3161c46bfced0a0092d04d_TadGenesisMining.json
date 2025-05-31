@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeHolders"
+        ],
+        "User Stake Reward": [
+            "stakerClaimed"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "TenToken"
+        ],
+        "Reward Token Address": [
+            "TadToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "TenToken.transferFrom(_address, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTad",
+                "Node": "TadToken.transfer(msg.sender, claimableTad)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "TenToken.transfer(_address, _amount)"
+            }
+        ]
+    }
+}

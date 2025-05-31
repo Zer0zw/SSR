@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "Boardseat.rewardEarned"
+        ],
+        "User Stake Time": [
+            "Boardseat.epochTimerStart"
+        ],
+        "Stake Token Address": [
+            "share"
+        ],
+        "Reward Token Address": [
+            "dollar"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(_amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "super._stakeFor(_account, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "dollar.safeTransfer(_account, _reward)"
+            },
+            {
+                "Function": "_claimReward",
+                "Node": "dollar.safeTransfer(_account, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(_amount, _sentAmount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,653 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt",
+            "userInfo.rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "userInfo.nextHarvestUntil"
+        ],
+        "Stake Token Address": [
+            "farmInfo.inputToken"
+        ],
+        "Reward Token Address": [
+            "rewardPool.rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositFor",
+            "depositForWithPermit",
+            "depositWithPermit"
+        ],
+        "getReward": [
+            "deposit",
+            "depositFor",
+            "depositForWithPermit",
+            "depositWithPermit",
+            "withdraw",
+            "withdrawFor"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw",
+            "withdrawFor"
+        ],
+        "Sensitive Functions": [
+            "addRewardToken",
+            "init",
+            "updateBlockReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1445,
+                    1446,
+                    1447,
+                    1448,
+                    1449
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.depositFeeBP",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.depositFeeBP",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositFor",
+                "Node": [
+                    1445,
+                    1446,
+                    1447,
+                    1448,
+                    1449
+                ],
+                "Input": [
+                    "_amount",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.depositFeeBP",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.depositFeeBP",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositWithPermit",
+                "Node": [
+                    1445,
+                    1446,
+                    1447,
+                    1448,
+                    1449
+                ],
+                "Input": [
+                    "_amount",
+                    "_deadline",
+                    "_r",
+                    "_s",
+                    "_v"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.depositFeeBP",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.depositFeeBP",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositForWithPermit",
+                "Node": [
+                    1445,
+                    1446,
+                    1447,
+                    1448,
+                    1449
+                ],
+                "Input": [
+                    "_amount",
+                    "_deadline",
+                    "_r",
+                    "_s",
+                    "_user",
+                    "_v"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.depositFeeBP",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.depositFeeBP",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1611,
+                    1612,
+                    1613,
+                    1614,
+                    1615
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawer"
+                ],
+                "Calculation Variables": [
+                    "farmInfo.endBlock",
+                    "farmInfo.startBlock",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked"
+                ],
+                "Control Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawFor",
+                "Node": [
+                    1611,
+                    1612,
+                    1613,
+                    1614,
+                    1615
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawer"
+                ],
+                "Calculation Variables": [
+                    "farmInfo.endBlock",
+                    "farmInfo.startBlock",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked"
+                ],
+                "Control Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositWithPermit",
+                "Node": [
+                    1611,
+                    1612,
+                    1613,
+                    1614,
+                    1615
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawer"
+                ],
+                "Calculation Variables": [
+                    "farmInfo.endBlock",
+                    "farmInfo.startBlock",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked"
+                ],
+                "Control Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositForWithPermit",
+                "Node": [
+                    1611,
+                    1612,
+                    1613,
+                    1614,
+                    1615
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawer"
+                ],
+                "Calculation Variables": [
+                    "farmInfo.endBlock",
+                    "farmInfo.startBlock",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked"
+                ],
+                "Control Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    1611,
+                    1612,
+                    1613,
+                    1614,
+                    1615
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawer"
+                ],
+                "Calculation Variables": [
+                    "farmInfo.endBlock",
+                    "farmInfo.startBlock",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked"
+                ],
+                "Control Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositFor",
+                "Node": [
+                    1611,
+                    1612,
+                    1613,
+                    1614,
+                    1615
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawer"
+                ],
+                "Calculation Variables": [
+                    "farmInfo.endBlock",
+                    "farmInfo.startBlock",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked"
+                ],
+                "Control Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "CNT",
+                    "farmInfo.endBlock",
+                    "farmInfo.harvestInterval",
+                    "farmInfo.startBlock",
+                    "isRewardManagerEnabled",
+                    "rewardPool.accRewardPerShare",
+                    "rewardPool.blockReward",
+                    "rewardPool.lastRewardBlock",
+                    "rewardPool.rewardToken",
+                    "totalInputTokensStaked",
+                    "totalLockedUpRewards",
+                    "userInfo.amount",
+                    "userInfo.nextHarvestUntil",
+                    "userInfo.rewardDebt",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1502,
+                    1503,
+                    1504,
+                    1505
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "farmInfo.withdrawalFeeBP",
+                    "feeAddress",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "farmInfo.withdrawalFeeBP",
+                    "feeAddress",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawFor",
+                "Node": [
+                    1502,
+                    1503,
+                    1504,
+                    1505
+                ],
+                "Input": [
+                    "_amount",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "farmInfo.withdrawalFeeBP",
+                    "feeAddress",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "farmInfo.withdrawalFeeBP",
+                    "feeAddress",
+                    "userInfo.amount",
+                    "userInfo.whiteListedHandlers"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1520
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "farmInfo.inputToken",
+                    "farmInfo.numFarmers",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

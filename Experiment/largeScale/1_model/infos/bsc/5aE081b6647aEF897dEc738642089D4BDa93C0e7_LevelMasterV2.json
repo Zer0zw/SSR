@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lastRewardTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpToken[pid].safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "addLiquidity",
+                "Node": "IERC20(assetToken).safeTransferFrom(msg.sender, address(this), assetAmount)"
+            },
+            {
+                "Function": "addLiquidityETH",
+                "Node": "weth.deposit{value: _amountIn}()"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_transferReward(to, _pendingReward, pool.staking)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "_transferReward(to, _pendingReward, pool.staking)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken[pid].safeTransfer(to, amount)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "lpToken[pid].safeTransfer(to, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "lpToken[pid].safeTransfer(to, amount)"
+            },
+            {
+                "Function": "removeLiquidity",
+                "Node": "levelPool.removeLiquidity(address(tranche), toToken, lpAmount, minOut, to)"
+            },
+            {
+                "Function": "removeLiquidityETH",
+                "Node": "_safeTransferETH(to, received)"
+            }
+        ]
+    }
+}

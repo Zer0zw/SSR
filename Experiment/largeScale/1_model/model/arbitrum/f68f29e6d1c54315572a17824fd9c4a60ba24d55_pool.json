@@ -1,0 +1,149 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.amount"
+        ],
+        "User Stake Reward": [
+            "stakers.amount"
+        ],
+        "User Stake Time": [
+            "stakers.time"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeTokens"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [
+            "releaseValve",
+            "supportTool"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": [
+                    69
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakers.amount",
+                    "stakers.time",
+                    "stakingPaused",
+                    "tokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.amount",
+                    "stakers.time",
+                    "stakingPaused",
+                    "tokenAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    103
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakers.wins",
+                    "rewardPercentage",
+                    "stakers.amount",
+                    "stakers.time",
+                    "stakers.losses"
+                ],
+                "Control Variables": [
+                    "rewardChance",
+                    "splitAddress",
+                    "tokenAddress",
+                    "treasuryAddress",
+                    "stakers.wins",
+                    "rewardPercentage",
+                    "riskModifier",
+                    "stakers.amount",
+                    "stakers.time",
+                    "stakers.losses"
+                ],
+                "Full Calculation Variables": [
+                    "rewardChance",
+                    "splitAddress",
+                    "tokenAddress",
+                    "treasuryAddress",
+                    "stakers.wins",
+                    "rewardPercentage",
+                    "riskModifier",
+                    "stakers.amount",
+                    "stakers.time",
+                    "stakers.losses"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "supportTool",
+                "Node": [
+                    214
+                ],
+                "Input": [
+                    "_staker"
+                ],
+                "Calculation Variables": [
+                    "stakers.amount",
+                    "stakers.time"
+                ],
+                "Control Variables": [
+                    "stakers.amount",
+                    "stakers.time",
+                    "support1",
+                    "support2",
+                    "tokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.amount",
+                    "stakers.time",
+                    "support1",
+                    "support2",
+                    "tokenAddress"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "releaseValve",
+                "Node": [
+                    149
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "tokenAddress"
+                ],
+                "Control Variables": [
+                    "owner",
+                    "tokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "owner",
+                    "tokenAddress"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

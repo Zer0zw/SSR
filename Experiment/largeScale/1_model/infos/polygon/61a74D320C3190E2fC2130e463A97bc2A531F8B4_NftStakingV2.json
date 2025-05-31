@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_faceValues",
+            "_stakeBalances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [
+            "_lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "_nftAsset"
+        ],
+        "Reward Token Address": [
+            "_cifi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "_nftAsset.safeTransferFrom(msg.sender, address(this), nftId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_cifi.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawNFT",
+                "Node": "_nftAsset.safeTransferFrom(address(this), msg.sender, nftId)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_nftAsset.safeTransferFrom(address(this), msg.sender, nftIds[index])"
+            }
+        ]
+    }
+}

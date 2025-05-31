@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalInits",
+            "Depo.amt"
+        ],
+        "User Stake Reward": [
+            "User.refBonus"
+        ],
+        "User Stake Time": [
+            "User.startDate",
+            "Depo.depoTime"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStablecoins",
+                "Node": "USDT.safeTransferFrom(msg.sender, address(this), amtx)"
+            },
+            {
+                "Function": "stakeRefBonus",
+                "Node": "No direct transfer statement for staking, as it uses the referral bonus already in the contract"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "USDT.safeTransfer(msg.sender, adjustedAmt)"
+            },
+            {
+                "Function": "compound",
+                "Node": "No direct transfer statement for rewards, as it compounds the rewards back into the staking pool"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInitial",
+                "Node": "USDT.safeTransfer(msg.sender, transferAmt)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "DepositInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalEarnedDiamond"
+        ],
+        "User Stake Time": [
+            "DepositInfo.lockupPeriod",
+            "DepositInfo.nextWithdraw"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "diamond"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeDiamondTransfer(msg.sender, claimablePending)"
+            },
+            {
+                "Function": "harvestForDeposit",
+                "Node": "safeDiamondTransfer(msg.sender, claimablePending)"
+            },
+            {
+                "Function": "payOrLockupPendingDiamond",
+                "Node": "safeDiamondTransfer(msg.sender, claimablePending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

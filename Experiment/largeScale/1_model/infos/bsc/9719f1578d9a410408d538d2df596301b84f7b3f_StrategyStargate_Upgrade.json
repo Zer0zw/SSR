@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositAmount"
+        ],
+        "User Stake Reward": [
+            "rewardAmt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenA",
+            "_pair"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositStake",
+                "Node": "IERC20Upgradeable(_pair).approve(stakingPool,_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawBlockReward",
+                "Node": "Controller(controller).CollectBlockReward(rewardAmt,rewardToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Upgradeable(_token).safeTransfer(vault_addr, seccessReturnNums)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20Upgradeable(tokenA).safeTransfer(vault_addr, _after_bal0)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20Upgradeable(rewardToken).safeTransfer(vault_addr, u_balance)"
+            }
+        ]
+    }
+}

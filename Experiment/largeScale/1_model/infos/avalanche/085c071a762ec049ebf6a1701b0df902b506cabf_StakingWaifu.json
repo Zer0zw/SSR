@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalWaifusStaked"
+        ],
+        "User Stake Reward": [
+            "owed"
+        ],
+        "User Stake Time": [
+            "Stake.value"
+        ],
+        "Stake Token Address": [
+            "cryptowaifus"
+        ],
+        "Reward Token Address": [
+            "waifustoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addManyToCapsule",
+                "Node": "cryptowaifus.transferFrom(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "_addWaifuToCapsule",
+                "Node": "capsule[tokenId] = Stake({ owner: account, tokenId: uint16(tokenId), value: uint80(block.timestamp) })"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimManyFromCapsules",
+                "Node": "waifustoken.mint(_msgSender(), owed)"
+            },
+            {
+                "Function": "_claimWaifuFromCapsule",
+                "Node": "waifustoken.mint(_msgSender(), owed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimManyFromCapsules",
+                "Node": "cryptowaifus.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            },
+            {
+                "Function": "_claimWaifuFromCapsule",
+                "Node": "cryptowaifus.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            },
+            {
+                "Function": "rescue",
+                "Node": "cryptowaifus.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            }
+        ]
+    }
+}

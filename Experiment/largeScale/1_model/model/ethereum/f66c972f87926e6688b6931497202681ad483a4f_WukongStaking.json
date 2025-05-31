@@ -1,0 +1,133 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_hardStakers.hardStakedWukongId",
+            "totalStakedNFT"
+        ],
+        "User Stake Reward": [
+            "_hardStakers.accumulatedAmount",
+            "_passiveStakers.accumulatedAmount"
+        ],
+        "User Stake Time": [
+            "_hardStakers.lastCheckpoint",
+            "_passiveStakers.lastCheckPoint"
+        ],
+        "Stake Token Address": [
+            "WukongNFT"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "hardStake"
+        ],
+        "getReward": [
+            "hardStake",
+            "unHardStake"
+        ],
+        "unStake": [
+            "unHardStake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "hardStake",
+                "Node": [
+                    502
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WukongNFT",
+                    "_hardStakers.hardStakedWukongId"
+                ],
+                "Full Calculation Variables": [
+                    "WukongNFT",
+                    "_hardStakers.hardStakedWukongId"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "hardStake",
+                "Node": [
+                    554
+                ],
+                "Input": [
+                    "staker",
+                    "_owner"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_passiveStakers.accumulatedAmount",
+                    "_hardStakers.lastCheckpoint",
+                    "_passiveStakers.lastCheckPoint",
+                    "_hardStakers.accumulatedAmount"
+                ],
+                "Full Calculation Variables": [
+                    "_passiveStakers.accumulatedAmount",
+                    "_hardStakers.lastCheckpoint",
+                    "_passiveStakers.lastCheckPoint",
+                    "_hardStakers.accumulatedAmount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unHardStake",
+                "Node": [
+                    554
+                ],
+                "Input": [
+                    "staker",
+                    "_owner"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_passiveStakers.accumulatedAmount",
+                    "_hardStakers.lastCheckpoint",
+                    "_passiveStakers.lastCheckPoint",
+                    "_hardStakers.accumulatedAmount"
+                ],
+                "Full Calculation Variables": [
+                    "_passiveStakers.accumulatedAmount",
+                    "_hardStakers.lastCheckpoint",
+                    "_passiveStakers.lastCheckPoint",
+                    "_hardStakers.accumulatedAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unHardStake",
+                "Node": [
+                    526
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WukongNFT",
+                    "_hardStakers.accumulatedAmount",
+                    "_hardStakers.hardStakedWukongId",
+                    "_hardStakers.lastCheckpoint",
+                    "_ownerOfHardStakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "WukongNFT",
+                    "_hardStakers.accumulatedAmount",
+                    "_hardStakers.hardStakedWukongId",
+                    "_hardStakers.lastCheckpoint",
+                    "_ownerOfHardStakingToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

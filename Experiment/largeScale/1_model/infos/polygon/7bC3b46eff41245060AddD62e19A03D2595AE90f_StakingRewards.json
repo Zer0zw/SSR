@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "weeklyUnlocksOf"
+        ],
+        "User Stake Reward": [
+            "weeklyFeeAmounts"
+        ],
+        "User Stake Time": [
+            "StreamData.start",
+            "StreamData.amount",
+            "StreamData.claimed"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "feeTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositLockTokens",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.safeTransfer(_user, claimedAmounts[i])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawExitStream",
+                "Node": "stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "unlockRewardTokens",
+                "Node": "stakingToken.safeTransfer(_user, received)"
+            }
+        ]
+    }
+}

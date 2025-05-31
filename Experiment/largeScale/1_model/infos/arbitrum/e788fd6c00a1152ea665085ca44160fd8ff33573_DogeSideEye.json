@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "calculatePendingRewards"
+        ],
+        "User Stake Time": [
+            "_stakingStartTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_balances[msg.sender] += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calculatePendingRewards",
+                "Node": "transferRewards(msg.sender, pendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "Transfer the staked amount plus the pending rewards back to the user's address"
+            }
+        ]
+    }
+}

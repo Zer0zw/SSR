@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUser"
+        ],
+        "User Stake Reward": [
+            "calculateRewards"
+        ],
+        "User Stake Time": [
+            "depositBlocks"
+        ],
+        "Stake Token Address": [
+            "ERC721_CONTRACT"
+        ],
+        "Reward Token Address": [
+            "RTOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(ERC721_CONTRACT).safeTransferFrom(msg.sender, address(this), tokenIds[i], '')"
+            },
+            {
+                "Function": "admin_deposit",
+                "Node": "IERC721(ERC721_CONTRACT).safeTransferFrom(msg.sender, address(this), tokenIds[i], '')"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "RTOKEN.transferFrom(address(this), msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(ERC721_CONTRACT).safeTransferFrom(address(this), msg.sender, tokenIds[i], '')"
+            }
+        ]
+    }
+}

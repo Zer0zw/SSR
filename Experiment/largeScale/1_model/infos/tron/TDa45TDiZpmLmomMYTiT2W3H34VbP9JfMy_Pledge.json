@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Miner.pledgeAmounts"
+        ],
+        "User Stake Reward": [
+            "Miner.gainPowers"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "Pool.mineToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "doPledge",
+                "Node": "require(IERC20(pool.mineToken).transferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unDoPledge",
+                "Node": "IERC20(pool.mineToken).transfer(msg.sender,amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.claimable"
+        ],
+        "User Stake Time": [
+            "Stake.since"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "stakeholders[index].address_stakes.push(Stake(msg.sender, _amount, timestamp,0))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calculateStakeReward",
+                "Node": "return (((block.timestamp - _current_stake.since) / 1 hours) * _current_stake.amount) / rewardPerHour"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawStake",
+                "Node": "return amount+reward"
+            }
+        ]
+    }
+}

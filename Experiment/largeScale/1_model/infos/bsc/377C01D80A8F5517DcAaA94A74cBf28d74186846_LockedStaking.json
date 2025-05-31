@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "TrancheInfo.rewardTokensRewarded"
+        ],
+        "User Stake Time": [
+            "UserStakeInfo.startDate"
+        ],
+        "Stake Token Address": [
+            "stakeTokenAddr"
+        ],
+        "Reward Token Address": [
+            "stakeTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "IBEP20(stakeTokenAddr).safeTransferFrom(_msgSender(), address(this), _amount.mul(DECIMALFACTOR)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "exitStaking",
+                "Node": "IBEP20(stakeTokenAddr).safeTransfer(_msgSender(), amountToTransfer.mul(DECIMALFACTOR)"
+            },
+            {
+                "Function": "closeTranche",
+                "Node": "IBEP20(stakeTokenAddr).safeTransfer(addr, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exitStaking",
+                "Node": "IBEP20(stakeTokenAddr).safeTransfer(_msgSender(), amountToTransfer.mul(DECIMALFACTOR)"
+            },
+            {
+                "Function": "closeTranche",
+                "Node": "IBEP20(stakeTokenAddr).safeTransfer(addr, amount)"
+            }
+        ]
+    }
+}

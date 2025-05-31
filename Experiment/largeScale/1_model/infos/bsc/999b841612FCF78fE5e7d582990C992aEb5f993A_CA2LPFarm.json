@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeToken"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "PhaseStartTime",
+            "PhaseEndTime"
+        ],
+        "Stake Token Address": [
+            "CA2LP"
+        ],
+        "Reward Token Address": [
+            "CA2Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            },
+            {
+                "Function": "stakeFarm",
+                "Node": "super.stakeFarm(amount, _userAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "CA2Token.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Mystic_Blanaces",
+            "Legundary_Blanaces",
+            "Epic_Blanaces",
+            "Rare_Blanaces"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastUpdated"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "REWARD_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "safeTransferFrom(_msgSender(), address(this), _tokenIDList[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(REWARD_TOKEN_ADDRESS).safeTransfer(_msgSender(), user.rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_safeTransfer(address(this) , _msgSender(), tokenIdList[i], \"\")"
+            }
+        ]
+    }
+}

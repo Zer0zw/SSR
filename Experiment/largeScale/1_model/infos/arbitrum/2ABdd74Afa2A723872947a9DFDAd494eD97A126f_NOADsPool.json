@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "receipt.tokenId"
+        ],
+        "User Stake Reward": [
+            "tokensPerBlock"
+        ],
+        "User Stake Time": [
+            "receipt.stakedFromBlock"
+        ],
+        "Stake Token Address": [
+            "nftToken"
+        ],
+        "Reward Token Address": [
+            "erc20Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_sellNFT",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_payoutStake",
+                "Node": "erc20Token.transfer(receipt[tokenId].owner, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_buyNFT",
+                "Node": "nftToken.safeTransferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "sellNFT",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenId)"
+            }
+        ]
+    }
+}

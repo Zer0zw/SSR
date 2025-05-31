@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.accumulatedYield"
+        ],
+        "User Stake Time": [
+            "Deposit.unlock"
+        ],
+        "Stake Token Address": [
+            "DepositProfile.contractAddress"
+        ],
+        "Reward Token Address": [
+            "_etnaContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "depositTokenContract.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawYield",
+                "Node": "tokenContract.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "depositTokenContract.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TokenStake.amount"
+        ],
+        "User Stake Reward": [
+            "TokenStake.shares"
+        ],
+        "User Stake Time": [
+            "_startTimestamp",
+            "_endTimestamp"
+        ],
+        "Stake Token Address": [
+            "TokenStake.token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(token).safeTransferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeSharesChunk",
+                "Node": "token.safeTransferFrom(_sponsor, _stake.investor, _stake.shares)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(_stake.token).safeTransfer(msg.sender, _stake.amount / (10**(18 - _tokenDecimals[_stake.token])))"
+            }
+        ]
+    }
+}

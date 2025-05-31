@@ -1,0 +1,185 @@
+{
+    "Model": {
+        "Variables": {
+        "User Stake Amount": [
+            "userInfo.allstake"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "pledgeAddress"
+        ],
+        "Reward Token Address": [
+            "profitToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "pledge"
+        ],
+        "getReward": [
+            "rePledge",
+            "stakeNft",
+            "unstakeNft",
+            "withdraw"
+        ],
+        "unStake": [
+            "rePledge",
+            "unstakeNft"
+        ],
+        "Sensitive Functions": [
+            "setTokenAddress"
+        ]
+    },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "pledge",
+                    "Calculation Variables": [
+                        "perBlock",
+                        "pledgeAddress",
+                        "poolInfo.accPerShare",
+                        "poolInfo.endBlock",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.nftAddition",
+                        "poolInfo.stakeSupply",
+                        "rePledgeRate",
+                        "startTime",
+                        "userInfo.allstake",
+                        "userInfo.nftAddition",
+                        "userInfo.nftAmount",
+                        "userInfo.rewardDebt",
+                        "withdrawalFee",
+                        "whitelist"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "perBlock",
+                        "poolInfo.accPerShare",
+                        "poolInfo.endBlock",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.nftAddition",
+                        "poolInfo.stakeSupply",
+                        "userInfo.allstake",
+                        "userInfo.nftAddition",
+                        "userInfo.nftAmount",
+                        "userInfo.rewardDebt",
+                        "withdrawRate",
+                        "withdrawalFee",
+                        "pledgeAddress"
+                    ]
+                },
+                {
+                    "Function": "rePledge",
+                    "Calculation Variables": [
+                        "perBlock",
+                        "poolInfo.accPerShare",
+                        "poolInfo.endBlock",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.nftAddition",
+                        "poolInfo.stakeSupply",
+                        "userInfo.allstake",
+                        "userInfo.nftAddition",
+                        "userInfo.rewardDebt",
+                        "wallet",
+                        "withdrawalFee",
+                        "profitToken"
+                    ]
+                },
+                {
+                    "Function": "stakeNft",
+                    "Calculation Variables": [
+                        "perBlock",
+                        "poolInfo.accPerShare",
+                        "poolInfo.endBlock",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.nftAddition",
+                        "poolInfo.stakeSupply",
+                        "userInfo.allstake",
+                        "userInfo.nftAddition",
+                        "userInfo.rewardDebt",
+                        "wallet",
+                        "withdrawalFee",
+                        "profitToken"
+                    ]
+                },
+                {
+                    "Function": "unstakeNft",
+                    "Calculation Variables": [
+                        "perBlock",
+                        "poolInfo.accPerShare",
+                        "poolInfo.endBlock",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.nftAddition",
+                        "poolInfo.stakeSupply",
+                        "userInfo.allstake",
+                        "userInfo.nftAddition",
+                        "userInfo.rewardDebt",
+                        "wallet",
+                        "withdrawalFee",
+                        "profitToken"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "rePledge",
+                    "Calculation Variables": [
+                        "perBlock",
+                        "pledgeAddress",
+                        "poolInfo.accPerShare",
+                        "poolInfo.endBlock",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.nftAddition",
+                        "poolInfo.stakeSupply",
+                        "rePledgeRate",
+                        "userInfo.allstake",
+                        "userInfo.nftAddition",
+                        "userInfo.nftAmount",
+                        "userInfo.rewardDebt",
+                        "withdrawalFee"
+                    ]
+                },
+                {
+                    "Function": "unstakeNft",
+                    "Calculation Variables": [
+                        "nftContract",
+                        "perBlock",
+                        "poolInfo.accPerShare",
+                        "poolInfo.endBlock",
+                        "poolInfo.lastRewardBlock",
+                        "poolInfo.nftAddition",
+                        "poolInfo.stakeSupply",
+                        "userInfo.allstake",
+                        "userInfo.nftAddition",
+                        "userInfo.nftAmount",
+                        "userNft",
+                        "withdrawalFee"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

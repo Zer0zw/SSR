@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.balance"
+        ],
+        "User Stake Reward": [
+            "WeeklyWithdraw.balance",
+            "Referral.reward"
+        ],
+        "User Stake Time": [
+            "DailyClaim.availableTime",
+            "WeeklyWithdraw.availableTime"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "busd.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "daily_claim",
+                "Node": "weeklyWithdraw[msg.sender].balance = SafeMath.add(weeklyWithdraw[msg.sender].balance, dailyClaim[msg.sender].balance)"
+            },
+            {
+                "Function": "weekly_withdraw",
+                "Node": "busd.transfer(msg.sender, amount_fee_out)"
+            },
+            {
+                "Function": "withdraw_referral",
+                "Node": "busd.transfer(msg.sender, referral[msg.sender].reward)"
+            }
+        ],
+        "unStake": []
+    }
+}

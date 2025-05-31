@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "NATIVE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(NATIVE).transfer(msg.sender, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingNative",
+                "Node": "return user.shares.mul(accNativePerShare).div(1e12).sub(user.rewardDebt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(token[i]).safeTransfer(address(msg.sender), swappedAmt)"
+            }
+        ]
+    }
+}

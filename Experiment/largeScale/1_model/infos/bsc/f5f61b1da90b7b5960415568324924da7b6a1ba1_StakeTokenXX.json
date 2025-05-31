@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked"
+        ],
+        "User Stake Reward": [
+            "profited"
+        ],
+        "User Stake Time": [
+            "stakedAt"
+        ],
+        "Stake Token Address": [
+            "TokenContract"
+        ],
+        "Reward Token Address": [
+            "TokenContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "burnToken(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeProfit",
+                "Node": "mintToken(profit)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "mintToken(staked[sender])"
+            }
+        ]
+    }
+}

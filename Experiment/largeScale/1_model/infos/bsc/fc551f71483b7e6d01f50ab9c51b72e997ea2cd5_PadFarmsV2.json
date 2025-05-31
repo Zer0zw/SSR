@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sharesBalanceLedger"
+        ],
+        "User Stake Reward": [
+            "farmedTokens"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "acceptedToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "checkAndTransfer(_amount, acceptedToken)"
+            },
+            {
+                "Function": "addShares",
+                "Node": "sharesBalanceLedger[_farmerAddress] = sharesBalanceLedger[_farmerAddress].add(_amountOfTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardToken.transfer(_farmerAddress, _rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "remove",
+                "Node": "acceptedToken.transfer(_farmerAddress, _taxedTokens)"
+            }
+        ]
+    }
+}

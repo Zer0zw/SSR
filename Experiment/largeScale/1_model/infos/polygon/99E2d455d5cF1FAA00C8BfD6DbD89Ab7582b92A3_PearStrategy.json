@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(rewards).deposit(poolId, _want, 0x8AcBb9cBc2E3A8286e2A0f5610470cf81F541764)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, _maticFee)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IMasterChef(rewards).withdraw(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IMasterChef(rewards).withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IMasterChef(rewards).emergencyWithdraw(poolId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(want).safeTransfer(jar, _want)"
+            }
+        ]
+    }
+}

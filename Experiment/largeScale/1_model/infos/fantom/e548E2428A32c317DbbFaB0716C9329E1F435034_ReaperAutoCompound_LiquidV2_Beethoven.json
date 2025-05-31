@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "bpTokenBal"
+        ],
+        "User Stake Reward": [
+            "rewardTokenBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "bpToken"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChefv2(MASTER_CHEF).deposit(poolId, bpTokenBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestCore",
+                "Node": "IMasterChefv2(MASTER_CHEF).harvest(poolId, address(this))"
+            },
+            {
+                "Function": "_swapRewardToWftm",
+                "Node": "IUniswapV2Router(SPIRIT_ROUTER).swapExactTokensForTokensSupportingFeeOnTransferTokens(rewardTokenBal, 0, rewardTokenToWftmRoute, address(this), block.timestamp + 600)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20(WFTM).safeTransfer(msg.sender, callFeeAmount)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20(WFTM).safeTransfer(treasury, treasuryFeeAmount)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20(WFTM).safeTransfer(strategistRemitter, strategistFeeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(bpToken).safeTransfer(vault, bpTokenBal - withdrawFee)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(REWARD_TOKEN).transfer(vault, rewardTokenBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(bpToken).transfer(vault, bpTokenBal)"
+            }
+        ]
+    }
+}

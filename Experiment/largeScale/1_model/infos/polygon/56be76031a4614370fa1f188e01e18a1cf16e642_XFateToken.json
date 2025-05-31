@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "fate"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, safe96(_amount, \"XFateToken::enter: invalid amount\"))"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "fate.transfer(msg.sender, what)"
+            }
+        ]
+    }
+}

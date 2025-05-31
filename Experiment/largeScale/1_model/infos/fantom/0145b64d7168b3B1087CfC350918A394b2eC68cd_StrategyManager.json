@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userPoolShares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.stakeToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.stakeToken.safeTransferFrom(address(msg.sender), address(pool.strategy), _depositAmount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "pool.stakeToken.safeTransferFrom(address(msg.sender), address(pool.strategy), _depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "bountyRewarded = poolInfo[_pid].strategy.earn(msg.sender)"
+            },
+            {
+                "Function": "earnMany",
+                "Node": "_earn(_pids[i])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "strategy.withdraw(_withdrawAmount, _to)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "strategy.withdraw(_withdrawAmount, _to)"
+            }
+        ]
+    }
+}

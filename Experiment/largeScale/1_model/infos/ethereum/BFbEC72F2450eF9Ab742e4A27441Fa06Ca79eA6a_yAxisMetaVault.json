@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.accEarned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token3CRV"
+        ],
+        "Reward Token Address": [
+            "tokenYAX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(_mintTo, _shares)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "_mint(_mintTo, _shares)"
+            },
+            {
+                "Function": "stakeShares",
+                "Node": "IERC20(address(this)).transferFrom(msg.sender, address(this), _shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "safeYaxTransfer(msg.sender, _pendingYax)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "safeYaxTransfer(msg.sender, _pendingYax)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(address(this)).transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "token3CRV.safeTransfer(msg.sender, r)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_output).safeTransfer(msg.sender, _outputAmount)"
+            }
+        ]
+    }
+}

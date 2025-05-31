@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PoolInfo.lpAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardReceived"
+        ],
+        "User Stake Time": [
+            "UserInfo.startTime",
+            "UserInfo.endTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.bonusToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), pool.vaultAddress, pool.lpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBonus",
+                "Node": "IERC20( pool.bonusToken ).transfer(msg.sender, pendingAmount)"
+            },
+            {
+                "Function": "claimBonusByIds",
+                "Node": "IERC20( pool.bonusToken ).transfer(msg.sender, pendingAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

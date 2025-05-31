@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "receivedRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "based"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "based.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": "rewardTokens[_rewardId].safeTransfer(recipient, rewards)"
+            },
+            {
+                "Function": "distributeSolidSex",
+                "Node": "issueInterestToken(0)"
+            },
+            {
+                "Function": "distributeSolidSex",
+                "Node": "issueInterestToken(1)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "based.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

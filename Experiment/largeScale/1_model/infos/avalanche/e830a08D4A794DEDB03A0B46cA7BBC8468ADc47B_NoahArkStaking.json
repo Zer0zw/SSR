@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo",
+            "gons"
+        ],
+        "User Stake Reward": [
+            "epoch",
+            "distribute"
+        ],
+        "User Stake Time": [
+            "warmupInfo",
+            "expiry"
+        ],
+        "Stake Token Address": [
+            "NRK"
+        ],
+        "Reward Token Address": [
+            "sNRK"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( sNRK ).safeTransfer( _recipient, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "canClaim",
+                "Node": "IsNRK(sNRK).balanceForGons(info.gons)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( NRK ).safeTransfer( msg.sender, _amount )"
+            }
+        ]
+    }
+}

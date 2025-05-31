@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakingBalance"
+        ],
+        "User Stake Reward": [
+            "InvestorData.EarnedRbx"
+        ],
+        "User Stake Time": [
+            "InvestorData.rTime"
+        ],
+        "Stake Token Address": [
+            "_oldRBX"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "emit Transfer(_msgSender(), address(1), _amount)"
+            },
+            {
+                "Function": "Deposit",
+                "Node": "emit Transfer(_msgSender(), feeAddress, depositFee)"
+            },
+            {
+                "Function": "Deposit",
+                "Node": "emit Transfer(address(1), address(1), _amount.mul(9500).div(100000))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "emit Transfer(address(1), msg.sender, _pendingBalance(msg.sender))"
+            },
+            {
+                "Function": "claim",
+                "Node": "emit Transfer(address(1), msg.sender, (_pendingBalance(msg.sender).add(_stakingBalance[msg.sender]))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "emit Transfer(address(1), msg.sender, (_stakingBalance[msg.sender].sub(withdrawFee)))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "emit Transfer(address(1), owner(), withdrawFee)"
+            }
+        ]
+    }
+}

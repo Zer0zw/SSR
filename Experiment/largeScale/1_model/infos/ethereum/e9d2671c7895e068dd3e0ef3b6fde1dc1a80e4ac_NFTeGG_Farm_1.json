@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "erc20Stakes.tokenStaked",
+            "t1Stakes.setupBlock"
+        ],
+        "User Stake Reward": [
+            "accumulatedPayouts"
+        ],
+        "User Stake Time": [
+            "erc20Stakes.setupTime",
+            "t1Stakes.setupTime"
+        ],
+        "Stake Token Address": [
+            "supportedTokensERC20",
+            "T1_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "T3_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeERC20",
+                "Node": "IERC20(token).safeTransferFrom(user, address(this), value)"
+            },
+            {
+                "Function": "stakeT1",
+                "Node": "IERC721(T1_ADDRESS).transferFrom(user, address(this), tokenid)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "processAccumulatedPayout",
+                "Node": "IERC20(T3_ADDRESS).safeTransfer(user, payout)"
+            },
+            {
+                "Function": "payoutRewardERC20",
+                "Node": "_payout(user, payout)"
+            },
+            {
+                "Function": "payoutRewardT1",
+                "Node": "_payout(user, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeERC20",
+                "Node": "IERC20(token).safeTransfer(user, currentStake)"
+            },
+            {
+                "Function": "unstakeT1",
+                "Node": "IERC721(T1_ADDRESS).transferFrom(address(this), user, tokenid)"
+            }
+        ]
+    }
+}

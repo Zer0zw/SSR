@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeInfo._amountStaked"
+        ],
+        "User Stake Reward": [
+            "userStakeInfo._unclaimedRewards"
+        ],
+        "User Stake Time": [
+            "userStakeInfo._timeStarted",
+            "userStakeInfo._timeUnlocking"
+        ],
+        "Stake Token Address": [
+            "cypherToken"
+        ],
+        "Reward Token Address": [
+            "cypherToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(cypherToken.transfer(msg.sender, _stakeInfo.stakes[_sender]._amountStaked + _stakeInfo.stakes[_sender]._unclaimedRewards))"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(cypherToken.transfer(msg.sender, _stakeInfo.stakes[msg.sender]._amountStaked + _stakeInfo.stakes[msg.sender]._unclaimedRewards))"
+            }
+        ]
+    }
+}

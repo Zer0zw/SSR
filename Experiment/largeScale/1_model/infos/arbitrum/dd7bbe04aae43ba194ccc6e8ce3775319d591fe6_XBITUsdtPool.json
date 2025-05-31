@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Users.DepositeToken",
+            "depositeToken"
+        ],
+        "User Stake Reward": [
+            "Users.WithdrawAbleReward",
+            "Users.WithdrawReward"
+        ],
+        "User Stake Time": [
+            "lockabledays",
+            "depositetime"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "IERC20(USDT).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "Token.transfer(msg.sender,  Users[msg.sender].WithdrawAbleReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(USDT).safeTransfer(msg.sender, Users[msg.sender].WithdrawDepositeAmount)"
+            }
+        ]
+    }
+}

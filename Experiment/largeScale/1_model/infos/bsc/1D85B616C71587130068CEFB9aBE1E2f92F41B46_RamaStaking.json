@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.dividentWithdrawn"
+        ],
+        "User Stake Time": [
+            "Deposit.startDate"
+        ],
+        "Stake Token Address": [
+            "ramaToken"
+        ],
+        "Reward Token Address": [
+            "ramaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "ramaToken.safeTransferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimReward",
+                "Node": "transferTokens(msg.sender,pendingAmount)"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "transferTokens(firstLevelReferrer,firstLComissionAmount)"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "transferTokens(secondLevelReferrer,secondLComissionAmount)"
+            },
+            {
+                "Function": "payReferralCommission",
+                "Node": "transferTokens(thirdlevelReferrer,thirdLComissionAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "transferTokens(msg.sender,withdrawAmount)"
+            }
+        ]
+    }
+}

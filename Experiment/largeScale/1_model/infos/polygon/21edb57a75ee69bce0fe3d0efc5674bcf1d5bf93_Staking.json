@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardAmount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "registry.tidalToken()"
+        ],
+        "Reward Token Address": [
+            "registry.tidalToken()"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(registry.tidalToken()).transferFrom(_msgSender(), address(this), amount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(registry.tidalToken()).transfer(_msgSender(), rewardTotal)"
+            },
+            {
+                "Function": "doPayout",
+                "Node": "IERC20(registry.tidalToken()).transferFrom(msg.sender, address(this), payoutInfo[assetIndex_][payoutId_].total.sub(payoutInfo[assetIndex_][payoutId_].paid))"
+            },
+            {
+                "Function": "finishPayout",
+                "Node": "IERC20(registry.tidalToken()).transfer(payoutInfo[assetIndex_][payoutId_].toAddress, payoutInfo[assetIndex_][payoutId_].total)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawReady",
+                "Node": "IERC20(registry.tidalToken()).transfer(address(who_), request.amount)"
+            }
+        ]
+    }
+}

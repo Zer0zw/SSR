@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserStakeInfo.rewards"
+        ],
+        "User Stake Time": [
+            "UserStakeInfo.time"
+        ],
+        "Stake Token Address": [
+            "PoolToken.lp",
+            "PoolToken.nft"
+        ],
+        "Reward Token Address": [
+            "targetToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "pidToPoolToken[_pid].nft.safeTransferFrom(msg.sender, address(this), _tid)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "targetToken.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "withdrawBonus",
+                "Node": "targetToken.safeTransfer(msg.sender, bon)"
+            },
+            {
+                "Function": "withdrawPoolBonus",
+                "Node": "targetToken.safeTransfer(_account,bon)"
+            },
+            {
+                "Function": "withdrawDevBonus",
+                "Node": "targetToken.safeTransfer(devAddress, bon)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "pidToPoolToken[_pid].nft.safeTransferFrom(address(this),msg.sender, _tid)"
+            }
+        ]
+    }
+}

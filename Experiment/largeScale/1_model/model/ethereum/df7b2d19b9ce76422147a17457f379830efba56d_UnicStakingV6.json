@@ -1,0 +1,387 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes.amount"
+        ],
+        "User Stake Reward": [
+            "stakes.rewardDebt"
+        ],
+        "User Stake Time": [
+            "stakes.stakeStartTime",
+            "stakes.lockDays"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakes.rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "emergencyWithdrawStakes",
+            "harvest",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdrawStakes",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "emergencyWithdrawStakes",
+            "emergencyWithdrawTokens",
+            "initialize",
+            "setStakingToken",
+            "stake",
+            "withdraw"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    3121
+                ],
+                "Input": [
+                    "amount",
+                    "lockDays",
+                    "rewardToken"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DIV_PRECISION",
+                    "_paused",
+                    "lockMultipliers.exists",
+                    "lockMultipliers.multiplier",
+                    "minStakeAmount",
+                    "pools",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "DIV_PRECISION",
+                    "_paused",
+                    "lockMultipliers.exists",
+                    "lockMultipliers.multiplier",
+                    "minStakeAmount",
+                    "pools",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    3255
+                ],
+                "Input": [
+                    "nftId"
+                ],
+                "Calculation Variables": [
+                    "DIV_PRECISION",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken"
+                ],
+                "Control Variables": [
+                    "DIV_PRECISION",
+                    "_paused",
+                    "nftCollection",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken"
+                ],
+                "Full Calculation Variables": [
+                    "DIV_PRECISION",
+                    "_paused",
+                    "nftCollection",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    3187
+                ],
+                "Input": [
+                    "nftId"
+                ],
+                "Calculation Variables": [
+                    "DIV_PRECISION",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime"
+                ],
+                "Control Variables": [
+                    "DIV_PRECISION",
+                    "_paused",
+                    "nftCollection",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "DIV_PRECISION",
+                    "_paused",
+                    "nftCollection",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdrawStakes",
+                "Node": [
+                    3344
+                ],
+                "Input": [
+                    "_stakingToken",
+                    "nftId",
+                    "receiver"
+                ],
+                "Calculation Variables": [
+                    "DIV_PRECISION",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime"
+                ],
+                "Control Variables": [
+                    "DIV_PRECISION",
+                    "_owner",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime"
+                ],
+                "Full Calculation Variables": [
+                    "DIV_PRECISION",
+                    "_owner",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    3185
+                ],
+                "Input": [
+                    "nftId"
+                ],
+                "Calculation Variables": [
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime"
+                ],
+                "Control Variables": [
+                    "DIV_PRECISION",
+                    "_paused",
+                    "nftCollection",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "DIV_PRECISION",
+                    "_paused",
+                    "nftCollection",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdrawStakes",
+                "Node": [
+                    3342
+                ],
+                "Input": [
+                    "_stakingToken",
+                    "nftId",
+                    "receiver"
+                ],
+                "Calculation Variables": [
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime"
+                ],
+                "Control Variables": [
+                    "DIV_PRECISION",
+                    "_owner",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime"
+                ],
+                "Full Calculation Variables": [
+                    "DIV_PRECISION",
+                    "_owner",
+                    "pools.accRewardPerShare",
+                    "pools.lastRewardAmount",
+                    "pools.rewardToken",
+                    "pools.stakedAmount",
+                    "pools.stakedAmountWithMultipliers",
+                    "pools.totalRewardAmount",
+                    "stakes.amount",
+                    "stakes.lockDays",
+                    "stakes.multiplier",
+                    "stakes.nftId",
+                    "stakes.rewardDebt",
+                    "stakes.rewardToken",
+                    "stakes.stakeStartTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

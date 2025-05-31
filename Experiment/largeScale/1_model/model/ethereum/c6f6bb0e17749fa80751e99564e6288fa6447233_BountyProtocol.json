@@ -1,0 +1,133 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakers.staked"
+        ],
+        "User Stake Reward": [
+            "_stakers.earned"
+        ],
+        "User Stake Time": [
+            "_stakers.start"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    973
+                ],
+                "Input": [
+                    "stakeAmount",
+                    "validator"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakingEnabled",
+                    "totalStaked",
+                    "validators.staked"
+                ],
+                "Full Calculation Variables": [
+                    "stakingEnabled",
+                    "totalStaked",
+                    "validators.staked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    988
+                ],
+                "Input": [
+                    "validator"
+                ],
+                "Calculation Variables": [
+                    "_stakers.earned",
+                    "_stakers.staked",
+                    "_stakers.staker",
+                    "_stakers.start",
+                    "apr"
+                ],
+                "Control Variables": [
+                    "_claimHistory.amounts",
+                    "_claimHistory.dates",
+                    "_stakers.earned",
+                    "_stakers.staked",
+                    "_stakers.staker",
+                    "_stakers.start",
+                    "apr",
+                    "stakingEnabled",
+                    "totalClaimed"
+                ],
+                "Full Calculation Variables": [
+                    "_claimHistory.amounts",
+                    "_claimHistory.dates",
+                    "_stakers.earned",
+                    "_stakers.staked",
+                    "_stakers.staker",
+                    "_stakers.start",
+                    "apr",
+                    "stakingEnabled",
+                    "totalClaimed"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1009
+                ],
+                "Input": [
+                    "validator"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_claimHistory.dates",
+                    "_stakers.start",
+                    "_claimHistory.amounts",
+                    "totalClaimed",
+                    "apr",
+                    "_stakers.earned",
+                    "_stakers.staked",
+                    "stakingEnabled",
+                    "_stakers.staker"
+                ],
+                "Full Calculation Variables": [
+                    "_claimHistory.dates",
+                    "_stakers.start",
+                    "_claimHistory.amounts",
+                    "totalClaimed",
+                    "apr",
+                    "_stakers.earned",
+                    "_stakers.staked",
+                    "stakingEnabled",
+                    "_stakers.staker"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

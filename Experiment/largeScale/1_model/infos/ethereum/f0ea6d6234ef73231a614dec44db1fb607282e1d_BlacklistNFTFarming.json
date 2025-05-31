@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.heathens.length",
+            "stakersfree.heathensfree.length"
+        ],
+        "User Stake Reward": [
+            "nectar",
+            "nectarfree"
+        ],
+        "User Stake Time": [
+            "stakers.heathens.stakedTimestamp",
+            "stakersfree.heathensfree.stakedTimestamp"
+        ],
+        "Stake Token Address": [
+            "HeathensAddress",
+            "HeathensFreeAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeHeathen",
+                "Node": "ERC721(HeathensAddress).transferFrom(msg.sender, address(this), _heathens[i])"
+            },
+            {
+                "Function": "stakeHeathenFree",
+                "Node": "ERC721(HeathensFreeAddress).transferFrom(msg.sender, address(this), _heathens[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_mint(msg.sender, nectar)"
+            },
+            {
+                "Function": "claimRewardsFree",
+                "Node": "_mint(msg.sender, nectarfree)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAllHeathen",
+                "Node": "ERC721(HeathensAddress).transferFrom(address(this), msg.sender, tokenIds[i])"
+            },
+            {
+                "Function": "unstakeAllFreeHeathen",
+                "Node": "ERC721(HeathensFreeAddress).transferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount",
+            "StakeTimeframe.amount"
+        ],
+        "User Stake Reward": [
+            "_getRewardAmount"
+        ],
+        "User Stake Time": [
+            "StakeTimeframe.lastStakeTime"
+        ],
+        "Stake Token Address": [
+            "epanToken"
+        ],
+        "Reward Token Address": [
+            "epanToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(epanToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewardAmount",
+                "Node": "return _balance.sub(_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(epanToken.transfer(msg.sender, _withdrawAmount)"
+            }
+        ]
+    }
+}

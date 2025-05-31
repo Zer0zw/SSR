@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes.mystake"
+        ],
+        "User Stake Reward": [
+            "stakes.myclaim"
+        ],
+        "User Stake Time": [
+            "stakes.stime"
+        ],
+        "Stake Token Address": [
+            "addrs.stakeAddr"
+        ],
+        "Reward Token Address": [
+            "addrs.awardAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "doStake",
+                "Node": "erc20.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doClaim",
+                "Node": "IERC20(addrs[id][1]).transfer(_msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC20(addrs[id][0]).transfer(_msgSender(), numb)"
+            }
+        ]
+    }
+}

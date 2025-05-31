@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserLockInfo.amount",
+            "WithdrawInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserLockInfo.lockTime"
+        ],
+        "Stake Token Address": [
+            "VEMP"
+        ],
+        "Reward Token Address": [
+            "xVEMP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "VEMP.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "poolInfo.lpToken.transfer(msg.sender, userInfo.amount.sub(user.amount))"
+            },
+            {
+                "Function": "unstake",
+                "Node": "VEMP.transfer(msg.sender, userLock.amount.sub(burnAmount))"
+            },
+            {
+                "Function": "unstake",
+                "Node": "VEMP.transfer(address(0x000000000000000000000000000000000000dEaD), burnAmount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "VEMP.transfer(msg.sender, userLock.amount.sub(burnAmount))"
+            },
+            {
+                "Function": "unstake",
+                "Node": "VEMP.transferFrom(msg.sender, address(0x000000000000000000000000000000000000dEaD), burnAmount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "poolInfo.lpToken.transfer(msg.sender, userInfo.amount.sub(user.amount))"
+            },
+            {
+                "Function": "unstake",
+                "Node": "VEMP.transfer(msg.sender, userLock.amount)"
+            }
+        ]
+    }
+}

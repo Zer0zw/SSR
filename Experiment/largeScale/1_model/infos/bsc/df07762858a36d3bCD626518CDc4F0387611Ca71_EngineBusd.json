@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInvestment.amount",
+            "UserDepoMap.amount"
+        ],
+        "User Stake Reward": [
+            "UserDepoMap.reward"
+        ],
+        "User Stake Time": [
+            "UserDepoMap.deadline"
+        ],
+        "Stake Token Address": [
+            "TokenAddress"
+        ],
+        "Reward Token Address": [
+            "TokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "UserQuery[msg.sender] = UserInvestment(msg.sender, nowEngineBalance, userKeyPad)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Collect",
+                "Node": "claimQuery[msg.sender] = UserCollected(msg.sender, _value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Swap",
+                "Node": "BUSD.transfer(msg.sender,userValue)"
+            }
+        ]
+    }
+}

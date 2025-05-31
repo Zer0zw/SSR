@@ -1,0 +1,81 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "customStakingBalance",
+            "customStakingBalance2"
+        ],
+        "User Stake Reward": [
+            "claimed1Balance",
+            "claimed2Balance",
+            "claimed3Balance"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "customStakingTime",
+            "customStakingTime2"
+        ],
+        "Stake Token Address": [
+            "tikkyInu"
+        ],
+        "Reward Token Address": [
+            "tikkyInu"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "IBEP20(tikkyInu).transferFrom(msg.sender, address(this), transferAmount"
+            },
+            {
+                "Function": "customStaking",
+                "Node": "IBEP20(tikkyInu).transferFrom(msg.sender, address(this), transferAmount"
+            },
+            {
+                "Function": "customStaking2",
+                "Node": "IBEP20(tikkyInu).transferFrom(msg.sender, address(this), transferAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "claimed1Balance[msg.sender] += balance"
+            },
+            {
+                "Function": "Claim",
+                "Node": "claimed2Balance[msg.sender] += balance"
+            },
+            {
+                "Function": "Claim",
+                "Node": "claimed3Balance[msg.sender] += balance"
+            },
+            {
+                "Function": "ClaimPrivate",
+                "Node": "claimed1Balance[msg.sender] += balance"
+            },
+            {
+                "Function": "ClaimPrivate",
+                "Node": "claimed2Balance[msg.sender] += balance"
+            },
+            {
+                "Function": "ClaimPrivate",
+                "Node": "claimed3Balance[msg.sender] += balance"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "IBEP20(tikkyInu).transfer(msg.sender, transferAmount"
+            },
+            {
+                "Function": "customUnstake",
+                "Node": "IBEP20(tikkyInu).transfer(msg.sender, transferAmount"
+            },
+            {
+                "Function": "customUnstake2",
+                "Node": "IBEP20(tikkyInu).transfer(msg.sender, transferAmount"
+            }
+        ]
+    }
+}

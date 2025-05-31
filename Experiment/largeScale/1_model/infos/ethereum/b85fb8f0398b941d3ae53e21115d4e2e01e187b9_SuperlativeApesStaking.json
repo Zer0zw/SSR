@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStakedTokens",
+            "totalStakedMutantTokens"
+        ],
+        "User Stake Reward": [
+            "payout"
+        ],
+        "User Stake Time": [
+            "stakedDays",
+            "stakedMutantDays"
+        ],
+        "Stake Token Address": [
+            "superlativeApesContract",
+            "superlativeMutantContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeYourSlape",
+                "Node": "superlativeApesContract.safeTransferFrom(msg.sender, address(this), tokenID[i], \"\")"
+            },
+            {
+                "Function": "StakeYourMutant",
+                "Node": "superlativeMutantContract.safeTransferFrom(msg.sender, address(this), tokenID[i], \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTokens",
+                "Node": "_mint(msg.sender, payout)"
+            },
+            {
+                "Function": "claimTokensMutants",
+                "Node": "_mint(msg.sender, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeYourSlape",
+                "Node": "superlativeApesContract.safeTransferFrom(address(this), msg.sender, tokenID[i], \"\")"
+            },
+            {
+                "Function": "unStakeYourMutant",
+                "Node": "superlativeMutantContract.safeTransferFrom(address(this), msg.sender, tokenID[i], \"\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staked"
+        ],
+        "User Stake Reward": [
+            "Pot",
+            "MyPotNow"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StakedBunny"
+        ],
+        "Reward Token Address": [
+            "StakedBunny"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "BunnyHub",
+                "Node": "balances[msg.sender] += (Pot.sub(MyPotNow[msg.sender])).mul(Staked[msg.sender].div(totalSupply().mul(100)))+Staked[msg.sender]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "BunnyRewardNow",
+                "Node": "return (Pot.sub(MyPotNow[msg.sender])).mul(Staked[msg.sender].mul(10000000000000000).div(totalSupply().div(100000000000000)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnstakeAll",
+                "Node": "balances[msg.sender] += (Pot.sub(MyPotNow[msg.sender])).mul(Staked[msg.sender].div(totalSupply().mul(100)))+Staked[msg.sender]"
+            }
+        ]
+    }
+}

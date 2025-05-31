@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Invest.balance"
+        ],
+        "User Stake Reward": [
+            "rewardPerCycle"
+        ],
+        "User Stake Time": [
+            "Invest.block_deposit",
+            "Invest.block_withdraw",
+            "Invest.block_break"
+        ],
+        "Stake Token Address": [
+            "plg",
+            "usdc"
+        ],
+        "Reward Token Address": [
+            "plg"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositWithPermit",
+                "Node": "pool.processETHRequest(account,balanceAmount)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "refreward.rewardDistribute{ value: divAmount * 15 / 100 }(account,address(manager),\"ref\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdraw",
+                "Node": "pool.processETHRequest(account,reward*88/100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "pool.processETHRequest(account,balanceAmount)"
+            }
+        ]
+    }
+}

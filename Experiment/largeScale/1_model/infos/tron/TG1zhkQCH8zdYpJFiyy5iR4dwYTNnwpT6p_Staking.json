@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenBalanceLedger"
+        ],
+        "User Stake Reward": [
+            "payoutsTewken",
+            "payoutsTRX"
+        ],
+        "User Stake Time": [
+            "lastDripTime",
+            "lastMintTime"
+        ],
+        "Stake Token Address": [
+            "trc20"
+        ],
+        "Reward Token Address": [
+            "trc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "tokenBalanceLedger[_customerAddress] =  tokenBalanceLedger[_customerAddress].add(_amountOfTokens)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "tokenBalanceLedger[_customerAddress] =  tokenBalanceLedger[_customerAddress].add(_amountOfTokens)"
+            },
+            {
+                "Function": "stakeTokens",
+                "Node": "tokenBalanceLedger[_customerAddress] =  tokenBalanceLedger[_customerAddress].add(_incomingTewken)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "roll",
+                "Node": "payoutsTewken[_customerAddress] +=  (int256) (_dividends * divMagnitude)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "payoutsTewken[_customerAddress] += (int256) (_dividends * divMagnitude)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "tokenBalanceLedger[_customerAddress] = tokenBalanceLedger[_customerAddress].sub(_amountOfTokens)"
+            }
+        ]
+    }
+}

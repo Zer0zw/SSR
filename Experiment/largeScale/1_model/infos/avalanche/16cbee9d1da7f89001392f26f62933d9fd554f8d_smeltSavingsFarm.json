@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "smelt.balanceOf"
+        ],
+        "User Stake Reward": [
+            "tokenFarm.earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "melt"
+        ],
+        "Reward Token Address": [
+            "h2o"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "smelt.mint(msg.sender,smeltAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "tokenFarm.getReward(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(melt).safeTransfer(msg.sender, meltAmount)"
+            }
+        ]
+    }
+}

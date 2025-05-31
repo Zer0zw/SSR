@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "realizedReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "dodoRewardVault"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "safeDODOTransfer(msg.sender, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeDODOTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "safeDODOTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), balance)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

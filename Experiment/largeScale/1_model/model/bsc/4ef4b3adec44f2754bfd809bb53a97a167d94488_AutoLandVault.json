@@ -1,0 +1,164 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [
+            "userInfo.cakeAtLastUserAction"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "receiptToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    922
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    963
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "callFee",
+                    "token"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "callFee",
+                    "masterchef",
+                    "performanceFee",
+                    "token",
+                    "treasury"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "callFee",
+                    "masterchef",
+                    "performanceFee",
+                    "token",
+                    "treasury"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1134
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "masterchef",
+                    "token",
+                    "totalShares",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "masterchef",
+                    "token",
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "masterchef",
+                    "token",
+                    "totalShares",
+                    "userInfo.cakeAtLastUserAction",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1134
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "token",
+                    "totalShares",
+                    "withdrawFee",
+                    "masterchef"
+                ],
+                "Control Variables": [
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "userInfo.lastDepositedTime",
+                    "withdrawFeePeriod",
+                    "token",
+                    "userInfo.cakeAtLastUserAction",
+                    "totalShares",
+                    "withdrawFee",
+                    "masterchef"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "userInfo.lastDepositedTime",
+                    "withdrawFeePeriod",
+                    "token",
+                    "userInfo.cakeAtLastUserAction",
+                    "totalShares",
+                    "withdrawFee",
+                    "masterchef"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

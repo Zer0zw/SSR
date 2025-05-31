@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amtStaked"
+        ],
+        "User Stake Reward": [
+            "Revive.amtRevived",
+            "Revive.amtLocked"
+        ],
+        "User Stake Time": [
+            "Stake.timeStaked",
+            "Stake.lastRevived"
+        ],
+        "Stake Token Address": [
+            "busd"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.mint(BASE_AMT*numberOfPackages/10**18)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAll",
+                "Node": "token.transfer(userAddress, rev)"
+            },
+            {
+                "Function": "claimNetworkBonus",
+                "Node": "token.transfer(userAddress, rev)"
+            },
+            {
+                "Function": "claim",
+                "Node": "token.transfer(userAddress, rev)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimRetire",
+                "Node": "token.transfer(userAddress, funds)"
+            }
+        ]
+    }
+}

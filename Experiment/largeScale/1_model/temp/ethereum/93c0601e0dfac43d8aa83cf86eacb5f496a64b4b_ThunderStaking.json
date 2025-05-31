@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "rewardPerToken"
+        ],
+        "User Stake Time": [
+            "minPeriodDuration"
+        ],
+        "Stake Token Address": [
+            "thunder"
+        ],
+        "Reward Token Address": [
+            "thunder"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "thunder.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "thunder.transfer(teamWallet, teamWalletAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "thunder.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "thunder.transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

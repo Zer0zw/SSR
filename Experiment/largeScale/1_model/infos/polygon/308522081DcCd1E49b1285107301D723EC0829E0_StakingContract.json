@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeHolder.amount"
+        ],
+        "User Stake Reward": [
+            "StakeHolder.totalClaimableAmount",
+            "StakeHolder.claimedAmount"
+        ],
+        "User Stake Time": [
+            "StakeHolder.since",
+            "StakeHolder.releaseTime"
+        ],
+        "Stake Token Address": [
+            "erc20ContractAddress"
+        ],
+        "Reward Token Address": [
+            "erc20ContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPayment",
+                "Node": "IERC20(erc20ContractAddress).transfer(_stakeAddress, payReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimPayment",
+                "Node": "IERC20(erc20ContractAddress).transfer(_stakeAddress, payReward)"
+            }
+        ]
+    }
+}

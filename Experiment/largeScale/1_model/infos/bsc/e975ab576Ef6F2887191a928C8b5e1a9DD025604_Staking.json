@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Warmup.deposit"
+        ],
+        "User Stake Reward": [
+            "Claim.payout"
+        ],
+        "User Stake Time": [
+            "Warmup.expiry",
+            "Claim.vesting"
+        ],
+        "Stake Token Address": [
+            "POWER"
+        ],
+        "Reward Token Address": [
+            "HONOR"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(HONOR).safeTransfer(warmupContract, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup(warmupContract).retrieve(_recipient, IHONOR(HONOR).balanceForGons(info.gons))"
+            },
+            {
+                "Function": "claimUnstake",
+                "Node": "IERC20(HONOR).safeTransfer(msg.sender, info.payout)"
+            },
+            {
+                "Function": "claimUnstake",
+                "Node": "IERC20(POWER).transfer(msg.sender, info.payout)"
+            },
+            {
+                "Function": "claimUnstake",
+                "Node": "IERC20(POWER).transfer(msg.sender, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(HONOR).safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20(POWER).safeTransfer(msg.sender, info.deposit)"
+            }
+        ]
+    }
+}

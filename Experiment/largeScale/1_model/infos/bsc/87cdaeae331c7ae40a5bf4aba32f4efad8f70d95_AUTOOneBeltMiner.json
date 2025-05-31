@@ -1,0 +1,64 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getLPStaked"
+        ],
+        "User Stake Reward": [
+            "getPendingBonus",
+            "getPendingEnterToken"
+        ],
+        "User Stake Time": [
+            "lastClaim"
+        ],
+        "Stake Token Address": [
+            "enterToken"
+        ],
+        "Reward Token Address": [
+            "AUTO"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addPosition",
+                "Node": "tokenBEP20.transferFrom(msg.sender, address(this), available_amount)"
+            },
+            {
+                "Function": "stakeLP",
+                "Node": "AUTOFARM.deposit(pid, balance_LP)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimValue",
+                "Node": "WBNB.transfer(claimManager, WBNB.balanceOf(address(this)))"
+            },
+            {
+                "Function": "claimValue",
+                "Node": "WBNB.transfer(feeManager, WBNB.balanceOf(address(this)))"
+            },
+            {
+                "Function": "claimValue",
+                "Node": "swap(AUTO, enterTokenIBEP20, token_balance, false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLP",
+                "Node": "AUTOFARM.withdraw(pid, amount)"
+            },
+            {
+                "Function": "unstakeAllLP",
+                "Node": "AUTOFARM.withdraw(pid, getLPStaked())"
+            },
+            {
+                "Function": "exitPosition",
+                "Node": "AUTOFARM.withdraw(pid, staked_balance_LP)"
+            },
+            {
+                "Function": "exitPosition",
+                "Node": "LPToken.withdraw(amount, LPToken.sharesToAmount(amount) / 2)"
+            }
+        ]
+    }
+}

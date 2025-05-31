@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "rewardAcc"
+        ],
+        "User Stake Time": [
+            "averageBlockDeposit"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onReward",
+                "Node": "rewardAcc[pid][_user]=rewardAcc[pid][_user].add(pending.mul((boostC.add(this.Boost(averageBlockDeposit))))/boostC)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardToken.safeTransfer(to, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

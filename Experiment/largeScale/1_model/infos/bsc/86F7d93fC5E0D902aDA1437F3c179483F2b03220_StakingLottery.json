@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensPerTicket"
+        ],
+        "User Stake Reward": [
+            "Winners.prize"
+        ],
+        "User Stake Time": [
+            "stakingOpenForDays",
+            "daysUntilEnd"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TOKEN.transferFrom(msg.sender,address(this), tokensToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "payTheWinners",
+                "Node": "TOKEN.transfer(winnersOfCurrent[i], prize + tokensPerTicket)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "automaticallyReturnStakes",
+                "Node": "TOKEN.transfer(staker, tokensPerTicket)"
+            },
+            {
+                "Function": "manuallyReturnStakes",
+                "Node": "TOKEN.transfer(staker, tokensPerTicket)"
+            }
+        ]
+    }
+}

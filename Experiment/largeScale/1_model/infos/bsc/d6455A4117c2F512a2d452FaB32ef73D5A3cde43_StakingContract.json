@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.withdrawn",
+            "User.refBonus"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Deposit.checkpoint"
+        ],
+        "Stake Token Address": [
+            "cryptoGenToken"
+        ],
+        "Reward Token Address": [
+            "cryptoGenToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeCryptoGen",
+                "Node": "cryptoGenToken.transfer(msg.sender,msg.value.mul(givenToken))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "userAddress.transfer(totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

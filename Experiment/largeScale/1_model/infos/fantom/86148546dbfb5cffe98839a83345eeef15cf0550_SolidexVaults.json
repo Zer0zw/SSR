@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolShares"
+        ],
+        "User Stake Reward": [
+            "poolEarningAmounts"
+        ],
+        "User Stake Time": [
+            "poolUserLastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "pool"
+        ],
+        "Reward Token Address": [
+            "solidSexSolidLp",
+            "wftmSexLp"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(pool).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimEarnings",
+                "Node": "ISolidlyRouter(solidlyRouter).removeLiquidity(solidToken, solidSexToken, true, solidLpAmount, 1, 1, msg.sender, block.timestamp)"
+            },
+            {
+                "Function": "claimEarnings",
+                "Node": "ISolidlyRouter(solidlyRouter).removeLiquidity(wftm, sexToken, false, sexLpAmount, 1, 1, msg.sender, block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

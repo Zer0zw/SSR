@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedNFTs"
+        ],
+        "User Stake Reward": [
+            "stakedNFT._rarity"
+        ],
+        "User Stake Time": [
+            "stakedNFT._blockStart"
+        ],
+        "Stake Token Address": [
+            "stakedNFT._contract"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onERC1155Received",
+                "Node": "_stakeNft(id, from, _msgSender())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAirDrop",
+                "Node": "_token.mint(_msgSender(), value)"
+            },
+            {
+                "Function": "claimBatchAirDrop",
+                "Node": "_token.mint(_msgSender(), _value)"
+            },
+            {
+                "Function": "claimZXVC",
+                "Node": "_token.mint(_msgSender(), nft.currentValue())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeNFT",
+                "Node": "nft._contract.safeTransferFrom(address(this), _msgSender(), nft._id, 1, \"\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserData.stakingDeposit"
+        ],
+        "User Stake Reward": [
+            "computeUserReward"
+        ],
+        "User Stake Time": [
+            "UserData.stakingBlock",
+            "computeBlocksStaking"
+        ],
+        "Stake Token Address": [
+            "_goTokenAddress"
+        ],
+        "Reward Token Address": [
+            "_maiTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_goToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_maiToken.transfer(msg.sender, userReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_goToken.transfer(msg.sender, stakingDeposit)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_goToken.transfer(msg.sender, stakingDeposit)"
+            }
+        ]
+    }
+}

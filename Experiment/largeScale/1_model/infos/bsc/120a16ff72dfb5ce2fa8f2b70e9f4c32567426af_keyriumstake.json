@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "timeperiod"
+        ],
+        "Stake Token Address": [
+            "Keyrium"
+        ],
+        "Reward Token Address": [
+            "Keyrium"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "Token(Keyrium).transferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "Token(Keyrium).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "claimDivs",
+                "Node": "Token(Keyrium).transfer(account, pendingDivs)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(Keyrium).transfer(msg.sender, amountToWithdraw), \"Could not transfer tokens.\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(Keyrium).transfer(msg.sender, amountAfterFee), \"Could not transfer tokens.\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(Keyrium).transfer(devAddress, WithdrawFee), \"Could not transfer tokens.\")"
+            }
+        ]
+    }
+}

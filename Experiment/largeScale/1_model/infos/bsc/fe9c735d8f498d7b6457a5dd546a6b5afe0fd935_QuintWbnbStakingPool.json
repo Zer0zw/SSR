@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingDetails.LPAmount"
+        ],
+        "User Stake Reward": [
+            "StakingDetails.tokenAmount"
+        ],
+        "User Stake Time": [
+            "StakingDetails.stakedAt"
+        ],
+        "Stake Token Address": [
+            "LIQUIDITY_PAIR"
+        ],
+        "Reward Token Address": [
+            "QUINT_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "QUINT_TOKEN.transferFrom(rewardVault, account, rewards)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "QUINT_TOKEN.transferFrom(rewardVault, account, rewards)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "QUINT_TOKEN.transferFrom(rewardVault, account, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "LIQUIDITY_PAIR.transfer(account, amount)"
+            },
+            {
+                "Function": "unstakePartial",
+                "Node": "LIQUIDITY_PAIR.transfer(account, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "LIQUIDITY_PAIR.transfer(msg.sender, lpAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balancesPerToken"
+        ],
+        "User Stake Reward": [
+            "bzrxRewards",
+            "stableCoinRewards"
+        ],
+        "User Stake Time": [
+            "vestingLastSync"
+        ],
+        "Stake Token Address": [
+            "BZRX",
+            "vBZRX",
+            "iBZRX",
+            "LPToken",
+            "LPTokenOld"
+        ],
+        "Reward Token Address": [
+            "BZRX",
+            "curve3Crv"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(token).safeTransferFrom(msg.sender, address(this), stakeAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBzrx",
+                "Node": "IERC20(BZRX).transfer(msg.sender, bzrxRewardsEarned)"
+            },
+            {
+                "Function": "claim3Crv",
+                "Node": "curve3Crv.transfer(msg.sender, stableCoinRewardsEarned)"
+            },
+            {
+                "Function": "_claimBzrx",
+                "Node": "IERC20(BZRX).transfer(msg.sender, bzrxRewardsEarned)"
+            },
+            {
+                "Function": "_claim3Crv",
+                "Node": "curve3Crv.transfer(msg.sender, stableCoinRewardsEarned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(token).safeTransfer(msg.sender, unstakeAmount)"
+            }
+        ]
+    }
+}

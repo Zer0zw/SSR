@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposits"
+        ],
+        "User Stake Reward": [
+            "totalReward"
+        ],
+        "User Stake Time": [
+            "tokenIDDays"
+        ],
+        "Stake Token Address": [
+            "wildGoat"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeGoat",
+                "Node": "wildGoat.safeTransferFrom(msg.sender, address(this), tokenIDs[i], ''"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimHayy",
+                "Node": "_mint(msg.sender, totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeGoat",
+                "Node": "wildGoat.safeTransferFrom(address(this), msg.sender, tokenIds[i], '')"
+            }
+        ]
+    }
+}

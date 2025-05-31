@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.userDeposit"
+        ],
+        "User Stake Reward": [
+            "UserInfo.accrueInterest"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDayAction",
+            "Pool.lockPeriod"
+        ],
+        "Stake Token Address": [
+            "Pool.token"
+        ],
+        "Reward Token Address": [
+            "Pool.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_pool.token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_pool.token.safeTransfer(msg.sender, pendingAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_pool.token.safeTransfer(msg.sender, accumAmount - fee)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.selfCurrentStakedFFI",
+            "User.selfTotalStakedFFI"
+        ],
+        "User Stake Reward": [
+            "User.totalAvailableBonus",
+            "UserDetails.referrerBonus",
+            "UserDetails.roiBonus"
+        ],
+        "User Stake Time": [
+            "User.lastUpdateTime",
+            "User.paidDays"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingManagement",
+                "Node": "tokenBalanceLedger_[address(this)] = SafeMath.add(tokenBalanceLedger_[address(this)], _taxedTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "_wallet.transfer(SafeMath.sub(SafeMath.sub(_dividend, _community), _staking))"
+            },
+            {
+                "Function": "reInvest",
+                "Node": "uint256 _tokens = repurchaseTokens(_dividend)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "sell",
+                "Node": "_wallet.transfer(_taxedMatic)"
+            },
+            {
+                "Function": "exitFFINetwork",
+                "Node": "sell(_tokens)"
+            }
+        ]
+    }
+}

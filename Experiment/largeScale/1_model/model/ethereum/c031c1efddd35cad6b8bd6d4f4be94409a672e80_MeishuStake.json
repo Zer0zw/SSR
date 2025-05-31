@@ -1,0 +1,168 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeholder.total_staked_value"
+        ],
+        "User Stake Reward": [
+            "stakeholder.total_withdraw"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "stake_nft"
+        ],
+        "getReward": [
+            "withdraw_earnings"
+        ],
+        "unStake": [
+            "ctrl_unstuck_token",
+            "withdraw_earnings"
+        ],
+        "Sensitive Functions": [
+            "ctrl_disband"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake_nft",
+                "Node": [
+                    681
+                ],
+                "Input": [
+                    "_nft",
+                    "id",
+                    "timelock"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DEAD",
+                    "_common_reward",
+                    "custom_earning",
+                    "default_earning",
+                    "kaiBalance",
+                    "kaiTax",
+                    "locked",
+                    "meishuFee",
+                    "nft_lock",
+                    "stakeholder.last_stake",
+                    "stakeholder.stakes",
+                    "times"
+                ],
+                "Full Calculation Variables": [
+                    "DEAD",
+                    "_common_reward",
+                    "custom_earning",
+                    "default_earning",
+                    "kaiBalance",
+                    "kaiTax",
+                    "locked",
+                    "meishuFee",
+                    "nft_lock",
+                    "stakeholder.last_stake",
+                    "stakeholder.stakes",
+                    "times"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw_earnings",
+                "Node": [
+                    898
+                ],
+                "Input": [
+                    "_id",
+                    "_stakeholder"
+                ],
+                "Calculation Variables": [
+                    "_common_reward",
+                    "burn_rate",
+                    "penalty_rate",
+                    "stakeholder.stakes"
+                ],
+                "Control Variables": [
+                    "_common_reward",
+                    "burn_rate",
+                    "locked",
+                    "penalty_rate",
+                    "stakeholder.stakes",
+                    "stakeholder.total_withdraw"
+                ],
+                "Full Calculation Variables": [
+                    "_common_reward",
+                    "burn_rate",
+                    "locked",
+                    "penalty_rate",
+                    "stakeholder.stakes",
+                    "stakeholder.total_withdraw"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw_earnings",
+                "Node": [
+                    964
+                ],
+                "Input": [
+                    "_id",
+                    "_stakeholder",
+                    "_token_id",
+                    "caller"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "is_auth",
+                    "stakeholder.closed_pools",
+                    "stakeholder.stakes",
+                    "total_floors"
+                ],
+                "Full Calculation Variables": [
+                    "is_auth",
+                    "stakeholder.closed_pools",
+                    "stakeholder.stakes",
+                    "total_floors"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "ctrl_unstuck_token",
+                "Node": [
+                    922
+                ],
+                "Input": [
+                    "_stakeholder",
+                    "_stakeholder",
+                    "_id",
+                    "caller",
+                    "_token_id",
+                    "caller",
+                    "_token_id",
+                    "_id"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "total_floors",
+                    "stakeholder.closed_pools",
+                    "owner",
+                    "is_auth",
+                    "stakeholder.stakes"
+                ],
+                "Full Calculation Variables": [
+                    "total_floors",
+                    "stakeholder.closed_pools",
+                    "owner",
+                    "is_auth",
+                    "stakeholder.stakes"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

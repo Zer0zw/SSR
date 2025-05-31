@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokenByID"
+        ],
+        "User Stake Reward": [
+            "myDailyScore"
+        ],
+        "User Stake Time": [
+            "startTime",
+            "lastDistribute",
+            "timeStep"
+        ],
+        "Stake Token Address": [
+            "nftContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "CXCNFT(nftContract).safeTransferFrom(msg.sender, address(this), tokenID, amount, \"0x\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "payable(msg.sender).call{value: claimable}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeToken",
+                "Node": "CXCNFT(nftContract).safeTransferFrom(address(this), msg.sender, tokenID, amount, \"0x\")"
+            }
+        ]
+    }
+}

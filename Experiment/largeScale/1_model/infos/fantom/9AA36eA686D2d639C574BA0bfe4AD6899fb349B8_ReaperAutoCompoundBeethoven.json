@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pairBal",
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "rewardBal",
+            "wftmFees"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "secondRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(lpToken).safeTransfer(vault, pairBal.sub(withdrawFee))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wftm).safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_swapSecondToken",
+                "Node": "IERC20(wftm).safeTransfer(msg.sender, callFeeToUser)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpToken).safeTransfer(vault, pairBal.sub(withdrawFee))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(lpToken).transfer(vault, pairBal)"
+            }
+        ]
+    }
+}

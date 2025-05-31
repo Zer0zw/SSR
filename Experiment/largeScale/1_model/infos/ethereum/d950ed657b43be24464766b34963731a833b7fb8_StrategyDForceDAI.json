@@ -1,0 +1,77 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_d"
+        ],
+        "User Stake Reward": [
+            "_df"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "df"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(d, _want)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(d).safeApprove(pool, _d)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "dRewards(pool).getReward()"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(df).safeApprove(uni, _df)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "UniswapRouter(uni).swapExactTokensForTokens(_df, uint256(0), path, address(this), now.add(1800))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(want).safeTransfer(IController(controller).rewards(), _fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(IController(controller).rewards(), _fee)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(_vault, balance)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "dRewards(pool).exit()"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "dERC20(d).redeem(address(this), _d)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "dRewards(pool).withdraw(_d)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "dERC20(d).redeem(address(this), _withdrew)"
+            }
+        ]
+    }
+}

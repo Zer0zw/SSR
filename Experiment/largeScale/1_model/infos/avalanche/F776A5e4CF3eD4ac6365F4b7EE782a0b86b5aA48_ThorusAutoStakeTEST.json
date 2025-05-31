@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.thorusAtLastUserAction"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "thorus"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(_user, mintSupply)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "thorus.safeTransfer(msg.sender, currentCallFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "thorus.safeTransfer(msg.sender, currentAmount)"
+            }
+        ]
+    }
+}

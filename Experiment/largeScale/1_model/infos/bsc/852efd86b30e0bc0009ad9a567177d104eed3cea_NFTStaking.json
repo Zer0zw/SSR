@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "NFTInfo.commonAmount",
+            "NFTInfo.rareAmount",
+            "NFTInfo.legendaryAmount"
+        ],
+        "User Stake Reward": [
+            "_totalToBeMintAmount"
+        ],
+        "User Stake Time": [
+            "NFTInfo.timeDeposite"
+        ],
+        "Stake Token Address": [
+            "_shoes"
+        ],
+        "Reward Token Address": [
+            "_tokenReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_shoes.transferFrom(msg.sender, address(this), nftID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "ERC20(_tokenReward).transfer(msg.sender, getReward(msg.sender))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "ERC20(_tokenReward).transfer(msg.sender, _totalToBeMintAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_shoes.transferFrom(address(this), msg.sender, nftID)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "ERC20(_tokenReward).transfer(msg.sender, getReward(msg.sender))"
+            },
+            {
+                "Function": "unstake",
+                "Node": "ERC20(_tokenReward).transfer(msg.sender, _totalToBeMintAmount))"
+            }
+        ]
+    }
+}

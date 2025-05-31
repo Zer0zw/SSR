@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.staked"
+        ],
+        "User Stake Reward": [
+            "Staker.points"
+        ],
+        "User Stake Time": [
+            "Staker.initialtimestamp"
+        ],
+        "Stake Token Address": [
+            "Orb"
+        ],
+        "Reward Token Address": [
+            "Orb"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "Orb.safeTransferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim_magicshards",
+                "Node": "_mint(msg.sender,5,magicshards,\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Orb.safeTransfer(msg.sender, amounttowithdraw)"
+            }
+        ]
+    }
+}

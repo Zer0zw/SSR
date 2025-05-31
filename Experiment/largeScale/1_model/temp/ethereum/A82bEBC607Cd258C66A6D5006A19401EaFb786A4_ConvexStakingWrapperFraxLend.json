@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf",
+            "IFraxLend.userCollateralBalance"
+        ],
+        "User Stake Reward": [
+            "RewardType.reward_remaining"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "curveToken",
+            "convexToken"
+        ],
+        "Reward Token Address": [
+            "RewardType.reward_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "initialize",
+                "Node": "IERC20(_token).transfer(address(this),0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimExtras",
+                "Node": "IRewardHook(rewardHook).onRewardClaim()"
+            }
+        ],
+        "unStake": []
+    }
+}

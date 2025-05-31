@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.reward"
+        ],
+        "User Stake Time": [
+            "Deposit.period"
+        ],
+        "Stake Token Address": [
+            "fearContract"
+        ],
+        "Reward Token Address": [
+            "fearContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "fearContract.transferFrom(user, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "fearContract.transfer(user, totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawDeposit",
+                "Node": "fearContract.transfer(user, totalAmount)"
+            },
+            {
+                "Function": "instantWithdrawDeposit",
+                "Node": "fearContract.transfer(user, amountMinusFee)"
+            }
+        ]
+    }
+}

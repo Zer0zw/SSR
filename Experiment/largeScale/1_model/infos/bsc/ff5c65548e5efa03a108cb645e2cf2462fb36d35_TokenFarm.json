@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStakedTokenUser",
+            "Farm.tokenamount"
+        ],
+        "User Stake Reward": [
+            "Farm.reward",
+            "Farm.harvestreward"
+        ],
+        "User Stake Time": [
+            "Farm.staketime",
+            "Farm.lockingtime"
+        ],
+        "Stake Token Address": [
+            "tokenAddr"
+        ],
+        "Reward Token Address": [
+            "tokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createFlexbleFarm",
+                "Node": "tokenAddr.transferFrom(msg.sender, address(this), amount1"
+            },
+            {
+                "Function": "createLockFarm",
+                "Node": "tokenAddr.transferFrom(msg.sender, address(this), amount1"
+            },
+            {
+                "Function": "createPackageFarm",
+                "Node": "tokenAddr.transferFrom(msg.sender, address(this), amount1"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "tokenAddr.transfer(msg.sender, rewardTillNow)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "tokenAddr.transfer(msg.sender, farmingRecord[msg.sender][index].tokenamount)"
+            }
+        ]
+    }
+}

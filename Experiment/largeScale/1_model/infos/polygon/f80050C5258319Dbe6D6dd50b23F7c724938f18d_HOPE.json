@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalanceByUser"
+        ],
+        "User Stake Reward": [
+            "hopeAccumulatedByUser"
+        ],
+        "User Stake Time": [
+            "lastUpdatedByUser"
+        ],
+        "Stake Token Address": [
+            "NTP",
+            "ROARS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "processStake",
+                "Node": "stakedBalanceByUser[account][collection] += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectHOPE",
+                "Node": "_increasePoints(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "processUnstake",
+                "Node": "stakedBalanceByUser[account][collection] -= amount"
+            }
+        ]
+    }
+}

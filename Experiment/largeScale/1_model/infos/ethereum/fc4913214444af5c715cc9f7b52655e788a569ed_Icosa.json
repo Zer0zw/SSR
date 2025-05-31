@@ -1,0 +1,74 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeStore.stakeAmount",
+            "StakeCache._stakeAmount"
+        ],
+        "User Stake Reward": [
+            "StakeStore.payoutPreCapitalAddIcsa",
+            "StakeStore.payoutPreCapitalAddHdrn",
+            "StakeCache._payoutPreCapitalAddIcsa",
+            "StakeCache._payoutPreCapitalAddHdrn"
+        ],
+        "User Stake Time": [
+            "StakeStore.stakeStart",
+            "StakeStore.capitalAdded",
+            "StakeStore.minStakeLength",
+            "StakeCache._stakeStart",
+            "StakeCache._capitalAdded",
+            "StakeCache._minStakeLength"
+        ],
+        "Stake Token Address": [
+            "_hdrnAddress",
+            "_hexAddress"
+        ],
+        "Reward Token Address": [
+            "_hdrnAddress",
+            "_hexAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "hdrnStakeStart",
+                "Node": "_hdrn.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "icsaStakeStart",
+                "Node": "_burn(msg.sender, amount)"
+            },
+            {
+                "Function": "nftStakeStart",
+                "Node": "token.transferFrom(msg.sender, _hdrnFlowAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "hdrnStakeEnd",
+                "Node": "_mint(msg.sender, (payout + bonus))"
+            },
+            {
+                "Function": "icsaStakeEnd",
+                "Node": "_mint(msg.sender, (payoutIcsa + principal + bonusIcsa))"
+            },
+            {
+                "Function": "nftStakeEnd",
+                "Node": "_mint(msg.sender, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "hdrnStakeEnd",
+                "Node": "_hdrn.transfer(msg.sender, principal)"
+            },
+            {
+                "Function": "icsaStakeEnd",
+                "Node": "_mint(msg.sender, (payoutIcsa + principal + bonusIcsa))"
+            },
+            {
+                "Function": "nftStakeEnd",
+                "Node": "_mint(msg.sender, payout)"
+            }
+        ]
+    }
+}

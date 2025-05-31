@@ -1,0 +1,90 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfos.amount"
+        ],
+        "User Stake Reward": [
+            "stakeInfos.claimed"
+        ],
+        "User Stake Time": [
+            "stakeInfos.startTS",
+            "stakeInfos.endTS"
+        ],
+        "Stake Token Address": [
+            "Moj"
+        ],
+        "Reward Token Address": [
+            "Moj"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeToken"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    387
+                ],
+                "Input": [
+                    "stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Moj",
+                    "_paused",
+                    "addressStaked",
+                    "planExpired"
+                ],
+                "Full Calculation Variables": [
+                    "Moj",
+                    "_paused",
+                    "addressStaked",
+                    "planExpired"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    369
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Control Variables": [
+                    "Moj",
+                    "addressStaked",
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Full Calculation Variables": [
+                    "Moj",
+                    "addressStaked",
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

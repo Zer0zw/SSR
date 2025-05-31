@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.lpAmount",
+            "UserInfo.proxyLPAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.share",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "cc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(userAddress, address(this), _lpAmount)"
+            },
+            {
+                "Function": "proxyDeposit",
+                "Node": "pool.lpToken.safeTransferFrom(userAddress, address(this), _lpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingCC",
+                "Node": "safeCCTransfer(userAddress, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeCCTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _lpAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), lpAmount)"
+            }
+        ]
+    }
+}

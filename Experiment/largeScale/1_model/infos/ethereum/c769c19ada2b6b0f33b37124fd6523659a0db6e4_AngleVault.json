@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ILiquidityGaugeStrat(liquidityGauge).deposit(_amount, _staker)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, _shares - withdrawFee)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "token.safeTransfer(msg.sender, _shares - withdrawFee)"
+            }
+        ]
+    }
+}

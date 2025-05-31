@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_usersAmount",
+            "_amountStakedByUser"
+        ],
+        "User Stake Reward": [
+            "_finalStakeWithdraw"
+        ],
+        "User Stake Time": [
+            "_totalDays",
+            "_stakingStartTime",
+            "_stakingEndTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "itoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNativeToken",
+                "Node": "_stakingAddress[_stakingCount] = msg.sender"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStakedNativeToken",
+                "Node": "itoken.transfer(msg.sender, getRewardDetailsByStakingId(stakingId))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakedNativeToken",
+                "Node": "_stakingAddress[stakingId].transfer(_usersAmount[stakingId])"
+            },
+            {
+                "Function": "withdrawStakedNativeToken",
+                "Node": "_stakingAddress[stakingId].transfer(_finalStakeWithdraw[stakingId])"
+            }
+        ]
+    }
+}

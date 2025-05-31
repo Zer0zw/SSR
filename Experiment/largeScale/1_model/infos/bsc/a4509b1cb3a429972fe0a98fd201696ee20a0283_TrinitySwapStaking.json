@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "User.bonus",
+            "Deposit.withdrawn"
+        ],
+        "User Stake Time": [
+            "Deposit.start"
+        ],
+        "Stake Token Address": [
+            "TrinitySwapRewards"
+        ],
+        "Reward Token Address": [
+            "TrinitySwapRewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "TrinitySwapRewards.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "TrinitySwapRewards.transfer(msg.sender, totalAmount)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "TrinitySwapRewards.transfer(msg.sender, totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

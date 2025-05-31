@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "FarmingPosition.mainTokenAmount",
+            "FarmingPosition.liquidityPoolTokenAmount"
+        ],
+        "User Stake Reward": [
+            "FarmingPosition.reward",
+            "FarmingPosition.lockedRewardPerBlock"
+        ],
+        "User Stake Time": [
+            "FarmingPosition.creationBlock"
+        ],
+        "Stake Token Address": [
+            "FarmingSetupInfo.mainTokenAddress",
+            "FarmingSetupInfo.liquidityPoolTokenAddress"
+        ],
+        "Reward Token Address": [
+            "_rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "openPosition",
+                "Node": "_safeTransferFrom(_setupsInfo[setup.infoIndex].liquidityPoolTokenAddress, msg.sender, address(this), liquidityPoolAmount)"
+            },
+            {
+                "Function": "addLiquidity",
+                "Node": "_safeTransferFrom(_setupsInfo[setup.infoIndex].liquidityPoolTokenAddress, msg.sender, address(this), liquidityPoolAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "_safeTransfer(_rewardTokenAddress, farmingPosition.uniqueOwner, reward)"
+            },
+            {
+                "Function": "withdrawReward",
+                "Node": "farmingPosition.uniqueOwner.call{value:reward}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLiquidity",
+                "Node": "_safeTransfer(lpData.liquidityPoolAddress, lpData.receiver, lpData.amount)"
+            },
+            {
+                "Function": "unlock",
+                "Node": "_safeTransferFrom(_rewardTokenAddress, msg.sender, address(this), rewardToGiveBack)"
+            }
+        ]
+    }
+}

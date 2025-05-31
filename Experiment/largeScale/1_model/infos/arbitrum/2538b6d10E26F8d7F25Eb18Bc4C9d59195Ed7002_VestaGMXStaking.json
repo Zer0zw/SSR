@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "userShares"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "gmxToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(gmxToken, msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "_behalfOf.call{ value: totalReward }(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "TransferHelper.safeTransfer(gmxToken, msg.sender, _amount)"
+            }
+        ]
+    }
+}

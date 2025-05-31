@@ -1,0 +1,113 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "userInfo.claimedReward"
+        ],
+        "User Stake Time": [
+            "userInfo.stakingTime",
+            "userInfo.userlockTime",
+            "userInfo.unstakeTime"
+        ],
+        "Stake Token Address": [
+            "HPG"
+        ],
+        "Reward Token Address": [
+            "HPG"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "airDrop"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [
+            "claimReward"
+        ],
+        "Sensitive Functions": [
+            "getTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "airDrop",
+                "Node": [
+                    137
+                ],
+                "Input": [
+                    "amount",
+                    "user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "userInfo.stakedAmount",
+                    "userInfo.stakingTime",
+                    "userInfo.unstakeTime",
+                    "userInfo.userlockTime"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.stakedAmount",
+                    "userInfo.stakingTime",
+                    "userInfo.unstakeTime",
+                    "userInfo.userlockTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    190
+                ],
+                "Input": [
+                    "user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "HPG",
+                    "blacklist",
+                    "minimumWithdraw",
+                    "taxAddress",
+                    "userInfo.claimedReward",
+                    "userInfo.userlockTime"
+                ],
+                "Full Calculation Variables": [
+                    "HPG",
+                    "blacklist",
+                    "minimumWithdraw",
+                    "taxAddress",
+                    "userInfo.claimedReward",
+                    "userInfo.userlockTime"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    147
+                ],
+                "Input": [
+                    "user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "userInfo.stakedAmount",
+                    "userInfo.unstakeTime"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.stakedAmount",
+                    "userInfo.unstakeTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

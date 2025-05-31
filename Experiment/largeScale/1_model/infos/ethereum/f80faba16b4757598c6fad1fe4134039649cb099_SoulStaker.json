@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownerTokenCount"
+        ],
+        "User Stake Reward": [
+            "StakedNFTData.t1Rewards",
+            "StakedNFTData.t2Rewards",
+            "StakedNFTData.t3Rewards"
+        ],
+        "User Stake Time": [
+            "StakedNFTData.releaseTimestamp"
+        ],
+        "Stake Token Address": [
+            "splicerContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "splicerContract.safeTransferFrom(msg.sender, address(this), tokenID, \"0x00\")"
+            },
+            {
+                "Function": "restake",
+                "Node": "splicerContract.safeTransferFrom(msg.sender, address(this), tokenID, \"0x00\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "spendRewards",
+                "Node": "nftRewards.t1Rewards -= _t1; nftRewards.t2Rewards -= _t2; nftRewards.t3Rewards -= _t3"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "splicerContract.safeTransferFrom(address(this), msg.sender, tokenID, \"0x00\")"
+            }
+        ]
+    }
+}

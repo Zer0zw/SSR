@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeHolder.token"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "stakeHolder.stakeTime"
+        ],
+        "Stake Token Address": [
+            "Bharat"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "_mint(_msgSender(), numTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "_msgSender().transfer(reward)"
+            },
+            {
+                "Function": "removeStake",
+                "Node": "msg.sender.transfer(rew)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "msg.sender.send(stake)"
+            }
+        ]
+    }
+}

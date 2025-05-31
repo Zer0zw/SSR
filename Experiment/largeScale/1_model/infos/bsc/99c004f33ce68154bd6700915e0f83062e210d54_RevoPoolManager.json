@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes[s].stakedAmount",
+            "stakes[s].stakedAmount"
+        ],
+        "User Stake Reward": [
+            "harvestArray[i]",
+            "earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingPools[i]",
+            "farmingPools[i]"
+        ],
+        "Reward Token Address": [
+            "revoAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IRevoStakingContract(_contractAddress).performStake(_poolIndex, _revoAmount, msg.sender)"
+            },
+            {
+                "Function": "stakeLp",
+                "Node": "IRevoFarming(_contractAddress).stake(_poolIndex, msg.sender, _lpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IRevoStakingContract(_contractAddress).harvest(_poolIndex, msg.sender)"
+            },
+            {
+                "Function": "harvestFarming",
+                "Node": "IRevoFarming(_contractAddress).harvest(_poolIndex, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IRevoStakingContract(_contractAddress).unstake(_poolIndex, msg.sender)"
+            },
+            {
+                "Function": "withdrawLp",
+                "Node": "IRevoFarming(_contractAddress).withdraw(_poolIndex, msg.sender, amount)"
+            },
+            {
+                "Function": "exitFarming",
+                "Node": "IRevoFarming(_contractAddress).exit(_poolIndex, msg.sender)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.depositAmount"
+        ],
+        "User Stake Reward": [
+            "User.paidReflection"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "volts"
+        ],
+        "Reward Token Address": [
+            "ohms"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "volts.transferFrom(address(msg.sender), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "ohms.transfer(address(msg.sender), _ohmsReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "ohms.transfer(address(msg.sender), _ohmsReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "volts.transfer(address(msg.sender), amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "volts.transfer(address(msg.sender), user.depositAmount)"
+            }
+        ]
+    }
+}

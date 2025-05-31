@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountStaked"
+        ],
+        "User Stake Reward": [
+            "shares",
+            "amount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token_staking"
+        ],
+        "Reward Token Address": [
+            "BONE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingContract.stakingDeposit(sender, amount)"
+            },
+            {
+                "Function": "compound",
+                "Node": "stakingContract.stakingClaimToCompound(msg.sender, msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeDividend",
+                "Node": "IERC20(BONE).transfer(recipient, amount)"
+            },
+            {
+                "Function": "_claimDividend",
+                "Node": "distributeDividend(msg.sender, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingContract.stakingWithdraw(msg.sender, amount)"
+            }
+        ]
+    }
+}

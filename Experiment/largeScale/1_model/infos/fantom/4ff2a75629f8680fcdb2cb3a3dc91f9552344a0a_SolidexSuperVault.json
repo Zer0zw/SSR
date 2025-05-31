@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [
+            "totalEarningAmounts"
+        ],
+        "User Stake Time": [
+            "userLastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "solidSexSolidLp",
+            "wftmSexLp"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(stakeToken).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimEarnings",
+                "Node": "ISolidlyRouter(solidlyRouter).removeLiquidity(solidToken, solidSexToken, true, solidLpAmount, 1, 1, msg.sender, block.timestamp)"
+            },
+            {
+                "Function": "claimEarnings",
+                "Node": "ISolidlyRouter(solidlyRouter).removeLiquidity(wftm, sexToken, false, sexLpAmount, 1, 1, msg.sender, block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stakeToken).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

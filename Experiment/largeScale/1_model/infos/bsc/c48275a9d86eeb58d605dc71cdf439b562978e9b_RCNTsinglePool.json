@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.deposit_amount"
+        ],
+        "User Stake Reward": [
+            "StakerHistory.deposit_amount"
+        ],
+        "User Stake Time": [
+            "Staker.stake_creation_time"
+        ],
+        "Stake Token Address": [
+            "RCNT_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "RCNT_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositRCNT",
+                "Node": "RichCatsToken(RCNT_ADDRESS).transferFrom(msg.sender,address(this),depositvalue)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "RichCatsToken(RCNT_ADDRESS).transferFrom(address(this),msg.sender,pendingrewards)"
+            },
+            {
+                "Function": "unstakeRCNT",
+                "Node": "RichCatsToken(RCNT_ADDRESS).transferFrom(address(this),msg.sender,pendingrewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeRCNT",
+                "Node": "RichCatsToken(RCNT_ADDRESS).transferFrom(address(this),msg.sender,balanceafterTax)"
+            },
+            {
+                "Function": "unstakeRCNT",
+                "Node": "RichCatsToken(RCNT_ADDRESS).transferFrom(address(this),msg.sender,withdrawvalue)"
+            }
+        ]
+    }
+}

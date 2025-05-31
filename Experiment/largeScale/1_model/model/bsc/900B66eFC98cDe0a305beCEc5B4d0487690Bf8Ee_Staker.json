@@ -1,0 +1,136 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeCount"
+        ],
+        "User Stake Reward": [
+            "totalRewardReceived"
+        ],
+        "User Stake Time": [
+            "stakings.duration"
+        ],
+        "Stake Token Address": [
+            "stakedNFTAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addStake"
+        ],
+        "getReward": [
+            "withdrawStake"
+        ],
+        "unStake": [
+            "forceRemoveStake",
+            "withdrawStake"
+        ],
+        "Sensitive Functions": [
+            "setRewardTokenAddress",
+            "setStakedNFTAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStake",
+                "Node": [
+                    1921
+                ],
+                "Input": [
+                    "duration",
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakedNFTAddress"
+                ],
+                "Full Calculation Variables": [
+                    "stakedNFTAddress"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStake",
+                "Node": [
+                    1938
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [
+                    "rewardPerHour",
+                    "rewardTokenAddress",
+                    "stakeTax",
+                    "stakings.duration",
+                    "stakings.isStaked"
+                ],
+                "Control Variables": [
+                    "rewardPerHour",
+                    "rewardTokenAddress",
+                    "stakeTax",
+                    "stakedNFTAddress",
+                    "stakings.duration",
+                    "stakings.isStaked"
+                ],
+                "Full Calculation Variables": [
+                    "rewardPerHour",
+                    "rewardTokenAddress",
+                    "stakeTax",
+                    "stakedNFTAddress",
+                    "stakings.duration",
+                    "stakings.isStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": [
+                    1935
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakedNFTAddress",
+                    "stakings.duration",
+                    "stakings.isStaked"
+                ],
+                "Full Calculation Variables": [
+                    "stakedNFTAddress",
+                    "stakings.duration",
+                    "stakings.isStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "forceRemoveStake",
+                "Node": [
+                    2028
+                ],
+                "Input": [
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakedNFTAddress",
+                    "stakings.duration",
+                    "stakings.isStaked"
+                ],
+                "Full Calculation Variables": [
+                    "stakedNFTAddress",
+                    "stakings.duration",
+                    "stakings.isStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

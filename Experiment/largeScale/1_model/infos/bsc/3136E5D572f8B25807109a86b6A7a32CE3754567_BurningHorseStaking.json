@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStaked",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.claimable"
+        ],
+        "User Stake Time": [
+            "Stake.since"
+        ],
+        "Stake Token Address": [
+            "brhsToken"
+        ],
+        "Reward Token Address": [
+            "brhsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(address(msg.sender), address(0), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calculateStakeReward",
+                "Node": "return ((_checkOutOfTimeRange(_current_stake.since)) * _current_stake.amount) / rewardPerDay[_stakePlan]"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "token.mint(msg.sender, amount_to_mint)"
+            }
+        ]
+    }
+}

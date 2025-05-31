@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.provided"
+        ],
+        "User Stake Reward": [
+            "Stake.harvested"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "boredMemberNFT"
+        ],
+        "Reward Token Address": [
+            "dai"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "boredMemberNFT.transferFrom(msg.sender, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "processTradingFee",
+                "Node": "dai.transfer(addressStaked[i], shareTradingFee * BMStaked)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "boredMemberNFT.transferFrom(address(this), s.owner, s.tokenIds[j])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "vault"
+        ],
+        "User Stake Reward": [
+            "User.withdrawable",
+            "User.availableToWithdraw"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "NFTToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "NFTToken.transferFrom(msg.sender,address(this),tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "WithdrawReward",
+                "Node": "token.withdrawStakingReward(msg.sender,reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "NFTToken.transferFrom(address(this),msg.sender,tokenId)"
+            }
+        ]
+    }
+}

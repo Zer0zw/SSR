@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStakedTokens",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "User.totalClaimedRewardTokens",
+            "Stake.reward"
+        ],
+        "User Stake Time": [
+            "Stake.stakeTime",
+            "Stake.unlockTime"
+        ],
+        "Stake Token Address": [
+            "KujiraToken"
+        ],
+        "Reward Token Address": [
+            "KujiraToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "KujiraToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "KujiraToken.transferFrom(owner, msg.sender, remaingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "KujiraToken.transfer(msg.sender, userStakeInfo.amount)"
+            }
+        ]
+    }
+}

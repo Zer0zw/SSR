@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeUserStruct.stake"
+        ],
+        "User Stake Reward": [
+            "stakeUserStruct.harvested"
+        ],
+        "User Stake Time": [
+            "stakeUserStruct.stakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "token.mint(_user, harvestAmount.mul(98).div(100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "token.transfer(msg.sender, staker[msg.sender].stake)"
+            }
+        ]
+    }
+}

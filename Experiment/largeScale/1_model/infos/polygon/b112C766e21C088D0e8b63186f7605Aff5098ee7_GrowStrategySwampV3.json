@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userShares"
+        ],
+        "User Stake Reward": [
+            "_getGrowRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "STAKING_TOKEN"
+        ],
+        "Reward Token Address": [
+            "UNDERLYING_REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_depositUnderlying",
+                "Node": "IERC20(STAKING_TOKEN).safeTransferFrom(sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IERC20(UNDERLYING_REWARD_TOKEN).balanceOf(address(this))"
+            },
+            {
+                "Function": "_trySwapUnderlyingRewardToRewardToken",
+                "Node": "IERC20(UNDERLYING_REWARD_TOKEN).balanceOf(address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawUnderlying",
+                "Node": "IERC20(STAKING_TOKEN).balanceOf(address(this)).sub(_before)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(STAKING_TOKEN).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

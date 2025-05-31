@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal",
+            "sharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAddress"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(wantAddress).safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IERC20(earnedAddress).safeTransfer(treasuryAddress, fee)"
+            },
+            {
+                "Function": "distributeFees",
+                "Node": "IERC20(earnedAddress).safeTransfer(treasuryAddress, fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(wantAddress).safeTransfer(KalmFarmAddress, _wantAmt)"
+            }
+        ]
+    }
+}

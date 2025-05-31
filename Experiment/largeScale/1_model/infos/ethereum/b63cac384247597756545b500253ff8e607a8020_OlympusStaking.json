@@ -1,0 +1,64 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit",
+            "Claim.gons"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "OHM"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "OHM.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "sOHM.safeTransfer(_to, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "sOHM.safeTransfer(_to, sOHM.balanceForGons(info.gons))"
+            },
+            {
+                "Function": "rebase",
+                "Node": "OHM.safeTransfer(_to, amount_)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "sOHM.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "OHM.safeTransfer(_to, amount_)"
+            },
+            {
+                "Function": "wrap",
+                "Node": "sOHM.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "wrap",
+                "Node": "gOHM.mint(_to, gBalance_)"
+            },
+            {
+                "Function": "unwrap",
+                "Node": "gOHM.burn(msg.sender, _amount)"
+            },
+            {
+                "Function": "unwrap",
+                "Node": "sOHM.safeTransfer(_to, sBalance_)"
+            }
+        ]
+    }
+}

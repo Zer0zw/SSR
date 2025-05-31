@@ -1,0 +1,576 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mappingStakingInfos.amountTokens"
+        ],
+        "User Stake Reward": [
+            "mappingClaimStakingInfos.totalRayonsClaimed",
+            "mappingClaimStakingInfos.totalBUSDClaimed"
+        ],
+        "User Stake Time": [
+            "mappingStakingInfos.startStaking"
+        ],
+        "Stake Token Address": [
+            "addressRYS"
+        ],
+        "Reward Token Address": [
+            "addressRYS",
+            "addressBUSD"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakingTokens"
+        ],
+        "getReward": [
+            "claimRewardsAndNFTsFarm",
+            "claimRewardsAndRayonsStaking",
+            "claimRewardsFarm",
+            "claimRewardsStaking",
+            "finalizeFarmPool",
+            "finalizePoolStaking"
+        ],
+        "unStake": [
+            "claimRewardsAndRayonsStaking",
+            "finalizePoolStaking"
+        ],
+        "Sensitive Functions": [
+            "manager",
+            "setAddressRYS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingTokens",
+                "Node": [
+                    1296
+                ],
+                "Input": [
+                    "amountTokens",
+                    "staker"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "addressRYS",
+                    "checkSecurityActived",
+                    "timeOpenPoolsStaking"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "addressRYS",
+                    "checkSecurityActived",
+                    "timeOpenPoolsStaking"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsStaking",
+                "Node": [
+                    1413
+                ],
+                "Input": [
+                    "staker"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "timeClaimBUSDstaking",
+                    "addressRYS",
+                    "_paused",
+                    "depositBUSDToStakingPool",
+                    "mappingClaimStakingInfos.lastTimeClaimRayons",
+                    "mappingRewardsEarnStaking.whatsLastBalanceRayonsContract",
+                    "_NOT_ENTERED",
+                    "timeToWithdrawStaking",
+                    "mappingClaimStakingInfos.totalBUSDClaimed",
+                    "checkSecurityActived",
+                    "_status",
+                    "mappingClaimStakingInfos.totalRayonsClaimed",
+                    "_ENTERED",
+                    "mappingClaimStakingInfos.lastTimeClaimBUSD",
+                    "addressBUSD",
+                    "mappingRewardsEarnStaking.whatsLastBalanceBUSDContract",
+                    "timeClaimRayonsStaking"
+                ],
+                "Full Calculation Variables": [
+                    "timeClaimBUSDstaking",
+                    "addressRYS",
+                    "_paused",
+                    "depositBUSDToStakingPool",
+                    "mappingClaimStakingInfos.lastTimeClaimRayons",
+                    "mappingRewardsEarnStaking.whatsLastBalanceRayonsContract",
+                    "_NOT_ENTERED",
+                    "timeToWithdrawStaking",
+                    "mappingClaimStakingInfos.totalBUSDClaimed",
+                    "checkSecurityActived",
+                    "_status",
+                    "mappingClaimStakingInfos.totalRayonsClaimed",
+                    "_ENTERED",
+                    "mappingClaimStakingInfos.lastTimeClaimBUSD",
+                    "addressBUSD",
+                    "mappingRewardsEarnStaking.whatsLastBalanceBUSDContract",
+                    "timeClaimRayonsStaking"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRewardsFarm",
+                "Node": [
+                    1197
+                ],
+                "Input": [
+                    "farmer"
+                ],
+                "Calculation Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "mappingFarmInfos.amountBoost",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingFarmInfos.ID",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm"
+                ],
+                "Control Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "_paused",
+                    "mappingFarmInfos.amountBoost",
+                    "_NOT_ENTERED",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "checkSecurityActived",
+                    "_status",
+                    "_ENTERED",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm",
+                    "addressRYS",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingFarmInfos.ID",
+                    "addressBUSD"
+                ],
+                "Full Calculation Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "_paused",
+                    "mappingFarmInfos.amountBoost",
+                    "_NOT_ENTERED",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "checkSecurityActived",
+                    "_status",
+                    "_ENTERED",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm",
+                    "addressRYS",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingFarmInfos.ID",
+                    "addressBUSD"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRewardsAndNFTsFarm",
+                "Node": [
+                    1266
+                ],
+                "Input": [
+                    "farmer"
+                ],
+                "Calculation Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "mappingFarmInfos.startStaking",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "mappingFarmInfos.amountBoost",
+                    "mappingFarmInfos.rarity",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingFarmInfos.ID",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm"
+                ],
+                "Control Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "_paused",
+                    "mappingFarmInfos.startStaking",
+                    "mappingFarmInfos.amountBoost",
+                    "_NOT_ENTERED",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "checkSecurityActived",
+                    "_status",
+                    "_ENTERED",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm",
+                    "addressRYS",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "mappingFarmInfos.rarity",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingFarmInfos.ID",
+                    "addressBUSD"
+                ],
+                "Full Calculation Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "_paused",
+                    "mappingFarmInfos.startStaking",
+                    "mappingFarmInfos.amountBoost",
+                    "_NOT_ENTERED",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "checkSecurityActived",
+                    "_status",
+                    "_ENTERED",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm",
+                    "addressRYS",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "mappingFarmInfos.rarity",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingFarmInfos.ID",
+                    "addressBUSD"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "finalizeFarmPool",
+                "Node": [
+                    1266
+                ],
+                "Input": [
+                    "farmer"
+                ],
+                "Calculation Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "mappingFarmInfos.startStaking",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "mappingFarmInfos.amountBoost",
+                    "mappingFarmInfos.rarity",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingFarmInfos.ID",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm"
+                ],
+                "Control Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "_paused",
+                    "mappingFarmInfos.startStaking",
+                    "mappingFarmInfos.amountBoost",
+                    "_NOT_ENTERED",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "checkSecurityActived",
+                    "_status",
+                    "_ENTERED",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm",
+                    "addressRYS",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "mappingFarmInfos.rarity",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingFarmInfos.ID",
+                    "addressBUSD"
+                ],
+                "Full Calculation Variables": [
+                    "amountBUSDclaimedFarmNFT",
+                    "_paused",
+                    "mappingFarmInfos.startStaking",
+                    "mappingFarmInfos.amountBoost",
+                    "_NOT_ENTERED",
+                    "mappingClaimFarmInfos.lastTimeClaimRayons",
+                    "mappingClaimFarmInfos.totalBUSDClaimed",
+                    "checkSecurityActived",
+                    "_status",
+                    "_ENTERED",
+                    "amountTokensInFarm",
+                    "mappingRewardsEarnFarm.whatsLastBalanceBUSDContract",
+                    "mappingClaimFarmInfos.totalRayonsClaimed",
+                    "depositRayonsToFarm",
+                    "addressRYS",
+                    "mappingClaimFarmInfos.lastTimeClaimBUSD",
+                    "mappingRewardsEarnFarm.whatsLastBalanceRayonsContract",
+                    "mappingFarmInfos.rarity",
+                    "depositBUSDtoFarm",
+                    "amountRayonsClaimedFarmNFT",
+                    "mappingFarmInfos.ID",
+                    "addressBUSD"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRewardsAndRayonsStaking",
+                "Node": [
+                    1461
+                ],
+                "Input": [
+                    "staker"
+                ],
+                "Calculation Variables": [
+                    "depositRayonsToStakingPool",
+                    "lastDepositRayonsToStakingPool",
+                    "mappingClaimStakingInfos.lastTimeClaimRayons",
+                    "mappingRewardsEarnStaking.whatsLastBalanceRayonsContract",
+                    "mappingClaimStakingInfos.totalBUSDClaimed",
+                    "mappingStakingInfos.amountTokensInicial",
+                    "denominatorIncreaseFactor",
+                    "mappingClaimStakingInfos.totalRayonsClaimed",
+                    "mappingClaimStakingInfos.lastTimeClaimBUSD",
+                    "timeLastDepositRayonsToStakingPool",
+                    "depositBUSDToStakingPool",
+                    "amountTokensInStaking",
+                    "mappingStakingInfos.amountTokens",
+                    "amountRayonsClaimedStakingPool",
+                    "addressRayonsNFTnew",
+                    "addressRayonsNFTold",
+                    "mappingStakingInfos.startStaking",
+                    "amountBUSDclaimedStakingPool",
+                    "mappingRewardsEarnStaking.whatsLastBalanceBUSDContract"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "depositRayonsToStakingPool",
+                    "lastDepositRayonsToStakingPool",
+                    "mappingClaimStakingInfos.lastTimeClaimRayons",
+                    "mappingRewardsEarnStaking.whatsLastBalanceRayonsContract",
+                    "_NOT_ENTERED",
+                    "mappingClaimStakingInfos.totalBUSDClaimed",
+                    "mappingStakingInfos.amountTokensInicial",
+                    "checkSecurityActived",
+                    "_status",
+                    "denominatorIncreaseFactor",
+                    "mappingClaimStakingInfos.totalRayonsClaimed",
+                    "_ENTERED",
+                    "mappingClaimStakingInfos.lastTimeClaimBUSD",
+                    "timeLastDepositRayonsToStakingPool",
+                    "addressRYS",
+                    "depositBUSDToStakingPool",
+                    "amountTokensInStaking",
+                    "mappingStakingInfos.amountTokens",
+                    "amountRayonsClaimedStakingPool",
+                    "addressRayonsNFTnew",
+                    "addressRayonsNFTold",
+                    "mappingStakingInfos.startStaking",
+                    "amountBUSDclaimedStakingPool",
+                    "addressBUSD",
+                    "mappingRewardsEarnStaking.whatsLastBalanceBUSDContract"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "depositRayonsToStakingPool",
+                    "lastDepositRayonsToStakingPool",
+                    "mappingClaimStakingInfos.lastTimeClaimRayons",
+                    "mappingRewardsEarnStaking.whatsLastBalanceRayonsContract",
+                    "_NOT_ENTERED",
+                    "mappingClaimStakingInfos.totalBUSDClaimed",
+                    "mappingStakingInfos.amountTokensInicial",
+                    "checkSecurityActived",
+                    "_status",
+                    "denominatorIncreaseFactor",
+                    "mappingClaimStakingInfos.totalRayonsClaimed",
+                    "_ENTERED",
+                    "mappingClaimStakingInfos.lastTimeClaimBUSD",
+                    "timeLastDepositRayonsToStakingPool",
+                    "addressRYS",
+                    "depositBUSDToStakingPool",
+                    "amountTokensInStaking",
+                    "mappingStakingInfos.amountTokens",
+                    "amountRayonsClaimedStakingPool",
+                    "addressRayonsNFTnew",
+                    "addressRayonsNFTold",
+                    "mappingStakingInfos.startStaking",
+                    "amountBUSDclaimedStakingPool",
+                    "addressBUSD",
+                    "mappingRewardsEarnStaking.whatsLastBalanceBUSDContract"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "finalizePoolStaking",
+                "Node": [
+                    1461
+                ],
+                "Input": [
+                    "staker"
+                ],
+                "Calculation Variables": [
+                    "depositRayonsToStakingPool",
+                    "lastDepositRayonsToStakingPool",
+                    "mappingClaimStakingInfos.lastTimeClaimRayons",
+                    "mappingRewardsEarnStaking.whatsLastBalanceRayonsContract",
+                    "mappingClaimStakingInfos.totalBUSDClaimed",
+                    "mappingStakingInfos.amountTokensInicial",
+                    "denominatorIncreaseFactor",
+                    "mappingClaimStakingInfos.totalRayonsClaimed",
+                    "mappingClaimStakingInfos.lastTimeClaimBUSD",
+                    "timeLastDepositRayonsToStakingPool",
+                    "depositBUSDToStakingPool",
+                    "amountTokensInStaking",
+                    "mappingStakingInfos.amountTokens",
+                    "amountRayonsClaimedStakingPool",
+                    "addressRayonsNFTnew",
+                    "addressRayonsNFTold",
+                    "mappingStakingInfos.startStaking",
+                    "amountBUSDclaimedStakingPool",
+                    "mappingRewardsEarnStaking.whatsLastBalanceBUSDContract"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "depositRayonsToStakingPool",
+                    "lastDepositRayonsToStakingPool",
+                    "mappingClaimStakingInfos.lastTimeClaimRayons",
+                    "mappingRewardsEarnStaking.whatsLastBalanceRayonsContract",
+                    "_NOT_ENTERED",
+                    "mappingClaimStakingInfos.totalBUSDClaimed",
+                    "mappingStakingInfos.amountTokensInicial",
+                    "checkSecurityActived",
+                    "_status",
+                    "denominatorIncreaseFactor",
+                    "mappingClaimStakingInfos.totalRayonsClaimed",
+                    "_ENTERED",
+                    "mappingClaimStakingInfos.lastTimeClaimBUSD",
+                    "timeLastDepositRayonsToStakingPool",
+                    "addressRYS",
+                    "depositBUSDToStakingPool",
+                    "amountTokensInStaking",
+                    "mappingStakingInfos.amountTokens",
+                    "amountRayonsClaimedStakingPool",
+                    "addressRayonsNFTnew",
+                    "addressRayonsNFTold",
+                    "mappingStakingInfos.startStaking",
+                    "amountBUSDclaimedStakingPool",
+                    "addressBUSD",
+                    "mappingRewardsEarnStaking.whatsLastBalanceBUSDContract"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "depositRayonsToStakingPool",
+                    "lastDepositRayonsToStakingPool",
+                    "mappingClaimStakingInfos.lastTimeClaimRayons",
+                    "mappingRewardsEarnStaking.whatsLastBalanceRayonsContract",
+                    "_NOT_ENTERED",
+                    "mappingClaimStakingInfos.totalBUSDClaimed",
+                    "mappingStakingInfos.amountTokensInicial",
+                    "checkSecurityActived",
+                    "_status",
+                    "denominatorIncreaseFactor",
+                    "mappingClaimStakingInfos.totalRayonsClaimed",
+                    "_ENTERED",
+                    "mappingClaimStakingInfos.lastTimeClaimBUSD",
+                    "timeLastDepositRayonsToStakingPool",
+                    "addressRYS",
+                    "depositBUSDToStakingPool",
+                    "amountTokensInStaking",
+                    "mappingStakingInfos.amountTokens",
+                    "amountRayonsClaimedStakingPool",
+                    "addressRayonsNFTnew",
+                    "addressRayonsNFTold",
+                    "mappingStakingInfos.startStaking",
+                    "amountBUSDclaimedStakingPool",
+                    "addressBUSD",
+                    "mappingRewardsEarnStaking.whatsLastBalanceBUSDContract"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimRewardsAndRayonsStaking",
+                "Node": [
+                    1452
+                ],
+                "Input": [
+                    "staker"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "addressRYS",
+                    "checkSecurityActived"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "addressRYS",
+                    "checkSecurityActived"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "finalizePoolStaking",
+                "Node": [
+                    1452
+                ],
+                "Input": [
+                    "staker"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "addressRYS",
+                    "checkSecurityActived"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "addressRYS",
+                    "checkSecurityActived"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

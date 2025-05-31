@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.sM.totalStaked"
+        ],
+        "User Stake Reward": [
+            "User.sM.unClaimedBNB",
+            "User.sM.totalClaimed"
+        ],
+        "User Stake Time": [
+            "User.sM.checkpoint",
+            "User.sM.lastStakeTime"
+        ],
+        "Stake Token Address": [
+            "dmoon"
+        ],
+        "Reward Token Address": [
+            "dmoon"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBNB",
+                "Node": "ERC20(dmoon).transferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBNB",
+                "Node": "ERC20(dmoon).transfer(msg.sender, bnbAmount)"
+            },
+            {
+                "Function": "withdrawRef",
+                "Node": "ERC20(dmoon).transfer(msg.sender, totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

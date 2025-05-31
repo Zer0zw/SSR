@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.quantity"
+        ],
+        "User Stake Reward": [
+            "calculateReturnParams"
+        ],
+        "User Stake Time": [
+            "Stake.duration"
+        ],
+        "Stake Token Address": [
+            "TokenDetails.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "TokenDetails.tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "erc20.transferFrom(_msgSender(), address(this), quantity)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAndClaim",
+                "Node": "erc20.transfer(_msgSender(), totalTokens)"
+            },
+            {
+                "Function": "rolloverVested",
+                "Node": "erc20.transfer(_msgSender(), totalTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAndClaim",
+                "Node": "erc20.transfer(_msgSender(), totalTokens)"
+            },
+            {
+                "Function": "withdrawAndClaimVested",
+                "Node": "erc20.transfer(_msgSender(), totalTokens)"
+            },
+            {
+                "Function": "withdrawRewardPool",
+                "Node": "erc20.transfer(_msgSender(), quantity)"
+            }
+        ]
+    }
+}

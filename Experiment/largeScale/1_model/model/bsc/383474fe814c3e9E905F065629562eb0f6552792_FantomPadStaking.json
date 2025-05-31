@@ -1,0 +1,129 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeInformation.stakeAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userStakeInformation.stakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeTokens"
+        ],
+        "getReward": [
+            "withdrawStakedTokens"
+        ],
+        "unStake": [
+            "withdrawStakedTokens"
+        ],
+        "Sensitive Functions": [
+            "initialize",
+            "setToken",
+            "withDrawFunds"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": [
+                    998
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "StakesPerUser",
+                    "token",
+                    "totalStaking",
+                    "userStakeInformation.id",
+                    "userStakeInformation.stakeAmount",
+                    "userStakeInformation.stakeTime"
+                ],
+                "Full Calculation Variables": [
+                    "StakesPerUser",
+                    "token",
+                    "totalStaking",
+                    "userStakeInformation.id",
+                    "userStakeInformation.stakeAmount",
+                    "userStakeInformation.stakeTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStakedTokens",
+                "Node": [
+                    1010
+                ],
+                "Input": [
+                    "poolId"
+                ],
+                "Calculation Variables": [
+                    "userStakeInformation.stakeAmount",
+                    "userStakeInformation.stakeTime"
+                ],
+                "Control Variables": [
+                    "isBlocked",
+                    "token",
+                    "totalRewardsGiven",
+                    "userStakeInformation.stakeAmount",
+                    "userStakeInformation.stakeTime"
+                ],
+                "Full Calculation Variables": [
+                    "isBlocked",
+                    "token",
+                    "totalRewardsGiven",
+                    "userStakeInformation.stakeAmount",
+                    "userStakeInformation.stakeTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakedTokens",
+                "Node": [
+                    1024
+                ],
+                "Input": [
+                    "_signer",
+                    "poolId"
+                ],
+                "Calculation Variables": [
+                    "userStakeInformation.id",
+                    "userStakeInformation.stakeAmount"
+                ],
+                "Control Variables": [
+                    "isBlocked",
+                    "signer",
+                    "token",
+                    "totalStaking",
+                    "usedNonce",
+                    "userStakeInformation.id",
+                    "userStakeInformation.stakeAmount"
+                ],
+                "Full Calculation Variables": [
+                    "isBlocked",
+                    "signer",
+                    "token",
+                    "totalStaking",
+                    "usedNonce",
+                    "userStakeInformation.id",
+                    "userStakeInformation.stakeAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

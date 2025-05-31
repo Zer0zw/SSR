@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "countTokenStaked"
+        ],
+        "User Stake Reward": [
+            "autoRewardSum"
+        ],
+        "User Stake Time": [
+            "countTimeStaked"
+        ],
+        "Stake Token Address": [
+            "contractSAWA"
+        ],
+        "Reward Token Address": [
+            "contractSAWA"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "contractSAWA.transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawProfit",
+                "Node": "contractSAWA.transfer(msg.sender, _profit"
+            },
+            {
+                "Function": "autoWithdrawProfit",
+                "Node": "contractSAWA.transfer(_adr, _profit"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStakedSAWA",
+                "Node": "contractSAWA.transfer( msg.sender, _count"
+            },
+            {
+                "Function": "withdrawStakedSAWA",
+                "Node": "contractSAWA.transfer(msg.sender, _count + _profit"
+            }
+        ]
+    }
+}

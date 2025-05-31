@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.body"
+        ],
+        "User Stake Reward": [
+            "StakeMeta.rewardPerHour"
+        ],
+        "User Stake Time": [
+            "StakeMeta.ttl"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.mintForStake(_msgSender(), rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "token.mintForStake(_msgSender(), rewards)"
+            }
+        ]
+    }
+}

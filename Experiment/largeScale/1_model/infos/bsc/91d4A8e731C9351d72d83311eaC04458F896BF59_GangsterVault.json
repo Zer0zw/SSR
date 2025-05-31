@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf_"
+        ],
+        "User Stake Reward": [
+            "dividendsOf"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "buybackToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositTo",
+                "Node": "require(stakingToken.transferFrom(msg.sender, address(this), _amount))"
+            },
+            {
+                "Function": "_depositTokens",
+                "Node": "balanceOf_[_recipient] = SafeMath.add(balanceOf_[_recipient], _tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "stakingToken.transfer(_user,_dividends)"
+            },
+            {
+                "Function": "_compoundTokens",
+                "Node": "uint256 _tokens = _depositTokens(msg.sender, _dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "balanceOf_[_user] = SafeMath.sub(balanceOf_[_user], _amount)"
+            },
+            {
+                "Function": "_transferTokens",
+                "Node": "balanceOf_[_sender] = SafeMath.sub(balanceOf_[_sender], _amount)"
+            }
+        ]
+    }
+}

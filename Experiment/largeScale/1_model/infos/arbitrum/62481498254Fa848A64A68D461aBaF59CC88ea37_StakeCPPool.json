@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "DURATION"
+        ],
+        "Stake Token Address": [
+            "cpTokenAddress"
+        ],
+        "Reward Token Address": [
+            "lpToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(cpTokenAddress).transferFrom(msg.sender, deadAddress, tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "lpToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": []
+    }
+}

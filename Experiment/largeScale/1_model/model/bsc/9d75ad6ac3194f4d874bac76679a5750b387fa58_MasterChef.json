@@ -1,0 +1,202 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.depositTime",
+            "userInfo.lastPayout"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawr"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "migrate",
+            "set"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1223
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "depositFeePercent"
+                ],
+                "Control Variables": [
+                    "depositFeePercent",
+                    "feeAddr",
+                    "poolInfo.lpToken",
+                    "poolInfo.minContrib",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout"
+                ],
+                "Full Calculation Variables": [
+                    "depositFeePercent",
+                    "feeAddr",
+                    "poolInfo.lpToken",
+                    "poolInfo.minContrib",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1210
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout"
+                ],
+                "Control Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "poolInfo.lpToken",
+                    "poolInfo.minContrib",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "poolInfo.lpToken",
+                    "poolInfo.minContrib",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1258
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout"
+                ],
+                "Control Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1266
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "withdrawFeePercent"
+                ],
+                "Control Variables": [
+                    "feeAddr",
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout",
+                    "withdrawFeePercent"
+                ],
+                "Full Calculation Variables": [
+                    "feeAddr",
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.lastPayout",
+                    "withdrawFeePercent"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawr",
+                "Node": [
+                    1313
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_recipient",
+                    "_sender"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_operators",
+                    "poolInfo.lpToken"
+                ],
+                "Full Calculation Variables": [
+                    "_operators",
+                    "poolInfo.lpToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

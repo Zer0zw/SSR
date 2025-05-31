@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "stakingNumForPool"
+        ],
+        "User Stake Reward": [
+            "pending_list",
+            "allrewardList"
+        ],
+        "User Stake Time": [
+            "staking_time",
+            "unlock_time"
+        ],
+        "Stake Token Address": [
+            "poolInfo0.stakingNftToken"
+        ],
+        "Reward Token Address": [
+            "poolInfo0.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.tokensList.stakingNftToken.transferFrom(_user, address(this), _tokenIdList[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(rewardToken, _user, leftAmount)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(rewardToken, _user, rewardAmountForUser)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "safeTokenTransfer(rewardToken, x.referer, rewardAmountForReferer)"
+            },
+            {
+                "Function": "swapAndDepositFarm",
+                "Node": "swapConfig.pairAddress.safeTransfer(address(1), userLpAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.tokensList.stakingNftToken.transferFrom(address(this), _user, _tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Cauldron.cauldronStaked",
+            "Owl.owlStaked",
+            "Broom.broomStaked"
+        ],
+        "User Stake Reward": [
+            "Cauldron.rewards",
+            "Owl.rewards",
+            "Broom.rewards"
+        ],
+        "User Stake Time": [
+            "Cauldron.lastBlockChecked",
+            "Owl.lastBlockChecked",
+            "Broom.lastBlockChecked"
+        ],
+        "Stake Token Address": [
+            "cauldron",
+            "owl",
+            "broom"
+        ],
+        "Reward Token Address": [
+            "halloween"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeCauldron",
+                "Node": "require(cauldron.transferFrom(msg.sender, address(this), amount))"
+            },
+            {
+                "Function": "stakeOwl",
+                "Node": "require(owl.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeBroom",
+                "Node": "require(broom.transferFrom(msg.sender, address(this), amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "mint(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "mint(halloween, dividend)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawCauldron",
+                "Node": "cauldron.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawOwl",
+                "Node": "owl.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawBroom",
+                "Node": "broom.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

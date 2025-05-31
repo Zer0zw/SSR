@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.tokenID"
+        ],
+        "User Stake Reward": [
+            "Stake.collectedRewards"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "MaleContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "_safeTransfer(msg.sender, address(this), tokenID, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectStakingRewards",
+                "Node": "utilityTokens[msg.sender] += rewards"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeToken",
+                "Node": "_safeTransfer(address(this), stake.stakeholder, tokenID, \"\")"
+            }
+        ]
+    }
+}

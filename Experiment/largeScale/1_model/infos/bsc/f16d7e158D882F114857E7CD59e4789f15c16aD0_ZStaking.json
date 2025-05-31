@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserDept.amount"
+        ],
+        "User Stake Reward": [
+            "Player.totalIncome"
+        ],
+        "User Stake Time": [
+            "UserDept.depTime"
+        ],
+        "Stake Token Address": [
+            "busd"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "busd.transferFrom(msg.sender, address(this), _busd)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "busd.transfer(msg.sender,_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "busd.transfer(buyer,_amount)"
+            }
+        ]
+    }
+}

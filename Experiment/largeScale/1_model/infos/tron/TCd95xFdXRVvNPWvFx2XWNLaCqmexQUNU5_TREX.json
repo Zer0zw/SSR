@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.selfClaimed"
+        ],
+        "User Stake Time": [
+            "vesting"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "_mint(msg.sender, pendingAmount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, pendingAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "_mint(msg.sender, pendingAmount)"
+            },
+            {
+                "Function": "refClaim",
+                "Node": "_mint(msg.sender, pendingAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Unstake",
+                "Node": "address(msg.sender).transfer(getAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "address(msg.sender).transfer(getAmount)"
+            }
+        ]
+    }
+}

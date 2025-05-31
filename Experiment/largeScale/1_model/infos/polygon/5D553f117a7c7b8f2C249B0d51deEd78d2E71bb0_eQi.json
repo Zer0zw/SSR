@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.endBlock"
+        ],
+        "Stake Token Address": [
+            "Qi"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "Qi.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "Qi.safeTransfer(msg.sender, userInfo[msg.sender].amount)"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "Qi.safeTransfer(msg.sender, withdraw)"
+            }
+        ]
+    }
+}

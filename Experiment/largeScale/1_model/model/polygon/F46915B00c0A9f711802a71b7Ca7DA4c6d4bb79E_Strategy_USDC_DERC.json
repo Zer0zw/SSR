@@ -1,0 +1,105 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "pendingYel"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "QUICKToken",
+            "YELtoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositAsMigrate",
+            "receive"
+        ],
+        "getReward": [
+            "autoCompound",
+            "claimYel"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "migrate",
+            "requestWithdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claimYel",
+                "Node": [
+                    879
+                ],
+                "Input": [
+                    "_receiver"
+                ],
+                "Calculation Variables": [
+                    "pendingYel"
+                ],
+                "Control Variables": [
+                    "YELtoken",
+                    "pendingYel",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "YELtoken",
+                    "pendingYel",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    889
+                ],
+                "Input": [
+                    "_receiver"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_owner",
+                    "farm",
+                    "lpToken",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "farm",
+                    "lpToken",
+                    "vault"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "migrate",
+                "Node": [
+                    909
+                ],
+                "Input": [
+                    "_percent"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WMATIC",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "WMATIC",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

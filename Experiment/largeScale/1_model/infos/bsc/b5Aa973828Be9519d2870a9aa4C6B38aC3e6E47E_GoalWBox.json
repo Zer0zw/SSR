@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Box.price"
+        ],
+        "User Stake Reward": [
+            "Box.rate"
+        ],
+        "User Stake Time": [
+            "Box.start",
+            "Box.end"
+        ],
+        "Stake Token Address": [
+            "Box.farmAddr"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(busd).transferFrom(pool, msg.sender, priceInBUSD.mul(1000+rate).div(1000))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(busd).transferFrom(pool, msg.sender, priceInBUSD.mul(1000+rate).div(1000))"
+            },
+            {
+                "Function": "unfarm",
+                "Node": "IERC20(farmAddr).transferFrom(pool, msg.sender, price.mul(2).mul(1000+rate).div(1000))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(busd).transferFrom(pool, msg.sender, priceInBUSD.mul(95).div(100))"
+            },
+            {
+                "Function": "unfarm",
+                "Node": "IERC20(farmAddr).transferFrom(pool, msg.sender, price.mul(95).div(100))"
+            }
+        ]
+    }
+}

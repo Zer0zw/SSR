@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userPendingClaim"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userUnlockTime"
+        ],
+        "Stake Token Address": [
+            "STRX"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "STRX.mintSTRX(msg.sender, _strx)"
+            },
+            {
+                "Function": "emInit",
+                "Node": "STRX.mintSTRX(blackHoleAddress, msg.value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "payable(msg.sender).transfer(trxToSend)"
+            },
+            {
+                "Function": "emergencyClaim",
+                "Node": "payable(msg.sender).transfer(newPendingClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "payable(msg.sender).transfer(oldPendingClaim)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "STRX.burnSTRX(msg.sender, strx)"
+            },
+            {
+                "Function": "emergencyClaim",
+                "Node": "STRX.burnSTRX(msg.sender, strx)"
+            }
+        ]
+    }
+}

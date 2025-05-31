@@ -1,0 +1,159 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeStore.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "stakeStore.maxRewards",
+            "stakeStore.rewardDebt"
+        ],
+        "User Stake Time": [
+            "stakeStore.stakeTime",
+            "stakeStore.unStakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "cashBack",
+            "claim"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1015
+                ],
+                "Input": [
+                    "amount",
+                    "stakeType"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "internalStakeTicket",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "internalStakeTicket",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1061
+                ],
+                "Input": [
+                    "stakeId"
+                ],
+                "Calculation Variables": [
+                    "stakeDuration",
+                    "stakeReward",
+                    "stakeStore.maxRewards",
+                    "stakeStore.rewardDebt",
+                    "stakeStore.stakeAmount",
+                    "stakeStore.stakeTime",
+                    "stakeStore.stakeType",
+                    "stakeStore.user"
+                ],
+                "Control Variables": [
+                    "stakeDuration",
+                    "stakeReward",
+                    "stakeStore.maxRewards",
+                    "stakeStore.rewardDebt",
+                    "stakeStore.stakeAmount",
+                    "stakeStore.stakeTime",
+                    "stakeStore.stakeType",
+                    "stakeStore.user",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "stakeDuration",
+                    "stakeReward",
+                    "stakeStore.maxRewards",
+                    "stakeStore.rewardDebt",
+                    "stakeStore.stakeAmount",
+                    "stakeStore.stakeTime",
+                    "stakeStore.stakeType",
+                    "stakeStore.user",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "cashBack",
+                "Node": [
+                    1080
+                ],
+                "Input": [
+                    "stakeId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "cashBackReward",
+                    "stakeStore.cashBackStatus",
+                    "stakeStore.stakeAmount",
+                    "stakeStore.user",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "cashBackReward",
+                    "stakeStore.cashBackStatus",
+                    "stakeStore.stakeAmount",
+                    "stakeStore.user",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1044
+                ],
+                "Input": [
+                    "stakeId"
+                ],
+                "Calculation Variables": [
+                    "stakeStore.stakeAmount",
+                    "stakeStore.unStakeTime",
+                    "stakeStore.user",
+                    "stakeStore.withdrawStatus"
+                ],
+                "Control Variables": [
+                    "stakeStore.stakeAmount",
+                    "stakeStore.unStakeTime",
+                    "stakeStore.user",
+                    "stakeStore.withdrawStatus",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "stakeStore.stakeAmount",
+                    "stakeStore.unStakeTime",
+                    "stakeStore.user",
+                    "stakeStore.withdrawStatus",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

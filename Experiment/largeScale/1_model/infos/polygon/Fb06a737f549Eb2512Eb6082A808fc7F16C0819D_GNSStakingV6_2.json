@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "User.harvestedRewardsDai"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "dai"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "dai.transfer(msg.sender, pendingDai)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "unstakeNft",
+                "Node": "nfts[stakedNft.nftType - 1].transferFrom(address(this), msg.sender, stakedNft.nftId)"
+            }
+        ]
+    }
+}

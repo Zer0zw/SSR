@@ -1,0 +1,235 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits.depositAmount"
+        ],
+        "User Stake Reward": [
+            "deposits.rewards"
+        ],
+        "User Stake Time": [
+            "deposits.depositTime",
+            "deposits.endTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "collect"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "superEmergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    450
+                ],
+                "Input": [
+                    "amount",
+                    "_amount",
+                    "_account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakedTotal",
+                    "timeStarted",
+                    "tokenAddress",
+                    "hasStaked",
+                    "isStopped",
+                    "stakedBalance",
+                    "timeEnded"
+                ],
+                "Full Calculation Variables": [
+                    "stakedTotal",
+                    "timeStarted",
+                    "tokenAddress",
+                    "hasStaked",
+                    "isStopped",
+                    "stakedBalance",
+                    "timeEnded"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": [
+                    471
+                ],
+                "Input": [
+                    "_account"
+                ],
+                "Calculation Variables": [
+                    "deposits.collected",
+                    "rates.interestRate",
+                    "deposits.lastCollectedTime",
+                    "hasStaked",
+                    "index",
+                    "interestRateConverter",
+                    "deposits.depositAmount",
+                    "deposits.endTime",
+                    "rates.timeStamp",
+                    "deposits.userIndex",
+                    "deposits.depositTime",
+                    "lockDuration",
+                    "deposits.rewards"
+                ],
+                "Control Variables": [
+                    "deposits.collected",
+                    "rates.interestRate",
+                    "rewardBalance",
+                    "deposits.lastCollectedTime",
+                    "hasStaked",
+                    "deposits",
+                    "index",
+                    "interestRateConverter",
+                    "deposits.depositAmount",
+                    "deposits.endTime",
+                    "rates.timeStamp",
+                    "deposits.userIndex",
+                    "approvedCollectedTime",
+                    "deposits.depositTime",
+                    "lockDuration",
+                    "deposits.rewards"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.collected",
+                    "rates.interestRate",
+                    "rewardBalance",
+                    "deposits.lastCollectedTime",
+                    "hasStaked",
+                    "deposits",
+                    "index",
+                    "interestRateConverter",
+                    "deposits.depositAmount",
+                    "deposits.endTime",
+                    "rates.timeStamp",
+                    "deposits.userIndex",
+                    "approvedCollectedTime",
+                    "deposits.depositTime",
+                    "lockDuration",
+                    "deposits.rewards"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    498
+                ],
+                "Input": [
+                    "_account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.paid",
+                    "deposits.collected",
+                    "rates.interestRate",
+                    "totalParticipants",
+                    "rewardBalance",
+                    "hasStaked",
+                    "deposits",
+                    "index",
+                    "stakedBalance",
+                    "interestRateConverter",
+                    "deposits.depositAmount",
+                    "deposits.endTime",
+                    "rates.timeStamp",
+                    "deposits.userIndex",
+                    "deposits.depositTime",
+                    "deposits.lastCollectedTime",
+                    "deposits.rewards"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.paid",
+                    "deposits.collected",
+                    "rates.interestRate",
+                    "totalParticipants",
+                    "rewardBalance",
+                    "hasStaked",
+                    "deposits",
+                    "index",
+                    "stakedBalance",
+                    "interestRateConverter",
+                    "deposits.depositAmount",
+                    "deposits.endTime",
+                    "rates.timeStamp",
+                    "deposits.userIndex",
+                    "deposits.depositTime",
+                    "deposits.lastCollectedTime",
+                    "deposits.rewards"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    519
+                ],
+                "Input": [
+                    "_account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.paid",
+                    "deposits.depositAmount",
+                    "totalParticipants",
+                    "hasStaked",
+                    "deposits",
+                    "stakedBalance"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.paid",
+                    "deposits.depositAmount",
+                    "totalParticipants",
+                    "hasStaked",
+                    "deposits",
+                    "stakedBalance"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "superEmergencyWithdraw",
+                "Node": [
+                    519
+                ],
+                "Input": [
+                    "_account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.paid",
+                    "deposits.depositAmount",
+                    "sew",
+                    "totalParticipants",
+                    "stakedBalance"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.paid",
+                    "deposits.depositAmount",
+                    "sew",
+                    "totalParticipants",
+                    "stakedBalance"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

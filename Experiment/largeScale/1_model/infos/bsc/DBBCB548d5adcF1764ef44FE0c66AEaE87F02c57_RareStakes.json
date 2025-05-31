@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Record.staked",
+            "Record.stakedNoRewards"
+        ],
+        "User Stake Reward": [
+            "Record.pending",
+            "Record.claimed"
+        ],
+        "User Stake Time": [
+            "Record.origin",
+            "Record.from",
+            "Record.lastClaimed"
+        ],
+        "Stake Token Address": [
+            "mainToken"
+        ],
+        "Reward Token Address": [
+            "mainToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "mainToken.transferFrom(staker, address(this), stakeAmount)"
+            },
+            {
+                "Function": "stakeUsd",
+                "Node": "mainToken.transferFrom(staker, address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "mainToken.transfer(staker, unclaimed)"
+            },
+            {
+                "Function": "campaignFailed",
+                "Node": "mainToken.transfer(staker, user.staked + reward)"
+            }
+        ],
+        "unStake": []
+    }
+}

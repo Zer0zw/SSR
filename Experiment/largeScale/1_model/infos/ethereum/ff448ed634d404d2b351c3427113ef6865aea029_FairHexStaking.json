@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeStore.hexAmount"
+        ],
+        "User Stake Reward": [
+            "StakeStore.bonusMultiplier"
+        ],
+        "User Stake Time": [
+            "StakeStore.stakedDays"
+        ],
+        "Stake Token Address": [
+            "hexAddress"
+        ],
+        "Reward Token Address": [
+            "fairHexAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStart",
+                "Node": "fairHexToken.transfer(msg.sender, _mintAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_stakeEnd",
+                "Node": "fairHexToken.transfer(_stakerAddress, _bonusAmount)"
+            },
+            {
+                "Function": "_stakeEnd",
+                "Node": "fairHexToken.transfer(_stakerAddress, fairHexToken.balanceOf(address(this)))"
+            },
+            {
+                "Function": "swapAndReceive",
+                "Node": "fairHexToken.transfer(_receiver, _amounts[1])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_stakeEnd",
+                "Node": "hexToken.transfer(_stakerAddress, _amount)"
+            },
+            {
+                "Function": "_stakeEnd",
+                "Node": "hexToken.transfer(_stakerAddress, _stakedAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfoMap.tokenBalance"
+        ],
+        "User Stake Reward": [
+            "userInfoMap.vestingTokenBalance"
+        ],
+        "User Stake Time": [
+            "userInfoMap.lockedExpired",
+            "userInfoMap.maxPeriodID"
+        ],
+        "Stake Token Address": [
+            "vestTokens"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "userInfoMap[account].vestingTokenBalance = userInfoMap[account].vestingTokenBalance.add(balance)"
+            },
+            {
+                "Function": "airdrop",
+                "Node": "userInfoMap[toAccounts[i]].vestingTokenBalance = userInfoMap[toAccounts[i]].vestingTokenBalance.add(balance)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "userInfoMap[msg.sender].vestingTokenBalance = userInfoMap[msg.sender].vestingTokenBalance.sub(balance)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "userInfoMap[msg.sender].vestingTokenBalance = 0"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mapMemberStake.tokenValue"
+        ],
+        "User Stake Reward": [
+            "calcStakeCollecting"
+        ],
+        "User Stake Time": [
+            "mapMemberStake.startDay",
+            "mapMemberStake.endDay"
+        ],
+        "Stake Token Address": [
+            "busd_address"
+        ],
+        "Reward Token Address": [
+            "busd_address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "EnterStake",
+                "Node": "burn(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "EndStake",
+                "Node": "busd_token.transfer(msg.sender, profit)"
+            },
+            {
+                "Function": "EndStake",
+                "Node": "mint(msg.sender, stakeReturn + bonusAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "EndStake",
+                "Node": "mint(msg.sender, stakeReturn + bonusAmount)"
+            }
+        ]
+    }
+}

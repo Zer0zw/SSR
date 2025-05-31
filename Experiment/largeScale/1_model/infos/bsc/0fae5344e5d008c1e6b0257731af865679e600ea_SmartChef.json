@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "rewardStartBlock",
+            "rewardEndBlock"
+        ],
+        "Stake Token Address": [
+            "supplyToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.supplyToken.safeTransferFrom(address(msg.sender), address(this), _amount.sub(burnAmount))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "pool.supplyToken.safeTransferFrom(address(msg.sender), address(0x00dead), burnAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "rewardToken.safeTransfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeRewardTransfer(address(msg.sender), pending)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.supplyToken.safeTransfer(address(msg.sender), user.amount)"
+            },
+            {
+                "Function": "emergencyRewardWithdraw",
+                "Node": "safeRewardTransfer(address(msg.sender), _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.supplyToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.supplyToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

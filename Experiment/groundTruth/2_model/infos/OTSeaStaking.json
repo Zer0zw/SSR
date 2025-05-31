@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Epoch.sharePerToken"
+        ],
+        "User Stake Time": [
+            "Epoch.startedAt"
+        ],
+        "Stake Token Address": [
+            "_otseaERC20"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_otseaERC20.safeTransferFrom(_msgSender(), address(this), uint256(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_transferETHOrRevert(_receiver, totalRewards)"
+            },
+            {
+                "Function": "compound",
+                "Node": "_transferETHOrRevert(_remainderReceiver, remaining)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_otseaERC20.safeTransfer(_receiver, uint256(totalAmount))"
+            }
+        ]
+    }
+}

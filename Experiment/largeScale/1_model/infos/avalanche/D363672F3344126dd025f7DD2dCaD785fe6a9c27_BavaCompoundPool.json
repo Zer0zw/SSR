@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.receiptAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.firstDepositBlock",
+            "UserInfo.lastDepositBlock",
+            "UserInfo.lastWithdrawBlock",
+            "UserInfo.blockdelta"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "bonusRewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, userReceiptAmount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "_mint(devaddr, devrReceiptAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "Bava.transfer(account, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "Bava.transfer(account, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "poolInfo.lpToken.safeTransfer(address(msg.sender), userWithdrawFee)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "poolInfo.lpToken.safeTransfer(address(devaddr), depositTokenAmount-userWithdrawFee)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "poolInfo.lpToken.safeTransfer(address(msg.sender), amountToSend)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "poolInfo.lpToken.safeTransfer(address(devaddr), devToSend)"
+            }
+        ]
+    }
+}

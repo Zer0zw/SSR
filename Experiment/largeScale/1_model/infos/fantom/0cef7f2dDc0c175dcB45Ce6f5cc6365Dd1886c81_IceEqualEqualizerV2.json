@@ -1,0 +1,70 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "equal",
+            "ice"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IEqualizerGauge(gauge).deposit(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IEqualizerGauge(gauge).getReward(address(this), rewardTokens)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(equal).transfer(caller, callFee)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(equal).safeTransfer(grimFeeRecipient, recipientFee)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(equal).transfer(treasury, treasuryFee)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(equal).transfer(strategist, stratFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IEqualizerGauge(gauge).withdraw(_amount - wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal - withdrawalFeeAmount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IEqualizerGauge(gauge).withdraw(balanceOfPool())"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, balanceOfWant())"
+            },
+            {
+                "Function": "panic",
+                "Node": "IEqualizerGauge(gauge).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStake"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastHarvestTime"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "memories"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(timehelper, _want)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IERC20(want).safeApprove(timehelper, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(time).safeTransfer(strategist, feeamount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(time).safeTransfer(timefarm, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "ITimeStaking(timestaking).unstake(_amount, false)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "ITimeStaking(timestaking).unstake(wamount, false)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(IController(controller).rewards(), _fee)"
+            }
+        ]
+    }
+}

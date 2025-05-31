@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.liquidity"
+        ],
+        "User Stake Reward": [
+            "User.wethBonus",
+            "User.tokenBonus"
+        ],
+        "User Stake Time": [
+            "User.start",
+            "User.release"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "weth",
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addLiquidity",
+                "Node": "token.transferFrom(msg.sender, address(this), rate)"
+            },
+            {
+                "Function": "relockLiquidity",
+                "Node": "token.transferFrom(msg.sender, address(this), rate)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawUserBonus",
+                "Node": "token.transfer(_user, releasedAmount)"
+            },
+            {
+                "Function": "_withdrawUserETHBonus",
+                "Node": "_user.transfer(releasedAmount)"
+            },
+            {
+                "Function": "_withdrawUserTokenBonus",
+                "Node": "token.transfer(_user, releasedAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLiquidity",
+                "Node": "lpToken.transfer(msg.sender, liquidity)"
+            },
+            {
+                "Function": "withdrawUserLP",
+                "Node": "lpToken.transfer(msg.sender, liquidity)"
+            }
+        ]
+    }
+}

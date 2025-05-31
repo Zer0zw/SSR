@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "_prepareWithdraw"
+        ],
+        "User Stake Time": [
+            "stakeDate"
+        ],
+        "Stake Token Address": [
+            "stakeAsset"
+        ],
+        "Reward Token Address": [
+            "liquidityAsset"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakeAsset.safeTransferFrom(msg.sender, address(this), amt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawFunds",
+                "Node": "fundsToken.safeTransfer(msg.sender, withdrawableFunds)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakeAsset.safeTransfer(msg.sender, amt.sub(_recognizeLosses()))"
+            }
+        ]
+    }
+}

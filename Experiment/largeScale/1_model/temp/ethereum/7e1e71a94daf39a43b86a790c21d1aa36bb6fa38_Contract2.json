@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "MCHstaking.stakingStats",
+            "staked"
+        ],
+        "User Stake Reward": [
+            "_lockedRewards",
+            "_totalLockedRewards"
+        ],
+        "User Stake Time": [
+            "_firstBlock",
+            "stakingBlock"
+        ],
+        "Stake Token Address": [
+            "MCHcontract"
+        ],
+        "Reward Token Address": [
+            "MCFcontract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "CR",
+                "Node": "MCF.transfer(user, rewards/2)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "CR(msg.sender)"
+            },
+            {
+                "Function": "claimRewards2",
+                "Node": "CR(msg.sender)"
+            },
+            {
+                "Function": "claimRewards(address user)",
+                "Node": "CR(user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "MCHstaking.transferMCH(msg.sender, amount)"
+            }
+        ]
+    }
+}

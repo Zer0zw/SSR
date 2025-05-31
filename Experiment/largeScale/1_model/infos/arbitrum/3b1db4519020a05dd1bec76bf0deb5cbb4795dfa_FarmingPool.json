@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "duration"
+        ],
+        "Stake Token Address": [
+            "farmToken"
+        ],
+        "Reward Token Address": [
+            "farmToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(farmToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "require(farmToken.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "require(farmToken.transfer(msg.sender, reward))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(farmToken.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "require(farmToken.transfer(msg.sender, accountBalance)"
+            }
+        ]
+    }
+}

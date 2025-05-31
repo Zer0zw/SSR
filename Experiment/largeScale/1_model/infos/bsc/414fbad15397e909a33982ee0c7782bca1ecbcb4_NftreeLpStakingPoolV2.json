@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "lpBalance.balance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "userStakes.stakedOn",
+            "lpBalance.stakedOn"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "NFT(nftree).transferFrom(msg.sender, address(this), tokenId_)"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "NFT(nftree).transferFrom(msg.sender, address(this), tokenId_)"
+            },
+            {
+                "Function": "stakeLp",
+                "Node": "IBEP20Token(lpToken).transferFrom(msg.sender, address(this), amount_ - _fee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ISEED(rewardsToken).mint(msg.sender, amount_)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "NFT(nftree).transferFrom(address(this), msg.sender, tokenId_)"
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": "NFT(nftree).transferFrom(address(this), msg.sender, tokenId_)"
+            },
+            {
+                "Function": "unstakeLp",
+                "Node": "IBEP20Token(lpToken).transfer(msg.sender, amount_)"
+            }
+        ]
+    }
+}

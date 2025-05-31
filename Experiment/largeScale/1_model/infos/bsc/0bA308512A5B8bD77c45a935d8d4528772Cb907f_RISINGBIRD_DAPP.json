@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "customStakingBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "staking_start_time"
+        ],
+        "Stake Token Address": [
+            "rISINGBIRD"
+        ],
+        "Reward Token Address": [
+            "rISINGBIRD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "rISINGBIRD.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "customStaking",
+                "Node": "rISINGBIRD.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redistributeRewards",
+                "Node": "rISINGBIRD.transfer(msg.sender, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "rISINGBIRD.transfer(msg.sender, balance)"
+            },
+            {
+                "Function": "customUnstake",
+                "Node": "rISINGBIRD.transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.pendingAmount"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastStakedTime"
+        ],
+        "Stake Token Address": [
+            "cspdToken"
+        ],
+        "Reward Token Address": [
+            "cspdToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "cspdToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "cspdToken.safeTransfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "cspdToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

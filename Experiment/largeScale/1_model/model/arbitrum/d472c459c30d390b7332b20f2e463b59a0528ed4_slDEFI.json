@@ -1,0 +1,118 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "_aprLockOptions.lockTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "DEFI"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stake",
+            "zapAndStakeDEFIOnly",
+            "zapAndStakeETHAndDEFI",
+            "zapAndStakeETHOnly"
+        ],
+        "getReward": [],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1938
+                ],
+                "Input": [
+                    "_amount",
+                    "_lockOptIndex"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "zapAndStakeETHOnly",
+                "Node": [
+                    1967
+                ],
+                "Input": [
+                    "_lockOptIndex"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DEFI",
+                    "_uniswapRouter",
+                    "stakeToken",
+                    "zapBuySlippage"
+                ],
+                "Full Calculation Variables": [
+                    "DEFI",
+                    "_uniswapRouter",
+                    "stakeToken",
+                    "zapBuySlippage"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "zapAndStakeETHAndDEFI",
+                "Node": [
+                    1990
+                ],
+                "Input": [
+                    "_amountDEFI",
+                    "_lockOptIndex"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DEFI",
+                    "stakeToken"
+                ],
+                "Full Calculation Variables": [
+                    "DEFI",
+                    "stakeToken"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "zapAndStakeDEFIOnly",
+                "Node": [
+                    2032
+                ],
+                "Input": [
+                    "_amountDEFI",
+                    "_lockOptIndex"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DEFI",
+                    "_aprLockOptions.apr",
+                    "_aprLockOptions.lockTime",
+                    "_uniswapRouter",
+                    "stakeToken",
+                    "zapSellSlippage"
+                ],
+                "Full Calculation Variables": [
+                    "DEFI",
+                    "_aprLockOptions.apr",
+                    "_aprLockOptions.lockTime",
+                    "_uniswapRouter",
+                    "stakeToken",
+                    "zapSellSlippage"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [],
+        "unStake": []
+    }
+}

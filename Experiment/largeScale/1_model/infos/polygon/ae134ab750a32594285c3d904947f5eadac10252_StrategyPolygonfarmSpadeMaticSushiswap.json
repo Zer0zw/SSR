@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_wantAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_wantAddress"
+        ],
+        "Reward Token Address": [
+            "_earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IPolygonFarm(masterChef).deposit(pid, _wantAmount, referralAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IPolygonFarm(masterChef).deposit(pid, 0, referralAddress)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IPolygonFarm(masterChef).withdraw(pid, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IPolygonFarm(masterChef).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

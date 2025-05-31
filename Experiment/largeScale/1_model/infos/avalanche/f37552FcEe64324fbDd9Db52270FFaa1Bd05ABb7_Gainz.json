@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStakedSanta"
+        ],
+        "User Stake Reward": [
+            "viewEarnedGainz"
+        ],
+        "User Stake Time": [
+            "StakedSantaObj.stakeBeginTime"
+        ],
+        "Stake Token Address": [
+            "SANTA_CONTRACT"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakedSantas[tokenId] = StakedSantaObj(strength, rarity, currentTs, uint48(0), uint32(0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimGainz",
+                "Node": "_mint(msg.sender, totalGainzEarned)"
+            },
+            {
+                "Function": "TheAvalanchePrize",
+                "Node": "_burnGainz(msg.sender, UNLOCK_AMOUNT)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "santa.strength = 0"
+            },
+            {
+                "Function": "claimAllAndUnstake",
+                "Node": "_unstakeMultiple(tokenIDs)"
+            }
+        ]
+    }
+}

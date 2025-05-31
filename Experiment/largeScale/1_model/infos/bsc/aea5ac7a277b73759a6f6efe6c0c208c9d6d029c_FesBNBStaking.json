@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "holdings"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "fesBNBToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "fesBNBToken.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "dividendTracker.processAccount(payable(msg.sender), false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "fesBNBToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

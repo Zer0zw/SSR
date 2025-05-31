@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Investor.balance"
+        ],
+        "User Stake Reward": [
+            "Investor.claimedRewards"
+        ],
+        "User Stake Time": [
+            "Investor.lastClaim",
+            "Investor.lastCompound"
+        ],
+        "Stake Token Address": [
+            "busd"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investCoin",
+                "Node": "IERC20(busd).transferFrom(msg.sender, address(this), investment)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(busd).transfer(msg.sender, claimAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

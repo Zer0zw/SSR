@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pairBal",
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "rewardBal",
+            "wftmFees"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "fBEETS",
+            "underlyingLP"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "beetToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(masterChef).deposit(poolId, pairBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wftm).safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wftm).safeTransfer(treasury, treasuryFeeToVault)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(fBEETS).safeTransfer(vault, pairBal.sub(withdrawFee))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(fBEETS).transfer(vault, pairBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMasterChef(masterChef).withdraw(poolId, balanceOfPool())"
+            }
+        ]
+    }
+}

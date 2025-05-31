@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "sStakeProperty._UpdataTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsTokenNFT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this),erc1155TokenId, tokenCost[tType-1],\"\""
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "rewardsTokenNFT.mintNFTTo(tokenDegree[tType-1], _msgSender())"
+            },
+            {
+                "Function": "stake",
+                "Node": "rewardsTokenNFT.mintNFTTo(tokenDegree[i], _msgSender())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "stakingToken.safeTransferFrom(address(this),msg.sender,erc1155TokenId, stakeAmount,\"\")"
+            }
+        ]
+    }
+}

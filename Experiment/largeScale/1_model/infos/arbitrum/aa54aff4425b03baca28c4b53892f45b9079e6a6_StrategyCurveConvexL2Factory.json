@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "gauge",
+            "rewardPool"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IERC20(want).forceApprove(address(booster), amount)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IERC20(want).forceApprove(gauge, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "IConvexRewardPool(rewardPool).getReward(address(this))"
+            },
+            {
+                "Function": "_claim",
+                "Node": "minter.mint(gauge)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "IRewardsGauge(gauge).claim_rewards(address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IConvexRewardPool(rewardPool).withdraw(amount, false)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "IRewardsGauge(gauge).withdraw(amount)"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "IConvexRewardPool(rewardPool).emergencyWithdraw(amount)"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "IRewardsGauge(gauge).withdraw(amount)"
+            }
+        ]
+    }
+}

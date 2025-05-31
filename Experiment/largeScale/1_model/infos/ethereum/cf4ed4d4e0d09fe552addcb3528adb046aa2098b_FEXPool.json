@@ -1,0 +1,62 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.multLpRewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "fex"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFexAndToken",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount)"
+            },
+            {
+                "Function": "depositFex",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositFexAndToken",
+                "Node": "safeFexTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "depositFexAndToken",
+                "Node": "IERC20(multLpToken).safeTransfer(_user, tokenPending)"
+            },
+            {
+                "Function": "depositFex",
+                "Node": "safeFexTransfer(_user, pendingAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawFexAndToken",
+                "Node": "pool.lpToken.safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "withdrawFex",
+                "Node": "pool.lpToken.safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "emergencyWithdrawFexAndToken",
+                "Node": "pool.lpToken.safeTransfer(_user, amount)"
+            },
+            {
+                "Function": "emergencyWithdrawFex",
+                "Node": "pool.lpToken.safeTransfer(_user, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.deposits"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime"
+        ],
+        "Stake Token Address": [
+            "xgt"
+        ],
+        "Reward Token Address": [
+            "xgt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "xgt.transferFrom(_user, address(this), _amount)"
+            },
+            {
+                "Function": "depositForUser",
+                "Node": "xgt.transferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "xgt.transfer(msg.sender, currentCallFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "xgt.transfer(_user, currentAmount)"
+            },
+            {
+                "Function": "withdrawForUser",
+                "Node": "xgt.transfer(_user, currentAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "xgt.transfer(_user, currentAmount)"
+            },
+            {
+                "Function": "withdrawAllForUser",
+                "Node": "xgt.transfer(_user, currentAmount)"
+            }
+        ]
+    }
+}

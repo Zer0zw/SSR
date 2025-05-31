@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake.evaiAmount"
+        ],
+        "User Stake Reward": [
+            "stake.stakeReturns"
+        ],
+        "User Stake Time": [
+            "stake.startOfTerm",
+            "stake.endOfTerm"
+        ],
+        "Stake Token Address": [
+            "evaiToken"
+        ],
+        "Reward Token Address": [
+            "evaiToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStake",
+                "Node": "evaiToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "evaiToken.transfer(msg.sender, stakeByID[_stakeID].settlementAmount)"
+            },
+            {
+                "Function": "settleStakes",
+                "Node": "evaiToken.transfer(stakeByID[_stakeIDs[i]].ownerAddress, stakeByID[_stakeIDs[i]].settlementAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "evaiToken.transfer(msg.sender, stakeByID[_stakeID].settlementAmount)"
+            },
+            {
+                "Function": "settleStakes",
+                "Node": "evaiToken.transfer(stakeByID[_stakeIDs[i]].ownerAddress, stakeByID[_stakeIDs[i]].settlementAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.unclaimedAmount",
+            "UserInfo.rewardRate"
+        ],
+        "User Stake Time": [
+            "UserInfo.lockStart",
+            "UserInfo.lockPeriod"
+        ],
+        "Stake Token Address": [
+            "gogo"
+        ],
+        "Reward Token Address": [
+            "govGogo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "gogo.transferFrom(msg.sender, address(store), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "govGogo.mint(msg.sender, toClaim)"
+            },
+            {
+                "Function": "claim",
+                "Node": "govGogo.mint(msg.sender, toClaim)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "govGogo.mint(msg.sender, toClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "store.transferGogo(msg.sender, amount)"
+            }
+        ]
+    }
+}

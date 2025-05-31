@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "usersStake"
+        ],
+        "User Stake Reward": [
+            "UserRewardBalance"
+        ],
+        "User Stake Time": [
+            "stakingInfo.duration"
+        ],
+        "Stake Token Address": [
+            "font_token_address"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "FONT_ERC20.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(_tokens[i]).safeTransfer(msg.sender, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "FONT_ERC20.safeTransfer(msg.sender, (_amount.sub(_taxfee))"
+            },
+            {
+                "Function": "kickStake",
+                "Node": "FONT_ERC20.safeTransfer(StakeMap[_stake_id].user, StakeMap[_stake_id].amount)"
+            }
+        ]
+    }
+}

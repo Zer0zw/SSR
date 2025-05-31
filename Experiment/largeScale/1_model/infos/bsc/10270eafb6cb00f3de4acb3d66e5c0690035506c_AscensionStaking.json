@@ -1,0 +1,70 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "level0Balance.balance",
+            "level1Balance.balance",
+            "vipBalance.balance"
+        ],
+        "User Stake Reward": [
+            "getInterest"
+        ],
+        "User Stake Time": [
+            "level0Balance.timeStarted",
+            "level1Balance.timeStarted",
+            "vipBalance.timeStarted",
+            "level0Balance.timeFinish",
+            "level1Balance.timeFinish",
+            "vipBalance.timeFinish"
+        ],
+        "Stake Token Address": [
+            "acceptedToken"
+        ],
+        "Reward Token Address": [
+            "acceptedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterLevel0",
+                "Node": "acceptedToken.transferFrom(_msgSender, address(this), _amount)"
+            },
+            {
+                "Function": "enterLevel1",
+                "Node": "acceptedToken.transferFrom(_msgSender, address(this), _amount)"
+            },
+            {
+                "Function": "enterVip",
+                "Node": "acceptedToken.transferFrom(_msgSender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawLevel0",
+                "Node": "acceptedToken.transfer(_msgSender, _amount + earnings)"
+            },
+            {
+                "Function": "withdrawLevel1",
+                "Node": "acceptedToken.transfer(_msgSender, _amount + earnings)"
+            },
+            {
+                "Function": "withdrawVip",
+                "Node": "acceptedToken.transfer(_msgSender, _amount + earnings)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLevel0",
+                "Node": "acceptedToken.transfer(_msgSender, _amount)"
+            },
+            {
+                "Function": "withdrawLevel1",
+                "Node": "acceptedToken.transfer(_msgSender, _amount)"
+            },
+            {
+                "Function": "withdrawVip",
+                "Node": "acceptedToken.transfer(_msgSender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokensForAddress"
+        ],
+        "User Stake Reward": [
+            "Staker.accumulatedAmount",
+            "Staker.currentYield"
+        ],
+        "User Stake Time": [
+            "Staker.lastCheckpoint"
+        ],
+        "Stake Token Address": [
+            "isWWNftContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(contractAddress).safeTransferFrom(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "registerDeposit",
+                "Node": "IERC721(contractAddress).ownerOf(tokenId) == address(this)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getAccumulatedAmount",
+                "Node": "return _stakers[staker].accumulatedAmount + getCurrentReward(staker)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(contractAddress).safeTransferFrom(address(this), _msgSender(), tokenIds[i])"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC721(tokenAddress).transferFrom(address(this), receiver, tokenIds[i])"
+            }
+        ]
+    }
+}

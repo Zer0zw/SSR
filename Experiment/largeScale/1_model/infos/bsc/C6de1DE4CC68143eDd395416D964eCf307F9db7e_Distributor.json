@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares.amount"
+        ],
+        "User Stake Reward": [
+            "shares.totalRealised"
+        ],
+        "User Stake Time": [
+            "shares.created"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TOKEN.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "TOKEN.transfer(shareholder, unpaidEarnings)"
+            },
+            {
+                "Function": "claimStake",
+                "Node": "TOKEN.transfer(msg.sender, claimable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "TOKEN.transfer(msg.sender, amount - emergencyTax)"
+            }
+        ]
+    }
+}

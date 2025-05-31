@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "Staker.remainder"
+        ],
+        "User Stake Time": [
+            "Staker.round"
+        ],
+        "Stake Token Address": [
+            "erc20tokenInstance"
+        ],
+        "Reward Token Address": [
+            "erc20tokenInstance"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(erc20tokenInstance.transferFrom(msg.sender, address(this), _tokens_amount), \"Tokens cannot be transferred from sender.\")"
+            },
+            {
+                "Function": "acceleratorStake",
+                "Node": "require(erc20tokenInstance.transferFrom(msg.sender, address(this), _tokens_amount), \"Tokens cannot be transferred from sender.\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(erc20tokenInstance.transfer(msg.sender, pendingReward), \"ERROR: error in sending reward from contract to sender.\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(erc20tokenInstance.transfer(msg.sender, _unstaking_amount), \"Error in unstaking tokens.\""
+            }
+        ]
+    }
+}

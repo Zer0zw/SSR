@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [
+            "_periodStartTime",
+            "_periodEndTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "earned",
+                "Node": "_rewards[account] = earned(account)"
+            },
+            {
+                "Function": "_updateRewardFor",
+                "Node": "_rewards[account] = earned(account)"
+            }
+        ],
+        "unStake": []
+    }
+}

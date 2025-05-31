@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.allocatedBalance"
+        ],
+        "User Stake Reward": [
+            "User.allocatedBalance"
+        ],
+        "User Stake Time": [
+            "User.stakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "allocateRewards",
+                "Node": "totalPayoutsFor[_beneficiary].allocatedBalance = _totalEarned + _totalReceived"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.transfer(msg.sender, _withdrawalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "distribute"
+        ],
+        "User Stake Time": [
+            "epoch"
+        ],
+        "Stake Token Address": [
+            "_underlying"
+        ],
+        "Reward Token Address": [
+            "klima"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lend",
+                "Node": "abi.encodeWithSelector(klimaStakingPool.stake.selector, _underlying, _tokenHolder)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unlend",
+                "Node": "abi.encodeWithSelector(klimaStakingPool.unstake.selector, _wrapped, false)"
+            }
+        ]
+    }
+}

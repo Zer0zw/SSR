@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserContext.totalStaked",
+            "StakeContext.amountStaked"
+        ],
+        "User Stake Reward": [
+            "UserContext.claimedReward",
+            "UserContext.defReward"
+        ],
+        "User Stake Time": [
+            "StakeContext.stakedTime",
+            "StakeContext.unlockTime"
+        ],
+        "Stake Token Address": [
+            "saudiDaoToken"
+        ],
+        "Reward Token Address": [
+            "saudiDaoToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "saudiDaoToken.transferFrom(_sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "saudiDaoToken.transferFrom(stakingPool, _user, uint256(claimableAmount))"
+            },
+            {
+                "Function": "claim",
+                "Node": "saudiDaoToken.transferFrom(stakingPool, _user, uint256(claimableAmount))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "saudiDaoToken.transfer(_to, _amount)"
+            },
+            {
+                "Function": "vote",
+                "Node": "saudiDaoToken.transfer(votingAddress, _amount)"
+            }
+        ]
+    }
+}

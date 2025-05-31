@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "DepositedToken.activeDeposit",
+            "DepositedToken.totalDeposits"
+        ],
+        "User Stake Reward": [
+            "DepositedToken.pendingGains",
+            "DepositedToken.totalGained"
+        ],
+        "User Stake Time": [
+            "DepositedToken.startTime",
+            "DepositedToken.lastClaimedDate"
+        ],
+        "Stake Token Address": [
+            "OXS"
+        ],
+        "Reward Token Address": [
+            "OXS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "require(IERC20(OXS).transferFrom(msg.sender, address(this), _amount))"
+            },
+            {
+                "Function": "AddToStake",
+                "Node": "require(IERC20(OXS).transferFrom(msg.sender,address(this), _amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "require(IERC20(OXS).transfer(msg.sender, _pendingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "StopStaking",
+                "Node": "require(IERC20(OXS).transfer(msg.sender, _activeDeposit)"
+            }
+        ]
+    }
+}

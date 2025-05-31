@@ -1,0 +1,86 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes.amount"
+        ],
+        "User Stake Reward": [
+            "stakes.reward"
+        ],
+        "User Stake Time": [
+            "stakes.lockDuration",
+            "stakes.entryTimeStamp"
+        ],
+        "Stake Token Address": [
+            "usdtAddress"
+        ],
+        "Reward Token Address": [
+            "usdtAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeTokens"
+        ],
+        "getReward": [
+            "claimRewards"
+        ],
+        "unStake": [],
+        "Sensitive Functions": [
+            "setStableReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": [
+                    253
+                ],
+                "Input": [
+                    "_amount",
+                    "_lockDuration"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "minInvestmentAmount",
+                    "timelockRewards",
+                    "usdtAddress"
+                ],
+                "Full Calculation Variables": [
+                    "minInvestmentAmount",
+                    "timelockRewards",
+                    "usdtAddress"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    309
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakes.entryTimeStamp",
+                    "stakes.lockDuration",
+                    "stakes.reward"
+                ],
+                "Control Variables": [
+                    "stakes.entryTimeStamp",
+                    "stakes.lockDuration",
+                    "stakes.reward",
+                    "usdtAddress"
+                ],
+                "Full Calculation Variables": [
+                    "stakes.entryTimeStamp",
+                    "stakes.lockDuration",
+                    "stakes.reward",
+                    "usdtAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

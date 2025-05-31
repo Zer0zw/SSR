@@ -1,0 +1,140 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "timelock"
+        ],
+        "Stake Token Address": [
+            "dropToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "enter"
+        ],
+        "getReward": [
+            "claim",
+            "leave"
+        ],
+        "unStake": [
+            "leave"
+        ],
+        "Sensitive Functions": [
+            "updateTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": [
+                    1156
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "dropToken"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "dropToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "leave",
+                "Node": [
+                    1331
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "claimed",
+                    "lastDistributionIndex",
+                    "startClaimedIndex"
+                ],
+                "Full Calculation Variables": [
+                    "claimed",
+                    "lastDistributionIndex",
+                    "startClaimedIndex"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claim",
+                "Node": [
+                    1331
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_status",
+                    "lastDistributionIndex",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "claimed",
+                    "_ENTERED",
+                    "startClaimedIndex"
+                ],
+                "Full Calculation Variables": [
+                    "_status",
+                    "lastDistributionIndex",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "claimed",
+                    "_ENTERED",
+                    "startClaimedIndex"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": [
+                    1182
+                ],
+                "Input": [
+                    "_share"
+                ],
+                "Calculation Variables": [
+                    "dropToken"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "dropToken",
+                    "timelock"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_paused",
+                    "_status",
+                    "dropToken",
+                    "timelock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

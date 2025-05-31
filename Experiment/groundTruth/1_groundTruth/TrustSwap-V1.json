@@ -1,0 +1,112 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "userTotalStaking.totalStaking",
+                "userStaking.amount"
+            ],
+            "User Stake Reward": [
+                "userRewardInfo.totalWithdrawn"
+            ],
+            "User Stake Time": [
+                "userStaking.stakingTime",
+                "userStaking.lastWithdrawTime"
+            ],
+            "Stake Token Address": [
+                "tswap"
+            ],
+            "Reward Token Address": [
+                "rewardToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "withdrawRewardsOnly",
+                "withdrawStaking"
+            ],
+            "unStake": [
+                "withdrawStaking"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "poolEndTime",
+                        "tswap",
+                        "userStaking.amount"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "withdrawRewardsOnly",
+                    "Calculation Variables": [
+                        "poolDuration",
+                        "poolEndTime",
+                        "rewardToken",
+                        "totalRewards",
+                        "totalStaked",
+                        "userRewardInfo.lastWithdrawTime",
+                        "userStaking.amount",
+                        "userStaking.lastWithdrawTime",
+                        "userStaking.stakingTime"
+                    ]
+                },
+                {
+                    "Function": "withdrawStaking",
+                    "Calculation Variables": [
+                        "poolDuration",
+                        "poolEndTime",
+                        "rewardToken",
+                        "totalRewards",
+                        "totalStaked",
+                        "userRewardInfo.lastWithdrawTime",
+                        "userStaking.amount",
+                        "userStaking.lastWithdrawTime",
+                        "userStaking.stakingTime"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdrawStaking",
+                    "Calculation Variables": [
+                        "poolEndTime",
+                        "rewardToken",
+                        "rewardsWithdrawn",
+                        "totalStaked",
+                        "tswap",
+                        "userRewardInfo.lastWithdrawTime",
+                        "userRewardInfo.totalWithdrawn",
+                        "userStaking.amount",
+                        "userStaking.lastWithdrawTime",
+                        "userStaking.stakingTime",
+                        "userTotalStaking.totalStaking"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

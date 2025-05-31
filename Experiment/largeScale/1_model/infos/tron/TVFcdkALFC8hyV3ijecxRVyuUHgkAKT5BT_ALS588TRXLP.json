@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastGetReward"
+        ],
+        "Stake Token Address": [
+            "ALS588"
+        ],
+        "Reward Token Address": [
+            "ALS588"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeALS588Transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeALS588Transfer(project1, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeALS588Transfer(project2, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeALS588Transfer(project3, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeALS588Transfer(project4, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeALS588Transfer(project5, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeALS588Transfer(referrer, referrerFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

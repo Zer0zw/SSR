@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nft_logs.tokenId"
+        ],
+        "User Stake Reward": [
+            "pendingreward"
+        ],
+        "User Stake Time": [
+            "nft_logs.timestamp"
+        ],
+        "Stake Token Address": [
+            "NFT"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(NFT[nft]).safeTransferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim_staking_reward",
+                "Node": "_limit_mint(nftdata.addr, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(NFT[nftdata.nft]).safeTransferFrom(address(this),msg.sender, tokenId)"
+            }
+        ]
+    }
+}

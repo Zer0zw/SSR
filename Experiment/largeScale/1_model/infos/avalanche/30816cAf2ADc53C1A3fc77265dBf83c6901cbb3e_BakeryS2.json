@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownedStakesBalance"
+        ],
+        "User Stake Reward": [
+            "inventoryBalance"
+        ],
+        "User Stake Time": [
+            "StakeDetails.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "baker"
+        ],
+        "Reward Token Address": [
+            "cookie"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMany",
+                "Node": "baker.transferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimCookiesAndMaybeUnstake",
+                "Node": "cookie.mint(_msgSender(), totalClaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimCookiesAndMaybeUnstake",
+                "Node": "baker.transferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "withdrawBakers",
+                "Node": "baker.transferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

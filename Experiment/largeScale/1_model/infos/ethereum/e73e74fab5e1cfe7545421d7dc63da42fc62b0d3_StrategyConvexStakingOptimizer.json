@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "crv",
+            "cvx",
+            "cvxCrv"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "booster.deposit(pid, _want, true)"
+            },
+            {
+                "Function": "tend",
+                "Node": "cvxCrvRewardsPool.stake(tendData.cvxCrvTended)"
+            },
+            {
+                "Function": "tend",
+                "Node": "cvxRewardsPool.stake(cvxToken.balanceOf(address(this)))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "baseRewardsPool.getReward(address(this), true)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "cvxCrvRewardsPool.withdraw(cvxCrvRewardsPoolBalance, true)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "cvxRewardsPool.withdraw(cvxRewardsPoolBalance, true)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAll",
+                "Node": "baseRewardsPool.withdrawAndUnwrap(balanceOfPool(), false)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "baseRewardsPool.withdrawAndUnwrap(_toWithdraw, false)"
+            }
+        ]
+    }
+}

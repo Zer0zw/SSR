@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lp_all",
+            "nft_all"
+        ],
+        "User Stake Reward": [
+            "all_fon"
+        ],
+        "User Stake Time": [
+            "is_today"
+        ],
+        "Stake Token Address": [
+            "LP",
+            "NFT"
+        ],
+        "Reward Token Address": [
+            "FON"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake_lp",
+                "Node": "LP.transferFrom(msg.sender,address(this),banace_lp"
+            },
+            {
+                "Function": "Stake_nft",
+                "Node": "NFT.transferFrom(msg.sender,address(this),token_id"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "FON.transfer(msg.sender,fonAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake_lp",
+                "Node": "LP.transfer(msg.sender,lp_all[msg.sender])"
+            },
+            {
+                "Function": "unStake_nft",
+                "Node": "NFT.transferFrom(address(this),msg.sender,token_id)"
+            }
+        ]
+    }
+}

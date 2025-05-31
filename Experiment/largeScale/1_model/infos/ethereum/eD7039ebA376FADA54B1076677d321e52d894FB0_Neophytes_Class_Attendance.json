@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "numberTokensLocked"
+        ],
+        "User Stake Reward": [
+            "user_record.totalreward",
+            "user_record.claimedreward"
+        ],
+        "User Stake Time": [
+            "Locking_record.starttime",
+            "Locking_record.endtime"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "SendtoClass",
+                "Node": "nft.transferFrom(msg.sender,address(this),tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "rewardToken.transfer(address(msg.sender), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "ReleaseNeo",
+                "Node": "nft.transferFrom(address(this),msg.sender,tokenId)"
+            }
+        ]
+    }
+}

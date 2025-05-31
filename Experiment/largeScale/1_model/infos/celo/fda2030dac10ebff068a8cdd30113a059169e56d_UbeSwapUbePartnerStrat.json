@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfLpPair",
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "calculateTotalPendingRewards"
+        ],
+        "User Stake Time": [
+            "lastHarvestedTime"
+        ],
+        "Stake Token Address": [
+            "lpPair"
+        ],
+        "Reward Token Address": [
+            "reward",
+            "reward1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IShareRewardPool(shareRewardPool).stake(pairBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IShareRewardPool(shareRewardPool).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpPair).safeTransfer(vault, pairBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(lpPair).transfer(vault, pairBal)"
+            }
+        ]
+    }
+}

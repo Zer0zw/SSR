@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "addressToShieldsStaked"
+        ],
+        "User Stake Reward": [
+            "owed"
+        ],
+        "User Stake Time": [
+            "Stake.value"
+        ],
+        "Stake Token Address": [
+            "mintHouse"
+        ],
+        "Reward Token Address": [
+            "houseToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addManyToKingdom",
+                "Node": "mintHouse.transferFrom(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "_addTokenToKingdom",
+                "Node": "mintHouse.transferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimManyFromKingdom",
+                "Node": "houseToken.mint(_msgSender(), owed)"
+            },
+            {
+                "Function": "_claimSwordsFromKingdom",
+                "Node": "houseToken.mint(_msgSender(), owed)"
+            },
+            {
+                "Function": "_claimDaggerFromKingdom",
+                "Node": "houseToken.mint(_msgSender(), owed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_claimSwordsFromKingdom",
+                "Node": "mintHouse.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            },
+            {
+                "Function": "_unstakeShieldFromKingdom",
+                "Node": "mintHouse.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            },
+            {
+                "Function": "_claimDaggerFromKingdom",
+                "Node": "mintHouse.safeTransferFrom(address(this), _msgSender(), tokenId, \"\")"
+            }
+        ]
+    }
+}

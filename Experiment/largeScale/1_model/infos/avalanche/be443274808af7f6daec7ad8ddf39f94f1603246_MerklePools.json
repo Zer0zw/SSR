@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "MerkleStake.Data.totalDeposited"
+        ],
+        "User Stake Reward": [
+            "MerkleStake.Data.totalUnrealized",
+            "MerkleStake.Data.totalRealizedTIC",
+            "MerkleStake.Data.totalRealizedLP"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MerklePool.Data.token"
+        ],
+        "Reward Token Address": [
+            "ticToken",
+            "elasticLPToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20Upgradeable(pool.token).safeTransferFrom(msg.sender, address(this), _depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20Upgradeable(elasticLPToken).safeTransfer(msg.sender, lpTokenAmountToBeClaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "IERC20Upgradeable(pool.token).safeTransfer(msg.sender, withdrawAmount)"
+            }
+        ]
+    }
+}

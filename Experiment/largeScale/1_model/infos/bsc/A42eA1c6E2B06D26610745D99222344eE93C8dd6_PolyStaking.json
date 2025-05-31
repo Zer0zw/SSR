@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "chainStakesNumber"
+        ],
+        "User Stake Reward": [
+            "_earning"
+        ],
+        "User Stake Time": [
+            "start_time"
+        ],
+        "Stake Token Address": [
+            "_nft"
+        ],
+        "Reward Token Address": [
+            "_erc20_rewarder"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(_nft).safeTransferFrom(sender, address(this), tokenId"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(_erc20).transferFrom(_erc20_rewarder, _msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "IERC721(_nft).safeTransferFrom(address(this), _msgSender(), tokenId"
+            },
+            {
+                "Function": "getERC721TokenBack",
+                "Node": "IERC721(_nft).safeTransferFrom(address(this), _erc20_rewarder, tokenId"
+            }
+        ]
+    }
+}

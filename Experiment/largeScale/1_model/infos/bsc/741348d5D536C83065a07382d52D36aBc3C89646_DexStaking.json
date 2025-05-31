@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakingAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.bonusDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositAt"
+        ],
+        "Stake Token Address": [
+            "BTD"
+        ],
+        "Reward Token Address": [
+            "BTD",
+            "USDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "BTD.transferFrom(account, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "BTD.transfer(account, bonusReturn.mul(BONUS_BTD).div(100))"
+            },
+            {
+                "Function": "_claim",
+                "Node": "USDT.transfer(account, bonusReturn.mul(BONUS_USDT).div(100).mul(BTD_PRICE).div(BTD_PRICE_DECIMAL))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "BTD.transfer(account, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "rawBalanceOf"
+        ],
+        "User Stake Reward": [
+            "UserData.rewards",
+            "UserData.platformRewards"
+        ],
+        "User Stake Time": [
+            "UserData.lastAction"
+        ],
+        "Stake Token Address": [
+            "_stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken",
+            "platformToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_stakeRaw(_beneficiary, _amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "emit Staked(_beneficiary, _amount, msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, unlocked)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "rewardsToken.safeTransfer(msg.sender, total)"
+            },
+            {
+                "Function": "_claimPlatformReward",
+                "Node": "platformToken.safeTransferFrom(address(platformTokenVendor), msg.sender, platformReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_withdrawRaw(_amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "_withdrawRaw(rawBalanceOf(msg.sender))"
+            }
+        ]
+    }
+}

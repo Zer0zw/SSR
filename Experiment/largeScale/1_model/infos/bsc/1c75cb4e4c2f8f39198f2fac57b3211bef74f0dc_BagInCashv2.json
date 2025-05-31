@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Players._totalStaked",
+            "Players._activeStake"
+        ],
+        "User Stake Reward": [
+            "Players._totalProfit",
+            "Players._harvested"
+        ],
+        "User Stake Time": [
+            "Players._lastHarvest"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BAG"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "BUSD.safeTransferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "BUSD.safeTransfer(_user, _amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

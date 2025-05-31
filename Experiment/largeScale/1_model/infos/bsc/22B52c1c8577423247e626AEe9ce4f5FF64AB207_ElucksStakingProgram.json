@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStakingToken",
+            "Staking.stakingToken"
+        ],
+        "User Stake Reward": [
+            "User.referralReward",
+            "User.compoundReward",
+            "Staking.currentRewards",
+            "Staking.genRewards"
+        ],
+        "User Stake Time": [
+            "Staking.stakingDate",
+            "Staking.lastWithdrawalDate",
+            "Program.term"
+        ],
+        "Stake Token Address": [
+            "elucksToken"
+        ],
+        "Reward Token Address": [
+            "elucksToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "start_staking",
+                "Node": "elucksToken.transferFrom(msg.sender,address(this),walletUsed)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "elucksToken.transfer(msg.sender,totalToken)"
+            }
+        ],
+        "unStake": []
+    }
+}

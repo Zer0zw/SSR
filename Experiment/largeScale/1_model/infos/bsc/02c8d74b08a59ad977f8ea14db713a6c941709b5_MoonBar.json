@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "entryBlock"
+        ],
+        "Stake Token Address": [
+            "rocket"
+        ],
+        "Reward Token Address": [
+            "rocket"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, totalMinusBurn)"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "rocket.transfer(msg.sender, stakerAmount)"
+            }
+        ]
+    }
+}

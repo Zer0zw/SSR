@@ -1,0 +1,117 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalDeposits"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositWithPermit"
+        ],
+        "getReward": [
+            "deposit",
+            "depositWithPermit",
+            "reinvest"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    655
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "REQUIRE_REINVEST_BEFORE_DEPOSIT",
+                    "depositToken",
+                    "totalDeposits",
+                    "totalSupply"
+                ],
+                "Full Calculation Variables": [
+                    "REQUIRE_REINVEST_BEFORE_DEPOSIT",
+                    "depositToken",
+                    "totalDeposits",
+                    "totalSupply"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositWithPermit",
+                "Node": [
+                    655
+                ],
+                "Input": [
+                    "amount",
+                    "deadline",
+                    "r",
+                    "s",
+                    "v"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "REQUIRE_REINVEST_BEFORE_DEPOSIT",
+                    "depositToken",
+                    "totalDeposits",
+                    "totalSupply"
+                ],
+                "Full Calculation Variables": [
+                    "REQUIRE_REINVEST_BEFORE_DEPOSIT",
+                    "depositToken",
+                    "totalDeposits",
+                    "totalSupply"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reinvest",
+                "Node": [
+                    748
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "BIPS_DIVISOR",
+                    "REINVEST_REWARD_BIPS"
+                ],
+                "Control Variables": [
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "MIN_TOKENS_TO_REINVEST",
+                    "PID",
+                    "REINVEST_REWARD_BIPS",
+                    "rewardToken",
+                    "stakingContract"
+                ],
+                "Full Calculation Variables": [
+                    "ADMIN_FEE_BIPS",
+                    "BIPS_DIVISOR",
+                    "MIN_TOKENS_TO_REINVEST",
+                    "PID",
+                    "REINVEST_REWARD_BIPS",
+                    "rewardToken",
+                    "stakingContract"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": []
+    }
+}

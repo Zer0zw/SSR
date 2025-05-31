@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IBeefyRewardPool(rewardPool).stake(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IBeefyRewardPool(rewardPool).getReward()"
+            },
+            {
+                "Function": "notifyRewardPool",
+                "Node": "IERC20(output).safeTransfer(rewardPool, outputBal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IBeefyRewardPool(rewardPool).withdraw(_amount.sub(wantBal))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IBeefyRewardPool(rewardPool).withdraw(depositBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IBeefyRewardPool(rewardPool).withdraw(depositBal)"
+            }
+        ]
+    }
+}

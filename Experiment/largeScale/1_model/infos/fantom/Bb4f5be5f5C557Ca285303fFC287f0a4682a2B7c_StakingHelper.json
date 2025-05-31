@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "BEGO"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( BEGO ).transferFrom( msg.sender, address(this), _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "IStaking( staking ).claim( msg.sender )"
+            }
+        ],
+        "unStake": []
+    }
+}

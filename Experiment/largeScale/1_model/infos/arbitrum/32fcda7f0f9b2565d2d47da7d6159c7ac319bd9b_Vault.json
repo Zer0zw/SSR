@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalALP"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastStakedAt"
+        ],
+        "Stake Token Address": [
+            "alp"
+        ],
+        "Reward Token Address": [
+            "vUSDC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IMintable(alp).mint(_account, mintAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeVUSDOut",
+                "Node": "IVUSDC(vUSDC).mint(_account, _usdOutAfterFee)"
+            },
+            {
+                "Function": "transferBounty",
+                "Node": "IVUSDC(vUSDC).mint(_account, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_transferOut(_tokenOut, amountOut, _receiver)"
+            }
+        ]
+    }
+}

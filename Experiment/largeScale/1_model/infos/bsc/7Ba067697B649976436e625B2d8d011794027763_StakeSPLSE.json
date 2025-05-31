@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToTokenIds"
+        ],
+        "User Stake Reward": [
+            "perNftTotalReward",
+            "amoTotalRewards"
+        ],
+        "User Stake Time": [
+            "tokenIdToStakeTime"
+        ],
+        "Stake Token Address": [
+            "splseNFTAddress"
+        ],
+        "Reward Token Address": [
+            "amoTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeByIds",
+                "Node": "IERC721(splseNFTAddress).transferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAll",
+                "Node": "IERC20(amoTokenAddress).transfer(msg.sender, amoTotalRewards)"
+            },
+            {
+                "Function": "unstakeByIds",
+                "Node": "IERC20(amoTokenAddress).transfer(msg.sender, amoTotalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeByIds",
+                "Node": "IERC721(splseNFTAddress).transferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

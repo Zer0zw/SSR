@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserData.stakingDeposit"
+        ],
+        "User Stake Reward": [
+            "computeUserReward"
+        ],
+        "User Stake Time": [
+            "UserData.stakingBlock"
+        ],
+        "Stake Token Address": [
+            "_goTokenAddress"
+        ],
+        "Reward Token Address": [
+            "_bnbTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_goToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_bnbToken.transfer(msg.sender, userReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_goToken.transfer(msg.sender, stakingDeposit)"
+            }
+        ]
+    }
+}

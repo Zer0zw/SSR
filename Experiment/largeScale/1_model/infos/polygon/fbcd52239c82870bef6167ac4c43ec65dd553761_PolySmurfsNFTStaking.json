@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.withdrawn",
+            "UserInfo.stolenReward"
+        ],
+        "User Stake Time": [
+            "StakedInfo.checkPoint"
+        ],
+        "Stake Token Address": [
+            "nftAddress"
+        ],
+        "Reward Token Address": [
+            "rtoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(nftAddress).transferFrom(address(msg.sender), address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(rtoken).transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IERC20(rtoken).transfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(nftAddress).transferFrom(address(this), msg.sender, tokenIds[i]"
+            }
+        ]
+    }
+}

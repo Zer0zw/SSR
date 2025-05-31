@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "usdt_deposits",
+            "trx_deposits"
+        ],
+        "User Stake Reward": [
+            "usdt_rewards",
+            "trx_rewards"
+        ],
+        "User Stake Time": [
+            "usdt_last_getReward",
+            "trx_last_getReward"
+        ],
+        "Stake Token Address": [
+            "usdtinToken"
+        ],
+        "Reward Token Address": [
+            "stakeOutToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "usdtstake",
+                "Node": "usdtinToken.safeTransferFrom(msg.sender, address(this), amount"
+            },
+            {
+                "Function": "trx_stake",
+                "Node": "uint256 trx_newDeposit = trx_deposits[msg.sender].add(msg.value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "usdtgetReward",
+                "Node": "stakeOutToken.safeTransfer(msg.sender, reward * 57870000000 * usdt_deposits[msg.sender] / 1000000)"
+            },
+            {
+                "Function": "trx_getReward",
+                "Node": "stakeOutToken.safeTransfer(msg.sender, reward * 3470000000 * trx_deposits[msg.sender] / 1000000)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "usdtwithdraw",
+                "Node": "usdtinToken.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "trx_withdraw",
+                "Node": "payable(address(msg.sender)).transfer(amount)"
+            }
+        ]
+    }
+}

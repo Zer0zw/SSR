@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "SPIRIT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TOKEN.safeTransferFrom(account, address(this), amount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "TOKEN.safeTransferFrom(account, address(this), amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "TOKEN.safeTransferFrom(account, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "SPIRIT.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TOKEN.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "TOKEN.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

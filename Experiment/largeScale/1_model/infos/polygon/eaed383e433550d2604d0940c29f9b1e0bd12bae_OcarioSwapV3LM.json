@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.liquidity"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.rewardPending",
+            "StakeInfo.rewardHarvested",
+            "StakeInfo.rewardLast"
+        ],
+        "User Stake Time": [
+            "StakeInfo.secondsPerLiquidityLast"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "LMPoolInfo.rewards.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "nft.transferFrom(sender, address(this), nftIds[i]"
+            },
+            {
+                "Function": "join",
+                "Node": "nft.transferFrom(sender, address(this), nftIds[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestMultiplePools",
+                "Node": "_lockReward(IERC20Metadata(pool.rewards[i].rewardToken), position.owner, rewardPending, pool.vestingDuration)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "_lockReward(IERC20Metadata(pool.rewards[i].rewardToken), position.owner, rewardPending, pool.vestingDuration)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "nft.transferFrom(address(this), sender, nftIds[i]"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "nft.transferFrom(address(this), sender, nftIds[i]"
+            }
+        ]
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPTokenBalance",
+            "stakerTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "stakerRewards"
+        ],
+        "User Stake Time": [
+            "internalTime",
+            "stakerInternalTime"
+        ],
+        "Stake Token Address": [
+            "RagnaAddress"
+        ],
+        "Reward Token Address": [
+            "RagnaAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(RagnaAddress).mint(address(this), toMint)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(RagnaAddress).safeTransferFrom(staker, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokens",
+                "Node": "IERC20(RagnaAddress).mint(msg.sender, withdrawable)"
+            },
+            {
+                "Function": "withdrawStakerRewardTokens",
+                "Node": "IERC20(RagnaAddress).mint(staker, withdrawable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(RagnaAddress).safeTransfer(staker, _amount)"
+            }
+        ]
+    }
+}

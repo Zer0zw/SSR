@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedNFTs"
+        ],
+        "User Stake Reward": [
+            "StakedNFT.claimableReward"
+        ],
+        "User Stake Time": [
+            "StakedNFT.startTime"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "IERC721(nft).safeTransferFrom(msg.sender, address(this), tokenID)"
+            },
+            {
+                "Function": "batchStakeNFT",
+                "Node": "IERC721(nft).safeTransferFrom(msg.sender, address(this), tokenID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "withdrawEth(claimableEth)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "IERC721(nft).safeTransferFrom(address(this), msg.sender, tokenID)"
+            },
+            {
+                "Function": "batchUnStakeNFT",
+                "Node": "IERC721(nft).safeTransferFrom(address(this), msg.sender, tokenID)"
+            }
+        ]
+    }
+}

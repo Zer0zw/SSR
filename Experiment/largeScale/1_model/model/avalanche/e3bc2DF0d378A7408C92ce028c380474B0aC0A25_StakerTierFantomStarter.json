@@ -1,0 +1,144 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "walletStakedTierFSTokenMapping.tokenAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "walletStakedTierNFTMapping.creationTimestamp",
+            "walletStakedTierFSTokenMapping.creationTimestamp"
+        ],
+        "Stake Token Address": [
+            "fsToken"
+        ],
+        "Reward Token Address": [
+            "sFSToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeTierFSTokens",
+            "updateCurrentStakedFSTokens"
+        ],
+        "getReward": [],
+        "unStake": [
+            "unstakeTierFSTokensAfterLockupPeriod",
+            "unstakeTierFSTokensBeforeLockupPeriod",
+            "unstakeTierNFT"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTierFSTokens",
+                "Node": [
+                    2019
+                ],
+                "Input": [
+                    "_fsTokenAmountToStake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "fsToken",
+                    "sFSToken"
+                ],
+                "Full Calculation Variables": [
+                    "fsToken",
+                    "sFSToken"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "updateCurrentStakedFSTokens",
+                "Node": [
+                    2064
+                ],
+                "Input": [
+                    "_fsTokenAmountToStake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "fsToken",
+                    "sFSToken"
+                ],
+                "Full Calculation Variables": [
+                    "fsToken",
+                    "sFSToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstakeTierNFT",
+                "Node": [
+                    2109,
+                    2110,
+                    2111,
+                    2112,
+                    2113,
+                    2114,
+                    2115
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "tierFactory",
+                    "walletStakedTierNFTMapping.nftId"
+                ],
+                "Full Calculation Variables": [
+                    "tierFactory",
+                    "walletStakedTierNFTMapping.nftId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeTierFSTokensAfterLockupPeriod",
+                "Node": [
+                    2150
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "walletStakedTierFSTokenMapping.tokenAmount"
+                ],
+                "Control Variables": [
+                    "fsToken",
+                    "sFSToken",
+                    "walletStakedTierFSTokenMapping.tokenAmount"
+                ],
+                "Full Calculation Variables": [
+                    "fsToken",
+                    "sFSToken",
+                    "walletStakedTierFSTokenMapping.tokenAmount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeTierFSTokensBeforeLockupPeriod",
+                "Node": [
+                    2202
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "walletStakedTierFSTokenMapping.tokenAmount",
+                    "walletStakedTierFSTokenMapping.withholdUnstakingPercentage"
+                ],
+                "Control Variables": [
+                    "fsToken",
+                    "sFSToken",
+                    "walletStakedTierFSTokenMapping.tokenAmount",
+                    "walletStakedTierFSTokenMapping.withholdUnstakingPercentage"
+                ],
+                "Full Calculation Variables": [
+                    "fsToken",
+                    "sFSToken",
+                    "walletStakedTierFSTokenMapping.tokenAmount",
+                    "walletStakedTierFSTokenMapping.withholdUnstakingPercentage"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

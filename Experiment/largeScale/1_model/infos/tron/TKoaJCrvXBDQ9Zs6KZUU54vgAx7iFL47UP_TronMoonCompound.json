@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totStaked"
+        ],
+        "User Stake Reward": [
+            "Deposit.profit",
+            "User.ref_bonus"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Deposit.finish"
+        ],
+        "Stake Token Address": [
+            "TronMoonContractAddress"
+        ],
+        "Reward Token Address": [
+            "TronMoonContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "TronMoonContractAddress.transfer(tron_moon_deposit_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(toWithdraw)"
+            },
+            {
+                "Function": "cutAndRun",
+                "Node": "msg.sender.transfer(toWithdraw)"
+            }
+        ],
+        "unStake": []
+    }
+}

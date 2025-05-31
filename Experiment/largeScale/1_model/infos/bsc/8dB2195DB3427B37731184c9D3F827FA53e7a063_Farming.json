@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingWallets.depositAmount"
+        ],
+        "User Stake Reward": [
+            "stakingWallets.rewardDebt"
+        ],
+        "User Stake Time": [
+            "stakingWallets.depositBlock",
+            "stakingWallets.unlockBlock"
+        ],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "depToken().safeTransferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewToken().safeTransfer(msg.sender, toHarvest)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "rewToken().safeTransfer(msg.sender, _userRewardDebt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "rewToken().safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

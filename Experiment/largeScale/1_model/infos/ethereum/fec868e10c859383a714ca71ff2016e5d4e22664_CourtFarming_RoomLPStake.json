@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_incvRewards"
+        ],
+        "User Stake Time": [
+            "incvStartReleasingTime",
+            "incvBatchPeriod",
+            "incvBatchCount"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "courtToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakedToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "incvRewardClaim",
+                "Node": "courtToken.mint(msg.sender, amount)"
+            },
+            {
+                "Function": "stakeIncvRewards",
+                "Node": "courtToken.mint(address(this), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakedToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

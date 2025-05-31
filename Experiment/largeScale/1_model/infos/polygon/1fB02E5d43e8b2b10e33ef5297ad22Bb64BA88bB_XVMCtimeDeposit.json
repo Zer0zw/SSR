@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.mandatoryTimeToServe"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "giftDeposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "addAndExtendStake",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "token.safeTransfer(msg.sender, currentCallFee)"
+            },
+            {
+                "Function": "harvestWithRebalance",
+                "Node": "token.safeTransfer(msg.sender, currentCallFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, currentAmount)"
+            },
+            {
+                "Function": "transferStakeToAnotherWallet",
+                "Node": "No direct token transfer to the user, but shares are transferred to another wallet"
+            },
+            {
+                "Function": "hopStakeToAnotherPool",
+                "Node": "IacPool(_poolAddress).hopDeposit(currentAmount, _recipient, user.lastDepositedTime)"
+            }
+        ]
+    }
+}

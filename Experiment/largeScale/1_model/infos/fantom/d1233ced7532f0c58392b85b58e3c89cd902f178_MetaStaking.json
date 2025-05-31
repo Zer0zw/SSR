@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "META"
+        ],
+        "Reward Token Address": [
+            "sMETA"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(sMETA).safeTransfer(warmupContract, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup(warmupContract).retrieve(_recipient, IMeta(sMETA).balanceForGons(info.gons))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(META).safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20(META).safeTransfer(msg.sender, info.deposit)"
+            }
+        ]
+    }
+}

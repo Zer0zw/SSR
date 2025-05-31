@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "getGeneratedYelds"
+        ],
+        "User Stake Time": [
+            "depositBlockStarts"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "yeldToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "extractYELDEarningsWhileKeepingDeposit",
+                "Node": "yeldToken.transfer(msg.sender, generatedYelds)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "yeldToken.transfer(msg.sender, generatedYelds)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(token).safeTransfer(msg.sender, stablecoinsToWithdraw.sub(onePercent))"
+            }
+        ]
+    }
+}

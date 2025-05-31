@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "accounts.balance"
+        ],
+        "User Stake Reward": [
+            "accounts.rewardsClaimed",
+            "accounts.pending"
+        ],
+        "User Stake Time": [
+            "accounts.timeInvest",
+            "accounts.lastClaimed"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "require(transfer(address(this), _tokens), \"In sufficient tokens in user wallet\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(_transfer(msg.sender, owing, true))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UNSTAKE",
+                "Node": "require(_transfer(msg.sender, tokens, false))"
+            }
+        ]
+    }
+}

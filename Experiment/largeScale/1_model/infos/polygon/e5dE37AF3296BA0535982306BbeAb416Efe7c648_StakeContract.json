@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedbalances.total"
+        ],
+        "User Stake Reward": [
+            "balances.accumulatedEarning"
+        ],
+        "User Stake Time": [
+            "StakeRecord.time"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "tokenReceiving"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "token.transferFrom(msg.sender, address(this), amountInWei)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimEarnings",
+                "Node": "tokenReceiving.transfer(msg.sender, accumulatedEarning)"
+            },
+            {
+                "Function": "claimEarnings",
+                "Node": "payable(msg.sender).transfer(accumulatedEarning)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokenForPlayer",
+                "Node": "token.transfer(playerAddress, stakeItemTotal)"
+            },
+            {
+                "Function": "unstakeTokenForPlayer",
+                "Node": "payable(playerAddress).transfer(stakeItemTotal)"
+            }
+        ]
+    }
+}

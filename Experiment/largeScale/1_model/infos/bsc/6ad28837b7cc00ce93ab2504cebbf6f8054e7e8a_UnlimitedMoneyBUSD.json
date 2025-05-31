@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposits"
+        ],
+        "User Stake Reward": [
+            "User.bonus",
+            "User.totalBonus"
+        ],
+        "User Stake Time": [
+            "User.start",
+            "User.checkpoint"
+        ],
+        "Stake Token Address": [
+            "tokenAddr"
+        ],
+        "Reward Token Address": [
+            "tokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, totalAmount)"
+            },
+            {
+                "Function": "topDraw",
+                "Node": "token.safeTransfer(topD_tUser, REWARD)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "token.safeTransfer(msg.sender, totalAmount)"
+            }
+        ]
+    }
+}

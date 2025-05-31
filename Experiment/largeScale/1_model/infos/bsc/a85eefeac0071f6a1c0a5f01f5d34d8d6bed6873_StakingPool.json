@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakerAmounts.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "StakerAmounts.pendingHoneyMint",
+            "StakerAmounts.pendingLp"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StakedToken"
+        ],
+        "Reward Token Address": [
+            "LPToken",
+            "StakedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20Upgradeable(address(StakedToken)).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimLpTokens",
+                "Node": "IERC20Upgradeable(address(StakedToken)).safeTransfer(to, additionalHoneyAmount)"
+            },
+            {
+                "Function": "claimLpTokens",
+                "Node": "SwapRouter.removeLiquidityETH(address(StakedToken), amount, 1, 1, to, block.timestamp + 300)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20Upgradeable(address(StakedToken)).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

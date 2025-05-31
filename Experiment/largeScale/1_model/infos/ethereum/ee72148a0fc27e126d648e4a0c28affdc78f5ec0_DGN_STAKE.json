@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "DepositedToken.activeDeposit"
+        ],
+        "User Stake Reward": [
+            "DepositedToken.pendingGains",
+            "DepositedToken.totalGained"
+        ],
+        "User Stake Time": [
+            "DepositedToken.startTime"
+        ],
+        "Stake Token Address": [
+            "DGN"
+        ],
+        "Reward Token Address": [
+            "DGN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "ERC20Interface(DGN).transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "ERC20Interface(DGN).transfer(msg.sender, pendingReward(msg.sender))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "ClaimStakedTokens",
+                "Node": "ERC20Interface(DGN).transfer(msg.sender, toTransfer)"
+            }
+        ]
+    }
+}

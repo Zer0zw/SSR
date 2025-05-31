@@ -1,0 +1,178 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "calculateHarvestPineappleRewards",
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    862
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    903
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "callFee",
+                    "token"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "callFee",
+                    "mc",
+                    "performanceFee",
+                    "token",
+                    "treasury"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "callFee",
+                    "mc",
+                    "performanceFee",
+                    "token",
+                    "treasury"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "calculateHarvestPineappleRewards",
+                "Node": [
+                    1014
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "callFee",
+                    "mc"
+                ],
+                "Full Calculation Variables": [
+                    "callFee",
+                    "mc"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1074
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "mc",
+                    "token",
+                    "totalShares",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "mc",
+                    "token",
+                    "totalShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.pineappleAtLastUserAction",
+                    "userInfo.shares",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "mc",
+                    "token",
+                    "totalShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.pineappleAtLastUserAction",
+                    "userInfo.shares",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    888
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "token",
+                    "withdrawFee",
+                    "totalShares",
+                    "mc"
+                ],
+                "Control Variables": [
+                    "token",
+                    "mc",
+                    "userInfo.shares",
+                    "totalShares",
+                    "withdrawFee",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.pineappleAtLastUserAction",
+                    "userInfo.lastUserActionTime",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "token",
+                    "mc",
+                    "userInfo.shares",
+                    "totalShares",
+                    "withdrawFee",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.pineappleAtLastUserAction",
+                    "userInfo.lastUserActionTime",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

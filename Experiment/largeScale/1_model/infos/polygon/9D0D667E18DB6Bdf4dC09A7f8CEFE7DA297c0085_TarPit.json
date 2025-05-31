@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TokenLock.amount"
+        ],
+        "User Stake Reward": [
+            "TokenLock.reward"
+        ],
+        "User Stake Time": [
+            "TokenLock.validity"
+        ],
+        "Stake Token Address": [
+            "DINO"
+        ],
+        "Reward Token Address": [
+            "DINO"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "DINO.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "transferWithLock",
+                "Node": "DINO.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unlock",
+                "Node": "DINO.transfer(_of, unlockableTokens)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "DINO.transfer(msg.sender, unlockableTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "DINO.transfer(_of, unlockableTokens)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "DINO.transfer(msg.sender, unlockableTokens)"
+            }
+        ]
+    }
+}

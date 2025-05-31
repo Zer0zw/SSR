@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDepositTotal",
+            "userDeposit.amountNFT"
+        ],
+        "User Stake Reward": [
+            "stakingFunds",
+            "getUserYield"
+        ],
+        "User Stake Time": [
+            "userDeposit.depositTime"
+        ],
+        "Stake Token Address": [
+            "NFTProtocol"
+        ],
+        "Reward Token Address": [
+            "NFTProtocol"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "NFTProtocol.transferFrom(msg.sender, address(this), depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAll",
+                "Node": "NFTProtocol.transfer(msg.sender, userYield)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "NFTProtocol.transfer(msg.sender, withdrawalAmount)"
+            },
+            {
+                "Function": "withdrawPrincipal",
+                "Node": "NFTProtocol.transfer(msg.sender, withdrawalAmount)"
+            }
+        ]
+    }
+}

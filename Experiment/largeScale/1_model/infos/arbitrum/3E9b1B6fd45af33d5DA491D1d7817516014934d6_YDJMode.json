@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.orders.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalAmount",
+            "UserInfo.totalAmountDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.startDay",
+            "UserInfo.lastUpdateDay",
+            "UserInfo.endDay"
+        ],
+        "Stake Token Address": [
+            "token",
+            "usdt"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(usdt,msg.sender,address(this),amountU)"
+            },
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(token,msg.sender,address(this),amountT)"
+            },
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransfer(token,deadAddr,amountT.mul(80).div(100))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getRewardBy",
+                "Node": "IERC20(token).mint(_user,amountT)"
+            }
+        ],
+        "unStake": []
+    }
+}

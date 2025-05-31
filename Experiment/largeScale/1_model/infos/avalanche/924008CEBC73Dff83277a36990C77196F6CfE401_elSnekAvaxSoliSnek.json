@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "snek",
+            "elsnek"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ISoliSnekGauge(gauge).deposit(wantBal, 0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ISoliSnekGauge(gauge).getReward(address(this), rewardTokens)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "ISoliSnekGauge(gauge).getReward(address(this), rewardTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ISoliSnekGauge(gauge).withdraw(_amount - wantBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "ISoliSnekGauge(gauge).withdraw(balanceOfPool())"
+            },
+            {
+                "Function": "panic",
+                "Node": "ISoliSnekGauge(gauge).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

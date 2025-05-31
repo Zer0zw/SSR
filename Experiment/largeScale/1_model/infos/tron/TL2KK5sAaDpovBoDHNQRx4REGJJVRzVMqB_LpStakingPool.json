@@ -1,0 +1,64 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "stakeInToken"
+        ],
+        "Reward Token Address": [
+            "stakeOutToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "stakeOutToken.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "stakeOutToken.safeTransfer(0xD8d66353F6EbA5eA32b7e3E37ED5F90Dd0DFf30B, reward * 4 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "stakeOutToken.safeTransfer(0x995f761db83D30FE1E7Ff31215e9B85C19617067, reward * 4 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "stakeOutToken.safeTransfer(0xF6fbC7e505C2D85643fEA573478C52af0bCAd49A, reward * 4 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "stakeOutToken.safeTransfer(0xDEa39B686c5F1a08B058d686D74df617d6eA235A, reward * 4 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "stakeOutToken.safeTransfer(0x3A1bA962D024762e6e11cab2b3554a406eFA37d0, reward * 4 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "stakeOutToken.safeTransfer(referrerAddress[msg.sender], reward * 10 / 100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

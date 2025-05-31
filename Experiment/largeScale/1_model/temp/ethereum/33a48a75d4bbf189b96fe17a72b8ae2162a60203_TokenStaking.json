@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingEpoch.amount"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "StakingEpoch.depositTime"
+        ],
+        "Stake Token Address": [
+            "OpenPredictToken"
+        ],
+        "Reward Token Address": [
+            "RewardPool"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "transferFrom(RewardPool, msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "transfer(msg.sender, stakingEpoch.amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.price"
+        ],
+        "User Stake Reward": [
+            "UserInfo.harvestedAmount"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakeDate"
+        ],
+        "Stake Token Address": [
+            "UserInfo.nftAddress"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(_nftAddress).safeTransferFrom(msg.sender, address(this), _nftId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "safeERC20Transfer(ERC20(rewardToken), address(msg.sender),_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(stake.nftAddress).safeTransferFrom(address(this),msg.sender, _nftId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardLockedUp",
+            "pendingReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastRewardTime",
+            "getUserDuration"
+        ],
+        "Stake Token Address": [
+            "rewardToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositNft",
+                "Node": "IERC1155(_nftAddress).safeTransferFrom(_msgSender(), address(this), _nftTokenId, 1, \"\""
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardToken.safeTransfer(_msgSender(), user.rewardLockedUp"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawNftAll",
+                "Node": "IERC1155(info.nftAddress).safeTransferFrom(address(this), _msgSender(), info.nftTokenId, 1, \"\""
+            },
+            {
+                "Function": "withdrawSubNft",
+                "Node": "IERC1155(info.nftAddress).safeTransferFrom(address(this), _msgSender(), info.nftTokenId, 1, \"\""
+            }
+        ]
+    }
+}

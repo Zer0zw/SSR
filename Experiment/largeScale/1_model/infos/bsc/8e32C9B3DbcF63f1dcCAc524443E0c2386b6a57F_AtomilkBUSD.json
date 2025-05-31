@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalInits",
+            "Depo.amount"
+        ],
+        "User Stake Reward": [
+            "User.refBonus",
+            "Depo.amount"
+        ],
+        "User Stake Time": [
+            "User.lastWith",
+            "Depo.depoTime"
+        ],
+        "Stake Token Address": [
+            "BUSD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStablecoins",
+                "Node": "BUSD.safeTransferFrom(msg.sender, address(this), amtx)"
+            },
+            {
+                "Function": "presale",
+                "Node": "BUSD.safeTransferFrom(msg.sender, address(this), amtx)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "BUSD.safeTransfer(msg.sender, adjustedDivs)"
+            },
+            {
+                "Function": "compound",
+                "Node": "No direct transfer statement for rewards, rewards are compounded into new stakes"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInitial",
+                "Node": "BUSD.safeTransfer(msg.sender, net_amount)"
+            }
+        ]
+    }
+}

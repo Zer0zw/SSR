@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "pendingCake"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IJetMasterChef(farmPool).enterStaking(_baseBal)"
+            },
+            {
+                "Function": "_stakeCake",
+                "Node": "IJetMasterChef(farmPool).enterStaking(_baseBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IJetMasterChef(farmPool).enterStaking(0)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(_targetProfitToken).safeTransfer(_reserveFund, _reserveFundAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(_targetProfitToken).safeTransfer(_performanceReward, _amount)"
+            },
+            {
+                "Function": "_distributePerformance",
+                "Node": "IERC20(_targetProfitToken).safeTransfer(_reserveFund, _reserveFundAmount)"
+            },
+            {
+                "Function": "_distributePerformance",
+                "Node": "IERC20(_targetProfitToken).safeTransfer(_performanceReward, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IJetMasterChef(farmPool).leaveStaking(_amount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IJetMasterChef(farmPool).leaveStaking(_stakedAmount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(baseToken).safeTransfer(address(vault), baseBal)"
+            }
+        ]
+    }
+}

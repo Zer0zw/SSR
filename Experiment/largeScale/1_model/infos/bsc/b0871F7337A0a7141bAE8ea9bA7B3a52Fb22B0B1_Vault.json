@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [
+            "stakersRewards"
+        ],
+        "User Stake Time": [
+            "lastUpdate"
+        ],
+        "Stake Token Address": [
+            "SAFU"
+        ],
+        "Reward Token Address": [
+            "SAFU"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "SAFU.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "SAFU.transfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "SAFU.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

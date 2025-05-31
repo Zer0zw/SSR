@@ -1,0 +1,173 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits.depositAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "deposits.depositTime",
+            "deposits.endTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddressA",
+            "tokenAddressB"
+        ],
+        "Reward Token Address": [
+            "tokenAddressA",
+            "tokenAddressB"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stakeBoth"
+        ],
+        "getReward": [
+            "withdraw",
+            "withdrawBoth"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "emergencyWithdrawBoth"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBoth",
+                "Node": [
+                    380
+                ],
+                "Input": [
+                    "amountA",
+                    "amountB"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "hasStaked",
+                    "tokenAddressA",
+                    "tokenAddressB"
+                ],
+                "Full Calculation Variables": [
+                    "hasStaked",
+                    "tokenAddressA",
+                    "tokenAddressB"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    536
+                ],
+                "Input": [
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.endTime",
+                    "deposits.paid",
+                    "hasStaked",
+                    "rewardBalanceA",
+                    "rewardBalanceB",
+                    "tokenAddressA",
+                    "tokenAddressB"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.endTime",
+                    "deposits.paid",
+                    "hasStaked",
+                    "rewardBalanceA",
+                    "rewardBalanceB",
+                    "tokenAddressA",
+                    "tokenAddressB"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawBoth",
+                "Node": [
+                    506
+                ],
+                "Input": [
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.endTime",
+                    "tokenAddressB",
+                    "rewardBalanceB",
+                    "tokenAddressA",
+                    "deposits.paid",
+                    "hasStaked",
+                    "rewardBalanceA"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.endTime",
+                    "tokenAddressB",
+                    "rewardBalanceB",
+                    "tokenAddressA",
+                    "deposits.paid",
+                    "hasStaked",
+                    "rewardBalanceA"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    488
+                ],
+                "Input": [
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.depositAmount",
+                    "deposits.endTime",
+                    "deposits.paid",
+                    "hasStaked"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.depositAmount",
+                    "deposits.endTime",
+                    "deposits.paid",
+                    "hasStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdrawBoth",
+                "Node": [
+                    461
+                ],
+                "Input": [
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.endTime",
+                    "tokenAddressB",
+                    "deposits.paid",
+                    "hasStaked",
+                    "deposits.depositAmount",
+                    "tokenAddressA"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.endTime",
+                    "tokenAddressB",
+                    "deposits.paid",
+                    "hasStaked",
+                    "deposits.depositAmount",
+                    "tokenAddressA"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

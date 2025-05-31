@@ -1,0 +1,161 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingsByOwner"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "idToToken.timestamp"
+        ],
+        "Stake Token Address": [
+            "oddContract"
+        ],
+        "Reward Token Address": [
+            "pickles"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claimOddRewards"
+        ],
+        "unStake": [
+            "claimOddRewards",
+            "emergencyUnstake",
+            "emergencyUnstakeByUser"
+        ],
+        "Sensitive Functions": [
+            "set_odd_contract",
+            "set_pickles_contract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    412
+                ],
+                "Input": [
+                    "_id"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "oddContract",
+                    "paused",
+                    "stakingsByOwner"
+                ],
+                "Full Calculation Variables": [
+                    "oddContract",
+                    "paused",
+                    "stakingsByOwner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimOddRewards",
+                "Node": [
+                    445
+                ],
+                "Input": [
+                    "_id",
+                    "unstaked"
+                ],
+                "Calculation Variables": [
+                    "idToToken.owner",
+                    "idToToken.timestamp",
+                    "oddContract",
+                    "pickles"
+                ],
+                "Control Variables": [
+                    "idToToken.owner",
+                    "idToToken.timestamp",
+                    "oddContract",
+                    "paused",
+                    "pickles"
+                ],
+                "Full Calculation Variables": [
+                    "idToToken.owner",
+                    "idToToken.timestamp",
+                    "oddContract",
+                    "paused",
+                    "pickles"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimOddRewards",
+                "Node": [
+                    430
+                ],
+                "Input": [
+                    "_id"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "idToToken.owner",
+                    "oddContract",
+                    "stakingsByOwner"
+                ],
+                "Full Calculation Variables": [
+                    "idToToken.owner",
+                    "oddContract",
+                    "stakingsByOwner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": [
+                    430
+                ],
+                "Input": [
+                    "_id",
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "oddContract",
+                    "_owner",
+                    "stakingsByOwner",
+                    "idToToken.owner"
+                ],
+                "Full Calculation Variables": [
+                    "oddContract",
+                    "_owner",
+                    "stakingsByOwner",
+                    "idToToken.owner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyUnstakeByUser",
+                "Node": [
+                    430
+                ],
+                "Input": [
+                    "_id",
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "oddContract",
+                    "stakingsByOwner",
+                    "idToToken.owner"
+                ],
+                "Full Calculation Variables": [
+                    "oddContract",
+                    "stakingsByOwner",
+                    "idToToken.owner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

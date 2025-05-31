@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserMiningInfo.numberOfStakes"
+        ],
+        "User Stake Reward": [
+            "UserMiningInfo.rewardBalance"
+        ],
+        "User Stake Time": [
+            "UserMiningInfo.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "axes721"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "axes721.transferFrom(msg.sender, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardToken.transfer(msg.sender, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "axes721.transferFrom(address(this), msg.sender, _tokenIds[i])"
+            }
+        ]
+    }
+}

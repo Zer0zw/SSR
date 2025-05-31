@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "underlyingDeposit"
+        ],
+        "User Stake Reward": [
+            "profits"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "want"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositAndMint",
+                "Node": "_mint(msg.sender, underlyingAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawProfits",
+                "Node": "vault.withdraw(_shares, user)"
+            },
+            {
+                "Function": "withdrawProfitsOnPair",
+                "Node": "vault.withdraw(_shares, address(curC))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAndBurn",
+                "Node": "vault.withdraw(sharesToUse, user)"
+            },
+            {
+                "Function": "withdrawAllAndBurn",
+                "Node": "vault.withdraw(sharesToUse, user)"
+            }
+        ]
+    }
+}

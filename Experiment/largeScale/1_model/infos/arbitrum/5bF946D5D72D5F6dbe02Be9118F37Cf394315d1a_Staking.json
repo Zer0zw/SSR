@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalShogunStaked",
+            "totalLandStaked"
+        ],
+        "User Stake Reward": [
+            "landEarnedReward"
+        ],
+        "User Stake Time": [
+            "unstakeDuration"
+        ],
+        "Stake Token Address": [
+            "shogun",
+            "land"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "shogun.freezeTransfer(shogunIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(rewardToken).transfer(msg.sender, rewardAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "shogun.unfreezeTransfer(shogunIds[i])"
+            },
+            {
+                "Function": "forceUnstake",
+                "Node": "shogun.unfreezeTransfer(shogunIds[i])"
+            }
+        ]
+    }
+}

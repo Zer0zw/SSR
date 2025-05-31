@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "unclaimedPrizes",
+            "claimedPrizes"
+        ],
+        "User Stake Time": [
+            "_periodFinish"
+        ],
+        "Stake Token Address": [
+            "AzworldContract"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "AzworldContract.safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPrizes",
+                "Node": "rewardToken.safeTransfer(_msgSender(), reward)"
+            },
+            {
+                "Function": "finishEvent",
+                "Node": "rewardToken.safeTransfer(currentUser, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "AzworldContract.safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "AzworldContract.safeTransferFrom(address(this), _msgSender(), currentTokens[i])"
+            },
+            {
+                "Function": "finishEvent",
+                "Node": "AzworldContract.safeTransferFrom(address(this), currentUser, currentTokens[i])"
+            },
+            {
+                "Function": "returnNFT",
+                "Node": "AzworldContract.safeTransferFrom(address(this), currentUser, currentTokens[i])"
+            }
+        ]
+    }
+}

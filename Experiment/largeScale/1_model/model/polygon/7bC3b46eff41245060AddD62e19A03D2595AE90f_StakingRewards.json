@@ -1,0 +1,123 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "weeklyUnlocksOf"
+        ],
+        "User Stake Reward": [
+            "weeklyFeeAmounts"
+        ],
+        "User Stake Time": [
+            "activeUserStream.start",
+            "activeUserStream.amount",
+            "activeUserStream.claimed"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "feeTokens"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositLockTokens",
+            "lock"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "unlockRewardTokens",
+            "withdrawExitStream"
+        ],
+        "Sensitive Functions": [
+            "depositFee",
+            "unlockRewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": [
+                    525
+                ],
+                "Input": [
+                    "_amount",
+                    "_user",
+                    "_weeks"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    850
+                ],
+                "Input": [
+                    "_tokens",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawExitStream",
+                "Node": [
+                    611
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WEEK",
+                    "exitStream.amount",
+                    "exitStream.claimed",
+                    "exitStream.start",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "WEEK",
+                    "exitStream.amount",
+                    "exitStream.claimed",
+                    "exitStream.start",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unlockRewardTokens",
+                "Node": [
+                    756
+                ],
+                "Input": [
+                    "_amount",
+                    "_user",
+                    "_weeks"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "rewardPactTokens",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "rewardPactTokens",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

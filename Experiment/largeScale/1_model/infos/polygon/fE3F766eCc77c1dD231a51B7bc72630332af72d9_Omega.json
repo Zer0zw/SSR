@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Data.investment.investedAmount"
+        ],
+        "User Stake Reward": [
+            "Data.TotalReferrals_earning",
+            "Data.Total_reward"
+        ],
+        "User Stake Time": [
+            "Data.investment.DepositTime",
+            "Data.investment.expire_Time"
+        ],
+        "Stake Token Address": [
+            "usdt_address"
+        ],
+        "Reward Token Address": [
+            "usdt_address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "require(USDT(usdt_address).transferFrom(msg.sender,address(this),temp1*70000000/100000000)"
+            },
+            {
+                "Function": "invest",
+                "Node": "require(USDT(usdt_address).transferFrom(msg.sender,owner,temp1*30000000/100000000)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "USDT(usdt_address).transfer(msg.sender,_amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

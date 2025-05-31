@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedWaTokens"
+        ],
+        "User Stake Reward": [
+            "tokensInBucket",
+            "realisedTokens"
+        ],
+        "User Stake Time": [
+            "lastDepositBlock"
+        ],
+        "Stake Token Address": [
+            "waToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20Burnable(waToken).safeTransferFrom(sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20Burnable(token).transfer(sender, value)"
+            },
+            {
+                "Function": "transmuteAndClaim",
+                "Node": "IERC20Burnable(token).transfer(sender, value)"
+            },
+            {
+                "Function": "transmuteClaimAndWithdraw",
+                "Node": "IERC20Burnable(token).transfer(sender, value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20Burnable(waToken).safeTransfer(sender, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC20Burnable(waToken).safeTransfer(sender, toWithdraw)"
+            },
+            {
+                "Function": "transmuteClaimAndWithdraw",
+                "Node": "IERC20Burnable(waToken).safeTransfer(sender, toWithdraw)"
+            }
+        ]
+    }
+}

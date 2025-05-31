@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakeRewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "lastClock"
+        ],
+        "Stake Token Address": [
+            "gnome"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": "IERC20(gnome).transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(gnome).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": "(msg.sender).call{value: totalReward}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(gnome).transfer(msg.sender, afterTax)"
+            },
+            {
+                "Function": "EmergencyWithdraw",
+                "Node": "IERC20(gnome).transfer(msg.sender, afterTax)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "AccountVars.staked"
+        ],
+        "User Stake Reward": [
+            "AccountRewardVars.rainiRewards"
+        ],
+        "User Stake Time": [
+            "AccountRewardVars.lastUpdated"
+        ],
+        "Stake Token Address": [
+            "rainiLpToken"
+        ],
+        "Reward Token Address": [
+            "rainiToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "rainiLpToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "rainiToken.safeTransfer(_msgSender(), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "rainiLpToken.safeTransfer(_msgSender(), _amount)"
+            }
+        ]
+    }
+}

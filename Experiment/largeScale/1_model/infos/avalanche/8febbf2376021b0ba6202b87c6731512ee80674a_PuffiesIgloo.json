@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "puffiesStakedByUser"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "cryptoPuffies"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_safeRewardTokenTransfer(rewardToken, msg.sender, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_safeRewardTokenTransfer(rewardToken, msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_safeRewardTokenTransfer(rewardToken, msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "cryptoPuffies.transferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

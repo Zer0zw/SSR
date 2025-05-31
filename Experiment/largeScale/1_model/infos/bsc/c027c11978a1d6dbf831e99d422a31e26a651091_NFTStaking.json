@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositLength"
+        ],
+        "User Stake Reward": [
+            "Deposit.term.mgmcPerDay"
+        ],
+        "User Stake Time": [
+            "Deposit.timeDepositBlock",
+            "Deposit.term.lockedPeriod"
+        ],
+        "Stake Token Address": [
+            "Deposit.tokenContract"
+        ],
+        "Reward Token Address": [
+            "mgmc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFarmer",
+                "Node": "IERC721(_erc721).transferFrom(msg.sender,address(this),_tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectRewards",
+                "Node": "mgmc.transfer(msg.sender, amountToWithdraw)"
+            },
+            {
+                "Function": "PerformChoiceFarmer",
+                "Node": "mgmc.transfer(msg.sender, amountToWithdraw)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "PerformChoiceFarmer",
+                "Node": "IERC721(userDeposit.tokenContract).transferFrom(address(this),msg.sender,userDeposit.tokenID)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,77 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "DepositOrder.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardReceived"
+        ],
+        "User Stake Time": [
+            "DepositOrder.orderTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.bonusToken",
+            "iToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositITokenAndToken",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount)"
+            },
+            {
+                "Function": "depositIToken",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositITokenAndToken",
+                "Node": "safeITokenTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "depositITokenAndToken",
+                "Node": "IERC20(multLpToken).safeTransfer(_user, tokenPending)"
+            },
+            {
+                "Function": "depositIToken",
+                "Node": "safeITokenTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "withdrawITokenAndToken",
+                "Node": "safeITokenTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "withdrawITokenAndToken",
+                "Node": "IERC20(multLpToken).safeTransfer(_user, tokenPending)"
+            },
+            {
+                "Function": "withdrawIToken",
+                "Node": "safeITokenTransfer( _user, pendingAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawITokenAndToken",
+                "Node": "pool.lpToken.safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "withdrawIToken",
+                "Node": "pool.lpToken.safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "emergencyWithdrawBXHAndToken",
+                "Node": "pool.lpToken.safeTransfer(_user, amount)"
+            },
+            {
+                "Function": "emergencyWithdrawBXH",
+                "Node": "pool.lpToken.safeTransfer(_user, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "boo_wftm_staker.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "boo_wftm"
+        ],
+        "Reward Token Address": [
+            "boo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "boo_wftm_staker[msg.sender].shares += amount_to_mint"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(boo).transfer(msg.sender,incentive)"
+            },
+            {
+                "Function": "swap_and_compound_and_stake",
+                "Node": "IERC20(boo_wftm).transfer(msg.sender,IERC20(boo_wftm).balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(boo_wftm).transfer(msg.sender, 1999*amount_to_give.div(2000))"
+            },
+            {
+                "Function": "emergency_unstake",
+                "Node": "IERC20(boo_wftm).transfer(msg.sender, to_give)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "rewards1"
+        ],
+        "User Stake Time": [
+            "farmTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "rewardToken1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "lpToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward1",
+                "Node": "rewardToken1.safeTransfer(msg.sender, reward1)"
+            },
+            {
+                "Function": "ClaimLPReward",
+                "Node": "lpToken.safeTransfer(msg.sender, lpTokenReward[_addy])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

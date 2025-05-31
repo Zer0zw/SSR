@@ -1,0 +1,219 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [
+            "userInfo.averageBlockDeposit"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDeposit"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "zapAndDeposit",
+            "zapAndDepositRouted"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAndUnzapRouted"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    981
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_notEntered",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId"
+                ],
+                "Full Calculation Variables": [
+                    "_notEntered",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "zapAndDeposit",
+                "Node": [
+                    1020
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_user",
+                    "min_out",
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.adapter",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.adapter",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "zapAndDepositRouted",
+                "Node": [
+                    1033
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_user",
+                    "call",
+                    "min_out",
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.adapter",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.adapter",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    884
+                ],
+                "Input": [
+                    "_pid",
+                    "_to"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "rewarder",
+                    "userInfo.averageBlockDeposit",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "rewarder",
+                    "userInfo.averageBlockDeposit",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1088
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "BASE",
+                    "withdrawalFee"
+                ],
+                "Control Variables": [
+                    "BASE",
+                    "_notEntered",
+                    "coolDown",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId",
+                    "poolInfo.totalDeposits",
+                    "poolInfo.totalShares",
+                    "rewarder",
+                    "userInfo.averageBlockDeposit",
+                    "userInfo.lastDeposit",
+                    "userInfo.shares",
+                    "withdrawalFee"
+                ],
+                "Full Calculation Variables": [
+                    "BASE",
+                    "_notEntered",
+                    "coolDown",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId",
+                    "poolInfo.totalDeposits",
+                    "poolInfo.totalShares",
+                    "rewarder",
+                    "userInfo.averageBlockDeposit",
+                    "userInfo.lastDeposit",
+                    "userInfo.shares",
+                    "withdrawalFee"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAndUnzapRouted",
+                "Node": [
+                    1058
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "call",
+                    "min_out",
+                    "token"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BASE",
+                    "_notEntered",
+                    "coolDown",
+                    "poolInfo.adapter",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId",
+                    "poolInfo.totalDeposits",
+                    "poolInfo.totalShares",
+                    "userInfo.averageBlockDeposit",
+                    "userInfo.lastDeposit",
+                    "userInfo.shares",
+                    "withdrawalFee"
+                ],
+                "Full Calculation Variables": [
+                    "BASE",
+                    "_notEntered",
+                    "coolDown",
+                    "poolInfo.adapter",
+                    "poolInfo.target",
+                    "poolInfo.targetPoolId",
+                    "poolInfo.totalDeposits",
+                    "poolInfo.totalShares",
+                    "userInfo.averageBlockDeposit",
+                    "userInfo.lastDeposit",
+                    "userInfo.shares",
+                    "withdrawalFee"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

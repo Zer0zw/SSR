@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "rewardsTotal"
+        ],
+        "User Stake Time": [
+            "rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stakingNFTCollection"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(stakingNFTCollection).transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(stakingNFTCollection).transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC721(stakingNFTCollection).transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "exitAll",
+                "Node": "IERC721(stakingNFTCollection).transferFrom(address(this), msg.sender, stakedNFTs[msg.sender].at(i))"
+            }
+        ]
+    }
+}

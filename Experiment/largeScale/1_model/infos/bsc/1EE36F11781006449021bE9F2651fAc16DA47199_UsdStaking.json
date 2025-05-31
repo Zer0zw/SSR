@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedOf"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardOf",
+            "UserInfo.userReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.duration",
+            "UserInfo.lastDepositAt"
+        ],
+        "Stake Token Address": [
+            "usdAddress"
+        ],
+        "Reward Token Address": [
+            "usdAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(usdAddress, msg.sender, depositAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeReward",
+                "Node": "safeTransfer(_account, pending)"
+            },
+            {
+                "Function": "_takeReward",
+                "Node": "safeTransfer(_account, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IDepositUSD(depositAddress).unstakeUsd(msg.sender, _amount)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "IDepositUSD(depositAddress).unstakeUsd(msg.sender, _amount)"
+            }
+        ]
+    }
+}

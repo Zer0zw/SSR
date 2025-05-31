@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.ATokenAmount",
+            "UserInfo.BTokenAmount"
+        ],
+        "User Stake Reward": [
+            "PoolInfo.stakeReward",
+            "PoolInfo.refReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.initStartTime",
+            "UserInfo.initRewardTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.AToken",
+            "PoolInfo.BToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.AToken.safeTransferFrom(address(msg.sender), address(this), pool.AStakeAmount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "pool.BToken.safeTransferFrom(address(msg.sender), address(this), pool.BStakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeTransfer(refAddress, period*pool.refReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.AToken.safeTransfer(address(msg.sender), user.ATokenAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.BToken.safeTransfer(address(msg.sender), user.BTokenAmount)"
+            }
+        ]
+    }
+}

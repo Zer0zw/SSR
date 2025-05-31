@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "catshare"
+        ],
+        "Reward Token Address": [
+            "kitty"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "INursery(nursery).stake(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokensSupportingFeeOnTransferTokens(toWrapped, 0, kittyToWrappedRoute, address(this), now)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wrapped).safeTransfer(msg.sender, callFeeAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wrapped).safeTransfer(appFeeRecipient, appFeeAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wrapped).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount))"
+            },
+            {
+                "Function": "startUnlockWindow",
+                "Node": "INursery(nursery).withdraw(INursery(nursery).balanceOf(address(this)))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "INursery(nursery).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

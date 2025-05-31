@@ -1,0 +1,71 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user_profit"
+        ],
+        "User Stake Reward": [
+            "user_profit"
+        ],
+        "User Stake Time": [
+            "user_time"
+        ],
+        "Stake Token Address": [
+            "GBT_token"
+        ],
+        "Reward Token Address": [
+            "GBT_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Staking_Token",
+                "Node": "GBT_token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Redeem_Token",
+                "Node": "GBT_token.transfer(msg.sender, new_profit)"
+            },
+            {
+                "Function": "Redeem_Token",
+                "Node": "GBT_token.transfer(msg.sender, pre_amount)"
+            },
+            {
+                "Function": "Redeem_All",
+                "Node": "GBT_token.transfer(msg.sender, new_profit)"
+            },
+            {
+                "Function": "Redeem_All",
+                "Node": "GBT_token.transfer(msg.sender, user_profit[msg.sender])"
+            },
+            {
+                "Function": "Redeem_Token_byOwner",
+                "Node": "GBT_token.transfer(_user, new_profit)"
+            },
+            {
+                "Function": "Redeem_Token_byOwner",
+                "Node": "GBT_token.transfer(_user, user_profit[_user])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Redeem_All",
+                "Node": "GBT_token.transfer(msg.sender, new_profit)"
+            },
+            {
+                "Function": "Redeem_All",
+                "Node": "GBT_token.transfer(msg.sender, user_profit[msg.sender])"
+            },
+            {
+                "Function": "Redeem_Token_byOwner",
+                "Node": "GBT_token.transfer(_user, new_profit)"
+            },
+            {
+                "Function": "Redeem_Token_byOwner",
+                "Node": "GBT_token.transfer(_user, user_profit[_user])"
+            }
+        ]
+    }
+}

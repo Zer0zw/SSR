@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "getHarvestable"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "quick"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IQuickSwapSyrup(syrupPool).stake(_want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimReward",
+                "Node": "IQuickSwapSyrup(syrupPool).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IQuickSwapSyrup(syrupPool).withdraw(_amount > _max? _max : _amount)"
+            }
+        ]
+    }
+}

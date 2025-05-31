@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.amount",
+            "StakingEpoch.apr"
+        ],
+        "User Stake Time": [
+            "Stake.stakingDate"
+        ],
+        "Stake Token Address": [
+            "fearContract"
+        ],
+        "Reward Token Address": [
+            "fearContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "fearContract.transferFrom(user, address(this), amount"
+            },
+            {
+                "Function": "stakeBack",
+                "Node": "No direct transfer statement, as it reuses previously locked or withdrawable tokens"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "fearContract.transfer(user, totalReward)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "fearContract.transfer(user, totalReward)"
+            },
+            {
+                "Function": "instantUnstake",
+                "Node": "fearContract.transfer(user, totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "No direct transfer statement for unstaked tokens, as they are locked"
+            },
+            {
+                "Function": "instantUnstake",
+                "Node": "fearContract.transfer(user, amountMinusFee)"
+            },
+            {
+                "Function": "withdrawUnlocked",
+                "Node": "fearContract.transfer(user, totalAmount)"
+            }
+        ]
+    }
+}

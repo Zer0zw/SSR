@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "allInvestments.investedAmount"
+        ],
+        "User Stake Reward": [
+            "allInvestments.claimable_reward"
+        ],
+        "User Stake Time": [
+            "allInvestments.DepositTime",
+            "allInvestments.expire_Time"
+        ],
+        "Stake Token Address": [
+            "usdt_address",
+            "busd_address"
+        ],
+        "Reward Token Address": [
+            "token_address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "USDT(current_token).transferFrom(msg.sender,owner,investment)"
+            },
+            {
+                "Function": "Stake",
+                "Node": "USDT(token_address).transfer(msg.sender,bronze_token)"
+            },
+            {
+                "Function": "Stake",
+                "Node": "USDT(current_token).transferFrom(msg.sender,_referral,reward1)"
+            },
+            {
+                "Function": "Stake",
+                "Node": "USDT(current_token).transferFrom(msg.sender,owner,investment-reward1)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "USDT(token_address).transfer(msg.sender,amount)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "USDT(token_address).transfer(investor,_amount)"
+            }
+        ]
+    }
+}

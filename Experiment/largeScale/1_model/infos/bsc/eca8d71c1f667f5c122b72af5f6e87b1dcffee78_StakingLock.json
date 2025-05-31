@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakingInfo.amount",
+            "withdrawedInfos"
+        ],
+        "User Stake Reward": [
+            "profit"
+        ],
+        "User Stake Time": [
+            "UserStakingInfo.stakedDate",
+            "timePeriod"
+        ],
+        "Stake Token Address": [
+            "bep20TokenAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bep20Token.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getUserShare",
+                "Node": "amount = stakedAmount.mul(profit).div(profitDenominator)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimAll",
+                "Node": "bep20Token.transfer(msg.sender, amountToUnstake)"
+            }
+        ]
+    }
+}

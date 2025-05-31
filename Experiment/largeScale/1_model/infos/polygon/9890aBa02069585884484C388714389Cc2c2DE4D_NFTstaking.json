@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Spaceship.id",
+            "Avatar.id"
+        ],
+        "User Stake Reward": [
+            "calculateShipPay",
+            "calculateAvatarPay"
+        ],
+        "User Stake Time": [
+            "Spaceship.time",
+            "Avatar.time"
+        ],
+        "Stake Token Address": [
+            "shipBase",
+            "avatar"
+        ],
+        "Reward Token Address": [
+            "fuel"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeShip",
+                "Node": "sr.mint(msg.sender, ID, 1)"
+            },
+            {
+                "Function": "stakeAvatar",
+                "Node": "ar.mint(msg.sender, ID, 1)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeShip",
+                "Node": "fl.mint(msg.sender, calculateShipPay(ID) * 1e18)"
+            },
+            {
+                "Function": "unstakeAvatar",
+                "Node": "fl.mint(msg.sender, calculateAvatarPay(ID) * 1e18)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeShip",
+                "Node": "sb.transferFrom(address(this), msg.sender, ID)"
+            },
+            {
+                "Function": "unstakeAvatar",
+                "Node": "av.transferFrom(address(this), msg.sender, ID)"
+            }
+        ]
+    }
+}

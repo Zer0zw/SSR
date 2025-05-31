@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStaked"
+        ],
+        "User Stake Reward": [
+            "rewardRate"
+        ],
+        "User Stake Time": [
+            "LpToken.timestamp"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakePegaxy",
+                "Node": "nft.transferFrom(msg.sender, treasuryWallet, tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "token.transferFrom(treasuryWallet,account, earned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nft.transferFrom(treasuryWallet, account, tokenId)"
+            }
+        ]
+    }
+}

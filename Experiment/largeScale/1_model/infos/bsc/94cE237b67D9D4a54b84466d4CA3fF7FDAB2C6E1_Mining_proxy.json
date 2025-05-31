@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stakeAmount",
+            "userSlot.amount_bcl",
+            "userSlot.amount_main"
+        ],
+        "User Stake Reward": [
+            "calculateStaticReward"
+        ],
+        "User Stake Time": [
+            "userSlot.timestamp"
+        ],
+        "Stake Token Address": [
+            "Assets"
+        ],
+        "Reward Token Address": [
+            "bcl_addr",
+            "SYNC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "DelegateCallstakeWithExactBCL",
+                "Node": "Address.functionDelegateCall(delecall_1,abi.encodeWithSignature(\"stakeWithExactBCL(uint256,uint256,uint256,address,uint256)\",assetId,BCLportion,BCLamount,invitor,slotId))"
+            },
+            {
+                "Function": "DelegateCallstakeWithExactMain",
+                "Node": "Address.functionDelegateCall(delecall_1,abi.encodeWithSignature(\"stakeWithExactMain(uint256,uint256,uint256,address,uint256)\",assetId,mainPortion,mainAmount,invitor,slotId))"
+            },
+            {
+                "Function": "DelegateStakeExactBCLwithBNB",
+                "Node": "Address.functionDelegateCall(delecall_2,abi.encodeWithSignature(\"stakeExactBCLwithBNB(uint256,uint256,address,uint256)\",BCLportion,BCLamount,invitor,slotId))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimDynamic_toWallet",
+                "Node": "Address.functionDelegateCall(delecall_2, abi.encodeWithSignature(\"claimDynamic_toWallet_execution()\"))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "DelegateExit",
+                "Node": "Address.functionDelegateCall(delecall_1, abi.encodeWithSignature(\"exit(uint256)\",slotId))"
+            }
+        ]
+    }
+}

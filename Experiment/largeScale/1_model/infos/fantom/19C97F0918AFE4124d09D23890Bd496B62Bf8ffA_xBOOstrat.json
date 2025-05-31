@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "xBooRewardsPending"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMirrorWorld(mirrorWorld).enter(wantBal)"
+            },
+            {
+                "Function": "afterDeposit",
+                "Node": "IxBOO(ace).deposit(poolId, xbooBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouter(unirouter).swapExactTokensForTokens(outputBalance, 0, outputToWrappedRoute, address(this), now.add(600))"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(msg.sender, callFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(feeBatchAddress, feeBatchAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(insuranceFund, insuranceAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount))"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMirrorWorld(mirrorWorld).leave(balanceOfPool())"
+            }
+        ]
+    }
+}

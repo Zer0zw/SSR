@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "Order.tReward",
+            "Order.hReward"
+        ],
+        "User Stake Time": [
+            "Order.orderTime",
+            "Order.rewardTime"
+        ],
+        "Stake Token Address": [
+            "zzbtAddress"
+        ],
+        "Reward Token Address": [
+            "nzAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(zzbtAddress).safeTransferFrom(msg.sender, destroyAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(nzAddress).safeTransfer(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalSupply"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_triggerDepositAction",
+                "Node": "gauge.deposit(_amt, address(this), true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_pullRewards",
+                "Node": "gauge.claim_rewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_triggerWithdrawAction",
+                "Node": "gauge.withdraw(amtToReturn, true)"
+            }
+        ]
+    }
+}

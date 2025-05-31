@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "customStakingBalance",
+            "customStakingBalance2"
+        ],
+        "User Stake Reward": [
+            "claimed1Balance",
+            "claimed2Balance",
+            "claimed3Balance"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "customStakingTime",
+            "customStakingTime2"
+        ],
+        "Stake Token Address": [
+            "apeConnect"
+        ],
+        "Reward Token Address": [
+            "apeConnect"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "IBEP20(apeConnect).transferFrom(msg.sender, address(this), transferAmount)"
+            },
+            {
+                "Function": "customStaking",
+                "Node": "IBEP20(apeConnect).transferFrom(msg.sender, address(this), transferAmount)"
+            },
+            {
+                "Function": "customStaking2",
+                "Node": "IBEP20(apeConnect).transferFrom(msg.sender, address(this), transferAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "IBEP20(apeConnect).transfer(msg.sender, transferAmount)"
+            },
+            {
+                "Function": "ClaimPrivate",
+                "Node": "IBEP20(apeConnect).transfer(msg.sender, transferAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "IBEP20(apeConnect).transfer(msg.sender, transferAmount)"
+            },
+            {
+                "Function": "customUnstake",
+                "Node": "IBEP20(apeConnect).transfer(msg.sender, transferAmount)"
+            },
+            {
+                "Function": "customUnstake2",
+                "Node": "IBEP20(apeConnect).transfer(msg.sender, transferAmount)"
+            }
+        ]
+    }
+}

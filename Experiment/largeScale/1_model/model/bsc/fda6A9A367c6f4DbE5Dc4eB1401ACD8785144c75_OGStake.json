@@ -1,0 +1,186 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "CompleteWithDraw",
+            "withdrawAll"
+        ],
+        "unStake": [
+            "CompleteWithDraw",
+            "forceUnstake"
+        ],
+        "Sensitive Functions": [
+            "ChangeTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    117
+                ],
+                "Input": [
+                    "_amount",
+                    "_depositId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TOKEN",
+                    "blacklisted",
+                    "stakedata",
+                    "stakedata.Plan",
+                    "stakedata.stakeplan"
+                ],
+                "Full Calculation Variables": [
+                    "TOKEN",
+                    "blacklisted",
+                    "stakedata",
+                    "stakedata.Plan",
+                    "stakedata.stakeplan"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    230,
+                    231,
+                    232,
+                    233,
+                    234
+                ],
+                "Input": [
+                    "_depositId",
+                    "_user",
+                    "reward"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "RewardAddress",
+                    "TOKEN",
+                    "stakedata",
+                    "stakedata.Plan"
+                ],
+                "Full Calculation Variables": [
+                    "RewardAddress",
+                    "TOKEN",
+                    "stakedata",
+                    "stakedata.Plan"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": [
+                    253,
+                    254,
+                    255,
+                    256
+                ],
+                "Input": [
+                    "_depositId",
+                    "_depositId",
+                    "_user",
+                    "reward",
+                    "reward"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakedata.Plan",
+                    "TOKEN",
+                    "stakedata",
+                    "RewardAddress",
+                    "blacklisted"
+                ],
+                "Full Calculation Variables": [
+                    "stakedata.Plan",
+                    "TOKEN",
+                    "stakedata",
+                    "RewardAddress",
+                    "blacklisted"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "forceUnstake",
+                "Node": [
+                    272,
+                    273,
+                    274,
+                    275,
+                    276,
+                    277
+                ],
+                "Input": [
+                    "_depositId"
+                ],
+                "Calculation Variables": [
+                    "percentDivider",
+                    "tax"
+                ],
+                "Control Variables": [
+                    "TOKEN",
+                    "blacklisted",
+                    "percentDivider",
+                    "stakedata",
+                    "stakedata.Plan",
+                    "tax"
+                ],
+                "Full Calculation Variables": [
+                    "TOKEN",
+                    "blacklisted",
+                    "percentDivider",
+                    "stakedata",
+                    "stakedata.Plan",
+                    "tax"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": [
+                    253,
+                    254,
+                    255,
+                    256
+                ],
+                "Input": [
+                    "_depositId",
+                    "reward"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TOKEN",
+                    "blacklisted",
+                    "stakedata",
+                    "stakedata.Plan"
+                ],
+                "Full Calculation Variables": [
+                    "TOKEN",
+                    "blacklisted",
+                    "stakedata",
+                    "stakedata.Plan"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

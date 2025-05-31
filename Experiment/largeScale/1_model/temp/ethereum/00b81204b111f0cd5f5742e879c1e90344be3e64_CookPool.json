@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStaked"
+        ],
+        "User Stake Reward": [
+            "balanceOfRewarded",
+            "balanceOfPhantom"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_state.provider.cook"
+        ],
+        "Reward Token Address": [
+            "_state.provider.cook"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "cook().safeTransferFrom(msg.sender, address(this), cookAmount)"
+            },
+            {
+                "Function": "zapStake",
+                "Node": "cook().safeTransferFrom(msg.sender, address(this), cookAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "cook().safeTransfer(msg.sender, cookAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "addToVestingSchdule(msg.sender, cookAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "cook().transfer(msg.sender, cookAmount)"
+            }
+        ]
+    }
+}

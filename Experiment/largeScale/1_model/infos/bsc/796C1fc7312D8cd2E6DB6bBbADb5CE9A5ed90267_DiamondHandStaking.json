@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.totalRewardClaimed"
+        ],
+        "User Stake Time": [
+            "Deposit.stakedAt"
+        ],
+        "Stake Token Address": [
+            "KRONOS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "KRONOS.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "payPendingReward",
+                "Node": "ITreasury(treasury).mintRewards(user, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAndClaimReward",
+                "Node": "KRONOS.safeTransfer(msg.sender, _deposit.amount)"
+            }
+        ]
+    }
+}

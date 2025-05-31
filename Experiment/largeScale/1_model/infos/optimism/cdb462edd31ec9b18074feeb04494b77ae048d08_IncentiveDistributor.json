@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStake.liquidity"
+        ],
+        "User Stake Reward": [
+            "Incentive.rewardRemaining"
+        ],
+        "User Stake Time": [
+            "Incentive.endTime",
+            "Incentive.lastRewardTime"
+        ],
+        "Stake Token Address": [
+            "Incentive.token"
+        ],
+        "Reward Token Address": [
+            "Incentive.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "_saferTransferFrom(token, amount)"
+            },
+            {
+                "Function": "stakeAndSubscribeToIncentives",
+                "Node": "_saferTransferFrom(token, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(incentive.rewardToken).safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "_claimReward",
+                "Node": "IERC20(incentive.rewardToken).safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeToken",
+                "Node": "IERC20(token).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

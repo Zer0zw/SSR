@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "GNSVault.User.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "pendingRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "gns"
+        ],
+        "Reward Token Address": [
+            "dai"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "uint256 shares = super.deposit(assets, receiver)"
+            },
+            {
+                "Function": "mint",
+                "Node": "uint256 assets = super.mint(shares, receiver)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "gnsVault.harvest()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "return super.withdraw(assets, receiver, owner)"
+            },
+            {
+                "Function": "redeem",
+                "Node": "return super.redeem(shares, receiver, owner)"
+            },
+            {
+                "Function": "unboostGNS",
+                "Node": "SafeERC20.safeTransfer(gns, _msgSender(), _amount)"
+            }
+        ]
+    }
+}

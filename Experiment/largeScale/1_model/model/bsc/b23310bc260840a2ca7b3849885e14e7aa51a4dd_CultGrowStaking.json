@@ -1,0 +1,84 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_reward.pendingVaultRewards",
+            "_reward.claimedVaultRewards"
+        ],
+        "User Stake Time": [
+            "vault.stakingPeriod"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "exitWhileStaking",
+            "withdraw"
+        ],
+        "unStake": [
+            "exitWhileCollecting",
+            "exitWhileStaking",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    930
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "token",
+                    "vault",
+                    "vault.totalVaultShares"
+                ],
+                "Full Calculation Variables": [
+                    "token",
+                    "vault",
+                    "vault.totalVaultShares"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    939
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_reward.pendingVaultRewards",
+                    "token",
+                    "vault",
+                    "vault.totalVaultShares"
+                ],
+                "Full Calculation Variables": [
+                    "_reward.pendingVaultRewards",
+                    "token",
+                    "vault",
+                    "vault.totalVaultShares"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

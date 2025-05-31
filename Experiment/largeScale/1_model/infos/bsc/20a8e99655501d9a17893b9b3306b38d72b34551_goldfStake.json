@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "goldfRecords"
+        ],
+        "User Stake Reward": [
+            "usdRecords"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "goldf"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "goldf.transferFrom(msg.sender,address(this), _goldfValue)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "goldf.transfer( msg.sender, returnGoldf)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "busd.transfer( msg.sender, returnBusd)"
+            }
+        ]
+    }
+}

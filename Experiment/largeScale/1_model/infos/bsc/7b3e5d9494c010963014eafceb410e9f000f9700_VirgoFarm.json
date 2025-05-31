@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_toDistributeThisRound"
+        ],
+        "User Stake Time": [
+            "_lockTimes"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "_token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distribute",
+                "Node": "_balances[holder] = _balances[holder].add(toDistrib)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "_token.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "warmupPeriod"
+        ],
+        "Stake Token Address": [
+            "LUX"
+        ],
+        "Reward Token Address": [
+            "LUM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(LUX).safeTransferFrom(msg.sender, targetProxy, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IStakingProxy(proxies[i]).claim(_recipient)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountToStake_",
+            "amountToUnstake_"
+        ],
+        "User Stake Reward": [
+            "ohmToDistributeNextEpoch"
+        ],
+        "User Stake Time": [
+            "epochLengthInBlocks"
+        ],
+        "Stake Token Address": [
+            "ohm"
+        ],
+        "Reward Token Address": [
+            "sOHM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeOHM",
+                "Node": "IERC20(sOHM).safeTransfer(msg.sender, amountToStake_)"
+            },
+            {
+                "Function": "stakeOHMWithPermit",
+                "Node": "IERC20(sOHM).safeTransfer(msg.sender, amountToStake_)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstakeOHM",
+                "Node": "IERC20(ohm).safeTransfer(msg.sender, amountToUnstake_)"
+            },
+            {
+                "Function": "unstakeOHMWithPermit",
+                "Node": "IERC20(ohm).safeTransfer(msg.sender, amountToUnstake_)"
+            }
+        ]
+    }
+}

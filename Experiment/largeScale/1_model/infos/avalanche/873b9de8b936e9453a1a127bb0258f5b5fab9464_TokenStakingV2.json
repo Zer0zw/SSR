@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "snapshots"
+        ],
+        "User Stake Time": [
+            "unlockTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "feeTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IToken(stakeToken).sendToTokenStaking(msg.sender, _amount)"
+            },
+            {
+                "Function": "stakedToLock",
+                "Node": "VEToken.mint(msg.sender, changeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_transferOut(feeToken, msg.sender, tokenGain)"
+            },
+            {
+                "Function": "_sendRewards",
+                "Node": "_transferOut(feeToken, msg.sender, tokenGain)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "SafeToken.safeTransfer(stakeToken, msg.sender, withdrawable)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "SafeToken.safeTransfer(stakeToken, msg.sender, currentUnlocked)"
+            }
+        ]
+    }
+}

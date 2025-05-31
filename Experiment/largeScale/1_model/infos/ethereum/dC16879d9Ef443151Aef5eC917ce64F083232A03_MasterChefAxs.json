@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardAXSDebt",
+            "UserInfo.rewardSLPDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "VEMP",
+            "SLP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingVEMP",
+                "Node": "return user.amount.mul(accVEMPPerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "pendingAXS",
+                "Node": "return user.amount.mul(accAXSPerShare).div(1e12).sub(user.rewardAXSDebt)"
+            },
+            {
+                "Function": "pendingSLP",
+                "Node": "return user.amount.mul(accSLPPerShare).div(1e30).sub(user.rewardSLPDebt)"
+            },
+            {
+                "Function": "claimAXS",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, AXSReward)"
+            },
+            {
+                "Function": "claimSLP",
+                "Node": "pool.slpToken.safeTransfer(msg.sender, SLPReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "EmergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount"
+            }
+        ]
+    }
+}

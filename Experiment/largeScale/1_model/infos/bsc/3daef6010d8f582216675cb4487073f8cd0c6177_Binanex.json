@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.accumulatedReward",
+            "Stake.withdrawnReward"
+        ],
+        "User Stake Time": [
+            "Stake.checkpoint",
+            "Stake.checkpointHold"
+        ],
+        "Stake Token Address": [
+            "flipTokenContractAddress"
+        ],
+        "Reward Token Address": [
+            "tokenContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "if (!IERC20(_flipTokenContractAddress).transferFrom(msg.sender, address(this), _amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "IMintableToken(_tokenContractAddress).mint(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(IERC20(_flipTokenContractAddress).transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "personHasStake"
+        ],
+        "User Stake Reward": [
+            "couldGetPool"
+        ],
+        "User Stake Time": [
+            "startTime",
+            "endTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "payable(teamAddr).transfer(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(rewardToken).safeTransfer(msg.sender,rewardAmt)"
+            },
+            {
+                "Function": "rewardPool",
+                "Node": "IERC20(rewardToken).safeTransfer(msg.sender,rAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(getBackAmt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(personHasStake[_round][msg.sender])"
+            }
+        ]
+    }
+}

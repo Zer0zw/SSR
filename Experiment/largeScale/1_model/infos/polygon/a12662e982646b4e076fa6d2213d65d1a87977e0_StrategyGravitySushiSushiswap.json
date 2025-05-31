@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "balance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_wantAddress"
+        ],
+        "Reward Token Address": [
+            "_earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IGravity(masterChef).deposit(_wantAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_safeSwapGFI(balance, gfiToWETHAddress, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IGravity(masterChef).withdraw(_amount)"
+            }
+        ]
+    }
+}

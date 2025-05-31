@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "AddressInfo.stakePower",
+            "AddressInfo.nfts"
+        ],
+        "User Stake Reward": [
+            "AddressInfo.historyAward",
+            "AddressInfo.harvestedAward"
+        ],
+        "User Stake Time": [
+            "PoolInfo.startBlock",
+            "PoolInfo.endBlock"
+        ],
+        "Stake Token Address": [
+            "speedNFT"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "speedNFT.safeTransferFrom(msg.sender, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeList",
+                "Node": "speedNFT.safeTransferFrom(msg.sender, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "payable(msg.sender).transfer(amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "speedNFT.safeTransferFrom(address(this), msg.sender, _tokenId)"
+            },
+            {
+                "Function": "unStakeList",
+                "Node": "speedNFT.safeTransferFrom(address(this), msg.sender, _tokenIds[i])"
+            },
+            {
+                "Function": "emergencyWithdrawForNft",
+                "Node": "speedNFT.safeTransferFrom(address(this), msg.sender, _tokenId)"
+            }
+        ]
+    }
+}

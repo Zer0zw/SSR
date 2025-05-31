@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit",
+            "lockupInfo.initialDeposit"
+        ],
+        "User Stake Reward": [
+            "warmupInfo.gons",
+            "lockupInfo.gonsWarmup",
+            "lockupInfo.gonsAccount"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry",
+            "lockupInfo.lockTimestamp"
+        ],
+        "Stake Token Address": [
+            "DVault"
+        ],
+        "Reward Token Address": [
+            "dVault"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "dVault.safeTransfer( address(warmupContract), amountToTransfer"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "warmupContract.retrieve( _recipient,  amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "DVault.safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "unstakeLocked",
+                "Node": "DVault.safeTransfer( msg.sender, dVault.balanceForGons( lock.gonsWarmup + lock.gonsAccount ))"
+            },
+            {
+                "Function": "unstakeLocked",
+                "Node": "DVault.safeTransfer( msg.sender, lock.initialDeposit )"
+            }
+        ]
+    }
+}

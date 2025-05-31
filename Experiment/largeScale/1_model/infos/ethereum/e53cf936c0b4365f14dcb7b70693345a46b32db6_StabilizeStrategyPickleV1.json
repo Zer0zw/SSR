@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_totalBalancePTokens"
+        ],
+        "User Stake Reward": [
+            "_stakedPickle"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "pJarAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenList"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_token.safeTransfer(_depositor, tokenWithdrawAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "checkWETHAndPay",
+                "Node": "_token.safeTransfer(treasuryAddress, treasuryAmount)"
+            },
+            {
+                "Function": "checkWETHAndPay",
+                "Node": "_token.safeTransfer(stakingAddress, stakersAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_lpToken.safeTransfer(_depositor, lpWithdrawAmount)"
+            },
+            {
+                "Function": "transferAccessoryTokens",
+                "Node": "_token.safeTransfer(_depositor, tokenWithdrawAmount)"
+            },
+            {
+                "Function": "transferAccessoryTokens",
+                "Node": "_depositor.transfer(tokenWithdrawAmount)"
+            }
+        ]
+    }
+}

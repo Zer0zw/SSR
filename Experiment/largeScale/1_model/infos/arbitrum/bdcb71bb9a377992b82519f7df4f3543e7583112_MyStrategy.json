@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IERC20StakingRewardsDistribution(stakingContract).stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20StakingRewardsDistribution(stakingContract).claimAll(address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAll",
+                "Node": "IERC20StakingRewardsDistribution(stakingContract).exit(address(this))"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "IERC20StakingRewardsDistribution(stakingContract).withdraw(poolBalance)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "IERC20StakingRewardsDistribution(stakingContract).withdraw(toWithdraw)"
+            }
+        ]
+    }
+}

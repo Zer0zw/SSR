@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "investPlan1.invested",
+            "investPlan2.invested",
+            "investPlan3.invested"
+        ],
+        "User Stake Reward": [
+            "userReward"
+        ],
+        "User Stake Time": [
+            "investPlan1.deadline",
+            "investPlan2.deadline",
+            "investPlan3.deadline"
+        ],
+        "Stake Token Address": [
+            "tokenAdress"
+        ],
+        "Reward Token Address": [
+            "tokenAdress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "BusdInterface.transferFrom(msg.sender,address(this),total_contract)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawal",
+                "Node": "BusdInterface.transfer(msg.sender,SafeMath.sub(userEarns, wFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "BusdInterface.transfer(msg.sender,UnstakeValueReturn)"
+            }
+        ]
+    }
+}

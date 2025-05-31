@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_stakeToken"
+        ],
+        "Reward Token Address": [
+            "hokuto"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_stakeToken).safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            },
+            {
+                "Function": "depositHokuto",
+                "Node": "IERC20(address(hokuto)).safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "stake.safeHokutoTransfer(_for, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "stake.safeHokutoTransfer(_for, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_stakeToken).safeTransfer(_msgSender(), _amount)"
+            },
+            {
+                "Function": "withdrawHokuto",
+                "Node": "IERC20(address(hokuto)).safeTransfer(address(_msgSender()), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(_stakeToken).safeTransfer(address(_for), user.amount)"
+            }
+        ]
+    }
+}

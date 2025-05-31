@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amount"
+        ],
+        "User Stake Reward": [
+            "User.shares",
+            "User.rewardDebt"
+        ],
+        "User Stake Time": [
+            "User.avgDepositBlock"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "usdtToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "settleAndEvenReward",
+                "Node": "usdtToken.transfer(userAddr, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "usdtToken.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "usdtToken.transfer(msg.sender, num)"
+            }
+        ]
+    }
+}

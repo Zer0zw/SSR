@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStaked"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "multiplier",
+            "externallyClaimed"
+        ],
+        "User Stake Time": [
+            "stake.stakeTime",
+            "stake.lastClaim",
+            "stake.lockTime"
+        ],
+        "Stake Token Address": [
+            "Punkx"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "Punkx.safeTransferFrom(msg.sender,address(this),tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_mint(msg.sender,totalAmount)"
+            },
+            {
+                "Function": "rewardFromMint",
+                "Node": "_mint(msg.sender,totalAmount*1 ether)"
+            },
+            {
+                "Function": "claimExternally",
+                "Node": "_mint(msg.sender,amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "Punkx.safeTransferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "alpa"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "poolInfo.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingAlpa",
+                "Node": "_safeAlpaTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "retrieve",
+                "Node": "_safeAlpaTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "_safeAlpaTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_safeAlpaTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "onERC1155Received",
+                "Node": "_safeAlpaTransfer(_from, pending)"
+            },
+            {
+                "Function": "onCryptoAlpacaEnergyChanged",
+                "Node": "_safeAlpaTransfer(originalOwner, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "poolInfo.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "poolInfo.lpToken.safeTransfer(address(msg.sender), amount)"
+            },
+            {
+                "Function": "retrieve",
+                "Node": "cryptoAlpaca.safeTransferFrom(address(this), msg.sender, prevAlpacaID, 1, \"\")"
+            }
+        ]
+    }
+}

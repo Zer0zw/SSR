@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPoolStakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserRewards"
+        ],
+        "User Stake Time": [
+            "PoolEndTime"
+        ],
+        "Stake Token Address": [
+            "Elron"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "Elron.safeTransferFrom(msg.sender, address(this), amount"
+            },
+            {
+                "Function": "OwnerDeposit",
+                "Node": "Elron.safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": "USDT.safeTransfer(msg.sender, UserRewards[msg.sender]"
+            },
+            {
+                "Function": "OwnerClaim",
+                "Node": "USDT.safeTransfer(msg.sender, UserRewards[_userAddress]"
+            },
+            {
+                "Function": "Restake",
+                "Node": "convertPancake(UserRewards[msg.sender], address(USDT), address(Elron))"
+            },
+            {
+                "Function": "OwnerRestake",
+                "Node": "convertPancake(UserRewards[_userAddress], address(USDT), address(Elron))"
+            },
+            {
+                "Function": "RestakeElronlp",
+                "Node": "convertPancake(half, address(USDT), address(Elron))"
+            },
+            {
+                "Function": "OwnerRestakeElronlp",
+                "Node": "convertPancake(half, address(USDT), address(Elron))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Exit",
+                "Node": "Elron.safeTransfer(msg.sender, UserPoolStakeAmount[msg.sender][PoolId]"
+            },
+            {
+                "Function": "ExitOwner",
+                "Node": "Elron.safeTransfer(msg.sender, UserPoolStakeAmount[_userAddress][PoolId]"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeBalance"
+        ],
+        "User Stake Reward": [
+            "paidRewards"
+        ],
+        "User Stake Time": [
+            "penaltyDate"
+        ],
+        "Stake Token Address": [
+            "XTO"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addToStake",
+                "Node": "XTO.safeTransferFrom(staker, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "receiver.transfer(_balanceToSend)"
+            },
+            {
+                "Function": "resetUserWithoutPenalty",
+                "Node": "receiver.transfer(_balance)"
+            },
+            {
+                "Function": "resetUser",
+                "Node": "receiver.transfer(_balanceToSend)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawUnstake",
+                "Node": "XTO.safeTransferFrom(address(this), staker, stakeBalance[staker])"
+            },
+            {
+                "Function": "resetUserWithoutPenalty",
+                "Node": "XTO.safeTransferFrom(address(this), staker, stakeBalance[staker])"
+            },
+            {
+                "Function": "resetUser",
+                "Node": "XTO.safeTransferFrom(address(this), staker, stakeBalance[staker])"
+            }
+        ]
+    }
+}

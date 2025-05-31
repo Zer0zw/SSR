@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amount"
+        ],
+        "User Stake Reward": [
+            "User.pending"
+        ],
+        "User Stake Time": [
+            "User.lastTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "INFTToken(token).transferFrom(_user, address(this), _tokenIDs[i])"
+            },
+            {
+                "Function": "mint",
+                "Node": "_balances[_user] += _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IReward(rewardAddress).sendReward()"
+            },
+            {
+                "Function": "_claim",
+                "Node": "IERC20(rewardToken).safeTransfer(_user, _userInfo[_user].pending.sub(feeAmount))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "INFTToken(token).transferFrom(address(this), _user, _tokenIDs[i])"
+            },
+            {
+                "Function": "burn",
+                "Node": "_balances[_user] -= _amount"
+            }
+        ]
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "claimableStakeholderReward",
+            "claimed"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ihelpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(ihelpToken.transferFrom(msg.sender, address(this), _pie)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardToken().transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimSpecificReward",
+                "Node": "rewardToken().transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(ihelpToken.transfer(msg.sender, requestedAmount)"
+            }
+        ]
+    }
+}

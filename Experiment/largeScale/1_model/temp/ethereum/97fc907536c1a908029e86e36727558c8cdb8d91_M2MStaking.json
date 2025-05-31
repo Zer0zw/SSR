@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "Staking.rewards",
+            "claimedRewards"
+        ],
+        "User Stake Time": [
+            "Staking.lastClaimed"
+        ],
+        "Stake Token Address": [
+            "m2mNFTAddress"
+        ],
+        "Reward Token Address": [
+            "plsuAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ERC721A(m2mNFTAddress).transferFrom(msg.sender, address(this), _tokenId[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(plsuAddress).transfer(msg.sender, rewards * 1e18)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC721A(m2mNFTAddress).transferFrom(address(this), msg.sender, _tokenId[i])"
+            }
+        ]
+    }
+}

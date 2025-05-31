@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amountStaked"
+        ],
+        "User Stake Reward": [
+            "UserInfo.lastRewardUpdated"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakedDate"
+        ],
+        "Stake Token Address": [
+            "InulandCollectionAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(InulandCollectionAddress).transferFrom(_user, address(this), _id)"
+            },
+            {
+                "Function": "batchStake",
+                "Node": "IERC721(InulandCollectionAddress).transferFrom(_user, address(this), _ids[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_mint(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(InulandCollectionAddress).transferFrom(address(this), _user, _id)"
+            },
+            {
+                "Function": "batchUnstake",
+                "Node": "IERC721(InulandCollectionAddress).transferFrom(address(this), _user, _ids[i])"
+            }
+        ]
+    }
+}

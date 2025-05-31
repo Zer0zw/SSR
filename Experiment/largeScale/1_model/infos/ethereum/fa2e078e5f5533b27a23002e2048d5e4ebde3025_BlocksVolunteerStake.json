@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.allocatedBalance"
+        ],
+        "User Stake Reward": [
+            "User.allocatedBalance"
+        ],
+        "User Stake Time": [
+            "User.stakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "manuallyAllocateRewards",
+                "Node": "userAccount[_beneficiary].allocatedBalance = _totalEarned + _totalReceived"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(token).transfer(msg.sender, _claimAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(token).transfer(msg.sender, _withdrawalAmount + reward)"
+            },
+            {
+                "Function": "withdrawAmount",
+                "Node": "IERC20(token).transfer(msg.sender, _amount + reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(token).transfer(msg.sender, _withdrawalAmount + reward)"
+            },
+            {
+                "Function": "withdrawAmount",
+                "Node": "IERC20(token).transfer(msg.sender, _amount + reward)"
+            }
+        ]
+    }
+}

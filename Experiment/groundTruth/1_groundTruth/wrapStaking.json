@@ -1,0 +1,196 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "_balances"
+            ],
+            "User Stake Reward": [
+                "_userDatas.currentRewards"
+            ],
+            "User Stake Time": [
+                "_userDatas.startTime",
+                "_userDatas.lastStakeTime",
+                "_userDatas.lastResetTime",
+                "_userDatas.lastTimeHarvested"
+            ],
+            "Stake Token Address": [
+                "_token"
+            ],
+            "Reward Token Address": [
+                "_rewardToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "forceUnstake",
+                "harvest",
+                "harvestAll",
+                "stake",
+                "unstake"
+            ],
+            "unStake": [
+                "forceUnstake",
+                "unstake"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "_token"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "harvestAll",
+                    "Calculation Variables": [
+                        "_decimals",
+                        "_lp",
+                        "_rewardPerTokenPerSec",
+                        "_rewardToken",
+                        "_stoppedTimestamp",
+                        "_tokenLpIndex",
+                        "_userDatas.currentRewards",
+                        "_userDatas.lastBlockHarvested",
+                        "_userDatas.lastResetTime",
+                        "_userDatas.lastTimeHarvested",
+                        "_userDatas.startTime",
+                        "_userDatas.totalHarvested"
+                    ]
+                },
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "_decimals",
+                        "_lp",
+                        "_rewardPerTokenPerSec",
+                        "_rewardToken",
+                        "_stoppedTimestamp",
+                        "_tokenLpIndex",
+                        "_userDatas.currentRewards",
+                        "_userDatas.lastBlockHarvested",
+                        "_userDatas.lastResetTime",
+                        "_userDatas.lastTimeHarvested",
+                        "_userDatas.startTime",
+                        "_userDatas.totalHarvested"
+                    ]
+                },
+                {
+                    "Function": "harvest",
+                    "Calculation Variables": [
+                        "_stoppedTimestamp",
+                        "_userDatas.currentRewards",
+                        "_tokenLpIndex",
+                        "_rewardPerTokenPerSec",
+                        "_userDatas.startTime",
+                        "_decimals",
+                        "_userDatas.lastTimeHarvested",
+                        "_lp",
+                        "_rewardToken",
+                        "_userDatas.totalHarvested",
+                        "_userDatas.lastBlockHarvested",
+                        "_userDatas.lastResetTime"
+                    ]
+                },
+                {
+                    "Function": "forceUnstake",
+                    "Calculation Variables": [
+                        "_decimals",
+                        "_lp",
+                        "_rewardPerTokenPerSec",
+                        "_rewardToken",
+                        "_stoppedTimestamp",
+                        "_tokenLpIndex",
+                        "_userDatas.currentRewards",
+                        "_userDatas.lastBlockHarvested",
+                        "_userDatas.lastResetTime",
+                        "_userDatas.lastTimeHarvested",
+                        "_userDatas.startTime",
+                        "_userDatas.totalHarvested"
+                    ]
+                },
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "_decimals",
+                        "_lp",
+                        "_rewardPerTokenPerSec",
+                        "_rewardToken",
+                        "_stoppedTimestamp",
+                        "_tokenLpIndex",
+                        "_userDatas.currentRewards",
+                        "_userDatas.lastBlockHarvested",
+                        "_userDatas.lastResetTime",
+                        "_userDatas.lastTimeHarvested",
+                        "_userDatas.startTime",
+                        "_userDatas.totalHarvested"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "_decimals",
+                        "_lp",
+                        "_period",
+                        "_rewardPerTokenPerSec",
+                        "_stoppedTimestamp",
+                        "_token",
+                        "_tokenLpIndex",
+                        "_userDatas.currentRewards",
+                        "_userDatas.lastBlockHarvested",
+                        "_userDatas.lastResetTime",
+                        "_userDatas.lastStakeTime",
+                        "_userDatas.lastTimeHarvested",
+                        "_userDatas.startTime",
+                        "_userDatas.totalHarvested"
+                    ]
+                },
+                {
+                    "Function": "forceUnstake",
+                    "Calculation Variables": [
+                        "_owner",
+                        "_token"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [
+            "forceUnstake",
+            "harvest",
+            "harvestAll",
+            "stake",
+            "unstake"
+        ],
+        
+        "Omission in Status Update (OSU)": [
+            "harvest",
+            "harvestAll"
+        ],
+        
+        "Unsafe Verifications (UV)": [
+            "unStake"
+        ],
+        
+        "Unauthorized User Funds Access (UFA)": [
+            "forceUnstake",
+            "rescueToken"
+        ]
+    }
+}
+        

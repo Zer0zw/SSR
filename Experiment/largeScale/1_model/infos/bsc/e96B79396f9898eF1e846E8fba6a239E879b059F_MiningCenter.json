@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftHistory.nftNum",
+            "stakingStatus.nftNum"
+        ],
+        "User Stake Reward": [
+            "nftHistory.earnedUSDT",
+            "earnedHistory"
+        ],
+        "User Stake Time": [
+            "stakingStatus.stakedTime",
+            "stakingType.stakingTime"
+        ],
+        "Stake Token Address": [
+            "incomeIsland"
+        ],
+        "Reward Token Address": [
+            "incomeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingProperty",
+                "Node": "incomeIsland.safeTransferFrom(msg.sender, address(this), _nftType, 1, \"\")"
+            },
+            {
+                "Function": "groupStakingUnStaking",
+                "Node": "incomeIsland.safeTransferFrom(msg.sender, address(this), nftType, 1, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unStakingPropertyIntern",
+                "Node": "incomeToken.transfer(_owner, _ownerIncomeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakingProperty",
+                "Node": "incomeIsland.safeTransferFrom(address(this), _owner, _nftType, 1, \"\")"
+            },
+            {
+                "Function": "unStakingPropertyByAdmin",
+                "Node": "incomeIsland.safeTransferFrom(address(this), _owner, _nftType, 1, \"\")"
+            },
+            {
+                "Function": "unStakingPropertyIntern",
+                "Node": "incomeIsland.safeTransferFrom(address(this), _owner, _nftType, 1, \"\")"
+            }
+        ]
+    }
+}

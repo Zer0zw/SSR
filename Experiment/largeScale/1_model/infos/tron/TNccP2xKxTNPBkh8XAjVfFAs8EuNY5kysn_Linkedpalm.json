@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserAccount.current_total_stake",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "UserAccount.referral_bonus",
+            "Stake.profit"
+        ],
+        "User Stake Time": [
+            "Stake.duration",
+            "Stake.due_time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "(bool success, ) = deployer_address.call{value: local_variables[1]}"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStake",
+                "Node": "(bool success, ) = msg.sender.call{value: claim_amount}"
+            },
+            {
+                "Function": "claimStakeOutstanding",
+                "Node": "(bool success, ) = msg.sender.call{value: claim_amount}"
+            },
+            {
+                "Function": "claimReferralBonus",
+                "Node": "(bool success, ) = msg.sender.call{value: claim_amount}"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimStake",
+                "Node": "(bool success, ) = msg.sender.call{value: claim_amount}"
+            }
+        ]
+    }
+}

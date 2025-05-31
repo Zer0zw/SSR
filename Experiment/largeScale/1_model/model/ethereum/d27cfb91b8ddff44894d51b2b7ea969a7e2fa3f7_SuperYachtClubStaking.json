@@ -1,0 +1,245 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "farming_unit.balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "farming_unit.locked_time"
+        ],
+        "Stake Token Address": [
+            "staking_token"
+        ],
+        "Reward Token Address": [
+            "reward_token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "farmTokens"
+        ],
+        "getReward": [
+            "issueInterestToken",
+            "unfarmTokens"
+        ],
+        "unStake": [
+            "unfarmTokens"
+        ],
+        "Sensitive Functions": [
+            "set_tokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farmTokens",
+                "Node": [
+                    154
+                ],
+                "Input": [
+                    "_amount",
+                    "locking"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "is_farmable",
+                    "is_fixed_locking",
+                    "staking_token",
+                    "time_allowed.check_balance",
+                    "time_allowed.enabled",
+                    "time_allowed.percentage_to_check"
+                ],
+                "Full Calculation Variables": [
+                    "is_farmable",
+                    "is_fixed_locking",
+                    "staking_token",
+                    "time_allowed.check_balance",
+                    "time_allowed.enabled",
+                    "time_allowed.percentage_to_check"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": [
+                    216
+                ],
+                "Input": [
+                    "id"
+                ],
+                "Calculation Variables": [
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "lock_multiplier",
+                    "reward_rate",
+                    "staking_token"
+                ],
+                "Control Variables": [
+                    "cooldown",
+                    "cooldown_block",
+                    "cooldown_free",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "lock_multiplier",
+                    "locked",
+                    "reward_rate",
+                    "reward_token",
+                    "staking_token"
+                ],
+                "Full Calculation Variables": [
+                    "cooldown",
+                    "cooldown_block",
+                    "cooldown_free",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "lock_multiplier",
+                    "locked",
+                    "reward_rate",
+                    "reward_token",
+                    "staking_token"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unfarmTokens",
+                "Node": [
+                    189
+                ],
+                "Input": [
+                    "id"
+                ],
+                "Calculation Variables": [
+                    "FEE_DIVISOR",
+                    "early_withdraw_fee",
+                    "farming_unit.active",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.index",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "lock_multiplier",
+                    "reward_rate",
+                    "staking_token"
+                ],
+                "Control Variables": [
+                    "FEE_DIVISOR",
+                    "cooldown",
+                    "cooldown_block",
+                    "cooldown_free",
+                    "early_withdraw_fee",
+                    "emergency_withdraw",
+                    "farming_unit.active",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.index",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "feeReceiver",
+                    "is_auth",
+                    "lock_multiplier",
+                    "locked",
+                    "reward_rate",
+                    "reward_token",
+                    "staking_token"
+                ],
+                "Full Calculation Variables": [
+                    "FEE_DIVISOR",
+                    "cooldown",
+                    "cooldown_block",
+                    "cooldown_free",
+                    "early_withdraw_fee",
+                    "emergency_withdraw",
+                    "farming_unit.active",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.index",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "feeReceiver",
+                    "is_auth",
+                    "lock_multiplier",
+                    "locked",
+                    "reward_rate",
+                    "reward_token",
+                    "staking_token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfarmTokens",
+                "Node": [
+                    189
+                ],
+                "Input": [
+                    "id"
+                ],
+                "Calculation Variables": [
+                    "FEE_DIVISOR",
+                    "early_withdraw_fee",
+                    "farming_unit.active",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.index",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "lock_multiplier",
+                    "reward_rate",
+                    "staking_token"
+                ],
+                "Control Variables": [
+                    "FEE_DIVISOR",
+                    "cooldown",
+                    "cooldown_block",
+                    "cooldown_free",
+                    "early_withdraw_fee",
+                    "emergency_withdraw",
+                    "farming_unit.active",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.index",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "feeReceiver",
+                    "is_auth",
+                    "lock_multiplier",
+                    "locked",
+                    "reward_rate",
+                    "reward_token",
+                    "staking_token"
+                ],
+                "Full Calculation Variables": [
+                    "FEE_DIVISOR",
+                    "cooldown",
+                    "cooldown_block",
+                    "cooldown_free",
+                    "early_withdraw_fee",
+                    "emergency_withdraw",
+                    "farming_unit.active",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.index",
+                    "farming_unit.locked_time",
+                    "farming_unit.token",
+                    "feeReceiver",
+                    "is_auth",
+                    "lock_multiplier",
+                    "locked",
+                    "reward_rate",
+                    "reward_token",
+                    "staking_token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

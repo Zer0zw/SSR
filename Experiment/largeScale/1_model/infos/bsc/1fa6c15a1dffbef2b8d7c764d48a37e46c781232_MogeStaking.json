@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakes.totalRewardsCollectedAlready",
+            "stakes.totalBonusRewardsCollectedAlready"
+        ],
+        "User Stake Time": [
+            "stakes.lockedUntil"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeSome",
+                "Node": "IBEP20(stakingToken).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "StakeAll",
+                "Node": "IBEP20(stakingToken).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "IBEP20(stakingToken).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeForMany",
+                "Node": "IBEP20(stakingToken).transferFrom(msg.sender, address(this), totalAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimRewards",
+                "Node": "IBEP20(stakingToken).transfer(staker, rewardsBeingSentToStaker + bonusRewardsBeingSentToStaker)"
+            },
+            {
+                "Function": "Compound",
+                "Node": "IBEP20(stakingToken).transfer(staker, rewardsBeingSentToStaker + bonusRewardsBeingSentToStaker)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnstakeSome",
+                "Node": "IBEP20(stakingToken).transfer(staker, amount)"
+            },
+            {
+                "Function": "UnstakeAll",
+                "Node": "IBEP20(stakingToken).transfer(staker, amount)"
+            }
+        ]
+    }
+}

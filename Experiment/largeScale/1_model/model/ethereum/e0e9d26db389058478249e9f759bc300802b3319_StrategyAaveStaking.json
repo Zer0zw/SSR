@@ -1,0 +1,164 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stkAave"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "harvest",
+            "tend"
+        ],
+        "getReward": [
+            "harvest",
+            "manualClaim"
+        ],
+        "unStake": [
+            "harvest",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "prepareMigration"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1407
+                ],
+                "Input": [
+                    "_debtOutstanding"
+                ],
+                "Calculation Variables": [
+                    "want"
+                ],
+                "Control Variables": [
+                    "MIN_STAKE",
+                    "depositLock",
+                    "emergencyExit",
+                    "stkAave",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "MIN_STAKE",
+                    "depositLock",
+                    "emergencyExit",
+                    "stkAave",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "tend",
+                "Node": [
+                    1407
+                ],
+                "Input": [
+                    "_debtOutstanding"
+                ],
+                "Calculation Variables": [
+                    "want"
+                ],
+                "Control Variables": [
+                    "MIN_STAKE",
+                    "depositLock",
+                    "emergencyExit",
+                    "stkAave",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "MIN_STAKE",
+                    "depositLock",
+                    "emergencyExit",
+                    "stkAave",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1468
+                ],
+                "Input": [
+                    "pending"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stkAave"
+                ],
+                "Full Calculation Variables": [
+                    "stkAave"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "manualClaim",
+                "Node": [
+                    1527
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stkAave"
+                ],
+                "Control Variables": [
+                    "keeper",
+                    "stkAave",
+                    "strategist",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "keeper",
+                    "stkAave",
+                    "strategist",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1441
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stkAave"
+                ],
+                "Full Calculation Variables": [
+                    "stkAave"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1441
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stkAave"
+                ],
+                "Full Calculation Variables": [
+                    "stkAave"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

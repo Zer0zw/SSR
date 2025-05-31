@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "RevaultUserInfo.balance"
+        ],
+        "User Stake Reward": [
+            "RevaultUserInfo.pending"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "supportedTokens"
+        ],
+        "Reward Token Address": [
+            "reva"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "notifyDeposited",
+                "Node": "revaultUserInfo.balance = revaultUserInfo.balance.add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimFor",
+                "Node": "reva.mint(to, pending)"
+            },
+            {
+                "Function": "claimTreasuryReward",
+                "Node": "reva.mint(msg.sender, pendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "notifyWithdrawn",
+                "Node": "revaultUserInfo.balance = revaultUserInfo.balance.sub(amount)"
+            }
+        ]
+    }
+}

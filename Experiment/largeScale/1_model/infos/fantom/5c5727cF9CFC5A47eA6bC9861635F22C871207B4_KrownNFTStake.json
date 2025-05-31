@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStaked",
+            "balanceOfToken"
+        ],
+        "User Stake Reward": [
+            "receipt.rewardPenalty",
+            "accTokenPerShare"
+        ],
+        "User Stake Time": [
+            "receipt.stakedFromBlock",
+            "_getTimeStaked"
+        ],
+        "Stake Token Address": [
+            "nftToken"
+        ],
+        "Reward Token Address": [
+            "erc20Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "stakeNFTs",
+                "Node": "nftToken.safeTransferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": "erc20Token.transfer(receipt[tokenId].owner, payout)"
+            },
+            {
+                "Function": "collectMultiple",
+                "Node": "erc20Token.transfer(receipt[tokenIds[i]].owner, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "nftToken.safeTransferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeNFTs",
+                "Node": "nftToken.safeTransferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

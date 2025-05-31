@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "FAMEDOGE"
+        ],
+        "Reward Token Address": [
+            "SOS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "SOS.safeTransfer(address(msg.sender), _amount.mul(sosdecimals))"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "FAMEDOGE.safeTransfer(address(msg.sender), _amount.mul(famedecimals))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "stakingStartDate"
+        ],
+        "Stake Token Address": [
+            "BTCpx"
+        ],
+        "Reward Token Address": [
+            "PRXY"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(BTCpx).safeTransferFrom(_msgSender(), daoWallet, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IPRXYERC20(PRXY).mintByWhitelisted(_msgSender(), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(BTCpx).safeTransferFrom(daoWallet, _msgSender(), amount)"
+            }
+        ]
+    }
+}

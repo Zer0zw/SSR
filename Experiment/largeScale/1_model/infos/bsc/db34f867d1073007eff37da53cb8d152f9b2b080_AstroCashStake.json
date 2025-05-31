@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokens"
+        ],
+        "User Stake Reward": [
+            "RewardInfos.tokensTotal"
+        ],
+        "User Stake Time": [
+            "minTimeOfStake"
+        ],
+        "Stake Token Address": [
+            "astroCashToken"
+        ],
+        "Reward Token Address": [
+            "busdToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "tokenContract.transferFrom(msg.sender, address(this), tokens)"
+            },
+            {
+                "Function": "addToStake",
+                "Node": "tokenContract.transferFrom(msg.sender, address(this), tokens)"
+            },
+            {
+                "Function": "addCustomStake",
+                "Node": "tokenContract.transferFrom(msg.sender, address(this), tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawIncome",
+                "Node": "tokenContract.transferFrom(address(this), wallet, tokensAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exitStake",
+                "Node": "tokenContract.transferFrom(address(this), stakeInfos.wallet, stakeInfos.tokensAmount)"
+            }
+        ]
+    }
+}

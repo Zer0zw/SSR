@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "bastilledelaboujeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "safeBastilleTransfer(msg.sender, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingBastille",
+                "Node": "return user.amount.mul(accBastillePerShare).div(1e18).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeBastilleTransfer(_user, pending)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "safeBastilleTransfer(_user, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(_user), _amount)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(_user), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

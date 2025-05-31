@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardBNBDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "VEMP"
+        ],
+        "Reward Token Address": [
+            "VEMP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "safeVEMPTransfer(msg.sender, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "msg.sender.transfer(BNBReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(BNBReward)"
+            },
+            {
+                "Function": "claimBNB",
+                "Node": "msg.sender.transfer(BNBReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "msg.sender.transfer(user.amount)"
+            }
+        ]
+    }
+}

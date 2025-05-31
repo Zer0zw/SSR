@@ -1,0 +1,121 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lockInterval",
+            "month"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "returnToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "withdraw30Day"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "withdrawForeignToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    261
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "amount"
+                ],
+                "Control Variables": [
+                    "amount",
+                    "dailyDeposit",
+                    "maxDailyDeposit",
+                    "returnToken",
+                    "stakeToken",
+                    "stakingAddress",
+                    "timelocks.amount",
+                    "timelocks.expires"
+                ],
+                "Full Calculation Variables": [
+                    "amount",
+                    "dailyDeposit",
+                    "maxDailyDeposit",
+                    "returnToken",
+                    "stakeToken",
+                    "stakingAddress",
+                    "timelocks.amount",
+                    "timelocks.expires"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw30Day",
+                "Node": [
+                    292
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "rewardPercent",
+                    "timelocks.amount",
+                    "timelocks.expires"
+                ],
+                "Control Variables": [
+                    "firstDepost",
+                    "lastWithdraw",
+                    "month",
+                    "rewardPercent",
+                    "stakeToken",
+                    "timelocks.amount",
+                    "timelocks.expires"
+                ],
+                "Full Calculation Variables": [
+                    "firstDepost",
+                    "lastWithdraw",
+                    "month",
+                    "rewardPercent",
+                    "stakeToken",
+                    "timelocks.amount",
+                    "timelocks.expires"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    280
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "amount"
+                ],
+                "Control Variables": [
+                    "amount",
+                    "returnToken",
+                    "stakeToken"
+                ],
+                "Full Calculation Variables": [
+                    "amount",
+                    "returnToken",
+                    "stakeToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

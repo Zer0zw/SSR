@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakerData.stackedAmount"
+        ],
+        "User Stake Reward": [
+            "_rewardsMap"
+        ],
+        "User Stake Time": [
+            "_stakerData.startTimestamp",
+            "_stakerData.lastTimestamp"
+        ],
+        "Stake Token Address": [
+            "_mainTokenContract"
+        ],
+        "Reward Token Address": [
+            "_storeWalletContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_mainTokenContract.transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_storeWalletContract.giveReward(_msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstack",
+                "Node": "_mainTokenContract.transfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

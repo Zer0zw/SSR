@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.interest"
+        ],
+        "User Stake Time": [
+            "Stake.startTimestamp",
+            "Stake.finishedTimestamp"
+        ],
+        "Stake Token Address": [
+            "Stake.stakeToken"
+        ],
+        "Reward Token Address": [
+            "Stake.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "stakeToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStake",
+                "Node": "IERC20(stake.rewardToken).transferFrom(owner(), msg.sender, interest)"
+            },
+            {
+                "Function": "withdrawStakeInterest",
+                "Node": "IERC20(stake.rewardToken).transferFrom(owner(), msg.sender, interest)"
+            },
+            {
+                "Function": "emergencyWithdrawStake",
+                "Node": "IERC20(stake.rewardToken).transferFrom(owner(), msg.sender, interest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawObsoleteStake",
+                "Node": "stakeToken.transfer(msg.sender, stake.amount)"
+            },
+            {
+                "Function": "withdrawStakeWithoutReward",
+                "Node": "IERC20(stake.stakeToken).transfer(msg.sender, stake.amount)"
+            },
+            {
+                "Function": "withdrawStake",
+                "Node": "IERC20(stake.stakeToken).transfer(msg.sender, stake.amount)"
+            },
+            {
+                "Function": "emergencyWithdrawStake",
+                "Node": "IERC20(stake.stakeToken).transfer(msg.sender, stake.amount)"
+            }
+        ]
+    }
+}

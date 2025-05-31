@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedOf"
+        ],
+        "User Stake Reward": [
+            "rewardOf"
+        ],
+        "User Stake Time": [
+            "rewardAt"
+        ],
+        "Stake Token Address": [
+            "bckAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(bckAddress, msg.sender, depositAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "_mint(msg.sender, rewards)"
+            },
+            {
+                "Function": "_reward",
+                "Node": "_mint(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "TransferHelper.safeTransferFrom(bckAddress, depositAddress, msg.sender, amount)"
+            }
+        ]
+    }
+}

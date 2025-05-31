@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_baseBal",
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "totalDistributedValue"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IUnipool(farmPool).stake(_baseBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IUnipool(farmPool).claimReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IUnipool(farmPool).withdraw(_amount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IUnipool(farmPool).withdrawAndClaim()"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IUnipool(farmPool).withdraw(_stakedAmount)"
+            }
+        ]
+    }
+}

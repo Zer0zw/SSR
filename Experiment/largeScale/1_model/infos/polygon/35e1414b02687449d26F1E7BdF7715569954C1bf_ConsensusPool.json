@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.power"
+        ],
+        "User Stake Reward": [
+            "UserInfo.reward",
+            "UserInfo.totalReward"
+        ],
+        "User Stake Time": [
+            "Epoch.number"
+        ],
+        "Stake Token Address": [
+            "sSYNASSETS"
+        ],
+        "Reward Token Address": [
+            "SYNASSETS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(SYNASSETS).safeTransfer(msg.sender, _reward)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(SYNASSETS).safeTransfer(msg.sender, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(sSYNASSETS).balanceOf(_unstaker)"
+            }
+        ]
+    }
+}

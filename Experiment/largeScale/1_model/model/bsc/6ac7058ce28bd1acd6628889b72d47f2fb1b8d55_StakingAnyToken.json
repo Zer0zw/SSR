@@ -1,0 +1,355 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakesOfOwner.amount"
+        ],
+        "User Stake Reward": [
+            "stakesOfOwner.interest"
+        ],
+        "User Stake Time": [
+            "stakesOfOwner.startTimestamp",
+            "stakesOfOwner.finishedTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakesOfOwner.stakeToken"
+        ],
+        "Reward Token Address": [
+            "stakesOfOwner.rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "createStake"
+        ],
+        "getReward": [
+            "emergencyWithdrawStake",
+            "withdrawStake",
+            "withdrawStakeInterest"
+        ],
+        "unStake": [
+            "emergencyWithdrawStake",
+            "withdrawObsoleteStake",
+            "withdrawStake",
+            "withdrawStakeWithoutReward"
+        ],
+        "Sensitive Functions": [
+            "createStake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": [
+                    956
+                ],
+                "Input": [
+                    "_amount",
+                    "_rewardToken",
+                    "_stakeToken"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "supportedTokenInfos.enabled",
+                    "supportedTokenInfos.minimum",
+                    "supportedTokenInfos.stakingAmount"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "supportedTokenInfos.enabled",
+                    "supportedTokenInfos.minimum",
+                    "supportedTokenInfos.stakingAmount"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStake",
+                "Node": [
+                    1106
+                ],
+                "Input": [
+                    "_arrayIndex"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Full Calculation Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawStakeInterest",
+                "Node": [
+                    1134
+                ],
+                "Input": [
+                    "_arrayIndex"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.lastWithdrawalTimestamp",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "withdrawLocked"
+                ],
+                "Full Calculation Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.lastWithdrawalTimestamp",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "withdrawLocked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdrawStake",
+                "Node": [
+                    1165
+                ],
+                "Input": [
+                    "_arrayIndex"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.penalty",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.collectedPenalty",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Full Calculation Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.penalty",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.collectedPenalty",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawObsoleteStake",
+                "Node": [
+                    1015
+                ],
+                "Input": [
+                    "_arrayIndex"
+                ],
+                "Calculation Variables": [
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.version"
+                ],
+                "Control Variables": [
+                    "currentVersion",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos"
+                ],
+                "Full Calculation Variables": [
+                    "currentVersion",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawStakeWithoutReward",
+                "Node": [
+                    1036
+                ],
+                "Input": [
+                    "_arrayIndex"
+                ],
+                "Calculation Variables": [
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version"
+                ],
+                "Control Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Full Calculation Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawStake",
+                "Node": [
+                    1109
+                ],
+                "Input": [
+                    "_arrayIndex"
+                ],
+                "Calculation Variables": [
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version"
+                ],
+                "Control Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Full Calculation Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdrawStake",
+                "Node": [
+                    1169
+                ],
+                "Input": [
+                    "_arrayIndex"
+                ],
+                "Calculation Variables": [
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.penalty",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version"
+                ],
+                "Control Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.penalty",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.collectedPenalty",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Full Calculation Variables": [
+                    "currentVersion",
+                    "minimumStakeTime",
+                    "stakesOfOwner.amount",
+                    "stakesOfOwner.finishedTimestamp",
+                    "stakesOfOwner.interest",
+                    "stakesOfOwner.penalty",
+                    "stakesOfOwner.rewardToken",
+                    "stakesOfOwner.stakeToken",
+                    "stakesOfOwner.startTimestamp",
+                    "stakesOfOwner.version",
+                    "supportedTokenInfos.collectedPenalty",
+                    "supportedTokenInfos.minimum",
+                    "withdrawLocked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

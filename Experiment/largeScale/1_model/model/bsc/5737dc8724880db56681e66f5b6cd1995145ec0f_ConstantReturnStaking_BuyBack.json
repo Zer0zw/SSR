@@ -1,0 +1,125 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardsPendingClaim",
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "TRUSTED_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "TRUSTED_TOKEN_ADDRESS"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "emergencyUnstake",
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1031
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim"
+                ],
+                "Control Variables": [
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim"
+                ],
+                "Full Calculation Variables": [
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    990
+                ],
+                "Input": [
+                    "amountToWithdraw"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "LOCKUP_TIME",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "depositedTokens",
+                    "stakingTime"
+                ],
+                "Full Calculation Variables": [
+                    "LOCKUP_TIME",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "depositedTokens",
+                    "stakingTime"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": [
+                    1013
+                ],
+                "Input": [
+                    "amountToWithdraw"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "LOCKUP_TIME",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "depositedTokens",
+                    "stakingTime"
+                ],
+                "Full Calculation Variables": [
+                    "LOCKUP_TIME",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "depositedTokens",
+                    "stakingTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

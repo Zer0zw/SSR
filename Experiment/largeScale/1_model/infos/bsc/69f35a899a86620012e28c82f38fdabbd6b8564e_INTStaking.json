@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.rewardDebt",
+            "pending"
+        ],
+        "User Stake Time": [
+            "Stake.duration",
+            "Stake.end"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "earnedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingToken.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "earnedToken.safeTransfer(address(msg.sender), pending"
+            },
+            {
+                "Function": "claimBTCDividend",
+                "Node": "BTCdividendToken.safeTransfer(address(msg.sender), pendingBTCReflection"
+            },
+            {
+                "Function": "claimSFMDividend",
+                "Node": "SFMdividendToken.safeTransfer(address(msg.sender), pendingSFMReflection"
+            },
+            {
+                "Function": "claimGRVDividend",
+                "Node": "GRVdividendToken.safeTransfer(address(msg.sender), pendingGRVReflection"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.safeTransfer(address(msg.sender), realAmount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakingToken.safeTransfer(address(msg.sender), amountToTransfer"
+            }
+        ]
+    }
+}

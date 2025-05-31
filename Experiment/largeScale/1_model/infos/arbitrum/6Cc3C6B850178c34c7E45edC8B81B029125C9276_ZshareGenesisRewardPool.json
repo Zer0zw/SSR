@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "IUserPool.UserInfo.reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.token"
+        ],
+        "Reward Token Address": [
+            "zshare"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "add",
+                "Node": "zshare.safeTransfer(_to, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeZshareTransfer(_sender, _pending)"
+            }
+        ],
+        "unStake": []
+    }
+}

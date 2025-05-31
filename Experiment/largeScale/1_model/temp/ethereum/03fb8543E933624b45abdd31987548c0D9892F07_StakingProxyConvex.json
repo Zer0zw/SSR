@@ -1,0 +1,74 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_liquidity"
+        ],
+        "User Stake Reward": [
+            "stakedearned",
+            "convexrewards.amount",
+            "extraRewards.amount"
+        ],
+        "User Stake Time": [
+            "_secs",
+            "new_ending_ts"
+        ],
+        "Stake Token Address": [
+            "stakingToken",
+            "curveLpToken",
+            "convexDepositToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens",
+            "convexrewards.token",
+            "extraRewards.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLockedCurveLp",
+                "Node": "IERC20(curveLpToken).safeTransferFrom(msg.sender, address(this), _liquidity)"
+            },
+            {
+                "Function": "stakeLockedConvexToken",
+                "Node": "IERC20(convexDepositToken).safeTransferFrom(msg.sender, address(this), _liquidity)"
+            },
+            {
+                "Function": "stakeLocked",
+                "Node": "IERC20(stakingToken).safeTransferFrom(msg.sender, address(this), _liquidity)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(crv).safeTransfer(owner, b)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "IERC20(cvx).safeTransfer(owner, b)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_transferTokens(rewardTokens)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_processExtraRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLocked",
+                "Node": "IFraxFarmERC20(stakingAddress).withdrawLocked(_kek_id, msg.sender)"
+            },
+            {
+                "Function": "withdrawLockedAndUnwrap",
+                "Node": "IFraxFarmERC20(stakingAddress).withdrawLocked(_kek_id, address(this))"
+            },
+            {
+                "Function": "withdrawLockedAndUnwrap",
+                "Node": "IERC20(curveLpToken).transfer(owner,IERC20(curveLpToken).balanceOf(address(this)))"
+            }
+        ]
+    }
+}

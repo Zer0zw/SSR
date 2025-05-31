@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmounts"
+        ],
+        "User Stake Reward": [
+            "claimableReward",
+            "cumulativeRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositBalances"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(_depositToken).transferFrom(_fundingAccount, address(this), _amount)"
+            },
+            {
+                "Function": "stakeForAccount",
+                "Node": "IERC20(_depositToken).transferFrom(_fundingAccount, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(rewardToken()).transfer(_receiver, tokenAmount)"
+            },
+            {
+                "Function": "claimForAccount",
+                "Node": "IERC20(rewardToken()).transfer(_receiver, tokenAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(_depositToken).transfer(_receiver, _amount)"
+            },
+            {
+                "Function": "unstakeForAccount",
+                "Node": "IERC20(_depositToken).transfer(_receiver, _amount)"
+            }
+        ]
+    }
+}

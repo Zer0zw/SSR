@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "pendingRewards"
+        ],
+        "User Stake Time": [
+            "cooldownRemaining",
+            "viewCooldown"
+        ],
+        "Stake Token Address": [
+            "stkAave"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "adjustPosition",
+                "Node": "IAaveStaking(stkAave).stake(address(this), _wantAvailable)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IAaveStaking(stkAave).claimRewards(address(this), pending)"
+            },
+            {
+                "Function": "manualClaim",
+                "Node": "IAaveStaking(stkAave).claimRewards(address(this), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IAaveStaking(stkAave).redeem(address(this), _amount)"
+            }
+        ]
+    }
+}

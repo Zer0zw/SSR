@@ -1,0 +1,69 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDepositInfos",
+            "UserDepositInfo.amount",
+            "UserDepositInfo.amountLp"
+        ],
+        "User Stake Reward": [
+            "rewardPrice"
+        ],
+        "User Stake Time": [
+            "UserDepositInfo.lockTimestampUtil"
+        ],
+        "Stake Token Address": [
+            "micUsdtPair"
+        ],
+        "Reward Token Address": [
+            "minerToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(minerToken).transfer(pid, rewardPrice.mul(rate1).div(100))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(minerToken).transfer(pid, rewardPrice.mul(rate2).div(100))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(minerToken).transfer(pid, rewardPrice.mul(rate3).div(100))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(minerToken).transfer(pid, rewardPrice.mul(rate4).div(100))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(minerToken).transfer(msg.sender, rewardPrice.mul(rate).div(100))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(minerToken).transfer(marketAddress, rewardPrice.mul(marketrate).div(100))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(minerToken).transfer(userLevel1arr[b], rewardPrice.mul(level1*userTeamDeposit[userLevel1arr[b]]).div(1000*userLevel1total))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(minerToken).transfer(userLevel2arr[d], rewardPrice.mul(level2*userTeamDeposit[userLevel2arr[d]]).div(1000*userLevel2total))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(minerToken).transfer(userLevel3arr[f], rewardPrice.mul(level3*userTeamDeposit[userLevel3arr[f]]).div(1000*userLevel3total))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(micUsdtPair).safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

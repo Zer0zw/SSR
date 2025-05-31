@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "toBePaidMain",
+            "toBePaidMisc"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "address(this)"
+        ],
+        "Reward Token Address": [
+            "MainReward",
+            "MiscReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addToken",
+                "Node": "_addToken(recipient, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimMainReward",
+                "Node": "claimToken(msg.sender,MainReward,0)"
+            },
+            {
+                "Function": "ClaimMiscReward",
+                "Node": "if(MiscReward==_pancakeRouter.WETH()){_claimBNBTo(msg.sender,msg.sender,getDividents(msg.sender, false))} else {claimToken(msg.sender,MiscReward,0)}"
+            },
+            {
+                "Function": "_claimBNBTo",
+                "Node": "(bool sent,) =to.call{value: (amountWei)}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeToken",
+                "Node": "_removeToken(addr, amount)"
+            }
+        ]
+    }
+}

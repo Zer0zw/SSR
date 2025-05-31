@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposits.amount"
+        ],
+        "User Stake Reward": [
+            "User.bonus",
+            "User.totalBonus"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Plan.time"
+        ],
+        "Stake Token Address": [
+            "arbToken"
+        ],
+        "Reward Token Address": [
+            "arbToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "arbToken.transferFrom(msg.sender, address(this), amount.sub(devfee).sub(fee))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "arbToken.transfer(msg.sender, totalAmount)"
+            },
+            {
+                "Function": "compound",
+                "Node": "arbToken.transfer(feeWallet, fee)"
+            },
+            {
+                "Function": "compound",
+                "Node": "arbToken.transfer(devWallet, devfee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "arbToken.transfer(msg.sender, totalAmount)"
+            }
+        ]
+    }
+}

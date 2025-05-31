@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pid"
+        ],
+        "User Stake Reward": [
+            "_rewardTokens"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_asset"
+        ],
+        "Reward Token Address": [
+            "_rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "afterDeposit",
+                "Node": "staking.deposit(pid, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "beforeClaim",
+                "Node": "staking.claim(pid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "beforeWithdraw",
+                "Node": "staking.withdraw(pid, amount)"
+            }
+        ]
+    }
+}

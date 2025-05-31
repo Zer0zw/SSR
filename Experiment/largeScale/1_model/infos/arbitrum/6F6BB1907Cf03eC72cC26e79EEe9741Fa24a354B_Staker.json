@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPTokenBalance",
+            "LockedLPTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewardsFromETH",
+            "rewardsFromToken"
+        ],
+        "User Stake Time": [
+            "timePooled1",
+            "timePooled2"
+        ],
+        "Stake Token Address": [
+            "arbiStakeAddress"
+        ],
+        "Reward Token Address": [
+            "arbiStakeAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(poolAddress).transfer(msg.sender, withdrawAmount)"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "IERC20(poolAddress).transfer(0x0000000000000000000000000000000000000000, poolTokenGot)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokensFromStakingETH",
+                "Node": "IERC20(arbiStakeAddress).mint(msg.sender, rewardAmount)"
+            },
+            {
+                "Function": "withdrawRewardTokensFromStakingToken",
+                "Node": "IERC20(arbiStakeAddress).mint(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLPTokens",
+                "Node": "IERC20(poolAddress).transfer(msg.sender, withdrawAmount)"
+            }
+        ]
+    }
+}

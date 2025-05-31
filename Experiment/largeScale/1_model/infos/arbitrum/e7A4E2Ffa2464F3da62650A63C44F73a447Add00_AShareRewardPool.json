@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "IUserPool.UserInfo.reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.token"
+        ],
+        "Reward Token Address": [
+            "ashare"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "add",
+                "Node": "poolInfo.push(PoolInfo({ token: _token, allocPoint: _allocPoint, lastRewardTime: _lastRewardTime, accZsharePerShare: 0, totalDepositedAmount: 0, depositFee: _depositFee, isStarted: _isStarted, isLP: isLP }))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeZshareTransfer(_sender, _pending)"
+            }
+        ],
+        "unStake": []
+    }
+}

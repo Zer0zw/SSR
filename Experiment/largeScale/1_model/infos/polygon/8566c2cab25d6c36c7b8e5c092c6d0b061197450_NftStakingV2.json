@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.tokensStaked"
+        ],
+        "User Stake Reward": [
+            "User.lastClaimDate"
+        ],
+        "User Stake Time": [
+            "User.lastStakeTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeCards",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(erc20storage), totalPrice)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateUser",
+                "Node": "rewardToken.safeTransfer(_userAddress, userReward)"
+            },
+            {
+                "Function": "updateUser",
+                "Node": "rewardToken.safeTransfer(_userAddress, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "erc20storage.withdraw(address(stakingToken), msg.sender, totalPrice - feeAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "erc20storage.withdraw(address(stakingToken), 0xf46A20f48Df56aDb8B7EC94d43Aa4297a0F4e2cc, feeAmount)"
+            }
+        ]
+    }
+}

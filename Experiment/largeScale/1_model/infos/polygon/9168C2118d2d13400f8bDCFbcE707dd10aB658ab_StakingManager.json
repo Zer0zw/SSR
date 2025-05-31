@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardsVault"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lpToken[_pid].safeTransferFrom(senderAddr, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardsVault.sendRewards(senderAddr, pendingTSX)"
+            },
+            {
+                "Function": "unstakeAndClaim",
+                "Node": "rewardsVault.sendRewards(senderAddr, pendingTSX)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "lpToken[_pid].safeTransfer(senderAddr, _amount)"
+            },
+            {
+                "Function": "unstakeAndClaim",
+                "Node": "lpToken[_pid].safeTransfer(senderAddr, _amount)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "lpToken[_pid].safeTransfer(senderAddr, amount)"
+            }
+        ]
+    }
+}

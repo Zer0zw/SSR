@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "NFT.lockedValues"
+        ],
+        "User Stake Reward": [
+            "MANSIONSMANAGER.getAddressRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PLAYMATES"
+        ],
+        "Reward Token Address": [
+            "PLAYMATES"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "PLAYMATES.transferFrom(_msgSender(), address(this), amount)"
+            },
+            {
+                "Function": "compoundAndStake",
+                "Node": "MANSIONSHEPLER.claimUtility(userNodes, address(this), amount, address(TAXMANAGER), _msgSender())"
+            }
+        ],
+        "getReward": [],
+        "unStake": []
+    }
+}

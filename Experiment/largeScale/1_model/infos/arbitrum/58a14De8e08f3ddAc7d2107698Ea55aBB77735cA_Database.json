@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [
+            "rewardsRecieved"
+        ],
+        "User Stake Time": [
+            "stakeDuration",
+            "follDuration",
+            "endDate"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "stakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "saveStake1",
+                "Node": "balance[staker] += amount"
+            },
+            {
+                "Function": "saveStake2",
+                "Node": "balance[staker] += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "addRewards",
+                "Node": "IERC20Upgradeable(stakeToken).transferFrom(rewardFunder, address(this), amountToGet)"
+            },
+            {
+                "Function": "instaRewards",
+                "Node": "IERC20Upgradeable(stakeToken).transfer(staker, debit)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20Upgradeable(stakeToken).transfer(staker, amount)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "IERC20Upgradeable(stakeToken).transfer(staker, debit)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "IERC20Upgradeable(stakeToken).transfer(staker, debitRewards)"
+            }
+        ]
+    }
+}

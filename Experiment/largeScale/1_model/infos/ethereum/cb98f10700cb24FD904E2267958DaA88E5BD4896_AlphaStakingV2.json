@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Data.share"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Data.unbondTime"
+        ],
+        "Stake Token Address": [
+            "alpha"
+        ],
+        "Reward Token Address": [
+            "alpha"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "alpha.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "alpha.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "alpha.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

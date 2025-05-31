@@ -1,0 +1,108 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "nftlogs.tokenId"
+            ],
+            "User Stake Reward": [
+                "nft_logs.rewardpersecond"
+            ],
+            "User Stake Time": [
+                "nft_logs.timestamp"
+            ],
+            "Stake Token Address": [
+                "NFT"
+            ],
+            "Reward Token Address": []
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "claim_staking_reward",
+                "unstake"
+            ],
+            "unStake": [
+                "unstake"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "NFT",
+                        "nft_logs.nft",
+                        "nft_logs.upline"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claim_staking_reward",
+                    "Calculation Variables": [
+                        "CountLockedNftFloor",
+                        "YearlyDistributionStaking",
+                        "nft_logs.addr",
+                        "nft_logs.lastclaim",
+                        "nft_logs.nft",
+                        "nft_logs.pid",
+                        "nft_logs.rewardpersecond",
+                        "nft_logs.upline",
+                        "secondperyears",
+                        "unMint"
+                    ]
+                },
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "CountLockedNftFloor",
+                        "YearlyDistributionStaking",
+                        "nft_logs.addr",
+                        "nft_logs.lastclaim",
+                        "nft_logs.nft",
+                        "nft_logs.pid",
+                        "nft_logs.rewardpersecond",
+                        "nft_logs.upline",
+                        "secondperyears",
+                        "unMint"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "NFT",
+                        "max_reward_persecond",
+                        "nft_logs.addr",
+                        "nft_logs.lastclaim",
+                        "nft_logs.nft",
+                        "nft_logs.pid",
+                        "nft_logs.rewardpersecond",
+                        "nft_logs.timestamp",
+                        "nft_logs.upline"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

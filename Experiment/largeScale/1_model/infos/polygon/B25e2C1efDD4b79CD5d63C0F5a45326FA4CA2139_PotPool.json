@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalanceOf"
+        ],
+        "User Stake Reward": [
+            "rewardsForToken"
+        ],
+        "User Stake Time": [
+            "duration"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super._mint(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getAllRewards",
+                "Node": "IERC20(rewardTokens[i]).safeTransfer(recipient, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "IERC20(rt).safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "_getRewardAction",
+                "Node": "IERC20(rt).safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpToken).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

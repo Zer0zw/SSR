@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "database.getStakeAmount"
+        ],
+        "User Stake Reward": [
+            "database.getStakingRewardsReceived"
+        ],
+        "User Stake Time": [
+            "database.getRemainingDuration",
+            "database.getFullDuration"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20Upgradeable(stakeToken).transferFrom(msg.sender, address(database), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "database.unstakeAll(msg.sender)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "database.unstake(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositTokenBalance"
+        ],
+        "User Stake Reward": [
+            "tokenDivsBalance",
+            "ethDivsBalance",
+            "platformTokenDivsBalance"
+        ],
+        "User Stake Time": [
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "TRUSTED_DEPOSIT_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+            "TRUSTED_PLATFORM_TOKEN_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(TRUSTED_DEPOSIT_TOKEN_ADDRESS).safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimEthDivs",
+                "Node": "msg.sender.transfer(amount)"
+            },
+            {
+                "Function": "_claimTokenDivs",
+                "Node": "IERC20(TRUSTED_DEPOSIT_TOKEN_ADDRESS).safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "_claimCompoundDivs",
+                "Node": "IERC20(TRUSTED_DEPOSIT_TOKEN_ADDRESS).safeTransfer(msg.sender, depositTokenReceived)"
+            },
+            {
+                "Function": "_claimPlatformTokenDivs",
+                "Node": "IERC20(TRUSTED_PLATFORM_TOKEN_ADDRESS).safeTransfer(msg.sender, estimatedAmountOut)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(TRUSTED_DEPOSIT_TOKEN_ADDRESS).safeTransfer(msg.sender, depositTokenReceivedAfterFee)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(TRUSTED_DEPOSIT_TOKEN_ADDRESS).safeTransfer(msg.sender, depositTokenReceivedAfterFee)"
+            }
+        ]
+    }
+}

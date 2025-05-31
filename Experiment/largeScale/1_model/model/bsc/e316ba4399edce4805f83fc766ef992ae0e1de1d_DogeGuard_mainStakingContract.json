@@ -1,0 +1,150 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.userAmount"
+        ],
+        "User Stake Reward": [
+            "userInfo.totalDogeCollected",
+            "userInfo.totalDogeGuardCollected"
+        ],
+        "User Stake Time": [
+            "indexInfo.timestampIndex"
+        ],
+        "Stake Token Address": [
+            "DogeGuard"
+        ],
+        "Reward Token Address": [
+            "DOGE",
+            "DogeGuard"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdrawal"
+        ],
+        "unStake": [
+            "withdrawal"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1344
+                ],
+                "Input": [
+                    "_reinvest",
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DogeGuard",
+                    "userInfo.profitMakingIndex",
+                    "userInfo.totalDogeCollected",
+                    "userInfo.totalDogeGuardCollected",
+                    "userInfo.userAmount"
+                ],
+                "Full Calculation Variables": [
+                    "DogeGuard",
+                    "userInfo.profitMakingIndex",
+                    "userInfo.totalDogeCollected",
+                    "userInfo.totalDogeGuardCollected",
+                    "userInfo.userAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawal",
+                "Node": [
+                    1363
+                ],
+                "Input": [
+                    "account"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DogeGuardDebt",
+                    "DOGE",
+                    "DogeGuard",
+                    "userInfo.totalDogeGuardCollected",
+                    "userInfo.totalDogeCollected"
+                ],
+                "Full Calculation Variables": [
+                    "DogeGuardDebt",
+                    "DOGE",
+                    "DogeGuard",
+                    "userInfo.totalDogeGuardCollected",
+                    "userInfo.totalDogeCollected"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    1363
+                ],
+                "Input": [
+                    "account",
+                    "account"
+                ],
+                "Calculation Variables": [
+                    "DOGE",
+                    "uniswapV2Router",
+                    "DogeGuard"
+                ],
+                "Control Variables": [
+                    "DOGE",
+                    "DogeGuardDebt",
+                    "DogeGuard",
+                    "userInfo.totalDogeGuardCollected",
+                    "userInfo.totalDogeCollected",
+                    "uniswapV2Router"
+                ],
+                "Full Calculation Variables": [
+                    "DOGE",
+                    "DogeGuardDebt",
+                    "DogeGuard",
+                    "userInfo.totalDogeGuardCollected",
+                    "userInfo.totalDogeCollected",
+                    "uniswapV2Router"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawal",
+                "Node": [
+                    1412
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DogeGuard",
+                    "userInfo.profitMakingIndex",
+                    "userInfo.totalDogeCollected",
+                    "userInfo.totalDogeGuardCollected",
+                    "userInfo.userAmount"
+                ],
+                "Full Calculation Variables": [
+                    "DogeGuard",
+                    "userInfo.profitMakingIndex",
+                    "userInfo.totalDogeCollected",
+                    "userInfo.totalDogeGuardCollected",
+                    "userInfo.userAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

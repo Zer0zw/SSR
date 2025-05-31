@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakingInfo.stakingAmount"
+        ],
+        "User Stake Reward": [
+            "userStakingInfo.stakingAPY"
+        ],
+        "User Stake Time": [
+            "userStakingInfo.stakingPeriod"
+        ],
+        "Stake Token Address": [
+            "RafToken"
+        ],
+        "Reward Token Address": [
+            "RafToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "RafToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "RafToken.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "emergencyClaim",
+                "Node": "RafToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "RafToken.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "emergencyClaim",
+                "Node": "RafToken.transfer(msg.sender, reward)"
+            }
+        ]
+    }
+}

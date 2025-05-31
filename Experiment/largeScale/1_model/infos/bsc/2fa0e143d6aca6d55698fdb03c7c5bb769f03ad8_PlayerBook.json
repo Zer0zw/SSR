@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "hasStake",
+            "hasStakeLP"
+        ],
+        "User Stake Reward": [
+            "usrItem.rewards",
+            "usrItem.hasRewards"
+        ],
+        "User Stake Time": [
+            "usrItem.lastUpdateTime",
+            "usrItem.skipCounts"
+        ],
+        "Stake Token Address": [
+            "lpAddr"
+        ],
+        "Reward Token Address": [
+            "tokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(lpAddr).safeTransferFrom(msg.sender,address(this),amounts)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(tokenAddr).safeTransfer(msg.sender,_rwAmount.mul(4).div(5))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "IERC20(tokenAddr).safeTransfer(team2Addr,_rwAmount.div(5))"
+            },
+            {
+                "Function": "claim",
+                "Node": "IERC20(tokenAddr).safeTransfer(msg.sender,reward.mul(4).div(5))"
+            },
+            {
+                "Function": "claim",
+                "Node": "IERC20(tokenAddr).safeTransfer(team2Addr,reward.div(5))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(lpAddr).safeTransfer(msg.sender,amounts)"
+            }
+        ]
+    }
+}

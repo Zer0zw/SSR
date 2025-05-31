@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalance"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "lastStakedTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "balanceOf[msg.sender] -= amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "balanceOf[msg.sender] += amount + reward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "balanceOf[msg.sender] += amount + reward"
+            }
+        ]
+    }
+}

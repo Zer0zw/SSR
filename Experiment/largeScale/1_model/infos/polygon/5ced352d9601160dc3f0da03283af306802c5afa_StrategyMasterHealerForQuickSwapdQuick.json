@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "vaultSharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAddress"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_vaultDeposit",
+                "Node": "IStakingRewards(masterchefAddress).stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_vaultHarvest",
+                "Node": "IStakingRewards(masterchefAddress).getReward()"
+            },
+            {
+                "Function": "_vaultHarvest",
+                "Node": "IDragonLair(dQuick).leave(IERC20(dQuick).balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_vaultWithdraw",
+                "Node": "IStakingRewards(masterchefAddress).withdraw(_amount)"
+            },
+            {
+                "Function": "_emergencyVaultWithdraw",
+                "Node": "IStakingRewards(masterchefAddress).exit()"
+            }
+        ]
+    }
+}

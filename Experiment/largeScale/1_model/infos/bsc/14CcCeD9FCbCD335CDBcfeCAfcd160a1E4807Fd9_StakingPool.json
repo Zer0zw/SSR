@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposito"
+        ],
+        "User Stake Reward": [
+            "tokenInterno"
+        ],
+        "User Stake Time": [
+            "fecha"
+        ],
+        "Stake Token Address": [
+            "BEP20_Contract"
+        ],
+        "Reward Token Address": [
+            "BEP20_Contract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "if( !BEP20_Contract.transferFrom(msg.sender, address(this), _token) )revert()"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "retiroDividendos",
+                "Node": "if( !BEP20_Contract.transfer(_user, tokenEX ))revert()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "retiro",
+                "Node": "if( !BEP20_Contract.transfer(msg.sender, pagare) )revert()"
+            }
+        ]
+    }
+}

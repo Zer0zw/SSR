@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountStaked_deprecated",
+            "activeAmount"
+        ],
+        "User Stake Reward": [
+            "rewardPerShare",
+            "initalRewardPerShare"
+        ],
+        "User Stake Time": [
+            "unbond.withdrawEpoch"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "buyVoucher",
+                "Node": "require(stakeManager.delegationDeposit(validatorId, amountToDeposit, msg.sender)"
+            },
+            {
+                "Function": "restake",
+                "Node": "require(stakeManager.transferFunds(validatorId, liquidReward - amountRestaked, user)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "require(stakeManager.transferFunds(validatorId, liquidRewards, user)"
+            },
+            {
+                "Function": "_withdrawAndTransferReward",
+                "Node": "require(stakeManager.transferFunds(validatorId, liquidRewards, user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeClaimTokens",
+                "Node": "require(stakeManager.transferFunds(validatorId, _amount, msg.sender)"
+            },
+            {
+                "Function": "unstakeClaimTokens_new",
+                "Node": "require(stakeManager.transferFunds(validatorId, _amount, msg.sender)"
+            }
+        ]
+    }
+}

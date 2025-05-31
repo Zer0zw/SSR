@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.pendingReward",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "piggy"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "safePiggyTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "stake",
+                "Node": "safePiggyTransfer(msg.sender, user.pendingReward)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safePiggyTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "claim",
+                "Node": "safePiggyTransfer(msg.sender, user.pendingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "safePiggyTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "safePiggyTransfer(msg.sender, user.pendingReward)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            }
+        ]
+    }
+}

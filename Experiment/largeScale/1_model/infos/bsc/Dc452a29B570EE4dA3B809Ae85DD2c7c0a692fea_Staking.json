@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balance"
+        ],
+        "User Stake Reward": [
+            "pendingRewards",
+            "_calculate_rewards"
+        ],
+        "User Stake Time": [
+            "deposit_time",
+            "locking_time"
+        ],
+        "Stake Token Address": [
+            "MetalShiba"
+        ],
+        "Reward Token Address": [
+            "MetalShiba"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farmTokens_andlock",
+                "Node": "bool transferred = IERC20(MetalShiba).transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "farmTokens",
+                "Node": "bool transferred = IERC20(MetalShiba).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": "bool transferred = token_reward.transfer(msg.sender, _balance + _pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfarmTokens",
+                "Node": "bool transferred =  token_reward.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "unfarmTokens",
+                "Node": "bool transferred_interests = token_reward.transfer(msg.sender, _calculate_rewards(msg.sender) + pendingRewards[msg.sender])"
+            }
+        ]
+    }
+}

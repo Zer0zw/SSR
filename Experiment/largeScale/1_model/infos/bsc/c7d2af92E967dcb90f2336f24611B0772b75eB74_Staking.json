@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "flexistake.amount",
+            "lockedstake.amount"
+        ],
+        "User Stake Reward": [
+            "flexiunstake._return_amount",
+            "lockedunstake._return_amount"
+        ],
+        "User Stake Time": [
+            "flexistake.init_time",
+            "lockedstake.expiry_time"
+        ],
+        "Stake Token Address": [
+            "_iusdt_address"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeOnFlexi",
+                "Node": "_iusdt.safeTransferFrom(_msgSender(),address(this),_amount)"
+            },
+            {
+                "Function": "stakeOnL",
+                "Node": "_iusdt.safeTransferFrom(_msgSender(),address(this),_amount)"
+            },
+            {
+                "Function": "stakeOnLwithUpdate",
+                "Node": "_iusdt.safeTransferFrom(_msgSender(),address(this),_amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "claimFlexiVest",
+                "Node": "_iusdt.safeTransfer(_msgSender(),flexiunstake[_msgSender()]._return_amount)"
+            },
+            {
+                "Function": "claimLVest",
+                "Node": "_iusdt.safeTransfer(_msgSender(),lockedunstake[_msgSender()]._return_amount)"
+            }
+        ]
+    }
+}

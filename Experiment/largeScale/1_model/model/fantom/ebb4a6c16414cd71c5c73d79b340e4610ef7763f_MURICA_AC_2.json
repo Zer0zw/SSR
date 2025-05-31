@@ -1,0 +1,159 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "freedom_usdc_lp_staker.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "freedom_usdc_lp"
+        ],
+        "Reward Token Address": [
+            "freedom"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "harvest",
+            "swap_and_compound_and_stake"
+        ],
+        "unStake": [
+            "emergency_unstake",
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "set_addresses",
+            "swap_and_compound_and_stake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1725
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "freedom_usdc_lp",
+                    "shares_circ"
+                ],
+                "Full Calculation Variables": [
+                    "freedom_usdc_lp",
+                    "shares_circ"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1803
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "freedom"
+                ],
+                "Control Variables": [
+                    "freedom",
+                    "last_harvested",
+                    "reward_pool"
+                ],
+                "Full Calculation Variables": [
+                    "freedom",
+                    "last_harvested",
+                    "reward_pool"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "swap_and_compound_and_stake",
+                "Node": [
+                    1836
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "freedom",
+                    "freedom_to_usdc",
+                    "freedom_usdc_lp",
+                    "last_compounded",
+                    "reward_pool",
+                    "spooky",
+                    "total_deposited",
+                    "usdc"
+                ],
+                "Full Calculation Variables": [
+                    "freedom",
+                    "freedom_to_usdc",
+                    "freedom_usdc_lp",
+                    "last_compounded",
+                    "reward_pool",
+                    "spooky",
+                    "total_deposited",
+                    "usdc"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1771
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "reward_pool",
+                    "freedom_usdc_lp",
+                    "shares_circ",
+                    "freedom_usdc_lp_staker.shares",
+                    "owner",
+                    "total_deposited"
+                ],
+                "Full Calculation Variables": [
+                    "reward_pool",
+                    "freedom_usdc_lp",
+                    "shares_circ",
+                    "freedom_usdc_lp_staker.shares",
+                    "owner",
+                    "total_deposited"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergency_unstake",
+                "Node": [
+                    1784
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "freedom_usdc_lp_staker.shares"
+                ],
+                "Control Variables": [
+                    "freedom_usdc_lp",
+                    "freedom_usdc_lp_staker.shares",
+                    "reward_pool",
+                    "shares_circ"
+                ],
+                "Full Calculation Variables": [
+                    "freedom_usdc_lp",
+                    "freedom_usdc_lp_staker.shares",
+                    "reward_pool",
+                    "shares_circ"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

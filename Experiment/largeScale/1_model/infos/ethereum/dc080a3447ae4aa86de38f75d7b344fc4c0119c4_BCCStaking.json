@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "addressToOwnedTokens"
+        ],
+        "User Stake Reward": [
+            "lastClaimOfAccount",
+            "baseRewardPerSecond"
+        ],
+        "User Stake Time": [
+            "lastClaimOfAccount"
+        ],
+        "Stake Token Address": [
+            "nftContract"
+        ],
+        "Reward Token Address": [
+            "bccContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nftContract.transferFrom(msg.sender,address(this),tokenId)"
+            },
+            {
+                "Function": "stakeMultiple",
+                "Node": "nftContract.transferFrom(msg.sender,address(this),tokenIds[i])"
+            },
+            {
+                "Function": "stakeAndUnstakeMultiple",
+                "Node": "nftContract.transferFrom(msg.sender,address(this),stakeTokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAll",
+                "Node": "bccContract.transfer(msg.sender,reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nftContract.transferFrom(address(this),msg.sender,tokenId)"
+            },
+            {
+                "Function": "unstakeMultiple",
+                "Node": "nftContract.transferFrom(address(this),msg.sender,tokenIds[i])"
+            },
+            {
+                "Function": "stakeAndUnstakeMultiple",
+                "Node": "nftContract.transferFrom(address(this),msg.sender,unstakeTokenIds[i])"
+            },
+            {
+                "Function": "emergencyReturnToken",
+                "Node": "nftContract.transferFrom(address(this),msg.sender,tokenId)"
+            }
+        ]
+    }
+}

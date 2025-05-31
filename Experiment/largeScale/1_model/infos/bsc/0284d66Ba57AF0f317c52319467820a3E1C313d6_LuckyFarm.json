@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "startTime"
+        ],
+        "Stake Token Address": [
+            "luckyToken"
+        ],
+        "Reward Token Address": [
+            "luckyToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "luckyToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawYield",
+                "Node": "luckyToken.transfer(msg.sender, balTransfer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "luckyToken.transfer(msg.sender, balTransfer)"
+            }
+        ]
+    }
+}

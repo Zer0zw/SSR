@@ -1,0 +1,170 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claim",
+            "exit"
+        ],
+        "unStake": [
+            "exit",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    2784
+                ],
+                "Input": [
+                    "_depositAmount",
+                    "_poolId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes",
+                    "_stakes.totalDeposited",
+                    "rentrancy_lock"
+                ],
+                "Full Calculation Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes",
+                    "_stakes.totalDeposited",
+                    "rentrancy_lock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    2820
+                ],
+                "Input": [
+                    "_poolId"
+                ],
+                "Calculation Variables": [
+                    "_stakes.totalUnclaimed"
+                ],
+                "Control Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes",
+                    "_stakes.totalUnclaimed",
+                    "rentrancy_lock",
+                    "reward"
+                ],
+                "Full Calculation Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes",
+                    "_stakes.totalUnclaimed",
+                    "rentrancy_lock",
+                    "reward"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "exit",
+                "Node": [
+                    2820
+                ],
+                "Input": [
+                    "_poolId"
+                ],
+                "Calculation Variables": [
+                    "_stakes.totalUnclaimed"
+                ],
+                "Control Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes.totalDeposited",
+                    "_stakes.totalUnclaimed",
+                    "rentrancy_lock",
+                    "reward"
+                ],
+                "Full Calculation Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes.totalDeposited",
+                    "_stakes.totalUnclaimed",
+                    "rentrancy_lock",
+                    "reward"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    2802
+                ],
+                "Input": [
+                    "_poolId",
+                    "_withdrawAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes",
+                    "_stakes.totalDeposited",
+                    "_stakes.totalUnclaimed",
+                    "rentrancy_lock"
+                ],
+                "Full Calculation Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes",
+                    "_stakes.totalDeposited",
+                    "_stakes.totalUnclaimed",
+                    "rentrancy_lock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "exit",
+                "Node": [
+                    2802
+                ],
+                "Input": [
+                    "_poolId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes.totalDeposited",
+                    "_stakes.totalUnclaimed",
+                    "rentrancy_lock"
+                ],
+                "Full Calculation Variables": [
+                    "_ctx",
+                    "_pools",
+                    "_stakes.totalDeposited",
+                    "_stakes.totalUnclaimed",
+                    "rentrancy_lock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

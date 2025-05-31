@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "depositFromMasterChef",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeRewardTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeRewardTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "depositFromMasterChef",
+                "Node": "safeRewardTransfer(_to, pending)"
+            },
+            {
+                "Function": "withdrawToMasterChef",
+                "Node": "safeRewardTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "safeWithdrawTransfer(_pid, pool.lpToken, _amount)"
+            },
+            {
+                "Function": "withdrawToMasterChef",
+                "Node": "ICustomMasterChef(_masterChef).depositFromMasterChef(toPid, _amount, msg.sender)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "safeWithdrawTransfer(_pid, pool.lpToken, user.amount)"
+            }
+        ]
+    }
+}

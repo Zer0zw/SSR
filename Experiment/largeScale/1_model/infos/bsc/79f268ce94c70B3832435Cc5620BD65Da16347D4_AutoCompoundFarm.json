@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.balance"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalWithdrawn"
+        ],
+        "User Stake Time": [
+            "UserInfo.unlockBlock"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "MDB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(sender, nToMint, received)"
+            },
+            {
+                "Function": "_registerFirstPurchase",
+                "Node": "_mint(user, received, received)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "_takeServiceFee()"
+            },
+            {
+                "Function": "_swapForLiquidity",
+                "Node": "router.swapExactTokensForTokensSupportingFeeOnTransferTokens(balance / 2, 0, path, address(this), block.timestamp + 100)"
+            },
+            {
+                "Function": "_pairLiquidity",
+                "Node": "router.addLiquidity(MDB, MDBP, balance, mdbpBalance, 1, 1, address(this), block.timestamp + 100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, sendAmount)"
+            }
+        ]
+    }
+}

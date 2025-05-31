@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_want"
+        ],
+        "Reward Token Address": [
+            "SUSHI",
+            "SPELL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WETH).safeTransfer(strategist, wethBalance)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(harvestedToken).safeTransfer(strategist, hBalance)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(SPELL).safeTransfer(strategist, spellBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WETH).safeTransfer(strategist, feeAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

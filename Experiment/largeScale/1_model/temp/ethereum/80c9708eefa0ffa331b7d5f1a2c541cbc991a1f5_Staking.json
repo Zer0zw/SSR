@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Quarter.reward"
+        ],
+        "User Stake Time": [
+            "Stake.lockTime"
+        ],
+        "Stake Token Address": [
+            "bbsToken"
+        ],
+        "Reward Token Address": [
+            "bbsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lock",
+                "Node": "bbsToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "bbsToken.transfer(msg.sender, claimAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "bbsToken.transfer(msg.sender, claimAmount)"
+            }
+        ]
+    }
+}

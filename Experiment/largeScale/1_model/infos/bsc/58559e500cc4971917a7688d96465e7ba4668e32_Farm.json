@@ -1,0 +1,74 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositAmount",
+            "UserInfo.userDepositInfo.amount"
+        ],
+        "User Stake Reward": [
+            "mintAmount",
+            "dividendAmount",
+            "totalMintAmount",
+            "totalDividendAmount",
+            "UserInfo.userDepositInfo.miningRewardDebt",
+            "UserInfo.userDepositInfo.dividendRewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.userDepositInfo.depositTime",
+            "UserInfo.userDepositInfo.withdrawTime",
+            "lockupTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "miningToken",
+            "dividendToken",
+            "refferalRewardToken",
+            "nodeRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeMiningTokenTransfer(msg.sender, deservedMiningReward)"
+            },
+            {
+                "Function": "claim",
+                "Node": "safeDividendTokenTransfer(msg.sender, deservedDividendReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeMiningTokenTransfer(msg.sender, deservedMiningReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeDividendTokenTransfer(msg.sender, deservedDividendReward)"
+            },
+            {
+                "Function": "receiveReferralRewards",
+                "Node": "IERC20Upgradeable(refferalRewardToken).safeTransferFrom(address(this), msg.sender, pendingRefferalReward)"
+            },
+            {
+                "Function": "receiveNodeRewards",
+                "Node": "IERC20Upgradeable(nodeRewardToken).safeTransferFrom(address(this), msg.sender, pendingNodeReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.userDepositInfo[index].amount"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.userDepositInfo[index].amount"
+            }
+        ]
+    }
+}

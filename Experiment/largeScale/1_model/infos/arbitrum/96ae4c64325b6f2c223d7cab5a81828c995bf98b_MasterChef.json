@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.stakeToken"
+        ],
+        "Reward Token Address": [
+            "reaper"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_stakeToken).safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            },
+            {
+                "Function": "depositReaper",
+                "Node": "IERC20(address(reaper)).safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "stake.safeReaperTransfer(_for, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "stake.safeReaperTransfer(_for, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_stakeToken).safeTransfer(_msgSender(), _amount)"
+            },
+            {
+                "Function": "withdrawReaper",
+                "Node": "IERC20(address(reaper)).safeTransfer(address(_msgSender()), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(_stakeToken).safeTransfer(address(_for), user.amount)"
+            }
+        ]
+    }
+}

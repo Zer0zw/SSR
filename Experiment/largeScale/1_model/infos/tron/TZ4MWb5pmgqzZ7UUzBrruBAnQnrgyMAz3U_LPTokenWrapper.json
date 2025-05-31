@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "_balances2"
+        ],
+        "User Stake Reward": [
+            "_balances2"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "y",
+            "y2"
+        ],
+        "Reward Token Address": [
+            "y2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "y2.safeTransferFrom(msg.sender, address(this), amount2)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "y.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "y2.safeTransfer(msg.sender, amount2)"
+            }
+        ]
+    }
+}

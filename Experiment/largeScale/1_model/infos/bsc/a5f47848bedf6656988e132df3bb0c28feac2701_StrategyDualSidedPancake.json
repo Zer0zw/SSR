@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IMasterChefPancake.userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pendingRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "IMasterChefPancake(chef).deposit(poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "IMasterChefPancake(chef).deposit(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IMasterChefPancake(chef).withdraw(poolId, toWithdraw)"
+            },
+            {
+                "Function": "_prepareRetirement",
+                "Node": "IMasterChefPancake(chef).withdraw(poolId, balanceOfPool())"
+            },
+            {
+                "Function": "_panic",
+                "Node": "IMasterChefPancake(chef).emergencyWithdraw(poolId)"
+            }
+        ]
+    }
+}

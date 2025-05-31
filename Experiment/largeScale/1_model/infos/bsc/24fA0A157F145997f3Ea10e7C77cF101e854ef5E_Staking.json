@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.claimed"
+        ],
+        "User Stake Time": [
+            "StakeInfo.lockTerm"
+        ],
+        "Stake Token Address": [
+            "noeToken"
+        ],
+        "Reward Token Address": [
+            "noeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "IERC20(noeToken).transferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(noeToken).transfer(_msgSender(), totalTokens)"
+            }
+        ],
+        "unStake": []
+    }
+}

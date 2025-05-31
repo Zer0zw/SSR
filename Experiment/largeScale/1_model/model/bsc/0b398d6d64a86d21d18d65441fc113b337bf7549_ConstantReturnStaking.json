@@ -1,0 +1,190 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardsPendingClaim",
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "lastClaimedTime"
+        ],
+        "Stake Token Address": [
+            "TRUSTED_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "TRUSTED_TOKEN_ADDRESS"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositByContract"
+        ],
+        "getReward": [
+            "claim",
+            "reInvest"
+        ],
+        "unStake": [
+            "emergencyUnstake",
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositByContract",
+                "Node": [
+                    1070
+                ],
+                "Input": [
+                    "account",
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "isTrustedDepositContract"
+                ],
+                "Full Calculation Variables": [
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "isTrustedDepositContract"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    992
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim"
+                ],
+                "Control Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim"
+                ],
+                "Full Calculation Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "reInvest",
+                "Node": [
+                    1004
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim"
+                ],
+                "Full Calculation Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    954
+                ],
+                "Input": [
+                    "amountToWithdraw"
+                ],
+                "Calculation Variables": [
+                    "UNSTAKING_FEE_RATE_X_100"
+                ],
+                "Control Variables": [
+                    "ADMIN_CAN_CLAIM_AFTER",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "owner"
+                ],
+                "Full Calculation Variables": [
+                    "ADMIN_CAN_CLAIM_AFTER",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "owner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": [
+                    978
+                ],
+                "Input": [
+                    "amountToWithdraw"
+                ],
+                "Calculation Variables": [
+                    "UNSTAKING_FEE_RATE_X_100"
+                ],
+                "Control Variables": [
+                    "LOCKUP_TIME",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "depositedTokens",
+                    "owner",
+                    "stakingTime"
+                ],
+                "Full Calculation Variables": [
+                    "LOCKUP_TIME",
+                    "TRUSTED_TOKEN_ADDRESS",
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "depositedTokens",
+                    "owner",
+                    "stakingTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

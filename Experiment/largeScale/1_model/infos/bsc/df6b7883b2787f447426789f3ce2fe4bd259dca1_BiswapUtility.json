@@ -1,0 +1,71 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserData.stakedBalance",
+            "Farm.userStakedAmount"
+        ],
+        "User Stake Reward": [
+            "UserData.pendingReward",
+            "Farm.pendingBSW"
+        ],
+        "User Stake Time": [
+            "UserData.lastActionTimestamp"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.stakedToken.tokenAddress",
+            "Farm.lpAddress"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.token1.tokenAddress",
+            "PoolInfo.token2.tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "getSmartChefV2",
+                "Node": "poolInfo.userData.stakedBalance = userInfo.stakedAmount"
+            },
+            {
+                "Function": "getSmartChefV2PF",
+                "Node": "poolInfo.userData.stakedBalance = userInfo.stakedAmount"
+            },
+            {
+                "Function": "getMasterChef",
+                "Node": "poolInfo.userData.stakedBalance = curInfo.amount"
+            },
+            {
+                "Function": "getSmartChef",
+                "Node": "poolInfo.userData.stakedBalance = pool.userInfo(user).amount"
+            },
+            {
+                "Function": "getAutoBSWPool",
+                "Node": "poolInfo.userData.stakedBalance = pool.userInfo(user).amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getSmartChefV2",
+                "Node": "poolInfo.userData.pendingReward = userInfo.pendingReward"
+            },
+            {
+                "Function": "getSmartChefV2PF",
+                "Node": "poolInfo.userData.pendingReward = userInfo.pendingReward"
+            },
+            {
+                "Function": "getMasterChef",
+                "Node": "poolInfo.userData.pendingReward[0] = pool.pendingBSW(0, user)"
+            },
+            {
+                "Function": "getSmartChef",
+                "Node": "poolInfo.userData.pendingReward[0] = pool.pendingReward(user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "getAutoBSWPool",
+                "Node": "poolInfo.userData.stakedBalance = pool.userInfo(user).amount"
+            }
+        ]
+    }
+}

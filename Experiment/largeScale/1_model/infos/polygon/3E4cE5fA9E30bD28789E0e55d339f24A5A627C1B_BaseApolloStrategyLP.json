@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "input"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IRewardPool(masterchef).stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IRewardPool(masterchef).getReward()"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokensSupportingFeeOnTransferTokens(toUsdc,0, outputToUsdcRoute, strategist, now)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IRewardPool(masterchef).withdraw(_amount.sub(wantBal))"
+            },
+            {
+                "Function": "panic",
+                "Node": "IRewardPool(masterchef).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

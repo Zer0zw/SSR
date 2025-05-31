@@ -1,0 +1,205 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "validators.amount"
+        ],
+        "User Stake Reward": [
+            "validators.reward",
+            "validators.delegatorsReward"
+        ],
+        "User Stake Time": [
+            "validators.activationEpoch",
+            "validators.deactivationEpoch"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "restake",
+            "stakeFor",
+            "stakeFor"
+        ],
+        "getReward": [
+            "claimFee",
+            "withdrawRewards"
+        ],
+        "unStake": [
+            "unstake",
+            "unstake",
+            "unstakeClaim"
+        ],
+        "Sensitive Functions": [
+            "initialize",
+            "setStakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": [
+                    4374
+                ],
+                "Input": [
+                    "acceptDelegation",
+                    "amount",
+                    "heimdallFee",
+                    "signerPubkey",
+                    "user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "locked",
+                    "minDeposit",
+                    "validatorThreshold"
+                ],
+                "Full Calculation Variables": [
+                    "locked",
+                    "minDeposit",
+                    "validatorThreshold"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "restake",
+                "Node": [
+                    4415
+                ],
+                "Input": [
+                    "amount",
+                    "stakeRewards",
+                    "validatorId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "NFTContract",
+                    "_tokenOwner",
+                    "locked",
+                    "validators.activationEpoch",
+                    "validators.amount",
+                    "validators.deactivationEpoch",
+                    "validators.reward"
+                ],
+                "Full Calculation Variables": [
+                    "NFTContract",
+                    "_tokenOwner",
+                    "locked",
+                    "validators.activationEpoch",
+                    "validators.amount",
+                    "validators.deactivationEpoch",
+                    "validators.reward"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": [
+                    4437
+                ],
+                "Input": [
+                    "validatorId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "NFTContract",
+                    "_tokenOwner"
+                ],
+                "Full Calculation Variables": [
+                    "NFTContract",
+                    "_tokenOwner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimFee",
+                "Node": [
+                    4270
+                ],
+                "Input": [
+                    "accumFeeAmount",
+                    "index",
+                    "proof"
+                ],
+                "Calculation Variables": [
+                    "userFeeExit"
+                ],
+                "Control Variables": [
+                    "accountStateRoot",
+                    "userFeeExit"
+                ],
+                "Full Calculation Variables": [
+                    "accountStateRoot",
+                    "userFeeExit"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeClaim",
+                "Node": [
+                    4403
+                ],
+                "Input": [
+                    "validatorId"
+                ],
+                "Calculation Variables": [
+                    "INITIALIZED_AMOUNT",
+                    "rewardPerStake",
+                    "validators.activationEpoch",
+                    "validators.amount",
+                    "validators.deactivationEpoch",
+                    "validators.initialRewardPerStake",
+                    "validators.jailTime",
+                    "validators.reward",
+                    "validators.signer",
+                    "validators.status"
+                ],
+                "Control Variables": [
+                    "INCORRECT_VALIDATOR_ID",
+                    "INITIALIZED_AMOUNT",
+                    "NFTContract",
+                    "WITHDRAWAL_DELAY",
+                    "_tokenOwner",
+                    "currentEpoch",
+                    "rewardPerStake",
+                    "totalStaked",
+                    "validators.activationEpoch",
+                    "validators.amount",
+                    "validators.deactivationEpoch",
+                    "validators.initialRewardPerStake",
+                    "validators.jailTime",
+                    "validators.reward",
+                    "validators.signer",
+                    "validators.status"
+                ],
+                "Full Calculation Variables": [
+                    "INCORRECT_VALIDATOR_ID",
+                    "INITIALIZED_AMOUNT",
+                    "NFTContract",
+                    "WITHDRAWAL_DELAY",
+                    "_tokenOwner",
+                    "currentEpoch",
+                    "rewardPerStake",
+                    "totalStaked",
+                    "validators.activationEpoch",
+                    "validators.amount",
+                    "validators.deactivationEpoch",
+                    "validators.initialRewardPerStake",
+                    "validators.jailTime",
+                    "validators.reward",
+                    "validators.signer",
+                    "validators.status"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

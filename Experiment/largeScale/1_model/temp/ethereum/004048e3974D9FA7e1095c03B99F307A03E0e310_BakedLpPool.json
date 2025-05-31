@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stakemap.amount"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "Stakemap.initialStakeTime",
+            "trackStakeTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(_stkId,amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "whiteListed",
+                "Node": "Totalticket[tempaddress] = Totalticket[tempaddress] + (Stakemap[_stakeid].participationCount - tempcount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(_stkId,amount)"
+            }
+        ]
+    }
+}

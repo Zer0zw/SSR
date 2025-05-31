@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "customStakingBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "radiusToken"
+        ],
+        "Reward Token Address": [
+            "radiusToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "radiusToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "customStaking",
+                "Node": "radiusToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redistributeRewards",
+                "Node": "radiusToken.transfer(recipient, balance)"
+            },
+            {
+                "Function": "customRewards",
+                "Node": "radiusToken.transfer(recipient, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "radiusToken.transfer(msg.sender, balance)"
+            },
+            {
+                "Function": "customUnstake",
+                "Node": "radiusToken.transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

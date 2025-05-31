@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "rewardAmount",
+            "bigRewardAmount"
+        ],
+        "User Stake Time": [
+            "StakeInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(stakedToken).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.transferFrom(poolContract,address(msg.sender), _pendingReward)"
+            },
+            {
+                "Function": "pickWinner",
+                "Node": "rewardToken.transfer(currentLottery.lotteryWinner, winnerAmountThisRound)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.transferFrom(address(this),address(msg.sender), _amount)"
+            }
+        ]
+    }
+}

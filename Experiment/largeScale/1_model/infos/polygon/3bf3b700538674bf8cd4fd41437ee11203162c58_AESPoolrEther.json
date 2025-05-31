@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "aesToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "stakingBalance[user] = stakingBalance[user] + msg.value"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CollectRewards",
+                "Node": "bool sent = IERC20(aesToken).transferFrom(address(this), user, rBal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Unstake",
+                "Node": "(bool sent, ) = user.call{value: matic}(\"\")"
+            }
+        ]
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked"
+        ],
+        "User Stake Reward": [
+            "HarvestData.xSushiHarvested",
+            "HarvestData.totalxSushi"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "xsushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "ISushiChef(chef).deposit(pid, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20Upgradeable(xsushi).safeTransfer(badgerTree, harvestData.toBadgerTree)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAll",
+                "Node": "ISushiChef(chef).withdraw(pid, staked)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "ISushiChef(chef).withdraw(pid, _toWithdraw)"
+            }
+        ]
+    }
+}

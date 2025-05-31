@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "usersDeposits.amount"
+        ],
+        "User Stake Reward": [
+            "usersDeposits.rewardDebt"
+        ],
+        "User Stake Time": [
+            "usersDeposits.depositTime"
+        ],
+        "Stake Token Address": [
+            "wethLnkbLp"
+        ],
+        "Reward Token Address": [
+            "lnkbToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "wethLnkbLp.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeUnlockedDeposit",
+                "Node": "lnkbToken.safeTransfer(_msgSender(), pending)"
+            },
+            {
+                "Function": "unstakeWithPenalty",
+                "Node": "lnkbToken.safeTransfer(_msgSender(), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeUnlockedDeposit",
+                "Node": "wethLnkbLp.safeTransfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "unstakeWithPenalty",
+                "Node": "wethLnkbLp.safeTransfer(_msgSender(), leftAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "wethLnkbLp.safeTransfer(_msgSender(), amount)"
+            }
+        ]
+    }
+}

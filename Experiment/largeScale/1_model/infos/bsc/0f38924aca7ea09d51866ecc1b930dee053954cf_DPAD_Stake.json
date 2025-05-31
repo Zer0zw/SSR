@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Account.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "Account.rewardsClaimed",
+            "Account.pending"
+        ],
+        "User Stake Time": [
+            "Account.stakeDate"
+        ],
+        "Stake Token Address": [
+            "DPAD"
+        ],
+        "Reward Token Address": [
+            "RW"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE_DPAD",
+                "Node": "IERC20(DPAD).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "IRW(RW).sendRewards(msg.sender, claimableReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnStake",
+                "Node": "IERC20(DPAD).transfer(msg.sender, stakedAmount)"
+            }
+        ]
+    }
+}

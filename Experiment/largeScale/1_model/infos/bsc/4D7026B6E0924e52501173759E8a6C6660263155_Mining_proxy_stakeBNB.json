@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stakeAmount",
+            "userSlot.amount_main",
+            "userSlot.amount_bcl"
+        ],
+        "User Stake Reward": [
+            "userInfo.dynamicRewards",
+            "syncReward_toClaim",
+            "bclReward_toClaim"
+        ],
+        "User Stake Time": [
+            "userSlot.timestamp"
+        ],
+        "Stake Token Address": [
+            "bcl_addr"
+        ],
+        "Reward Token Address": [
+            "bcl_addr",
+            "SYNC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeExactBCLwithBNB",
+                "Node": "IBCL(bcl_addr).transferFrom(msg.sender, address(this), BCLamount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimDynamic_toWallet_execution",
+                "Node": "IBCL(bcl_addr).transfer(msg.sender, temp * 99 / 100)"
+            },
+            {
+                "Function": "claimDynamic_toWallet_execution",
+                "Node": "IBCL(SYNC).transfer(msg.sender, temp_sync)"
+            },
+            {
+                "Function": "claimDynamic_toWallet_execution",
+                "Node": "IBCL(bcl_addr).transfer(msg.sender, temp_bcl)"
+            }
+        ],
+        "unStake": []
+    }
+}

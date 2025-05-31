@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "_getStakeReward.reward"
+        ],
+        "User Stake Time": [
+            "Stake.since"
+        ],
+        "Stake Token Address": [
+            "tokenContractAddress"
+        ],
+        "Reward Token Address": [
+            "tokenContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20 token = IERC20(tokenContractAddress)\nreturn token.transferFrom(_from, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawStake",
+                "Node": "IERC20 token = IERC20(tokenContractAddress)\ntoken.transfer(_sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawStake",
+                "Node": "IERC20 token = IERC20(tokenContractAddress)\ntoken.transfer(_sender, reward)"
+            }
+        ]
+    }
+}

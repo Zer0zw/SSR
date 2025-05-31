@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "underlyingBalanceStored"
+        ],
+        "User Stake Reward": [
+            "wantRewardCollected"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "want.safeApprove(masterChef, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_harvest()"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "wantRewardCollected += (addyBalanceAfter - addyBalanceBefore) + _swapRewards()"
+            },
+            {
+                "Function": "_transferRewards",
+                "Node": "want.safeTransfer(_msgSender(), _addyRewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "want.safeTransfer(_msgSender(), _amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "want.safeTransfer(_msgSender(), balance)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "want.safeTransfer(_msgSender(), want.balanceOf(address(this)))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "totalPayout"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_pancakePairAddress"
+        ],
+        "Reward Token Address": [
+            "BM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addToken",
+                "Node": "_balances[addr]=newAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimBM",
+                "Node": "BM.transfer(account,amount)"
+            },
+            {
+                "Function": "ClaimRewards",
+                "Node": "_claimBM(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeToken",
+                "Node": "_balances[addr]=newAmount"
+            }
+        ]
+    }
+}

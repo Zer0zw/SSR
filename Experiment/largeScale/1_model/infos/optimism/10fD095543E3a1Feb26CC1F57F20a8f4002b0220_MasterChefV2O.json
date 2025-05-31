@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "OPENX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpToken[pid].safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "OPENX.safeTransfer(to, _pendingSushi)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "OPENX.safeTransfer(to, _pendingSushi)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken[pid].safeTransfer(to, amount)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "lpToken[pid].safeTransfer(to, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "lpToken[pid].safeTransfer(to, amount)"
+            }
+        ]
+    }
+}

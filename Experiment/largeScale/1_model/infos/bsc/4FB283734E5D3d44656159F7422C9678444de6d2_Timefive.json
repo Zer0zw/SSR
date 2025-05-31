@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStruct.amount"
+        ],
+        "User Stake Reward": [
+            "userStruct.totalRewards"
+        ],
+        "User Stake Time": [
+            "userStruct.lockTime",
+            "userStruct.lockEndTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "return (reward_, (lockUps[5] * totalday_))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "token.transfer(msg.sender, amountToSend)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "villagersStake",
+            "goblinsStake"
+        ],
+        "User Stake Reward": [
+            "goblinReward"
+        ],
+        "User Stake Time": [
+            "Stake.value"
+        ],
+        "Stake Token Address": [
+            "gtg"
+        ],
+        "Reward Token Address": [
+            "gold"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeVillagers",
+                "Node": "gtg.transferFrom(msg.sender, address(this), tokenIds[i]"
+            },
+            {
+                "Function": "_stakeGoblins",
+                "Node": "gtg.transferFrom(msg.sender, address(this), tokenIds[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimFromStake",
+                "Node": "gold.mint(msg.sender, owed)"
+            },
+            {
+                "Function": "_claimFromVillager",
+                "Node": "gold.mint(msg.sender, owed)"
+            },
+            {
+                "Function": "_claimFromGoblin",
+                "Node": "gold.mint(msg.sender, owed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "rescue",
+                "Node": "gtg.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            },
+            {
+                "Function": "_claimFromVillager",
+                "Node": "gtg.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            },
+            {
+                "Function": "_claimFromGoblin",
+                "Node": "gtg.safeTransferFrom(address(this), msg.sender, tokenId, \"\")"
+            }
+        ]
+    }
+}

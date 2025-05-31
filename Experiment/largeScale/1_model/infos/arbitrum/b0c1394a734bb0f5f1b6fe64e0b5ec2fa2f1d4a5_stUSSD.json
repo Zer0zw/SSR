@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "currentUserRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "USSDToken"
+        ],
+        "Reward Token Address": [
+            "USSDToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "USSDToken.safeTransferFrom(msg.sender, address(this), _USSDAmount)"
+            },
+            {
+                "Function": "mint",
+                "Node": "USSDToken.safeTransferFrom(msg.sender, address(this), _USSDAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "_claim(owner, receiver, currentUserRewards(owner))"
+            },
+            {
+                "Function": "redeem",
+                "Node": "_claim(owner, receiver, currentUserRewards(owner))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "USSDToken.safeTransfer(receiver, assets)"
+            },
+            {
+                "Function": "redeem",
+                "Node": "USSDToken.safeTransfer(receiver, assets)"
+            }
+        ]
+    }
+}

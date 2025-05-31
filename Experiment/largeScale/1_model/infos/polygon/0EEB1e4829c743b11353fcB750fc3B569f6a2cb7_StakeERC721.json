@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToTokenIds"
+        ],
+        "User Stake Reward": [
+            "tokenAddressEmissionsRate"
+        ],
+        "User Stake Time": [
+            "tokenIdToTimeStamp"
+        ],
+        "Stake Token Address": [
+            "stakeNFTList"
+        ],
+        "Reward Token Address": [
+            "pdToken",
+            "ngcToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeByIds",
+                "Node": "IERC721(tokenAddress).transferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByTokenId",
+                "Node": "IERC20(pdToken).transfer(msg.sender, (fm * 6) / 100)"
+            },
+            {
+                "Function": "claimByTokenId",
+                "Node": "IERC20(ngcToken).transfer(msg.sender, (fm * 4) / 100)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "IERC20(pdToken).transfer(msg.sender, (fm * 6) / 100)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "IERC20(ngcToken).transfer(msg.sender, (fm * 4) / 100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": "IERC721(tokenAddress).transfer(msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeByIds",
+                "Node": "IERC721(tokenAddress).transfer(msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares",
+            "UserInfo.depositInWant"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardsDebts"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.assetToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardsTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositInWant",
+                "Node": "IERC20(pool.assetToken).safeTransferFrom(_msgSender(), address(this), _wantAmt)"
+            },
+            {
+                "Function": "depositInUnderlying",
+                "Node": "IERC20(asset).safeTransferFrom(_msgSender(), address(this), _amounts[u])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(pool.rewardsTokens[_tokenNum]).safeTransfer(_msgSender(), pending)"
+            },
+            {
+                "Function": "_claimRewards",
+                "Node": "IERC20(pool.rewardsTokens[_tokenNum]).safeTransfer(_msgSender(), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawInWant",
+                "Node": "IERC20(pool.assetToken).safeTransfer(_msgSender(), withdrawTotalAmount)"
+            },
+            {
+                "Function": "withdrawInUnderlying",
+                "Node": "IERC20(asset).safeTransfer(_msgSender(), IERC20(asset).balanceOf(address(this)))"
+            }
+        ]
+    }
+}

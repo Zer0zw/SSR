@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantTotal"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "initialize",
+                "Node": "_depositLpToken(totBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getRewards",
+                "Node": "rewardToken.safeTransfer(treasury, rewardCommission)"
+            },
+            {
+                "Function": "_getRewards",
+                "Node": "IUniswapV2Router01(router).swapExactTokensForTokens(wMaticBalance, 1, path, address(this), block.timestamp + 1)[path.length - 1]"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "migrateImpulse",
+                "Node": "stakingRewards.exit()"
+            },
+            {
+                "Function": "migrateImpulse",
+                "Node": "rewardToken.safeTransfer(treasury, rewardCommission)"
+            }
+        ]
+    }
+}

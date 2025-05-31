@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownerStakes"
+        ],
+        "User Stake Reward": [
+            "CurrentReward.value"
+        ],
+        "User Stake Time": [
+            "StakedNFT.stakingFrom"
+        ],
+        "Stake Token Address": [
+            "nfts"
+        ],
+        "Reward Token Address": [
+            "tokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nfts.transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": "require(tokens.transfer(msg.sender, reward), \"Something goes wrong with transaction\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "nfts.transferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares",
+            "lpBal"
+        ],
+        "User Stake Reward": [
+            "ldoBal",
+            "crvBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LP",
+            "ST_ETH"
+        ],
+        "Reward Token Address": [
+            "LDO",
+            "CRV"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "LiquidityGaugeV2(GAUGE).deposit(lpBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "_swapToEth(LDO, ldoBal)"
+            },
+            {
+                "Function": "_claimRewards",
+                "Node": "_swapToEth(CRV, crvBal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "StableSwapSTETH(POOL).remove_liquidity_one_coin(lpBal, 0, min)"
+            }
+        ]
+    }
+}

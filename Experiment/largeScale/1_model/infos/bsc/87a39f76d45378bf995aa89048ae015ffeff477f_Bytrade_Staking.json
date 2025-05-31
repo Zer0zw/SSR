@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userDeposit.amount"
+        ],
+        "User Stake Reward": [
+            "userDeposit.interestAmount"
+        ],
+        "User Stake Time": [
+            "userDeposit.endTime",
+            "userDeposit.depositTime"
+        ],
+        "Stake Token Address": [
+            "Token"
+        ],
+        "Reward Token Address": [
+            "Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bool success = IERC20(Token).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "bool success = IERC20(Token).transfer(msg.sender, _withdrawAmount)"
+            }
+        ]
+    }
+}

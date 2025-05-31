@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerInfo.tokensBalance"
+        ],
+        "User Stake Reward": [
+            "stakerInfo.totalRewards"
+        ],
+        "User Stake Time": [
+            "stakerInfo.totalStakingTime"
+        ],
+        "Stake Token Address": [
+            "WWPNFTContract"
+        ],
+        "Reward Token Address": [
+            "LYCNContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "WWPNFTContract.safeTransferFrom(senderAddress, address(this), _tokenId)"
+            },
+            {
+                "Function": "multiStake",
+                "Node": "WWPNFTContract.safeTransferFrom(senderAddress, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": "lycnMintTo(senderAddress, currentReward)"
+            },
+            {
+                "Function": "multiCollect",
+                "Node": "lycnMintTo(senderAddress, currentReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "WWPNFTContract.safeTransferFrom(address(this), senderAddress, _tokenId)"
+            },
+            {
+                "Function": "multiUnstake",
+                "Node": "WWPNFTContract.safeTransferFrom(address(this), senderAddress, _tokenId)"
+            }
+        ]
+    }
+}

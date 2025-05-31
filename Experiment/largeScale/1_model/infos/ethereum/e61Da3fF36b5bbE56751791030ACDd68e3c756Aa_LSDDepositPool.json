@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "block.timestamp"
+        ],
+        "Stake Token Address": [
+            "lsdTokenLSETH"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lsdTokenLsETH.mint(getMulipliedAmount(msg.value), msg.sender)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawEther",
+                "Node": "lsdRPVault.withdrawEther(_amount)"
+            },
+            {
+                "Function": "withdrawEther",
+                "Node": "lsdLIDOVault.withdrawEther(_amount, _address)"
+            },
+            {
+                "Function": "withdrawEther",
+                "Node": "lsdSWISEVault.withdrawEther(_amount)"
+            }
+        ]
+    }
+}

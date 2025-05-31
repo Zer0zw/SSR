@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getStakeInfo.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "released"
+        ],
+        "User Stake Time": [
+            "getStakeInfo.stakePeriod",
+            "getStakeInfo.stakeDate",
+            "getStakeInfo.fullReleaseDate",
+            "getStakeInfo.nextReleaseDate"
+        ],
+        "Stake Token Address": [
+            "Token"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "Token.safeTransferFrom(staker, payable(address(this)), weiAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "busd.safeTransfer(payable(msg.sender), valueBUSD)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "busd.safeTransfer(payable(msg.sender), valueBUSD"
+            }
+        ]
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "stakes.tokenAmount"
+            ],
+            "User Stake Reward": [
+                "rewardPointsEarned",
+                "stakes.expectedStakingRewardPoints"
+            ],
+            "User Stake Time": [
+                "stakes.lockingPeriodInBlocks",
+                "stakes.startBlock"
+            ],
+            "Stake Token Address": [
+                "poolToken"
+            ],
+            "Reward Token Address": [
+                "oilerToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "lockTokens"
+            ],
+            "getReward": [
+                "release"
+            ],
+            "unStake": [
+                "unlockTokens"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "lockTokens",
+                    "Calculation Variables": [
+                        "poolToken",
+                        "stakes.lockingPeriodInBlocks",
+                        "stakes.tokenAmount",
+                        "stakingProgramEndsBlock"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "release",
+                    "Calculation Variables": [
+                        "releasedTokens",
+                        "stakingProgramEndsBlock",
+                        "vestingDuration",
+                        "grantedTokens"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unlockTokens",
+                    "Calculation Variables": [
+                        "poolToken",
+                        "stakes.startBlock",
+                        "stakes.tokenAmount",
+                        "stakes.lockingPeriodInBlocks"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [
+            "lockTokens"
+        ],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

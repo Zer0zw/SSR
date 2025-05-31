@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "pendingSushi"
+        ],
+        "User Stake Time": [
+            "blocksToReleaseCompound"
+        ],
+        "Stake Token Address": [
+            "lpPair"
+        ],
+        "Reward Token Address": [
+            "farmingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "SushiMasterChef(farmingPool).deposit(poolId, _lpPairBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "SushiMasterChef(farmingPool).withdraw(poolId, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "SushiMasterChef(farmingPool).withdraw(poolId, _amount)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "SushiMasterChef(farmingPool).withdraw(poolId, _stakedAmount)"
+            }
+        ]
+    }
+}

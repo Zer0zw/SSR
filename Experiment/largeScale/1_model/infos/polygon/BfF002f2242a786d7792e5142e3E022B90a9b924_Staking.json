@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staker.amount"
+        ],
+        "User Stake Reward": [
+            "getRewardOf"
+        ],
+        "User Stake Time": [
+            "staker.unlock"
+        ],
+        "Stake Token Address": [
+            "LPAddr"
+        ],
+        "Reward Token Address": [
+            "rToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(LPAddr.transferFrom(msg.sender, address(this), _amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "performUpkeep",
+                "Node": "require(rToken.transfer(user, _reward))"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "require(rToken.transfer(user, _reward))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "require(LPAddr.transfer(user, amountDeposited))"
+            }
+        ]
+    }
+}

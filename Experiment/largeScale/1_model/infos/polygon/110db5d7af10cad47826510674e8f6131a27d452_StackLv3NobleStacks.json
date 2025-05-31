@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "posToken"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "startTime",
+            "endTime"
+        ],
+        "Stake Token Address": [
+            "sctyToken",
+            "nblToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "posToken.mint(_msgSender(), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "nblToken.transfer(_msgSender(), _amountNoble)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "sctyToken.transfer(_msgSender(), _amountScty)"
+            }
+        ]
+    }
+}

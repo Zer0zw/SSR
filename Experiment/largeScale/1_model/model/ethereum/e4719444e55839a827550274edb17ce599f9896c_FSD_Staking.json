@@ -1,0 +1,119 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.activeDeposit",
+            "users.totalDeposits"
+        ],
+        "User Stake Reward": [
+            "users.pendingGains",
+            "users.totalGained"
+        ],
+        "User Stake Time": [
+            "users.startTime",
+            "users.lastClaimedDate"
+        ],
+        "Stake Token Address": [
+            "FSD"
+        ],
+        "Reward Token Address": [
+            "FSD"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "Stake"
+        ],
+        "getReward": [
+            "ClaimReward"
+        ],
+        "unStake": [
+            "StopStaking"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": [
+                    115
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FSD"
+                ],
+                "Full Calculation Variables": [
+                    "FSD"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": [
+                    144
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakingRate",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains",
+                    "users.totalGained"
+                ],
+                "Control Variables": [
+                    "FSD",
+                    "stakingRate",
+                    "totalRewards",
+                    "totalStakes",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains",
+                    "users.totalGained"
+                ],
+                "Full Calculation Variables": [
+                    "FSD",
+                    "stakingRate",
+                    "totalRewards",
+                    "totalStakes",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains",
+                    "users.totalGained"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "StopStaking",
+                "Node": [
+                    167
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains"
+                ],
+                "Control Variables": [
+                    "FSD",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains"
+                ],
+                "Full Calculation Variables": [
+                    "FSD",
+                    "users.activeDeposit",
+                    "users.lastClaimedDate",
+                    "users.pendingGains"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

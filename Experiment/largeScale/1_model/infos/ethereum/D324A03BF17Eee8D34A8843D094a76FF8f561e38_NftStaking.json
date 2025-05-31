@@ -1,0 +1,62 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposits",
+            "_woddeposits"
+        ],
+        "User Stake Reward": [
+            "calculateRewards",
+            "calculateReward"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "stakingDestinationAddress",
+            "WoDcontractaddress"
+        ],
+        "Reward Token Address": [
+            "erc20Address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(stakingDestinationAddress).safeTransferFrom(msg.sender, address(this), tokenIds[i], \"\")"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC721(WoDcontractaddress).safeTransferFrom(msg.sender, address(this), tokenIdsWoD[i], \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "require(IERC20(erc20Address).transfer(msg.sender, reward), \"Could not transfer Reward Token!\""
+            },
+            {
+                "Function": "updateAccount",
+                "Node": "require(IERC20(erc20Address).transfer(msg.sender, reward), \"Could not transfer Reward Token!\""
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(stakingDestinationAddress).safeTransferFrom(address(this), msg.sender, tokenIds[i], \"\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(WoDcontractaddress).safeTransferFrom(address(this), msg.sender, tokenIdsWoD[i], \"\")"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC721(stakingDestinationAddress).safeTransferFrom(address(this), msg.sender, tokenIds[i], \"\")"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC721(WoDcontractaddress).safeTransferFrom(address(this), msg.sender, tokenIdsWoD[i], \"\")"
+            }
+        ]
+    }
+}

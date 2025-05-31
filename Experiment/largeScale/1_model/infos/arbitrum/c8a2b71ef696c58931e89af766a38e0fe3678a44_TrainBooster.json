@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.accumBoostedReward",
+            "totalAccumBoostedReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "_stakeToken"
+        ],
+        "Reward Token Address": [
+            "train"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_stakeToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "train.safeTransfer(user, train.balanceOf(user).sub(beforeReward))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "masterChef.harvest(user, address(_stakeToken))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_safeUnwrap(_stakeToken, _msgSender(), _amount)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_safeUnwrap(_stakeToken, _msgSender(), userStakeAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "masterChef.emergencyWithdraw(_msgSender(), address(_stakeToken))"
+            }
+        ]
+    }
+}

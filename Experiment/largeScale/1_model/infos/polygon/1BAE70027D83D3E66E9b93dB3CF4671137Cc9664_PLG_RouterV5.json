@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Invest.balance"
+        ],
+        "User Stake Reward": [
+            "rewardPerCycle",
+            "denominator"
+        ],
+        "User Stake Time": [
+            "Invest.block_deposit",
+            "Invest.block_withdraw",
+            "Invest.block_break"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositWithPermit",
+                "Node": "_deposit(account,value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "return maximumReward"
+            },
+            {
+                "Function": "getReward",
+                "Node": "return reward"
+            }
+        ],
+        "unStake": []
+    }
+}

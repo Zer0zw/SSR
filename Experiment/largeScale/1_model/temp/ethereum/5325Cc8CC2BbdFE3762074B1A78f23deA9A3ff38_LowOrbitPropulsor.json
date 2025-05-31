@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakersData.balance"
+        ],
+        "User Stake Reward": [
+            "_earningsHistory"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_lowOrbitERC20Addr"
+        ],
+        "Reward Token Address": [
+            "_lowOrbitERC20Addr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(lowOrbitERC20.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pulse",
+                "Node": "lowOrbitERC20.transfer(stakerData.addr, propulsionFuel)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(lowOrbitERC20.transfer(msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

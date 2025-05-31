@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardClaimed"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakingTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "bool success = token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "bool success = rewardToken.transfer(msg.sender, _refundValue)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "bool success2 = rewardToken.transfer(msg.sender, _refundValue)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "bool success = token.transfer(msg.sender, _refundValue)"
+            }
+        ]
+    }
+}

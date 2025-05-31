@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_wad"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "vaultAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositAndStake",
+                "Node": "vault.asset().transferFrom(msg.sender, address(this), _wad)"
+            },
+            {
+                "Function": "depositAndStakeBeltBNB",
+                "Node": "IBeltMultiStrategyToken(address(vault.asset())).depositBNB{ value: msg.value }(0)"
+            },
+            {
+                "Function": "depositAndStakeBeltToken",
+                "Node": "IBeltMultiStrategyToken(address(vault.asset())).deposit(_wad, 0)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawAndUnstake",
+                "Node": "vault.withdraw(msg.sender, vault.asset().balanceOf(address(this)))"
+            },
+            {
+                "Function": "withdrawAndUnstakeBeltBNB",
+                "Node": "msg.sender.call{value: address(this).balance}(\"\")"
+            },
+            {
+                "Function": "withdrawAndUnstakeBeltToken",
+                "Node": "token.transfer(msg.sender, token.balanceOf(address(this)))"
+            }
+        ]
+    }
+}

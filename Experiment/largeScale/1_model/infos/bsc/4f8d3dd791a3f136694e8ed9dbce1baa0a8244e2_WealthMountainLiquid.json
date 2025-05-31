@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LiqUser.totalStaked",
+            "LiqStake.amt"
+        ],
+        "User Stake Reward": [
+            "LiqUser.refearned",
+            "LiqUser.totalWithdrawn"
+        ],
+        "User Stake Time": [
+            "LiqStake.staketime"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeLiq",
+                "Node": "USDT.safeTransferFrom(msg.sender, address(this), stakeamt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "WithdrawLiqProfit",
+                "Node": "USDT.safeTransfer(msg.sender, qualifiedamt)"
+            },
+            {
+                "Function": "WithdrawRefs",
+                "Node": "USDT.safeTransfer(msg.sender, wdamt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WithdrawInitialLiq",
+                "Node": "USDT.safeTransfer(msg.sender, transferamt)"
+            }
+        ]
+    }
+}

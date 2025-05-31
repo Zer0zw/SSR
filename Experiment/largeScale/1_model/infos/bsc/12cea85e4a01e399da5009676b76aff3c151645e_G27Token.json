@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "amount_to_recive"
+        ],
+        "User Stake Time": [
+            "timeCloseSold"
+        ],
+        "Stake Token Address": [
+            "stableCoin"
+        ],
+        "Reward Token Address": [
+            "stableCoin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_transfer(address(this), msg.sender, _numTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStake",
+                "Node": "require(IBEP20(stableCoin).transfer(msg.sender, amount_to_recive)"
+            },
+            {
+                "Function": "withdrawAllStake",
+                "Node": "require(IBEP20(stableCoin).transfer(msg.sender, amount_to_recive)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "_transfer(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "withdrawAllStake",
+                "Node": "_transfer(msg.sender, address(this), balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

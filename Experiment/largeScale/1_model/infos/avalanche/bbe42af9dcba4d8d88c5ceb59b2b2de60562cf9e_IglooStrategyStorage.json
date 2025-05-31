@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userShares"
+        ],
+        "User Stake Reward": [
+            "harvested",
+            "totalHarvested"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokensArray"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "sushiMiniChef.deposit(sushiPid, tokenAmount, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_safeRewardTokenTransfer(rewardToken, to, userPendingRewards)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "_safeRewardTokenTransfer(rewardToken, to, userPendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "depositToken.safeTransfer(to, tokenAmount)"
+            }
+        ]
+    }
+}

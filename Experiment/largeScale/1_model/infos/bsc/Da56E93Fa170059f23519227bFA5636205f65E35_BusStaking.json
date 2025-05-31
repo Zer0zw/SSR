@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositAmount"
+        ],
+        "User Stake Reward": [
+            "pendingClaim",
+            "totalBUSDRewarded"
+        ],
+        "User Stake Time": [
+            "lastClaimedDay"
+        ],
+        "Stake Token Address": [
+            "busToken"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "busToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "busd.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBus",
+                "Node": "busToken.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawBusWithoutClaim",
+                "Node": "busToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

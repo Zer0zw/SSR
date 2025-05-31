@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "DURATION"
+        ],
+        "Stake Token Address": [
+            "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+        ],
+        "Reward Token Address": [
+            "0x90D702f071d2af33032943137AD0aB4280705817"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "vaultDeposit",
+                "Node": "super.vaultDeposit(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "YFFS.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

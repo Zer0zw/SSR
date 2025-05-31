@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "pending_list"
+        ],
+        "User Stake Time": [
+            "staking_time",
+            "unlock_time"
+        ],
+        "Stake Token Address": [
+            "PoolInfoItem.lpToken"
+        ],
+        "Reward Token Address": [
+            "cake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeCakeTransfer(msg.sender, pending_list[_pid][msg.sender].mul(leftrate).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), left)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), left)"
+            }
+        ]
+    }
+}

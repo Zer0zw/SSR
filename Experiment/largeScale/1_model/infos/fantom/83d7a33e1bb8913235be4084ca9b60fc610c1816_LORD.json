@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "farming_unit.balance"
+        ],
+        "User Stake Reward": [
+            "_calculate_rewards.balance"
+        ],
+        "User Stake Time": [
+            "farming_unit.deposit_time",
+            "farming_unit.locked_time"
+        ],
+        "Stake Token Address": [
+            "farming_unit.token"
+        ],
+        "Reward Token Address": [
+            "token_pool.reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farmTokens",
+                "Node": "bool transferred = IERC20(token).transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": "target_reward.mint_rewards(balance, msg.sender)"
+            },
+            {
+                "Function": "issueInterestToken",
+                "Node": "target_reward.transfer(msg.sender, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfarmTokens",
+                "Node": "IERC20(target_token).transfer(msg.sender, farming_unit[msg.sender][id].balance)"
+            },
+            {
+                "Function": "unfarmTokens",
+                "Node": "target_reward.transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "liquiditytoken1"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "require(Token(liquiditytoken1).transferFrom(msg.sender, address(this), amountToStake)"
+            },
+            {
+                "Function": "farm",
+                "Node": "require(Token(liquiditytoken1).transfer(feeDirection, fee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "require(Token(tokenAddress).transfer(account, unclaimedDivs)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "updateAccount(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfarm",
+                "Node": "require(Token(liquiditytoken1).transfer(feeDirection, fee)"
+            },
+            {
+                "Function": "unfarm",
+                "Node": "require(Token(liquiditytoken1).transfer(msg.sender, amountAfterFee)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,545 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "poolInfo.want"
+        ],
+        "Reward Token Address": [
+            "GrandV2"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositBNB",
+            "depositToken",
+            "depositWant"
+        ],
+        "getReward": [
+            "depositBNB",
+            "depositToken",
+            "depositWant",
+            "withdrawBNB",
+            "withdrawToken",
+            "withdrawWant"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdrawBNB",
+            "withdrawToken",
+            "withdrawWant"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "setGrandV2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositBNB",
+                "Node": [
+                    1682
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_guardCounter",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.frySailing",
+                    "poolInfo.isLp",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "_guardCounter",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.frySailing",
+                    "poolInfo.isLp",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "depositToken",
+                "Node": [
+                    1682
+                ],
+                "Input": [
+                    "_amount",
+                    "_paidToken",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_guardCounter",
+                    "paidToken",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.frySailing",
+                    "poolInfo.isLp",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "_guardCounter",
+                    "paidToken",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.frySailing",
+                    "poolInfo.isLp",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "depositWant",
+                "Node": [
+                    1682
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_guardCounter",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "_guardCounter",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositToken",
+                "Node": [
+                    1678
+                ],
+                "Input": [
+                    "_pid",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositBNB",
+                "Node": [
+                    1678
+                ],
+                "Input": [
+                    "_pid",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositWant",
+                "Node": [
+                    1678
+                ],
+                "Input": [
+                    "_pid",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawWant",
+                "Node": [
+                    1751
+                ],
+                "Input": [
+                    "_pid",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawBNB",
+                "Node": [
+                    1751
+                ],
+                "Input": [
+                    "_pid",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": [
+                    1751
+                ],
+                "Input": [
+                    "_pid",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBNB",
+                "Node": [
+                    1702
+                ],
+                "Input": [
+                    "_pid",
+                    "wantBalance"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_guardCounter",
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.fryLanding",
+                    "poolInfo.isLp",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint"
+                ],
+                "Full Calculation Variables": [
+                    "_guardCounter",
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.fryLanding",
+                    "poolInfo.isLp",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": [
+                    1718
+                ],
+                "Input": [
+                    "_paidToken",
+                    "_pid",
+                    "wantBalance"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_guardCounter",
+                    "grandPerSecond",
+                    "paidToken",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.fryLanding",
+                    "poolInfo.isLp",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint"
+                ],
+                "Full Calculation Variables": [
+                    "_guardCounter",
+                    "grandPerSecond",
+                    "paidToken",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.fryLanding",
+                    "poolInfo.isLp",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawWant",
+                "Node": [
+                    1729
+                ],
+                "Input": [
+                    "_pid",
+                    "wantBalance"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_guardCounter",
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint"
+                ],
+                "Full Calculation Variables": [
+                    "_guardCounter",
+                    "grandPerSecond",
+                    "poolInfo.accGrandPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "totalAllocPoint"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1792
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Control Variables": [
+                    "_guardCounter",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "_guardCounter",
+                    "poolInfo.strat",
+                    "poolInfo.want",
+                    "userInfo.rewardDebt",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

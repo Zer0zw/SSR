@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStakedBalance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "aaveAsset"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "depositToken.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositWithPermit",
+                "Node": "depositToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReferralReward",
+                "Node": "depositToken.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelWarmup",
+                "Node": "depositToken.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "depositToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

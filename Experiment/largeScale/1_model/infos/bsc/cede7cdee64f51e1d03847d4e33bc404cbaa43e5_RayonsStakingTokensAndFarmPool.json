@@ -1,0 +1,69 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mappingStakingInfos.amountTokens"
+        ],
+        "User Stake Reward": [
+            "mappingClaimStakingInfos.totalRayonsClaimed",
+            "mappingClaimStakingInfos.totalBUSDClaimed"
+        ],
+        "User Stake Time": [
+            "mappingStakingInfos.startStaking"
+        ],
+        "Stake Token Address": [
+            "addressRYS"
+        ],
+        "Reward Token Address": [
+            "addressRYS",
+            "addressBUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingTokens",
+                "Node": "IERC20(addressRYS).transferFrom(staker, address(this), amountTokens"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsStaking",
+                "Node": "IERC20(addressRYS).transfer(staker, calculateUnpaidEarningsRYS)"
+            },
+            {
+                "Function": "claimRewardsStaking",
+                "Node": "IERC20(addressBUSD).transfer(staker, calculateUnpaidEarningsBUSD)"
+            },
+            {
+                "Function": "claimRewardsFarm",
+                "Node": "IERC20(addressRYS).transfer(farmer, getUnpaidEarningFarm_Total_Rayons)"
+            },
+            {
+                "Function": "claimRewardsFarm",
+                "Node": "IERC20(addressBUSD).transfer(farmer, getUnpaidEarningFarm_Total_BUSD)"
+            },
+            {
+                "Function": "claimRewardsAndNFTsFarm",
+                "Node": "IERC20(addressRYS).transfer(farmer, getUnpaidEarningFarm_Total_Rayons)"
+            },
+            {
+                "Function": "claimRewardsAndNFTsFarm",
+                "Node": "IERC20(addressBUSD).transfer(farmer, getUnpaidEarningFarm_Total_BUSD)"
+            },
+            {
+                "Function": "claimRewardsAndRayonsStaking",
+                "Node": "IERC20(addressRYS).transfer(staker, calculateUnpaidEarningsRayons)"
+            },
+            {
+                "Function": "claimRewardsAndRayonsStaking",
+                "Node": "IERC20(addressBUSD).transfer(staker, calculateUnpaidEarningsBUSD)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimRewardsAndRayonsStaking",
+                "Node": "IERC20(addressRYS).transfer(staker, amountTokens)"
+            }
+        ]
+    }
+}

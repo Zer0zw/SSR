@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakesStruct.tokensByGen"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "stakesStruct.lastBlockTimeStamp"
+        ],
+        "Stake Token Address": [
+            "collections.erc1155",
+            "collections.erc721"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "collections[_genNumber].erc1155.safeBatchTransferFrom(msg.sender, address(this), _tokenIds, _amount, _data)"
+            },
+            {
+                "Function": "stakeNFT",
+                "Node": "collections[_genNumber].erc721.safeTransferFrom(msg.sender, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "_mint(_stakeHolder, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFTByGen",
+                "Node": "collections[_genNumber].erc1155.safeBatchTransferFrom(address(this), msg.sender, stakes[msg.sender].tokensByGen[_genNumber], _amount, _data)"
+            },
+            {
+                "Function": "unstakeNFTByGen",
+                "Node": "collections[_genNumber].erc721.transferFrom(address(this), msg.sender, stakes[msg.sender].tokensByGen[_genNumber][i])"
+            }
+        ]
+    }
+}

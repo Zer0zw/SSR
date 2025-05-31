@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.rewardBNBDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastTimeDeposit",
+            "UserInfo.lockingTime"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "stakedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakedToken.safeTransferFrom(address(msg.sender), address(this), _amount.sub(fee))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), pending.add(lockingReward))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "(bool success, ) = address(msg.sender).call{value: pendingBNB}(\"\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), pending.add(lockingReward))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "(bool success, ) = address(msg.sender).call{value: pendingBNB}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), _amount.sub(fee))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakedToken.safeTransfer(address(msg.sender), amountToTransfer.sub(fee))"
+            }
+        ]
+    }
+}

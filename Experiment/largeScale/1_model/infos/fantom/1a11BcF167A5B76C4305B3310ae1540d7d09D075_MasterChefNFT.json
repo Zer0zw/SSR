@@ -1,0 +1,58 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.sandManRewardLockup",
+            "UserInfo.theEndlessRewardLockup",
+            "UserInfo.usdRewardLockup"
+        ],
+        "User Stake Time": [
+            "UserInfo.nextHarvestUntil"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sandManToken",
+            "theEndlessToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(pool.lpToken).safeTransferFrom(address(msg.sender), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_payPendingTheEndlessSandMan",
+                "Node": "_safeTokenTransfer(sandManToken, msg.sender, sandmanRewards)"
+            },
+            {
+                "Function": "_payPendingTheEndlessSandMan",
+                "Node": "treasuryDAO.transferUSDToOwner(msg.sender, usdRewards)"
+            },
+            {
+                "Function": "_payPendingTheEndlessSandMan",
+                "Node": "_safeTokenTransfer(theEndlessToken, msg.sender, theEndlessRewards)"
+            },
+            {
+                "Function": "_payNFTBoost",
+                "Node": "SandManToken(sandManToken).mint(msg.sender, rewardBoosted)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(pool.lpToken).safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

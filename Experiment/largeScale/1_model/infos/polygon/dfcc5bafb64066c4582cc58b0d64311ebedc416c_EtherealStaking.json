@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.User_TotalETL_Stak",
+            "User.User_TotalUSDT_Stak"
+        ],
+        "User Stake Reward": [
+            "User.Directs_Bonus",
+            "User.Level_Bonus",
+            "User.Global_Stak_Bonus",
+            "User.Elite_Pool_Bonus",
+            "User.Team_Leader_Bonus",
+            "User.Global_Leader_Bonus"
+        ],
+        "User Stake Time": [
+            "BuyStak.StakDays"
+        ],
+        "Stake Token Address": [
+            "usdt_token",
+            "etl_token"
+        ],
+        "Reward Token Address": [
+            "usdt_token",
+            "etl_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Staking",
+                "Node": "usdt_token.transferFrom(msg.sender, address(this), _usdt.mul(3500).div(PERCENTS_DIVIDER)"
+            },
+            {
+                "Function": "Staking",
+                "Node": "usdt_token.transferFrom(msg.sender, liquidityAddress, _usdt.mul(3500).div(PERCENTS_DIVIDER))"
+            },
+            {
+                "Function": "Staking",
+                "Node": "usdt_token.transferFrom(msg.sender, marketingAddress, _usdt.mul(3000).div(PERCENTS_DIVIDER))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "WithdrawalUSDT",
+                "Node": "usdt_token.transfer(msg.sender,balusdt)"
+            },
+            {
+                "Function": "WithdrawalEthereal",
+                "Node": "etl_token.transfer(msg.sender,bal)"
+            }
+        ],
+        "unStake": []
+    }
+}

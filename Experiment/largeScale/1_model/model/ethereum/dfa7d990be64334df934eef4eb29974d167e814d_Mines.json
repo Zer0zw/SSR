@@ -1,0 +1,155 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "villagersStake",
+            "goblinsStake"
+        ],
+        "User Stake Reward": [
+            "goblinReward"
+        ],
+        "User Stake Time": [
+            "goblinsStake.value"
+        ],
+        "Stake Token Address": [
+            "gtg"
+        ],
+        "Reward Token Address": [
+            "gold"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addTokensToStake"
+        ],
+        "getReward": [
+            "claimFromStake"
+        ],
+        "unStake": [
+            "claimFromStake",
+            "rescue"
+        ],
+        "Sensitive Functions": [
+            "setContracts"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claimFromStake",
+                "Node": [
+                    1315
+                ],
+                "Input": [
+                    "tokenIds",
+                    "unstake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DAILY_GOLD_RATE",
+                    "MAXIMUM_GLOBAL_GOLD",
+                    "_paused",
+                    "gold",
+                    "lastClaimTimestamp",
+                    "totalGoldEarned",
+                    "totalVillagersStaked"
+                ],
+                "Full Calculation Variables": [
+                    "DAILY_GOLD_RATE",
+                    "MAXIMUM_GLOBAL_GOLD",
+                    "_paused",
+                    "gold",
+                    "lastClaimTimestamp",
+                    "totalGoldEarned",
+                    "totalVillagersStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "rescue",
+                "Node": [
+                    1469
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "goblinsIndices",
+                    "goblinsStake.owner",
+                    "goblinsStake.tokenId",
+                    "gtg",
+                    "rescueEnabled",
+                    "totalGoblinsStaked",
+                    "totalVillagersStaked",
+                    "villagerIndices",
+                    "villagersStake.owner",
+                    "villagersStake.tokenId"
+                ],
+                "Full Calculation Variables": [
+                    "goblinsIndices",
+                    "goblinsStake.owner",
+                    "goblinsStake.tokenId",
+                    "gtg",
+                    "rescueEnabled",
+                    "totalGoblinsStaked",
+                    "totalVillagersStaked",
+                    "villagerIndices",
+                    "villagersStake.owner",
+                    "villagersStake.tokenId"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimFromStake",
+                "Node": [
+                    1366
+                ],
+                "Input": [
+                    "tokenId",
+                    "unstake",
+                    "unstake",
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "goblinReward",
+                    "totalGoblinsStaked",
+                    "MAXIMUM_GLOBAL_GOLD",
+                    "totalGoldEarned",
+                    "goblinsStake.value",
+                    "goblinsStake.tokenId",
+                    "goblinsStake.owner",
+                    "villagersStake.value",
+                    "villagersStake.owner",
+                    "villagersStake.tokenId",
+                    "goblinsIndices",
+                    "villagerIndices",
+                    "MINIMUM_TIME_TO_EXIT",
+                    "gtg",
+                    "totalVillagersStaked"
+                ],
+                "Full Calculation Variables": [
+                    "goblinReward",
+                    "totalGoblinsStaked",
+                    "MAXIMUM_GLOBAL_GOLD",
+                    "totalGoldEarned",
+                    "goblinsStake.value",
+                    "goblinsStake.tokenId",
+                    "goblinsStake.owner",
+                    "villagersStake.value",
+                    "villagersStake.owner",
+                    "villagersStake.tokenId",
+                    "goblinsIndices",
+                    "villagerIndices",
+                    "MINIMUM_TIME_TO_EXIT",
+                    "gtg",
+                    "totalVillagersStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

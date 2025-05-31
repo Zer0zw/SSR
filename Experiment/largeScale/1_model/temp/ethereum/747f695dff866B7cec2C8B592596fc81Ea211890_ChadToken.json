@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeTracker.mangasPoolTokens",
+            "stakeTracker.chadPoolTokens"
+        ],
+        "User Stake Reward": [
+            "stakeTracker.rewards"
+        ],
+        "User Stake Time": [
+            "stakeTracker.lastBlockChecked"
+        ],
+        "Stake Token Address": [
+            "mangasV2",
+            "chadV2"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "mangasV2.safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeChadUni",
+                "Node": "chadV2.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_mint(msg.sender, reward.div(20).mul(15))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "mangasV2.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawChadUni",
+                "Node": "chadV2.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

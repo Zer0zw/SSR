@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sYSL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            },
+            {
+                "Function": "depositFrom",
+                "Node": "pool1.strat.transferIn(_msgSender(), output)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeSYSLtransfer(_user, pending)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "safeSYSLtransfer(_user, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "safeSYSLtransfer(_user, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransferFrom(address(pool.strat), _msgSender(), _amount)"
+            },
+            {
+                "Function": "depositFrom",
+                "Node": "pool0.strat.transferOut(_msgSender(), _amount)"
+            }
+        ]
+    }
+}

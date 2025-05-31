@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "Staker.remainder",
+            "getPendingReward"
+        ],
+        "User Stake Time": [
+            "Staker.round"
+        ],
+        "Stake Token Address": [
+            "erc20tokenInstance"
+        ],
+        "Reward Token Address": [
+            "erc20tokenInstance"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(erc20tokenInstance.transferFrom(msg.sender, address(this), _tokens_amount)"
+            },
+            {
+                "Function": "acceleratorStake",
+                "Node": "require(erc20tokenInstance.transferFrom(msg.sender, address(this), _tokens_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(erc20tokenInstance.transfer(msg.sender, pendingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(erc20tokenInstance.transfer(msg.sender, sub(_tokens_amount, _fee))"
+            }
+        ]
+    }
+}

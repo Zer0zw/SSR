@@ -1,0 +1,185 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "farmers.deposit"
+        ],
+        "User Stake Reward": [
+            "farmers.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest",
+            "onSushiReward",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "setPool"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    606,
+                    607,
+                    608,
+                    609,
+                    610
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "farmers.deposit",
+                    "lpToken"
+                ],
+                "Full Calculation Variables": [
+                    "farmers.deposit",
+                    "lpToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onSushiReward",
+                "Node": [
+                    664
+                ],
+                "Input": [
+                    "_to",
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "accCigPerShare"
+                ],
+                "Control Variables": [
+                    "accCigPerShare"
+                ],
+                "Full Calculation Variables": [
+                    "accCigPerShare"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    664
+                ],
+                "Input": [
+                    "_to",
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "accCigPerShare"
+                ],
+                "Control Variables": [
+                    "accCigPerShare"
+                ],
+                "Full Calculation Variables": [
+                    "accCigPerShare"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "harvest",
+                "Node": [
+                    664
+                ],
+                "Input": [
+                    "_to",
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "lpToken",
+                    "lastRewardBlock",
+                    "accCigPerShare",
+                    "cigPerBlock",
+                    "masterchefDeposits"
+                ],
+                "Control Variables": [
+                    "lpToken",
+                    "lastRewardBlock",
+                    "masterchefDeposits",
+                    "accCigPerShare",
+                    "cigPerBlock",
+                    "farmers"
+                ],
+                "Full Calculation Variables": [
+                    "lpToken",
+                    "lastRewardBlock",
+                    "masterchefDeposits",
+                    "accCigPerShare",
+                    "cigPerBlock",
+                    "farmers"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    629,
+                    630,
+                    631,
+                    632,
+                    633
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "farmers",
+                    "lpToken"
+                ],
+                "Full Calculation Variables": [
+                    "farmers",
+                    "lpToken"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    694,
+                    695,
+                    696,
+                    697
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "farmers.deposit",
+                    "farmers.rewardDebt"
+                ],
+                "Control Variables": [
+                    "farmers.deposit",
+                    "farmers.rewardDebt",
+                    "lpToken"
+                ],
+                "Full Calculation Variables": [
+                    "farmers.deposit",
+                    "farmers.rewardDebt",
+                    "lpToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

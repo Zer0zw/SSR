@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastRewardBlock"
+        ],
+        "Stake Token Address": [
+            "Bct"
+        ],
+        "Reward Token Address": [
+            "Bct"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(Bct).transferFrom(address(msg.sender), blackHole, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingBct",
+                "Node": "amount = amount.mul(rateDecimal.add(baseRate)).div(rateDecimal)"
+            },
+            {
+                "Function": "pendingBct",
+                "Node": "amount = amount.mul(rateDecimal.add(minRate)).div(rateDecimal)"
+            },
+            {
+                "Function": "pendingBct",
+                "Node": "amount = amount.mul(rateDecimal.add(hourRate)).div(rateDecimal)"
+            },
+            {
+                "Function": "pendingBct",
+                "Node": "amount = amount.mul(rateDecimal.add(dayRate)).div(rateDecimal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Bct.safeTransfer(msg.sender, _amount.sub(withdrawFee))"
+            }
+        ]
+    }
+}

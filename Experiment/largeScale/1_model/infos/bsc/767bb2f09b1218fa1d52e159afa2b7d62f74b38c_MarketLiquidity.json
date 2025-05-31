@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "StakeData.storedRewards"
+        ],
+        "User Stake Time": [
+            "StakeData.timestamp"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "balances[msg.sender] += amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "recipient.call{value: rew}(\"\")"
+            },
+            {
+                "Function": "compound",
+                "Node": "balances[msg.sender] += rew"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "recipient.call{value: withdrawal}(\"\")"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balances[msg.sender])"
+            }
+        ]
+    }
+}

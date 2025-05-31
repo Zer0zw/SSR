@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "_rewardBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IFantasmChef(farmPool).deposit(poolId, _baseBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IFantasmChef(farmPool).harvest(poolId, address(this))"
+            },
+            {
+                "Function": "_buyWantAndReinvest",
+                "Node": "_swapTokens(_rewardToken, targetCompoundToken, _rewardBal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IFantasmChef(farmPool).withdraw(poolId, _amount, address(this))"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IFantasmChef(farmPool).withdrawAndHarvest(poolId, _stakedAmount, address(this))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IFantasmChef(farmPool).emergencyWithdraw(poolId, address(this))"
+            }
+        ]
+    }
+}

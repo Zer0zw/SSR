@@ -1,0 +1,282 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "erc20Stakes.tokenStaked",
+            "t1Stakes.setupBlock"
+        ],
+        "User Stake Reward": [
+            "accumulatedPayouts"
+        ],
+        "User Stake Time": [
+            "erc20Stakes.setupTime",
+            "t1Stakes.setupTime"
+        ],
+        "Stake Token Address": [
+            "supportedTokensERC20",
+            "T1_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "T3_ADDRESS"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeERC20",
+            "stakeT1"
+        ],
+        "getReward": [
+            "payoutRewardERC20",
+            "payoutRewardT1",
+            "processAccumulatedPayout"
+        ],
+        "unStake": [
+            "unstakeERC20",
+            "unstakeT1"
+        ],
+        "Sensitive Functions": [
+            "addERC20ForStaking"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeERC20",
+                "Node": [
+                    2512
+                ],
+                "Input": [
+                    "token",
+                    "value"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "erc20StakeFactors.multi",
+                    "erc20Stakes.setupBlock",
+                    "erc20Stakes.setupTime",
+                    "erc20Stakes.tokenStaked"
+                ],
+                "Full Calculation Variables": [
+                    "erc20StakeFactors.multi",
+                    "erc20Stakes.setupBlock",
+                    "erc20Stakes.setupTime",
+                    "erc20Stakes.tokenStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeT1",
+                "Node": [
+                    2542
+                ],
+                "Input": [
+                    "tokenid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "T1_ADDRESS"
+                ],
+                "Full Calculation Variables": [
+                    "T1_ADDRESS"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "processAccumulatedPayout",
+                "Node": [
+                    2494
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "accumulatedPayouts"
+                ],
+                "Control Variables": [
+                    "T3_ADDRESS",
+                    "accumulatedPayouts"
+                ],
+                "Full Calculation Variables": [
+                    "T3_ADDRESS",
+                    "accumulatedPayouts"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "payoutRewardERC20",
+                "Node": [
+                    2537
+                ],
+                "Input": [
+                    "token"
+                ],
+                "Calculation Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "accumulatedPayouts",
+                    "erc20StakeFactors.divi",
+                    "erc20StakeFactors.multi",
+                    "erc20Stakes.setupBlock",
+                    "erc20Stakes.setupTime",
+                    "erc20Stakes.tokenStaked"
+                ],
+                "Control Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "accumulatedPayouts",
+                    "erc20StakeFactors.divi",
+                    "erc20StakeFactors.multi",
+                    "erc20Stakes.setupBlock",
+                    "erc20Stakes.setupTime",
+                    "erc20Stakes.tokenStaked"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "accumulatedPayouts",
+                    "erc20StakeFactors.divi",
+                    "erc20StakeFactors.multi",
+                    "erc20Stakes.setupBlock",
+                    "erc20Stakes.setupTime",
+                    "erc20Stakes.tokenStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "payoutRewardT1",
+                "Node": [
+                    2583
+                ],
+                "Input": [
+                    "tokenid"
+                ],
+                "Calculation Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "T1_ADDRESS",
+                    "T1_BOOL_DIVI",
+                    "T1_BOOL_MUL_FALSE",
+                    "T1_BOOL_MUL_TRUE",
+                    "_additionalData.power",
+                    "_additionalData.someBool",
+                    "_nextId",
+                    "_tokenOwners",
+                    "accumulatedPayouts",
+                    "t1StakeFactor",
+                    "t1Stakes.setupBlock",
+                    "t1Stakes.setupTime"
+                ],
+                "Control Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "T1_ADDRESS",
+                    "T1_BOOL_DIVI",
+                    "T1_BOOL_MUL_FALSE",
+                    "T1_BOOL_MUL_TRUE",
+                    "_additionalData.power",
+                    "_additionalData.someBool",
+                    "_nextId",
+                    "_tokenOwners",
+                    "accumulatedPayouts",
+                    "stakedT1Holders",
+                    "t1StakeFactor",
+                    "t1Stakes.setupBlock",
+                    "t1Stakes.setupTime"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "T1_ADDRESS",
+                    "T1_BOOL_DIVI",
+                    "T1_BOOL_MUL_FALSE",
+                    "T1_BOOL_MUL_TRUE",
+                    "_additionalData.power",
+                    "_additionalData.someBool",
+                    "_nextId",
+                    "_tokenOwners",
+                    "accumulatedPayouts",
+                    "stakedT1Holders",
+                    "t1StakeFactor",
+                    "t1Stakes.setupBlock",
+                    "t1Stakes.setupTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeERC20",
+                "Node": [
+                    2527
+                ],
+                "Input": [
+                    "token"
+                ],
+                "Calculation Variables": [
+                    "erc20Stakes.tokenStaked"
+                ],
+                "Control Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "T3_ADDRESS",
+                    "accumulatedPayouts",
+                    "erc20StakeFactors.divi",
+                    "erc20StakeFactors.multi",
+                    "erc20Stakes.setupBlock",
+                    "erc20Stakes.setupTime",
+                    "erc20Stakes.tokenStaked"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "T3_ADDRESS",
+                    "accumulatedPayouts",
+                    "erc20StakeFactors.divi",
+                    "erc20StakeFactors.multi",
+                    "erc20Stakes.setupBlock",
+                    "erc20Stakes.setupTime",
+                    "erc20Stakes.tokenStaked"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "unstakeT1",
+                "Node": [
+                    2563
+                ],
+                "Input": [
+                    "tokenid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "T1_ADDRESS",
+                    "T1_BOOL_DIVI",
+                    "T1_BOOL_MUL_FALSE",
+                    "T1_BOOL_MUL_TRUE",
+                    "T3_ADDRESS",
+                    "_additionalData.power",
+                    "_additionalData.someBool",
+                    "_nextId",
+                    "_tokenOwners",
+                    "accumulatedPayouts",
+                    "stakedT1Holders",
+                    "t1StakeFactor",
+                    "t1Stakes",
+                    "t1Stakes.setupBlock",
+                    "t1Stakes.setupTime"
+                ],
+                "Full Calculation Variables": [
+                    "BLOCKTIME_PENALTY_THRESHOLD",
+                    "T1_ADDRESS",
+                    "T1_BOOL_DIVI",
+                    "T1_BOOL_MUL_FALSE",
+                    "T1_BOOL_MUL_TRUE",
+                    "T3_ADDRESS",
+                    "_additionalData.power",
+                    "_additionalData.someBool",
+                    "_nextId",
+                    "_tokenOwners",
+                    "accumulatedPayouts",
+                    "stakedT1Holders",
+                    "t1StakeFactor",
+                    "t1Stakes",
+                    "t1Stakes.setupBlock",
+                    "t1Stakes.setupTime"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

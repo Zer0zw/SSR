@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getStorageValue",
+            "amount"
+        ],
+        "User Stake Reward": [
+            "pendingReward",
+            "cumulativeReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "config().token()"
+        ],
+        "Reward Token Address": [
+            "devMinter"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositToProperty",
+                "Node": "require(IERC20(config().token()).transferFrom(msg.sender, _property, _amount)"
+            },
+            {
+                "Function": "depositToPosition",
+                "Node": "require(IERC20(config().token()).transferFrom(msg.sender, property, _amount)"
+            },
+            {
+                "Function": "lockup",
+                "Node": "require(msg.sender == config().token(), \"this is illegal address\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawInterest",
+                "Node": "require(IDevMinter(devMinter).mint(msg.sender, value)"
+            },
+            {
+                "Function": "_withdrawInterest4Legacy",
+                "Node": "require(IDevMinter(devMinter).mint(msg.sender, value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawByPosition",
+                "Node": "IProperty(property).withdraw(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IProperty(_property).withdraw(msg.sender, _amount)"
+            }
+        ]
+    }
+}

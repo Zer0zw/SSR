@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.tokenRewards",
+            "UserInfo.remainingYelTokenReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.startClaimedYEL"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "yel"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "lpToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardToken.safeTransfer(account, tokenRewards)"
+            },
+            {
+                "Function": "_payYels",
+                "Node": "yel.transfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

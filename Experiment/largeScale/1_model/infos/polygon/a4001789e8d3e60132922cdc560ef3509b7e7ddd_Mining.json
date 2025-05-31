@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "Stake.grvxReward"
+        ],
+        "User Stake Time": [
+            "Stake.endBlock",
+            "Stake.startBlock"
+        ],
+        "Stake Token Address": [
+            "StakeExtra.shipContract",
+            "StakeExtra.captainContract"
+        ],
+        "Reward Token Address": [
+            "grvx",
+            "scrap",
+            "vouchers",
+            "veterans"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeShip",
+                "Node": "ships.transferFrom(msg.sender, address(this), shipId)"
+            },
+            {
+                "Function": "stakeBoth",
+                "Node": "ships.transferFrom(msg.sender, address(this), shipId)"
+            },
+            {
+                "Function": "stake",
+                "Node": "ships.transferFrom(msg.sender, address(this), shipId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "grvx.mint(msg.sender, stakes[stakeId].grvxReward)"
+            },
+            {
+                "Function": "claim",
+                "Node": "scrap.mint(msg.sender, scrapQuantity * 10**18)"
+            },
+            {
+                "Function": "claim",
+                "Node": "skins.transferFrom(address(this), msg.sender, stakesExtra[stakeId].skinId)"
+            }
+        ],
+        "unStake": []
+    }
+}

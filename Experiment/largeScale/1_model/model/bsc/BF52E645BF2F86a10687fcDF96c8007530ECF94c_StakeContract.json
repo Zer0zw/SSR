@@ -1,0 +1,123 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.totalstakeduser"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StakeToken"
+        ],
+        "Reward Token Address": [
+            "RewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "withdraw"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "migratelostToken",
+            "setTokenaddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    167
+                ],
+                "Input": [
+                    "amount",
+                    "plan"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "StakeToken",
+                    "minStake",
+                    "newuser",
+                    "users.stakecount",
+                    "users.stakerecord",
+                    "users.totalstakeduser"
+                ],
+                "Full Calculation Variables": [
+                    "StakeToken",
+                    "minStake",
+                    "newuser",
+                    "users.stakecount",
+                    "users.stakerecord",
+                    "users.totalstakeduser"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    204,
+                    205,
+                    206,
+                    207,
+                    208
+                ],
+                "Input": [
+                    "count"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "RewardToken",
+                    "StakeToken",
+                    "rewardAddress",
+                    "users.claimedTokens",
+                    "users.stakecount",
+                    "users.stakerecord"
+                ],
+                "Full Calculation Variables": [
+                    "RewardToken",
+                    "StakeToken",
+                    "rewardAddress",
+                    "users.claimedTokens",
+                    "users.stakecount",
+                    "users.stakerecord"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    230,
+                    231,
+                    232,
+                    233
+                ],
+                "Input": [
+                    "count"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "StakeToken",
+                    "users.stakecount",
+                    "users.stakerecord",
+                    "users.unStakedTokens"
+                ],
+                "Full Calculation Variables": [
+                    "StakeToken",
+                    "users.stakecount",
+                    "users.stakerecord",
+                    "users.unStakedTokens"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

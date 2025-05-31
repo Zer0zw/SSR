@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lockEndedTimestamp"
+        ],
+        "Stake Token Address": [
+            "pearls"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(address(pearls)).safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "depositWithReferralCode",
+                "Node": "IERC20(address(pearls)).safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pearls.mint(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "earlyWithdraw",
+                "Node": "pearls.mint(address(msg.sender), _amount * earlyWithdrawRemainingAfterTax / earlyWithdrawDenominator)"
+            }
+        ]
+    }
+}

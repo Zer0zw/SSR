@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "voteEscrowedBalance",
+            "StakingDetails.initialTokenAmount"
+        ],
+        "User Stake Reward": [
+            "_withdrawnRewards",
+            "unclaimedRewardsBalance"
+        ],
+        "User Stake Time": [
+            "StakingDetails.numOfMonths",
+            "StakingDetails.depositTime"
+        ],
+        "Stake Token Address": [
+            "everRiseToken"
+        ],
+        "Reward Token Address": [
+            "claimRiseToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "increaseVeAmount(staker, remaining, numOfMonths, true)"
+            },
+            {
+                "Function": "increaseStake",
+                "Node": "increaseVeAmount(staker, amount, numOfMonths, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "require(everRiseToken.transfer(staker, rewards))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "decreaseVeAmount(staker, remainingAmount, stakeDetails.numOfMonths, true)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "decreaseVeAmount(staker, amount, stakeDetails.numOfMonths, true)"
+            },
+            {
+                "Function": "earlyWithdraw",
+                "Node": "decreaseVeAmount(staker, amount, stakeDetails.numOfMonths, true)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,170 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalWaifusStaked"
+        ],
+        "User Stake Reward": [
+            "totalWTEarned"
+        ],
+        "User Stake Time": [
+            "capsule.value"
+        ],
+        "Stake Token Address": [
+            "cryptowaifus"
+        ],
+        "Reward Token Address": [
+            "waifustoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addManyToCapsule"
+        ],
+        "getReward": [
+            "claimManyFromCapsules"
+        ],
+        "unStake": [
+            "claimManyFromCapsules",
+            "rescue"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addManyToCapsule",
+                "Node": [
+                    2351
+                ],
+                "Input": [
+                    "account",
+                    "account",
+                    "tokenIds",
+                    "tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "totalWaifusStaked",
+                    "_paused",
+                    "MAXIMUM_GLOBAL_WT",
+                    "totalWTEarned",
+                    "lastClaimTimestamp",
+                    "DAILY_WT_RATE",
+                    "cryptowaifus"
+                ],
+                "Full Calculation Variables": [
+                    "totalWaifusStaked",
+                    "_paused",
+                    "MAXIMUM_GLOBAL_WT",
+                    "totalWTEarned",
+                    "lastClaimTimestamp",
+                    "DAILY_WT_RATE",
+                    "cryptowaifus"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimManyFromCapsules",
+                "Node": [
+                    2408
+                ],
+                "Input": [
+                    "tokenIds",
+                    "unstake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DAILY_WT_RATE",
+                    "MAXIMUM_GLOBAL_WT",
+                    "_paused",
+                    "lastClaimTimestamp",
+                    "totalWTEarned",
+                    "totalWaifusStaked",
+                    "waifustoken"
+                ],
+                "Full Calculation Variables": [
+                    "DAILY_WT_RATE",
+                    "MAXIMUM_GLOBAL_WT",
+                    "_paused",
+                    "lastClaimTimestamp",
+                    "totalWTEarned",
+                    "totalWaifusStaked",
+                    "waifustoken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimManyFromCapsules",
+                "Node": [
+                    2444
+                ],
+                "Input": [
+                    "unstake",
+                    "tokenIds",
+                    "tokenId",
+                    "unstake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "totalWaifusStaked",
+                    "capsule.tokenId",
+                    "totalWTEarned",
+                    "MAXIMUM_GLOBAL_WT",
+                    "DAILY_WT_RATE",
+                    "cryptowaifus",
+                    "lastClaimTimestamp",
+                    "_paused",
+                    "capsule.value",
+                    "capsule.owner"
+                ],
+                "Full Calculation Variables": [
+                    "totalWaifusStaked",
+                    "capsule.tokenId",
+                    "totalWTEarned",
+                    "MAXIMUM_GLOBAL_WT",
+                    "DAILY_WT_RATE",
+                    "cryptowaifus",
+                    "lastClaimTimestamp",
+                    "_paused",
+                    "capsule.value",
+                    "capsule.owner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "rescue",
+                "Node": [
+                    2481,
+                    2482,
+                    2483,
+                    2484,
+                    2485,
+                    2486
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "capsule.owner",
+                    "capsule.tokenId",
+                    "cryptowaifus",
+                    "rescueEnabled",
+                    "totalWaifusStaked"
+                ],
+                "Full Calculation Variables": [
+                    "capsule.owner",
+                    "capsule.tokenId",
+                    "cryptowaifus",
+                    "rescueEnabled",
+                    "totalWaifusStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

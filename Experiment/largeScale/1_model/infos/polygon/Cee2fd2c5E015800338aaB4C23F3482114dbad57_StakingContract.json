@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "customStakingBalance"
+        ],
+        "User Stake Reward": [
+            "totalClaimedRewards"
+        ],
+        "User Stake Time": [
+            "stakedTime",
+            "lastRewardTime"
+        ],
+        "Stake Token Address": [
+            "_link"
+        ],
+        "Reward Token Address": [
+            "_link"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "customStaking",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "token.transfer(recipient, balance)"
+            },
+            {
+                "Function": "investRewards",
+                "Node": "customStakingBalance[recipient] = customStakingBalance[recipient] + balance"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "SandBox",
+                "Node": "token.transfer(owner,token.balanceOf(address(this)))"
+            }
+        ]
+    }
+}

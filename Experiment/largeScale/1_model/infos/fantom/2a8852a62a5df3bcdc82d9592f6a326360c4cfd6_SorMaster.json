@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sorClaimAmount"
+        ],
+        "User Stake Reward": [
+            "usdcClaimAmount"
+        ],
+        "User Stake Time": [
+            "sorClaimSecond",
+            "usdcClaimSecond"
+        ],
+        "Stake Token Address": [
+            "usdc"
+        ],
+        "Reward Token Address": [
+            "sor"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sor.safeTransfer(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimSor",
+                "Node": "sor.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimUsdc",
+                "Node": "usdc.safeTransfer(msg.sender, usdcTransferAmount)"
+            },
+            {
+                "Function": "emergencyClaimUsdcAll",
+                "Node": "usdc.safeTransfer(msg.sender, usdcTransferAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "sor.safeTransferFrom(msg.sender, dead, amount)"
+            },
+            {
+                "Function": "emergencyRedeemAll",
+                "Node": "sor.safeTransferFrom(msg.sender, dead, amount)"
+            }
+        ]
+    }
+}

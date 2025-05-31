@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares.amount"
+        ],
+        "User Stake Reward": [
+            "shares.totalClaimed"
+        ],
+        "User Stake Time": [
+            "shares.lastDepositTimestamp",
+            "shares.lastWithdrawnTimestamp"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "IERC20(tokenAddress).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimReward",
+                "Node": "IERC20(tokenAddress).transfer(account, amount)"
+            },
+            {
+                "Function": "_claimRewardReferrer",
+                "Node": "IERC20(tokenAddress).transfer(account, amountForReferrer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "IERC20(tokenAddress).transfer(_msgSender(), amountAfterTax)"
+            }
+        ]
+    }
+}

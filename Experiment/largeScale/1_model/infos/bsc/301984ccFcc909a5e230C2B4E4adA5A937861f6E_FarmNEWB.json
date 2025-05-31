@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "_farmwbnb"
+        ],
+        "Reward Token Address": [
+            "newb"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount, _userAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "newb.safeTransfer(_userAddress, reward.mul(85).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount, _userAddress)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(_userAddress), _userAddress)"
+            }
+        ]
+    }
+}

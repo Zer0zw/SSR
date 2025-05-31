@@ -1,0 +1,77 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedGmxTracker",
+            "stakedGlpTracker"
+        ],
+        "User Stake Reward": [
+            "feeGmxTracker",
+            "feeGlpTracker"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "gmx",
+            "glp"
+        ],
+        "Reward Token Address": [
+            "esGmx",
+            "bnGmx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeGmx",
+                "Node": "IRewardTracker(stakedGmxTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "stakeEsGmx",
+                "Node": "IRewardTracker(stakedGmxTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "mintAndStakeGlp",
+                "Node": "IRewardTracker(feeGlpTracker).stakeForAccount(account, account, glp, glpAmount)"
+            },
+            {
+                "Function": "mintAndStakeGlpETH",
+                "Node": "IRewardTracker(feeGlpTracker).stakeForAccount(account, account, glp, glpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IRewardTracker(feeGmxTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimEsGmx",
+                "Node": "IRewardTracker(stakedGmxTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimFees",
+                "Node": "IRewardTracker(feeGmxTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "handleRewards",
+                "Node": "IVester(gmxVester).claimForAccount(account, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeGmx",
+                "Node": "IRewardTracker(stakedGmxTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeEsGmx",
+                "Node": "IRewardTracker(stakedGmxTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeAndRedeemGlp",
+                "Node": "IRewardTracker(stakedGlpTracker).unstakeForAccount(account, feeGlpTracker, _glpAmount, account)"
+            },
+            {
+                "Function": "unstakeAndRedeemGlpETH",
+                "Node": "IRewardTracker(stakedGlpTracker).unstakeForAccount(account, feeGlpTracker, _glpAmount, account)"
+            }
+        ]
+    }
+}

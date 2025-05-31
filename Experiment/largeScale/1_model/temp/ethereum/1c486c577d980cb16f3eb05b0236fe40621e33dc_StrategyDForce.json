@@ -1,0 +1,69 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "getHarvestable"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "df"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "dERC20(dtoken).mint(address(this), _want)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "dRewards(pool).stake(_d)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "dRewards(pool).getReward()"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_swap(df, want, _df)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(want).safeTransfer(ISashimiPlateController(controller).treasury(), _want.mul(performanceFee).div(performanceMax))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(ISashimiPlateController(controller).devfund(), _feeDev)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(ISashimiPlateController(controller).treasury(), _feeTreasury)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_plate, _amount.sub(_feeDev).sub(_feeTreasury))"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(_plate, balance)"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "dERC20(dtoken).redeem(address(this),_d)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "dERC20(dtoken).redeem(address(this), _withdrew)"
+            }
+        ]
+    }
+}

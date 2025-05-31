@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "gswap"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAndWithdraw",
+                "Node": "uint256 streamedGswapAmount = startStream(msg.sender, gswap, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimAndWithdraw",
+                "Node": "uint256 streamedLPAmount = startStream(msg.sender, pool.lpToken, user.amount)"
+            },
+            {
+                "Function": "noRewardsWithdraw",
+                "Node": "uint256 streamedAmount = startStream(msg.sender, pool.lpToken, user.amount)"
+            }
+        ]
+    }
+}

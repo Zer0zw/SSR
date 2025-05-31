@@ -1,0 +1,116 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "investors.invested"
+        ],
+        "User Stake Reward": [
+            "investors.apyAmount"
+        ],
+        "User Stake Time": [
+            "tariffs.time"
+        ],
+        "Stake Token Address": [
+            "token1"
+        ],
+        "Reward Token Address": [
+            "token1"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "withdrawApy"
+        ],
+        "unStake": [
+            "unstakeFunc"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    180
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakeToken"
+                ],
+                "Full Calculation Variables": [
+                    "stakeToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawApy",
+                "Node": [
+                    227
+                ],
+                "Input": [
+                    "i"
+                ],
+                "Calculation Variables": [
+                    "investors.deposits",
+                    "tariffs.time"
+                ],
+                "Control Variables": [
+                    "investors.apyAmount",
+                    "investors.deposits",
+                    "stakeToken",
+                    "tariffs.time"
+                ],
+                "Full Calculation Variables": [
+                    "investors.apyAmount",
+                    "investors.deposits",
+                    "stakeToken",
+                    "tariffs.time"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeFunc",
+                "Node": [
+                    260
+                ],
+                "Input": [
+                    "i"
+                ],
+                "Calculation Variables": [
+                    "investors.apyAmount",
+                    "investors.deposits",
+                    "investors.withdrawn",
+                    "tariffs.time"
+                ],
+                "Control Variables": [
+                    "coolingPeriod",
+                    "investors.apyAmount",
+                    "investors.deposits",
+                    "investors.withdrawn",
+                    "oneDay",
+                    "stakeToken",
+                    "tariffs.time"
+                ],
+                "Full Calculation Variables": [
+                    "coolingPeriod",
+                    "investors.apyAmount",
+                    "investors.deposits",
+                    "investors.withdrawn",
+                    "oneDay",
+                    "stakeToken",
+                    "tariffs.time"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

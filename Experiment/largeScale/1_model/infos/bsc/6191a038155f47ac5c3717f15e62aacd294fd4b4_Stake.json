@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakerInfo.amount",
+            "amountByPool"
+        ],
+        "User Stake Reward": [
+            "StakerInfo.reward"
+        ],
+        "User Stake Time": [
+            "StakerInfo.startTime",
+            "PoolInfo.duration"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(token.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "require(token.transferFrom(_staker, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "require(token.transfer(withdrawingAddress, totalWithdraw)"
+            },
+            {
+                "Function": "withdrawFrom",
+                "Node": "require(token.transfer(msg.sender, totalWithdraw)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(token.transfer(withdrawingAddress, withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(token.transfer(withdrawingAddress, totalWithdraw)"
+            },
+            {
+                "Function": "withdrawFrom",
+                "Node": "require(token.transfer(msg.sender, totalWithdraw)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "require(token.transfer(withdrawingAddress, withdrawAmount)"
+            }
+        ]
+    }
+}

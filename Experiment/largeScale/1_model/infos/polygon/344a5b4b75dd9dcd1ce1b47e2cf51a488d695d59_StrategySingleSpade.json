@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ISpade(masterChef).deposit(pid, _wantAmount, referralAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ISpade(masterChef).withdraw(pid, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ISpade(masterChef).withdraw(pid, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "ISpade(masterChef).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

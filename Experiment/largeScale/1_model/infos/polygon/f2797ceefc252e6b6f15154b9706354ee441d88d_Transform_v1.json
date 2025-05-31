@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amounts_NoAffiliate",
+            "amounts_Affiliate.amount"
+        ],
+        "User Stake Reward": [
+            "originamount",
+            "amount"
+        ],
+        "User Stake Time": [
+            "startTime",
+            "duration"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "HODLAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositTokensWithoutAffiliate",
+                "Node": "IERC20(pools[_poolindex].tokenAddress).transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositTokensWithAffiliate",
+                "Node": "IERC20(pools[_poolindex].tokenAddress).transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositMATICWithoutAffiliate",
+                "Node": "pools[_poolindex].amounts_NoAffiliate[msg.sender] = previousDepositAmount.add(msg.value)"
+            },
+            {
+                "Function": "depositMATICWithAffiliate",
+                "Node": "pools[_poolindex].amounts_Affiliate[msg.sender].amount = previousDepositAmount.add(msg.value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimOriginHODLTokens",
+                "Node": "IERC20(HODLAddress).transfer(msg.sender, originamount)"
+            },
+            {
+                "Function": "claimBonus1thHODLTokens",
+                "Node": "IERC20(HODLAddress).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimBonus2thHODLTokens",
+                "Node": "IERC20(HODLAddress).transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

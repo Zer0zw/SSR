@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "_rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "clpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMagicBox(magicBoxToken).mint(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_rewardDistribution",
+                "Node": "IERC20(rewardToken).safeTransfer(address(governance), _rewardBalance)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "ICakeMasterChef(cakeMasterChef).deposit(clpPid, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstakeSome",
+                "Node": "ICakeMasterChef(cakeMasterChef).withdraw(clpPid, _amount)"
+            },
+            {
+                "Function": "_unstakeAll",
+                "Node": "ICakeMasterChef(cakeMasterChef).withdraw(clpPid, _stakedAmount)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(clpToken).transfer(address(governance), baseBal)"
+            }
+        ]
+    }
+}

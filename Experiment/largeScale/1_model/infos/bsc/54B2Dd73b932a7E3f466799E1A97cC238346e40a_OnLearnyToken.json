@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeholders[stakes[stakerAddr]].address_stakes[stakeID].amount"
+        ],
+        "User Stake Reward": [
+            "_calcReward(stakerAddr, stakeID)"
+        ],
+        "User Stake Time": [
+            "stakeholders[stakes[stakerAddr]].address_stakes[stakeID].duration"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_burn(msg.sender,amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawStake",
+                "Node": "_mint(stakerAddr, wdAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawMyStake",
+                "Node": "_mint(stakerAddr, wdAmount)"
+            }
+        ]
+    }
+}

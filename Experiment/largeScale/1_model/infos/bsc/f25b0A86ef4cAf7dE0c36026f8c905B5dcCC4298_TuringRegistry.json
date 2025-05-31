@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "EdipiOrder.amount"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "EdipiOrder.startDate"
+        ],
+        "Stake Token Address": [
+            "eDIPI"
+        ],
+        "Reward Token Address": [
+            "eDIPI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "eDIPI.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestReward",
+                "Node": "eDIPI.mint(_user, reward)"
+            },
+            {
+                "Function": "distributeRewardToAll",
+                "Node": "eDIPI.mint(_user, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "safeEDIPITransfer(msg.sender, order.amount)"
+            }
+        ]
+    }
+}

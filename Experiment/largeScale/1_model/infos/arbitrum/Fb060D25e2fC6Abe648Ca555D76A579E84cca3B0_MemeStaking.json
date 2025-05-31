@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalance"
+        ],
+        "User Stake Reward": [
+            "rewardPool"
+        ],
+        "User Stake Time": [
+            "lastClaimed"
+        ],
+        "Stake Token Address": [
+            "memeToken"
+        ],
+        "Reward Token Address": [
+            "memeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "memeToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "memeToken.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "memeToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,110 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "_depositTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimInterestForDeposit"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    116
+                ],
+                "Input": [
+                    "amount",
+                    "lockupPeriod",
+                    "referral"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_blacklisted",
+                    "_deposits",
+                    "_referrals",
+                    "_token"
+                ],
+                "Full Calculation Variables": [
+                    "_blacklisted",
+                    "_deposits",
+                    "_referrals",
+                    "_token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimInterestForDeposit",
+                "Node": [
+                    181
+                ],
+                "Input": [
+                    "lockupPeriod"
+                ],
+                "Calculation Variables": [
+                    "_deposits"
+                ],
+                "Control Variables": [
+                    "_blacklisted",
+                    "_deposits",
+                    "_token"
+                ],
+                "Full Calculation Variables": [
+                    "_blacklisted",
+                    "_deposits",
+                    "_token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    146
+                ],
+                "Input": [
+                    "depositIndex"
+                ],
+                "Calculation Variables": [
+                    "_deposits"
+                ],
+                "Control Variables": [
+                    "_blacklisted",
+                    "_deposits",
+                    "_token",
+                    "_totalWithdrawnAmounts"
+                ],
+                "Full Calculation Variables": [
+                    "_blacklisted",
+                    "_deposits",
+                    "_token",
+                    "_totalWithdrawnAmounts"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

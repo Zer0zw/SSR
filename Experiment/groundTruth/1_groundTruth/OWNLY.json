@@ -1,0 +1,81 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "idToStakingItem.amount"
+            ],
+            "User Stake Reward": [],
+            "User Stake Time": [
+                "idToStakingItem.startTime"
+            ],
+            "Stake Token Address": [
+                "stakingTokenAddress"
+            ],
+            "Reward Token Address": []
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "setStakingItemAsClaimed"
+            ],
+            "unStake": [
+                "unstake"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "idToStakingItem.account",
+                        "idToStakingItem.isClaimed",
+                        "idToStakingItem.isWithdrawnWithoutMinting",
+                        "idToStakingItem.nftContractAddress",
+                        "stakingItemIds",
+                        "stakingTokenAddress"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "setStakingItemAsClaimed",
+                    "Calculation Variables": [
+                        "collectionMaxStaking",
+                        "idToStakingItem.account",
+                        "idToStakingItem.amount",
+                        "stakingTokenAddress"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "idToStakingItem.account",
+                        "idToStakingItem.amount",
+                        "stakingTokenAddress"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

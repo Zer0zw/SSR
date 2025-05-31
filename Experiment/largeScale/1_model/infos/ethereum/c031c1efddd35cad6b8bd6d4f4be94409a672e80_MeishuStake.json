@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "STAKEHOLDER.total_staked_value"
+        ],
+        "User Stake Reward": [
+            "STAKEHOLDER.total_withdraw",
+            "SINGLE_STAKE.rewards"
+        ],
+        "User Stake Time": [
+            "SINGLE_STAKE.start_time",
+            "SINGLE_STAKE.timelocked"
+        ],
+        "Stake Token Address": [
+            "SINGLE_STAKE.nft"
+        ],
+        "Reward Token Address": [
+            "SINGLE_STAKE.earned"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake_nft",
+                "Node": "ERC721(_nft).transferFrom(msg.sender, address(this), id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw_earnings",
+                "Node": "ERC20(earning).transfer(_stakeholder, reward_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "private_recover_pool",
+                "Node": "ERC721(stakeholder[_stakeholder].stakes[_id].nft).transferFrom(address(this), caller, _token_id)"
+            },
+            {
+                "Function": "ctrl_unstuck_token",
+                "Node": "private_recover_pool(_stakeholder, _id, caller, _token_id)"
+            }
+        ]
+    }
+}

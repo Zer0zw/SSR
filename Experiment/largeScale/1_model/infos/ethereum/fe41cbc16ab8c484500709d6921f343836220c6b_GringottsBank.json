@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userTotalDeposit"
+        ],
+        "User Stake Reward": [
+            "Deposit.unitInterest"
+        ],
+        "User Stake Time": [
+            "Deposit.months",
+            "Deposit.startAt"
+        ],
+        "Stake Token Address": [
+            "ring"
+        ],
+        "Reward Token Address": [
+            "kryptonite"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(ERC20(ring).transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "IMintableERC20(kryptonite).mint(_depositor, interest)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimDeposit",
+                "Node": "require(ERC20(ring).transfer(_depositor, deposits[_depositID].value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "burnAndRedeem",
+                "Node": "IBurnableERC20(ring).burn(address(this), deposits[_depositID].value)"
+            },
+            {
+                "Function": "_claimDeposit",
+                "Node": "require(ERC20(ring).transfer(_depositor, deposits[_depositID].value)"
+            }
+        ]
+    }
+}

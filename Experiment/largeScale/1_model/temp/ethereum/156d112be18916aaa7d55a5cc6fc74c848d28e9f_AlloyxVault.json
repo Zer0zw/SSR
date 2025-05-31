@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakesMapping",
+            "amount"
+        ],
+        "User Stake Reward": [
+            "pastRedeemableReward"
+        ],
+        "User Stake Time": [
+            "stakesMapping",
+            "since"
+        ],
+        "Stake Token Address": [
+            "alloyxTokenDURA"
+        ],
+        "Reward Token Address": [
+            "alloyxTokenCRWN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "alloyxTokenDURA.safeTransferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "depositUSDCCoinWithStake",
+                "Node": "alloyxTokenDURA.mint(address(this), amountToMint)"
+            },
+            {
+                "Function": "depositNFTTokenForDuraWithStake",
+                "Node": "alloyxTokenDURA.mint(address(this), amountToMint)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAllAlloyxCRWN",
+                "Node": "alloyxTokenCRWN.mint(msg.sender, reward)"
+            },
+            {
+                "Function": "claimAlloyxCRWN",
+                "Node": "alloyxTokenCRWN.mint(msg.sender, _amount)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "goldfinchDelegacy.claimReward(msg.sender, _amount, totalClaimableAndClaimedCRWNToken(), percentageCRWNEarning)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "alloyxTokenDURA.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

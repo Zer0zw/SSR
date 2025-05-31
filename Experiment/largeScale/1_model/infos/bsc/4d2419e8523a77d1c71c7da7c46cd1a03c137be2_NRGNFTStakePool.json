@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amount"
+        ],
+        "User Stake Reward": [
+            "User.rewardUSDTEarned",
+            "User.rewardTokenEarned"
+        ],
+        "User Stake Time": [
+            "User.stakeTime"
+        ],
+        "Stake Token Address": [
+            "nftToken"
+        ],
+        "Reward Token Address": [
+            "usdtToken",
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "nftToken.transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "safeUSDTTokenTransfer(msg.sender, rewardUSDT)"
+            },
+            {
+                "Function": "earn",
+                "Node": "safeTokenTransfer(msg.sender, rewardToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "nftToken.transferFrom(address(this),msg.sender ,userStakeTokenId[msg.sender][i])"
+            }
+        ]
+    }
+}

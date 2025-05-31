@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "unclaimedReward"
+        ],
+        "User Stake Time": [
+            "lastActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.transfer(refer[msg.sender].first_user, SafeMath.div(referralTokens1, 100))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "token.transfer(lvl2ref, SafeMath.div(referralTokens2, 100))"
+            },
+            {
+                "Function": "deposit",
+                "Node": "token.transfer(refer[lvl2ref].first_user, SafeMath.div(referralTokens3, 100))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "token.transferFrom(address(this), msg.sender, rewardToSend)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transferFrom(address(this), msg.sender, _amountToSend)"
+            }
+        ]
+    }
+}

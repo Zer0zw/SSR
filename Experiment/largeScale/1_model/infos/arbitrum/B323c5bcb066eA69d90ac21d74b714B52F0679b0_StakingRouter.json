@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ibex"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNoClaim",
+                "Node": "tokens = IPoolToken(xIbex).mint(msg.sender)"
+            },
+            {
+                "Function": "stake",
+                "Node": "tokens = stakeNoClaim(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "IReservesDistributor(reservesDistributor).claim()"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IReservesDistributor(reservesDistributor).claim()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNoClaim",
+                "Node": "amount = IPoolToken(xIbex).redeem(msg.sender)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "amount = unstakeNoClaim(tokens)"
+            }
+        ]
+    }
+}

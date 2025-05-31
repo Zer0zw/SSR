@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "BuyBackLockedTCS"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tcs"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "mint(msg.sender, mintedxTCS)"
+            },
+            {
+                "Function": "depositTCS",
+                "Node": "BuyBackLockedTCS[msg.sender] = BuyBackLockedTCS[msg.sender].add(amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "tcs.transfer(msg.sender, what)"
+            },
+            {
+                "Function": "onlyWithdrawDepositedTCS",
+                "Node": "tcs.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

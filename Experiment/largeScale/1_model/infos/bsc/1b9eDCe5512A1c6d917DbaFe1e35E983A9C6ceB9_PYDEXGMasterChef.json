@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.nftRewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "pydex"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(_msgSender()), address(this), _amount"
+            },
+            {
+                "Function": "stakeNFT",
+                "Node": "_privacyNFT.safeTransferFrom(_msgSender(), address(this), nftID"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "payPendingReward",
+                "Node": "safePydexTransfer(_msgSender(), pending.sub(totalCommission))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(_msgSender()), _amount"
+            },
+            {
+                "Function": "unstakeNFT",
+                "Node": "_privacyNFT.safeTransferFrom(address(this), _msgSender(), nftId"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(_msgSender()), amount"
+            }
+        ]
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_assets",
+            "_shares"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "sGLP"
+        ],
+        "Reward Token Address": [
+            "WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositUnderlying",
+                "Node": "_deposit(msg.sender, _receiver, _assets, _shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(_sGLP).safeTransfer(_receiver, _harvestBounty)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeemUnderlying",
+                "Node": "IGlpMinter(glpHandler).unstakeAndRedeemGlpETH(_assets, 0, payable(_receiver))"
+            },
+            {
+                "Function": "redeemUnderlying",
+                "Node": "IGlpMinter(glpHandler).unstakeAndRedeemGlp(_underlyingAsset, _assets, 0, _receiver)"
+            }
+        ]
+    }
+}

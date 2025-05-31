@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_lender.deposit"
+        ],
+        "User Stake Reward": [
+            "rewardOf"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stable"
+        ],
+        "Reward Token Address": [
+            "tStable"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stable.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAllRewards",
+                "Node": "IRewardManager(managerList[i]).claimAllRewardsFor(msg.sender)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "IRewardManager(managerList[i]).claimRewardFor(msg.sender, token)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAllDeposit",
+                "Node": "tStable.mint(msg.sender, balance)"
+            },
+            {
+                "Function": "withdrawDeposit",
+                "Node": "tStable.mint(msg.sender, amount)"
+            },
+            {
+                "Function": "redeemAll",
+                "Node": "tStable.mint(address(this), balance)"
+            },
+            {
+                "Function": "redeem",
+                "Node": "tStable.mint(address(this), amount)"
+            }
+        ]
+    }
+}

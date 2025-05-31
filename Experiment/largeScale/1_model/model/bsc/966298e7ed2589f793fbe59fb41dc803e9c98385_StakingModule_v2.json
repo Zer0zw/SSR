@@ -1,0 +1,537 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stake"
+        ],
+        "User Stake Reward": [
+            "userRewards",
+            "userInfo.debt"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositForUser"
+        ],
+        "getReward": [
+            "harvest",
+            "withdraw",
+            "withdrawAll",
+            "withdrawAllForUser",
+            "withdrawForUser"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll",
+            "withdrawAllForUser",
+            "withdrawForUser"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1061
+                ],
+                "Input": [
+                    "_amount",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "end",
+                    "stakeToken",
+                    "start"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "end",
+                    "stakeToken",
+                    "start"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositForUser",
+                "Node": [
+                    1061
+                ],
+                "Input": [
+                    "_amount",
+                    "_skipLastDepositUpdate",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "authorized",
+                    "end",
+                    "stakeToken",
+                    "start"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "authorized",
+                    "end",
+                    "stakeToken",
+                    "start"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawAmount"
+                ],
+                "Calculation Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "rewardTokens",
+                    "totalStaked",
+                    "userRewards"
+                ],
+                "Control Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "performanceFee",
+                    "rewardTokens",
+                    "rewardedTokenBalances",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "userRewards"
+                ],
+                "Full Calculation Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "performanceFee",
+                    "rewardTokens",
+                    "rewardedTokenBalances",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "userRewards"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "harvest",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawAmount"
+                ],
+                "Calculation Variables": [
+                    "userRewards",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.calcApy",
+                    "BP_DECIMALS",
+                    "rewardTokens",
+                    "harvestReward",
+                    "totalStaked",
+                    "apyDetails.apy",
+                    "fixedAPYPool"
+                ],
+                "Control Variables": [
+                    "YEAR_IN_SECONDS",
+                    "totalStaked",
+                    "apyDetails.apy",
+                    "userRewards",
+                    "rewardTokens",
+                    "_paused",
+                    "fixedAPYPool",
+                    "apyDetails.calcApy",
+                    "userInfo.debt",
+                    "harvestReward",
+                    "userInfo.lastUserActionTime",
+                    "rewardedTokenBalances",
+                    "performanceFee",
+                    "withdrawRewardsOnHarvest",
+                    "BP_DECIMALS",
+                    "userInfo.stake",
+                    "userInfo.lastDepositedTime"
+                ],
+                "Full Calculation Variables": [
+                    "YEAR_IN_SECONDS",
+                    "totalStaked",
+                    "apyDetails.apy",
+                    "userRewards",
+                    "rewardTokens",
+                    "_paused",
+                    "fixedAPYPool",
+                    "apyDetails.calcApy",
+                    "userInfo.debt",
+                    "harvestReward",
+                    "userInfo.lastUserActionTime",
+                    "rewardedTokenBalances",
+                    "performanceFee",
+                    "withdrawRewardsOnHarvest",
+                    "BP_DECIMALS",
+                    "userInfo.stake",
+                    "userInfo.lastDepositedTime"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawForUser",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawAmount"
+                ],
+                "Calculation Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "rewardTokens",
+                    "totalStaked",
+                    "userRewards"
+                ],
+                "Control Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "performanceFee",
+                    "rewardTokens",
+                    "rewardedTokenBalances",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "userRewards"
+                ],
+                "Full Calculation Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "performanceFee",
+                    "rewardTokens",
+                    "rewardedTokenBalances",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "userRewards"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAllForUser",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawAmount"
+                ],
+                "Calculation Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "rewardTokens",
+                    "totalStaked",
+                    "userRewards"
+                ],
+                "Control Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "performanceFee",
+                    "rewardTokens",
+                    "rewardedTokenBalances",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "userRewards"
+                ],
+                "Full Calculation Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "performanceFee",
+                    "rewardTokens",
+                    "rewardedTokenBalances",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "userRewards"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "_user",
+                    "_withdrawAmount"
+                ],
+                "Calculation Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "rewardTokens",
+                    "totalStaked",
+                    "userRewards"
+                ],
+                "Control Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "performanceFee",
+                    "rewardTokens",
+                    "rewardedTokenBalances",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "userRewards"
+                ],
+                "Full Calculation Variables": [
+                    "BP_DECIMALS",
+                    "YEAR_IN_SECONDS",
+                    "apyDetails.apy",
+                    "apyDetails.calcApy",
+                    "fixedAPYPool",
+                    "harvestReward",
+                    "performanceFee",
+                    "rewardTokens",
+                    "rewardedTokenBalances",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "userRewards"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1186
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "referralMinAmount",
+                    "referralMinAmountSince",
+                    "rewardPerStakedToken",
+                    "rewardTokens",
+                    "stakeToken",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "referralMinAmount",
+                    "referralMinAmountSince",
+                    "rewardPerStakedToken",
+                    "rewardTokens",
+                    "stakeToken",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawForUser",
+                "Node": [
+                    1186
+                ],
+                "Input": [
+                    "_shares",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "authorized",
+                    "referralMinAmount",
+                    "referralMinAmountSince",
+                    "rewardPerStakedToken",
+                    "rewardTokens",
+                    "stakeToken",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "authorized",
+                    "referralMinAmount",
+                    "referralMinAmountSince",
+                    "rewardPerStakedToken",
+                    "rewardTokens",
+                    "stakeToken",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1186
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "referralMinAmount",
+                    "referralMinAmountSince",
+                    "rewardPerStakedToken",
+                    "rewardTokens",
+                    "stakeToken",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "referralMinAmount",
+                    "referralMinAmountSince",
+                    "rewardPerStakedToken",
+                    "rewardTokens",
+                    "stakeToken",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAllForUser",
+                "Node": [
+                    1186
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "authorized",
+                    "referralMinAmount",
+                    "referralMinAmountSince",
+                    "rewardPerStakedToken",
+                    "rewardTokens",
+                    "stakeToken",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "authorized",
+                    "referralMinAmount",
+                    "referralMinAmountSince",
+                    "rewardPerStakedToken",
+                    "rewardTokens",
+                    "stakeToken",
+                    "totalStaked",
+                    "userInfo.debt",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.stake",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_profitAddress.token"
+        ],
+        "User Stake Reward": [
+            "_profitAddress.profitToken"
+        ],
+        "User Stake Time": [
+            "_profitAddress.tokenProfitTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "_Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "pledgeToken",
+                "Node": "ERC721(stakeToken).transferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeProfit",
+                "Node": "_Token.safeTransfer(address(msg.sender),_takeToken)"
+            },
+            {
+                "Function": "takeProfitAll",
+                "Node": "_Token.safeTransfer(address(msg.sender),_takeToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "takeToken",
+                "Node": "ERC721(stakeToken).transferFrom(address(this), msg.sender, _tokenId)"
+            },
+            {
+                "Function": "takeAllToken",
+                "Node": "ERC721(stakeToken).transferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

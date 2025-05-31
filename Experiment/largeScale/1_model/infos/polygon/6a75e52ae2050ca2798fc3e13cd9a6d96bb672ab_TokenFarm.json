@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Staker.timestamp"
+        ],
+        "Stake Token Address": [
+            "daiToken"
+        ],
+        "Reward Token Address": [
+            "happyToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "daiToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueTokens",
+                "Node": "happyToken.transfer(recipient, balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "daiToken.transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

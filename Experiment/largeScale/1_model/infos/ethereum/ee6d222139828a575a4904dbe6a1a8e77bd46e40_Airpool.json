@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stakeAmount",
+            "Stake.totalStakedAmountByUser"
+        ],
+        "User Stake Reward": [
+            "Stake.lastInteractionBlockNumber"
+        ],
+        "User Stake Time": [
+            "Stake.stakingPeriodEndTime"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "supplyAirpool",
+                "Node": "uniswapRouter.addLiquidityETH.value(msg.value)(token, amountTokenDesired, amountTokenMin, amountETHMin, address(this), deadline)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "IERC20(token).transferFrom(address(this), user, rewardAmount)"
+            },
+            {
+                "Function": "_withdrawReward",
+                "Node": "IERC20(token).transferFrom(address(this), user, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(lpToken).transferFrom(address(this), _msgSender(), stakeAmount)"
+            }
+        ]
+    }
+}

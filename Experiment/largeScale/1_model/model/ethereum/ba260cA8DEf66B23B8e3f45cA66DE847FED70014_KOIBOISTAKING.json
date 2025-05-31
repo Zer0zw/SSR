@@ -1,0 +1,151 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToNFTTokenIds"
+        ],
+        "User Stake Reward": [
+            "EMISSION_RATE"
+        ],
+        "User Stake Time": [
+            "NFTTokenIdTimeStaked"
+        ],
+        "Stake Token Address": [
+            "CAN_BE_STAKE"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "stakeNFTsByIds"
+        ],
+        "getReward": [
+            "claimAll",
+            "claimByNFTTokenId"
+        ],
+        "unStake": [
+            "unstakeAll",
+            "unstakeNFTsByIds"
+        ],
+        "Sensitive Functions": [
+            "disableStakingFor",
+            "enableStakingFor"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFTsByIds",
+                "Node": [
+                    817
+                ],
+                "Input": [
+                    "nftContractAddress",
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CAN_BE_STAKE",
+                    "NFTTokenIdToStaker",
+                    "stakingLive"
+                ],
+                "Full Calculation Variables": [
+                    "CAN_BE_STAKE",
+                    "NFTTokenIdToStaker",
+                    "stakingLive"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByNFTTokenId",
+                "Node": [
+                    860
+                ],
+                "Input": [
+                    "nftContractAddress",
+                    "tokenId"
+                ],
+                "Calculation Variables": [
+                    "EMISSION_RATE",
+                    "NFTTokenIdTimeStaked"
+                ],
+                "Control Variables": [
+                    "EMISSION_RATE",
+                    "NFTTokenIdTimeStaked",
+                    "NFTTokenIdToStaker"
+                ],
+                "Full Calculation Variables": [
+                    "EMISSION_RATE",
+                    "NFTTokenIdTimeStaked",
+                    "NFTTokenIdToStaker"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAll",
+                "Node": [
+                    875
+                ],
+                "Input": [
+                    "nftContractAddress"
+                ],
+                "Calculation Variables": [
+                    "EMISSION_RATE",
+                    "NFTTokenIdTimeStaked",
+                    "stakerToNFTTokenIds"
+                ],
+                "Control Variables": [
+                    "EMISSION_RATE",
+                    "NFTTokenIdTimeStaked",
+                    "stakerToNFTTokenIds"
+                ],
+                "Full Calculation Variables": [
+                    "EMISSION_RATE",
+                    "NFTTokenIdTimeStaked",
+                    "stakerToNFTTokenIds"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": [
+                    832
+                ],
+                "Input": [
+                    "nftContractAddress"
+                ],
+                "Calculation Variables": [
+                    "stakerToNFTTokenIds"
+                ],
+                "Control Variables": [
+                    "stakerToNFTTokenIds"
+                ],
+                "Full Calculation Variables": [
+                    "stakerToNFTTokenIds"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeNFTsByIds",
+                "Node": [
+                    848
+                ],
+                "Input": [
+                    "nftContractAddress",
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "NFTTokenIdToStaker"
+                ],
+                "Full Calculation Variables": [
+                    "NFTTokenIdToStaker"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

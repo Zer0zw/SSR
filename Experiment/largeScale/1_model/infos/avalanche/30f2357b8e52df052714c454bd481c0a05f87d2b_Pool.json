@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeData.amount"
+        ],
+        "User Stake Reward": [
+            "User.pendingYield",
+            "User.pendingRevDis"
+        ],
+        "User Stake Time": [
+            "StakeData.lockedFrom",
+            "StakeData.lockedUntil"
+        ],
+        "Stake Token Address": [
+            "poolToken"
+        ],
+        "Reward Token Address": [
+            "ime"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "IERC20Upgradeable(poolToken).safeTransferFrom(staker, address(this), amount"
+            },
+            {
+                "Function": "stakeAsPool",
+                "Node": "IERC20Upgradeable(poolToken).safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimYieldRewards",
+                "Node": "factory.yieldImcTo(staker, pendingYieldToClaim)"
+            },
+            {
+                "Function": "_claimYieldRewards",
+                "Node": "IPool(imePool).stakeAsPool(staker, pendingYieldToClaim)"
+            },
+            {
+                "Function": "_claimVaultRewards",
+                "Node": "IERC20Upgradeable(ime).safeTransfer(staker, pendingRevDis)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "factory.yieldImeTo(staker, amount)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "IERC20Upgradeable(poolToken).safeTransfer(staker, amount)"
+            },
+            {
+                "Function": "_unstakeMultiple",
+                "Node": "factory.yieldImeTo(staker, amountToUnstake)"
+            },
+            {
+                "Function": "_unstakeMultiple",
+                "Node": "IERC20Upgradeable(poolToken).safeTransfer(staker, amountToUnstake)"
+            }
+        ]
+    }
+}

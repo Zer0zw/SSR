@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "Stake.bonus"
+        ],
+        "User Stake Time": [
+            "Stake.startTime",
+            "Stake.endTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeVestedTokens",
+                "Node": "token.safeTransfer(msg.sender, vestedAmount)"
+            },
+            {
+                "Function": "restakeStakedTokens",
+                "Node": "token.safeTransfer(msg.sender, stake.bonus)"
+            },
+            {
+                "Function": "restakeAllStakedTokens",
+                "Node": "token.safeTransfer(msg.sender, bonusAccumulated)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakedTokens",
+                "Node": "token.safeTransfer(msg.sender, totalAmount)"
+            },
+            {
+                "Function": "claimAllStakedTokens",
+                "Node": "token.safeTransfer(msg.sender, totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyUnstake",
+                "Node": "token.safeTransfer(msg.sender, unstakeAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "WithdrawalRequests.releaseBlockNumber"
+        ],
+        "Stake Token Address": [
+            "psp"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, _pspAmount)"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, sPSPAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "psp.transfer(msg.sender, request.amountPSP)"
+            }
+        ]
+    }
+}

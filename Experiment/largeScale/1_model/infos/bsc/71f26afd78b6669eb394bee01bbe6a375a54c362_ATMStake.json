@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeAmt",
+            "StakeInfo.stakeAmt"
+        ],
+        "User Stake Reward": [
+            "userRewardATMAmt",
+            "userRewardUSDTAmt",
+            "StakeInfo.rewardATM",
+            "StakeInfo.rewardUSDT"
+        ],
+        "User Stake Time": [
+            "StakeInfo.time"
+        ],
+        "Stake Token Address": [
+            "ATMToken"
+        ],
+        "Reward Token Address": [
+            "ATMToken",
+            "USDTToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeAMT",
+                "Node": "TransferHelper.safeTransferFrom(ATMToken, _msgSender(), address(this), amountToken)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "userWithdrawFund",
+                "Node": "TransferHelper.safeTransfer(ATMToken, _msgSender(), canWithdrawToken1 + canWithdrawToken2)"
+            },
+            {
+                "Function": "userWithdrawFund",
+                "Node": "TransferHelper.safeTransfer(USDTToken, _msgSender(), canWithdrawToken3)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "userWithdrawFundEarly",
+                "Node": "TransferHelper.safeTransfer(ATMToken, _msgSender(), canWithdrawToken)"
+            }
+        ]
+    }
+}

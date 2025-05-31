@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "what"
+        ],
+        "User Stake Time": [
+            "unlockDate"
+        ],
+        "Stake Token Address": [
+            "radi"
+        ],
+        "Reward Token Address": [
+            "radi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "radi.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "radi.transfer(msg.sender, what)"
+            },
+            {
+                "Function": "leave",
+                "Node": "radi.transfer(msg.sender, what.sub(fee))"
+            },
+            {
+                "Function": "leave",
+                "Node": "radi.transfer(feeRecipient, fee)"
+            }
+        ]
+    }
+}

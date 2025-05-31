@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IGauge.balanceOf"
+        ],
+        "User Stake Reward": [
+            "TokenMinter.mint_for"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "hMIM",
+            "hMIMg"
+        ],
+        "Reward Token Address": [
+            "HND"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "supply",
+                "Node": "IGauge(hMIMg).transfer(wallet, IGauge(hMIMg).balanceOf(address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_compound",
+                "Node": "TokenMinter(MINTER).mint_for(hMIMg, wallet)"
+            }
+        ],
+        "unStake": []
+    }
+}

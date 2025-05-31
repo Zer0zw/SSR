@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.bnbDeposit"
+        ],
+        "User Stake Reward": [
+            "User.profitGained"
+        ],
+        "User Stake Time": [
+            "User.depositTime"
+        ],
+        "Stake Token Address": [
+            "PlatformTokenApp"
+        ],
+        "Reward Token Address": [
+            "PlatformTokenApp"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "PlatformTokenApp.transfer(msg.sender, noOfTokensToGive)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReferral",
+                "Node": "PlatformTokenApp.transfer(msg.sender, claimCoins)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(realSend)"
+            }
+        ],
+        "unStake": []
+    }
+}

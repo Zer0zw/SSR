@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.poolBal",
+            "User.total_deposits"
+        ],
+        "User Stake Reward": [
+            "User.rewardEarned"
+        ],
+        "User Stake Time": [
+            "User.pool_deposit_time"
+        ],
+        "Stake Token Address": [
+            "tokenAddr"
+        ],
+        "Reward Token Address": [
+            "tokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "PoolStake",
+                "Node": "require(Token(tokenAddr).transferFrom(msg.sender,address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPool",
+                "Node": "require(Token(tokenAddr).transfer(msg.sender, calculatedRewards)"
+            },
+            {
+                "Function": "_update",
+                "Node": "require(Token(tokenAddr).transfer(_user, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimPool",
+                "Node": "require(Token(tokenAddr).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "_update",
+                "Node": "require(Token(tokenAddr).transfer(_user, _amount)"
+            }
+        ]
+    }
+}

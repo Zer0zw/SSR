@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserTEAMRewardNoPaid",
+            "getUserStakeReward"
+        ],
+        "User Stake Time": [
+            "UserLastStakeWithDrawTimestamp",
+            "UserLastTEAMWithDrawTimestamp"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "address(this)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super._transfer(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "WithdrawStakeReward",
+                "Node": "super._mint(msg.sender, reward + _teamReward)"
+            },
+            {
+                "Function": "WithdrawFarmReward",
+                "Node": "super._transfer(address(this), msg.sender, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "super._transfer(address(this), msg.sender, amount)"
+            }
+        ]
+    }
+}

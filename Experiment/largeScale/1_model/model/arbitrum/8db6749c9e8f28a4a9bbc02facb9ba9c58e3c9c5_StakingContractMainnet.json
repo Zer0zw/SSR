@@ -1,0 +1,209 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakes.liquidity"
+        ],
+        "User Stake Reward": [
+            "incentives.rewardRemaining",
+            "rewardPerLiquidityLast"
+        ],
+        "User Stake Time": [
+            "incentives.endTime",
+            "incentives.lastRewardTime"
+        ],
+        "Stake Token Address": [
+            "incentives.token"
+        ],
+        "Reward Token Address": [
+            "incentives.rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeAndSubscribeToIncentives",
+            "stakeToken"
+        ],
+        "getReward": [
+            "claimRewards",
+            "stakeAndSubscribeToIncentives",
+            "stakeToken",
+            "unstakeToken",
+            "unsubscribeFromIncentive"
+        ],
+        "unStake": [
+            "unstakeToken"
+        ],
+        "Sensitive Functions": [
+            "createIncentive"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    687
+                ],
+                "Input": [
+                    "amount",
+                    "token",
+                    "transferExistingRewards"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "reentrancyStatus"
+                ],
+                "Full Calculation Variables": [
+                    "reentrancyStatus"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeAndSubscribeToIncentives",
+                "Node": [
+                    687
+                ],
+                "Input": [
+                    "token",
+                    "amount",
+                    "token",
+                    "transferExistingRewards",
+                    "transferExistingRewards",
+                    "amount",
+                    "incentiveIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "reentrancyStatus"
+                ],
+                "Full Calculation Variables": [
+                    "reentrancyStatus"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stakeAndSubscribeToIncentives",
+                "Node": [
+                    884
+                ],
+                "Input": [
+                    "incentive",
+                    "incentiveId",
+                    "usersLiquidity"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    884
+                ],
+                "Input": [
+                    "incentiveIds",
+                    "incentiveId",
+                    "usersLiquidity",
+                    "incentive"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "incentiveCount",
+                    "userStakes.liquidity",
+                    "reentrancyStatus",
+                    "incentives.token"
+                ],
+                "Full Calculation Variables": [
+                    "incentiveCount",
+                    "userStakes.liquidity",
+                    "reentrancyStatus",
+                    "incentives.token"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    884
+                ],
+                "Input": [
+                    "incentive",
+                    "incentiveId",
+                    "usersLiquidity"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unsubscribeFromIncentive",
+                "Node": [
+                    884
+                ],
+                "Input": [
+                    "incentive",
+                    "incentiveId",
+                    "usersLiquidity"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeToken",
+                "Node": [
+                    884
+                ],
+                "Input": [
+                    "incentive",
+                    "incentiveId",
+                    "usersLiquidity"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeToken",
+                "Node": [
+                    757
+                ],
+                "Input": [
+                    "amount",
+                    "token",
+                    "transferExistingRewards"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MAX_UINT120",
+                    "MAX_UINT24",
+                    "MAX_UINT48",
+                    "MAX_UINT72",
+                    "MAX_UINT96",
+                    "reentrancyStatus",
+                    "userStakes.liquidity",
+                    "userStakes.subscribedIncentiveIds"
+                ],
+                "Full Calculation Variables": [
+                    "MAX_UINT120",
+                    "MAX_UINT24",
+                    "MAX_UINT48",
+                    "MAX_UINT72",
+                    "MAX_UINT96",
+                    "reentrancyStatus",
+                    "userStakes.liquidity",
+                    "userStakes.subscribedIncentiveIds"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

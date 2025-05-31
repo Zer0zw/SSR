@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "AthData.balance",
+            "AthData.lockedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "AthData.lastUpdated"
+        ],
+        "Stake Token Address": [
+            "athToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IBEP20Token(athToken).transferFrom(msg.sender, address(this), amount_ - _fee)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withDraw",
+                "Node": "IBEP20Token(athToken).transfer(msg.sender, athBalance[msg.sender].lockedAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "DBC"
+        ],
+        "Reward Token Address": [
+            "WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "DBC.transferFrom(_payee, address(this), _amount)"
+            },
+            {
+                "Function": "depositOnBehalf",
+                "Node": "DBC.transferFrom(_payee, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingRewards",
+                "Node": "rewardsPool.mint(pending, WETH, _account)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "rewardsPool.mint(pending, WETH, _account)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "rewardsPool.mint(pending, WETH, _account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "DBC.transfer(_account, _amount)"
+            },
+            {
+                "Function": "withdrawOnBehalf",
+                "Node": "DBC.transfer(_account, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "DBC.transfer(_account, user.amount)"
+            },
+            {
+                "Function": "emergencyWithdrawOnBehalf",
+                "Node": "DBC.transfer(_account, user.amount)"
+            }
+        ]
+    }
+}

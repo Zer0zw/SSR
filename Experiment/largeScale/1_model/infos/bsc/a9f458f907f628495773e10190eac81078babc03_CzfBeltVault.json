@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_wad"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "beltBNB"
+        ],
+        "Reward Token Address": [
+            "belt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(_for, _wad)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "belt.transfer(_pool, belt.balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "beltBNB.transfer(_for, withdrawAmt)"
+            }
+        ]
+    }
+}

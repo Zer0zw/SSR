@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "playerStakedAmount",
+            "PlayerStakeRecord.amountInRecord"
+        ],
+        "User Stake Reward": [
+            "InterestRewardRecord.reward",
+            "PlayerStakeRecord.earnedForNow",
+            "PlayerStakeRecord.earnedForEnd"
+        ],
+        "User Stake Time": [
+            "PlayerStakeRecord.startTime",
+            "PlayerStakeRecord.endTime"
+        ],
+        "Stake Token Address": [
+            "poolStakingToken"
+        ],
+        "Reward Token Address": [
+            "poolPrizeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "poolStakeDepositInternal",
+                "Node": "bool txOk = IERC20(poolStakingToken[poolID]).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_poolStakeWithdraw",
+                "Node": "bool txPrizeOk = IERC20(platformToken).transfer(player, irr.reward)"
+            },
+            {
+                "Function": "_poolStakeWithdraw",
+                "Node": "internalSwap(platformToken, poolPrizeToken[poolID], irr.reward, redeemableInResultToken, player)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_poolStakeWithdraw",
+                "Node": "bool txOk = IERC20(poolStakingToken[poolID]).transfer(player, amountToUnstake)"
+            },
+            {
+                "Function": "_poolStakeWithdraw",
+                "Node": "payable(player).transfer(amountToUnstake)"
+            }
+        ]
+    }
+}

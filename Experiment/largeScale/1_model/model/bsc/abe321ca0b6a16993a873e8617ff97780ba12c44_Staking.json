@@ -1,0 +1,147 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount",
+            "userTotalStaked"
+        ],
+        "User Stake Reward": [
+            "userInfo.amount",
+            "userTotalEarned"
+        ],
+        "User Stake Time": [
+            "userInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "processRequest"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1123
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TreasuryWallet",
+                    "poolInfos.apy",
+                    "poolInfos.lockDay",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "TreasuryWallet",
+                    "poolInfos.apy",
+                    "poolInfos.lockDay",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "processRequest",
+                "Node": [
+                    1155
+                ],
+                "Input": [
+                    "_approve",
+                    "_pid",
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "poolInfos.apy",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Control Variables": [
+                    "TreasuryWallet",
+                    "_owner",
+                    "poolInfos.apy",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "TreasuryWallet",
+                    "_owner",
+                    "poolInfos.apy",
+                    "token",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1143
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfos.apy",
+                    "poolInfos.lockDay",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfos.apy",
+                    "poolInfos.lockDay",
+                    "userInfo.amount",
+                    "userInfo.depositTime"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1178
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount"
+                ],
+                "Control Variables": [
+                    "token",
+                    "userInfo.amount"
+                ],
+                "Full Calculation Variables": [
+                    "token",
+                    "userInfo.amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

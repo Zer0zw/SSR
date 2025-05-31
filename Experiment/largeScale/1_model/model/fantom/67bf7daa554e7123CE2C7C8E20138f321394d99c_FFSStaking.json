@@ -1,0 +1,269 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.deposits"
+        ],
+        "User Stake Reward": [
+            "users.compounds",
+            "users.total_ref_bonus"
+        ],
+        "User Stake Time": [
+            "users.deposit_time"
+        ],
+        "Stake Token Address": [
+            "FFSToken"
+        ],
+        "Reward Token Address": [
+            "FPADToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claim",
+            "claimReferral",
+            "withdrawPrincipal"
+        ],
+        "unStake": [
+            "withdrawPrincipal"
+        ],
+        "Sensitive Functions": [
+            "updateFFSToken",
+            "updateFPADToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    879,
+                    880,
+                    881,
+                    882,
+                    883,
+                    884,
+                    885,
+                    886
+                ],
+                "Input": [
+                    "_amount",
+                    "refAddress"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FFSToken",
+                    "minimumAmount",
+                    "payoutRate",
+                    "users.compounds",
+                    "users.deposit_time",
+                    "users.deposits",
+                    "users.userAddress"
+                ],
+                "Full Calculation Variables": [
+                    "FFSToken",
+                    "minimumAmount",
+                    "payoutRate",
+                    "users.compounds",
+                    "users.deposit_time",
+                    "users.deposits",
+                    "users.userAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1013,
+                    1014,
+                    1015,
+                    1016,
+                    1017,
+                    1018,
+                    1019,
+                    1020
+                ],
+                "Input": [
+                    "_addr",
+                    "conversionRate"
+                ],
+                "Calculation Variables": [
+                    "payoutRate",
+                    "users.compounds",
+                    "users.deposit_time",
+                    "users.deposits",
+                    "users.payouts"
+                ],
+                "Control Variables": [
+                    "FPADToken",
+                    "frensVaultAddress",
+                    "payoutRate",
+                    "users.compounds",
+                    "users.deposit_time",
+                    "users.deposits",
+                    "users.payouts"
+                ],
+                "Full Calculation Variables": [
+                    "FPADToken",
+                    "frensVaultAddress",
+                    "payoutRate",
+                    "users.compounds",
+                    "users.deposit_time",
+                    "users.deposits",
+                    "users.payouts"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawPrincipal",
+                "Node": [
+                    1039,
+                    1040,
+                    1041,
+                    1042,
+                    1043,
+                    1044,
+                    1045,
+                    1046
+                ],
+                "Input": [
+                    "conversionRate",
+                    "_addr",
+                    "_addr",
+                    "conversionRate"
+                ],
+                "Calculation Variables": [
+                    "users.deposits",
+                    "users.payouts",
+                    "users.deposit_time",
+                    "users.compounds",
+                    "users.referral_payouts",
+                    "payoutRate",
+                    "users.total_ref_bonus",
+                    "users.payout_time"
+                ],
+                "Control Variables": [
+                    "users.deposits",
+                    "users.payouts",
+                    "frensVaultAddress",
+                    "users.deposit_time",
+                    "FPADToken",
+                    "users.referral_payouts",
+                    "users.compounds",
+                    "payoutRate",
+                    "users.payout_time",
+                    "users.total_ref_bonus"
+                ],
+                "Full Calculation Variables": [
+                    "users.deposits",
+                    "users.payouts",
+                    "frensVaultAddress",
+                    "users.deposit_time",
+                    "FPADToken",
+                    "users.referral_payouts",
+                    "users.compounds",
+                    "payoutRate",
+                    "users.payout_time",
+                    "users.total_ref_bonus"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimReferral",
+                "Node": [
+                    1039,
+                    1040,
+                    1041,
+                    1042,
+                    1043,
+                    1044,
+                    1045,
+                    1046
+                ],
+                "Input": [
+                    "_addr",
+                    "conversionRate"
+                ],
+                "Calculation Variables": [
+                    "users.payout_time",
+                    "users.payouts",
+                    "users.referral_payouts",
+                    "users.total_ref_bonus"
+                ],
+                "Control Variables": [
+                    "FPADToken",
+                    "frensVaultAddress",
+                    "users.payout_time",
+                    "users.payouts",
+                    "users.referral_payouts",
+                    "users.total_ref_bonus"
+                ],
+                "Full Calculation Variables": [
+                    "FPADToken",
+                    "frensVaultAddress",
+                    "users.payout_time",
+                    "users.payouts",
+                    "users.referral_payouts",
+                    "users.total_ref_bonus"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPrincipal",
+                "Node": [
+                    1071,
+                    1072,
+                    1073,
+                    1074,
+                    1075,
+                    1076,
+                    1077,
+                    1078
+                ],
+                "Input": [
+                    "_addr",
+                    "conversionRate"
+                ],
+                "Calculation Variables": [
+                    "payoutRate",
+                    "users.compounds",
+                    "users.deposit_time",
+                    "users.deposits",
+                    "users.payout_time",
+                    "users.payouts",
+                    "users.referral_payouts",
+                    "users.total_ref_bonus"
+                ],
+                "Control Variables": [
+                    "FFSToken",
+                    "payoutRate",
+                    "users.compounds",
+                    "users.deposit_time",
+                    "users.deposits",
+                    "users.payout_time",
+                    "users.payouts",
+                    "users.referral_payouts",
+                    "users.total_ref_bonus"
+                ],
+                "Full Calculation Variables": [
+                    "FFSToken",
+                    "payoutRate",
+                    "users.compounds",
+                    "users.deposit_time",
+                    "users.deposits",
+                    "users.payout_time",
+                    "users.payouts",
+                    "users.referral_payouts",
+                    "users.total_ref_bonus"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

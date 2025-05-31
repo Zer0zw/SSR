@@ -1,0 +1,189 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfos.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakeInfos.totalReward"
+        ],
+        "User Stake Time": [
+            "stakeInfos.lastClaimed"
+        ],
+        "Stake Token Address": [
+            "p2pptoken"
+        ],
+        "Reward Token Address": [
+            "p2pptoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeToken"
+        ],
+        "getReward": [
+            "claimReward",
+            "stakeToken"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "emergencyWithdrawErc20"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    230
+                ],
+                "Input": [
+                    "poolId",
+                    "stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "p2pptoken",
+                    "poolInfos.active",
+                    "poolInfos.endTime",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "poolInfos.totalAmountStaked",
+                    "stakeInfos.lastClaimed",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalReward"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "p2pptoken",
+                    "poolInfos.active",
+                    "poolInfos.endTime",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "poolInfos.totalAmountStaked",
+                    "stakeInfos.lastClaimed",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalReward"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    250
+                ],
+                "Input": [
+                    "poolId"
+                ],
+                "Calculation Variables": [
+                    "poolInfos.endTime",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "stakeInfos.lastClaimed",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalReward"
+                ],
+                "Control Variables": [
+                    "p2pptoken",
+                    "poolInfos.endTime",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "stakeInfos.lastClaimed",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalReward"
+                ],
+                "Full Calculation Variables": [
+                    "p2pptoken",
+                    "poolInfos.endTime",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "stakeInfos.lastClaimed",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalReward"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    250
+                ],
+                "Input": [
+                    "poolId"
+                ],
+                "Calculation Variables": [
+                    "poolInfos.endTime",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "stakeInfos.lastClaimed",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalReward"
+                ],
+                "Control Variables": [
+                    "p2pptoken",
+                    "poolInfos.endTime",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "stakeInfos.lastClaimed",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalReward"
+                ],
+                "Full Calculation Variables": [
+                    "p2pptoken",
+                    "poolInfos.endTime",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "stakeInfos.lastClaimed",
+                    "stakeInfos.stakedAmount",
+                    "stakeInfos.totalReward"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    282
+                ],
+                "Input": [
+                    "poolId",
+                    "unStakeAmount"
+                ],
+                "Calculation Variables": [
+                    "poolInfos.endTime",
+                    "stakeInfos.stakedAmount",
+                    "poolInfos.interestRate",
+                    "stakeInfos.totalReward",
+                    "poolInfos.startTime",
+                    "stakeInfos.lastClaimed"
+                ],
+                "Control Variables": [
+                    "poolInfos.endTime",
+                    "stakeFee",
+                    "stakeInfos.stakedAmount",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "stakeInfos.totalReward",
+                    "stakeInfos.lastClaimed",
+                    "p2pptoken"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfos.endTime",
+                    "stakeFee",
+                    "stakeInfos.stakedAmount",
+                    "poolInfos.interestRate",
+                    "poolInfos.startTime",
+                    "stakeInfos.totalReward",
+                    "stakeInfos.lastClaimed",
+                    "p2pptoken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

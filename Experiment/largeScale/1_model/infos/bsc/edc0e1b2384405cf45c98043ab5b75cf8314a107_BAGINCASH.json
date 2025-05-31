@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "customStakingBalance"
+        ],
+        "User Stake Reward": [
+            "myProfit"
+        ],
+        "User Stake Time": [
+            "staking_start_time",
+            "staking_end_time"
+        ],
+        "Stake Token Address": [
+            "Usdt"
+        ],
+        "Reward Token Address": [
+            "INC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "INC.transfer(msg.sender, tokenamount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "thirtyreward",
+                "Node": "Usdt.transfer(msg.sender, balance)"
+            },
+            {
+                "Function": "dailyreward",
+                "Node": "Usdt.transfer(msg.sender, balance)"
+            }
+        ],
+        "unStake": []
+    }
+}

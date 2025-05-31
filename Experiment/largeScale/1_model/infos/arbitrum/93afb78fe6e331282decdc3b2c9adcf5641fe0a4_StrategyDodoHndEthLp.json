@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_want"
+        ],
+        "User Stake Reward": [
+            "_pendingDodo",
+            "_pendingHnd"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "dodo_hnd_eth_lp"
+        ],
+        "Reward Token Address": [
+            "dodo",
+            "hnd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(rewards, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IDodoMine(rewards).claimAllRewards()"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IDodoMultiSwap(dodoMultiSwap).mixSwap(dodo, weth, _dodo, 1, dodoEthAdapters, dodoEthPairs, dodoEthSwapTo, 2, moreInfos, now + 60)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IDodoSwap(dodoSwap).dodoSwapV2TokenToToken(hnd, weth, _hnd, 1, path, 1, false, now + 60)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IDodoSwap(dodoSwap).dodoSwapV2TokenToToken(weth, hnd, _weth.div(2), 1, path, 0, false, now + 60)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IDodoSwap(dodoSwap).addDVMLiquidity(dodo_hnd_eth_lp, _weth, _hnd, 1, 1, 0, now + 60)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IDodoMine(rewards).withdraw(_amount)"
+            }
+        ]
+    }
+}

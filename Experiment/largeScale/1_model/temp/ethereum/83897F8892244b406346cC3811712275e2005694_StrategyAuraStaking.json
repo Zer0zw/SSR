@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "baseRewardPool.earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "address(AURA)",
+            "address(BAL)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "BOOSTER.deposit(pid, _amount, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "baseRewardPool.getReward()"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "BAURABAL.deposit(auraBalEarned)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "GRAVIAURA.deposit(auraBalance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAll",
+                "Node": "baseRewardPool.withdrawAllAndUnwrap(claimRewardsOnWithdrawAll)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "baseRewardPool.withdrawAndUnwrap(toWithdraw, false)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,191 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "pendingYel"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "YELtoken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "depositAsMigrate",
+            "receive"
+        ],
+        "getReward": [
+            "claimYel",
+            "emergencyWithdraw"
+        ],
+        "unStake": [
+            "migrate",
+            "requestWithdraw",
+            "withdrawUSDTFee"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claimYel",
+                "Node": [
+                    874
+                ],
+                "Input": [
+                    "_receiver"
+                ],
+                "Calculation Variables": [
+                    "pendingYel"
+                ],
+                "Control Variables": [
+                    "YELtoken",
+                    "pendingYel",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "YELtoken",
+                    "pendingYel",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    886
+                ],
+                "Input": [
+                    "_receiver"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WMATIC",
+                    "vault",
+                    "USDT",
+                    "lpToken",
+                    "farm"
+                ],
+                "Full Calculation Variables": [
+                    "WMATIC",
+                    "vault",
+                    "USDT",
+                    "lpToken",
+                    "farm"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "requestWithdraw",
+                "Node": [
+                    895
+                ],
+                "Input": [
+                    "_percent",
+                    "_receiver"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WMATIC",
+                    "YELtoken",
+                    "farm",
+                    "lpToken",
+                    "pendingFee",
+                    "pendingFeeKIRO",
+                    "pendingFeeWMATIC",
+                    "pendingYel",
+                    "router",
+                    "routerReward",
+                    "token0",
+                    "token1",
+                    "toleranceLevelPercent",
+                    "vault",
+                    "yelLiquidityRouter"
+                ],
+                "Full Calculation Variables": [
+                    "WMATIC",
+                    "YELtoken",
+                    "farm",
+                    "lpToken",
+                    "pendingFee",
+                    "pendingFeeKIRO",
+                    "pendingFeeWMATIC",
+                    "pendingYel",
+                    "router",
+                    "routerReward",
+                    "token0",
+                    "token1",
+                    "toleranceLevelPercent",
+                    "vault",
+                    "yelLiquidityRouter"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "migrate",
+                "Node": [
+                    903
+                ],
+                "Input": [
+                    "_percent"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "WMATIC",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "WMATIC",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawUSDTFee",
+                "Node": [
+                    954
+                ],
+                "Input": [
+                    "_owner"
+                ],
+                "Calculation Variables": [
+                    "USDT",
+                    "WMATIC",
+                    "farm",
+                    "pendingFee",
+                    "pendingFeeKIRO",
+                    "pendingFeeWMATIC",
+                    "token1"
+                ],
+                "Control Variables": [
+                    "USDT",
+                    "WMATIC",
+                    "farm",
+                    "pendingFee",
+                    "pendingFeeKIRO",
+                    "pendingFeeWMATIC",
+                    "token1",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "USDT",
+                    "WMATIC",
+                    "farm",
+                    "pendingFee",
+                    "pendingFeeKIRO",
+                    "pendingFeeWMATIC",
+                    "token1",
+                    "vault"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

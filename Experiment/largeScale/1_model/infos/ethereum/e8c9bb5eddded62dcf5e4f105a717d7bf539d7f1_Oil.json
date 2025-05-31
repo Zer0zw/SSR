@@ -1,0 +1,93 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf",
+            "stakers.habibiz.length",
+            "royalStakers.royals.length"
+        ],
+        "User Stake Reward": [
+            "calculateOilRewards"
+        ],
+        "User Stake Time": [
+            "stakers.habibiz.stakedTimestamp",
+            "royalStakers.royals.stakedTimestamp"
+        ],
+        "Stake Token Address": [
+            "habibi",
+            "royals"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "habibi.transferFrom(msg.sender, address(this), habibiz_[i])"
+            },
+            {
+                "Function": "stake",
+                "Node": "royals.transferFrom(msg.sender, address(this), royals_[i])"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "habibi.transferFrom(msg.sender, address(this), habibizTokenIds[i])"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "royals.transferFrom(msg.sender, address(this), royalsTokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_mint(to_, amount_)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "_mint(to_, oil)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "habibi.transferFrom(address(this), msg.sender, _habibi.tokenId)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "royals.transferFrom(address(this), msg.sender, _royal.tokenId)"
+            },
+            {
+                "Function": "_unstakeByIds",
+                "Node": "habibi.transferFrom(address(this), msg.sender, habibizIds_[i])"
+            },
+            {
+                "Function": "_unstakeByIds",
+                "Node": "royals.transferFrom(address(this), msg.sender, royalsIds_[i])"
+            },
+            {
+                "Function": "unstakeAllHabibiz",
+                "Node": "habibi.transferFrom(address(this), msg.sender, _habibi.tokenId)"
+            },
+            {
+                "Function": "unstakeAllRoyals",
+                "Node": "royals.transferFrom(address(this), msg.sender, _royal.tokenId)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "habibi.transferFrom(address(this), msg.sender, _habibi.tokenId)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "royals.transferFrom(address(this), msg.sender, _royal.tokenId)"
+            },
+            {
+                "Function": "unstakeHabibizByIds",
+                "Node": "habibi.transferFrom(address(this), msg.sender, habibizIds_[i])"
+            },
+            {
+                "Function": "unstakeRoyalsByIds",
+                "Node": "royals.transferFrom(address(this), msg.sender, royalsIds_[i])"
+            }
+        ]
+    }
+}

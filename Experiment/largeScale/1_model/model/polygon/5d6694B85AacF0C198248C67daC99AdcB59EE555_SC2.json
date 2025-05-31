@@ -1,0 +1,228 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake_data.amount",
+            "totalStakedEABCD",
+            "totalStakedBUSD"
+        ],
+        "User Stake Reward": [
+            "stake_data.claimedAmount",
+            "reward_eABCD_amount",
+            "reward_BUSD_amount"
+        ],
+        "User Stake Time": [
+            "stake_data.stakedDate",
+            "staking_period"
+        ],
+        "Stake Token Address": [
+            "_BUSDADDRESS",
+            "_eABCDADDRESS"
+        ],
+        "Reward Token Address": [
+            "_THALESADDRESS"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeBUSD",
+            "stakeEABCD"
+        ],
+        "getReward": [
+            "refund",
+            "unstake"
+        ],
+        "unStake": [
+            "refund",
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "setBUSDAddress",
+            "setEABCDAddress",
+            "setTHALESAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeEABCD",
+                "Node": [
+                    364
+                ],
+                "Input": [
+                    "_type",
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_MAX_eABCD",
+                    "_SC1ADDRESS",
+                    "_eABCDADDRESS",
+                    "decimal_eABCD",
+                    "totalStakedEABCD"
+                ],
+                "Full Calculation Variables": [
+                    "_MAX_eABCD",
+                    "_SC1ADDRESS",
+                    "_eABCDADDRESS",
+                    "decimal_eABCD",
+                    "totalStakedEABCD"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeBUSD",
+                "Node": [
+                    381
+                ],
+                "Input": [
+                    "_type",
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_BUSDADDRESS",
+                    "_MAX_BUSD",
+                    "_SC1ADDRESS",
+                    "decimal_BUSD",
+                    "totalStakedBUSD"
+                ],
+                "Full Calculation Variables": [
+                    "_BUSDADDRESS",
+                    "_MAX_BUSD",
+                    "_SC1ADDRESS",
+                    "decimal_BUSD",
+                    "totalStakedBUSD"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    445
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_THALESADDRESS",
+                    "stakeNum",
+                    "stake_data.amount",
+                    "stake_data.claimedAmount",
+                    "stake_data.owner",
+                    "stake_data.stakeType",
+                    "stake_data.stakedDate",
+                    "stake_data.tokenType"
+                ],
+                "Full Calculation Variables": [
+                    "_THALESADDRESS",
+                    "stakeNum",
+                    "stake_data.amount",
+                    "stake_data.claimedAmount",
+                    "stake_data.owner",
+                    "stake_data.stakeType",
+                    "stake_data.stakedDate",
+                    "stake_data.tokenType"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "refund",
+                "Node": [
+                    475
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakeNum"
+                ],
+                "Control Variables": [
+                    "_THALESADDRESS",
+                    "_owner",
+                    "stakeNum",
+                    "stake_data.amount",
+                    "stake_data.claimedAmount",
+                    "stake_data.owner",
+                    "stake_data.tokenType"
+                ],
+                "Full Calculation Variables": [
+                    "_THALESADDRESS",
+                    "_owner",
+                    "stakeNum",
+                    "stake_data.amount",
+                    "stake_data.claimedAmount",
+                    "stake_data.owner",
+                    "stake_data.tokenType"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    451
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stake_data.claimedAmount",
+                    "stake_data.tokenType",
+                    "_eABCDADDRESS",
+                    "_BUSDADDRESS",
+                    "stakeNum",
+                    "stake_data.stakeType",
+                    "_THALESADDRESS",
+                    "stake_data.owner",
+                    "stake_data.amount",
+                    "staking_period",
+                    "stake_data.stakedDate"
+                ],
+                "Full Calculation Variables": [
+                    "stake_data.claimedAmount",
+                    "stake_data.tokenType",
+                    "_eABCDADDRESS",
+                    "_BUSDADDRESS",
+                    "stakeNum",
+                    "stake_data.stakeType",
+                    "_THALESADDRESS",
+                    "stake_data.owner",
+                    "stake_data.amount",
+                    "staking_period",
+                    "stake_data.stakedDate"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "refund",
+                "Node": [
+                    484
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stake_data.amount",
+                    "stake_data.claimedAmount",
+                    "stake_data.tokenType",
+                    "_eABCDADDRESS",
+                    "_owner",
+                    "_BUSDADDRESS",
+                    "stakeNum",
+                    "_THALESADDRESS",
+                    "stake_data.owner"
+                ],
+                "Full Calculation Variables": [
+                    "stake_data.amount",
+                    "stake_data.claimedAmount",
+                    "stake_data.tokenType",
+                    "_eABCDADDRESS",
+                    "_owner",
+                    "_BUSDADDRESS",
+                    "stakeNum",
+                    "_THALESADDRESS",
+                    "stake_data.owner"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

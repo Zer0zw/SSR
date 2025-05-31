@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "lastTimestamp"
+        ],
+        "Stake Token Address": [
+            "vDBX"
+        ],
+        "Reward Token Address": [
+            "vDBX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "vDBX.transferFrom(_payee, address(this), _amount)"
+            },
+            {
+                "Function": "depositOnBehalf",
+                "Node": "vDBX.transferFrom(_payee, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingRewards",
+                "Node": "rewardsPool.mint(pending, vDBX, _account)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "rewardsPool.mint(pending, vDBX, _account)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "rewardsPool.mint(pending, vDBX, _account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "vDBX.transfer(_account, _amount)"
+            },
+            {
+                "Function": "withdrawOnBehalf",
+                "Node": "vDBX.transfer(_account, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "vDBX.transfer(_account, user.amount)"
+            },
+            {
+                "Function": "emergencyWithdrawOnBehalf",
+                "Node": "vDBX.transfer(_account, user.amount)"
+            }
+        ]
+    }
+}

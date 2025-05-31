@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_wantAmt"
+        ],
+        "User Stake Reward": [
+            "_reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "cvx"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ICvxRewardPool(stakingPool).stake(_wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ICvxRewardPool(stakingPool).getReward(false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "ICvxRewardPool(stakingPool).withdraw(_amount, false)"
+            }
+        ]
+    }
+}

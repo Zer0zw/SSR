@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeApWallet",
+            "stakeBpWallet",
+            "stakeDataC.amount"
+        ],
+        "User Stake Reward": [
+            "stakeDataA.claimed",
+            "stakeDataB.claimed",
+            "totalRewards"
+        ],
+        "User Stake Time": [
+            "stakeDataA.nftStaked",
+            "stakeDataB.nftStaked",
+            "rewardTime"
+        ],
+        "Stake Token Address": [
+            "nftA",
+            "nftB",
+            "nftC"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "nft.transferFrom(msg.sender, address(this), _tokenId"
+            },
+            {
+                "Function": "stakeCollectible",
+                "Node": "IERC1155(nftC).safeTransferFrom(msg.sender, address(this), _tokenId, _amount, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(token).transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "nft.transferFrom(address(this), msg.sender, _tokenId)"
+            },
+            {
+                "Function": "unstakeCollectible",
+                "Node": "IERC1155(nftC).safeTransferFrom(address(this), msg.sender, _tokenId, _amount, \"\")"
+            }
+        ]
+    }
+}

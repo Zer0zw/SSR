@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "address(sc).transfer(toStake)"
+            },
+            {
+                "Function": "requestNextStakingPeriod",
+                "Node": "requestStake[msg.sender] = requestStake[msg.sender].add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calcNewBalances",
+                "Node": "stakedBalances[users[i]] = currentBalance.add(earnings.mul(currentBalance).div(totalStaked))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "sc.withdraw(unStake)"
+            },
+            {
+                "Function": "requestExitAtEndOfCurrentStakingPeriod",
+                "Node": "requestUnStake[msg.sender] = requestUnStake[msg.sender].add(amount)"
+            }
+        ]
+    }
+}

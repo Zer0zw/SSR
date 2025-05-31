@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "NFTFields.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "NFTFields.rewardAmount"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "NFTFields.pool"
+        ],
+        "Reward Token Address": [
+            "NFTFields.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "buySmartStaker",
+                "Node": "TransferHelper.safeTransferFrom(purchaseToken, msg.sender, stakingSet, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "Hub.withdrawReward(_id, ownerOf(_id))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "burnSmartStaker",
+                "Node": "Hub.burn(_id, ownerOf(_id))"
+            }
+        ]
+    }
+}

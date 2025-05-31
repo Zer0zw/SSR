@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IBCharity(masterChef).deposit(pid, _wantAmount, referralAddress)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IBCharity(masterChef).withdraw(pid, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IBCharity(masterChef).withdraw(pid, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IBCharity(masterChef).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

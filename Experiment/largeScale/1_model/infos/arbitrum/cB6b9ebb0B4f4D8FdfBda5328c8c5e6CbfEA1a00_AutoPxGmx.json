@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [
+            "incentive"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "gmx"
+        ],
+        "Reward Token Address": [
+            "gmxBaseReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositGmx",
+                "Node": "gmx.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "asset.safeTransfer(msg.sender, incentive)"
+            },
+            {
+                "Function": "compound",
+                "Node": "asset.safeTransfer(owner, totalFee - incentive)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "asset.safeTransfer(receiver, assets)"
+            },
+            {
+                "Function": "redeem",
+                "Node": "asset.safeTransfer(receiver, assets)"
+            }
+        ]
+    }
+}

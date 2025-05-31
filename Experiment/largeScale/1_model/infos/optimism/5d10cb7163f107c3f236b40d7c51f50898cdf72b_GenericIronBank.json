@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfCToken",
+            "stakedBalance"
+        ],
+        "User Stake Reward": [
+            "getRewardsOwed"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "cToken"
+        ],
+        "Reward Token Address": [
+            "ib"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "stakingRewards.stake(balance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_disposeOfComp",
+                "Node": "stakingRewards.getReward()"
+            },
+            {
+                "Function": "manualClaimAndDontSell",
+                "Node": "stakingRewards.getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unStake",
+                "Node": "stakingRewards.withdraw(Math.min(amount, stakedBalance()))"
+            },
+            {
+                "Function": "manualUnstake",
+                "Node": "stakingRewards.withdraw(Math.min(amount, stakedBalance()))"
+            }
+        ]
+    }
+}

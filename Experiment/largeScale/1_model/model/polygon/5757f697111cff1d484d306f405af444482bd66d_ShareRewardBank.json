@@ -1,0 +1,505 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userLastDepositTime"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sds"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "harvestAllRewards",
+            "withdraw",
+            "withdrawAll"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "harvestAllRewards",
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": [
+            "addPool",
+            "initialize",
+            "replacePoolLpToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1333
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "devRate",
+                    "halvingChecked",
+                    "insuranceRate",
+                    "nextHalvingTime",
+                    "poolInfo",
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.depositFeeBP",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardHalvingRate",
+                    "rewardPerSecond",
+                    "totalAllocPoint",
+                    "totalRewardPerSecond",
+                    "treasuryRate",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "week",
+                    "whitelistedContract"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "devRate",
+                    "halvingChecked",
+                    "insuranceRate",
+                    "nextHalvingTime",
+                    "poolInfo",
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.depositFeeBP",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardHalvingRate",
+                    "rewardPerSecond",
+                    "totalAllocPoint",
+                    "totalRewardPerSecond",
+                    "treasuryRate",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "week",
+                    "whitelistedContract"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestAllRewards",
+                "Node": [
+                    1284
+                ],
+                "Input": [
+                    "_account",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "sds",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "sds",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1284
+                ],
+                "Input": [
+                    "_account",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "sds",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "sds",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    1284
+                ],
+                "Input": [
+                    "_account",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "sds",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "sds",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1284
+                ],
+                "Input": [
+                    "_account",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "sds",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "sds",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1392
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardPerSecond",
+                    "totalAllocPoint"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "devRate",
+                    "halvingChecked",
+                    "insuranceFund",
+                    "insuranceRate",
+                    "nextHalvingTime",
+                    "poolInfo",
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardHalvingRate",
+                    "rewardPerSecond",
+                    "totalAllocPoint",
+                    "totalRewardPerSecond",
+                    "treasuryRate",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "week",
+                    "whitelistedContract"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "devRate",
+                    "halvingChecked",
+                    "insuranceFund",
+                    "insuranceRate",
+                    "nextHalvingTime",
+                    "poolInfo",
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardHalvingRate",
+                    "rewardPerSecond",
+                    "totalAllocPoint",
+                    "totalRewardPerSecond",
+                    "treasuryRate",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "week",
+                    "whitelistedContract"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "harvestAllRewards",
+                "Node": [
+                    1392
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardPerSecond",
+                    "totalAllocPoint"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "devRate",
+                    "halvingChecked",
+                    "insuranceFund",
+                    "insuranceRate",
+                    "nextHalvingTime",
+                    "poolInfo",
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardHalvingRate",
+                    "rewardPerSecond",
+                    "totalAllocPoint",
+                    "totalRewardPerSecond",
+                    "treasuryRate",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "week",
+                    "whitelistedContract"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "devRate",
+                    "halvingChecked",
+                    "insuranceFund",
+                    "insuranceRate",
+                    "nextHalvingTime",
+                    "poolInfo",
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardHalvingRate",
+                    "rewardPerSecond",
+                    "totalAllocPoint",
+                    "totalRewardPerSecond",
+                    "treasuryRate",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "week",
+                    "whitelistedContract"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1392
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardPerSecond",
+                    "totalAllocPoint"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "devRate",
+                    "halvingChecked",
+                    "insuranceFund",
+                    "insuranceRate",
+                    "nextHalvingTime",
+                    "poolInfo",
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardHalvingRate",
+                    "rewardPerSecond",
+                    "totalAllocPoint",
+                    "totalRewardPerSecond",
+                    "treasuryRate",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "week",
+                    "whitelistedContract"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "devRate",
+                    "halvingChecked",
+                    "insuranceFund",
+                    "insuranceRate",
+                    "nextHalvingTime",
+                    "poolInfo",
+                    "poolInfo.accSdsPerShare",
+                    "poolInfo.allocPoint",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.isStarted",
+                    "poolInfo.lastRewardTime",
+                    "poolInfo.lpToken",
+                    "poolInfo.strategy",
+                    "poolInfo.totalLpSupply",
+                    "rewardHalvingRate",
+                    "rewardPerSecond",
+                    "totalAllocPoint",
+                    "totalRewardPerSecond",
+                    "treasuryRate",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "week",
+                    "whitelistedContract"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1473
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalLpSupply",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "insuranceFund",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalLpSupply",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "whitelistedContract"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "insuranceFund",
+                    "poolInfo.earlyWithdrawFee",
+                    "poolInfo.lpToken",
+                    "poolInfo.totalLpSupply",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt",
+                    "whitelistedContract"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

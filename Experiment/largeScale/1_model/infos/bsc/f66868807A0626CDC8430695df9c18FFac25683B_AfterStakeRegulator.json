@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "pendingRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastRewardBlock"
+        ],
+        "Stake Token Address": [
+            "AFBPoints"
+        ],
+        "Reward Token Address": [
+            "AFBToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(AFBPoints).transferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IAfterStakeVault(vault).distributeRewards(_user, rewards)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "IAfterStakeVault(vault).distributeRewards(_user, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(AFBPoints).transfer(_user, remainingUserAmount)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "IERC20(AFBPoints).transfer(_user, remainingUserAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "safeTokenTransfer(msg.sender, AFBPoints, remainingUserAmount)"
+            }
+        ]
+    }
+}

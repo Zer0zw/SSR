@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LP_TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "firstDeposit",
+                "Node": "stakeInMasterChef(lpBought)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "stakeInBooster(lpBought)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": "IBEP20(TOKEN).transfer(DEV, forDev)"
+            },
+            {
+                "Function": "compound",
+                "Node": "IBEP20(TOKEN).transfer(BOUNTY, forDistribution)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBoosterCakeByAmount",
+                "Node": "ICakePool(POOL).withdrawByAmount(amount)"
+            },
+            {
+                "Function": "withdrawBoosterCakeByShares",
+                "Node": "ICakePool(POOL).withdraw(shares)"
+            },
+            {
+                "Function": "withdrawBoosterCake",
+                "Node": "ICakePool(POOL).withdrawAll()"
+            },
+            {
+                "Function": "withdrawLpTokensFromMasterChef",
+                "Node": "IMasterChef(MASTERCHEF).withdraw(POOL_ID, amount)"
+            }
+        ]
+    }
+}

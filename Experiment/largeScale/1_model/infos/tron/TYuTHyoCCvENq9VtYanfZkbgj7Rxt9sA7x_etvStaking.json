@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeMap",
+            "User.totalInAmount"
+        ],
+        "User Stake Reward": [
+            "User.historyBonus",
+            "RewardLog.amount"
+        ],
+        "User Stake Time": [
+            "User.checkTime",
+            "Order.createTime"
+        ],
+        "Stake Token Address": [
+            "inTokenAddr"
+        ],
+        "Reward Token Address": [
+            "outTokenAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "safeTransferFrom(inTokenAddr, msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawBonus",
+                "Node": "safeTransfer(outTokenAddr, msg.sender, bonus)"
+            }
+        ],
+        "unStake": []
+    }
+}

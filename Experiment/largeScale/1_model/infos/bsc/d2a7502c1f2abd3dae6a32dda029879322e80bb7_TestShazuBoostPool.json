@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "SHAZUAddress"
+        ],
+        "Reward Token Address": [
+            "boostTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(SHAZUAddress).safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "safeShazuTransfer(_msgSender(), pending)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "safeShazuTransfer(_msgSender(), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(SHAZUAddress).safeTransfer(address(_msgSender()), _amount)"
+            }
+        ]
+    }
+}

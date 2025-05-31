@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.balance"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastUpdated"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.LPAddress"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(pInfo.LPAddress).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "ERC20PresetMinterPauser(pInfo.rewardTokenAddress).mint(_msgSender(), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(IERC20(pInfo.LPAddress).transfer(_msgSender(), amount.sub(fee))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "investorDetails.staked"
+        ],
+        "User Stake Reward": [
+            "investorDetails.withdrawn"
+        ],
+        "User Stake Time": [
+            "claimDailySTAKE.startTime"
+        ],
+        "Stake Token Address": [
+            "SUF"
+        ],
+        "Reward Token Address": [
+            "SUF"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeSUF",
+                "Node": "SUF.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimDailyRewardMINT",
+                "Node": "SUF.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "claimDailyRewardSTAKE",
+                "Node": "SUF.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeSUF",
+                "Node": "SUF.transfer(msg.sender, ((100 - unstakeFee) * _amount) / 100)"
+            }
+        ]
+    }
+}

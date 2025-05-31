@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares.amount"
+        ],
+        "User Stake Reward": [
+            "shares.totalRealised"
+        ],
+        "User Stake Time": [
+            "lastClaim"
+        ],
+        "Stake Token Address": [
+            "JTD"
+        ],
+        "Reward Token Address": [
+            "BUSD"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "JTD.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeRewards",
+                "Node": "BUSD.transfer(shareholder, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "JTD.transfer(msg.sender, shares[msg.sender].amount)"
+            }
+        ]
+    }
+}

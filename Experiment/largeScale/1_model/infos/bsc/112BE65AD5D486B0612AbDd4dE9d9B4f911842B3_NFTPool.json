@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.power"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake_(userInfo.node, value)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "abandonNode",
+                "Node": "nodeNFT.transferFrom(address(this), msg.sender, nftOwner[msg.sender])"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw_(userInfo.node, value)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,124 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserRewardAmount",
+            "UserAmountToClaim"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "Deposit",
+            "DistributeReward"
+        ],
+        "getReward": [
+            "Claim",
+            "DistributeReward"
+        ],
+        "unStake": [
+            "Withdraw"
+        ],
+        "Sensitive Functions": [
+            "SetUSDT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": [
+                    399
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "End",
+                    "USDT"
+                ],
+                "Full Calculation Variables": [
+                    "End",
+                    "USDT"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "Claim",
+                "Node": [
+                    456
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "UserAmountToClaim"
+                ],
+                "Control Variables": [
+                    "USDT",
+                    "UserAmountToClaim"
+                ],
+                "Full Calculation Variables": [
+                    "USDT",
+                    "UserAmountToClaim"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "DistributeReward",
+                "Node": [
+                    426
+                ],
+                "Input": [
+                    "_finalAmounts",
+                    "_initialAmounts",
+                    "_userIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TraderAccount",
+                    "USDT",
+                    "UserList",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "TraderAccount",
+                    "USDT",
+                    "UserList",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Withdraw",
+                "Node": [
+                    492
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "USDT",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "USDT",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

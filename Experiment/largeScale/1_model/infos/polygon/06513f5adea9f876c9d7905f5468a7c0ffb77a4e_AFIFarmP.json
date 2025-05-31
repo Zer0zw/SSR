@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "ARIES"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.want.safeTransferFrom(address(msg.sender), address(this), _wantAmt"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingAFI",
+                "Node": "return user.shares.mul(accAFIPerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeAFITransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(pool.want).safeTransfer(address(msg.sender), _wantAmt.sub(withdrawalFee)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

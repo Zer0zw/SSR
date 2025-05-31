@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingPoolId"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "alcx"
+        ],
+        "Reward Token Address": [
+            "alcx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IAlchemixStakingPool(stakingPool).deposit(stakingPoolId, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IAlchemixStakingPool(stakingPool).claim(stakingPoolId)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IAlchemixStakingPool(stakingPool).withdraw(stakingPoolId, _amount)"
+            }
+        ]
+    }
+}

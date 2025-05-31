@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "length_stakedIds"
+        ],
+        "User Stake Reward": [
+            "calculateReward"
+        ],
+        "User Stake Time": [
+            "checkpoints",
+            "lastClaim"
+        ],
+        "Stake Token Address": [
+            "my_token"
+        ],
+        "Reward Token Address": [
+            "diamonds"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "my_token.transferFrom(msg.sender, address(this), tokenId[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": "require(diamonds.transfer(reciever, reward), \"Unable to transfer token to the account\""
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "my_token.transferFrom(address(this), msg.sender, tokenId[i])"
+            }
+        ]
+    }
+}

@@ -1,0 +1,323 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf",
+            "orders.amount"
+        ],
+        "User Stake Reward": [
+            "totalRewardEarn",
+            "orders.claimedReward"
+        ],
+        "User Stake Time": [
+            "orders.lockupDuration"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "wBtc"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claimRefRewardsInETH",
+            "claimRefRewardsInWBTC",
+            "claimRewardsInETH",
+            "claimRewardsInWBTC"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    302,
+                    303,
+                    304,
+                    305
+                ],
+                "Input": [
+                    "_amount",
+                    "_lockupDuration",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_days365",
+                    "pooldata.lockupDuration",
+                    "pooldata.returnPer",
+                    "started",
+                    "token",
+                    "userInfo.referred",
+                    "userInfo.referred_by"
+                ],
+                "Full Calculation Variables": [
+                    "_days365",
+                    "pooldata.lockupDuration",
+                    "pooldata.returnPer",
+                    "started",
+                    "token",
+                    "userInfo.referred",
+                    "userInfo.referred_by"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsInWBTC",
+                "Node": [
+                    396,
+                    397,
+                    398,
+                    399
+                ],
+                "Input": [
+                    "orderId"
+                ],
+                "Calculation Variables": [
+                    "crcPrice",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "wbtcPriceFeed"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "crcPrice",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "totalRewardEarn",
+                    "totalRewardPending",
+                    "totalRewardsDistribution",
+                    "wBtc",
+                    "wbtcPriceFeed"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "crcPrice",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "totalRewardEarn",
+                    "totalRewardPending",
+                    "totalRewardsDistribution",
+                    "wBtc",
+                    "wbtcPriceFeed"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRewardsInETH",
+                "Node": [
+                    432
+                ],
+                "Input": [
+                    "orderId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "crcPrice",
+                    "ethPriceFeed",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "totalRewardEarn",
+                    "totalRewardPending",
+                    "totalRewardsDistribution"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "crcPrice",
+                    "ethPriceFeed",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "totalRewardEarn",
+                    "totalRewardPending",
+                    "totalRewardsDistribution"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimRefRewardsInWBTC",
+                "Node": [
+                    493,
+                    494,
+                    495,
+                    496
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "claimedRefRewards.level_1",
+                    "latestOrderId",
+                    "orderIds",
+                    "orders.amount",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.returnPer",
+                    "referrals_level_1"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "claimedRefRewards.level_1",
+                    "latestOrderId",
+                    "orderIds",
+                    "orders.amount",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.returnPer",
+                    "referrals_level_1",
+                    "totalRewardPending",
+                    "totalStake",
+                    "totalWithdrawal",
+                    "wBtc"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "claimedRefRewards.level_1",
+                    "latestOrderId",
+                    "orderIds",
+                    "orders.amount",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.returnPer",
+                    "referrals_level_1",
+                    "totalRewardPending",
+                    "totalStake",
+                    "totalWithdrawal",
+                    "wBtc"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claimRefRewardsInETH",
+                "Node": [
+                    514
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "claimedRefRewards.level_1",
+                    "latestOrderId",
+                    "orderIds",
+                    "orders.amount",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.returnPer",
+                    "referrals_level_1"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "claimedRefRewards.level_1",
+                    "latestOrderId",
+                    "orderIds",
+                    "orders.amount",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.returnPer",
+                    "referrals_level_1"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    361,
+                    362,
+                    363,
+                    364
+                ],
+                "Input": [
+                    "orderId"
+                ],
+                "Calculation Variables": [
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.endtime"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "balanceOf",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.endtime",
+                    "token",
+                    "totalWithdrawal"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "balanceOf",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.endtime",
+                    "token",
+                    "totalWithdrawal"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "allnums",
+            "ct"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "SOLID",
+            "SEX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "balanceOf[msg.sender] += _mint.sub(_fee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doHardWork",
+                "Node": "balanceOf[worker] += (_mint.mul(allnums[3])).div(1e6)"
+            },
+            {
+                "Function": "work",
+                "Node": "balanceOf[worker] += (_mint.mul(allnums[3])).div(1e6)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "balanceOf[msg.sender] -= _amt"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "balanceOf[msg.sender] -= _amt"
+            }
+        ]
+    }
+}

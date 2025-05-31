@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "claimable_reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "curveGauge"
+        ],
+        "Reward Token Address": [
+            "RewardType.reward_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": "_mint(_for, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(reward.reward_token).safeTransfer(_claimTo, receiveable)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "IERC20(reward.reward_token).safeTransfer(_forwardTo, receiveable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IBooster(convexBooster).withdrawTo(convexPoolId,_amount,msg.sender)"
+            }
+        ]
+    }
+}

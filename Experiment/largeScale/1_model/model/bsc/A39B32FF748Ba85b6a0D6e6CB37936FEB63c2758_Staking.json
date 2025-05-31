@@ -1,0 +1,168 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "farming_unit.balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "farming_unit.locked_time",
+            "farming_unit.OGdeposit_time",
+            "farming_unit.deposit_time"
+        ],
+        "Stake Token Address": [
+            "farming_unit.token"
+        ],
+        "Reward Token Address": [
+            "Test"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "farmTokens"
+        ],
+        "getReward": [
+            "issueInterestToken"
+        ],
+        "unStake": [
+            "unfarmTokens"
+        ],
+        "Sensitive Functions": [
+            "farmTokens",
+            "set_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farmTokens",
+                "Node": [
+                    114
+                ],
+                "Input": [
+                    "_amount",
+                    "locking"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Test",
+                    "cooldown_time",
+                    "is_farmable",
+                    "last_tx"
+                ],
+                "Full Calculation Variables": [
+                    "Test",
+                    "cooldown_time",
+                    "is_farmable",
+                    "last_tx"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "issueInterestToken",
+                "Node": [
+                    173
+                ],
+                "Input": [
+                    "id"
+                ],
+                "Calculation Variables": [
+                    "Test",
+                    "_precision",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.locked_time",
+                    "is_farmable",
+                    "token_pool.total_balance",
+                    "token_reward"
+                ],
+                "Control Variables": [
+                    "Test",
+                    "_precision",
+                    "cooldown_time",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.locked_time",
+                    "is_farmable",
+                    "last_tx",
+                    "locked",
+                    "token_pool.total_balance",
+                    "token_reward"
+                ],
+                "Full Calculation Variables": [
+                    "Test",
+                    "_precision",
+                    "cooldown_time",
+                    "farming_unit.balance",
+                    "farming_unit.deposit_time",
+                    "farming_unit.locked_time",
+                    "is_farmable",
+                    "last_tx",
+                    "locked",
+                    "token_pool.total_balance",
+                    "token_reward"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfarmTokens",
+                "Node": [
+                    152
+                ],
+                "Input": [
+                    "id"
+                ],
+                "Calculation Variables": [
+                    "token_pool.total_balance",
+                    "farming_unit.locked_time",
+                    "_precision",
+                    "farming_unit.deposit_time",
+                    "token_reward",
+                    "is_farmable",
+                    "farming_unit.balance",
+                    "Test"
+                ],
+                "Control Variables": [
+                    "farming_unit.token",
+                    "token_pool.total_balance",
+                    "cooldown_time",
+                    "farming_unit.active",
+                    "farming_unit.locked_time",
+                    "farming_unit.deposit_time",
+                    "token_reward",
+                    "farming_unit.index",
+                    "is_farmable",
+                    "locked",
+                    "Test",
+                    "farming_unit.OGdeposit_time",
+                    "last_tx",
+                    "is_auth",
+                    "_precision",
+                    "farming_unit.balance"
+                ],
+                "Full Calculation Variables": [
+                    "farming_unit.token",
+                    "token_pool.total_balance",
+                    "cooldown_time",
+                    "farming_unit.active",
+                    "farming_unit.locked_time",
+                    "farming_unit.deposit_time",
+                    "token_reward",
+                    "farming_unit.index",
+                    "is_farmable",
+                    "locked",
+                    "Test",
+                    "farming_unit.OGdeposit_time",
+                    "last_tx",
+                    "is_auth",
+                    "_precision",
+                    "farming_unit.balance"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

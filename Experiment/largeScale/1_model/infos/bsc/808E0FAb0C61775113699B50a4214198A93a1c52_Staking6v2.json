@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStore.deposit"
+        ],
+        "User Stake Reward": [
+            "userStore.claimAmount",
+            "userStore.totalReferralAmount",
+            "userStore.pendingReferralAmount"
+        ],
+        "User Stake Time": [
+            "userStore.lastTimeStamp",
+            "duration"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "token.safeTransfer(_msgSender(), user.claimAmount)"
+            },
+            {
+                "Function": "claimReferralPayout",
+                "Node": "token.safeTransfer(_msgSender(), user.pendingReferralAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimReward",
+                "Node": "token.safeTransfer(_msgSender(), user.claimAmount)"
+            }
+        ]
+    }
+}

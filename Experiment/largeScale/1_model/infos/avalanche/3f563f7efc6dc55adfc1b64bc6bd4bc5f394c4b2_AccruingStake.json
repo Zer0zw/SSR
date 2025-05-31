@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "AccrueVe.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "AccrueVe.accruedTokens"
+        ],
+        "User Stake Time": [
+            "AccrueVe.timeStamp"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakedToken).safeTransferFrom(userAddr, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdrawMyFunds",
+                "Node": "IERC20(stakedToken).safeTransfer(userAddr, fundsToClaim)"
+            }
+        ]
+    }
+}

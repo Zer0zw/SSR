@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "User.bonus",
+            "Deposit.withdrawn"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "User.checkpoint"
+        ],
+        "Stake Token Address": [
+            "TrinityFlame"
+        ],
+        "Reward Token Address": [
+            "TrinityFlame"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "TrinityFlame.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "TrinityFlame.transfer(msg.sender, totalAmount)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "TrinityFlame.transfer(msg.sender, totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

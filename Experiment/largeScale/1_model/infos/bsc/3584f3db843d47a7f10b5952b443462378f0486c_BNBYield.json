@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "investments.invested"
+        ],
+        "User Stake Reward": [
+            "totalRewards.amount"
+        ],
+        "User Stake Time": [
+            "weekly.deadline",
+            "claimTime.deadline"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "investments[msg.sender] = user_investment_details(msg.sender,totalInvestment)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimDailyRewards",
+                "Node": "approvedWithdrawal[msg.sender] = userWithdrawal(msg.sender,value)"
+            },
+            {
+                "Function": "withdrawal",
+                "Node": "payable(msg.sender).transfer(totalAmountToWithdraw)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Jackpot",
+                "Node": "payable(msg.sender).transfer(UnstakeValueCore)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposits.amount"
+        ],
+        "User Stake Reward": [
+            "Deposits.userAccShare"
+        ],
+        "User Stake Time": [
+            "Deposits.initialStake",
+            "Deposits.latestClaim"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "if (!_payMe(from, amount, tokenAddress))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "bool payRewards = _payDirect(from, rew, rewardTokenAddress)"
+            },
+            {
+                "Function": "claimOldRewards",
+                "Node": "bool paidOldRewards = _payDirect(msg.sender, rew, rewardTokenAddress)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "bool paid = _payDirect(from, amount, tokenAddress)"
+            }
+        ]
+    }
+}

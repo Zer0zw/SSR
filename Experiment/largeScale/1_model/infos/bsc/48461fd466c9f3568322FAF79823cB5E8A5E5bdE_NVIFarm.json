@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Order.nviAmount",
+            "Order.seeAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Order.time"
+        ],
+        "Stake Token Address": [
+            "nviToken",
+            "seeToken"
+        ],
+        "Reward Token Address": [
+            "nviToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nviToken.transferFrom(address(msg.sender), address(this), nviAmount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "seeToken.transferFrom(address(msg.sender), address(this), seeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "nviToken.transfer(_addr, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelStake",
+                "Node": "nviToken.transfer(msg.sender, order.nviAmount)"
+            },
+            {
+                "Function": "cancelStake",
+                "Node": "seeToken.transfer(msg.sender, order.seeAmount)"
+            }
+        ]
+    }
+}

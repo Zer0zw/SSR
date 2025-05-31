@@ -1,0 +1,248 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "totalRewardEarn"
+        ],
+        "User Stake Time": [
+            "orders.lockupDuration"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimReward",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "setToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    800
+                ],
+                "Input": [
+                    "_amount",
+                    "_lockupDuration",
+                    "_refAddress"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "pooldata.lockupDuration",
+                    "pooldata.returnPer",
+                    "started",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "pooldata.lockupDuration",
+                    "pooldata.returnPer",
+                    "started",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    854
+                ],
+                "Input": [
+                    "_orderId"
+                ],
+                "Calculation Variables": [
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "orders.starttime",
+                    "pooldata.lockupDuration",
+                    "pooldata.returnPer"
+                ],
+                "Control Variables": [
+                    "MIN_REWARD_AMOUNT",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "orders.starttime",
+                    "pooldata.lockupDuration",
+                    "pooldata.returnPer",
+                    "token",
+                    "totalRewardEarn"
+                ],
+                "Full Calculation Variables": [
+                    "MIN_REWARD_AMOUNT",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "orders.starttime",
+                    "pooldata.lockupDuration",
+                    "pooldata.returnPer",
+                    "token",
+                    "totalRewardEarn"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    884
+                ],
+                "Input": [
+                    "orderId"
+                ],
+                "Calculation Variables": [
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer"
+                ],
+                "Control Variables": [
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "token",
+                    "totalStake",
+                    "totalWithdrawal"
+                ],
+                "Full Calculation Variables": [
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "token",
+                    "totalStake",
+                    "totalWithdrawal"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    884
+                ],
+                "Input": [
+                    "orderId"
+                ],
+                "Calculation Variables": [
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer"
+                ],
+                "Control Variables": [
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "token",
+                    "totalStake",
+                    "totalWithdrawal"
+                ],
+                "Full Calculation Variables": [
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "orders.claimedReward",
+                    "orders.endtime",
+                    "orders.lockupDuration",
+                    "orders.returnPer",
+                    "token",
+                    "totalStake",
+                    "totalWithdrawal"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    912
+                ],
+                "Input": [
+                    "orderId"
+                ],
+                "Calculation Variables": [
+                    "emergencyWithdrawFess",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed"
+                ],
+                "Control Variables": [
+                    "emergencyWithdrawFess",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "token",
+                    "totalStake",
+                    "totalWithdrawal"
+                ],
+                "Full Calculation Variables": [
+                    "emergencyWithdrawFess",
+                    "latestOrderId",
+                    "orders.amount",
+                    "orders.beneficiary",
+                    "orders.claimed",
+                    "token",
+                    "totalStake",
+                    "totalWithdrawal"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

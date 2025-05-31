@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "timePenalty",
+            "timeMature"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(token).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(token).safeTransfer(userAddr, amountToUnstake)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "_interestPayTimes",
+            "_interestPaidTimes"
+        ],
+        "User Stake Time": [
+            "Stake.stakeTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_setStake(sender,newStake)"
+            },
+            {
+                "Function": "stakeFromTime",
+                "Node": "_setStake(sender,newStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "InterestPay",
+                "Node": "_payInterest(stakeAddress,interestAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

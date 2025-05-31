@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardPerKid"
+        ],
+        "User Stake Time": [
+            "NftInfo.stakeTime"
+        ],
+        "Stake Token Address": [
+            "lostkids"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addManyToRegister",
+                "Node": "lostkids.transferFrom(_msgSender(), address(this), tokenIds[i])"
+            },
+            {
+                "Function": "_addNftToRegister",
+                "Node": "lostkids.transferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimManyFromRegister",
+                "Node": "rewardsToken.transfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "_claimNftFromRegister",
+                "Node": "rewardsToken.transfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimManyFromRegister",
+                "Node": "lostkids.safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "_claimNftFromRegister",
+                "Node": "lostkids.safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "rescue",
+                "Node": "lostkids.safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

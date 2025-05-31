@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastGetReward"
+        ],
+        "Stake Token Address": [
+            "osk"
+        ],
+        "Reward Token Address": [
+            "osk"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeOSKTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeOSKTransfer(project1, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeOSKTransfer(project2, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeOSKTransfer(project3, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeOSKTransfer(project4, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeOSKTransfer(project5, reward.mul(4).div(100))"
+            },
+            {
+                "Function": "getReward",
+                "Node": "safeOSKTransfer(referrer, referrerFee))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.unStakeAmount"
+        ],
+        "User Stake Reward": [
+            "LevelInfoForUser.rewardRate"
+        ],
+        "User Stake Time": [
+            "UserInfo.stakedTime",
+            "UserInfo.lastUnstakeTime"
+        ],
+        "Stake Token Address": [
+            "sCowContract"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStaker",
+                "Node": "userCountForLevel[level] = userCountForLevel[level].add(1)"
+            },
+            {
+                "Function": "transferFrom",
+                "Node": "_gonBalances[ to ] = _gonBalances[to].add( toGonValue )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rebaseForCal",
+                "Node": "rebaseAmount = currentProfit.mul( totalSupply_ ).div( currentSupply )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_updateUserInfo",
+                "Node": "unstakeAmount = unstakeAmount.add(_amount)"
+            },
+            {
+                "Function": "transferFrom",
+                "Node": "_gonBalances[ from ] = _gonBalances[from].sub( fromGonValue )"
+            }
+        ]
+    }
+}

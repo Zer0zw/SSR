@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.depositedQty"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "Deposit.depositedAt",
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "rewardAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.safeTransferFrom(staker, rewardAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawAfterClose",
+                "Node": "token.safeTransferFrom(rewardAddress, from, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAfterClose",
+                "Node": "token.safeTransferFrom(rewardAddress, from, reward)"
+            }
+        ]
+    }
+}

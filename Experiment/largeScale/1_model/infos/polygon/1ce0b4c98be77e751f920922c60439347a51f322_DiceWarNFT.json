@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "holderTokenidList"
+        ],
+        "User Stake Reward": [
+            "userStakingRewards"
+        ],
+        "User Stake Time": [
+            "tokenStakedTimestamp"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "tokenStakedTimestamp[tokenLevel][holderTokenidList[msg.sender][tokenLevel][i]] = block.timestamp"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "nftStakingRewards",
+                "Node": "stakingRewardsCount += dayGap * dayNftStakingRewards[tokenLevel]"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "userStakingRewards[_userAddr] = 0"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAllToken",
+                "Node": "tokenStakedTimestamp[j][holderTokenidList[_userAddr][j][i]] = 0"
+            }
+        ]
+    }
+}

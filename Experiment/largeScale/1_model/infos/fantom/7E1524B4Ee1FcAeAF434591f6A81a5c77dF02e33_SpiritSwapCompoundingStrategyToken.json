@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_shares"
+        ],
+        "User Stake Reward": [
+            "_pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "reserveToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(_from, _shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "gulp",
+                "Node": "Transfers._pushFunds(rewardToken, collector, _feeReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Transfers._pushFunds(reserveToken, _from, _amount)"
+            }
+        ]
+    }
+}

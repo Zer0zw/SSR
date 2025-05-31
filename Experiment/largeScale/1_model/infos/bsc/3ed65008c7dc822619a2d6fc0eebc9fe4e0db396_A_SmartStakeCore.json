@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_depositedBnb",
+            "_fundShares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_pcsV2Router.WETH"
+        ],
+        "Reward Token Address": [
+            "_pcsV2MasterChef.cake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "emit StakeDeposit(msg.sender, assignTo, depositAmount, feeAmount, newShareAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reconcileInternal",
+                "Node": "_pcsV2MasterChef.deposit(_farms[i], 0)"
+            },
+            {
+                "Function": "liquidateTokensForETH",
+                "Node": "_pcsV2Router.swapExactTokensForETHSupportingFeeOnTransferTokens(txAmount, 0, path, address(this), (block.timestamp + 500))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_pcsV2Router.removeLiquidityETHSupportingFeeOnTransferTokens(address(lpPair), lpToWithdraw, 0, 0, outputAddress, block.timestamp + _pcsV2TransactionExpirySeconds)"
+            }
+        ]
+    }
+}

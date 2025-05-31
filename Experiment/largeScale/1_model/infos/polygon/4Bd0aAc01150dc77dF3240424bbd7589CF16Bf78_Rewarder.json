@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MASTERCHEF_V2"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onSushiReward",
+                "Node": "user.amount = lpToken"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onSushiReward",
+                "Node": "rewardToken.safeTransfer(to, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "onSushiReward",
+                "Node": "user.amount = lpToken"
+            }
+        ]
+    }
+}

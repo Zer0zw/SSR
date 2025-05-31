@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositTimestamp"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "SILVER"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.want.safeTransferFrom(msg.sender, address(this), _wantAmt"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "pool.want.safeTransferFrom(msg.sender, address(this), _wantAmt"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingSilver",
+                "Node": "return user.shares.mul(accSilverPerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "safeSilverTransfer",
+                "Node": "IERC20(SILVER).transfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.want.safeTransfer(_to, _wantAmt)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "pool.want.safeTransfer(_to, _wantAmt)"
+            }
+        ]
+    }
+}

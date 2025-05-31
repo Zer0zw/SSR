@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "validators.amount"
+        ],
+        "User Stake Reward": [
+            "validators.reward",
+            "validators.delegatorsReward"
+        ],
+        "User Stake Time": [
+            "validators.activationEpoch",
+            "validators.deactivationEpoch"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeFor",
+                "Node": "_transferTokenFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "restake",
+                "Node": "_transferTokenFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "_transferToken(msg.sender, reward)"
+            },
+            {
+                "Function": "unstakeClaim",
+                "Node": "_transferToken(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_transferToken(msg.sender, amount)"
+            },
+            {
+                "Function": "unstakeClaim",
+                "Node": "_transferToken(msg.sender, amount)"
+            }
+        ]
+    }
+}

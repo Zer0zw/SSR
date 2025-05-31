@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "depositTokens"
+        ],
+        "Reward Token Address": [
+            "rewardsV3.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, lpTokenDeposited * totalSupply() / balBefore)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "_mint(msg.sender, lpTokenDeposited * totalSupply() / balBefore)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(native).safeTransfer(beneficiary, beneficiaryFee)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(native).safeTransfer(developer, developerFee)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "payable(msg.sender).call{value: senderFee}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(withdrawToken).safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "_prepareWithdrawal",
+                "Node": "IERC20(withdrawToken).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

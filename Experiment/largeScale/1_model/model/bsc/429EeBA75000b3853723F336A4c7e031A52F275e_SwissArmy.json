@@ -1,0 +1,175 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staketBalances"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "claimedRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "collectionAddress"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addStaker",
+            "putFlag",
+            "setLongTerm"
+        ],
+        "getReward": [
+            "batchCalimStaked"
+        ],
+        "unStake": [
+            "putFlag",
+            "removeLongTerm"
+        ],
+        "Sensitive Functions": [
+            "setCollectionAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStaker",
+                "Node": [
+                    1058
+                ],
+                "Input": [
+                    "_address",
+                    "_amount",
+                    "_flag"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_owner",
+                    "staketBalances"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "staketBalances"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "setLongTerm",
+                "Node": [
+                    1166
+                ],
+                "Input": [
+                    "_address",
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "staketBalances",
+                    "totalStakedBalance",
+                    "whiteList"
+                ],
+                "Full Calculation Variables": [
+                    "staketBalances",
+                    "totalStakedBalance",
+                    "whiteList"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "putFlag",
+                "Node": [
+                    1189
+                ],
+                "Input": [
+                    "_address",
+                    "_amount",
+                    "_flag"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "staketBalances",
+                    "whiteList"
+                ],
+                "Full Calculation Variables": [
+                    "staketBalances",
+                    "whiteList"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "batchCalimStaked",
+                "Node": [
+                    1080
+                ],
+                "Input": [
+                    "_amount",
+                    "_amount",
+                    "percentages",
+                    "_contract",
+                    "percentage",
+                    "contracts"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "router",
+                    "rewards",
+                    "stakersIndex",
+                    "acceptedBep20List"
+                ],
+                "Full Calculation Variables": [
+                    "router",
+                    "rewards",
+                    "stakersIndex",
+                    "acceptedBep20List"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeLongTerm",
+                "Node": [
+                    1182
+                ],
+                "Input": [
+                    "_address"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "staketBalances",
+                    "totalStakedBalance",
+                    "whiteList"
+                ],
+                "Full Calculation Variables": [
+                    "staketBalances",
+                    "totalStakedBalance",
+                    "whiteList"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "putFlag",
+                "Node": [
+                    1199
+                ],
+                "Input": [
+                    "_address",
+                    "_amount",
+                    "_flag"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "whiteList"
+                ],
+                "Full Calculation Variables": [
+                    "whiteList"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

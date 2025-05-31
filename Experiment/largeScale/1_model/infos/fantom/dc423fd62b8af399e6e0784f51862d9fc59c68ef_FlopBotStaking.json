@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.apy",
+            "Stake.rewardSecondsLeft"
+        ],
+        "User Stake Time": [
+            "Stake.unlockTime",
+            "Stake.lastStake"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IBEP20(TOKEN).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "payRewards",
+                "Node": "require(IBEP20(TOKEN).transfer(staker, rewardsToBePaid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(IBEP20(TOKEN).transfer(msg.sender, stakes[msg.sender][pool].amount)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "require(IBEP20(TOKEN).transfer(msg.sender, stakes[msg.sender][pool].amount * (100 - emergencyPenalty) / 100)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftByOwner"
+        ],
+        "User Stake Reward": [
+            "checkWork"
+        ],
+        "User Stake Time": [
+            "stakedNFT.since"
+        ],
+        "Stake Token Address": [
+            "erc721Contract"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onERC721Received",
+                "Node": "stakeableNFT.safeTransferFrom(msg.sender, address(this),_tokens[i])"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "stakeableNFT.safeTransferFrom(msg.sender, address(this),_tokens[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "receiveReward",
+                "Node": "require(rewardToken.transfer(msg.sender, earned)"
+            },
+            {
+                "Function": "receiveRewardAll",
+                "Node": "require(rewardToken.transfer(msg.sender, earned))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "returnToken",
+                "Node": "stakeableNFT.safeTransferFrom(address(this), msg.sender, _tokenID)"
+            },
+            {
+                "Function": "returnTokenAll",
+                "Node": "stakeableNFT.safeTransferFrom(address(this), msg.sender, _tokenID)"
+            },
+            {
+                "Function": "emergencyReturn",
+                "Node": "stakeableNFT.safeTransferFrom(address(this), _owner, tID)"
+            }
+        ]
+    }
+}

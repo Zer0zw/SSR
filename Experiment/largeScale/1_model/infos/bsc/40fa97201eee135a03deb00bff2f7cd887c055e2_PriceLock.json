@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStake"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_contractAddress"
+        ],
+        "Reward Token Address": [
+            "_contractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(_contractAddress).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "release",
+                "Node": "IERC20(_contractAddress).transfer(user,userStake[user].mul(rate).div(100)"
+            }
+        ],
+        "unStake": []
+    }
+}

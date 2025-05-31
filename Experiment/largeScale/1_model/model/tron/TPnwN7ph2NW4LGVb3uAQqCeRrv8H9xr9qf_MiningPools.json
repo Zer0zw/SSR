@@ -1,0 +1,147 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.stakeIn"
+        ],
+        "User Stake Reward": [
+            "users.willCollect"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "pools.stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "collect"
+        ],
+        "unStake": [
+            "collect"
+        ],
+        "Sensitive Functions": [
+            "migrate",
+            "setPoolStakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1172
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "INIT_ADDRESS",
+                    "pools.billingCycle",
+                    "pools.closed",
+                    "pools.rewardPerShare",
+                    "pools.staked",
+                    "pools.stakingToken",
+                    "users.rewardDebt",
+                    "users.stakeIn",
+                    "users.willCollect"
+                ],
+                "Full Calculation Variables": [
+                    "INIT_ADDRESS",
+                    "pools.billingCycle",
+                    "pools.closed",
+                    "pools.rewardPerShare",
+                    "pools.staked",
+                    "pools.stakingToken",
+                    "users.rewardDebt",
+                    "users.stakeIn",
+                    "users.willCollect"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": [
+                    1205
+                ],
+                "Input": [
+                    "_pid",
+                    "_withdrawAmount"
+                ],
+                "Calculation Variables": [
+                    "pools.billingCycle",
+                    "pools.rewardPerShare",
+                    "pools.staked",
+                    "precision",
+                    "users.lastCollectPosition",
+                    "users.rewardDebt",
+                    "users.stakeIn",
+                    "users.willCollect"
+                ],
+                "Control Variables": [
+                    "pools.billingCycle",
+                    "pools.rewardPerShare",
+                    "pools.staked",
+                    "precision",
+                    "rewardToken",
+                    "users.lastCollectPosition",
+                    "users.rewardDebt",
+                    "users.stakeIn",
+                    "users.willCollect"
+                ],
+                "Full Calculation Variables": [
+                    "pools.billingCycle",
+                    "pools.rewardPerShare",
+                    "pools.staked",
+                    "precision",
+                    "rewardToken",
+                    "users.lastCollectPosition",
+                    "users.rewardDebt",
+                    "users.stakeIn",
+                    "users.willCollect"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "collect",
+                "Node": [
+                    1197
+                ],
+                "Input": [
+                    "_pid",
+                    "_withdrawAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "pools.billingCycle",
+                    "pools.rewardPerShare",
+                    "pools.staked",
+                    "users.lastCollectPosition",
+                    "users.rewardDebt",
+                    "users.stakeIn",
+                    "users.willCollect"
+                ],
+                "Full Calculation Variables": [
+                    "pools.billingCycle",
+                    "pools.rewardPerShare",
+                    "pools.staked",
+                    "users.lastCollectPosition",
+                    "users.rewardDebt",
+                    "users.stakeIn",
+                    "users.willCollect"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

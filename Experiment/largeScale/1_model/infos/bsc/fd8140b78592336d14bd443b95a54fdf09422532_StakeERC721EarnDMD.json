@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakingAbility"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_pair"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(_pair).safeTransferFrom(_msgSender(), address(this), _tokenId)"
+            },
+            {
+                "Function": "batchStake",
+                "Node": "IERC721(_pair).safeTransferFrom(_msgSender(), address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeTokenTransfer(_msgSender(), pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "safeTokenTransfer(_msgSender(), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(_pair).safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "batchUnstake",
+                "Node": "IERC721(_pair).safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "IERC721(_pair).safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstakeAll",
+                "Node": "IERC721(_pair).safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            }
+        ]
+    }
+}

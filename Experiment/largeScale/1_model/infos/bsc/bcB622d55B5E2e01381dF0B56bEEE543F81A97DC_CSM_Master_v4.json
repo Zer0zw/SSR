@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TokenStaked.amountOfToken"
+        ],
+        "User Stake Reward": [
+            "TokenStaked.rewardToken"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Deposit.lastdate"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "rewardToken.mintTokens(address(this), tokenReceivedPrincipal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "WithdrawalToken",
+                "Node": "rewardToken.transfer(msg.sender, reciveToken)"
+            },
+            {
+                "Function": "receiveGroupIncome",
+                "Node": "rewardToken.transfer(msg.sender, reciveToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WithdrawalToken",
+                "Node": "rewardToken.transfer(msg.sender, reciveToken)"
+            }
+        ]
+    }
+}

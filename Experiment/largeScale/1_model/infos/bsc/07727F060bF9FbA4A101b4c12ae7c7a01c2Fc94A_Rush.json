@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mapUserStake.tokenValue"
+        ],
+        "User Stake Reward": [
+            "calculateStakeDividends"
+        ],
+        "User Stake Time": [
+            "mapUserStake.endDay",
+            "mapUserStake.startDay"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "_burn(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakeReward",
+                "Node": "payable(msg.sender).transfer(profit)"
+            },
+            {
+                "Function": "claimStakeReward",
+                "Node": "_mint(msg.sender, stakeReturn + bonusAmount)"
+            },
+            {
+                "Function": "claimLobbyReward",
+                "Node": "_mint(msg.sender, tokensToPay)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimStakeReward",
+                "Node": "_mint(msg.sender, stakeReturn + bonusAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "timeForFree"
+        ],
+        "Stake Token Address": [
+            "Db"
+        ],
+        "Reward Token Address": [
+            "sDb"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( sDb ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IDb( sDb ).balanceForGons( info.gons ) )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( Db ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IERC20( Db ).safeTransfer( feeWallet, feeAmount )"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IERC20( Db ).safeTransfer( msg.sender, _amount.sub(feeAmount) )"
+            }
+        ]
+    }
+}

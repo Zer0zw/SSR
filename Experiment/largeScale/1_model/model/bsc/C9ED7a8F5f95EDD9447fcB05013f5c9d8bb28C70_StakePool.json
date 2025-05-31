@@ -1,0 +1,143 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes.amount"
+        ],
+        "User Stake Reward": [
+            "stakes.unClaimedReward",
+            "stakes.rewardOut"
+        ],
+        "User Stake Time": [
+            "stakes.stakeTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claimReward",
+            "releaseReferralReward"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "setRewardToken",
+            "setStakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1683
+                ],
+                "Input": [
+                    "amount",
+                    "pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakeToken"
+                ],
+                "Full Calculation Variables": [
+                    "stakeToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    1858
+                ],
+                "Input": [
+                    "pid",
+                    "staker"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "devAddress",
+                    "mainNodeAddress",
+                    "rewardToken",
+                    "stakes.rewardOut",
+                    "stakes.unClaimedReward",
+                    "superNodeAddress"
+                ],
+                "Full Calculation Variables": [
+                    "devAddress",
+                    "mainNodeAddress",
+                    "rewardToken",
+                    "stakes.rewardOut",
+                    "stakes.unClaimedReward",
+                    "superNodeAddress"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "releaseReferralReward",
+                "Node": [
+                    1816,
+                    1817,
+                    1818,
+                    1819,
+                    1820
+                ],
+                "Input": [
+                    "addrs"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "devAddress",
+                    "mainNodeAddress",
+                    "rewardToken",
+                    "superNodeAddress"
+                ],
+                "Full Calculation Variables": [
+                    "devAddress",
+                    "mainNodeAddress",
+                    "rewardToken",
+                    "superNodeAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1723
+                ],
+                "Input": [
+                    "amount",
+                    "pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "pools.freezeTime",
+                    "pools.total",
+                    "stakeToken",
+                    "stakes.amount",
+                    "stakes.stakeTime"
+                ],
+                "Full Calculation Variables": [
+                    "pools.freezeTime",
+                    "pools.total",
+                    "stakeToken",
+                    "stakes.amount",
+                    "stakes.stakeTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.stakes"
+        ],
+        "User Stake Reward": [
+            "User.got",
+            "User.cache"
+        ],
+        "User Stake Time": [
+            "User.started"
+        ],
+        "Stake Token Address": [
+            "Pool.addr"
+        ],
+        "Reward Token Address": [
+            "_blin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(pool.addr).transferFrom(msg.sender, address(this), value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "IMinable(_blin).mint(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "payable(msg.sender).transfer(user.stakes)"
+            },
+            {
+                "Function": "redeem",
+                "Node": "IERC20(pool.addr).transfer(msg.sender, user.stakes)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_lpToken"
+        ],
+        "User Stake Reward": [
+            "_rewardsCRV",
+            "_wavax"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "crv3cypto"
+        ],
+        "Reward Token Address": [
+            "CRV",
+            "WAVAX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "LpTokenStaker(rewardGauge).deposit(_lpToken)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "LpTokenStaker(rewardGauge).claim_rewards(address(this))"
+            },
+            {
+                "Function": "_claimRewards",
+                "Node": "LpTokenStaker(rewardGauge).claim_rewards(address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "LpTokenStaker(rewardGauge).withdraw(_amount)"
+            }
+        ]
+    }
+}

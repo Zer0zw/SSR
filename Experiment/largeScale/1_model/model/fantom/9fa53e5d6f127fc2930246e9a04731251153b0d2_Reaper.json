@@ -1,0 +1,104 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "playerinfo.amountStaked"
+        ],
+        "User Stake Reward": [
+            "playerinfo.rewards"
+        ],
+        "User Stake Time": [
+            "playerinfo.timeLocked"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "withdraw"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    403
+                ],
+                "Input": [
+                    "user"
+                ],
+                "Calculation Variables": [
+                    "EPOCH_LENGTH",
+                    "TOKENS_PER_EPOCH",
+                    "WAD",
+                    "playerinfo.rewards",
+                    "playerinfo.timeLocked"
+                ],
+                "Control Variables": [
+                    "EPOCH_LENGTH",
+                    "TOKENS_PER_EPOCH",
+                    "WAD",
+                    "playerinfo.rewards",
+                    "playerinfo.timeLocked",
+                    "rewardToken"
+                ],
+                "Full Calculation Variables": [
+                    "EPOCH_LENGTH",
+                    "TOKENS_PER_EPOCH",
+                    "WAD",
+                    "playerinfo.rewards",
+                    "playerinfo.timeLocked",
+                    "rewardToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    414
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "EPOCH_LENGTH",
+                    "TOKENS_PER_EPOCH",
+                    "WAD",
+                    "balance",
+                    "playerinfo",
+                    "playerinfo.balance",
+                    "playerinfo.rewards",
+                    "playerinfo.timeLocked",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "EPOCH_LENGTH",
+                    "TOKENS_PER_EPOCH",
+                    "WAD",
+                    "balance",
+                    "playerinfo",
+                    "playerinfo.balance",
+                    "playerinfo.rewards",
+                    "playerinfo.timeLocked",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

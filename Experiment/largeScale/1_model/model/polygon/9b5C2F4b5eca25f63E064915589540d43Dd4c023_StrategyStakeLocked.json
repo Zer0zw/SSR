@@ -1,0 +1,109 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [
+            "profit"
+        ],
+        "User Stake Time": [
+            "userInfo.LastUserDepositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "increaseProfit"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1176
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "increaseProfit",
+                "Node": [
+                    1200
+                ],
+                "Input": [
+                    "_profit"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "team",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "team",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1319
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "token",
+                    "totalShares"
+                ],
+                "Control Variables": [
+                    "token",
+                    "totalShares",
+                    "userInfo.LastUserAction",
+                    "userInfo.LastUserDepositTime",
+                    "userInfo.shares",
+                    "veGRAND"
+                ],
+                "Full Calculation Variables": [
+                    "token",
+                    "totalShares",
+                    "userInfo.LastUserAction",
+                    "userInfo.LastUserDepositTime",
+                    "userInfo.shares",
+                    "veGRAND"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

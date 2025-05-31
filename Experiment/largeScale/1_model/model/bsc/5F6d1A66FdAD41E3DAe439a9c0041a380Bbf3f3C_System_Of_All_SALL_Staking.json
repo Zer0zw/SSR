@@ -1,0 +1,126 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeInfos.amount"
+        ],
+        "User Stake Reward": [
+            "userStakeInfos.pendingReward"
+        ],
+        "User Stake Time": [
+            "userStakeInfos.FinalTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakeTokenAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claimMonthlyReward"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1176,
+                    1177,
+                    1178,
+                    1179
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "FirstTimeReward"
+                ],
+                "Control Variables": [
+                    "stakeTokenAddress",
+                    "FirstTimeReward"
+                ],
+                "Full Calculation Variables": [
+                    "stakeTokenAddress",
+                    "FirstTimeReward"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimMonthlyReward",
+                "Node": [
+                    1228,
+                    1229,
+                    1230,
+                    1231
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "APY",
+                    "StakeTime",
+                    "userStakeInfos.amount",
+                    "userStakeInfos.lastUpdatedTimestamp"
+                ],
+                "Control Variables": [
+                    "APY",
+                    "StakeTime",
+                    "rewardTokenAddress",
+                    "userStakeInfos.NextRewardClaimTimeStamp",
+                    "userStakeInfos.amount",
+                    "userStakeInfos.lastUpdatedTimestamp",
+                    "userStakeInfos.pendingReward",
+                    "userStakeInfos.totalClaimed"
+                ],
+                "Full Calculation Variables": [
+                    "APY",
+                    "StakeTime",
+                    "rewardTokenAddress",
+                    "userStakeInfos.NextRewardClaimTimeStamp",
+                    "userStakeInfos.amount",
+                    "userStakeInfos.lastUpdatedTimestamp",
+                    "userStakeInfos.pendingReward",
+                    "userStakeInfos.totalClaimed"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1208,
+                    1209,
+                    1210,
+                    1211
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakeTokenAddress",
+                    "userStakeInfos.FinalTimestamp",
+                    "userStakeInfos.amount",
+                    "userStakeInfos.lastUpdatedTimestamp",
+                    "userStakeInfos.pendingReward"
+                ],
+                "Full Calculation Variables": [
+                    "stakeTokenAddress",
+                    "userStakeInfos.FinalTimestamp",
+                    "userStakeInfos.amount",
+                    "userStakeInfos.lastUpdatedTimestamp",
+                    "userStakeInfos.pendingReward"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

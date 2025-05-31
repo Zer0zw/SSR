@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardBalance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "xcal"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "I3xcaliburGauge(gauge).deposit(wantBal, 0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "I3xcaliburGauge(gauge).getReward(address(this), rewardTokens)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "I3xcaliburGauge(gauge).getReward(address(this), rewardTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "I3xcaliburGauge(gauge).withdraw(_amount - wantBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "I3xcaliburGauge(gauge).withdraw(balanceOfPool())"
+            },
+            {
+                "Function": "panic",
+                "Node": "I3xcaliburGauge(gauge).withdraw(balanceOfPool())"
+            }
+        ]
+    }
+}

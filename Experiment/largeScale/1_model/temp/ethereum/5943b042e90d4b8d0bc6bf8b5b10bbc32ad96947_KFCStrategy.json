@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_tokenBalances"
+        ],
+        "User Stake Reward": [
+            "chicken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "chicken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFor",
+                "Node": "_mint(account, shares)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawTo",
+                "Node": "chicken.safeTransfer(account, kfc)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTo",
+                "Node": "token.safeTransfer(account, _amount)"
+            }
+        ]
+    }
+}

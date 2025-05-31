@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [
+            "warmupInfo.gons"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry"
+        ],
+        "Stake Token Address": [
+            "Big"
+        ],
+        "Reward Token Address": [
+            "Bang"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "Bang.safeTransfer(address(warmupContract), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "warmupContract.retrieve(_recipient, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "Big.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "Big.safeTransfer(msg.sender, info.deposit)"
+            }
+        ]
+    }
+}

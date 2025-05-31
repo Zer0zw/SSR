@@ -1,0 +1,187 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositTime"
+        ],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "setdepositToken",
+            "setrewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1081
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "depositToken",
+                    "userInfo.amount",
+                    "userInfo.lastDepositTime",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "depositToken",
+                    "userInfo.amount",
+                    "userInfo.lastDepositTime",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1077
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "accMTWPerShare",
+                    "masterchef",
+                    "pid",
+                    "userInfo.amount",
+                    "userInfo.lastDepositTime",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "accMTWPerShare",
+                    "masterchef",
+                    "pid",
+                    "userInfo.amount",
+                    "userInfo.lastDepositTime",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "accMTWPerShare",
+                    "masterchef",
+                    "pid",
+                    "userInfo.amount",
+                    "userInfo.lastDepositTime",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1098
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "accMTWPerShare",
+                    "masterchef",
+                    "pid",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "accMTWPerShare",
+                    "masterchef",
+                    "pid",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "accMTWPerShare",
+                    "masterchef",
+                    "pid",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1104
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "accMTWPerShare",
+                    "depositToken",
+                    "masterchef",
+                    "pid",
+                    "totalStakedAmount",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "accMTWPerShare",
+                    "depositToken",
+                    "masterchef",
+                    "pid",
+                    "totalStakedAmount",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1117
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Control Variables": [
+                    "depositToken",
+                    "masterchef",
+                    "pid",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "depositToken",
+                    "masterchef",
+                    "pid",
+                    "userInfo.amount",
+                    "userInfo.rewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

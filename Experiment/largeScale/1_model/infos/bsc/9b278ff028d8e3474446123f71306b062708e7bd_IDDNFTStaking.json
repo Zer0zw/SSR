@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalNFTDeposited"
+        ],
+        "User Stake Reward": [
+            "User.totalClaimed"
+        ],
+        "User Stake Time": [
+            "User.lastDepositTime",
+            "User.lastClaimTime"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nft.transferFrom(msg.sender, address(this), _tokenId)"
+            },
+            {
+                "Function": "stakeMultiple",
+                "Node": "nft.transferFrom(msg.sender, address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeTransfer(_addr, amount)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "safeTransfer(_addr, amount)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "safeTransfer(_addr, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "nft.transferFrom(address(this), msg.sender, _tokenId)"
+            },
+            {
+                "Function": "UnstakeMultiple",
+                "Node": "nft.transferFrom(address(this), msg.sender, _tokenId)"
+            }
+        ]
+    }
+}

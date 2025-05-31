@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "state.stakes"
+        ],
+        "User Stake Reward": [
+            "state.rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "state.pool.stakeToken"
+        ],
+        "Reward Token Address": [
+            "state.pool.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStake",
+                "Node": "IERC20(state.pool.stakeToken).safeTransferFrom(msg.sender, address(this), _pass.stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "IERC20(state.pool.rewardToken).safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "IERC20(state.pool.stakeToken).safeTransfer(msg.sender, _stakeAmount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IERC20(state.pool.stakeToken).safeTransfer(msg.sender, state.stakes[msg.sender])"
+            }
+        ]
+    }
+}

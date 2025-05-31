@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "validatorToStakedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "ValidatorData.lockPeriode"
+        ],
+        "Stake Token Address": [
+            "dopTokenContractAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "joinValidation",
+                "Node": "dopTokenContract.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leaveValidation",
+                "Node": "dopTokenContract.transfer(msg.sender, amount - validatorToValidatorData[msg.sender].stakeReduction)"
+            },
+            {
+                "Function": "leaveValidation",
+                "Node": "dopTokenContract.transfer(dopTokenContractAddress, validatorToValidatorData[msg.sender].stakeReduction)"
+            },
+            {
+                "Function": "leaveValidation",
+                "Node": "dopContract.transfer(msg.sender, _userStakedAmount)"
+            }
+        ]
+    }
+}

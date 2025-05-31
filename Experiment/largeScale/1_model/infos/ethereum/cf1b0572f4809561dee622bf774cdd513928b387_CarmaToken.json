@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stake"
+        ],
+        "User Stake Reward": [
+            "UserInfo.lastRewardBlock"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "COMB_ETH_PAIR"
+        ],
+        "Reward Token Address": [
+            "carma"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "xcomb.mint(_address, _amount)"
+            },
+            {
+                "Function": "addLPToken",
+                "Node": "xcomb.mint(_address, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "carma.transfer(_to, bal)"
+            },
+            {
+                "Function": "_claimReward",
+                "Node": "carma.transfer(_to, _amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

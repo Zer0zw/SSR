@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "collectionsMap.balanceOfToken"
+        ],
+        "User Stake Reward": [
+            "totalStoredPointsByWallet"
+        ],
+        "User Stake Time": [
+            "receipt.stakedFromSecond"
+        ],
+        "Stake Token Address": [
+            "receipt.collection"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "erc721Token.safeTransferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "stakeNFTS",
+                "Node": "erc721Token.safeTransferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unStakeNFT",
+                "Node": "ERC721(collectionAddress).safeTransferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unStakeNFTS",
+                "Node": "ERC721(collectionAddress).safeTransferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "adminSupport",
+                "Node": "ERC721(collectionAddress).safeTransferFrom(address(this), tokenOwner, tokenId)"
+            }
+        ]
+    }
+}

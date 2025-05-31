@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.shares"
+        ],
+        "User Stake Reward": [
+            "stakers.profits"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "GBTS"
+        ],
+        "Reward Token Address": [
+            "GBTS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_mint(msg.sender, sGBTSAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distribute",
+                "Node": "GBTS.safeTransfer(user.provider, sendAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exitStake",
+                "Node": "GBTS.safeTransfer(msg.sender, toSend)"
+            },
+            {
+                "Function": "removeFromDividendPool",
+                "Node": "_transfer(address(this), msg.sender, amountToSend)"
+            }
+        ]
+    }
+}

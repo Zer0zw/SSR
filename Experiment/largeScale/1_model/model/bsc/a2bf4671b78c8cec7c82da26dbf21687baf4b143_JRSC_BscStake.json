@@ -1,0 +1,157 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakeRewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "lastClock",
+            "lockTime"
+        ],
+        "Stake Token Address": [
+            "JRSC"
+        ],
+        "Reward Token Address": [
+            "JRSC"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "registerAndStake",
+            "stake"
+        ],
+        "getReward": [
+            "withdrawEarnings"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": [
+                    137
+                ],
+                "Input": [
+                    "_amount",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "JRSC",
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax"
+                ],
+                "Full Calculation Variables": [
+                    "JRSC",
+                    "active",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    160
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "JRSC",
+                    "active",
+                    "minimumStakeValue",
+                    "registered"
+                ],
+                "Full Calculation Variables": [
+                    "JRSC",
+                    "active",
+                    "minimumStakeValue",
+                    "registered"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": [
+                    199
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes"
+                ],
+                "Control Variables": [
+                    "JRSC",
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "JRSC",
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    183
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "unstakingTaxRate"
+                ],
+                "Control Variables": [
+                    "JRSC",
+                    "lastClock",
+                    "lockTime",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Full Calculation Variables": [
+                    "JRSC",
+                    "lastClock",
+                    "lockTime",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

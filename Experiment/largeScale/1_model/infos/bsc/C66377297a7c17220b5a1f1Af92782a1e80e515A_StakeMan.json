@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "PackagePercent"
+        ],
+        "User Stake Time": [
+            "UserStakeInfo.startBlock",
+            "UserStakeInfo.endBlock"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ERC20(tokenAddress).transferFrom(_msgSender(), poolAddress, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "ERC20(tokenAddress).transfer(receiver,amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

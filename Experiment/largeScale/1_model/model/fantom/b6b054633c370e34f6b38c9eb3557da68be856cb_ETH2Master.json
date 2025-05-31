@@ -1,0 +1,182 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolUserInfoMap.amount"
+        ],
+        "User Stake Reward": [
+            "poolUserInfoMap.bakeRewardPending",
+            "poolUserInfoMap.bethRewardPending"
+        ],
+        "User Stake Time": [
+            "poolUserInfoMap.lastUpdateBlock"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "bake",
+            "beth"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "harvestBake",
+            "harvestBeth"
+        ],
+        "unStake": [
+            "emergencyUnstake",
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "setBake",
+            "setBeth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1891
+                ],
+                "Input": [
+                    "_amount",
+                    "_pair"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "_poolAddresses",
+                    "poolInfoMap.amount",
+                    "poolInfoMap.rewardEndBlock",
+                    "poolUserInfoMap.amount"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "_poolAddresses",
+                    "poolInfoMap.amount",
+                    "poolInfoMap.rewardEndBlock",
+                    "poolUserInfoMap.amount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestBake",
+                "Node": [
+                    1902
+                ],
+                "Input": [
+                    "_pair"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_poolAddresses",
+                    "poolInfoMap",
+                    "poolUserInfoMap"
+                ],
+                "Full Calculation Variables": [
+                    "_poolAddresses",
+                    "poolInfoMap",
+                    "poolUserInfoMap"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "harvestBeth",
+                "Node": [
+                    1931
+                ],
+                "Input": [
+                    "_pair"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolUserInfoMap",
+                    "poolInfoMap",
+                    "_decimals",
+                    "PRICE_MULTIPLE",
+                    "bakerySwapFactory",
+                    "convertToBakePrice",
+                    "beth",
+                    "convertUseMarketPrice",
+                    "bake",
+                    "_poolAddresses"
+                ],
+                "Full Calculation Variables": [
+                    "poolUserInfoMap",
+                    "poolInfoMap",
+                    "_decimals",
+                    "PRICE_MULTIPLE",
+                    "bakerySwapFactory",
+                    "convertToBakePrice",
+                    "beth",
+                    "convertUseMarketPrice",
+                    "bake",
+                    "_poolAddresses"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1956
+                ],
+                "Input": [
+                    "_amount",
+                    "_pair"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_poolAddresses",
+                    "poolInfoMap.amount",
+                    "poolUserInfoMap.amount"
+                ],
+                "Full Calculation Variables": [
+                    "_poolAddresses",
+                    "poolInfoMap.amount",
+                    "poolUserInfoMap.amount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": [
+                    1975
+                ],
+                "Input": [
+                    "_amount",
+                    "_pair"
+                ],
+                "Calculation Variables": [
+                    "poolUserInfoMap.amount",
+                    "poolUserInfoMap.bakeRewardDebt",
+                    "poolUserInfoMap.bakeRewardPending",
+                    "poolUserInfoMap.bethRewardDebt",
+                    "poolUserInfoMap.bethRewardPending"
+                ],
+                "Control Variables": [
+                    "poolInfoMap.amount",
+                    "poolUserInfoMap.amount",
+                    "poolUserInfoMap.bakeRewardDebt",
+                    "poolUserInfoMap.bakeRewardPending",
+                    "poolUserInfoMap.bethRewardDebt",
+                    "poolUserInfoMap.bethRewardPending"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfoMap.amount",
+                    "poolUserInfoMap.amount",
+                    "poolUserInfoMap.bakeRewardDebt",
+                    "poolUserInfoMap.bakeRewardPending",
+                    "poolUserInfoMap.bethRewardDebt",
+                    "poolUserInfoMap.bethRewardPending"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

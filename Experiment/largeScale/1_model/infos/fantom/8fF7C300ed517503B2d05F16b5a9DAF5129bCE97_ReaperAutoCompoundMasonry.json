@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStakedToken",
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardTokenBal"
+        ],
+        "User Stake Time": [
+            "depositTimeFrame"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(stakedToken).safeTransfer(currentMason, stakedTokenBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20(wftm).safeTransfer(msg.sender, callFeeToUser)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IERC20(wftm).safeTransfer(treasury, treasuryFeeToVault)"
+            },
+            {
+                "Function": "_chargeFees",
+                "Node": "IPaymentRouter(strategistRemitter).routePayment(wftm, feeToStrategist)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stakedToken).safeTransfer(vault, stakedTokenBal - withdrawFee)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(stakedToken).safeTransfer(vault, stakedTokenBal)"
+            },
+            {
+                "Function": "withdrawPostRetire",
+                "Node": "IERC20(stakedToken).safeTransfer(vault, stakedTokenBal)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserDeposit.amount",
+            "UserDepositExtended.amount"
+        ],
+        "User Stake Reward": [
+            "UserDeposit.rewards",
+            "UserDepositExtended.rewards"
+        ],
+        "User Stake Time": [
+            "UserDeposit.depositTime",
+            "UserDepositExtended.depositTime"
+        ],
+        "Stake Token Address": [
+            "utilis"
+        ],
+        "Reward Token Address": [
+            "usdt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_amount = _safeTransferFrom(utilis, msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeAndClaim",
+                "Node": "usdt.safeTransfer(user, rewards)"
+            },
+            {
+                "Function": "claimForfetingRewards",
+                "Node": "utilis.safeTransfer(user, d.amount)"
+            },
+            {
+                "Function": "batchClaim",
+                "Node": "if (!deposits[id].claimed) unstakeAndClaim(id)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAndClaim",
+                "Node": "utilis.safeTransfer(user, d.amount)"
+            },
+            {
+                "Function": "claimForfetingRewards",
+                "Node": "utilis.safeTransfer(user, d.amount)"
+            }
+        ]
+    }
+}

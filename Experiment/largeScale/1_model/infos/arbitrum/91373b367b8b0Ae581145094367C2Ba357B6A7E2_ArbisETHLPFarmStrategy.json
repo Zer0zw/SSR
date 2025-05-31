@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalDeposits"
+        ],
+        "User Stake Reward": [
+            "pendingRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken",
+            "rewardToken2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "_mint(msg.sender, getSharesForDepositTokens(amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_reinvest",
+                "Node": "rewardToken.transfer(msg.sender, reinvestFee)"
+            },
+            {
+                "Function": "_reward2Fees",
+                "Node": "rewardToken2.transfer(msg.sender, reinvestFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "depositToken.transfer(msg.sender, depositTokenAmount)"
+            }
+        ]
+    }
+}

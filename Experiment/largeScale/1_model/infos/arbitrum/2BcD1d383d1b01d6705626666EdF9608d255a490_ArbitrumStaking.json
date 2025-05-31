@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "PassengerSeat.rewardEarned"
+        ],
+        "User Stake Time": [
+            "PassengerSeat.epochTimerStart"
+        ],
+        "Stake Token Address": [
+            "arbitrum"
+        ],
+        "Reward Token Address": [
+            "firmament"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IBasisAsset(firmament).mint(msg.sender, totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

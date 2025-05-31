@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.rewardMode"
+        ],
+        "User Stake Time": [
+            "Stake.createdAt",
+            "Stake.lastWithdrawal"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "Stake.rewardMode"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "newStake",
+                "Node": "require(stakeToken.transferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdraw",
+                "Node": "require(stake.rewardMode.transfer(_msgSender(), currentReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_exit",
+                "Node": "require(stakeToken.transfer(_msgSender(), stake.amount)"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "require(stakeToken.transfer(_msgSender(), stake.amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,209 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardsPendingClaim",
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "TRUSTED_DEPOSIT_TOKEN_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "TRUSTED_REWARD_TOKEN_ADDRESS"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "depositByContract",
+            "stake"
+        ],
+        "getReward": [
+            "claim",
+            "reInvest"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1150
+                ],
+                "Input": [
+                    "_amountOutMin_referralFee",
+                    "_deadline",
+                    "amountToStake",
+                    "referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "isEmergency"
+                ],
+                "Full Calculation Variables": [
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "isEmergency"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "depositByContract",
+                "Node": [
+                    1136
+                ],
+                "Input": [
+                    "_amountOutMin_stakingReferralFee",
+                    "_deadline",
+                    "account",
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "isTrustedDepositContract"
+                ],
+                "Full Calculation Variables": [
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "isTrustedDepositContract"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1218
+                ],
+                "Input": [
+                    "_amountOutMin_claim",
+                    "_amountOutMin_referralFee",
+                    "_deadline"
+                ],
+                "Calculation Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "TRUSTED_REWARD_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim",
+                    "uniswapV2Router"
+                ],
+                "Control Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "TRUSTED_REWARD_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim",
+                    "uniswapV2Router"
+                ],
+                "Full Calculation Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "TRUSTED_REWARD_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim",
+                    "uniswapV2Router"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "reInvest",
+                "Node": [
+                    1233
+                ],
+                "Input": [
+                    "_amountOutMin_referralFee",
+                    "_amountOutMin_reinvest",
+                    "_deadline"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "TRUSTED_REWARD_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim",
+                    "uniswapV2Router"
+                ],
+                "Full Calculation Variables": [
+                    "REFERRAL_FEE_RATE_X_100",
+                    "REWARD_INTERVAL",
+                    "REWARD_RATE_X_100",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "TRUSTED_REWARD_TOKEN_ADDRESS",
+                    "contractStartTime",
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastClaimedTime",
+                    "rewardsPendingClaim",
+                    "uniswapV2Router"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1197
+                ],
+                "Input": [
+                    "_amountOutMin_referralFee",
+                    "_deadline",
+                    "amountToWithdraw"
+                ],
+                "Calculation Variables": [
+                    "UNSTAKING_FEE_RATE_X_100"
+                ],
+                "Control Variables": [
+                    "LOCKUP_TIME",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "depositedTokens",
+                    "stakingTime"
+                ],
+                "Full Calculation Variables": [
+                    "LOCKUP_TIME",
+                    "TRUSTED_DEPOSIT_TOKEN_ADDRESS",
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "depositedTokens",
+                    "stakingTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

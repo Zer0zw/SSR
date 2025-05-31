@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "BonusInfo.principal"
+        ],
+        "User Stake Reward": [
+            "BonusInfo.epoch",
+            "hugControlVariable"
+        ],
+        "User Stake Time": [
+            "BonusInfo.epoch"
+        ],
+        "Stake Token Address": [
+            "LOVE"
+        ],
+        "Reward Token Address": [
+            "KISS",
+            "HUG"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(KISS).safeTransfer(_recipient, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IStakingLockup(lockup).unstake(msg.sender, totalAmount)"
+            }
+        ]
+    }
+}

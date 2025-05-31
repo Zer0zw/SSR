@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.goldAmount"
+        ],
+        "User Stake Reward": [
+            "Staking.profitAmount"
+        ],
+        "User Stake Time": [
+            "Staking.duration"
+        ],
+        "Stake Token Address": [
+            "gold"
+        ],
+        "Reward Token Address": [
+            "gold"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "gold.transferFrom(caller, operator, stakeAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "gold.transfer(aStake.staker, withdrawalAmount)"
+            }
+        ]
+    }
+}

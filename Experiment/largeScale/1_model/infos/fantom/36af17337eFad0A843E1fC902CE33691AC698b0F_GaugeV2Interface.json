@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "earned",
+            "userEarnedStored"
+        ],
+        "User Stake Time": [
+            "lastEarn"
+        ],
+        "Stake Token Address": [
+            "stake"
+        ],
+        "Reward Token Address": [
+            "rewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "event Deposit(address indexed from, uint256 tokenId, uint256 amount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "event Deposit(address indexed from, uint256 tokenId, uint256 amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimFees",
+                "Node": "event ClaimFees(address indexed from, uint256 claimed0, uint256 claimed1)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "event ClaimRewards(address indexed from, address indexed reward, uint256 amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "event Withdraw(address indexed from, uint256 tokenId, uint256 amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "event Withdraw(address indexed from, uint256 tokenId, uint256 amount)"
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": "event Withdraw(address indexed from, uint256 tokenId, uint256 amount)"
+            }
+        ]
+    }
+}

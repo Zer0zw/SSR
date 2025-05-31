@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(IERC20(tokenAddress).transferFrom(msg.sender, address(this), amountToStake)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "require(IERC20(tokenAddress).transfer(adminWallet, amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimDivs",
+                "Node": "require(IERC20(tokenAddress).transfer(account, amountToTransfer)"
+            },
+            {
+                "Function": "compound",
+                "Node": "depositedTokens[account] += pendingDivs.add(referralIncome)"
+            }
+        ],
+        "unStake": []
+    }
+}

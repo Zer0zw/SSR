@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "Stake.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "Stake.releaseTime"
+        ],
+        "Stake Token Address": [
+            "mcft"
+        ],
+        "Reward Token Address": [
+            "mcft"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "mcft.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "mcft.transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "mcft.transfer(msg.sender, _user.stakedAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "OXSOLID_REWARDS.balanceOf"
+        ],
+        "User Stake Reward": [
+            "OXSOLID_REWARDS.earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "OXSOLID"
+        ],
+        "Reward Token Address": [
+            "OXSOLID_REWARDS.rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "OXSOLID_REWARDS.stake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "OXSOLID_REWARDS.getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAll",
+                "Node": "OXSOLID_REWARDS.exit()"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "OXSOLID_REWARDS.withdraw(balanceOfPool())"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "OXSOLID_REWARDS.withdraw(poolBalance)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "OXSOLID_REWARDS.withdraw(toWithdraw)"
+            }
+        ]
+    }
+}

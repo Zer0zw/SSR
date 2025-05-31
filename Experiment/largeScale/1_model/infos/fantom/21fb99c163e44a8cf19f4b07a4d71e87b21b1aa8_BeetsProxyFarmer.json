@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserSlot.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "UserSlot.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LP_TOKEN"
+        ],
+        "Reward Token Address": [
+            "PANIC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "LP_TOKEN.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "PANIC.safeTransfer(msg.sender, newDebt - _userSlot.rewardDebt)"
+            },
+            {
+                "Function": "panicHarvest",
+                "Node": "PANIC_MINTER.exit()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "LP_TOKEN.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "LP_TOKEN.safeTransfer(msg.sender, stake)"
+            }
+        ]
+    }
+}

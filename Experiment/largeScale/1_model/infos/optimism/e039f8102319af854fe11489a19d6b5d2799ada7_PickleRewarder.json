@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onPickleReward",
+                "Node": "user.amount = lpToken"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onPickleReward",
+                "Node": "rewardToken.safeTransfer(to, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "onPickleReward",
+                "Node": "user.amount = lpToken"
+            }
+        ]
+    }
+}

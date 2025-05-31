@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakesToken",
+            "userStakesAmStake"
+        ],
+        "User Stake Reward": [
+            "userStakesAmStake"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "amStakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "participate",
+                "Node": "TransferHelper.safeTransferFrom(address(stakeToken), _msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBoat",
+                "Node": "TransferHelper.safeTransfer(address(stakeToken), _msgSender(), userStakesAmStake[_msgSender()][_boatId]"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "userExitBoat",
+                "Node": "lendingPool.withdraw(address(stakeToken), userStake, _msgSender())"
+            }
+        ]
+    }
+}

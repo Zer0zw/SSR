@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "ZeroShift"
+        ],
+        "Reward Token Address": [
+            "sZeroShift"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(sZeroShift).safeTransfer(warmupContract, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup(warmupContract).retrieve(_recipient, IsZeroShift(sZeroShift).balanceForGons(info.gons))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(ZeroShift).safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "forfeit",
+                "Node": "IERC20(ZeroShift).safeTransfer(msg.sender, info.deposit)"
+            }
+        ]
+    }
+}

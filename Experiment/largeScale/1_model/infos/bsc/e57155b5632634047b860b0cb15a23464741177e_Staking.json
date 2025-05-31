@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amounts"
+        ],
+        "User Stake Reward": [
+            "harvests"
+        ],
+        "User Stake Time": [
+            "times"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(tokenAddress).transferFrom(msg.sender, address(this), amount - amount / 20)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(tokenAddress).transferFrom(poolAddress, msg.sender, claimableAmount)"
+            },
+            {
+                "Function": "harvestAt",
+                "Node": "IERC20(tokenAddress).transferFrom(poolAddress, msg.sender, claimableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(tokenAddress).transfer(msg.sender, amount - (amount / 20) * 2)"
+            }
+        ]
+    }
+}

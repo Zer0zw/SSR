@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeDeposit.amount"
+        ],
+        "User Stake Reward": [
+            "_computeReward"
+        ],
+        "User Stake Time": [
+            "StakeDeposit.startDate",
+            "StakeDeposit.endDate"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "rewardsAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(token.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositLockup",
+                "Node": "require(token.transferFrom(address(ivaiLockup), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "executeWithdrawal",
+                "Node": "require(token.transferFrom(rewardsAddress, msg.sender, reward)"
+            },
+            {
+                "Function": "withdrawLockup",
+                "Node": "require(token.transferFrom(rewardsAddress, address(ivaiLockup), reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "executeWithdrawal",
+                "Node": "require(token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawLockup",
+                "Node": "require(token.transfer(address(ivaiLockup), amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "perfEarned"
+        ],
+        "User Stake Time": [
+            "queueTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, _amount)"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "accruePerformanceFee",
+                "Node": "_mint(owner, feeAccrued)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "ERC20(token).transfer(msg.sender, what)"
+            },
+            {
+                "Function": "withdrawFee",
+                "Node": "ERC20(token).transfer(msg.sender, what)"
+            }
+        ]
+    }
+}

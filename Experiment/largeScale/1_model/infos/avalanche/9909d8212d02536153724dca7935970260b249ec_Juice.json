@@ -1,0 +1,85 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakerToMTTokenIds",
+            "StakerToMCTokenIds",
+            "StakerToPartnerTokenIds"
+        ],
+        "User Stake Reward": [
+            "MT_EMISSIONS_RATE",
+            "MC_EMISSIONS_RATE",
+            "partner_EMISSIONS_RATE"
+        ],
+        "User Stake Time": [
+            "MTTokenIdTimeStaked",
+            "MCTokenIdTimeStaked",
+            "partnerTokenIdTimeStaked"
+        ],
+        "Stake Token Address": [
+            "MT_ADDRESS",
+            "MC_ADDRESS",
+            "Partner_Address"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeMT",
+                "Node": "_mtIERC721Enumerable.transferFrom(msg.sender, address(this), id)"
+            },
+            {
+                "Function": "StakeMC",
+                "Node": "_mcIERC721Enumerable.transferFrom(msg.sender, address(this), id)"
+            },
+            {
+                "Function": "StakePartner",
+                "Node": "_partnerIERC721Enumerable.transferFrom(msg.sender, address(this), id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByTomatoTokenId",
+                "Node": "_mint(msg.sender, ((block.timestamp - MTTokenIdTimeStaked[tokenId]) * MT_EMISSIONS_RATE))"
+            },
+            {
+                "Function": "claimByCucumberTokenId",
+                "Node": "_mint(msg.sender, ((block.timestamp - MCTokenIdTimeStaked[tokenId]) * MC_EMISSIONS_RATE))"
+            },
+            {
+                "Function": "claimByPartnerTokenId",
+                "Node": "_mint(msg.sender, ((block.timestamp - partnerTokenIdTimeStaked[tokenId]) * partner_EMISSIONS_RATE))"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "_mint(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": "_mtIERC721Enumerable.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_mcIERC721Enumerable.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_partnerIERC721Enumerable.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeTomatosByIds",
+                "Node": "_mtIERC721Enumerable.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeCucumbersByIds",
+                "Node": "_mcIERC721Enumerable.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakepartnerByIds",
+                "Node": "_partnerIERC721Enumerable.transferFrom(address(this), msg.sender, id)"
+            }
+        ]
+    }
+}

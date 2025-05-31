@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerBalance",
+            "StakerData.altQuantity"
+        ],
+        "User Stake Reward": [
+            "StakerData.rewardAmount",
+            "StakerData.rewardAmountdata"
+        ],
+        "User Stake Time": [
+            "StakerData.durationTimestamp",
+            "StakerData.exactdate"
+        ],
+        "Stake Token Address": [
+            "PhuketTokenAddress"
+        ],
+        "Reward Token Address": [
+            "PhuketTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeALT",
+                "Node": "IERC20(PhuketTokenAddress).transferFrom(msg.sender, address(this), _altQuantity)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earnedReward",
+                "Node": "rewardAmount = _calculateReward(stakerData[_id].altQuantity, ratio, exactDays)"
+            },
+            {
+                "Function": "unstakeALT",
+                "Node": "IERC20(PhuketTokenAddress).transfer(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeALT",
+                "Node": "IERC20(PhuketTokenAddress).transfer(msg.sender, withdrawAmount)"
+            }
+        ]
+    }
+}

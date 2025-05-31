@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserTotals.totalStaking",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Ris3Rewards.totalWithdrawn"
+        ],
+        "User Stake Time": [
+            "Stake.stakingTime",
+            "Stake.lastWithdrawTime",
+            "UserTotals.totalStakingTIme"
+        ],
+        "Stake Token Address": [
+            "tswap"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "tswap.transferFrom(msg.sender, this, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardsOnly",
+                "Node": "rewardToken.transfer(msg.sender, rewardAmount)"
+            },
+            {
+                "Function": "withdrawStaking",
+                "Node": "rewardToken.transfer(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStaking",
+                "Node": "tswap.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

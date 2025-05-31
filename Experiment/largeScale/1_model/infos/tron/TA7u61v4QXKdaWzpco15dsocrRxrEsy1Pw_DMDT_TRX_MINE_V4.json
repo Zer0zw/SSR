@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.withdrawableReward",
+            "StakeInfo.withdrawedReward",
+            "StakeInfo.inviteReward"
+        ],
+        "User Stake Time": [
+            "StakeInfo.lastWithdrawTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "Owner.transfer(amount.div(10))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "sendRewardToken(msg.sender, amount)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "sendRewardToken(info.inviter, inviteReward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "sendRewardToken(Owner, inviteReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(withdrawAmount)"
+            }
+        ]
+    }
+}

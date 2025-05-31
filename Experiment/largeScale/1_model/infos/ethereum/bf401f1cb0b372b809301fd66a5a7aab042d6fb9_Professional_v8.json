@@ -1,0 +1,68 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposits.depositAmount"
+        ],
+        "User Stake Reward": [
+            "Deposits.depositAmount"
+        ],
+        "User Stake Time": [
+            "Deposits.depositTime",
+            "Deposits.endTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_payMe(from, amount)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "_payMe(from, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "_payDirect(from, payOut)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "_payDirect(from, payOut)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_payDirect(from, amount)"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "_payDirect(from, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_payDirect(from, payOut)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "_payDirect(from, payOut)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_payDirect(from, amount)"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "_payDirect(from, amount)"
+            }
+        ]
+    }
+}

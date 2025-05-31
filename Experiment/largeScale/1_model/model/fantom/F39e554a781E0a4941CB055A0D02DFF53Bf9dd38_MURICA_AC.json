@@ -1,0 +1,129 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "eagle_usdc_lp_staker.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "eagle_usdc_lp"
+        ],
+        "Reward Token Address": [
+            "freedom"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "emergency_unstake",
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "set_addresses",
+            "swap_and_compound_and_stake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1729
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "eagle_usdc_lp",
+                    "shares_circ"
+                ],
+                "Full Calculation Variables": [
+                    "eagle_usdc_lp",
+                    "shares_circ"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1814
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "freedom"
+                ],
+                "Control Variables": [
+                    "freedom",
+                    "last_harvested",
+                    "reward_pool"
+                ],
+                "Full Calculation Variables": [
+                    "freedom",
+                    "last_harvested",
+                    "reward_pool"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1782
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "eagle_usdc_lp",
+                    "eagle_usdc_lp_staker.shares",
+                    "owner",
+                    "reward_pool",
+                    "shares_circ",
+                    "total_deposited"
+                ],
+                "Full Calculation Variables": [
+                    "eagle_usdc_lp",
+                    "eagle_usdc_lp_staker.shares",
+                    "owner",
+                    "reward_pool",
+                    "shares_circ",
+                    "total_deposited"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergency_unstake",
+                "Node": [
+                    1795
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "eagle_usdc_lp_staker.shares"
+                ],
+                "Control Variables": [
+                    "eagle_usdc_lp",
+                    "eagle_usdc_lp_staker.shares",
+                    "reward_pool",
+                    "shares_circ"
+                ],
+                "Full Calculation Variables": [
+                    "eagle_usdc_lp",
+                    "eagle_usdc_lp_staker.shares",
+                    "reward_pool",
+                    "shares_circ"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

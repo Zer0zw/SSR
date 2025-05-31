@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userData.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "userData.earnedAmount"
+        ],
+        "User Stake Time": [
+            "userData.stakeTime",
+            "userData.unlockTime"
+        ],
+        "Stake Token Address": [
+            "mana"
+        ],
+        "Reward Token Address": [
+            "mana"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "mana.safeTransferFrom(_msgSender(),address(this),depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "mana.safeTransfer(userStore.user,reward)"
+            },
+            {
+                "Function": "booster",
+                "Node": "mana.safeTransfer(userStore.user,reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "mana.safeTransfer(userStore.user,reward.add(userStore.stakeAmount))"
+            }
+        ]
+    }
+}

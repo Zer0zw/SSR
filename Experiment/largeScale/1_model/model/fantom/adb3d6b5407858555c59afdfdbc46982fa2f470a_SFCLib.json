@@ -1,0 +1,371 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getStake",
+            "getLockupInfo.lockedStake"
+        ],
+        "User Stake Reward": [
+            "_rewardsStash",
+            "getStashedLockupRewards.lockupBaseReward",
+            "getStashedLockupRewards.lockupExtraReward",
+            "getStashedLockupRewards.unlockedReward"
+        ],
+        "User Stake Time": [
+            "getLockupInfo.duration",
+            "getLockupInfo.endTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "createValidator",
+            "delegate",
+            "restakeRewards",
+            "setGenesisDelegation"
+        ],
+        "getReward": [
+            "claimRewards",
+            "restakeRewards"
+        ],
+        "unStake": [
+            "liquidateSFTM",
+            "unlockStake",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "delegate",
+                "Node": [
+                    2004
+                ],
+                "Input": [
+                    "toValidatorID",
+                    "strict",
+                    "delegator",
+                    "toValidatorID",
+                    "delegator",
+                    "toValidatorID",
+                    "amount",
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "OK_STATUS",
+                    "getValidator.status",
+                    "getStake"
+                ],
+                "Full Calculation Variables": [
+                    "OK_STATUS",
+                    "getValidator.status",
+                    "getStake"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "setGenesisDelegation",
+                "Node": [
+                    2013
+                ],
+                "Input": [
+                    "amount",
+                    "delegator",
+                    "strict",
+                    "toValidatorID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "getStake"
+                ],
+                "Full Calculation Variables": [
+                    "getStake"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "createValidator",
+                "Node": [
+                    2004
+                ],
+                "Input": [
+                    "strict",
+                    "delegator",
+                    "amount",
+                    "delegator",
+                    "toValidatorID",
+                    "amount",
+                    "toValidatorID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "OK_STATUS",
+                    "getValidator.status",
+                    "getStake"
+                ],
+                "Full Calculation Variables": [
+                    "OK_STATUS",
+                    "getValidator.status",
+                    "getStake"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "restakeRewards",
+                "Node": [
+                    2004
+                ],
+                "Input": [
+                    "strict",
+                    "delegator",
+                    "amount",
+                    "delegator",
+                    "toValidatorID",
+                    "amount",
+                    "toValidatorID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "OK_STATUS",
+                    "getValidator.status",
+                    "getStake"
+                ],
+                "Full Calculation Variables": [
+                    "OK_STATUS",
+                    "getValidator.status",
+                    "getStake"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": [
+                    2284
+                ],
+                "Input": [
+                    "toValidatorID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_rewardsStash.lockupBaseReward",
+                    "_rewardsStash.lockupExtraReward",
+                    "_rewardsStash.unlockedReward",
+                    "backend",
+                    "c",
+                    "currentSealedEpoch",
+                    "driver",
+                    "evmWriter",
+                    "getEpochSnapshot.accumulatedRewardPerToken",
+                    "getEpochSnapshot.endTime",
+                    "getLockupInfo",
+                    "getLockupInfo.duration",
+                    "getLockupInfo.endTime",
+                    "getLockupInfo.fromEpoch",
+                    "getLockupInfo.lockedStake",
+                    "getStake",
+                    "getStashedLockupRewards.lockupBaseReward",
+                    "getStashedLockupRewards.lockupExtraReward",
+                    "getStashedLockupRewards.unlockedReward",
+                    "getValidator.deactivatedEpoch",
+                    "node",
+                    "outstandingSFTM",
+                    "sfc",
+                    "stakeTokenizerAddress",
+                    "stashedRewardsUntilEpoch",
+                    "totalSupply"
+                ],
+                "Full Calculation Variables": [
+                    "_rewardsStash.lockupBaseReward",
+                    "_rewardsStash.lockupExtraReward",
+                    "_rewardsStash.unlockedReward",
+                    "backend",
+                    "c",
+                    "currentSealedEpoch",
+                    "driver",
+                    "evmWriter",
+                    "getEpochSnapshot.accumulatedRewardPerToken",
+                    "getEpochSnapshot.endTime",
+                    "getLockupInfo",
+                    "getLockupInfo.duration",
+                    "getLockupInfo.endTime",
+                    "getLockupInfo.fromEpoch",
+                    "getLockupInfo.lockedStake",
+                    "getStake",
+                    "getStashedLockupRewards.lockupBaseReward",
+                    "getStashedLockupRewards.lockupExtraReward",
+                    "getStashedLockupRewards.unlockedReward",
+                    "getValidator.deactivatedEpoch",
+                    "node",
+                    "outstandingSFTM",
+                    "sfc",
+                    "stakeTokenizerAddress",
+                    "stashedRewardsUntilEpoch",
+                    "totalSupply"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "restakeRewards",
+                "Node": [
+                    2295
+                ],
+                "Input": [
+                    "toValidatorID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_rewardsStash.lockupBaseReward",
+                    "_rewardsStash.lockupExtraReward",
+                    "_rewardsStash.unlockedReward",
+                    "backend",
+                    "c",
+                    "currentSealedEpoch",
+                    "driver",
+                    "evmWriter",
+                    "getEpochSnapshot.accumulatedRewardPerToken",
+                    "getEpochSnapshot.endTime",
+                    "getLockupInfo",
+                    "getLockupInfo.duration",
+                    "getLockupInfo.endTime",
+                    "getLockupInfo.fromEpoch",
+                    "getLockupInfo.lockedStake",
+                    "getStake",
+                    "getStashedLockupRewards.lockupBaseReward",
+                    "getStashedLockupRewards.lockupExtraReward",
+                    "getStashedLockupRewards.unlockedReward",
+                    "getValidator.deactivatedEpoch",
+                    "node",
+                    "outstandingSFTM",
+                    "sfc",
+                    "stakeTokenizerAddress",
+                    "stashedRewardsUntilEpoch",
+                    "totalSupply"
+                ],
+                "Full Calculation Variables": [
+                    "_rewardsStash.lockupBaseReward",
+                    "_rewardsStash.lockupExtraReward",
+                    "_rewardsStash.unlockedReward",
+                    "backend",
+                    "c",
+                    "currentSealedEpoch",
+                    "driver",
+                    "evmWriter",
+                    "getEpochSnapshot.accumulatedRewardPerToken",
+                    "getEpochSnapshot.endTime",
+                    "getLockupInfo",
+                    "getLockupInfo.duration",
+                    "getLockupInfo.endTime",
+                    "getLockupInfo.fromEpoch",
+                    "getLockupInfo.lockedStake",
+                    "getStake",
+                    "getStashedLockupRewards.lockupBaseReward",
+                    "getStashedLockupRewards.lockupExtraReward",
+                    "getStashedLockupRewards.unlockedReward",
+                    "getValidator.deactivatedEpoch",
+                    "node",
+                    "outstandingSFTM",
+                    "sfc",
+                    "stakeTokenizerAddress",
+                    "stashedRewardsUntilEpoch",
+                    "totalSupply"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    2151
+                ],
+                "Input": [
+                    "toValidatorID",
+                    "wrID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CHEATER_MASK",
+                    "c",
+                    "getValidator.deactivatedEpoch",
+                    "getValidator.deactivatedTime",
+                    "getValidator.status",
+                    "getWithdrawalRequest.amount",
+                    "getWithdrawalRequest.epoch",
+                    "getWithdrawalRequest.time",
+                    "slashingRefundRatio",
+                    "totalSlashedStake"
+                ],
+                "Full Calculation Variables": [
+                    "CHEATER_MASK",
+                    "c",
+                    "getValidator.deactivatedEpoch",
+                    "getValidator.deactivatedTime",
+                    "getValidator.status",
+                    "getWithdrawalRequest.amount",
+                    "getWithdrawalRequest.epoch",
+                    "getWithdrawalRequest.time",
+                    "slashingRefundRatio",
+                    "totalSlashedStake"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "liquidateSFTM",
+                "Node": [
+                    2101
+                ],
+                "Input": [
+                    "amount",
+                    "delegator",
+                    "toValidatorID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "getLockupInfo",
+                    "getLockupInfo.endTime",
+                    "getLockupInfo.lockedStake",
+                    "getStake",
+                    "sftmFinalizer",
+                    "stakeTokenizerAddress"
+                ],
+                "Full Calculation Variables": [
+                    "getLockupInfo",
+                    "getLockupInfo.endTime",
+                    "getLockupInfo.lockedStake",
+                    "getStake",
+                    "sftmFinalizer",
+                    "stakeTokenizerAddress"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unlockStake",
+                "Node": [
+                    2400
+                ],
+                "Input": [
+                    "amount",
+                    "toValidatorID"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "getLockupInfo",
+                    "getLockupInfo.duration",
+                    "getLockupInfo.endTime",
+                    "getLockupInfo.lockedStake"
+                ],
+                "Full Calculation Variables": [
+                    "getLockupInfo",
+                    "getLockupInfo.duration",
+                    "getLockupInfo.endTime",
+                    "getLockupInfo.lockedStake"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

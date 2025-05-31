@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_want"
+        ],
+        "User Stake Reward": [
+            "amountHarvested",
+            "amountHarvested2"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken",
+            "harvestedToken2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IBalancerRewardGauge(rewards).deposit(_want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(harvestedToken).safeTransfer(strategist, _fee)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(harvestedToken2).safeTransfer(strategist, _fee)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IBalancerRewardGauge(rewards).claim_rewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IBalancerRewardGauge(rewards).withdraw(_amount)"
+            }
+        ]
+    }
+}

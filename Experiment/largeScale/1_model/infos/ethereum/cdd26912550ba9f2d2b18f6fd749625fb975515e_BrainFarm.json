@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "brainBalance"
+        ],
+        "User Stake Reward": [
+            "points"
+        ],
+        "User Stake Time": [
+            "lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "BrainAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(BrainAddress).transferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "IBrainLootbox(LootboxAddress).redeem(_lootbox, _msgSender())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(BrainAddress).transfer(_msgSender(), amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC20(BrainAddress).transfer(_msgSender(), balanceOf(_msgSender()))"
+            }
+        ]
+    }
+}

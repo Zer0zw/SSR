@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountStaked"
+        ],
+        "User Stake Reward": [
+            "Share.totalRealised"
+        ],
+        "User Stake Time": [
+            "minPeriod"
+        ],
+        "Stake Token Address": [
+            "pair"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakingContract.stakingDeposit(sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimDividend",
+                "Node": "IERC20(reward).transfer(recipient, amount)"
+            },
+            {
+                "Function": "distributeDividend",
+                "Node": "IERC20(reward).transfer(recipient, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingContract.stakingWithdraw(msg.sender, amount)"
+            }
+        ]
+    }
+}

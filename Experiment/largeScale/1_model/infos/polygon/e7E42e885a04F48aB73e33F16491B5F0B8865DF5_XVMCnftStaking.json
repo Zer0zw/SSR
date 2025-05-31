@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.debt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "UserInfo.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(_tokenAddress).safeTransferFrom(msg.sender, address(this), _tokenID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "selfHarvest",
+                "Node": "token.safeTransfer(msg.sender, _payout)"
+            },
+            {
+                "Function": "selfHarvestCustom",
+                "Node": "token.safeTransfer(msg.sender, _payout)"
+            },
+            {
+                "Function": "proxyHarvest",
+                "Node": "token.safeTransfer(_beneficiary, (_payout - _callFee))"
+            },
+            {
+                "Function": "proxyHarvestCustom",
+                "Node": "token.safeTransfer(_beneficiary, (_payout - _callFee))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(_tokenAddress).safeTransferFrom(address(this), msg.sender, _tokenID)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC721(_token).safeTransferFrom(address(this), msg.sender, _tokenID)"
+            }
+        ]
+    }
+}

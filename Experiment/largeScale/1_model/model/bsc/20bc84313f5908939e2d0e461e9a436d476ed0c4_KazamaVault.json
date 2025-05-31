@@ -1,0 +1,164 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [
+            "userInfo.kazamaAtLastUserAction"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "receiptToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    925
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    966
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "callFee",
+                    "token"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "callFee",
+                    "performanceFee",
+                    "senshimaster",
+                    "token",
+                    "treasury"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "callFee",
+                    "performanceFee",
+                    "senshimaster",
+                    "token",
+                    "treasury"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1137
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "senshimaster",
+                    "token",
+                    "totalShares",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "senshimaster",
+                    "token",
+                    "totalShares",
+                    "userInfo.kazamaAtLastUserAction",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "senshimaster",
+                    "token",
+                    "totalShares",
+                    "userInfo.kazamaAtLastUserAction",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1137
+                ],
+                "Input": [
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "totalShares",
+                    "token",
+                    "senshimaster",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "userInfo.kazamaAtLastUserAction",
+                    "totalShares",
+                    "withdrawFeePeriod",
+                    "senshimaster",
+                    "token",
+                    "withdrawFee",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "userInfo.lastDepositedTime"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.kazamaAtLastUserAction",
+                    "totalShares",
+                    "withdrawFeePeriod",
+                    "senshimaster",
+                    "token",
+                    "withdrawFee",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "userInfo.lastDepositedTime"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

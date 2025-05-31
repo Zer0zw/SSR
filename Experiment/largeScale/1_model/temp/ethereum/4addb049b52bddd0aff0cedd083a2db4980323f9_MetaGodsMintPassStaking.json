@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "numberOfStakedPassesByWallet"
+        ],
+        "User Stake Reward": [
+            "mintPassYield"
+        ],
+        "User Stake Time": [
+            "lastClaimDateByWallet"
+        ],
+        "Stake Token Address": [
+            "mintPassContractAddress"
+        ],
+        "Reward Token Address": [
+            "godTokenContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakePasses",
+                "Node": "IMintPass(mintPassContractAddress).safeTransferFrom(msg.sender, address(this), 0, amount_, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimPassesYield",
+                "Node": "IToken(godTokenContractAddress).add(wallet_, calculateMetaPassesYield(msg.sender))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakePasses",
+                "Node": "IMintPass(mintPassContractAddress).safeTransferFrom(address(this), msg.sender, 0, amount_, \"\")"
+            }
+        ]
+    }
+}

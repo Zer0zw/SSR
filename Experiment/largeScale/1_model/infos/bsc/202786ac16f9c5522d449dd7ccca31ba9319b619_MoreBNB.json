@@ -1,0 +1,88 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mapMemberStake.tokenValue"
+        ],
+        "User Stake Reward": [
+            "calcStakeCollecting"
+        ],
+        "User Stake Time": [
+            "mapMemberStake.endDay",
+            "mapMemberStake.startDay"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "EnterStake",
+                "Node": "_burn(msg.sender, amount)"
+            },
+            {
+                "Function": "staking",
+                "Node": "emit UserStake (users, block.timestamp, amount, stakingDays)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBonus",
+                "Node": "payable(msg.sender).transfer(bonus[0])"
+            },
+            {
+                "Function": "claimBonus",
+                "Node": "payable(msg.sender).transfer(bonus[1])"
+            },
+            {
+                "Function": "claimBonus",
+                "Node": "payable(msg.sender).transfer(bonus[2])"
+            },
+            {
+                "Function": "claimBonus",
+                "Node": "payable(msg.sender).transfer(bonus[3])"
+            },
+            {
+                "Function": "claimBonus",
+                "Node": "payable(msg.sender).transfer(bonus[4])"
+            },
+            {
+                "Function": "claimBonus",
+                "Node": "payable(msg.sender).transfer(bonus[5])"
+            },
+            {
+                "Function": "claimBonus",
+                "Node": "payable(msg.sender).transfer(bonus[6])"
+            },
+            {
+                "Function": "claimBonus",
+                "Node": "payable(msg.sender).transfer(bonus[7])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "EndStake",
+                "Node": "payable(msg.sender).transfer(profit - profitTax)"
+            },
+            {
+                "Function": "EndStake",
+                "Node": "payable(owner()).transfer(profitTax)"
+            },
+            {
+                "Function": "EndStake",
+                "Node": "payable(msg.sender).transfer(profit)"
+            },
+            {
+                "Function": "EndStake",
+                "Node": "_mint(msg.sender, stakeReturn + bonusAmount - bonusTax)"
+            },
+            {
+                "Function": "EndStake",
+                "Node": "_mint(owner(), bonusTax)"
+            },
+            {
+                "Function": "EndStake",
+                "Node": "staking(stakeReturn + bonusAmount, mapMemberStake[msg.sender][stakeId].endDay - mapMemberStake[msg.sender][stakeId].startDay, msg.sender)"
+            }
+        ]
+    }
+}

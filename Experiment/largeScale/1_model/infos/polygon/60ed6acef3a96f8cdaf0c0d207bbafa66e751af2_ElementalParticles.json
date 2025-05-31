@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedEP"
+        ],
+        "User Stake Reward": [
+            "UserInfo.amountClaimed"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastClaim"
+        ],
+        "Stake Token Address": [
+            "FBX"
+        ],
+        "Reward Token Address": [
+            "FBX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeEP",
+                "Node": "transfer(address(this), amountEP)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "FBX.safeTransfer(msg.sender, userRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeEP",
+                "Node": "_transfer(address(this), msg.sender, amountEP)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.contribution"
+        ],
+        "User Stake Reward": [
+            "stakers.yield"
+        ],
+        "User Stake Time": [
+            "stakers.last_yield_time"
+        ],
+        "Stake Token Address": [
+            "BHC_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "BHC_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "DepositBHC",
+                "Node": "bool s = IERC20(BHC_ADDRESS).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CollectYields",
+                "Node": "bool s = IERC20(BHC_ADDRESS).transfer(user, y)"
+            },
+            {
+                "Function": "FarmMyYield",
+                "Node": "bool s = IERC20(BHC_ADDRESS).transfer(user, y)"
+            }
+        ],
+        "unStake": []
+    }
+}

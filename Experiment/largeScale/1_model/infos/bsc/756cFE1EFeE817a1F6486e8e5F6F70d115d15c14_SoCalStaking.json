@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeData._amount"
+        ],
+        "User Stake Reward": [
+            "userStakeData._rewardTaken"
+        ],
+        "User Stake Time": [
+            "userStakeData._timestamp",
+            "userStakeData._locktime"
+        ],
+        "Stake Token Address": [
+            "STAKECONTRACTADDRESS"
+        ],
+        "Reward Token Address": [
+            "REWARDUSDTADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeSoCal",
+                "Node": "IERC20(STAKECONTRACTADDRESS).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "IERC20(REWARDUSDTADDRESS).transfer(msg.sender, usdtReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(STAKECONTRACTADDRESS).transfer(msg.sender, nativeAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "DepositInfo.tokenId"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "DepositInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "wbnb",
+            "cheese"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "nft.safeTransferFrom(_user, address(this), _token)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawal",
+                "Node": "wbnb.safeTransfer(address(msg.sender), reward[0])"
+            },
+            {
+                "Function": "withdrawal",
+                "Node": "cheese.safeTransfer(address(msg.sender), reward[1])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawal",
+                "Node": "nft.safeTransferFrom(address(this), address(msg.sender), info.tokenId)"
+            }
+        ]
+    }
+}

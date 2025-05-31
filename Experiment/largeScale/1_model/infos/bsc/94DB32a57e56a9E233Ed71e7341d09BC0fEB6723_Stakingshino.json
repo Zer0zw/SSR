@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTime",
+            "UserInfo.lockedTime"
+        ],
+        "Stake Token Address": [
+            "SHINO"
+        ],
+        "Reward Token Address": [
+            "rewardTokenInfo.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "SHINO.transferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardTokenInfo[_pid].token.transfer(_to, rewardTokenBal"
+            },
+            {
+                "Function": "harvest",
+                "Node": "rewardTokenInfo[_pid].token.transfer(_to, _amount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "SHINO.transferFrom(address(this), address(msg.sender), _amount"
+            }
+        ]
+    }
+}

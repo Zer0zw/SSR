@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_userLeasedStats.amount",
+            "_poolSet._values.seatStakingPrice"
+        ],
+        "User Stake Reward": [
+            "_emissionsMap.points.emissions",
+            "_stakingFeeMap.points.emissions"
+        ],
+        "User Stake Time": [
+            "_poolSet._values.stakingTime",
+            "_poolSet._values.stakingEndTime"
+        ],
+        "Stake Token Address": [
+            "nft11Token",
+            "playerContract"
+        ],
+        "Reward Token Address": [
+            "nft11Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "nft11Token.safeTransferFrom(senderAddress, address(this), bonusConfig.stakingPrice)"
+            },
+            {
+                "Function": "staking",
+                "Node": "playerContract.safeTransferFrom(senderAddress, address(this), _playerTokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimNFT11",
+                "Node": "nft11Token.safeTransfer(_userAddress, tokenAmt)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "nft11Token.safeTransfer(_userAddress, tokenAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlease",
+                "Node": "stadiumContract.safeTransferFrom(address(this), senderAddress, _seatTokenId)"
+            },
+            {
+                "Function": "_scout",
+                "Node": "playerContract.safeTransferFrom(address(this), leaseInfo.playerOwner, leaseInfo.playerTokenId)"
+            }
+        ]
+    }
+}

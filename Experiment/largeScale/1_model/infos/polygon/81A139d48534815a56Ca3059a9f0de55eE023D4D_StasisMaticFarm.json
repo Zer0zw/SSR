@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalExcluded"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "emit Transfer(address(0), user, credit)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimReward",
+                "Node": "IERC20(reward).transfer(address(customizedRewards), amount)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "_claimReward(msg.sender)"
+            },
+            {
+                "Function": "multiClaim",
+                "Node": "_claimReward(user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "IERC20(token).transfer(user, amount - fee)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_withdraw(msg.sender, amount)"
+            },
+            {
+                "Function": "taxlessWithdraw",
+                "Node": "_withdraw(user, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "holdings"
+        ],
+        "User Stake Reward": [
+            "withdrawableDividends",
+            "totalDividends"
+        ],
+        "User Stake Time": [
+            "lastClaimTime",
+            "nextClaimTime",
+            "secondsUntilAutoClaimAvailable"
+        ],
+        "Stake Token Address": [
+            "apolloToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "apolloToken.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_withdrawDividendOfUser(account, rewardToken)"
+            },
+            {
+                "Function": "processAccount",
+                "Node": "_withdrawDividendOfUser(account, rewardToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "apolloToken.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "apolloToken.transfer(msg.sender, holdings[msg.sender])"
+            }
+        ]
+    }
+}

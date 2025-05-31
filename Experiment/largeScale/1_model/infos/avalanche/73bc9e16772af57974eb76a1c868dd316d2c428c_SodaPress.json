@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalTokenBalance",
+            "User.trackedTokenBalance"
+        ],
+        "User Stake Reward": [
+            "User.claimPerSecond",
+            "User.profitsAssassinated"
+        ],
+        "User Stake Time": [
+            "User.lastClaim"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_transferFrom(token, address(this), amount)"
+            },
+            {
+                "Function": "zapAndDeposit",
+                "Node": "_transferFrom(token_, zapper, amount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "_transferFrom(token, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_send(user, adjustedPendingTokens)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "_send(user, adjustedPendingTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "assassinate",
+                "Node": "_send(user, adjustedUserTokens)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "_send(user, adjustedPendingTokens)"
+            }
+        ]
+    }
+}

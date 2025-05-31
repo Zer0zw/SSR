@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "initialCapital"
+        ],
+        "User Stake Reward": [
+            "totalClaimed",
+            "previousReward"
+        ],
+        "User Stake Time": [
+            "lastClaimTime",
+            "nextClaimTime"
+        ],
+        "Stake Token Address": [
+            "STAKE_TOKEN"
+        ],
+        "Reward Token Address": [
+            "STAKE_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "EnterStaking",
+                "Node": "IERC20(STAKE_TOKEN).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "IncrementStaking",
+                "Node": "IERC20(STAKE_TOKEN).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "IERC20(STAKE_TOKEN).transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "LeaveStaking",
+                "Node": "IERC20(STAKE_TOKEN).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

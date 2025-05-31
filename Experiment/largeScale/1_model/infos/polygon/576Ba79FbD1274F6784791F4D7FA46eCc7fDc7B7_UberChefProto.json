@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "pendingToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_lpToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "chef.deposit(_pid,_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingToken",
+                "Node": "return chef.pendingToken( _pid, _user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "chef.withdraw(_pid, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "chef.emergencyWithdraw(_pid)"
+            }
+        ]
+    }
+}

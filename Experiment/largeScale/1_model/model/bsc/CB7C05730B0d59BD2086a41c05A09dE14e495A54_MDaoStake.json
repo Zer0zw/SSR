@@ -1,0 +1,173 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "userInfo.boost"
+        ],
+        "User Stake Time": [
+            "userInfo.stakedTimestamp",
+            "userInfo.lastHarvestTimestamp"
+        ],
+        "Stake Token Address": [
+            "mdaoToken"
+        ],
+        "Reward Token Address": [
+            "mproToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "harvest",
+            "unstake"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "setMDaoToken",
+            "setMProToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    137
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "mdaoToken",
+                    "poolInfo.paused",
+                    "poolInfo.stakeLimit",
+                    "poolInfo.totalStaked",
+                    "userInfo.boost",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount",
+                    "userInfo.stakedTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "mdaoToken",
+                    "poolInfo.paused",
+                    "poolInfo.stakeLimit",
+                    "poolInfo.totalStaked",
+                    "userInfo.boost",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount",
+                    "userInfo.stakedTimestamp"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    175
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.rate",
+                    "rewardPeriod",
+                    "userInfo.boost",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount"
+                ],
+                "Control Variables": [
+                    "poolInfo.paused",
+                    "poolInfo.rate",
+                    "rewardPeriod",
+                    "userInfo.boost",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.paused",
+                    "poolInfo.rate",
+                    "rewardPeriod",
+                    "userInfo.boost",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstake",
+                "Node": [
+                    175
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.rate",
+                    "rewardPeriod",
+                    "userInfo.boost",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount"
+                ],
+                "Control Variables": [
+                    "poolInfo.paused",
+                    "poolInfo.rate",
+                    "rewardPeriod",
+                    "userInfo.boost",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.paused",
+                    "poolInfo.rate",
+                    "rewardPeriod",
+                    "userInfo.boost",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    158
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount",
+                    "userInfo.stakedTimestamp"
+                ],
+                "Control Variables": [
+                    "mdaoToken",
+                    "poolInfo.paused",
+                    "poolInfo.totalStaked",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount",
+                    "userInfo.stakedTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "mdaoToken",
+                    "poolInfo.paused",
+                    "poolInfo.totalStaked",
+                    "userInfo.lastHarvestTimestamp",
+                    "userInfo.stakedAmount",
+                    "userInfo.stakedTimestamp"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

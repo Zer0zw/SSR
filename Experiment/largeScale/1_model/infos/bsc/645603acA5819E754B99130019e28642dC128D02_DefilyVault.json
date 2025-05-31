@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StrategyInfo.want"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(address(msg.sender),sharesAdded)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "strategyInfo.want.safeTransfer(address(msg.sender), _wantAmt"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_burn(address(msg.sender),sharesRemoved)"
+            }
+        ]
+    }
+}

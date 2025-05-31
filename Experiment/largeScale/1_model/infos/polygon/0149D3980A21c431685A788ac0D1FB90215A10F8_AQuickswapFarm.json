@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "dQuick"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingRewards.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewardAndCharge",
+                "Node": "dQuick.transfer(collector, fee)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "stakingRewards.getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "stakingRewards.exit()"
+            }
+        ]
+    }
+}

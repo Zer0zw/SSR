@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "uid2Investor.plans_soda.investment"
+        ],
+        "User Stake Reward": [
+            "uid2Investor.plans_soda.currentDividends"
+        ],
+        "User Stake Time": [
+            "investmentPlans_.term"
+        ],
+        "Stake Token Address": [
+            "WNE"
+        ],
+        "Reward Token Address": [
+            "WNE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "WNE.transferFrom(_addr, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "WNE.mint(msg.sender,payout)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "WNE.mint(msg.sender,payout)"
+            },
+            {
+                "Function": "claimRef",
+                "Node": "WNE.mint(msg.sender,amount)"
+            },
+            {
+                "Function": "claimLotteryReward",
+                "Node": "WNE.mint(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "WNE.transfer(msg.sender, body)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "WNE.mint(msg.sender, payout)"
+            }
+        ]
+    }
+}

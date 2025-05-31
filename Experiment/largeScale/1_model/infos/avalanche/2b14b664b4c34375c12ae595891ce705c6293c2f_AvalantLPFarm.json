@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "JLPStaked"
+        ],
+        "User Stake Reward": [
+            "claimableView"
+        ],
+        "User Stake Time": [
+            "JLPStakedFrom"
+        ],
+        "Stake Token Address": [
+            "JLP_CONTRACT"
+        ],
+        "Reward Token Address": [
+            "SUGA_CONTRACT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeJLP",
+                "Node": "jlp.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "s.mint(account, claimable)"
+            },
+            {
+                "Function": "claimForPeople",
+                "Node": "s.mint(account, claimable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeJLP",
+                "Node": "jlp.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

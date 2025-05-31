@@ -1,0 +1,126 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.sM"
+        ],
+        "User Stake Reward": [
+            "users.sM",
+            "users.sM"
+        ],
+        "User Stake Time": [
+            "users.sM",
+            "users.sM"
+        ],
+        "Stake Token Address": [
+            "dmoon"
+        ],
+        "Reward Token Address": [
+            "dmoon"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "fallback",
+            "stakeBNB"
+        ],
+        "getReward": [
+            "claimBNB",
+            "withdrawRef"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBNB",
+                "Node": [
+                    64
+                ],
+                "Input": [
+                    "_amount",
+                    "referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "dmoon"
+                ],
+                "Full Calculation Variables": [
+                    "dmoon"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "fallback",
+                "Node": [
+                    64
+                ],
+                "Input": [
+                    "_amount",
+                    "referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "dmoon"
+                ],
+                "Full Calculation Variables": [
+                    "dmoon"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimBNB",
+                "Node": [
+                    150
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DAILYPROFIT",
+                    "PERCENT_DIVIDER",
+                    "TIME_STEP",
+                    "startTime",
+                    "users.sM"
+                ],
+                "Control Variables": [
+                    "DAILYPROFIT",
+                    "PERCENT_DIVIDER",
+                    "TIME_STEP",
+                    "dmoon",
+                    "startTime",
+                    "users.sM"
+                ],
+                "Full Calculation Variables": [
+                    "DAILYPROFIT",
+                    "PERCENT_DIVIDER",
+                    "TIME_STEP",
+                    "dmoon",
+                    "startTime",
+                    "users.sM"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawRef",
+                "Node": [
+                    158
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "users.bonus"
+                ],
+                "Control Variables": [
+                    "dmoon",
+                    "users.bonus"
+                ],
+                "Full Calculation Variables": [
+                    "dmoon",
+                    "users.bonus"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalAmount"
+        ],
+        "User Stake Reward": [
+            "User.totalBonusReceived"
+        ],
+        "User Stake Time": [
+            "Contribution.time"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "token.transferFrom(msg.sender, address(this), _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "MicroStakeMultiSendToken",
+                "Node": "require(token.transfer(currentUser.user, bonus))"
+            },
+            {
+                "Function": "MicroStakeMultiSendEth",
+                "Node": "currentUser.user.transfer(EthToSend)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WithdrawTokens",
+                "Node": "token.transfer(msg.sender, _value)"
+            }
+        ]
+    }
+}

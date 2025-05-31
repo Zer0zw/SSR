@@ -1,0 +1,111 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "doHardWork"
+        ],
+        "getReward": [
+            "doHardWork",
+            "doHardWork"
+        ],
+        "unStake": [
+            "withdrawAllToVault",
+            "withdrawAllToVault",
+            "withdrawToVault",
+            "withdrawToVault"
+        ],
+        "Sensitive Functions": [
+            "emergencyExit"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "doHardWork",
+                "Node": [
+                    1105
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_PAUSED_INVESTING_SLOT"
+                ],
+                "Full Calculation Variables": [
+                    "_PAUSED_INVESTING_SLOT"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doHardWork",
+                "Node": [
+                    1176
+                ],
+                "Input": [
+                    "_former"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_STORAGE_SLOT",
+                    "_PAUSED_INVESTING_SLOT",
+                    "_UNDERLYING_SLOT",
+                    "_VAULT_SLOT"
+                ],
+                "Full Calculation Variables": [
+                    "_STORAGE_SLOT",
+                    "_PAUSED_INVESTING_SLOT",
+                    "_UNDERLYING_SLOT",
+                    "_VAULT_SLOT"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAllToVault",
+                "Node": [
+                    1126
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_STORAGE_SLOT",
+                    "_VAULT_SLOT"
+                ],
+                "Full Calculation Variables": [
+                    "_STORAGE_SLOT",
+                    "_VAULT_SLOT"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawToVault",
+                "Node": [
+                    1145
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_UNDERLYING_SLOT",
+                    "_VAULT_SLOT",
+                    "_STORAGE_SLOT"
+                ],
+                "Full Calculation Variables": [
+                    "_UNDERLYING_SLOT",
+                    "_VAULT_SLOT",
+                    "_STORAGE_SLOT"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

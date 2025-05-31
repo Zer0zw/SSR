@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalInvested",
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "User.bonus",
+            "User.totalBonus"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Plan.time"
+        ],
+        "Stake Token Address": [
+            "erctoken"
+        ],
+        "Reward Token Address": [
+            "erctoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "erctoken.transferFrom(msg.sender,address(this),amounterc)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "erctoken.transfer(msg.sender, totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

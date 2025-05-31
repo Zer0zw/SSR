@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserLPInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserLPInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserLPInfo.firstDepositedTime",
+            "UserLPInfo.averageDepositedTime"
+        ],
+        "Stake Token Address": [
+            "LPPoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "pelago"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositLP",
+                "Node": "lpPool.lpToken.safeTransferFrom(address(_msgSender()), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "depositLP",
+                "Node": "pelago.safeTransfer(_msgSender(), pending)"
+            },
+            {
+                "Function": "withdrawLP",
+                "Node": "pelago.safeTransfer(_msgSender(), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLP",
+                "Node": "lpPool.lpToken.safeTransfer(address(_msgSender()), _amount)"
+            }
+        ]
+    }
+}

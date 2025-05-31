@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mapMemberStake.tokenValue",
+            "overall_stakedTokens"
+        ],
+        "User Stake Reward": [
+            "calcStakeCollecting",
+            "mapMemberLobby_overallData.overall_collectedDivs"
+        ],
+        "User Stake Time": [
+            "mapMemberStake.endDay",
+            "mapMemberStake.startDay"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "EnterStake",
+                "Node": "_burn(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ExitLobby",
+                "Node": "_mint(msg.sender, tokensToPay)"
+            },
+            {
+                "Function": "EndStake",
+                "Node": "payable(msg.sender).transfer(profit)"
+            },
+            {
+                "Function": "DoEndStake",
+                "Node": "payable(msg.sender).transfer(profit)"
+            },
+            {
+                "Function": "virtualBalanceEnteringLobby",
+                "Node": "DoEnterLobby(referrerAddr, profit + ((profit * 10) / 100), ((profit * 10) / 100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "EndStake",
+                "Node": "_mint(msg.sender, stakeReturn + bonusAmount)"
+            },
+            {
+                "Function": "DoEndStake",
+                "Node": "_mint(msg.sender, stakeReturn + bonusAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "GuruBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "Guru"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, _GuruAmount)"
+            },
+            {
+                "Function": "enterStakingGuru",
+                "Node": "_mint(msg.sender, _GuruAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "Guru.transfer(msg.sender, GuruAmount)"
+            },
+            {
+                "Function": "leaveStakingGuru",
+                "Node": "Guru.transfer(msg.sender, GuruAmount)"
+            }
+        ]
+    }
+}

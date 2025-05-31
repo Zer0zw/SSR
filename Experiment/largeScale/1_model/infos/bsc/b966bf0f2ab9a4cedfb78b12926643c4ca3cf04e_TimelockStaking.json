@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staking.totalAmount",
+            "UserTransaction.amount"
+        ],
+        "User Stake Reward": [
+            "UserTransaction.percent"
+        ],
+        "User Stake Time": [
+            "UserTransaction.time",
+            "UserTransaction.lockedUntil"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.safeTransfer(msg.sender, _totalAmount)"
+            },
+            {
+                "Function": "preClaim",
+                "Node": "token.safeTransfer(msg.sender, _totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "token.safeTransfer(msg.sender, _totalAmount)"
+            },
+            {
+                "Function": "preClaim",
+                "Node": "token.safeTransfer(msg.sender, _totalAmount)"
+            }
+        ]
+    }
+}

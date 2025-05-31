@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "profitPerStakePrevious",
+            "_calculateProfit"
+        ],
+        "User Stake Time": [
+            "Stake.time"
+        ],
+        "Stake Token Address": [
+            "targetToken"
+        ],
+        "Reward Token Address": [
+            "targetToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.transferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestStake",
+                "Node": "token.transfer(_msgSender(), profit + profitPerStakePrevious[_msgSender()])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "token.transfer(msg.sender, amountWithdraw)"
+            }
+        ]
+    }
+}

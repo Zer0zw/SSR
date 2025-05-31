@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositToken"
+        ],
+        "User Stake Reward": [
+            "pendingFish"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "poolDeposit",
+                "Node": "IPolycatMasterChef(chef).deposit(poolID, _amount, treasury)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getTotalPending",
+                "Node": "IPolycatMasterChef(chef).pendingFish(poolID, address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "poolWithdraw",
+                "Node": "IPolycatMasterChef(chef).withdraw(poolID, _amount)"
+            }
+        ]
+    }
+}

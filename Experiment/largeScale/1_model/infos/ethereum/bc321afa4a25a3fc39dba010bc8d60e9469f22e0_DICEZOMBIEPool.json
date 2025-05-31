@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "DURATION"
+        ],
+        "Stake Token Address": [
+            "yam"
+        ],
+        "Reward Token Address": [
+            "yam"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "yam.safeTransfer(msg.sender, trueReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exit",
+                "Node": "getReward()"
+            }
+        ]
+    }
+}

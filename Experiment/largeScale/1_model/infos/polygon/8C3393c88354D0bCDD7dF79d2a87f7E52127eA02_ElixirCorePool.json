@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.tokenAmount"
+        ],
+        "User Stake Reward": [
+            "User.subVaultRewards",
+            "User.subYieldRewards"
+        ],
+        "User Stake Time": [
+            "Deposit.lockedFrom",
+            "Deposit.lockedUntil"
+        ],
+        "Stake Token Address": [
+            "poolToken"
+        ],
+        "Reward Token Address": [
+            "eli"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeAsPool",
+                "Node": "poolTokenReserve += _amount"
+            },
+            {
+                "Function": "_stake",
+                "Node": "poolTokenReserve += _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_processVaultRewards",
+                "Node": "transferEli(_staker, pendingVaultClaim)"
+            },
+            {
+                "Function": "_processRewards",
+                "Node": "poolTokenReserve += pendingYield"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "poolTokenReserve -= _amount"
+            }
+        ]
+    }
+}

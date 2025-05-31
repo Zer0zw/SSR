@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Contributer.contribution",
+            "Contributer.contribution_avax"
+        ],
+        "User Stake Reward": [
+            "Contributer.yield",
+            "Contributer.yield_avax"
+        ],
+        "User Stake Time": [
+            "Contributer.joined"
+        ],
+        "Stake Token Address": [
+            "DAIe",
+            "WAVAX"
+        ],
+        "Reward Token Address": [
+            "avDAI",
+            "avAVAX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "ContributeAVAX",
+                "Node": "bool succ = IERC20(WAVAX).transfer(user, d)"
+            },
+            {
+                "Function": "Contribute",
+                "Node": "bool success = IERC20(DAIe).transferFrom(msg.sender, address(this), _dai)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimYieldAVAX",
+                "Node": "bool s = IERC20(WAVAX).transfer(msg.sender, y)"
+            },
+            {
+                "Function": "ClaimYield",
+                "Node": "bool s = IERC20(DAIe).transfer(msg.sender, y)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "HaltContributionAvax",
+                "Node": "bool succ = IERC20(WAVAX).transfer(user, d)"
+            },
+            {
+                "Function": "HaltContribution",
+                "Node": "bool succ = IERC20(DAIe).transfer(user, d)"
+            }
+        ]
+    }
+}

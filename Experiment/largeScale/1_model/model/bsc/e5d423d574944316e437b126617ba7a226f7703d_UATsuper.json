@@ -1,0 +1,403 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mapMemberStake.tokenValue"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "mapMemberStake.endDay",
+            "mapMemberStake.startDay"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "EnterStake"
+        ],
+        "getReward": [
+            "EndStake",
+            "ExitLobby",
+            "virtualBalanceEnteringLobby"
+        ],
+        "unStake": [
+            "EndStake",
+            "virtualBalanceEnteringLobby"
+        ],
+        "Sensitive Functions": [
+            "admin"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "EnterStake",
+                "Node": [
+                    994
+                ],
+                "Input": [
+                    "amount",
+                    "stakingDays"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "currentDay",
+                    "daysActiveInStakeTokensDecrase",
+                    "daysActiveInStakeTokensIncrese",
+                    "mapMemberLobby_overallData.overall_stakedTokens",
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberStake.stakeId",
+                    "mapMemberStake.stake_forLoan",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.stake_hasSold",
+                    "mapMemberStake.startDay",
+                    "mapMemberStake.tokenValue",
+                    "mapMemberStake.userAddress",
+                    "max_stake_days",
+                    "overall_stakedTokens",
+                    "saveTotalToken"
+                ],
+                "Full Calculation Variables": [
+                    "currentDay",
+                    "daysActiveInStakeTokensDecrase",
+                    "daysActiveInStakeTokensIncrese",
+                    "mapMemberLobby_overallData.overall_stakedTokens",
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberStake.stakeId",
+                    "mapMemberStake.stake_forLoan",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.stake_hasSold",
+                    "mapMemberStake.startDay",
+                    "mapMemberStake.tokenValue",
+                    "mapMemberStake.userAddress",
+                    "max_stake_days",
+                    "overall_stakedTokens",
+                    "saveTotalToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ExitLobby",
+                "Node": [
+                    897
+                ],
+                "Input": [
+                    "targetDay"
+                ],
+                "Calculation Variables": [
+                    "currentDay",
+                    "lastLobbyPool",
+                    "lobbyEntry",
+                    "lobby_pool_decrease_percentage",
+                    "mapMemberLobby.memberLobbyEntryDay",
+                    "mapMemberLobby.memberLobbyValue"
+                ],
+                "Control Variables": [
+                    "currentDay",
+                    "lastLobbyPool",
+                    "lobbyEntry",
+                    "lobby_pool_decrease_percentage",
+                    "mapMemberLobby.hasCollected",
+                    "mapMemberLobby.memberLobbyEntryDay",
+                    "mapMemberLobby.memberLobbyValue",
+                    "mapMemberLobby.referrer"
+                ],
+                "Full Calculation Variables": [
+                    "currentDay",
+                    "lastLobbyPool",
+                    "lobbyEntry",
+                    "lobby_pool_decrease_percentage",
+                    "mapMemberLobby.hasCollected",
+                    "mapMemberLobby.memberLobbyEntryDay",
+                    "mapMemberLobby.memberLobbyValue",
+                    "mapMemberLobby.referrer"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "virtualBalanceEnteringLobby",
+                "Node": [
+                    1062
+                ],
+                "Input": [
+                    "doNotSendDivs",
+                    "stakeId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "auctionCount",
+                    "currentDay",
+                    "dayBNBPool",
+                    "dividendsPoolCapDays",
+                    "lobbyEntry",
+                    "mapMemberLobby_overallData.overall_collectedDivs",
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.loansReturnAmount",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberStake.stakeId",
+                    "mapMemberStake.stake_forLoan",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.stake_hasSold",
+                    "mapMemberStake.startDay",
+                    "mapMemberStake.tokenValue",
+                    "mapMemberStake.userAddress",
+                    "overall_collectedDivs",
+                    "percentOfLobbyToBePooled",
+                    "totalTokensInActiveStake"
+                ],
+                "Full Calculation Variables": [
+                    "auctionCount",
+                    "currentDay",
+                    "dayBNBPool",
+                    "dividendsPoolCapDays",
+                    "lobbyEntry",
+                    "mapMemberLobby_overallData.overall_collectedDivs",
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.loansReturnAmount",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberStake.stakeId",
+                    "mapMemberStake.stake_forLoan",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.stake_hasSold",
+                    "mapMemberStake.startDay",
+                    "mapMemberStake.tokenValue",
+                    "mapMemberStake.userAddress",
+                    "overall_collectedDivs",
+                    "percentOfLobbyToBePooled",
+                    "totalTokensInActiveStake"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "EndStake",
+                "Node": [
+                    1062
+                ],
+                "Input": [
+                    "stakeId",
+                    "doNotSendDivs",
+                    "stakeId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.stake_hasSold",
+                    "_status",
+                    "overall_collectedDivs",
+                    "_NOT_ENTERED",
+                    "mapMemberStake.userAddress",
+                    "mapMemberStake.startDay",
+                    "_ENTERED",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberLobby_overallData.overall_collectedDivs",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stakeId",
+                    "percentOfLobbyToBePooled",
+                    "currentDay",
+                    "dividendsPoolCapDays",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.tokenValue",
+                    "auctionCount",
+                    "lobbyEntry",
+                    "mapMemberStake.stake_forLoan",
+                    "dayBNBPool",
+                    "totalTokensInActiveStake",
+                    "mapMemberStake.loansReturnAmount"
+                ],
+                "Full Calculation Variables": [
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.stake_hasSold",
+                    "_status",
+                    "overall_collectedDivs",
+                    "_NOT_ENTERED",
+                    "mapMemberStake.userAddress",
+                    "mapMemberStake.startDay",
+                    "_ENTERED",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberLobby_overallData.overall_collectedDivs",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stakeId",
+                    "percentOfLobbyToBePooled",
+                    "currentDay",
+                    "dividendsPoolCapDays",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.tokenValue",
+                    "auctionCount",
+                    "lobbyEntry",
+                    "mapMemberStake.stake_forLoan",
+                    "dayBNBPool",
+                    "totalTokensInActiveStake",
+                    "mapMemberStake.loansReturnAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "virtualBalanceEnteringLobby",
+                "Node": [
+                    1087
+                ],
+                "Input": [
+                    "doNotSendDivs",
+                    "stakeId"
+                ],
+                "Calculation Variables": [
+                    "bonus_calc_ratio",
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberStake.stakeId",
+                    "mapMemberStake.stake_forLoan",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.stake_hasSold",
+                    "mapMemberStake.startDay",
+                    "mapMemberStake.tokenValue",
+                    "mapMemberStake.userAddress",
+                    "max_stake_days"
+                ],
+                "Control Variables": [
+                    "auctionCount",
+                    "bonus_calc_ratio",
+                    "currentDay",
+                    "dayBNBPool",
+                    "dividendsPoolCapDays",
+                    "lobbyEntry",
+                    "mapMemberLobby_overallData.overall_collectedDivs",
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.loansReturnAmount",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberStake.stakeId",
+                    "mapMemberStake.stake_forLoan",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.stake_hasSold",
+                    "mapMemberStake.startDay",
+                    "mapMemberStake.tokenValue",
+                    "mapMemberStake.userAddress",
+                    "max_stake_days",
+                    "overall_collectedBonusTokens",
+                    "overall_collectedDivs",
+                    "percentOfLobbyToBePooled",
+                    "totalTokensInActiveStake"
+                ],
+                "Full Calculation Variables": [
+                    "auctionCount",
+                    "bonus_calc_ratio",
+                    "currentDay",
+                    "dayBNBPool",
+                    "dividendsPoolCapDays",
+                    "lobbyEntry",
+                    "mapMemberLobby_overallData.overall_collectedDivs",
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.loansReturnAmount",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberStake.stakeId",
+                    "mapMemberStake.stake_forLoan",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.stake_hasSold",
+                    "mapMemberStake.startDay",
+                    "mapMemberStake.tokenValue",
+                    "mapMemberStake.userAddress",
+                    "max_stake_days",
+                    "overall_collectedBonusTokens",
+                    "overall_collectedDivs",
+                    "percentOfLobbyToBePooled",
+                    "totalTokensInActiveStake"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "EndStake",
+                "Node": [
+                    1087
+                ],
+                "Input": [
+                    "stakeId",
+                    "doNotSendDivs",
+                    "stakeId"
+                ],
+                "Calculation Variables": [
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.stake_hasSold",
+                    "bonus_calc_ratio",
+                    "max_stake_days",
+                    "mapMemberStake.userAddress",
+                    "mapMemberStake.startDay",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.tokenValue",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberStake.stake_forLoan",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stakeId"
+                ],
+                "Control Variables": [
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.stake_hasSold",
+                    "_status",
+                    "max_stake_days",
+                    "overall_collectedDivs",
+                    "_NOT_ENTERED",
+                    "mapMemberStake.userAddress",
+                    "mapMemberStake.startDay",
+                    "_ENTERED",
+                    "overall_collectedBonusTokens",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberLobby_overallData.overall_collectedDivs",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stakeId",
+                    "percentOfLobbyToBePooled",
+                    "currentDay",
+                    "bonus_calc_ratio",
+                    "dividendsPoolCapDays",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.tokenValue",
+                    "auctionCount",
+                    "lobbyEntry",
+                    "mapMemberStake.stake_forLoan",
+                    "dayBNBPool",
+                    "totalTokensInActiveStake",
+                    "mapMemberStake.loansReturnAmount"
+                ],
+                "Full Calculation Variables": [
+                    "mapMemberStake.endDay",
+                    "mapMemberStake.stake_hasSold",
+                    "_status",
+                    "max_stake_days",
+                    "overall_collectedDivs",
+                    "_NOT_ENTERED",
+                    "mapMemberStake.userAddress",
+                    "mapMemberStake.startDay",
+                    "_ENTERED",
+                    "overall_collectedBonusTokens",
+                    "mapMemberStake.stakeCollected",
+                    "mapMemberLobby_overallData.overall_collectedDivs",
+                    "mapMemberStake.stake_forSell",
+                    "mapMemberStake.stakeId",
+                    "percentOfLobbyToBePooled",
+                    "currentDay",
+                    "bonus_calc_ratio",
+                    "dividendsPoolCapDays",
+                    "mapMemberStake.stake_hasLoan",
+                    "mapMemberStake.tokenValue",
+                    "auctionCount",
+                    "lobbyEntry",
+                    "mapMemberStake.stake_forLoan",
+                    "dayBNBPool",
+                    "totalTokensInActiveStake",
+                    "mapMemberStake.loansReturnAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

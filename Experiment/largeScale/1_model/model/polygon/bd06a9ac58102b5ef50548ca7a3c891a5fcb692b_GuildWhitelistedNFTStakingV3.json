@@ -1,0 +1,514 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.numberNFTStaked",
+            "stakers.numberNFTStakedPerToken"
+        ],
+        "User Stake Reward": [
+            "stakers.rewardsEarned",
+            "stakers.rewardsReleased",
+            "stakers.rewardTokensRewardsEarned",
+            "stakers.rewardTokensRewardsReleased"
+        ],
+        "User Stake Time": [
+            "nftStakeRecords.nftStakeTime",
+            "nftStakeRecords.nftUnstakeTime",
+            "amountOfTimeSpecificNFTHasBeenStakedTotal",
+            "amountOfTimeContractNFTsHaveBeenStakedTotal",
+            "amountOfStakingTimeAllNFTsHaveBeenStaked"
+        ],
+        "Stake Token Address": [
+            "whitelistedTokens"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stakeBatch"
+        ],
+        "getReward": [
+            "claimReward",
+            "unstake",
+            "unstakeBatch"
+        ],
+        "unStake": [
+            "adminEmergencySafeUnstake",
+            "adminEmergencyUnstake",
+            "emergencyUnstake",
+            "unstake",
+            "unstakeBatch"
+        ],
+        "Sensitive Functions": [
+            "addWhitelistedTokens",
+            "initStaking",
+            "removeWhitelistedTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    3405,
+                    3406,
+                    3407,
+                    3408,
+                    3409
+                ],
+                "Input": [
+                    "_tokenId",
+                    "_user",
+                    "_whitelistedNFT"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "lastUpdateTime",
+                    "rewardsContract",
+                    "stakers.numberNFTStaked",
+                    "stakers.numberNFTStakedPerToken",
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardTokensRewardsReleased",
+                    "stakers.rewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.tokenIds",
+                    "stakers.tokenIndex",
+                    "totalRoundRewardTokenRewards",
+                    "totalRoundRewards",
+                    "weightContract",
+                    "whitelistedNFTContractStakedTotal",
+                    "whitelistedNFTStakedTotal",
+                    "whitelistedTokensNeedsTokenWhitelist"
+                ],
+                "Full Calculation Variables": [
+                    "lastUpdateTime",
+                    "rewardsContract",
+                    "stakers.numberNFTStaked",
+                    "stakers.numberNFTStakedPerToken",
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardTokensRewardsReleased",
+                    "stakers.rewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.tokenIds",
+                    "stakers.tokenIndex",
+                    "totalRoundRewardTokenRewards",
+                    "totalRoundRewards",
+                    "weightContract",
+                    "whitelistedNFTContractStakedTotal",
+                    "whitelistedNFTStakedTotal",
+                    "whitelistedTokensNeedsTokenWhitelist"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": [
+                    3377
+                ],
+                "Input": [
+                    "_tokenIds",
+                    "_whitelistedNFT",
+                    "_whitelistedNFTs",
+                    "_tokenId",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "stakers.tokenIds",
+                    "totalRoundRewards",
+                    "lastUpdateTime",
+                    "whitelistedTokensNeedsTokenWhitelist",
+                    "stakers.numberNFTStaked",
+                    "whitelistedNFTStakedTotal",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "stakers.tokenIndex",
+                    "rewardsContract",
+                    "stakers.numberNFTStakedPerToken",
+                    "stakers.rewardsEarned",
+                    "whitelistedNFTContractStakedTotal"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "stakers.tokenIds",
+                    "totalRoundRewards",
+                    "lastUpdateTime",
+                    "whitelistedTokensNeedsTokenWhitelist",
+                    "stakers.numberNFTStaked",
+                    "whitelistedNFTStakedTotal",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "stakers.tokenIndex",
+                    "rewardsContract",
+                    "stakers.numberNFTStakedPerToken",
+                    "stakers.rewardsEarned",
+                    "whitelistedNFTContractStakedTotal"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    3741
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Control Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "tokensClaimable",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "tokensClaimable",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "unstakeBatch",
+                "Node": [
+                    3741
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Control Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "tokensClaimable",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "tokensClaimable",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "unstake",
+                "Node": [
+                    3741
+                ],
+                "Input": [
+                    "_user"
+                ],
+                "Calculation Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Control Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "tokensClaimable",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.rewardTokensRewardsEarned",
+                    "stakers.rewardsReleased",
+                    "stakers.rewardTokensRewardsReleased",
+                    "totalRoundRewards",
+                    "rewardsToken",
+                    "lastUpdateTime",
+                    "tokensClaimable",
+                    "totalRoundRewardTokenRewards",
+                    "weightContract",
+                    "rewardsContract",
+                    "stakers.rewardsEarned"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeBatch",
+                "Node": [
+                    3512
+                ],
+                "Input": [
+                    "_user",
+                    "_isApprovedParty",
+                    "_whitelistedNFT",
+                    "_tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "amountOfStakingTimeAllNFTsHaveBeenStaked",
+                    "nftIsStaked",
+                    "nftStakeRecords.nftUnstakeTime",
+                    "stakers.tokenIds",
+                    "numberOfTimesNFTWasStaked",
+                    "stakers.numberNFTStaked",
+                    "whitelistedNFTStakedTotal",
+                    "weightContract",
+                    "stakers.tokenIndex",
+                    "lastTimeAllNFTStakingPeriodRecorded",
+                    "amountOfTimeSpecificNFTHasBeenStakedTotal",
+                    "stakers.numberNFTStakedPerToken",
+                    "approvedParty",
+                    "amountOfTimeContractNFTsHaveBeenStakedTotal",
+                    "tokenOwner",
+                    "lastTimeContractNFTStakedPeriodRecorded",
+                    "nftStakeRecords.nftStakeTime",
+                    "whitelistedNFTContractStakedTotal"
+                ],
+                "Full Calculation Variables": [
+                    "amountOfStakingTimeAllNFTsHaveBeenStaked",
+                    "nftIsStaked",
+                    "nftStakeRecords.nftUnstakeTime",
+                    "stakers.tokenIds",
+                    "numberOfTimesNFTWasStaked",
+                    "stakers.numberNFTStaked",
+                    "whitelistedNFTStakedTotal",
+                    "weightContract",
+                    "stakers.tokenIndex",
+                    "lastTimeAllNFTStakingPeriodRecorded",
+                    "amountOfTimeSpecificNFTHasBeenStakedTotal",
+                    "stakers.numberNFTStakedPerToken",
+                    "approvedParty",
+                    "amountOfTimeContractNFTsHaveBeenStakedTotal",
+                    "tokenOwner",
+                    "lastTimeContractNFTStakedPeriodRecorded",
+                    "nftStakeRecords.nftStakeTime",
+                    "whitelistedNFTContractStakedTotal"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstake",
+                "Node": [
+                    3512
+                ],
+                "Input": [
+                    "_user",
+                    "_isApprovedParty",
+                    "_whitelistedNFT",
+                    "_tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "amountOfStakingTimeAllNFTsHaveBeenStaked",
+                    "nftIsStaked",
+                    "nftStakeRecords.nftUnstakeTime",
+                    "stakers.tokenIds",
+                    "numberOfTimesNFTWasStaked",
+                    "stakers.numberNFTStaked",
+                    "whitelistedNFTStakedTotal",
+                    "weightContract",
+                    "stakers.tokenIndex",
+                    "lastTimeAllNFTStakingPeriodRecorded",
+                    "amountOfTimeSpecificNFTHasBeenStakedTotal",
+                    "stakers.numberNFTStakedPerToken",
+                    "approvedParty",
+                    "amountOfTimeContractNFTsHaveBeenStakedTotal",
+                    "tokenOwner",
+                    "lastTimeContractNFTStakedPeriodRecorded",
+                    "nftStakeRecords.nftStakeTime",
+                    "whitelistedNFTContractStakedTotal"
+                ],
+                "Full Calculation Variables": [
+                    "amountOfStakingTimeAllNFTsHaveBeenStaked",
+                    "nftIsStaked",
+                    "nftStakeRecords.nftUnstakeTime",
+                    "stakers.tokenIds",
+                    "numberOfTimesNFTWasStaked",
+                    "stakers.numberNFTStaked",
+                    "whitelistedNFTStakedTotal",
+                    "weightContract",
+                    "stakers.tokenIndex",
+                    "lastTimeAllNFTStakingPeriodRecorded",
+                    "amountOfTimeSpecificNFTHasBeenStakedTotal",
+                    "stakers.numberNFTStakedPerToken",
+                    "approvedParty",
+                    "amountOfTimeContractNFTsHaveBeenStakedTotal",
+                    "tokenOwner",
+                    "lastTimeContractNFTStakedPeriodRecorded",
+                    "nftStakeRecords.nftStakeTime",
+                    "whitelistedNFTContractStakedTotal"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": [
+                    3562
+                ],
+                "Input": [
+                    "_tokenId",
+                    "_whitelistedNFT",
+                    "_isApprovedParty",
+                    "_whitelistedNFT",
+                    "_user",
+                    "_tokenId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "trustedForwarder",
+                    "nftStakeRecords.nftStakeTime",
+                    "stakers.tokenIds",
+                    "nftIsStaked",
+                    "amountOfStakingTimeAllNFTsHaveBeenStaked",
+                    "nftStakeRecords.nftUnstakeTime",
+                    "numberOfTimesNFTWasStaked",
+                    "stakers.numberNFTStaked",
+                    "whitelistedNFTStakedTotal",
+                    "weightContract",
+                    "stakers.tokenIndex",
+                    "lastTimeAllNFTStakingPeriodRecorded",
+                    "amountOfTimeSpecificNFTHasBeenStakedTotal",
+                    "stakers.numberNFTStakedPerToken",
+                    "amountOfTimeContractNFTsHaveBeenStakedTotal",
+                    "tokenOwner",
+                    "lastTimeContractNFTStakedPeriodRecorded",
+                    "approvedParty",
+                    "whitelistedNFTContractStakedTotal"
+                ],
+                "Full Calculation Variables": [
+                    "trustedForwarder",
+                    "nftStakeRecords.nftStakeTime",
+                    "stakers.tokenIds",
+                    "nftIsStaked",
+                    "amountOfStakingTimeAllNFTsHaveBeenStaked",
+                    "nftStakeRecords.nftUnstakeTime",
+                    "numberOfTimesNFTWasStaked",
+                    "stakers.numberNFTStaked",
+                    "whitelistedNFTStakedTotal",
+                    "weightContract",
+                    "stakers.tokenIndex",
+                    "lastTimeAllNFTStakingPeriodRecorded",
+                    "amountOfTimeSpecificNFTHasBeenStakedTotal",
+                    "stakers.numberNFTStakedPerToken",
+                    "amountOfTimeContractNFTsHaveBeenStakedTotal",
+                    "tokenOwner",
+                    "lastTimeContractNFTStakedPeriodRecorded",
+                    "approvedParty",
+                    "whitelistedNFTContractStakedTotal"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "adminEmergencySafeUnstake",
+                "Node": [
+                    3573
+                ],
+                "Input": [
+                    "_tokenId",
+                    "_whitelistedNFT"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "accessControls",
+                    "tokenOwner"
+                ],
+                "Full Calculation Variables": [
+                    "accessControls",
+                    "tokenOwner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "adminEmergencyUnstake",
+                "Node": [
+                    3584
+                ],
+                "Input": [
+                    "_tokenId",
+                    "_whitelistedNFT"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "accessControls",
+                    "tokenOwner",
+                    "whitelistedNFTIs1155"
+                ],
+                "Full Calculation Variables": [
+                    "accessControls",
+                    "tokenOwner",
+                    "whitelistedNFTIs1155"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

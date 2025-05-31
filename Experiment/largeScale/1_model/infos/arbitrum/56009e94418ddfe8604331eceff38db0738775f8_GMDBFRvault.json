@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "GDtoken.balanceOf"
+        ],
+        "User Stake Reward": [
+            "PoolInfo.totalStaked"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lastUpdate"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.GDlptoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "GDT.mint(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "enter",
+                "Node": "GDT.mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_cycleRewardsETH",
+                "Node": "USDC.transfer(owner(),  USDC.balanceOf(address(this)))"
+            },
+            {
+                "Function": "_claim",
+                "Node": "USDC.transfer(owner(),  USDC.balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "StakedToken.safeTransfer(msg.sender, amountSendOut)"
+            }
+        ]
+    }
+}

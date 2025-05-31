@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "erc1155Balances",
+            "UserInfo.totalStakingPower"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalReceivedReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeERC1155",
+                "Node": "IERC1155(_contract).safeBatchTransferFrom(msg.sender, address(this), _listOfIds, _amounts, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeTransferToken(msg.sender, reward)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "safeTransferToken(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeERC1155",
+                "Node": "IERC1155(_contract).safeBatchTransferFrom(address(this), msg.sender, _listOfIds, _amounts, \"\")"
+            }
+        ]
+    }
+}

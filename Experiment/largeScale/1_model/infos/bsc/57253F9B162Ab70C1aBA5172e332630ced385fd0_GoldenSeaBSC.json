@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakeTotal",
+            "Depo.amt"
+        ],
+        "User Stake Reward": [
+            "UserInfo.promoteBonus"
+        ],
+        "User Stake Time": [
+            "UserInfo.createDate",
+            "Depo.investTime"
+        ],
+        "Stake Token Address": [
+            "tokenAdress"
+        ],
+        "Reward Token Address": [
+            "tokenAdress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeStablecoins",
+                "Node": "BUSD.safeTransferFrom(msg.sender, address(this), amtx)"
+            },
+            {
+                "Function": "stakeRefBonus",
+                "Node": "user.treasuryList.push(Depo({ key: user.keyCount, investTime: block.timestamp, amt: refferalAmount, reffy: ref, depositSign: false }))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDivs",
+                "Node": "BUSD.safeTransfer(msg.sender, x)"
+            },
+            {
+                "Function": "withdrawRefBonus",
+                "Node": "BUSD.safeTransfer(msg.sender, amtz)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeemInitial",
+                "Node": "BUSD.safeTransfer(msg.sender, transferAmt)"
+            }
+        ]
+    }
+}

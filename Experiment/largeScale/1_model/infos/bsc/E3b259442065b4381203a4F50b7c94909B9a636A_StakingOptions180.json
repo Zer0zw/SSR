@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.stakedTokens"
+        ],
+        "User Stake Reward": [
+            "stakers.lastDividends",
+            "stakers.lastDividendsLockPayV2"
+        ],
+        "User Stake Time": [
+            "farmTime"
+        ],
+        "Stake Token Address": [
+            "LockPayV2"
+        ],
+        "Reward Token Address": [
+            "BUSD",
+            "LockPayV2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "require(IERC20(LockPayV2).transferFrom(msg.sender, address(this), tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CLAIMREWARD",
+                "Node": "require(IERC20(BUSD).transfer(msg.sender, owing)"
+            },
+            {
+                "Function": "CLAIMREWARDLockPayV2",
+                "Node": "require(IERC20(LockPayV2).transfer(msg.sender, owing)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "WITHDRAW",
+                "Node": "require(IERC20(LockPayV2).transfer(msg.sender, tokens)"
+            }
+        ]
+    }
+}

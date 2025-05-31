@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "lastClaimTime"
+        ],
+        "Stake Token Address": [
+            "goth"
+        ],
+        "Reward Token Address": [
+            "goth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "mintReward",
+                "Node": "goth.mint(account, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "goth.transfer(msg.sender, share)"
+            }
+        ]
+    }
+}

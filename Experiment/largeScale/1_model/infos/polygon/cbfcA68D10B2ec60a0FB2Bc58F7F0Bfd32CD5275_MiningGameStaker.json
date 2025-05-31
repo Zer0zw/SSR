@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "nftDeposits.amount"
+        ],
+        "User Stake Reward": [
+            "nftDeposits.rewardsEarned",
+            "nftDeposits.rewardsReleased"
+        ],
+        "User Stake Time": [
+            "nftDeposits.depositTime",
+            "nftDeposits.timeLockInSeconds"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nft.safeTransferFrom(msg.sender, address(this), _tokenId, _amount, \"\")"
+            },
+            {
+                "Function": "stakeBatch",
+                "Node": "nft.safeTransferFrom(msg.sender, address(this), tokenIds[i], amounts[i], \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "rewardsToken.rewardsMint(msg.sender, rewardAmount )"
+            },
+            {
+                "Function": "withdrawAllRewards",
+                "Node": "rewardsToken.rewardsMint(msg.sender, rewardAmount )"
+            },
+            {
+                "Function": "unstake",
+                "Node": "rewardsToken.rewardsMint(msg.sender, nftDeposits[depositId].rewardsEarned )"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "rewardsToken.rewardsMint(msg.sender, nftDeposits[i].rewardsEarned )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyUnstake",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, nftDeposits[depositId].tokenId, nftDeposits[depositId].amount, \"\")"
+            },
+            {
+                "Function": "unstake",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, nftDeposits[depositId].tokenId, nftDeposits[depositId].amount, \"\")"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, nftDeposits[i].tokenId, nftDeposits[i].amount, \"\")"
+            }
+        ]
+    }
+}

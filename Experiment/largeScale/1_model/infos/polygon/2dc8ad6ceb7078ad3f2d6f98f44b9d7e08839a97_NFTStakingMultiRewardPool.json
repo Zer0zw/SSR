@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeNFTToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IDogeLandNFT(stakeNFTToken).transferFrom(msg.sender, address(this), _landId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(_rewardToken).safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "getAllRewards",
+                "Node": "IERC20(_rewardToken).safeTransfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IDogeLandNFT(stakeNFTToken).transferFrom(address(this), msg.sender, _landId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(stakeNFTToken).safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

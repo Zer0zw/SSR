@@ -1,0 +1,112 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits.balance"
+        ],
+        "User Stake Reward": [
+            "deposits.earningEstimated",
+            "deposits.booster"
+        ],
+        "User Stake Time": [
+            "deposits.blockDeposited",
+            "deposits.blockWithdrawal"
+        ],
+        "Stake Token Address": [
+            "poolToken"
+        ],
+        "Reward Token Address": [
+            "returnPoolToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [],
+        "unStake": [
+            "adminWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    460
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.balance",
+                    "deposits.blockDeposited",
+                    "deposits.blockWithdrawal",
+                    "deposits.booster",
+                    "poolToken",
+                    "returnPoolToken",
+                    "whitelist"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.balance",
+                    "deposits.blockDeposited",
+                    "deposits.blockWithdrawal",
+                    "deposits.booster",
+                    "poolToken",
+                    "returnPoolToken",
+                    "whitelist"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    480
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.balance",
+                    "deposits.blockWithdrawal",
+                    "poolToken",
+                    "returnPoolToken",
+                    "whitelist"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.balance",
+                    "deposits.blockWithdrawal",
+                    "poolToken",
+                    "returnPoolToken",
+                    "whitelist"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "adminWithdraw",
+                "Node": [
+                    489
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_owner",
+                    "poolToken"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "poolToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

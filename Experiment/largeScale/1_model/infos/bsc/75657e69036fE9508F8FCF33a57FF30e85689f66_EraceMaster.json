@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardToClaim",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "START_BLOCK",
+            "END_BLOCK"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "eRace"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "YracePool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeTransferReward(msg.sender, user.rewardToClaim)"
+            },
+            {
+                "Function": "safeTransferReward",
+                "Node": "eRace.transfer(_to, bal)"
+            },
+            {
+                "Function": "safeTransferReward",
+                "Node": "eRace.transfer(_to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "YracePool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "YracePool.lpToken.safeTransfer(address(msg.sender), user.amount"
+            }
+        ]
+    }
+}

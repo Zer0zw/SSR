@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "toBePaid",
+            "_newDividentsOf"
+        ],
+        "User Stake Time": [
+            "_sellLock"
+        ],
+        "Stake Token Address": [
+            "address(this)"
+        ],
+        "Reward Token Address": [
+            "tokenToClaim"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_addToken",
+                "Node": "_addToken(recipient, taxedAmount)"
+            },
+            {
+                "Function": "_feelessTransfer",
+                "Node": "_addToken(recipient, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimToken",
+                "Node": "_pancakeRouter.swapExactETHForTokensSupportingFeeOnTransferTokens{value: amount}(0, path, addr, block.timestamp)"
+            },
+            {
+                "Function": "ClaimAVAX",
+                "Node": "claimToken(msg.sender,tokenToClaim,0)"
+            },
+            {
+                "Function": "Compound",
+                "Node": "claimToken(msg.sender,address(this),0)"
+            },
+            {
+                "Function": "ClaimAnyToken",
+                "Node": "claimToken(msg.sender,token,msg.value)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_removeToken",
+                "Node": "_removeToken(sender,amount)"
+            },
+            {
+                "Function": "_feelessTransfer",
+                "Node": "_removeToken(sender,amount)"
+            }
+        ]
+    }
+}

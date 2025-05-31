@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_d",
+            "_want"
+        ],
+        "User Stake Reward": [
+            "_df",
+            "_want"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want",
+            "d"
+        ],
+        "Reward Token Address": [
+            "df",
+            "want"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(d, _want)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(d).safeApprove(pool, _d)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "dRewards(pool).getReward()"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(want).safeTransfer(IController(controller).rewards(), _fee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(_vault, balance)"
+            }
+        ]
+    }
+}

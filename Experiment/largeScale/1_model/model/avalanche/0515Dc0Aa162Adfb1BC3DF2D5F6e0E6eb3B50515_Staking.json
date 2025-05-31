@@ -1,0 +1,186 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakedAmount"
+        ],
+        "User Stake Reward": [
+            "rewardsReceived"
+        ],
+        "User Stake Time": [
+            "stakes.stakedAt"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claimStakingReward",
+            "claimTaxBonus"
+        ],
+        "unStake": [
+            "unStake",
+            "unstakeAll"
+        ],
+        "Sensitive Functions": [
+            "claimAllStakingRewards",
+            "claimStakingReward",
+            "startLootBox",
+            "updateStakingToken",
+            "withdrawUnusedNfts"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1270
+                ],
+                "Input": [
+                    "stakedAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MIN_STAKE_TOKENS",
+                    "campaigns",
+                    "latestCampaignId",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "MIN_STAKE_TOKENS",
+                    "campaigns",
+                    "latestCampaignId",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStakingReward",
+                "Node": [
+                    1910
+                ],
+                "Input": [
+                    "campaignId"
+                ],
+                "Calculation Variables": [
+                    "rewardsReceived"
+                ],
+                "Control Variables": [
+                    "campaigns.token",
+                    "rewardsReceived",
+                    "userXTicketRange.end",
+                    "userXTicketRange.start",
+                    "xanaToken"
+                ],
+                "Full Calculation Variables": [
+                    "campaigns.token",
+                    "rewardsReceived",
+                    "userXTicketRange.end",
+                    "userXTicketRange.start",
+                    "xanaToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimTaxBonus",
+                "Node": [
+                    2108
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ON_COOLDOWN",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "campaigns.startTime",
+                    "campaigns.token",
+                    "latestCampaignId",
+                    "penaltyAccumulated",
+                    "penaltyHistoryIds",
+                    "stakes",
+                    "stakingToken",
+                    "totalPenaltiesClaimed",
+                    "totalStakedAmount",
+                    "userClaimedPenalty",
+                    "userStakeIds",
+                    "userStakedAmount"
+                ],
+                "Full Calculation Variables": [
+                    "ON_COOLDOWN",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "campaigns.startTime",
+                    "campaigns.token",
+                    "latestCampaignId",
+                    "penaltyAccumulated",
+                    "penaltyHistoryIds",
+                    "stakes",
+                    "stakingToken",
+                    "totalPenaltiesClaimed",
+                    "totalStakedAmount",
+                    "userClaimedPenalty",
+                    "userStakeIds",
+                    "userStakedAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": [
+                    1294
+                ],
+                "Input": [
+                    "_stakeId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakes.stakedAmount",
+                    "stakes.stakedAt",
+                    "stakingToken"
+                ],
+                "Full Calculation Variables": [
+                    "stakes.stakedAmount",
+                    "stakes.stakedAt",
+                    "stakingToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": [
+                    1294
+                ],
+                "Input": [
+                    "_stakeId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakingToken",
+                    "userStakeIds",
+                    "stakes.stakedAmount",
+                    "stakes.stakedAt"
+                ],
+                "Full Calculation Variables": [
+                    "stakingToken",
+                    "userStakeIds",
+                    "stakes.stakedAmount",
+                    "stakes.stakedAt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

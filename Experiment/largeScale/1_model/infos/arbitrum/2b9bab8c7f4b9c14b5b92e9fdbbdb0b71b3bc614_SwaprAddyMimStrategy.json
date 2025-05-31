@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ISwprRewards(rewards).stakers(address(this)).stake"
+        ],
+        "User Stake Reward": [
+            "IERC20(SWPR).balanceOf(address(this))"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ISwprRewards(rewards).stake(_want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(SWPR).safeTransfer(strategist, hBalance)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "ISwprRewards(rewards).claimAll(address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "ISwprRewards(rewards).withdraw(_amount)"
+            }
+        ]
+    }
+}

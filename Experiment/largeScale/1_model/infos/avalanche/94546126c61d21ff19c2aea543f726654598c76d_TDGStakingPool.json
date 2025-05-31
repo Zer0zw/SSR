@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance"
+        ],
+        "User Stake Reward": [
+            "dappBalance"
+        ],
+        "User Stake Time": [
+            "startTime"
+        ],
+        "Stake Token Address": [
+            "stakedNFTS"
+        ],
+        "Reward Token Address": [
+            "detectivesGuild"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "_dtDaoNft.safeTransferFrom(msg.sender, address(this), nftTOKENID)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimDappTokens",
+                "Node": "_dtg.transfer(user,totalClaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "transferOut(dtDaoNft, msg.sender, nftTOKENID)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "transferOut(stakedNFTS[i], stakers[i], stakeTokenIds[i])"
+            },
+            {
+                "Function": "emergencyWithdrawAll",
+                "Node": "transferOut(stakedNFTS[i], stakers[i], stakeTokenIds[i])"
+            }
+        ]
+    }
+}

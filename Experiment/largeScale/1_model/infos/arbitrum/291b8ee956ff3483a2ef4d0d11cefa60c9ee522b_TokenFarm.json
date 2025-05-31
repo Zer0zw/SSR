@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "unlockedVestingAmounts",
+            "claimedAmounts"
+        ],
+        "User Stake Time": [
+            "UserInfo.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "claimableToken",
+            "esToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositVesting",
+                "Node": "esToken.safeTransferFrom(_account, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestMany",
+                "Node": "pool.rewarders[rewarderId].onAnkaaReward(_pid, msg.sender, user.amount)"
+            },
+            {
+                "Function": "withdrawVesting",
+                "Node": "esToken.safeTransfer(_receiver, totalLocked)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "claimableToken.safeTransfer(_receiver, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

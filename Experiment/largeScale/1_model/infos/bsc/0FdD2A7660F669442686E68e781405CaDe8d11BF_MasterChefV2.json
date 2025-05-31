@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "rewardClaimed"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "lib"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "safeLibreTransfer(msg.sender, pending.sub(fee), false)"
+            },
+            {
+                "Function": "depositLP",
+                "Node": "safeLibreTransfer(msg.sender, pending, false)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "safeLibreTransfer(msg.sender, pending, false)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "safeLibreTransfer(msg.sender, pending.sub(fee),false)"
+            },
+            {
+                "Function": "restake",
+                "Node": "safeLibreTransfer(msg.sender, pending.sub(fee), false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "safeLibreTransfer(address(msg.sender),_amount, false)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeLibreTransfer(msg.sender, pending, false)"
+            },
+            {
+                "Function": "withdrawLP",
+                "Node": "safeLibreTransfer(msg.sender, pending, false)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "safeLibreTransfer(address(msg.sender),user.amount, true)"
+            }
+        ]
+    }
+}

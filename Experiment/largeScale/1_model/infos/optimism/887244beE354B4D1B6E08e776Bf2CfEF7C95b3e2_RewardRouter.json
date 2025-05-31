@@ -1,0 +1,77 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedMineTracker",
+            "stakedMlpTracker"
+        ],
+        "User Stake Reward": [
+            "feeMineTracker",
+            "feeMlpTracker"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "mine",
+            "mlp"
+        ],
+        "Reward Token Address": [
+            "allMine",
+            "bnMine"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMine",
+                "Node": "IRewardTracker(stakedMineTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "stakeAllMine",
+                "Node": "IRewardTracker(stakedMineTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "mintAndStakeMlp",
+                "Node": "IRewardTracker(feeMlpTracker).stakeForAccount(account, account, mlp, mlpAmount)"
+            },
+            {
+                "Function": "mintAndStakeMlpETH",
+                "Node": "IRewardTracker(feeMlpTracker).stakeForAccount(account, account, mlp, mlpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IRewardTracker(feeMineTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimAllMine",
+                "Node": "IRewardTracker(stakedMineTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimFees",
+                "Node": "IRewardTracker(feeMineTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "handleRewards",
+                "Node": "IVester(mineVester).claimForAccount(account, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeMine",
+                "Node": "IRewardTracker(stakedMineTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeAllMine",
+                "Node": "IRewardTracker(stakedMineTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeAndRedeemMlp",
+                "Node": "IRewardTracker(stakedMlpTracker).unstakeForAccount(account, feeMlpTracker, _mlpAmount, account)"
+            },
+            {
+                "Function": "unstakeAndRedeemMlpETH",
+                "Node": "IRewardTracker(stakedMlpTracker).unstakeForAccount(account, feeMlpTracker, _mlpAmount, account)"
+            }
+        ]
+    }
+}

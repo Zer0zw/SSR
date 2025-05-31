@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposits"
+        ],
+        "User Stake Reward": [
+            "calculateRewards",
+            "calculateReward"
+        ],
+        "User Stake Time": [
+            "_lastClaimBlocks"
+        ],
+        "Stake Token Address": [
+            "compboxAddress"
+        ],
+        "Reward Token Address": [
+            "compshipAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(compboxAddress).safeTransferFrom(msg.sender, address(this), tokenIds[i], \"\""
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(compshipAddress).transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(compboxAddress).safeTransferFrom(address(this), msg.sender, tokenIds[i], \"\""
+            }
+        ]
+    }
+}

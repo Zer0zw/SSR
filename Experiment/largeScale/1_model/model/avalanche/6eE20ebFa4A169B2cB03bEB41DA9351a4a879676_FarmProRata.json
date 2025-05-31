@@ -1,0 +1,148 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens",
+            "totalEarnedEth"
+        ],
+        "User Stake Time": [
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "trustedDepositTokenAddress"
+        ],
+        "Reward Token Address": [
+            "trustedRewardTokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claim",
+            "claimAs"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    1159
+                ],
+                "Input": [
+                    "_amountOutMin_attemptSwap",
+                    "_amountOutMin_claimAsToken_dyp",
+                    "_deadline"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastDivPoints",
+                    "pointMultiplier",
+                    "totalDivPoints",
+                    "trustedPlatformTokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastDivPoints",
+                    "pointMultiplier",
+                    "totalDivPoints",
+                    "trustedPlatformTokenAddress"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAs",
+                "Node": [
+                    1159
+                ],
+                "Input": [
+                    "_amountOutMin_attemptSwap",
+                    "_amountOutMin_claimAsToken_dyp",
+                    "_amountOutMin_claimAsToken_weth",
+                    "_deadline",
+                    "claimAsToken"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastDivPoints",
+                    "pointMultiplier",
+                    "totalDivPoints",
+                    "trustedClaimableTokens",
+                    "trustedPlatformTokenAddress"
+                ],
+                "Full Calculation Variables": [
+                    "depositedTokens",
+                    "holders",
+                    "isEmergency",
+                    "lastDivPoints",
+                    "pointMultiplier",
+                    "totalDivPoints",
+                    "trustedClaimableTokens",
+                    "trustedPlatformTokenAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1364
+                ],
+                "Input": [
+                    "_deadline",
+                    "amountToWithdraw",
+                    "minAmounts",
+                    "withdrawAsToken"
+                ],
+                "Calculation Variables": [
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "trustedBaseTokenAddress",
+                    "trustedDepositTokenAddress",
+                    "trustedRewardTokenAddress",
+                    "uniswapRouterV2"
+                ],
+                "Control Variables": [
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "cliffTime",
+                    "depositTime",
+                    "depositedTokens",
+                    "trustedBaseTokenAddress",
+                    "trustedClaimableTokens",
+                    "trustedDepositTokenAddress",
+                    "trustedRewardTokenAddress",
+                    "uniswapRouterV2"
+                ],
+                "Full Calculation Variables": [
+                    "UNSTAKING_FEE_RATE_X_100",
+                    "cliffTime",
+                    "depositTime",
+                    "depositedTokens",
+                    "trustedBaseTokenAddress",
+                    "trustedClaimableTokens",
+                    "trustedDepositTokenAddress",
+                    "trustedRewardTokenAddress",
+                    "uniswapRouterV2"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

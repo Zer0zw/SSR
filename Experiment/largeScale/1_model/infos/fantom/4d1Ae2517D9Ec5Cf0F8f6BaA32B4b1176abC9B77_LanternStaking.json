@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTimestamp"
+        ],
+        "Stake Token Address": [
+            "lanternToken"
+        ],
+        "Reward Token Address": [
+            "lanternToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lanternToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "lanternToken.safeTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "lanternToken.safeTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "takeFeesExternal",
+                "Node": "lanternToken.safeTransfer(userAddress, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lanternToken.safeTransfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "takeFeesExternal",
+                "Node": "lanternToken.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

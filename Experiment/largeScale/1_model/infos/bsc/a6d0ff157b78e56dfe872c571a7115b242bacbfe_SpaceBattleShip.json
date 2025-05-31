@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [
+            "amount_to_mint"
+        ],
+        "User Stake Time": [
+            "_days"
+        ],
+        "Stake Token Address": [
+            "_parking"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_transfer(msg.sender, _parking, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "dividendTracker.processAccount(payable(msg.sender), false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "_transfer(_parking, msg.sender, amount_to_transfer)"
+            },
+            {
+                "Function": "withdrawStake",
+                "Node": "_transfer(_parking, msg.sender, amount_to_mint)"
+            }
+        ]
+    }
+}

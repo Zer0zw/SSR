@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TUser.totalInvested",
+            "TDeposit.amount"
+        ],
+        "User Stake Reward": [
+            "TUser.totalRefDividends",
+            "TDeposit.profit"
+        ],
+        "User Stake Time": [
+            "TDeposit.timeStart",
+            "TDeposit.timeEnd"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "_transferTo(msg.value, DEPOSIT_TAX_PERCENT, _tenpercentWallet)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer( claimAmount )"
+            },
+            {
+                "Function": "claim",
+                "Node": "payable(msg.sender).transfer( claimAmount )"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "payable(msg.sender).transfer(withdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "forceWithdraw",
+                "Node": "payable(msg.sender).transfer( claimAmount)"
+            }
+        ]
+    }
+}

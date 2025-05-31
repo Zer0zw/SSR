@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_ls.amount",
+            "_ps.lockedAmount"
+        ],
+        "User Stake Reward": [
+            "maxClaim"
+        ],
+        "User Stake Time": [
+            "_ls.lockUpTo",
+            "_ps.lockUpTo"
+        ],
+        "Stake Token Address": [
+            "_tokenFTMLP",
+            "_letToken"
+        ],
+        "Reward Token Address": [
+            "_letToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "_getRewards",
+                "Node": "I(_treasury).getRewards(a, toClaim)"
+            },
+            {
+                "Function": "_getLockRewards",
+                "Node": "I(_treasury).getRewards(a, toClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "I(_letToken).transfer(msg.sender,amount*19/20)"
+            }
+        ]
+    }
+}

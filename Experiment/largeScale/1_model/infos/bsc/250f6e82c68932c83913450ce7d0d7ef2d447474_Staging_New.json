@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Bag.amount"
+        ],
+        "User Stake Reward": [
+            "Bag.userBalance"
+        ],
+        "User Stake Time": [
+            "Bag.start"
+        ],
+        "Stake Token Address": [
+            "bep20"
+        ],
+        "Reward Token Address": [
+            "bep20Profit"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bep20.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "ownerStake",
+                "Node": "packages[_accounts[i]].bags[_ids[i]] = Bag(_ids[i], _amounts[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_refundReward",
+                "Node": "msg.sender.transfer(bnbBalance)"
+            },
+            {
+                "Function": "_refundReward",
+                "Node": "bep20pf.transfer(msg.sender, bep20pfBalance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_refundToken",
+                "Node": "bep20.transfer(takeBep20, fee)"
+            },
+            {
+                "Function": "_refundToken",
+                "Node": "bep20.transfer(account, stakeAmount.sub(fee)"
+            }
+        ]
+    }
+}

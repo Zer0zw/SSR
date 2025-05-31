@@ -1,0 +1,177 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "warmupInfo.deposit"
+        ],
+        "User Stake Reward": [
+            "claimInfo.payout"
+        ],
+        "User Stake Time": [
+            "warmupInfo.expiry",
+            "claimInfo.vesting"
+        ],
+        "Stake Token Address": [
+            "POWER"
+        ],
+        "Reward Token Address": [
+            "HONOR"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim",
+            "claimUnstake"
+        ],
+        "unStake": [
+            "forfeit",
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    792
+                ],
+                "Input": [
+                    "_amount",
+                    "_recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "HONOR",
+                    "POWER",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons",
+                    "warmupInfo.lock",
+                    "warmupPeriod"
+                ],
+                "Full Calculation Variables": [
+                    "HONOR",
+                    "POWER",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons",
+                    "warmupInfo.lock",
+                    "warmupPeriod"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    804
+                ],
+                "Input": [
+                    "_recipient"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "HONOR",
+                    "warmupContract",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons",
+                    "warmupInfo.lock"
+                ],
+                "Full Calculation Variables": [
+                    "HONOR",
+                    "warmupContract",
+                    "warmupInfo.expiry",
+                    "warmupInfo.gons",
+                    "warmupInfo.lock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimUnstake",
+                "Node": [
+                    876
+                ],
+                "Input": [
+                    "_stake"
+                ],
+                "Calculation Variables": [
+                    "claimInfo.unstakeTime",
+                    "claimInfo.lastTime",
+                    "claimInfo.vesting",
+                    "claimInfo.payout"
+                ],
+                "Control Variables": [
+                    "claimInfo.unstakeTime",
+                    "claimInfo.lastTime",
+                    "claimInfo.vesting",
+                    "claimInfo.payout",
+                    "HONOR",
+                    "POWER"
+                ],
+                "Full Calculation Variables": [
+                    "claimInfo.unstakeTime",
+                    "claimInfo.lastTime",
+                    "claimInfo.vesting",
+                    "claimInfo.payout",
+                    "HONOR",
+                    "POWER"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    835
+                ],
+                "Input": [
+                    "_amount",
+                    "_trigger"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "HONOR"
+                ],
+                "Full Calculation Variables": [
+                    "HONOR"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "forfeit",
+                "Node": [
+                    816
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Control Variables": [
+                    "HONOR",
+                    "POWER",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Full Calculation Variables": [
+                    "HONOR",
+                    "POWER",
+                    "warmupContract",
+                    "warmupInfo.deposit",
+                    "warmupInfo.gons"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "vests.userVestAmt",
+            "mapUserVest_globalData.totalVestingAmount"
+        ],
+        "User Stake Reward": [
+            "vests.collected",
+            "vests.claimed"
+        ],
+        "User Stake Time": [
+            "vests.vestTime"
+        ],
+        "Stake Token Address": [
+            "contrAddr"
+        ],
+        "Reward Token Address": [
+            "contrAddr"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "buyAndVest",
+                "Node": "IERC20(contrAddr).transferFrom(msg.sender, address(0), vestAmount)"
+            },
+            {
+                "Function": "userVest",
+                "Node": "IERC20(contrAddr).transferFrom(msg.sender, address(0), vestAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_mint(msg.sender, reward)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "_mint(msg.sender, totalClaim)"
+            },
+            {
+                "Function": "reinvestRewards",
+                "Node": "vestIntern(reward)"
+            },
+            {
+                "Function": "reinvestAll",
+                "Node": "vestIntern(totalClaim)"
+            }
+        ],
+        "unStake": []
+    }
+}

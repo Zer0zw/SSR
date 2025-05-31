@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "eStakingsByOwner",
+            "pStakingsByOwner"
+        ],
+        "User Stake Reward": [
+            "StakingInfoEvilgotchi.rewards",
+            "StakingInfoPolygotchi.rewards"
+        ],
+        "User Stake Time": [
+            "StakingEvilgotchi.timestamp",
+            "StakingPolygotchi.timestamp"
+        ],
+        "Stake Token Address": [
+            "Evilgotchi",
+            "Polygotchi"
+        ],
+        "Reward Token Address": [
+            "pchi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeEvilgotchi",
+                "Node": "Evilgotchi.transferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "stakePolygotchi",
+                "Node": "Polygotchi.transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimEvilgotchiRewards",
+                "Node": "require(pchi.transfer(msg.sender, netRewards + taxRewards))"
+            },
+            {
+                "Function": "claimPolygotchiRewards",
+                "Node": "require(pchi.transfer(msg.sender, netRewards))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeEvilgotchi",
+                "Node": "Evilgotchi.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakePolygotchi",
+                "Node": "Polygotchi.transferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

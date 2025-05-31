@@ -1,0 +1,152 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "userInfo.token0PerSharePaid",
+                "userInfo.token1PerSharePaid"
+            ],
+            "User Stake Reward": [
+                "userInfo.token0Rewards",
+                "userInfo.token1Rewards"
+            ],
+            "User Stake Time": [],
+            "Stake Token Address": [
+                "token0",
+                "token1"
+            ],
+            "Reward Token Address": [
+                "token0",
+                "token1"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "deposit"
+            ],
+            "getReward": [
+                "collectFees",
+                "collectProtocolFees"
+            ],
+            "unStake": [
+                "withdraw"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "GLOBAL_DIVISIONER",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "accruedProtocolFees0",
+                        "accruedProtocolFees1",
+                        "pool",
+                        "strategy",
+                        "tickLower",
+                        "tickUpper",
+                        "token0PerShareStored",
+                        "token1PerShareStored",
+                        "userInfo",
+                        "usersFees0",
+                        "usersFees1"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "collectFees",
+                    "Calculation Variables": [
+                        "usersFees0",
+                        "accruedProtocolFees0",
+                        "tickLower",
+                        "pool",
+                        "strategy",
+                        "_status",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "token1",
+                        "token0",
+                        "token1PerShareStored",
+                        "userInfo.token1Rewards",
+                        "token0PerShareStored",
+                        "GLOBAL_DIVISIONER",
+                        "usersFees1",
+                        "userInfo",
+                        "userInfo.token0Rewards",
+                        "accruedProtocolFees1",
+                        "tickUpper",
+                        "weth"
+                    ]
+                },
+                {
+                    "Function": "collectProtocolFees",
+                    "Calculation Variables": [
+                        "token0PerShareStored",
+                        "GLOBAL_DIVISIONER",
+                        "usersFees1",
+                        "tickLower",
+                        "accruedProtocolFees0",
+                        "usersFees0",
+                        "pool",
+                        "strategy",
+                        "_status",
+                        "userInfo",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "governance",
+                        "token1",
+                        "accruedProtocolFees1",
+                        "token0",
+                        "token1PerShareStored",
+                        "tickUpper",
+                        "weth"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "GLOBAL_DIVISIONER",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_status",
+                        "accruedProtocolFees0",
+                        "accruedProtocolFees1",
+                        "pool",
+                        "strategy",
+                        "tickLower",
+                        "tickUpper",
+                        "token0PerShareStored",
+                        "token1PerShareStored",
+                        "userInfo",
+                        "usersFees0",
+                        "usersFees1"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [
+            "collectFees",
+            "collectProtocolFees"
+        ],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

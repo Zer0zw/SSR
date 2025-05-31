@@ -1,0 +1,143 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stakingPower"
+        ],
+        "User Stake Reward": [
+            "userInfo.pending",
+            "userInfo.extractedValue"
+        ],
+        "User Stake Time": [
+            "scheduleInfo.scheduleTime"
+        ],
+        "Stake Token Address": [
+            "tokenCsr"
+        ],
+        "Reward Token Address": [
+            "tokenSrc"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "provide"
+        ],
+        "getReward": [
+            "claim",
+            "claimGroupWithPermit"
+        ],
+        "unStake": [],
+        "Sensitive Functions": [
+            "setAddressInfo"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "provide",
+                "Node": [
+                    255
+                ],
+                "Input": [
+                    "customer"
+                ],
+                "Calculation Variables": [
+                    "scheduleInfo.scheduleAmount",
+                    "scheduleInfo.schedulePower",
+                    "scheduleInfo.scheduleTime"
+                ],
+                "Control Variables": [
+                    "scheduleInfo.scheduleAmount",
+                    "scheduleInfo.schedulePower",
+                    "scheduleInfo.scheduleTime",
+                    "stakingTimeLimit",
+                    "tokenCsr",
+                    "userInfo.extractedValue",
+                    "userInfo.recommend",
+                    "userInfo.stakingPower"
+                ],
+                "Full Calculation Variables": [
+                    "scheduleInfo.scheduleAmount",
+                    "scheduleInfo.schedulePower",
+                    "scheduleInfo.scheduleTime",
+                    "stakingTimeLimit",
+                    "tokenCsr",
+                    "userInfo.extractedValue",
+                    "userInfo.recommend",
+                    "userInfo.stakingPower"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    293
+                ],
+                "Input": [
+                    "amount",
+                    "customer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "decimals",
+                    "lastUpdateBlock",
+                    "perReward",
+                    "powerDecimals",
+                    "singleBlock",
+                    "srcPair",
+                    "startBlock",
+                    "tokenSrc",
+                    "totalStaking",
+                    "totalStakingAndDynamic",
+                    "userInfo.debt",
+                    "userInfo.dynamicPower",
+                    "userInfo.extractedValue",
+                    "userInfo.pending",
+                    "userInfo.previousPower",
+                    "userInfo.stakingPower"
+                ],
+                "Full Calculation Variables": [
+                    "decimals",
+                    "lastUpdateBlock",
+                    "perReward",
+                    "powerDecimals",
+                    "singleBlock",
+                    "srcPair",
+                    "startBlock",
+                    "tokenSrc",
+                    "totalStaking",
+                    "totalStakingAndDynamic",
+                    "userInfo.debt",
+                    "userInfo.dynamicPower",
+                    "userInfo.extractedValue",
+                    "userInfo.pending",
+                    "userInfo.previousPower",
+                    "userInfo.stakingPower"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimGroupWithPermit",
+                "Node": [
+                    364
+                ],
+                "Input": [
+                    "amounts",
+                    "customers"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "manager",
+                    "tokenSrc"
+                ],
+                "Full Calculation Variables": [
+                    "manager",
+                    "tokenSrc"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

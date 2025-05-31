@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakedData.clonesIds"
+        ],
+        "User Stake Reward": [
+            "lastMined"
+        ],
+        "User Stake Time": [
+            "StakedData.stakePeriodDays"
+        ],
+        "Stake Token Address": [
+            "clonesContract"
+        ],
+        "Reward Token Address": [
+            "coilContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sendNFTs(msg.sender,address(this),_ids)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "sendReward(msg.sender, _rewardAfterTaxes*1 ether)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "sendNFTs(address(this),msg.sender,getStakedIds(msg.sender))"
+            }
+        ]
+    }
+}

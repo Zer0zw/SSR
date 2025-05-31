@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposits.amount"
+        ],
+        "User Stake Reward": [
+            "todeposits.bonus",
+            "todeposits.totalBonus"
+        ],
+        "User Stake Time": [
+            "Deposits.start",
+            "Plan.time"
+        ],
+        "Stake Token Address": [
+            "Tokens.token"
+        ],
+        "Reward Token Address": [
+            "Tokens.token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBNB",
+                "Node": "payable(contract_).transfer(_fee.div(2))\npayable(marketing_).transfer(_fee)"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "salt.safeTransfer(contract_, _fee)\nsalt.safeTransfer(marketing_, _fee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "if(tokenID != 0){\nsalt.safeTransfer(msg.sender, _withdrawn)\n}\nelse{\npayable(msg.sender).transfer(_withdrawn)\n}"
+            },
+            {
+                "Function": "manualCompounding",
+                "Node": "No direct transfer statement for rewards in manualCompounding, rewards are reinvested"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "No explicit unStake function found",
+                "Node": "No direct unStake function identified in the provided contract"
+            }
+        ]
+    }
+}

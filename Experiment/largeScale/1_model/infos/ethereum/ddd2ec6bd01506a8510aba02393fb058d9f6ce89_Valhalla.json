@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "AccountInfo.balance"
+        ],
+        "User Stake Reward": [
+            "AccountInfo.reward"
+        ],
+        "User Stake Time": [
+            "AccountInfo.withdrawTimestamp"
+        ],
+        "Stake Token Address": [
+            "pairAddress"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "accountInfos[msg.sender].balance = accountInfos[msg.sender].balance.add(liquidity)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "token.mint(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "msg.sender.transfer(ethAmount)"
+            }
+        ]
+    }
+}

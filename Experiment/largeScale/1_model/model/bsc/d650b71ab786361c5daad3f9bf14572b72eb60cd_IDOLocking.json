@@ -1,0 +1,137 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits.depositAmount"
+        ],
+        "User Stake Reward": [
+            "deposits.rewards"
+        ],
+        "User Stake Time": [
+            "deposits.depositTime",
+            "deposits.endTime"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    408
+                ],
+                "Input": [
+                    "amount",
+                    "amount",
+                    "from"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "isStopped",
+                    "tokenAddress",
+                    "hasStaked",
+                    "ERC20Interface",
+                    "stakedBalance",
+                    "stakedTotal"
+                ],
+                "Full Calculation Variables": [
+                    "isStopped",
+                    "tokenAddress",
+                    "hasStaked",
+                    "ERC20Interface",
+                    "stakedBalance",
+                    "stakedTotal"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    440
+                ],
+                "Input": [
+                    "from"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.depositAmount",
+                    "hasStaked",
+                    "deposits.endTime",
+                    "deposits.userIndex",
+                    "rewardBalance",
+                    "deposits.depositTime",
+                    "stakedBalance",
+                    "rates.timeStamp",
+                    "deposits.rewards",
+                    "index",
+                    "rates.newInterestRate",
+                    "deposits.paid",
+                    "totalParticipants"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.depositAmount",
+                    "hasStaked",
+                    "deposits.endTime",
+                    "deposits.userIndex",
+                    "rewardBalance",
+                    "deposits.depositTime",
+                    "stakedBalance",
+                    "rates.timeStamp",
+                    "deposits.rewards",
+                    "index",
+                    "rates.newInterestRate",
+                    "deposits.paid",
+                    "totalParticipants"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    469
+                ],
+                "Input": [
+                    "from"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "deposits.paid",
+                    "deposits.depositAmount",
+                    "totalParticipants",
+                    "hasStaked",
+                    "deposits.endTime",
+                    "stakedBalance"
+                ],
+                "Full Calculation Variables": [
+                    "deposits.paid",
+                    "deposits.depositAmount",
+                    "totalParticipants",
+                    "hasStaked",
+                    "deposits.endTime",
+                    "stakedBalance"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

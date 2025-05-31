@@ -1,0 +1,123 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "userInfo.rewardLockedUp"
+        ],
+        "User Stake Time": [
+            "userInfo.depositTime",
+            "userInfo.lockedTime"
+        ],
+        "Stake Token Address": [
+            "prx"
+        ],
+        "Reward Token Address": [
+            "rewardTokenInfo.token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "updateprx",
+            "withdrawTokenForEmergency"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    930
+                ],
+                "Input": [
+                    "_amount",
+                    "depositType"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "prx",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.depositType",
+                    "userInfo.lockedTime",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Full Calculation Variables": [
+                    "prx",
+                    "userInfo.amount",
+                    "userInfo.depositTime",
+                    "userInfo.depositType",
+                    "userInfo.lockedTime",
+                    "userInfo.rewardLockedUp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1033
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "tokenPrice",
+                    "rewardTokenInfo.token"
+                ],
+                "Control Variables": [
+                    "rewardTokenInfo.token",
+                    "userInfo.rewardLockedUp",
+                    "intervaLTime",
+                    "tokenPrice",
+                    "userInfo.depositTime",
+                    "userInfo.nextHarvestUntil"
+                ],
+                "Full Calculation Variables": [
+                    "rewardTokenInfo.token",
+                    "userInfo.rewardLockedUp",
+                    "intervaLTime",
+                    "tokenPrice",
+                    "userInfo.depositTime",
+                    "userInfo.nextHarvestUntil"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    967
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "prx",
+                    "userInfo.amount",
+                    "userInfo.lockedTime"
+                ],
+                "Full Calculation Variables": [
+                    "prx",
+                    "userInfo.amount",
+                    "userInfo.lockedTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

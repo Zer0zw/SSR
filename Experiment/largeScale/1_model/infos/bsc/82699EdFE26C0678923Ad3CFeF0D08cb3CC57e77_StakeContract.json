@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.reward"
+        ],
+        "User Stake Time": [
+            "UserInfo.firstStakedBlock",
+            "UserInfo.lastCalcBlock"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "calcCurrentReward",
+                "Node": "This function does not directly transfer rewards but calculates them"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "token.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

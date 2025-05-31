@@ -1,0 +1,152 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_staking.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "_staking.startTime",
+            "_stakingOptions.lockedTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "withdrawOtherRewards",
+            "withdrawStakeReward"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    2051
+                ],
+                "Input": [
+                    "_amount",
+                    "stakeType_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStakeReward",
+                "Node": [
+                    2032
+                ],
+                "Input": [
+                    "stake_"
+                ],
+                "Calculation Variables": [
+                    "STAKERS_PERCENTAGE",
+                    "_staking.amount",
+                    "_staking.lastWithdrawTime",
+                    "_staking.noOfWithdrawals",
+                    "_staking.stakeType",
+                    "_stakingOptions.rewardPercent",
+                    "_stakingOptions.totalStaked",
+                    "stakedSupply"
+                ],
+                "Control Variables": [
+                    "STAKERS_PERCENTAGE",
+                    "_staking.amount",
+                    "_staking.lastWithdrawTime",
+                    "_staking.noOfWithdrawals",
+                    "_staking.stakeType",
+                    "_stakingOptions.maxWithdrawals",
+                    "_stakingOptions.rewardPercent",
+                    "_stakingOptions.totalStaked",
+                    "stakedSupply"
+                ],
+                "Full Calculation Variables": [
+                    "STAKERS_PERCENTAGE",
+                    "_staking.amount",
+                    "_staking.lastWithdrawTime",
+                    "_staking.noOfWithdrawals",
+                    "_staking.stakeType",
+                    "_stakingOptions.maxWithdrawals",
+                    "_stakingOptions.rewardPercent",
+                    "_stakingOptions.totalStaked",
+                    "stakedSupply"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawOtherRewards",
+                "Node": [
+                    2040
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_HEX_SYMBOLS",
+                    "lastOtherRewardWithdrawalTime",
+                    "LEADERSHIP_BOARD",
+                    "MINTER_ROLE",
+                    "DEVELOPMENT",
+                    "UNIVERSAL_BASIC_INCOME",
+                    "_roles"
+                ],
+                "Full Calculation Variables": [
+                    "_HEX_SYMBOLS",
+                    "lastOtherRewardWithdrawalTime",
+                    "LEADERSHIP_BOARD",
+                    "MINTER_ROLE",
+                    "DEVELOPMENT",
+                    "UNIVERSAL_BASIC_INCOME",
+                    "_roles"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    2080
+                ],
+                "Input": [
+                    "stake_"
+                ],
+                "Calculation Variables": [
+                    "_staking.amount",
+                    "_staking.noOfWithdrawals",
+                    "_staking.stakeActive",
+                    "_staking.stakeType"
+                ],
+                "Control Variables": [
+                    "_staking.amount",
+                    "_staking.noOfWithdrawals",
+                    "_staking.stakeActive",
+                    "_staking.stakeType",
+                    "_stakingOptions.maxWithdrawals",
+                    "_stakingOptions.totalStaked",
+                    "stakedSupply"
+                ],
+                "Full Calculation Variables": [
+                    "_staking.amount",
+                    "_staking.noOfWithdrawals",
+                    "_staking.stakeActive",
+                    "_staking.stakeType",
+                    "_stakingOptions.maxWithdrawals",
+                    "_stakingOptions.totalStaked",
+                    "stakedSupply"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

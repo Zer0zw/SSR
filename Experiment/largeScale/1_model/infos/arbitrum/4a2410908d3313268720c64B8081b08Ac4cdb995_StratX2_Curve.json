@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAmt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_farm",
+                "Node": "IERC20(wantAddress).approve(farmContractAddress, wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimRewards",
+                "Node": "ICurveFarm(farmContractAddress).claim_rewards(address(this))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unfarm",
+                "Node": "ICurveFarm(farmContractAddress).withdraw(_wantAmt, false)"
+            }
+        ]
+    }
+}

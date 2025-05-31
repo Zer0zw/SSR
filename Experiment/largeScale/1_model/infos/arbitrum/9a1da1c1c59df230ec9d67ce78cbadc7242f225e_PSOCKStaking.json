@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sToken"
+        ],
+        "User Stake Reward": [
+            "rewardRate",
+            "vestedRewards"
+        ],
+        "User Stake Time": [
+            "rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "sToken.mint(msg.sender, shares)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender, tokensToWithdraw)"
+            },
+            {
+                "Function": "exit",
+                "Node": "token.transfer(msg.sender, tokensToWithdraw)"
+            }
+        ]
+    }
+}

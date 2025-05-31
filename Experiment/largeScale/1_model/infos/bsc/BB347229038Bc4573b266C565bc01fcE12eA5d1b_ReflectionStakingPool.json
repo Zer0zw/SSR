@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedBalances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenToBuy"
+        ],
+        "Reward Token Address": [
+            "tokenToSell"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositStake",
+                "Node": "TransferHelper.safeTransferFrom(tokenToBuy, address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "swapTokens",
+                "Node": "TransferHelper.safeTransfer(tokenToSell, msg.sender, bountyPaid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "TransferHelper.safeTransfer(tokenToBuy, msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

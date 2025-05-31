@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStaked",
+            "Stake.tokenId"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "nftContract"
+        ],
+        "Reward Token Address": [
+            "tokenContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "pundexInterfaces(nftContract).transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "pundexInterfaces(tokenContract).mint(account, earned)"
+            },
+            {
+                "Function": "claimForAddress",
+                "Node": "pundexInterfaces(tokenContract).mint(account, earned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "pundexInterfaces(nftContract).transferFrom(address(this), account, tokenId)"
+            },
+            {
+                "Function": "_unstakeMany",
+                "Node": "pundexInterfaces(nftContract).transferFrom(address(this), account, tokenId)"
+            }
+        ]
+    }
+}

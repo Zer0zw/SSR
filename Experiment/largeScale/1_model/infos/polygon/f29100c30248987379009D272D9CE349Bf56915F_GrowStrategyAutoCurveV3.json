@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userShares"
+        ],
+        "User Stake Reward": [
+            "UNDERLYING_REWARD_TOKEN_AMOUNT"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "STAKING_TOKEN"
+        ],
+        "Reward Token Address": [
+            "UNDERLYING_REWARD_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositToByOriginToken",
+                "Node": "IERC20(tokenAddress).safeTransferFrom(sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getRewards",
+                "Node": "IERC20(UNDERLYING_REWARD_TOKEN).safeTransfer(msg.sender, tokenAmount)"
+            },
+            {
+                "Function": "_trySwapUnderlyingRewardToRewardToken",
+                "Node": "_chargePerformanceFeeAndPlatformFee(UNDERLYING_REWARD_TOKEN, UNDERLYING_REWARD_TOKEN_AMOUNT, false)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawAs",
+                "Node": "IERC20(tokenAddress).safeTransfer(msg.sender, tokenAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(STAKING_TOKEN).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

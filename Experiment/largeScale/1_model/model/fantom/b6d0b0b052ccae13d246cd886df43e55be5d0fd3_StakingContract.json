@@ -1,0 +1,174 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_ps.tknAmount",
+            "_ps.lpShare",
+            "_ls.amount"
+        ],
+        "User Stake Reward": [
+            "maxClaim"
+        ],
+        "User Stake Time": [
+            "_ps.lastClaim",
+            "_ls.lockUpTo"
+        ],
+        "Stake Token Address": [
+            "_tokenFTMLP",
+            "_letToken"
+        ],
+        "Reward Token Address": [
+            "_letToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "claimFounderStatus"
+        ],
+        "getReward": [
+            "getLockRewards",
+            "getRewards",
+            "lock25days",
+            "unlock"
+        ],
+        "unStake": [
+            "unlock"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "getRewards",
+                "Node": [
+                    161
+                ],
+                "Input": [
+                    "a"
+                ],
+                "Calculation Variables": [
+                    "_ps.tknAmount",
+                    "_ps.lastClaim",
+                    "maxClaim",
+                    "totalTokenAmount"
+                ],
+                "Control Variables": [
+                    "_ps.tknAmount",
+                    "recomputed",
+                    "maxClaim",
+                    "_treasury",
+                    "totalTokenAmount",
+                    "_ps.lastClaim"
+                ],
+                "Full Calculation Variables": [
+                    "_ps.tknAmount",
+                    "recomputed",
+                    "maxClaim",
+                    "_treasury",
+                    "totalTokenAmount",
+                    "_ps.lastClaim"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unlock",
+                "Node": [
+                    226
+                ],
+                "Input": [
+                    "a"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ls.amount",
+                    "_ls.lastClaim",
+                    "_ls.lockUpTo",
+                    "_treasury"
+                ],
+                "Full Calculation Variables": [
+                    "_ls.amount",
+                    "_ls.lastClaim",
+                    "_ls.lockUpTo",
+                    "_treasury"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "getLockRewards",
+                "Node": [
+                    226
+                ],
+                "Input": [
+                    "a"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_treasury",
+                    "_ls.lockUpTo",
+                    "_ls.lastClaim",
+                    "_ls.amount"
+                ],
+                "Full Calculation Variables": [
+                    "_treasury",
+                    "_ls.lockUpTo",
+                    "_ls.lastClaim",
+                    "_ls.amount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "lock25days",
+                "Node": [
+                    226
+                ],
+                "Input": [
+                    "a"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ls.amount",
+                    "_ls.lastClaim",
+                    "_ls.lockUpTo",
+                    "_treasury"
+                ],
+                "Full Calculation Variables": [
+                    "_ls.amount",
+                    "_ls.lastClaim",
+                    "_ls.lockUpTo",
+                    "_treasury"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": [
+                    248
+                ],
+                "Input": [
+                    "amount",
+                    "tkn"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_letToken",
+                    "_ls.amount",
+                    "_ls.lastClaim",
+                    "_ls.lockUpTo",
+                    "_tokenFTMLP",
+                    "totalLetLocked"
+                ],
+                "Full Calculation Variables": [
+                    "_letToken",
+                    "_ls.amount",
+                    "_ls.lastClaim",
+                    "_ls.lockUpTo",
+                    "_tokenFTMLP",
+                    "totalLetLocked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

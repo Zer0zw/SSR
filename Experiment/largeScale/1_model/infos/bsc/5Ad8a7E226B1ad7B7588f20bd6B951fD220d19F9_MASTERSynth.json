@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.deposited"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalBonus"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.wtoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.wtoken.safeTransfer(address(msg.sender), wrappedBal)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), wanTokens"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "pool.want.safeTransfer(address(msg.sender), wanTokens"
+            }
+        ]
+    }
+}

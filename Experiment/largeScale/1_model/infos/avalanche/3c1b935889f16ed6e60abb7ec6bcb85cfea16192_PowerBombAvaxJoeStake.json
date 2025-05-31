@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.lpTokenBalance"
+        ],
+        "User Stake Reward": [
+            "userAccReward"
+        ],
+        "User Stake Time": [
+            "User.rewardStartAt"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "xJOE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "xJOE.safeTransfer(account, xJOEAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "token.safeTransfer(msg.sender, amountOutToken)"
+            },
+            {
+                "Function": "withdrawAVAX",
+                "Node": "(bool success,) = msg.sender.call{value: address(this).balance}(\"\")"
+            }
+        ]
+    }
+}

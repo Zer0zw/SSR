@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "pid"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "redeemDelay"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "booster.deposit(pid, amount, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "rewardPool.getReward(address(this))"
+            },
+            {
+                "Function": "_redeemAllXEqb",
+                "Node": "xEqb.redeem(xEqb.balanceOf(address(this)), xEqb.minRedeemDuration())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "booster.withdraw(pid, amount)"
+            },
+            {
+                "Function": "_emergencyWithdraw",
+                "Node": "booster.withdrawAll(pid)"
+            }
+        ]
+    }
+}

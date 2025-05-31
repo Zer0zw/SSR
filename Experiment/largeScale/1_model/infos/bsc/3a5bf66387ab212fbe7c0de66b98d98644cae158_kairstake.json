@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "timeperiod"
+        ],
+        "Stake Token Address": [
+            "kairos"
+        ],
+        "Reward Token Address": [
+            "kairos"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "Token(kairos).transferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "Token(kairos).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "claimDivs",
+                "Node": "Token(kairos).transfer(account, pendingDivs)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(kairos).transfer(msg.sender, amountToWithdraw)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(kairos).transfer(msg.sender, amountAfterFee)"
+            }
+        ]
+    }
+}

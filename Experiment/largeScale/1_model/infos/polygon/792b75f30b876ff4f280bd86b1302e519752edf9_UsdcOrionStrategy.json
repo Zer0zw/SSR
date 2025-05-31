@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IGogoRewards(rewards).balanceOf(address(this))"
+        ],
+        "User Stake Reward": [
+            "IGogoRewards(rewards).earned(address(this))"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IGogoRewards(rewards).stake(_want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(harvestedToken).safeTransfer(strategist, feeAmount)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IGogoRewards(rewards).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IGogoRewards(rewards).withdraw(_amount)"
+            },
+            {
+                "Function": "initiateWithdraw",
+                "Node": "IGogoRewards(rewards).withdraw(_amount)"
+            },
+            {
+                "Function": "withdrawPending",
+                "Node": "IGogoRewards(rewards).withdrawPending()"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.interestAmount",
+            "StakeInfo.designationReward",
+            "StakeInfo.businessReward"
+        ],
+        "User Stake Time": [
+            "StakeInfo.startTime",
+            "StakeInfo.endTime"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "RAMT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": "USDT.transferFrom(msg.sender, address(this), stakeAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "USDT.transfer(msg.sender, stakeInfos[msg.sender].amount)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "RAMT.transfer(msg.sender, stakeInfos[msg.sender].interestAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "poolHelper.depositTokenBalance"
+        ],
+        "User Stake Reward": [
+            "reward1",
+            "reward2"
+        ],
+        "User Stake Time": [
+            "lastHarvest"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "reward1",
+            "reward2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "poolHelper.deposit(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "TransferHelper.safeTransfer(want, vault, withdrawAmt.sub(fee))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(want, vault, withdrawAmt.sub(fee))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "TransferHelper.safeTransfer(want, vault, wantBal)"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "TransferHelper.safeTransfer(want, vault, wantBal)"
+            }
+        ]
+    }
+}

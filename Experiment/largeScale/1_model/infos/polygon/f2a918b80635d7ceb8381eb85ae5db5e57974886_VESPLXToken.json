@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Allocation.amount"
+        ],
+        "User Stake Reward": [
+            "Allocation.veShare"
+        ],
+        "User Stake Time": [
+            "Allocation.unlockTimestamp",
+            "lockTimes"
+        ],
+        "Stake Token Address": [
+            "Allocation.token"
+        ],
+        "Reward Token Address": [
+            "protocolToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "assembly { let ptr := mload(0x40) mstore(ptr, shl(0xe0, 0x23b872dd)) mstore(add(ptr, 0x04), caller()) mstore(add(ptr, 0x24), address()) mstore(add(ptr, 0x44), amount) if iszero(call(gas(), token, 0, ptr, 0x64, 0, 0)) { revert(0, 0) }"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "assembly { let ptr := mload(0x40) mstore(ptr, shl(0xe0, 0xa9059cbb)) mstore(add(ptr, 0x04), caller()) mstore(add(ptr, 0x24), tokenAllocAmount) if iszero(call(gas(), tokenAllocToken, 0, ptr, 0x44, 0, 0)) { revert(0, 0) }"
+            }
+        ]
+    }
+}

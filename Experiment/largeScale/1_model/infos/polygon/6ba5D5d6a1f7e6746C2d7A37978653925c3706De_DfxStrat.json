@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "rewardsAvailable"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "dfx",
+            "tel"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IDfxChef(masterchef).stake(wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "IDfxChef(masterchef).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IDfxChef(masterchef).withdraw(_amount - wantBal)"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IDfxChef(masterchef).exit()"
+            },
+            {
+                "Function": "panic",
+                "Node": "IDfxChef(masterchef).exit()"
+            }
+        ]
+    }
+}

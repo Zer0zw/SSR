@@ -1,0 +1,162 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sessionDataOf.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "sessionDataOf.start",
+            "sessionDataOf.end"
+        ],
+        "Stake Token Address": [
+            "mainToken"
+        ],
+        "Reward Token Address": [
+            "mainToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "externalStake",
+            "externalStake",
+            "stake"
+        ],
+        "getReward": [
+            "calculateStakingInterest",
+            "unstake"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": [
+            "init"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1079
+                ],
+                "Input": [
+                    "amount",
+                    "stakingDays"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "mainToken",
+                    "nextPayoutCall",
+                    "stepTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "mainToken",
+                    "nextPayoutCall",
+                    "stepTimestamp"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calculateStakingInterest",
+                "Node": [
+                    1161,
+                    1162,
+                    1163
+                ],
+                "Input": [
+                    "account",
+                    "sessionId",
+                    "shares"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "payouts.payout",
+                    "payouts.sharesTotalSupply",
+                    "sessionDataOf.nextPayout",
+                    "sessionDataOf.shares"
+                ],
+                "Full Calculation Variables": [
+                    "payouts.payout",
+                    "payouts.sharesTotalSupply",
+                    "sessionDataOf.nextPayout",
+                    "sessionDataOf.shares"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstake",
+                "Node": [
+                    1161,
+                    1162,
+                    1163
+                ],
+                "Input": [
+                    "account",
+                    "sessionId",
+                    "shares"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "payouts.payout",
+                    "payouts.sharesTotalSupply",
+                    "sessionDataOf.nextPayout",
+                    "sessionDataOf.shares"
+                ],
+                "Full Calculation Variables": [
+                    "payouts.payout",
+                    "payouts.sharesTotalSupply",
+                    "sessionDataOf.nextPayout",
+                    "sessionDataOf.shares"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1241
+                ],
+                "Input": [
+                    "sessionId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "auction",
+                    "globalPayin",
+                    "globalPayout",
+                    "mainToken",
+                    "nextPayoutCall",
+                    "payouts.payout",
+                    "payouts.sharesTotalSupply",
+                    "sessionDataOf.amount",
+                    "sessionDataOf.end",
+                    "sessionDataOf.nextPayout",
+                    "sessionDataOf.shares",
+                    "sessionDataOf.start",
+                    "sharesTotalSupply",
+                    "stepTimestamp"
+                ],
+                "Full Calculation Variables": [
+                    "auction",
+                    "globalPayin",
+                    "globalPayout",
+                    "mainToken",
+                    "nextPayoutCall",
+                    "payouts.payout",
+                    "payouts.sharesTotalSupply",
+                    "sessionDataOf.amount",
+                    "sessionDataOf.end",
+                    "sessionDataOf.nextPayout",
+                    "sessionDataOf.shares",
+                    "sessionDataOf.start",
+                    "sharesTotalSupply",
+                    "stepTimestamp"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

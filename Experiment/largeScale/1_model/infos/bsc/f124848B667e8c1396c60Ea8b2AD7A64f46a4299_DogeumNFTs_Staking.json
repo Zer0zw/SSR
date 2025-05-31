@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "countofMyStakedTokens"
+        ],
+        "User Stake Reward": [
+            "totalRewardReleased"
+        ],
+        "User Stake Time": [
+            "tokenStakedDuration"
+        ],
+        "Stake Token Address": [
+            "_nft_Contract"
+        ],
+        "Reward Token Address": [
+            "_token_Contract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "nft.safeTransferFrom(msg.sender,address(this),_tokenID,\"0x00\")"
+            },
+            {
+                "Function": "batchStakeNFT",
+                "Node": "nft.safeTransferFrom(msg.sender,address(this),_tokenID,\"0x00\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "token.transfer(msg.sender,rewardRelease)"
+            },
+            {
+                "Function": "batchClaimRewards",
+                "Node": "token.transfer(msg.sender,rewardRelease)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, _tokenID,\"0x00\")"
+            },
+            {
+                "Function": "batchUnstakeNFT",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, _tokenID,\"0x00\")"
+            }
+        ]
+    }
+}

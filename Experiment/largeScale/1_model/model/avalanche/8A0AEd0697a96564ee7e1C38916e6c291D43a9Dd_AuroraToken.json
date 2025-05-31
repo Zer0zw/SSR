@@ -1,0 +1,102 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "collect"
+        ],
+        "unStake": [
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    199
+                ],
+                "Input": [
+                    "_amount",
+                    "_tokens"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "info.users",
+                    "info.scaledPayoutPerToken",
+                    "info.totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "info.users",
+                    "info.scaledPayoutPerToken",
+                    "info.totalStaked"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": [
+                    226
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "info.scaledPayoutPerToken",
+                    "info.users",
+                    "scale"
+                ],
+                "Control Variables": [
+                    "info.scaledPayoutPerToken",
+                    "info.users",
+                    "scale"
+                ],
+                "Full Calculation Variables": [
+                    "info.scaledPayoutPerToken",
+                    "info.users",
+                    "scale"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    236
+                ],
+                "Input": [
+                    "_tokens",
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "transferTax"
+                ],
+                "Control Variables": [
+                    "scale",
+                    "info.scaledPayoutPerToken",
+                    "transferTax",
+                    "info.users",
+                    "info.totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "scale",
+                    "info.scaledPayoutPerToken",
+                    "transferTax",
+                    "info.users",
+                    "info.totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

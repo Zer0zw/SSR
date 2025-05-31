@@ -1,0 +1,71 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.balance",
+            "Staker.lpBalance"
+        ],
+        "User Stake Reward": [
+            "Staker.monaRevenueRewardsPending",
+            "Staker.bonusMonaRevenueRewardsPending",
+            "Staker.tokenRevenueRewardsPending"
+        ],
+        "User Stake Time": [
+            "Staker.lastRewardUpdateTime"
+        ],
+        "Stake Token Address": [
+            "monaToken",
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "monaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(monaToken).safeTransferFrom(address(_user), address(this), _amount"
+            },
+            {
+                "Function": "stakeLP",
+                "Node": "IERC20(lpToken).safeTransferFrom(address(_user), address(this), _amount"
+            },
+            {
+                "Function": "stakeAll",
+                "Node": "IERC20(monaToken).safeTransferFrom(address(_user), address(this), balance"
+            },
+            {
+                "Function": "stakeAllLP",
+                "Node": "IERC20(lpToken).safeTransferFrom(address(_user), address(this), balance"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(monaToken).transfer(_user, payableAmount"
+            },
+            {
+                "Function": "_claimReward",
+                "Node": "IERC20(_tokens[i]).transfer(_user, rewardPayableAmount"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(monaToken).safeTransfer(address(_user), _amount"
+            },
+            {
+                "Function": "unstakeLP",
+                "Node": "IERC20(lpToken).safeTransfer(address(_user), _amount"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "IERC20(monaToken).safeTransfer(address(_user), amount"
+            },
+            {
+                "Function": "emergencyUnstakeLP",
+                "Node": "IERC20(lpToken).safeTransfer(address(_user), amount"
+            }
+        ]
+    }
+}

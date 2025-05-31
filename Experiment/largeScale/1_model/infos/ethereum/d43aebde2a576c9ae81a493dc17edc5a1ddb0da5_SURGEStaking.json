@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmount"
+        ],
+        "User Stake Reward": [
+            "totalReward"
+        ],
+        "User Stake Time": [
+            "lastStack"
+        ],
+        "Stake Token Address": [
+            "StakingToken"
+        ],
+        "Reward Token Address": [
+            "SurgeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bool isOk = IERC20(StakingToken).transferFrom(msg.sender,address(this),amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unStake",
+                "Node": "try SurgeToken.mint(msg.sender, totalReward) {} catch Error(string memory){}"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "StakingToken.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

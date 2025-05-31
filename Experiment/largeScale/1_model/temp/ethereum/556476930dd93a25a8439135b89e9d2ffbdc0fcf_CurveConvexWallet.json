@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositAmount"
+        ],
+        "User Stake Reward": [
+            "tokensReceivedFromConvex"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "curveLpTokenAddress"
+        ],
+        "Reward Token Address": [
+            "convexRewardsAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositAndStake",
+                "Node": "inputTokenInterface.transferFrom(senderAddr, address(this), depositAmount)"
+            },
+            {
+                "Function": "depositInCurve",
+                "Node": "inputTokenInterface.transferFrom(senderAddr, address(this), depositAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collectRewards",
+                "Node": "rewardsInterface.getReward(address(this), true)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawFromConvex",
+                "Node": "rewardsInterface.withdrawAllAndUnwrap(true)"
+            }
+        ]
+    }
+}

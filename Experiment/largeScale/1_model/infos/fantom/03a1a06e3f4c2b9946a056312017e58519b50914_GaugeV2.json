@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "earned"
+        ],
+        "User Stake Time": [
+            "lockEnd"
+        ],
+        "Stake Token Address": [
+            "stake"
+        ],
+        "Reward Token Address": [
+            "rewards"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_safeTransferFrom(stake, msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositWithLock",
+                "Node": "_safeTransferFrom(stake, msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_safeTransfer(tokens[i], account, _reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "try IOptionToken(oFlow).mint(account, _reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_safeTransfer(stake, msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": "_safeTransfer(stake, msg.sender, amount)"
+            }
+        ]
+    }
+}

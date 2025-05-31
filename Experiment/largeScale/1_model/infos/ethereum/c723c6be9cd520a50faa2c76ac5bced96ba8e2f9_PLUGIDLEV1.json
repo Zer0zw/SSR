@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenWantAmounts"
+        ],
+        "User Stake Reward": [
+            "tokenWantDonated"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenWant"
+        ],
+        "Reward Token Address": [
+            "tokenReward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "chargePlug",
+                "Node": "iTokenWant.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_sendReward",
+                "Node": "IERC20(tokenReward).safeTransfer(msg.sender, _rewardWithRate)"
+            },
+            {
+                "Function": "_sendReward",
+                "Node": "IERC20(tokenReward).safeTransfer(msg.sender, _rewardLeft)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_dischargeUser",
+                "Node": "iTokenWant.safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

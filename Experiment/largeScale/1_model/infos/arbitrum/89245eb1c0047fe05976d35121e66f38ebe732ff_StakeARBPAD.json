@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.amount"
+        ],
+        "User Stake Reward": [
+            "Staker.reward"
+        ],
+        "User Stake Time": [
+            "Staker.stakedAtTimestamp"
+        ],
+        "Stake Token Address": [
+            "ARBPADContract"
+        ],
+        "Reward Token Address": [
+            "ARBPADContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ARBPADContract.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "ARBPADContract.safeTransfer(msg.sender, rewardsEarned)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ARBPADContract.safeTransfer(msg.sender, unstakeAmount)"
+            }
+        ]
+    }
+}

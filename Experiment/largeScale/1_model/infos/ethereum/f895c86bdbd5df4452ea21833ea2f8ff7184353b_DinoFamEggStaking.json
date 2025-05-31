@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "numberTokensStaked"
+        ],
+        "User Stake Reward": [
+            "_balances"
+        ],
+        "User Stake Time": [
+            "lastClaimTime"
+        ],
+        "Stake Token Address": [
+            "BBD",
+            "CD"
+        ],
+        "Reward Token Address": [
+            "egg"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "BBD.transferFrom(msg.sender,address(this),tokenId)"
+            },
+            {
+                "Function": "stake",
+                "Node": "CD.transferFrom(msg.sender,address(this),tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_mint(_user, c)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "BBD.transferFrom(address(this),msg.sender,formattedTokenId)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "CD.transferFrom(address(this),msg.sender,formattedTokenId)"
+            }
+        ]
+    }
+}

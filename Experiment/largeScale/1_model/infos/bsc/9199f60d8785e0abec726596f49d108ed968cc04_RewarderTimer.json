@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onReward",
+                "Node": "user.amount = lpToken"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onReward",
+                "Node": "safeTransferRewardInternal(to, pending)"
+            },
+            {
+                "Function": "onReward",
+                "Node": "safeTransferRewardInternal(to, rewardBalance())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "onReward",
+                "Node": "user.amount = lpToken"
+            }
+        ]
+    }
+}

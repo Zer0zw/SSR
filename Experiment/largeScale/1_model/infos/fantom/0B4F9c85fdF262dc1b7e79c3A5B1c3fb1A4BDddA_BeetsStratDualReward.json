@@ -1,0 +1,70 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "callReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output",
+            "output2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(masterchef).deposit(poolId, wantBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IUniSwapRouter(spooky).swapExactTokensForTokensSupportingFeeOnTransferTokens(toWrapped, 0, outputToWrappedRoute, address(this), now)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IUniSwapRouter(spooky).swapExactTokensForTokensSupportingFeeOnTransferTokens(toWrapped2, 0, output2ToWrappedRoute, address(this), now)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(tx.origin, callFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(feeBatchAddress, grimFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(insuranceFund, insuranceFeeAmount)"
+            },
+            {
+                "Function": "chargeFees",
+                "Node": "IERC20(wrapped).safeTransfer(strategist, strategistFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal.sub(withdrawalFeeAmount))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(want).transfer(vault, wantBal)"
+            },
+            {
+                "Function": "panic",
+                "Node": "IMasterChef(masterchef).emergencyWithdraw(poolId, address(this))"
+            }
+        ]
+    }
+}

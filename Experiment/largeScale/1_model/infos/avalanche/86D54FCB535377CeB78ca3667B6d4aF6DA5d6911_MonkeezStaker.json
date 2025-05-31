@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalStaked",
+            "tribeToStakeCount"
+        ],
+        "User Stake Reward": [
+            "tribeToRate"
+        ],
+        "User Stake Time": [
+            "stakedMonkeez"
+        ],
+        "Stake Token Address": [
+            "monkeezAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMonkeez",
+                "Node": "stakedMonkeez[_id] = block.timestamp"
+            },
+            {
+                "Function": "_stake",
+                "Node": "stakedMonkeez[_id] = block.timestamp"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTokens",
+                "Node": "MNKZ(tokenAddress).mintTokens(msg.sender, totalClaimable)"
+            },
+            {
+                "Function": "_batchClaim",
+                "Node": "MNKZ(tokenAddress).mintTokens(msg.sender, totalClaimable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeMonkeez",
+                "Node": "stakedMonkeez[_id] = uint256(0)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "stakedMonkeez[_id] = uint256(0)"
+            }
+        ]
+    }
+}

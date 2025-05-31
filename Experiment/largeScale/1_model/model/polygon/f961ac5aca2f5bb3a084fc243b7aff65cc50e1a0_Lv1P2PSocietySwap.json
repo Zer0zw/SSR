@@ -1,0 +1,112 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "providers.deposited"
+        ],
+        "User Stake Reward": [
+            "providers.unclaimedRewards"
+        ],
+        "User Stake Time": [
+            "providers.timeOfLastUpdate"
+        ],
+        "Stake Token Address": [
+            "tokenToDeposit"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    236,
+                    237,
+                    238,
+                    239
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "tokenToDeposit"
+                ],
+                "Full Calculation Variables": [
+                    "tokenToDeposit"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    285
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "providers.deposited",
+                    "providers.timeOfLastUpdate",
+                    "providers.unclaimedRewards",
+                    "rewardsPerHour"
+                ],
+                "Control Variables": [
+                    "providers.deposited",
+                    "providers.timeOfLastUpdate",
+                    "providers.unclaimedRewards",
+                    "rewardToken",
+                    "rewardsPerHour"
+                ],
+                "Full Calculation Variables": [
+                    "providers.deposited",
+                    "providers.timeOfLastUpdate",
+                    "providers.unclaimedRewards",
+                    "rewardToken",
+                    "rewardsPerHour"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    263
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "providers.deposited",
+                    "providers.timeOfLastUpdate",
+                    "providers.unclaimedRewards",
+                    "rewardsPerHour",
+                    "tokenToDeposit"
+                ],
+                "Full Calculation Variables": [
+                    "providers.deposited",
+                    "providers.timeOfLastUpdate",
+                    "providers.unclaimedRewards",
+                    "rewardsPerHour",
+                    "tokenToDeposit"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

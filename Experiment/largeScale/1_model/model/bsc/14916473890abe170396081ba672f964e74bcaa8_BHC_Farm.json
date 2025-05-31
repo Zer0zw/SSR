@@ -1,0 +1,86 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.contribution"
+        ],
+        "User Stake Reward": [
+            "stakers.yield"
+        ],
+        "User Stake Time": [
+            "stakers.last_yield_time"
+        ],
+        "Stake Token Address": [
+            "BHC_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "BHC_ADDRESS"
+        ]
+    },
+    "Functions": {
+        "Stake": [],
+        "getReward": [
+            "CollectYields",
+            "FarmMyYield"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "CollectYields",
+                "Node": [
+                    513
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BHC_ADDRESS",
+                    "stakers.addr",
+                    "stakers.last_yield_time",
+                    "stakers.yield"
+                ],
+                "Full Calculation Variables": [
+                    "BHC_ADDRESS",
+                    "stakers.addr",
+                    "stakers.last_yield_time",
+                    "stakers.yield"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "FarmMyYield",
+                "Node": [
+                    513
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakerList",
+                    "stakers.last_yield_time",
+                    "stakers.addr",
+                    "stakers.yield",
+                    "BIG_NUM",
+                    "BHC_ADDRESS",
+                    "HOT_BHC",
+                    "EMISSION_RATE",
+                    "stakers.contribution"
+                ],
+                "Full Calculation Variables": [
+                    "stakerList",
+                    "stakers.last_yield_time",
+                    "stakers.addr",
+                    "stakers.yield",
+                    "BIG_NUM",
+                    "BHC_ADDRESS",
+                    "HOT_BHC",
+                    "EMISSION_RATE",
+                    "stakers.contribution"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": []
+    }
+}

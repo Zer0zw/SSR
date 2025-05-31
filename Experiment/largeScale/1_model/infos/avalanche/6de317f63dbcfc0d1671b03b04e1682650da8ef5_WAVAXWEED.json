@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user_investment_details.invested"
+        ],
+        "User Stake Reward": [
+            "userTotalRewards.amount"
+        ],
+        "User Stake Time": [
+            "weeklyWithdraw.deadline",
+            "claimDaily.deadline"
+        ],
+        "Stake Token Address": [
+            "WAVAX"
+        ],
+        "Reward Token Address": [
+            "WAVAX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "WAVAXinterface.transferFrom(msg.sender, address(this), total_contract)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimDailyRewards",
+                "Node": "approvedWithdrawal[msg.sender] = userWithdrawal(msg.sender, value)"
+            },
+            {
+                "Function": "withdrawal",
+                "Node": "WAVAXinterface.transfer(msg.sender, totalAmountToWithdraw)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "WAVAXinterface.transfer(msg.sender, UnstakeValueCore)"
+            }
+        ]
+    }
+}

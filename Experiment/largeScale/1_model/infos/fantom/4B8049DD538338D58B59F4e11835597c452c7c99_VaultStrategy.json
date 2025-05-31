@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "earnToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakeToken.safeTransfer(_withdrawTo, _withdrawAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "earnToken.safeTransfer(_bountyHunter, bountyReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakeToken.safeTransfer(_withdrawTo, _withdrawAmount)"
+            }
+        ]
+    }
+}

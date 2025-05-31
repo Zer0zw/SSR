@@ -1,0 +1,282 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "userInfo.lastRewardBlock",
+            "userInfo.unlockUntil",
+            "userInfo.unstakeUntil"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "Z_Oro"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "Harvest",
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "claim",
+            "emergencyWithdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1248,
+                    1249,
+                    1250,
+                    1251,
+                    1252
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1279
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "OperonAPY",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Control Variables": [
+                    "OperonAPY",
+                    "Z_Oro",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "OperonAPY",
+                    "Z_Oro",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1279
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "OperonAPY",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Control Variables": [
+                    "OperonAPY",
+                    "Z_Oro",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "OperonAPY",
+                    "Z_Oro",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "Harvest",
+                "Node": [
+                    1279
+                ],
+                "Input": [
+                    "_pid",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "OperonAPY",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "Z_Oro",
+                    "OperonAPY",
+                    "userInfo.lastRewardBlock",
+                    "_status"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "perDaysecond",
+                    "userInfo.amount",
+                    "Z_Oro",
+                    "OperonAPY",
+                    "userInfo.lastRewardBlock",
+                    "_status"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1301
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Z_Oro",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.isTokenonly",
+                    "poolInfo.lpToken",
+                    "timeInterval",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock",
+                    "userInfo.unstakeUntil",
+                    "userInfo.unstaked"
+                ],
+                "Full Calculation Variables": [
+                    "Z_Oro",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.isTokenonly",
+                    "poolInfo.lpToken",
+                    "timeInterval",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock",
+                    "userInfo.unstakeUntil",
+                    "userInfo.unstaked"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "claim",
+                "Node": [
+                    1316
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.unstakeUntil",
+                    "userInfo.unstaked"
+                ],
+                "Control Variables": [
+                    "Z_Oro",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.isTokenonly",
+                    "poolInfo.lpToken",
+                    "userInfo.unstakeUntil",
+                    "userInfo.unstaked"
+                ],
+                "Full Calculation Variables": [
+                    "Z_Oro",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.isTokenonly",
+                    "poolInfo.lpToken",
+                    "userInfo.unstakeUntil",
+                    "userInfo.unstaked"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1335
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.emergencyWithdrawnable",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "poolInfo.emergencyWithdrawnable",
+                    "poolInfo.lastRewardBlock",
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastRewardBlock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

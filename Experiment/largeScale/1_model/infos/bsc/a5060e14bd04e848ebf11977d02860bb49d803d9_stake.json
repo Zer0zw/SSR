@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Investor.invested",
+            "Deposit.amount",
+            "retopup.amount"
+        ],
+        "User Stake Reward": [
+            "Investor.withdrawn",
+            "Investor.reinvest"
+        ],
+        "User Stake Time": [
+            "Deposit.at",
+            "retopup.timeAt"
+        ],
+        "Stake Token Address": [
+            "RTCTokenAddress",
+            "RTC_Plus_address"
+        ],
+        "Reward Token Address": [
+            "RTCTokenAddress",
+            "RTC_Plus_address"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "RTC_Plus_address.transferPrice(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "retopupStaking",
+                "Node": "RTC_Plus_address.transferPrice(owner(), address(this), return_token_in_RTCC)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawMint",
+                "Node": "_token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "claimRetopupReward",
+                "Node": "RTC_Plus_address.transferPrice(address(this), msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPrincipal",
+                "Node": "_token.transfer(msg.sender, withdrawnAmt)"
+            }
+        ]
+    }
+}

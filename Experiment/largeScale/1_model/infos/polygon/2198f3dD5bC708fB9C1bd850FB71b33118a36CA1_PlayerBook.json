@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_hasGotNFT",
+            "_skAmounts"
+        ],
+        "User Stake Reward": [
+            "Player.reward",
+            "Player.hasReward"
+        ],
+        "User Stake Time": [
+            "RegisteInfo._time",
+            "skItem.sktime"
+        ],
+        "Stake Token Address": [
+            "_usdt"
+        ],
+        "Reward Token Address": [
+            "_usdt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(_usdt).safeTransferFrom(msg.sender,address(this),_amount.mul(_basePrc))"
+            },
+            {
+                "Function": "stake",
+                "Node": "nftCon(_nftCon).safeMint(msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_stake",
+                "Node": "IERC20(_usdt).safeTransfer(affID,rewRate1)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IERC20(_usdt).safeTransfer(affID,rewRate2)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IERC20(_usdt).safeTransfer(affID,rewRate)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IERC20(_usdt).safeTransfer(rewardAddr1,rewRate)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IERC20(_usdt).safeTransfer(rewardAddr2,rewRate)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IERC20(_usdt).safeTransfer(rewardAddr3,rewRate)"
+            }
+        ],
+        "unStake": []
+    }
+}

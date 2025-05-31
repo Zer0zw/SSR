@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.lastWeight"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardEarnedNotMinted",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastAction"
+        ],
+        "Stake Token Address": [
+            "TipsyAddress"
+        ],
+        "Reward Token Address": [
+            "ginAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(TipsyCoin.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "GinBridge.mintTo(msg.sender, _harvested)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": "require(TipsyCoin.transfer(msg.sender, _tokenToReturn)"
+            },
+            {
+                "Function": "EmergencyUnstake",
+                "Node": "require(TipsyCoin.transfer(msg.sender, _tokenToReturn)"
+            }
+        ]
+    }
+}

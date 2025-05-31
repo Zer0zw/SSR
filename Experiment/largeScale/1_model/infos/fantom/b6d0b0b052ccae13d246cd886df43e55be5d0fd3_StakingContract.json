@@ -1,0 +1,64 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_ps.tknAmount",
+            "_ps.lpShare",
+            "_ls.amount"
+        ],
+        "User Stake Reward": [
+            "maxClaim",
+            "toClaim"
+        ],
+        "User Stake Time": [
+            "_ps.lastClaim",
+            "_ls.lockUpTo"
+        ],
+        "Stake Token Address": [
+            "_tokenFTMLP",
+            "_letToken"
+        ],
+        "Reward Token Address": [
+            "_letToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "claimFounderStatus",
+                "Node": "No direct transfer statement for staking found in the provided functions"
+            },
+            {
+                "Function": "stakeLP",
+                "Node": "I(tkn).transferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewards",
+                "Node": "I(_treasury).getRewards(a, toClaim)"
+            },
+            {
+                "Function": "_getRewards",
+                "Node": "I(_treasury).getRewards(a, toClaim)"
+            },
+            {
+                "Function": "getLockRewards",
+                "Node": "I(_treasury).getRewards(a, toClaim)"
+            },
+            {
+                "Function": "_getLockRewards",
+                "Node": "I(_treasury).getRewards(a, toClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLp",
+                "Node": "I(_tokenFTMLP).transfer(address(msg.sender), amount*9/10)"
+            },
+            {
+                "Function": "unlock",
+                "Node": "I(_letToken).transfer(msg.sender,amount*19/20)"
+            }
+        ]
+    }
+}

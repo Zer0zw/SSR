@@ -1,0 +1,124 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakingBalance"
+        ],
+        "User Stake Reward": [
+            "_InvestorData.EarnedRbx"
+        ],
+        "User Stake Time": [
+            "_InvestorData.rTime"
+        ],
+        "Stake Token Address": [
+            "_oldRBX"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "Deposit"
+        ],
+        "getReward": [
+            "Deposit",
+            "claim"
+        ],
+        "unStake": [
+            "emergencyWithdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": [
+                    667
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_PoolData.PoolRewards",
+                    "_PoolData.RbxStaked",
+                    "_PoolData.endTime",
+                    "_PoolData.startTime",
+                    "_stakingBalance",
+                    "currentPool",
+                    "depositFee",
+                    "feeAddress",
+                    "poolDuration"
+                ],
+                "Full Calculation Variables": [
+                    "_PoolData.PoolRewards",
+                    "_PoolData.RbxStaked",
+                    "_PoolData.endTime",
+                    "_PoolData.startTime",
+                    "_stakingBalance",
+                    "currentPool",
+                    "depositFee",
+                    "feeAddress",
+                    "poolDuration"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    766
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "currentPool",
+                    "_PoolData.endTime",
+                    "_stakingBalance"
+                ],
+                "Full Calculation Variables": [
+                    "currentPool",
+                    "_PoolData.endTime",
+                    "_stakingBalance"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "Deposit",
+                "Node": [
+                    766
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "currentPool",
+                    "_PoolData.endTime",
+                    "_stakingBalance"
+                ],
+                "Full Calculation Variables": [
+                    "currentPool",
+                    "_PoolData.endTime",
+                    "_stakingBalance"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    733
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_stakingBalance"
+                ],
+                "Full Calculation Variables": [
+                    "_stakingBalance"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

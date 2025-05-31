@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPoolInfo.amountDeposited"
+        ],
+        "User Stake Reward": [
+            "UserPoolInfo.referralAmount",
+            "UserPoolInfo.referralCashbackAmount"
+        ],
+        "User Stake Time": [
+            "UserPoolInfo.lastWithdrawalTime"
+        ],
+        "Stake Token Address": [
+            "poolInfo.stakeToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositWReferral",
+                "Node": "pool.stakeToken.safeTransferFrom(_origin, address(pool.strategy), _depositAmount)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "pool.stakeToken.safeTransferFrom(_origin, address(pool.strategy), _depositAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "depositToken.safeTransfer(_user, referreeAmount)"
+            }
+        ]
+    }
+}

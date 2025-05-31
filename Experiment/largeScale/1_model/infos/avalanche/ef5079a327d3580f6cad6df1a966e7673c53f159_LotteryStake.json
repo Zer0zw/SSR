@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "Points.points"
+        ],
+        "User Stake Time": [
+            "checkpoints"
+        ],
+        "Stake Token Address": [
+            "nonFungibleToken"
+        ],
+        "Reward Token Address": [
+            "fungibleToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "nonFungibleToken.transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "reward",
+                "Node": "awardToken(deposits[x])"
+            },
+            {
+                "Function": "awardToken",
+                "Node": "fungibleToken.mint(recipient, DAILY_TOKEN_REWARD * (uint256(10) ** 18))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "nonFungibleToken.transferFrom(address(this), msg.sender, tokenId)"
+            }
+        ]
+    }
+}

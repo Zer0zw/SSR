@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakingDetails.initialTokenAmount"
+        ],
+        "User Stake Reward": [
+            "_rOwned",
+            "_tOwned"
+        ],
+        "User Stake Time": [
+            "StakingDetails.numOfMonths"
+        ],
+        "Stake Token Address": [
+            "everRiseToken"
+        ],
+        "Reward Token Address": [
+            "claimRiseToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "increaseVeAmount(staker, remaining, numOfMonths, true)"
+            },
+            {
+                "Function": "bridgeOrAirdropStakeNftIn",
+                "Node": "increaseVeAmount(staker, remaining, numOfMonths, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "require(everRiseToken.transfer(staker, rewards))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "decreaseVeAmount(staker, remainingAmount, stakeDetails.numOfMonths, true)"
+            },
+            {
+                "Function": "bridgeStakeNftOut",
+                "Node": "decreaseVeAmount(staker, remainingAmount, stakeDetails.numOfMonths, true)"
+            }
+        ]
+    }
+}

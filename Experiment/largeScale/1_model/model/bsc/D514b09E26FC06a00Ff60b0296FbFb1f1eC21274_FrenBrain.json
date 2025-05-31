@@ -1,0 +1,94 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "timePooled",
+            "internalTime"
+        ],
+        "Stake Token Address": [
+            "frenAddress"
+        ],
+        "Reward Token Address": [
+            "frenAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "receive",
+            "stake"
+        ],
+        "getReward": [
+            "withdrawRewardTokens"
+        ],
+        "unStake": [
+            "withdrawLPTokens"
+        ],
+        "Sensitive Functions": [
+            "setTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokens",
+                "Node": [
+                    241
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DECIMAL",
+                    "_rewardValue",
+                    "frenAddress",
+                    "rewards",
+                    "timePooled"
+                ],
+                "Full Calculation Variables": [
+                    "DECIMAL",
+                    "_rewardValue",
+                    "frenAddress",
+                    "rewards",
+                    "timePooled"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLPTokens",
+                "Node": [
+                    227
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "FACTORY",
+                    "LPTokenBalance",
+                    "WETHAddress",
+                    "frenAddress",
+                    "rewards",
+                    "timePooled"
+                ],
+                "Full Calculation Variables": [
+                    "FACTORY",
+                    "LPTokenBalance",
+                    "WETHAddress",
+                    "frenAddress",
+                    "rewards",
+                    "timePooled"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

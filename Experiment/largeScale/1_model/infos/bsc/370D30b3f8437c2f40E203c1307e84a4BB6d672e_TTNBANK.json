@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amount",
+            "UserInfo.totalRewards"
+        ],
+        "User Stake Reward": [
+            "UserInfo.lastRewards",
+            "UserInfo.totalRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastActionEpochNumber",
+            "UserInfo.pendingClaimEpochNumber"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "stakedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(stakedToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdrawReward",
+                "Node": "require(stakedToken.transferFrom(treasury, msg.sender, pendingReward - withdrawFee))"
+            },
+            {
+                "Function": "withdrawReferral",
+                "Node": "require(stakedToken.transferFrom(treasury, msg.sender, referralRewards[msg.sender]))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(stakedToken.transfer(msg.sender, _amount - withdrawFee))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingTAmount",
+            "StakingInfo.stakingAmount"
+        ],
+        "User Stake Reward": [
+            "referralAmount",
+            "ClaimInfo.rewardAmount",
+            "ReferralInfo.referralAmount"
+        ],
+        "User Stake Time": [
+            "StakingInfo.stakingDate",
+            "StakingInfo.claimDate",
+            "ClaimInfo.claimDate",
+            "ReferralInfo.claimDate"
+        ],
+        "Stake Token Address": [
+            "FVAddress"
+        ],
+        "Reward Token Address": [
+            "USDC"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Stake",
+                "Node": "ERC20(FVAddress).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "ERC20(USDC).transfer(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Unstake",
+                "Node": "ERC20(FVAddress).transfer(msg.sender, _stakingInfo[msg.sender][idx].stakingAmount)"
+            }
+        ]
+    }
+}

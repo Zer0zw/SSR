@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserStakeInfo.rewards"
+        ],
+        "User Stake Time": [
+            "UserStakeInfo.time"
+        ],
+        "Stake Token Address": [
+            "Bank.lp"
+        ],
+        "Reward Token Address": [
+            "cash"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bank.lp.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "settle",
+                "Node": "cash.safeTransferFrom(operator(),msg.sender, reward)"
+            },
+            {
+                "Function": "withdrawBonus",
+                "Node": "cash.safeTransferFrom(operator(),msg.sender, bon)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "bank.lp.safeTransfer(msg.sender,amount)"
+            }
+        ]
+    }
+}

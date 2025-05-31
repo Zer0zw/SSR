@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeTracker.cthuStaked"
+        ],
+        "User Stake Reward": [
+            "stakeTracker.rewards"
+        ],
+        "User Stake Time": [
+            "stakeTracker.lastBlockChecked"
+        ],
+        "Stake Token Address": [
+            "cthuAddress"
+        ],
+        "Reward Token Address": [
+            "address(this)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "cthuToken.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "_mint(receiver, reward.mul(9) / 10"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_getReward(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "cthuToken.transfer(msg.sender, amount"
+            }
+        ]
+    }
+}

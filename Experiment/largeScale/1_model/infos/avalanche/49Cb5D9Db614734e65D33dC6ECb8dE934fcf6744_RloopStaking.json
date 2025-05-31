@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeTemplate.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "StakeTemplate.stakeLevel"
+        ],
+        "User Stake Time": [
+            "StakeTemplate.stakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimInterest",
+                "Node": "token.safeTransferFrom(adminWallet, msg.sender, interest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "token.safeTransfer(msg.sender, Stake.stakedAmount)"
+            }
+        ]
+    }
+}

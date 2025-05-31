@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "walletNFTs"
+        ],
+        "User Stake Reward": [
+            "NFTStaking.tsReward"
+        ],
+        "User Stake Time": [
+            "Stakes.lockTS",
+            "Stakes.lockAccumlation"
+        ],
+        "Stake Token Address": [
+            "nftContract"
+        ],
+        "Reward Token Address": [
+            "EXP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeDweller",
+                "Node": "require(recieve721Token(nftContract, msg.sender, tokenID), \"DwellersStaking: Unable to stake this NFT\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimStakingRewards",
+                "Node": "require(send20Payment(msg.sender, rewardable), \"DwellersStaking: Unable to reward staking\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeDweller",
+                "Node": "require(send721Token(nftContract, msg.sender, tokenID),\"Unable to send the NFT back\")"
+            }
+        ]
+    }
+}

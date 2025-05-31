@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.accumulatedYield"
+        ],
+        "User Stake Time": [
+            "Deposit.unlock"
+        ],
+        "Stake Token Address": [
+            "DepositProfile.depositContractAddress"
+        ],
+        "Reward Token Address": [
+            "DepositProfile.yieldContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "depositTokenContract.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawYield",
+                "Node": "tokenContract.transfer(msg.sender, amountWithRate)"
+            },
+            {
+                "Function": "withdrawYieldAll",
+                "Node": "tokenContract.transfer(msg.sender, amountWithRate)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "depositTokenContract.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

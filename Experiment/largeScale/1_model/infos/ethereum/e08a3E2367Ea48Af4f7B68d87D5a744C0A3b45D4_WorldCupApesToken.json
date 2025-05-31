@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToTokenIds"
+        ],
+        "User Stake Reward": [
+            "totalRewards"
+        ],
+        "User Stake Time": [
+            "tokenIdTimeStaked"
+        ],
+        "Stake Token Address": [
+            "WCAAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeByIds",
+                "Node": "WCAIERC721.transferFrom(msg.sender, address(this), id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByTokenId",
+                "Node": "_transfer(owner(), msg.sender, totalRewards)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "_transfer(owner(), msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": "WCAIERC721.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeByIds",
+                "Node": "WCAIERC721.transferFrom(address(this), msg.sender, id)"
+            }
+        ]
+    }
+}

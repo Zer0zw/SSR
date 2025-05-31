@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": [
+            "pop"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakePop",
+                "Node": "require(pop.transferFrom(msg.sender, address(this), _amount), \"transfer failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestPopRewards",
+                "Node": "safePopTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "safePopTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPop",
+                "Node": "require(pop.transfer(msg.sender, _amount), \"transfer failed\")"
+            },
+            {
+                "Function": "_notifyWithdraw",
+                "Node": "safePopTransfer(_account, pending)"
+            }
+        ]
+    }
+}

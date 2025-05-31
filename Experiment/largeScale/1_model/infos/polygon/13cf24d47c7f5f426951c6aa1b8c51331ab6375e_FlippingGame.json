@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake"
+        ],
+        "User Stake Reward": [
+            "rewardTally"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositStake",
+                "Node": "payable(owner()).transfer(calcDepositFeeAmt(_amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawReward",
+                "Node": "payable(msg.sender).transfer(reward - claimFeeAmt - redistroAmt)"
+            },
+            {
+                "Function": "reInvestReward",
+                "Node": "payable(owner()).transfer(stakeFeeAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawStake",
+                "Node": "payable(msg.sender).transfer(_amount-fee-redistro)"
+            }
+        ]
+    }
+}

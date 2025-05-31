@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.totalStaked",
+            "NFTInfo.amount"
+        ],
+        "User Stake Reward": [
+            "NFTInfo.rewardDebt",
+            "transferredRewards"
+        ],
+        "User Stake Time": [
+            "PoolInfo.startBlock",
+            "PoolInfo.endBlock"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.nftAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC721(pool.nftAddress).safeTransferFrom(_msgSender(), address(this), _tokenId)"
+            },
+            {
+                "Function": "depositMultiple",
+                "Node": "IERC721(pool.nftAddress).safeTransferFrom(_msgSender(), address(this), userNFTs[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "payable(_msgSender()).sendValue(pending)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "payable(_msgSender()).sendValue(pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(pool.nftAddress).safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "withdrawMultiple",
+                "Node": "IERC721(pool.nftAddress).safeTransferFrom(address(this), _msgSender(), tokenIds[i]"
+            },
+            {
+                "Function": "emergencyWithdrawal",
+                "Node": "IERC721(pool.nftAddress).safeTransferFrom(address(this), _msgSender(), _tokenId)"
+            }
+        ]
+    }
+}

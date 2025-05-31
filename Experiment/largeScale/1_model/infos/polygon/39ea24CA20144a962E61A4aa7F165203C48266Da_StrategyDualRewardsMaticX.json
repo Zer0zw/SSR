@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenA",
+            "tokenB"
+        ],
+        "Reward Token Address": [
+            "STADER",
+            "QUICK"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, matic_bal)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(QUICK).safeTransfer(strategist, _quick)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(STADER).safeTransfer(strategist, _rewardBal)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(DQUICK).safeTransfer(strategist, _dQuick)"
+            }
+        ],
+        "unStake": []
+    }
+}

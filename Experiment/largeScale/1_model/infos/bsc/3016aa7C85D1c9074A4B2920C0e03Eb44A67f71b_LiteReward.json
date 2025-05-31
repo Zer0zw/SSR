@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "BonusUser.stakedOf"
+        ],
+        "User Stake Reward": [
+            "BonusUser.rewardOf",
+            "BonusUser.userReward"
+        ],
+        "User Stake Time": [
+            "BonusUser.lastRewardAt"
+        ],
+        "Stake Token Address": [
+            "BonusPool.lpToken"
+        ],
+        "Reward Token Address": [
+            "liteAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "updateStaked",
+                "Node": "TransferHelper.safeTransferFrom(liteAddress, msg.sender, address(this), amount_)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeReward",
+                "Node": "TransferHelper.safeTransfer(liteAddress, _account, _amount)"
+            },
+            {
+                "Function": "_takeReward",
+                "Node": "TransferHelper.safeTransfer(liteAddress, _account, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawToken",
+                "Node": "TransferHelper.safeTransfer(token_, to_, amount_)"
+            }
+        ]
+    }
+}

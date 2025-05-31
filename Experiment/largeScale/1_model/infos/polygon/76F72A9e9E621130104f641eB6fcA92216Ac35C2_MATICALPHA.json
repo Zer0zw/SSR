@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStaked",
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "User.withdrawn",
+            "Deposit.profit"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Deposit.finish"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "user.deposits.push(Deposit(_plan, percent, value, profit, block.timestamp, finish,s,h,0,0,true, true))"
+            },
+            {
+                "Function": "reinvestAll",
+                "Node": "user.deposits.push(Deposit(uplan, percent, totalDepositBalance, _profit, block.timestamp, _finish,s,h,0,0,true, true))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawAll",
+                "Node": "payable(msg.sender).transfer(withdrawamount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(withdrawamount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "payable(msg.sender).transfer(withdrawamount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "payable(msg.sender).transfer(withdrawamount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Session.amount"
+        ],
+        "User Stake Reward": [
+            "calculateStakingInterest"
+        ],
+        "User Stake Time": [
+            "Session.start",
+            "Session.end"
+        ],
+        "Stake Token Address": [
+            "mainToken"
+        ],
+        "Reward Token Address": [
+            "mainToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IToken(mainToken).burn(msg.sender, amount)"
+            },
+            {
+                "Function": "externalStake",
+                "Node": "IToken(mainToken).burn(msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calculateStakingInterest",
+                "Node": "uint256 payout = payouts[i].payout.mul(shares).div(payouts[i].sharesTotalSupply)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_initPayout(msg.sender, amountOut)"
+            }
+        ]
+    }
+}

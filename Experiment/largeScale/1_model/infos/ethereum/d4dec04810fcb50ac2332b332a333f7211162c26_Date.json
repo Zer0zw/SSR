@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.initialAmount"
+        ],
+        "User Stake Reward": [
+            "Stake.withdrawn"
+        ],
+        "User Stake Time": [
+            "Stake.createdOn",
+            "Stake.lockupPeriod"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "require(IERC20(token).transferFrom(msg.sender, address(this), calculateTotalWithDecimals(_amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "require(token.transfer(msg.sender, calculateTotalWithDecimals(total))"
+            },
+            {
+                "Function": "finishStake",
+                "Node": "require(token.transfer(msg.sender, calculateTotalWithDecimals(totalToTransfer))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "finishStake",
+                "Node": "require(token.transfer(msg.sender, calculateTotalWithDecimals(totalToTransfer))"
+            }
+        ]
+    }
+}

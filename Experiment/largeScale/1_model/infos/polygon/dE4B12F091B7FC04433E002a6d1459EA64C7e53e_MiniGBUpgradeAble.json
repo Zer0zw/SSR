@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "GrandV2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositBNB",
+                "Node": "pool.want.safeIncreaseAllowance(pool.strat, _wantAmt)"
+            },
+            {
+                "Function": "depositToken",
+                "Node": "pool.want.safeIncreaseAllowance(pool.strat, _wantAmt)"
+            },
+            {
+                "Function": "depositWant",
+                "Node": "pool.want.safeIncreaseAllowance(pool.strat, _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingGrand",
+                "Node": "safeGrandTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "safeGrandTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "safeGrandTransfer(msg.sender, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBNB",
+                "Node": "IERC20(pool.want).safeTransfer(pool.fryLanding, afterBalance.sub(beforeBalance))"
+            },
+            {
+                "Function": "withdrawToken",
+                "Node": "IERC20(pool.want).safeTransfer(pool.fryLanding, afterPoolWantBalance.sub(beforePoolWantBalance))"
+            },
+            {
+                "Function": "withdrawWant",
+                "Node": "IERC20(pool.want).safeTransfer(msg.sender, afterBalance.sub(beforeBalance))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

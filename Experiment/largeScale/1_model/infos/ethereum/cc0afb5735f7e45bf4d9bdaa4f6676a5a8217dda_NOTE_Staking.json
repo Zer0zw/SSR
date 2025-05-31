@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "DepositedToken.activeDeposit",
+            "DepositedToken.totalDeposits"
+        ],
+        "User Stake Reward": [
+            "DepositedToken.pendingGains",
+            "DepositedToken.totalGained"
+        ],
+        "User Stake Time": [
+            "DepositedToken.startTime",
+            "DepositedToken.lastClaimedDate"
+        ],
+        "Stake Token Address": [
+            "NOTE"
+        ],
+        "Reward Token Address": [
+            "NOTE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "require(ERC20Interface(NOTE).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "require(ERC20Interface(NOTE).transfer(msg.sender, pendingReward(msg.sender))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "ClaimStakedTokens",
+                "Node": "require(ERC20Interface(NOTE).transfer(msg.sender, toTransfer)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "OrderInfo.depositAmount"
+        ],
+        "User Stake Reward": [
+            "OrderInfo.rewardTotalAmount",
+            "profitBalOf"
+        ],
+        "User Stake Time": [
+            "OrderInfo.depositTimestamp",
+            "PoolInfo.duration"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawProfitRel",
+                "Node": "token.safeTransfer(address(msg.sender), profitBalOf[msg.sender]"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "token.safeTransfer(address(msg.sender), totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAll",
+                "Node": "token.safeTransfer(address(msg.sender), totalReward)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "PoolInfo.lastRewardTimestamp"
+        ],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "onJoeReward",
+                "Node": "if (isNative) { (bool success, ) = _user.call.value(pending)(\"\") } else { rewardToken.safeTransfer(_user, pending) }"
+            }
+        ],
+        "unStake": []
+    }
+}

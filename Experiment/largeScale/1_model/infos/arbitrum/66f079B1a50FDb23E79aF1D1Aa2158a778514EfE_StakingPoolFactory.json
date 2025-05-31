@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TraderStakeInfo.balance",
+            "TraderStakeInfo.staked"
+        ],
+        "User Stake Reward": [
+            "TraderStakeInfo.earned"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deployPool",
+                "Node": "info.poolAddress = address(new EthStakingPool(/*_rewardsDistribution=*/referralProgram, address(this), rewardsToken, nativeTokenWrapper, roundDurationInDays))"
+            },
+            {
+                "Function": "deployPool",
+                "Node": "info.poolAddress = address(new StakingPool(/*_rewardsDistribution=*/ referralProgram, address(this), rewardsToken, stakingToken, roundDurationInDays))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "addRewards",
+                "Node": "IERC20(info.rewardsToken).transferFrom(msg.sender, info.poolAddress, rewardsAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

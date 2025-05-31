@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_pledgedAmount"
+        ],
+        "User Stake Reward": [
+            "_totalClaimed"
+        ],
+        "User Stake Time": [
+            "_lastClaimedTimestamp"
+        ],
+        "Stake Token Address": [
+            "_pledgedToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(_pledgedToken).transferFrom(msgSender(), address(this), pledgeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_mint(msgSender(), issueAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "require(IERC20(_pledgedToken).transfer(msgSender(), pledgedAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposits"
+        ],
+        "User Stake Reward": [
+            "_userRewards"
+        ],
+        "User Stake Time": [
+            "PoolDeposit.depositDate"
+        ],
+        "Stake Token Address": [
+            "Pool.collection"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_stake(account, pool.collection, tokenId, poolId)"
+            },
+            {
+                "Function": "batchStake",
+                "Node": "_batchStake(_msgSender(), poolId, tokenIds)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "_sendAndUpdateRewards(account, rewards)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_sendAndUpdateRewards(account, rewards)"
+            },
+            {
+                "Function": "restake",
+                "Node": "_sendAndUpdateRewards(account, rewards)"
+            },
+            {
+                "Function": "batchUnstake",
+                "Node": "_sendAndUpdateRewards(account, rewards)"
+            },
+            {
+                "Function": "batchRestake",
+                "Node": "_sendAndUpdateRewards(account, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "uint256 rewards = _unstake(account,poolId, collection, tokenId)"
+            },
+            {
+                "Function": "batchUnstake",
+                "Node": "rewards = rewards + _unstake(account,poolId, collection, tokenIds[i])"
+            }
+        ]
+    }
+}

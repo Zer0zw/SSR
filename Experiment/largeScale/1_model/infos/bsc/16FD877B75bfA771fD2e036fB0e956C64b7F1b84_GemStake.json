@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingCount"
+        ],
+        "User Stake Reward": [
+            "totalReward",
+            "totalWithdraw"
+        ],
+        "User Stake Time": [
+            "Gem.start",
+            "Gem.end"
+        ],
+        "Stake Token Address": [
+            "gemDao"
+        ],
+        "Reward Token Address": [
+            "gemDao"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingCount[uint(gem.gemType)] += 1"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(gemDao).transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claim",
+                "Node": "stakingCount[uint(gem.gemType)] -= 1"
+            }
+        ]
+    }
+}

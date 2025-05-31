@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "IslandGirlBalanceOf"
+        ],
+        "User Stake Reward": [
+            "calculateInterests"
+        ],
+        "User Stake Time": [
+            "depositStart",
+            "stakingPeriod"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "acceptedToken.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawInterests",
+                "Node": "acceptedToken.transfer(msg.sender, interest)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "acceptedToken.transfer(msg.sender, interest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "acceptedToken.transfer(msg.sender, userBalance)"
+            }
+        ]
+    }
+}

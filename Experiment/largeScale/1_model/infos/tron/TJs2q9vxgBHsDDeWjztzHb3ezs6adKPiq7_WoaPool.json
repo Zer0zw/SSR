@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.stakeNum"
+        ],
+        "User Stake Reward": [
+            "Stake.totalReceive",
+            "Stake.currReceive"
+        ],
+        "User Stake Time": [
+            "Stake.receiveTime"
+        ],
+        "Stake Token Address": [
+            "woaContract"
+        ],
+        "Reward Token Address": [
+            "woaContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "woaContract.transferFrom(msg.sender, address(this), _num)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "woaContract.transfer(msg.sender, num)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "woaContract.transfer(referrerAddress[msg.sender], one)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "woaContract.transfer(referrerAddress[referrerAddress[msg.sender]], two)"
+            }
+        ],
+        "unStake": []
+    }
+}

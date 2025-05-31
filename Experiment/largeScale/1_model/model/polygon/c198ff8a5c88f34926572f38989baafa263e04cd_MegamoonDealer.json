@@ -1,0 +1,121 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.stakingAmount"
+        ],
+        "User Stake Reward": [
+            "userInfo.lockedAmount"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime"
+        ],
+        "Stake Token Address": [
+            "moonToken"
+        ],
+        "Reward Token Address": [
+            "moonToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "returnFunds",
+            "returnFunds"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    590
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "moonToken",
+                    "nextLotteryId",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lotteryId",
+                    "userInfo.stakingAmount"
+                ],
+                "Full Calculation Variables": [
+                    "moonToken",
+                    "nextLotteryId",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lotteryId",
+                    "userInfo.stakingAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    619
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "moonToken",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.stakingAmount",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "moonToken",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.stakingAmount",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    642
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "withdrawFee",
+                    "userInfo.stakingAmount",
+                    "userInfo.lastDepositedTime"
+                ],
+                "Control Variables": [
+                    "userInfo.stakingAmount",
+                    "userInfo.lastDepositedTime",
+                    "withdrawFee",
+                    "withdrawFeePeriod",
+                    "moonToken"
+                ],
+                "Full Calculation Variables": [
+                    "userInfo.stakingAmount",
+                    "userInfo.lastDepositedTime",
+                    "withdrawFee",
+                    "withdrawFeePeriod",
+                    "moonToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

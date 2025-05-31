@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.reward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.token"
+        ],
+        "Reward Token Address": [
+            "arb"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "Deposit",
+                "Node": "user.amount = user.amount.add(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeArbTransfer(_sender, _pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "Withdraw",
+                "Node": "safeArbTransfer(_sender, _pending)"
+            },
+            {
+                "Function": "EmergencyWithdraw",
+                "Node": "safeArbTransfer(_sender, user.amount)"
+            }
+        ]
+    }
+}

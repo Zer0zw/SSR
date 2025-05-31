@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "checkPendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "DLP"
+        ],
+        "Reward Token Address": [
+            "DODO"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IDodoMine(CHEF).deposit(DLP, balanceOfWant())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IDodoMine(CHEF).claim(DLP)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "IERC20(want).safeTransfer(_vault, balance)"
+            }
+        ]
+    }
+}

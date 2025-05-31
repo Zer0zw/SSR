@@ -1,0 +1,165 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "wantLockedTotal",
+            "sharesTotal"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "lastEarnBlock"
+        ],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "convertDustToEarned",
+            "earn"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1814,
+                    1815,
+                    1816,
+                    1817,
+                    1818
+                ],
+                "Input": [
+                    "",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_owner",
+                    "_paused",
+                    "wantAddress"
+                ],
+                "Full Calculation Variables": [
+                    "_owner",
+                    "_paused",
+                    "wantAddress"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": [
+                    1909
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "farmContractAddress",
+                    "isKalmComp",
+                    "onlyGov",
+                    "pid",
+                    "sharesTotal"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "farmContractAddress",
+                    "isKalmComp",
+                    "onlyGov",
+                    "pid",
+                    "sharesTotal"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "convertDustToEarned",
+                "Node": [
+                    2013,
+                    2014,
+                    2015,
+                    2016,
+                    2017,
+                    2018,
+                    2019,
+                    2020
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "token1ToEarnedPath",
+                    "isKalmComp",
+                    "token0ToEarnedPath",
+                    "uniRouterAddress",
+                    "_paused",
+                    "token0Address",
+                    "earnedAddress",
+                    "token1Address"
+                ],
+                "Full Calculation Variables": [
+                    "token1ToEarnedPath",
+                    "isKalmComp",
+                    "token0ToEarnedPath",
+                    "uniRouterAddress",
+                    "_paused",
+                    "token0Address",
+                    "earnedAddress",
+                    "token1Address"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1888
+                ],
+                "Input": [
+                    "",
+                    "_wantAmt"
+                ],
+                "Calculation Variables": [
+                    "wantAddress",
+                    "wantLockedTotal"
+                ],
+                "Control Variables": [
+                    "isKalmComp",
+                    "KalmFarmAddress",
+                    "sharesTotal",
+                    "_owner",
+                    "exitFeeFactorMax",
+                    "exitFeeFactor",
+                    "wantAddress",
+                    "_guardCounter",
+                    "wantLockedTotal"
+                ],
+                "Full Calculation Variables": [
+                    "isKalmComp",
+                    "KalmFarmAddress",
+                    "sharesTotal",
+                    "_owner",
+                    "exitFeeFactorMax",
+                    "exitFeeFactor",
+                    "wantAddress",
+                    "_guardCounter",
+                    "wantLockedTotal"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

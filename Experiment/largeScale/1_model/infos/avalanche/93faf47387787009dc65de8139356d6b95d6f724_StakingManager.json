@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PoolStaker.amount"
+        ],
+        "User Stake Reward": [
+            "PoolStaker.rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "Pool.stakeToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "emit Deposit(tx.origin, _poolId, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestRewards",
+                "Node": "emit HarvestRewards(_clientAddress, _poolId, rewardsToHarvest)"
+            },
+            {
+                "Function": "forceHarvest",
+                "Node": "harvestRewards(_poolId, 0, partnerWallets[msg.sender][i])"
+            },
+            {
+                "Function": "forceHarvestAddress",
+                "Node": "harvestRewards(poolId, 0, _target)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "emit Withdraw(tx.origin, _poolId, _withdrawal)"
+            }
+        ]
+    }
+}

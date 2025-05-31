@@ -1,0 +1,197 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "stakeRewards",
+            "referralRewards"
+        ],
+        "User Stake Time": [
+            "lastClock"
+        ],
+        "Stake Token Address": [
+            "gnome"
+        ],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "registerAndStake",
+            "stake"
+        ],
+        "getReward": [
+            "withdrawEarnings"
+        ],
+        "unStake": [
+            "EmergencyWithdraw",
+            "unstake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": [
+                    417,
+                    418,
+                    419,
+                    420
+                ],
+                "Input": [
+                    "_amount",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "active",
+                    "gnome",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax"
+                ],
+                "Full Calculation Variables": [
+                    "active",
+                    "gnome",
+                    "minimumStakeValue",
+                    "registered",
+                    "registrationTax"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    592,
+                    593,
+                    594,
+                    595
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "active",
+                    "gnome",
+                    "minimumStakeValue",
+                    "registered"
+                ],
+                "Full Calculation Variables": [
+                    "active",
+                    "gnome",
+                    "minimumStakeValue",
+                    "registered"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawEarnings",
+                "Node": [
+                    693
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "UNIT_TIME",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "basePoolShare",
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "UNIT_TIME",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "basePoolShare",
+                    "dailyROI",
+                    "lastClock",
+                    "referralRewards",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    657
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "unstakingTaxRate"
+                ],
+                "Control Variables": [
+                    "UNIT_TIME",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "gnome",
+                    "lastClock",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked",
+                    "unStakePenaltyRate",
+                    "unstakingTaxRate"
+                ],
+                "Full Calculation Variables": [
+                    "UNIT_TIME",
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_status",
+                    "gnome",
+                    "lastClock",
+                    "registered",
+                    "stakeRewards",
+                    "stakes",
+                    "totalStaked",
+                    "unStakePenaltyRate",
+                    "unstakingTaxRate"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "EmergencyWithdraw",
+                "Node": [
+                    826
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakes",
+                    "unstakingTaxRate"
+                ],
+                "Control Variables": [
+                    "gnome",
+                    "registered",
+                    "stakes",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Full Calculation Variables": [
+                    "gnome",
+                    "registered",
+                    "stakes",
+                    "totalStaked",
+                    "unstakingTaxRate"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

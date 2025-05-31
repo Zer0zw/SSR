@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers"
+        ],
+        "User Stake Reward": [
+            "calculateALLRewardsByUser"
+        ],
+        "User Stake Time": [
+            "NFTStaker.timeOfLastUpdate"
+        ],
+        "Stake Token Address": [
+            "nftCollection"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "nftCollection.transferFrom(msg.sender, address(this), _tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsPerNFT",
+                "Node": "IERC20(rewardsToken).safeTransfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "claimALLRewards",
+                "Node": "IERC20(rewardsToken).safeTransfer(msg.sender, allRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "nftCollection.transferFrom(address(this), msg.sender, _tokenIds[i])"
+            },
+            {
+                "Function": "emergencyWithdrawal",
+                "Node": "nftCollection.transferFrom(address(this), msg.sender, _tokenIds[i])"
+            }
+        ]
+    }
+}

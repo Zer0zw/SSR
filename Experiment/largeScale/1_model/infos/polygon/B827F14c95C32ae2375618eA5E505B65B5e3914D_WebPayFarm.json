@@ -1,0 +1,76 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lockToBlockNumber",
+            "UserInfo.lockToTimestamp"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "sushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TransferHelper.safeTransferFrom(address(pool.lpToken),address(msg.sender), address(this), _amount"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IWETH(ETH).deposit{value: msg.value}()"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeSushiTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeSushiTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "endFarm",
+                "Node": "safeSushiTransfer(addr, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(ETH, address(wethelper), _amount"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "wethelper.withdraw(ETH, address(treasureaddr), _amount * tax / 100"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "wethelper.withdraw(ETH, address(msg.sender), _amount - _amount * tax / 100"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(address(pool.lpToken),address(treasureaddr), _amount * tax / 100"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(address(pool.lpToken),address(msg.sender), _amount - _amount * tax / 100"
+            },
+            {
+                "Function": "endFarm",
+                "Node": "TransferHelper.safeTransfer(address(pool.lpToken),address(treasureaddr),_amount.mul(tax).div(100)"
+            },
+            {
+                "Function": "endFarm",
+                "Node": "TransferHelper.safeTransfer(address(pool.lpToken),address(addr),_amount.sub(_amount.mul(tax).div(100)))"
+            }
+        ]
+    }
+}

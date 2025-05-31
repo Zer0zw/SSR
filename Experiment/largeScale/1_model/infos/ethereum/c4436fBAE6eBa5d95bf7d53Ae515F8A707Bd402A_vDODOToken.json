@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakingPower"
+        ],
+        "User Stake Reward": [
+            "UserInfo.credit"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_DODO_TOKEN_"
+        ],
+        "Reward Token Address": [
+            "_DODO_TOKEN_"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mint",
+                "Node": "IDODOApproveProxy(_DODO_APPROVE_PROXY_).claimTokens(_DODO_TOKEN_, msg.sender, address(this), dodoAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "IERC20(_DODO_TOKEN_).transfer(msg.sender, dodoReceive)"
+            },
+            {
+                "Function": "redeem",
+                "Node": "IERC20(_DODO_TOKEN_).transfer(address(0), burnDodoAmount)"
+            }
+        ]
+    }
+}

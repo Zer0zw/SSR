@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "PoolInfo.lpToken"
+        ],
+        "User Stake Reward": [
+            "PoolInfo.accBavaPerShare"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "Bava"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "add",
+                "Node": "Bava.mint(address(pool.poolContract), BavaForFarmer)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updatePool",
+                "Node": "Bava.mint(address(pool.poolContract), BavaForFarmer)"
+            },
+            {
+                "Function": "updatePool",
+                "Node": "Bava.mint(address(devaddr), BavaForDev)"
+            },
+            {
+                "Function": "updatePool",
+                "Node": "Bava.mint(futureTreasuryaddr, BavaForFT)"
+            },
+            {
+                "Function": "updatePool",
+                "Node": "Bava.mint(advisoraddr, BavaForAdr)"
+            },
+            {
+                "Function": "updatePool",
+                "Node": "Bava.mint(founderaddr, BavaForFounders)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "rescueDeployedFunds",
+                "Node": "IERC20(token).safeTransfer(_to, amount)"
+            }
+        ]
+    }
+}

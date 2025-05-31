@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.Amount"
+        ],
+        "User Stake Reward": [
+            "Staker.Claimable",
+            "Staker.MaxClaimable",
+            "Staker.TokenPerDay"
+        ],
+        "User Stake Time": [
+            "Staker.StakeTime",
+            "Staker.UnStakeTime"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "TOKEN.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_withdraw",
+                "Node": "TOKEN.transferFrom(RewardAddress, _user, claimable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transfer(msg.sender, PlanI[msg.sender].Amount)"
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transfer(msg.sender, PlanII[msg.sender].Amount)"
+            },
+            {
+                "Function": "CompleteWithDraw",
+                "Node": "TOKEN.transfer(msg.sender, PlanIII[msg.sender].Amount)"
+            }
+        ]
+    }
+}

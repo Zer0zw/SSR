@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_want"
+        ],
+        "User Stake Reward": [
+            "_wmatic_balance",
+            "_addy_balance"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken",
+            "ADDY"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMultiFeeDistribution(rewards).stake(_want, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(jar, _wmatic_balance)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(ADDY).safeTransfer(jar, _addy_balance)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IMultiFeeDistribution(rewards).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IMultiFeeDistribution(rewards).withdraw(_amount)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "IMultiFeeDistribution(rewards).withdraw(unlocked)"
+            },
+            {
+                "Function": "_withdrawSome",
+                "Node": "IMultiFeeDistribution(rewards).withdrawExpiredLocks()"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "IMultiFeeDistribution(rewards).exit()"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "IMultiFeeDistribution(rewards).withdrawExpiredLocks()"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "IERC20(want).safeTransfer(jar, _want)"
+            }
+        ]
+    }
+}

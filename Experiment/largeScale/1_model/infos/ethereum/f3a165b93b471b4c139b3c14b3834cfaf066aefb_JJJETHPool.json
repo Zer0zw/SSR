@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "paidReward"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "JASWAIT"
+        ],
+        "Stake Token Address": [
+            "jjj"
+        ],
+        "Reward Token Address": [
+            "jjj",
+            "jas"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "jjj.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getJas",
+                "Node": "jas.safeTransfer(msg.sender, needPayJas)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "rewardsPerBlockTable"
+        ],
+        "User Stake Time": [
+            "NfaStakeInfo.startBlock",
+            "NfaStakeInfo.endBlock"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "stakedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "activateNfa",
+                "Node": "stakeExistence[_tokenId] = true"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "stakedToken.safeTransfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

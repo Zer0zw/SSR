@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Member.balance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Member.depositedTime"
+        ],
+        "Stake Token Address": [
+            "xHusky"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "xHusky.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "xHusky.transfer(msg.sender, xHusky2Unstake)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "monthlyPayout"
+        ],
+        "User Stake Time": [
+            "NFT.time"
+        ],
+        "Stake Token Address": [
+            "nftsAddress"
+        ],
+        "Reward Token Address": [
+            "payoutTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNft",
+                "Node": "nb.transferFrom(msg.sender, address(this), ID)"
+            },
+            {
+                "Function": "bulkStake",
+                "Node": "nb.transferFrom(msg.sender, address(this), IDS[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "payToken.transferFrom(address(this), msg.sender, reward)"
+            },
+            {
+                "Function": "getRewards",
+                "Node": "payToken.transferFrom(address(this), msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNft",
+                "Node": "nb.transferFrom(address(this), msg.sender, ID)"
+            },
+            {
+                "Function": "bulkUnstake",
+                "Node": "nb.transferFrom(address(this), msg.sender, IDS[i])"
+            },
+            {
+                "Function": "emergencyWithdrawWithoutFunds",
+                "Node": "nb.transferFrom(address(this), msg.sender, ID)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposits.amount",
+            "User.bnbStaked"
+        ],
+        "User Stake Reward": [
+            "User.deposits.profit",
+            "User.refRewards",
+            "User.lotteryRewards"
+        ],
+        "User Stake Time": [
+            "User.deposits.start",
+            "User.deposits.finish",
+            "User.bnbStakeCheckpoint"
+        ],
+        "Stake Token Address": [
+            "CAKE"
+        ],
+        "Reward Token Address": [
+            "CAKE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "CAKE.transfer(msg.sender, rewards)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimCakeFee",
+                "Node": "CAKE.transfer(msg.sender, rewards)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "CAKE.transfer(msg.sender, totalAmount)"
+            },
+            {
+                "Function": "withdrawRef",
+                "Node": "CAKE.transfer(msg.sender, value)"
+            },
+            {
+                "Function": "claimLotteryReward",
+                "Node": "CAKE.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "msg.sender.transfer(amount)"
+            }
+        ]
+    }
+}

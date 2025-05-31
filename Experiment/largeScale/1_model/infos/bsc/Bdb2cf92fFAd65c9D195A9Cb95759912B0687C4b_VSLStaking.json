@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerList.tokensStaked"
+        ],
+        "User Stake Reward": [
+            "stakerList.tokensCollected"
+        ],
+        "User Stake Time": [
+            "listOfLockups.unlockTime"
+        ],
+        "Stake Token Address": [
+            "_vslContract"
+        ],
+        "Reward Token Address": [
+            "_vslContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "StakeTokens",
+                "Node": "IERC20(_vslContract).transferFrom(_wallet, address(this), _numTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CollectByWallet",
+                "Node": "if(_collectByWallet(stakerID, _currentTier, _limitDistributions) != 0) emit CollectedByWallet(_wallet, _limitDistributions)"
+            },
+            {
+                "Function": "CollectTokens",
+                "Node": "if(stakerID != 0 && _collectByWallet(stakerID, _currentTier, _limitDistributions) != 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnstakeTokens",
+                "Node": "IERC20(_vslContract).transfer(_wallet, numToDraw)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,265 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.total_invested"
+        ],
+        "User Stake Reward": [
+            "users.totalClaimed"
+        ],
+        "User Stake Time": [
+            "users.depositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "reinvest",
+            "stake"
+        ],
+        "getReward": [
+            "claim",
+            "claimAll",
+            "unStake"
+        ],
+        "unStake": [
+            "unStake"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    626
+                ],
+                "Input": [
+                    "_pid",
+                    "_amount",
+                    "_pid",
+                    "_sender",
+                    "_amount",
+                    "_isReinvest"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "users.total_invested",
+                    "users.depositTime",
+                    "poolInfo.lockPeriodInDays",
+                    "poolInfo.totalDeposit",
+                    "users.lastPayout",
+                    "poolInfo.minContrib",
+                    "poolInfo.endDate",
+                    "depositFee",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "users.total_invested",
+                    "users.depositTime",
+                    "poolInfo.lockPeriodInDays",
+                    "poolInfo.totalDeposit",
+                    "users.lastPayout",
+                    "poolInfo.minContrib",
+                    "poolInfo.endDate",
+                    "depositFee",
+                    "token"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "reinvest",
+                "Node": [
+                    657
+                ],
+                "Input": [
+                    "_amount",
+                    "_isReinvest",
+                    "_pid",
+                    "_sender"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.endDate",
+                    "poolInfo.lockPeriodInDays",
+                    "poolInfo.minContrib",
+                    "poolInfo.totalDeposit",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.total_invested"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.endDate",
+                    "poolInfo.lockPeriodInDays",
+                    "poolInfo.minContrib",
+                    "poolInfo.totalDeposit",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.total_invested"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    771
+                ],
+                "Input": [
+                    "_pid",
+                    "_pid",
+                    "_addr"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.apy",
+                    "users.total_invested",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.total_withdrawn",
+                    "users.totalClaimed",
+                    "poolInfo.endDate"
+                ],
+                "Control Variables": [
+                    "poolInfo.apy",
+                    "users.total_invested",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.total_withdrawn",
+                    "users.totalClaimed",
+                    "poolInfo.endDate"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.apy",
+                    "users.total_invested",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.total_withdrawn",
+                    "users.totalClaimed",
+                    "poolInfo.endDate"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unStake",
+                "Node": [
+                    771
+                ],
+                "Input": [
+                    "_addr",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.totalClaimed",
+                    "users.total_invested",
+                    "users.total_withdrawn"
+                ],
+                "Control Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.totalClaimed",
+                    "users.total_invested",
+                    "users.total_withdrawn"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.totalClaimed",
+                    "users.total_invested",
+                    "users.total_withdrawn"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimAll",
+                "Node": [
+                    771
+                ],
+                "Input": [
+                    "_pid",
+                    "_addr"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.apy",
+                    "users.total_invested",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.total_withdrawn",
+                    "users.totalClaimed",
+                    "poolInfo.endDate"
+                ],
+                "Control Variables": [
+                    "poolInfo.apy",
+                    "users.total_invested",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.total_withdrawn",
+                    "users.totalClaimed",
+                    "poolInfo.endDate",
+                    "poolInfo"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.apy",
+                    "users.total_invested",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.total_withdrawn",
+                    "users.totalClaimed",
+                    "poolInfo.endDate",
+                    "poolInfo"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": [
+                    749
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "poolInfo.totalDeposit",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.totalClaimed",
+                    "users.total_invested",
+                    "users.total_withdrawn",
+                    "withdrawFee"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.apy",
+                    "poolInfo.endDate",
+                    "poolInfo.totalDeposit",
+                    "users.depositTime",
+                    "users.lastPayout",
+                    "users.totalClaimed",
+                    "users.total_invested",
+                    "users.total_withdrawn",
+                    "withdrawFee"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

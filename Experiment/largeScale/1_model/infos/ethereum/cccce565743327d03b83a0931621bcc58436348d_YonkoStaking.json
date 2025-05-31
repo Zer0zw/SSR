@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.depositedCount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalWithdrawnInUSD",
+            "UserInfo.totalWithdrawn"
+        ],
+        "User Stake Time": [
+            "UserInfo.staked"
+        ],
+        "Stake Token Address": [
+            "yonkoNFT"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "rewardToken.transferFrom(msg.sender, address(this), minTokenAmount)"
+            },
+            {
+                "Function": "depositAll",
+                "Node": "rewardToken.transferFrom(msg.sender, address(this), minTokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardToken.transfer(msg.sender, rewardAmount)"
+            },
+            {
+                "Function": "claimAction",
+                "Node": "rewardToken.transfer(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "rewardToken.transfer(msg.sender, rewardTokenAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "rewardToken.transfer(msg.sender, rewardTokenAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "yonkoNFT.safeTransferFrom(address(this), msg.sender, tokenID)"
+            }
+        ]
+    }
+}

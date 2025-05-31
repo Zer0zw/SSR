@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalBalance"
+        ],
+        "User Stake Reward": [
+            "rewardsToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mint",
+                "Node": "_mint(minter, mintTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, bounty)"
+            },
+            {
+                "Function": "reinvest",
+                "Node": "rewardsToken.safeTransfer(msg.sender, bounty)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "_safeTransfer(redeemer, redeemAmount)"
+            }
+        ]
+    }
+}

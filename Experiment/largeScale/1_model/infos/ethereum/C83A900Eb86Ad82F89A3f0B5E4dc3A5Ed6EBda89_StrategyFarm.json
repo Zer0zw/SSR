@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lpTokens"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "output"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IFarmVault(farmVault).deposit(_want)"
+            },
+            {
+                "Function": "_depositMine",
+                "Node": "IFarmPool(farmPool).stake(_balance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IFarmPool(farmPool).getReward()"
+            },
+            {
+                "Function": "dosplit",
+                "Node": "token.safeTransfer(msg.sender, _callfee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(_vault, _amount.sub(_fee))"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IFarmVault(farmVault).withdraw(_balance)"
+            }
+        ]
+    }
+}

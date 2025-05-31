@@ -1,0 +1,228 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.currentStaked",
+            "userStakes.amount"
+        ],
+        "User Stake Reward": [
+            "users.referralRewards",
+            "userStakes.claimedReward"
+        ],
+        "User Stake Time": [
+            "userStakes.startTime",
+            "userStakes.checkpoint"
+        ],
+        "Stake Token Address": [
+            "usdc"
+        ],
+        "Reward Token Address": [
+            "usdc"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake"
+        ],
+        "getReward": [
+            "claim",
+            "claimLottery",
+            "stake"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    257
+                ],
+                "Input": [
+                    "_amount",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "launched",
+                    "maxDeposit",
+                    "minDeposit",
+                    "usdc",
+                    "users.currentStaked",
+                    "users.isExists",
+                    "users.referrer",
+                    "users.stakeCount",
+                    "users.teamId",
+                    "users.totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "launched",
+                    "maxDeposit",
+                    "minDeposit",
+                    "usdc",
+                    "users.currentStaked",
+                    "users.isExists",
+                    "users.referrer",
+                    "users.stakeCount",
+                    "users.teamId",
+                    "users.totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    384
+                ],
+                "Input": [
+                    "_index"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "claimDuration",
+                    "haltWithdrawls",
+                    "launched",
+                    "usdc",
+                    "userStakes.checkpoint",
+                    "userStakes.claimedReward",
+                    "userStakes.isActive",
+                    "users.stakeCount",
+                    "users.totalWithdrawan"
+                ],
+                "Full Calculation Variables": [
+                    "claimDuration",
+                    "haltWithdrawls",
+                    "launched",
+                    "usdc",
+                    "userStakes.checkpoint",
+                    "userStakes.claimedReward",
+                    "userStakes.isActive",
+                    "users.stakeCount",
+                    "users.totalWithdrawan"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    307
+                ],
+                "Input": [
+                    "_user",
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "percentDivider",
+                    "referrerPercent",
+                    "referralPercent"
+                ],
+                "Control Variables": [
+                    "percentDivider",
+                    "referrerPercent",
+                    "users.referralRewards",
+                    "usdc",
+                    "users.referrer",
+                    "referralPercent"
+                ],
+                "Full Calculation Variables": [
+                    "percentDivider",
+                    "referrerPercent",
+                    "users.referralRewards",
+                    "usdc",
+                    "users.referrer",
+                    "referralPercent"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimLottery",
+                "Node": [
+                    437,
+                    438,
+                    439,
+                    440
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "currentWeek",
+                    "percentDivider",
+                    "teams.lotteryAmount",
+                    "teams.teamAmount",
+                    "users.currentStaked",
+                    "users.teamId"
+                ],
+                "Control Variables": [
+                    "currentWeek",
+                    "isLotteryClaimed",
+                    "percentDivider",
+                    "teams.lotteryAmount",
+                    "teams.teamAmount",
+                    "usdc",
+                    "users.currentStaked",
+                    "users.teamId"
+                ],
+                "Full Calculation Variables": [
+                    "currentWeek",
+                    "isLotteryClaimed",
+                    "percentDivider",
+                    "teams.lotteryAmount",
+                    "teams.teamAmount",
+                    "usdc",
+                    "users.currentStaked",
+                    "users.teamId"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    408
+                ],
+                "Input": [
+                    "_index"
+                ],
+                "Calculation Variables": [
+                    "userStakes.amount",
+                    "userStakes.checkpoint",
+                    "userStakes.isActive",
+                    "userStakes.startTime"
+                ],
+                "Control Variables": [
+                    "haltWithdrawls",
+                    "launched",
+                    "lockDuration",
+                    "tvlLockEndTime",
+                    "usdc",
+                    "userStakes.amount",
+                    "userStakes.checkpoint",
+                    "userStakes.isActive",
+                    "userStakes.startTime",
+                    "users.currentStaked",
+                    "users.stakeCount",
+                    "users.totalWithdrawan"
+                ],
+                "Full Calculation Variables": [
+                    "haltWithdrawls",
+                    "launched",
+                    "lockDuration",
+                    "tvlLockEndTime",
+                    "usdc",
+                    "userStakes.amount",
+                    "userStakes.checkpoint",
+                    "userStakes.isActive",
+                    "userStakes.startTime",
+                    "users.currentStaked",
+                    "users.stakeCount",
+                    "users.totalWithdrawan"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

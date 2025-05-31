@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.total_deposits",
+            "nodes"
+        ],
+        "User Stake Reward": [
+            "users.total_claims",
+            "total_rewards"
+        ],
+        "User Stake Time": [
+            "lastDripTime",
+            "startTime"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "create",
+                "Node": "TOKEN.safeTransferFrom(_sender, address(this), tierPrice"
+            },
+            {
+                "Function": "_compound",
+                "Node": "TOKEN.safeTransferFrom(_sender, address(this), tierPrice"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(TOKEN).safeTransfer(_sender, _rewards)"
+            }
+        ],
+        "unStake": []
+    }
+}

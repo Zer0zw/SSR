@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakers.amount",
+            "amountStaked"
+        ],
+        "User Stake Reward": [
+            "stakers.totalRewards",
+            "payouts"
+        ],
+        "User Stake Time": [
+            "stakers.stakeCycle",
+            "stakers.unstakeCycle"
+        ],
+        "Stake Token Address": [
+            "PLAYMATES"
+        ],
+        "Reward Token Address": [
+            "PAYMENT_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "PLAYMATES.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAll",
+                "Node": "PAYMENT_TOKEN.transfer(msg.sender, sum)"
+            },
+            {
+                "Function": "claim",
+                "Node": "PAYMENT_TOKEN.transfer(msg.sender, sum)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "PLAYMATES.transfer(msg.sender, amountAfterFees)"
+            }
+        ]
+    }
+}

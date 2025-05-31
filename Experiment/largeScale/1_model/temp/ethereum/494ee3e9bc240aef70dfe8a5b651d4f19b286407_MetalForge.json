@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "userLastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stakeOnBehalf",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stakeOnBehalfBulk",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), totalAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "getRewardAsStake",
+                "Node": "_balances[msg.sender] += reward"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakingToken.transfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

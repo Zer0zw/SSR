@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.balance"
+        ],
+        "User Stake Reward": [
+            "UserInfo.claimed",
+            "VaultInfo.totalReward"
+        ],
+        "User Stake Time": [
+            "StakedInfo.startIndex",
+            "StakedInfo.lastStakeIndex"
+        ],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "baseToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAllWeekly",
+                "Node": "offeringToken.safeTransfer(_msgSender(), returnAmount)"
+            },
+            {
+                "Function": "claimAllWeekly",
+                "Node": "rewardToken.safeTransfer(_msgSender(), rewardAmount)"
+            },
+            {
+                "Function": "claimWeekly",
+                "Node": "offeringToken.safeTransfer(_msgSender(), returnAmount)"
+            },
+            {
+                "Function": "claimWeekly",
+                "Node": "rewardToken.safeTransfer(_msgSender(), rewardAmount)"
+            },
+            {
+                "Function": "claimYearlyReward",
+                "Node": "offeringToken.safeTransfer(_msgSender(), returnAmount)"
+            },
+            {
+                "Function": "claimYearlyReward",
+                "Node": "rewardToken.safeTransfer(_msgSender(), rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyExit",
+                "Node": "baseToken.safeTransfer(_msgSender(), user.balance)"
+            }
+        ]
+    }
+}

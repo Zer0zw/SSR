@@ -1,0 +1,95 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount"
+        ],
+        "User Stake Reward": [
+            "poolInfo.bonus"
+        ],
+        "User Stake Time": [
+            "userInfo.lastStaking",
+            "poolInfo.period"
+        ],
+        "Stake Token Address": [
+            "poolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "kaiECO",
+            "kaiDHT"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "withdrawAll"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1025
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastStaking"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.lpToken",
+                    "userInfo.amount",
+                    "userInfo.lastStaking"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1039
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "poolInfo.bonus",
+                    "poolInfo.lpToken",
+                    "poolInfo.period",
+                    "userInfo.amount",
+                    "userInfo.lastStaking"
+                ],
+                "Control Variables": [
+                    "poolInfo.bonus",
+                    "poolInfo.lpToken",
+                    "poolInfo.period",
+                    "userInfo.amount",
+                    "userInfo.lastStaking"
+                ],
+                "Full Calculation Variables": [
+                    "poolInfo.bonus",
+                    "poolInfo.lpToken",
+                    "poolInfo.period",
+                    "userInfo.amount",
+                    "userInfo.lastStaking"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

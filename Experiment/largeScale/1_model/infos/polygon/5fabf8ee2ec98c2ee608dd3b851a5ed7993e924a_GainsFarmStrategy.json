@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "provided"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IFarmPool(rewards).stake(_want, 0x8AcBb9cBc2E3A8286e2A0f5610470cf81F541764)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(GNS).safeTransfer(strategist, h_bal)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, matic_bal)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(DQUICK).safeTransfer(strategist, dQuick_bal)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(QUICK).safeTransfer(strategist, quick_bal)"
+            },
+            {
+                "Function": "swapRewardToWmaticAndDistributeFee",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, _maticFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IFarmPool(rewards).unstake(_amount)"
+            }
+        ]
+    }
+}

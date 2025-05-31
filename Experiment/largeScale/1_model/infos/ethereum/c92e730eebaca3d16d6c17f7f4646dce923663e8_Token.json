@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToTokenIds"
+        ],
+        "User Stake Reward": [
+            "totalRewards"
+        ],
+        "User Stake Time": [
+            "tokenIdToTimeStamp"
+        ],
+        "Stake Token Address": [
+            "nfTokenAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeByIds",
+                "Node": "IERC721(nfTokenAddress).transferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimByTokenId",
+                "Node": "_mint(msg.sender, ((block.timestamp - tokenIdToTimeStamp[tokenId]) * EMISSIONS_RATE))"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "_mint(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAll",
+                "Node": "IERC721(nfTokenAddress).transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unstakeByIds",
+                "Node": "IERC721(nfTokenAddress).transferFrom(address(this), msg.sender, tokenIds[i])"
+            }
+        ]
+    }
+}

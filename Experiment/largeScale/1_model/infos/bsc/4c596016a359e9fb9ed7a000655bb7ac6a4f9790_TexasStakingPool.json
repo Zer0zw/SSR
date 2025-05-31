@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mappingStaking1months.amountTokens1",
+            "mappingStaking1months.amountTokens2",
+            "mappingStaking1months.amountTokens3",
+            "mappingStaking3months.amountTokens1",
+            "mappingStaking3months.amountTokens2",
+            "mappingStaking3months.amountTokens3",
+            "mappingStaking6months.amountTokens1",
+            "mappingStaking6months.amountTokens2",
+            "mappingStaking6months.amountTokens3"
+        ],
+        "User Stake Reward": [
+            "mappingClaim1months.rewardsClaimed1",
+            "mappingClaim1months.rewardsClaimed2",
+            "mappingClaim1months.rewardsClaimed3",
+            "mappingClaim3months.rewardsClaimed1",
+            "mappingClaim3months.rewardsClaimed2",
+            "mappingClaim3months.rewardsClaimed3",
+            "mappingClaim6months.rewardsClaimed1",
+            "mappingClaim6months.rewardsClaimed2",
+            "mappingClaim6months.rewardsClaimed3"
+        ],
+        "User Stake Time": [
+            "mappingStaking1months.startStaking1",
+            "mappingStaking1months.startStaking2",
+            "mappingStaking1months.startStaking3",
+            "mappingStaking3months.startStaking1",
+            "mappingStaking3months.startStaking2",
+            "mappingStaking3months.startStaking3",
+            "mappingStaking6months.startStaking1",
+            "mappingStaking6months.startStaking2",
+            "mappingStaking6months.startStaking3"
+        ],
+        "Stake Token Address": [
+            "addressTexas"
+        ],
+        "Reward Token Address": [
+            "addressTexas"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingTXS",
+                "Node": "IERC20(addressTexas).transferFrom(staker, address(this), amountTXStokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(addressTexas).transfer(staker, unpaidEarnings * (100 - feesWithdraw) / 100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimStaking",
+                "Node": "IERC20(addressTexas).transfer(staker, amountTokens)"
+            },
+            {
+                "Function": "claimStaking",
+                "Node": "IERC20(addressTexas).transfer(staker, unpaidEarnings * (100 - feesWithdraw - feesToCancel) / 100)"
+            }
+        ]
+    }
+}

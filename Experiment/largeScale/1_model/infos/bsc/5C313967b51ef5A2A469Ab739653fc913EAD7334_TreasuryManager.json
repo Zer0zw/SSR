@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amountLP"
+        ],
+        "User Stake Reward": [
+            "UserInfo.harvestedWBNB"
+        ],
+        "User Stake Time": [
+            "UserInfo.joinDate",
+            "UserInfo.lastDeposit"
+        ],
+        "Stake Token Address": [
+            "LigerPairWBNB"
+        ],
+        "Reward Token Address": [
+            "LigerRouter.WETH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "LigerPairWBNB.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IBEP20(LigerRouter.WETH()).safeTransfer(msg.sender, UserReward)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(LigerRouter.WETH()).safeTransfer(msg.sender, UserReward)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IBEP20(LigerRouter.WETH()).safeTransfer(msg.sender, UserReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "LigerPairWBNB.safeTransfer(address(msg.sender), amountLPwithdraw)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "LigerPairWBNB.safeTransfer(address(msg.sender), amountLPwithdraw)"
+            }
+        ]
+    }
+}

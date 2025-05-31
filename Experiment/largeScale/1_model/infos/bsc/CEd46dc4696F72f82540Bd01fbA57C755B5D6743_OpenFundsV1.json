@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "investments.invested"
+        ],
+        "User Stake Reward": [
+            "totalRewards.amount"
+        ],
+        "User Stake Time": [
+            "lastDepositDate"
+        ],
+        "Stake Token Address": [
+            "tokenAdress"
+        ],
+        "Reward Token Address": [
+            "tokenAdress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "BusdInterface.transferFrom(msg.sender,address(this),total_contract)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimDailyRewards",
+                "Node": "approvedWithdrawal[msg.sender] = userWithdrawal(msg.sender,value)"
+            },
+            {
+                "Function": "withdrawal",
+                "Node": "BusdInterface.transfer(msg.sender,SafeMath.add(totalAmountToWithdraw,bonusCount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "BusdInterface.transfer(msg.sender,UnstakeValueReturn)"
+            }
+        ]
+    }
+}

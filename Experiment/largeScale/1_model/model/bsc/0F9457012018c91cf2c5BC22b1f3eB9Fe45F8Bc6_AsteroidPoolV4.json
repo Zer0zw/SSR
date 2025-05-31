@@ -1,0 +1,116 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedShips"
+        ],
+        "User Stake Reward": [
+            "asteroids.rewardAmount"
+        ],
+        "User Stake Time": [
+            "ships.stakedTimestamp",
+            "ships.lastClaimedTimestamp"
+        ],
+        "Stake Token Address": [
+            "whitelistedShip"
+        ],
+        "Reward Token Address": [
+            "asteroids.rewardAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "onERC721Received"
+        ],
+        "getReward": [
+            "claimRewardOf"
+        ],
+        "unStake": [
+            "unstakeNft"
+        ],
+        "Sensitive Functions": [
+            "discover",
+            "initAsteroids",
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onERC721Received",
+                "Node": [
+                    1194
+                ],
+                "Input": [
+                    "astId",
+                    "code",
+                    "from",
+                    "shipId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "asteroids.code",
+                    "discovered",
+                    "mining",
+                    "stakedShips"
+                ],
+                "Full Calculation Variables": [
+                    "asteroids.code",
+                    "discovered",
+                    "mining",
+                    "stakedShips"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardOf",
+                "Node": [
+                    1219
+                ],
+                "Input": [
+                    "shipId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ships.asteroidId",
+                    "ships.lastClaimedTimestamp",
+                    "ships.owner"
+                ],
+                "Full Calculation Variables": [
+                    "ships.asteroidId",
+                    "ships.lastClaimedTimestamp",
+                    "ships.owner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNft",
+                "Node": [
+                    1205
+                ],
+                "Input": [
+                    "shipId"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ships.asteroidId",
+                    "ships.owner",
+                    "ships.stakedTimestamp",
+                    "stakedShips",
+                    "whitelistedShip"
+                ],
+                "Full Calculation Variables": [
+                    "ships.asteroidId",
+                    "ships.owner",
+                    "ships.stakedTimestamp",
+                    "stakedShips",
+                    "whitelistedShip"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

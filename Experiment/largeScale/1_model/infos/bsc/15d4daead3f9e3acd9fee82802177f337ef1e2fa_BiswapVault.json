@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "playersSnapshotBalances"
+        ],
+        "User Stake Reward": [
+            "farmedAmountSnapshots"
+        ],
+        "User Stake Time": [
+            "playersSnapshotDays"
+        ],
+        "Stake Token Address": [
+            "biswap"
+        ],
+        "Reward Token Address": [
+            "farmedTokensSnapshots"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "biswapPool.enterStaking(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimYield",
+                "Node": "ERC20(farmedTokensSnapshots[index]).transfer(msg.sender, divs)"
+            },
+            {
+                "Function": "claimYield",
+                "Node": "bonesStaking.depositFor(msg.sender, divs)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cashout",
+                "Node": "require(biswap.transfer(farmer, amount - fee)"
+            }
+        ]
+    }
+}

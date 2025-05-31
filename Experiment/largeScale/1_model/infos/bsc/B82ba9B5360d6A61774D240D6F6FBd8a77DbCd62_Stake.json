@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeStruct.amount"
+        ],
+        "User Stake Reward": [
+            "UserStruct.harvested",
+            "StakeStruct.harvested"
+        ],
+        "User Stake Time": [
+            "StakeStruct.stakeTime",
+            "StakeStruct.unstakeTime"
+        ],
+        "Stake Token Address": [
+            "PoolStruct.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "PoolStruct.rewardAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IBEP20(pool[_poolId].tokenAddress).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IBEP20(pool[stakeDetails[_stakingId].poolId].rewardAddress).transfer(_staker, harvestAmount)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "IBEP20(pool[stakeDetails[_stakingId].poolId].rewardAddress).transfer(_staker, harvestAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IBEP20(pool[stakeDetails[_stakingId].poolId].tokenAddress).transfer(msg.sender, stakeDetails[_stakingId].amount)"
+            }
+        ]
+    }
+}

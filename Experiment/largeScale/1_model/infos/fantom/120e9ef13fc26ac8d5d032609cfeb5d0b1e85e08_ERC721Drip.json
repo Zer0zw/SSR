@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakedNFT.tokenId"
+        ],
+        "User Stake Reward": [
+            "ClaimableInfo.amount"
+        ],
+        "User Stake Time": [
+            "StakedNFT.stakedTimestamp",
+            "StakedNFT.lastClaimTimestamp"
+        ],
+        "Stake Token Address": [
+            "StakedNFT.collection"
+        ],
+        "Reward Token Address": [
+            "PermittedERC721.dripToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "collection.safeTransferFrom(_msgSender(), address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "token.safeTransferFrom(rewardWallet, info.owner, _claimableAmount)"
+            },
+            {
+                "Function": "_claim",
+                "Node": "token.safeTransfer(info.owner, _claimableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(info.collection).safeTransferFrom(address(this), info.owner, info.tokenId)"
+            }
+        ]
+    }
+}

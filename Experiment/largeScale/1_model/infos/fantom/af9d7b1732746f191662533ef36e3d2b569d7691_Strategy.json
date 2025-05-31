@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedInMasterchef"
+        ],
+        "User Stake Reward": [
+            "unclaimedRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "syn3PoolLP"
+        ],
+        "Reward Token Address": [
+            "SYN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeLPTokens",
+                "Node": "synStakingMC.deposit(pid, _amount, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "prepareReturn",
+                "Node": "synStakingMC.harvest(pid, address(this))"
+            },
+            {
+                "Function": "_sellSynToWant",
+                "Node": "solidlyRouter.swapExactTokensForTokensSimple(_amount, 0, address(SYN), address(want), false, address(this), block.timestamp"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstakeLPTokens",
+                "Node": "synStakingMC.withdraw(pid, _amount, address(this))"
+            },
+            {
+                "Function": "liquidateAllPositions",
+                "Node": "syn3PoolLP.transfer(_newStrategy, unstakedLPBalance())"
+            }
+        ]
+    }
+}

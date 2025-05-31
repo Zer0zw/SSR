@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalStakedTokens",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "User.totalClaimedRewardTokens",
+            "Stake.reward"
+        ],
+        "User Stake Time": [
+            "Stake.stakeTime",
+            "Stake.unlockTime"
+        ],
+        "Stake Token Address": [
+            "ShitaiToken"
+        ],
+        "Reward Token Address": [
+            "ShitaiToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ShitaiToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "ShitaiToken.transferFrom(owner, msg.sender, remaingReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "ShitaiToken.transfer(msg.sender, userStakeInfo.amount)"
+            }
+        ]
+    }
+}

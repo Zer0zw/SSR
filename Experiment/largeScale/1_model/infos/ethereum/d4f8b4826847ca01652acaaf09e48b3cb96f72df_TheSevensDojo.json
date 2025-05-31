@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakerInfo.stakedCount"
+        ],
+        "User Stake Reward": [
+            "StakerInfo.accumulatedReward"
+        ],
+        "User Stake Time": [
+            "StakerInfo.lastActionTime"
+        ],
+        "Stake Token Address": [
+            "sevensToken"
+        ],
+        "Reward Token Address": [
+            "zeniToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "doStake",
+                "Node": "sevensToken.transferFrom(staker, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doClaimRewards",
+                "Node": "zeniToken.transferFrom(zeniTokenHolder, staker, accumulatedRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "doUnstake",
+                "Node": "sevensToken.transferFrom(address(this), staker, tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeBalances",
+            "stakeBalancesFt"
+        ],
+        "User Stake Reward": [
+            "harvests",
+            "harvestsFt"
+        ],
+        "User Stake Time": [
+            "lastUpdate",
+            "lastUpdateFt",
+            "lockTime"
+        ],
+        "Stake Token Address": [
+            "arenaverseNFT",
+            "averse"
+        ],
+        "Reward Token Address": [
+            "averse"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "batchStake",
+                "Node": "arenaverseNFT.transferFrom(msg.sender, address(this), tokenIds[i])"
+            },
+            {
+                "Function": "stakeFt",
+                "Node": "averse.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "averse.transferFrom(POOL_WALLET, msg.sender, harvests[msg.sender])"
+            },
+            {
+                "Function": "harvestFt",
+                "Node": "averse.transferFrom(POOL_WALLET, msg.sender, harvestsFt[msg.sender])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "batchWithdraw",
+                "Node": "arenaverseNFT.transferFrom(address(this), msg.sender, tokenIds[i])"
+            },
+            {
+                "Function": "batchWithdrawWithoutharvest",
+                "Node": "arenaverseNFT.transferFrom(address(this), msg.sender, tokenIds[i])"
+            },
+            {
+                "Function": "withdrawFt",
+                "Node": "averse.transferFrom(POOL_WALLET, msg.sender, _amount)"
+            }
+        ]
+    }
+}

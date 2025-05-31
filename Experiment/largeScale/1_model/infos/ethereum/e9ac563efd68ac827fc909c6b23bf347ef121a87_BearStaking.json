@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakes"
+        ],
+        "User Stake Reward": [
+            "calculateRewards",
+            "calculateReward"
+        ],
+        "User Stake Time": [
+            "_stakeBlocks"
+        ],
+        "Stake Token Address": [
+            "bearsAddress"
+        ],
+        "Reward Token Address": [
+            "honeyAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(bearsAddress).safeTransferFrom(msg.sender, address(this), tokenIds[i], \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20(honeyAddress).transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC721(bearsAddress).safeTransferFrom(address(this), msg.sender, tokenIds[i], \"\")"
+            },
+            {
+                "Function": "unstakeWithoutClaiming",
+                "Node": "IERC721(bearsAddress).safeTransferFrom(address(this), msg.sender, tokenIds[i], \"\")"
+            }
+        ]
+    }
+}

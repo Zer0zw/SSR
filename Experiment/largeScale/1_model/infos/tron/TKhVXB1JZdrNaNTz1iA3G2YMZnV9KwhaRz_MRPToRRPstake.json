@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "investLevel1Amount",
+            "investLevel2Amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalRefreward",
+            "UserInfo.totalWithdraw"
+        ],
+        "User Stake Time": [
+            "DepositLevel1.start",
+            "DepositLevel2.start",
+            "DepositLevel1.miningDay",
+            "DepositLevel2.miningDay",
+            "DepositLevel1.lastaction",
+            "DepositLevel2.lastaction"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "_rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "investLevel1",
+                "Node": "IERC20(tokenAddress).transferFrom(msg.sender, _burnPool, _amount)"
+            },
+            {
+                "Function": "investLevel2",
+                "Node": "IERC20(tokenAddress).transferFrom(msg.sender, _burnPool, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawLevel1",
+                "Node": "IERC20(_rewardTokenAddress).transfer(msg.sender, claimDay.mul(withdrawLevel1Amount))"
+            },
+            {
+                "Function": "withdrawLevel2",
+                "Node": "IERC20(_rewardTokenAddress).transfer(msg.sender, claimDay.mul(withdrawLevel2Amount))"
+            }
+        ],
+        "unStake": []
+    }
+}

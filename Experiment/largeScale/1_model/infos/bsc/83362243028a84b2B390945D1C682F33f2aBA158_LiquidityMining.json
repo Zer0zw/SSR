@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.stakeAmount"
+        ],
+        "User Stake Reward": [
+            "User.rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "c_erc20stake"
+        ],
+        "Reward Token Address": [
+            "c_erc20reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "registerAndStake",
+                "Node": "c_erc20stake.transferFrom(addr, address(this), amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "c_erc20stake.transferFrom(addr, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "c_erc20reward.transfer(msg.sender, r)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "c_erc20stake.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "c_erc20stake.transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

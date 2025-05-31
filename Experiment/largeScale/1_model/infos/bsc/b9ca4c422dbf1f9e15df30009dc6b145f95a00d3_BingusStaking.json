@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.LP"
+        ],
+        "User Stake Reward": [
+            "Stake.realised",
+            "Stake.excludedAmt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_pair"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "require(_pair.transferFrom(account, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_realise",
+                "Node": "require(_token.transfer(account, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "require(_pair.transfer(account, amount)"
+            }
+        ]
+    }
+}

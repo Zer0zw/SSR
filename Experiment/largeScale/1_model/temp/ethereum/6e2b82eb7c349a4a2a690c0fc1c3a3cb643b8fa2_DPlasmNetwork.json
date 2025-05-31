@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "increaseProductivity",
+                "Node": "_transfer(address(this), user, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "take",
+                "Node": "return userInfo.amount.mul(_accAmountPerShare).div(1e12).sub(userInfo.rewardDebt)"
+            },
+            {
+                "Function": "takeWithAddress",
+                "Node": "return userInfo.amount.mul(_accAmountPerShare).div(1e12).sub(userInfo.rewardDebt)"
+            },
+            {
+                "Function": "takeWithBlock",
+                "Node": "return (userInfo.amount.mul(_accAmountPerShare).div(1e12).sub(userInfo.rewardDebt), block.number)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "decreaseProductivity",
+                "Node": "_transfer(address(this), user, pending)"
+            }
+        ]
+    }
+}

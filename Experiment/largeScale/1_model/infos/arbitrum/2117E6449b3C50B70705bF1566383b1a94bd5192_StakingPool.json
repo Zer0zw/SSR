@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_stakeToken(_pid, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "settlePendingreward",
+                "Node": "_safeTransfer(_pid,_user, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_withdrawStakingToken(_pid,_amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_withdrawStakingToken(_pid,amount)"
+            }
+        ]
+    }
+}

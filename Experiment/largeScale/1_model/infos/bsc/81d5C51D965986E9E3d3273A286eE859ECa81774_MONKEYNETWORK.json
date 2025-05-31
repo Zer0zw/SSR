@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.sM.totalStaked",
+            "User.sT.totalStaked",
+            "User.sC.totalStaked"
+        ],
+        "User Stake Reward": [
+            "User.sM.unClaimedTokens",
+            "User.sT.unClaimedTokens",
+            "User.sC.unClaimedTokens"
+        ],
+        "User Stake Time": [
+            "User.sM.lastStakeTime",
+            "User.sT.lastStakeTime",
+            "User.sC.lastStakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBUSD",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "_transfer(msg.sender, address(this), tokenAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimToken_M",
+                "Node": "_mint(msg.sender, claimAmount"
+            },
+            {
+                "Function": "claimToken_T",
+                "Node": "_mint(msg.sender, claimAmount"
+            },
+            {
+                "Function": "compoundToken_M",
+                "Node": "_mint(address(this), stakeAmount"
+            },
+            {
+                "Function": "compoundToken_T",
+                "Node": "_mint(address(this), stakeAmount"
+            },
+            {
+                "Function": "compoundToken_C",
+                "Node": "_mint(address(this), tokenToStake"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeToken",
+                "Node": "_transfer(address(this), msg.sender, tokenAmount"
+            }
+        ]
+    }
+}

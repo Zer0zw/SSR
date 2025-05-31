@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.tokenIds"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositBlock"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakeToken.transferFrom(address(msg.sender), address(this), tokenIds[i]"
+            },
+            {
+                "Function": "depositOnBehalf",
+                "Node": "stakeToken.transferFrom(address(msg.sender), address(this), tokenIds[i]"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "stakeToken.transferFrom(address(msg.sender), address(this), tokenIds[i]"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "rewardToken.transfer(receiver, rewardsAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "rewardToken.transfer(receiver, rewardsAmount)"
+            },
+            {
+                "Function": "_transferReward",
+                "Node": "rewardToken.transfer(receiver, rewardsAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakeToken.transferFrom(address(this), msg.sender, tokenIds[i]"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakeToken.transferFrom(address(this), address(msg.sender), tokenArray[i]"
+            }
+        ]
+    }
+}

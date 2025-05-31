@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balancesLP"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "unlockTimesLP"
+        ],
+        "Stake Token Address": [
+            "tokenLP"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositLPTokens",
+                "Node": "tokenLP.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardTokens",
+                "Node": "token.safeTransfer(msg.sender,reward)"
+            },
+            {
+                "Function": "distributeTokens",
+                "Node": "token.safeTransfer(msg.sender, shareForDistributor)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawAllTokens",
+                "Node": "tokenLP.safeTransfer(msg.sender, amountLP)"
+            },
+            {
+                "Function": "withdrawAllTokensWithPenalty",
+                "Node": "tokenLP.safeTransfer(msg.sender, amountLP)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakeLpPair"
+        ],
+        "Reward Token Address": [
+            "earnToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransfer(stakeLpPair, _profitStrategy, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateRate",
+                "Node": "IProfitStrategy(profitStrategy).earn()"
+            },
+            {
+                "Function": "_execReprofit",
+                "Node": "sellEarn2TokenTwice()"
+            },
+            {
+                "Function": "_execReprofit",
+                "Node": "mintLP()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(stakeLpPair, address(matchPair),_amount"
+            },
+            {
+                "Function": "burn",
+                "Node": "TransferHelper.safeTransfer(stakeLpPair, stakeLpPair, _amount)"
+            },
+            {
+                "Function": "burn",
+                "Node": "IUniswapV2Pair(stakeLpPair).burn(_to)"
+            }
+        ]
+    }
+}

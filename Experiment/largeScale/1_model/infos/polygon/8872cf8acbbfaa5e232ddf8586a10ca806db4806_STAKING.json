@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.deposit_amount"
+        ],
+        "User Stake Reward": [
+            "RewardInfo.direct_bonus",
+            "RewardInfo.match_bonus",
+            "RewardInfo.star1",
+            "RewardInfo.star2",
+            "RewardInfo.star3",
+            "RewardInfo.daily_mtc_bonus"
+        ],
+        "User Stake Time": [
+            "User.deposit_time"
+        ],
+        "Stake Token Address": [
+            "usdt"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_deliverUSDTFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardInfo[_user].daily_mtc_bonus = rewardInfo[_user].daily_mtc_bonus.add(daily_mtc[_user].amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_deliverTokens(msg.sender, _payoutValue)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "_deliverUSDT(msg.sender, _payoutValue)"
+            }
+        ],
+        "unStake": []
+    }
+}

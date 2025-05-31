@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TokenLock.amount"
+        ],
+        "User Stake Reward": [
+            "TokenLock.reward"
+        ],
+        "User Stake Time": [
+            "TokenLock.maturity"
+        ],
+        "Stake Token Address": [
+            "komToken"
+        ],
+        "Reward Token Address": [
+            "komToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lockedStake",
+                "Node": "komToken.transferFrom(msg.sender, address(this), _amount"
+            },
+            {
+                "Function": "delegateLockedStaking",
+                "Node": "komToken.transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unlock",
+                "Node": "komToken.transfer(_user, unlockableTokens)"
+            },
+            {
+                "Function": "preMatureWithdraw",
+                "Node": "komToken.transfer(msg.sender, withdrawableAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "komToken.transfer(msg.sender, totalStakedTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unlock",
+                "Node": "komToken.transfer(_user, unlockableTokens)"
+            },
+            {
+                "Function": "preMatureWithdraw",
+                "Node": "komToken.transfer(msg.sender, withdrawableAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "komToken.transfer(msg.sender, totalStakedTokens)"
+            }
+        ]
+    }
+}

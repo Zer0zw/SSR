@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Player.trxDeposit"
+        ],
+        "User Stake Reward": [
+            "Player.interestProfit",
+            "Player.affRewards"
+        ],
+        "User Stake Time": [
+            "Player.time"
+        ],
+        "Stake Token Address": [
+            "tokenContractAddress"
+        ],
+        "Reward Token Address": [
+            "tokenContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "tokencontract.transferFrom(msg.sender, self, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "tokencontract.transfer(msg.sender, payout)"
+            },
+            {
+                "Function": "transferPayout",
+                "Node": "tokencontract.transfer(msg.sender, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawMyInvestment",
+                "Node": "tokencontract.transfer(msg.sender, unstakingamount)"
+            }
+        ]
+    }
+}

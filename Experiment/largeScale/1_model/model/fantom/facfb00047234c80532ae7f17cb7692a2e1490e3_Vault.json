@@ -1,0 +1,99 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPositions.totalAmount"
+        ],
+        "User Stake Reward": [
+            "UserPositions.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "addStake",
+            "setStake"
+        ],
+        "getReward": [
+            "getPendingRewards"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "getPendingRewards",
+                "Node": [
+                    1244,
+                    1245,
+                    1246
+                ],
+                "Input": [
+                    "_token",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "CAPL_PRECISION",
+                    "Pools.accCaplPerShare",
+                    "Pools.lastRewardTime",
+                    "Pools.rewardsPerSecond",
+                    "UserPositions.rewardDebt",
+                    "UserPositions.totalAmount"
+                ],
+                "Full Calculation Variables": [
+                    "CAPL_PRECISION",
+                    "Pools.accCaplPerShare",
+                    "Pools.lastRewardTime",
+                    "Pools.rewardsPerSecond",
+                    "UserPositions.rewardDebt",
+                    "UserPositions.totalAmount"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1086
+                ],
+                "Input": [
+                    "_amount",
+                    "_newRewardDebt",
+                    "_token",
+                    "_user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "Pools.totalPooled",
+                    "REWARDS",
+                    "UserPositions.rewardDebt",
+                    "UserPositions.stakes",
+                    "UserPositions.totalAmount",
+                    "UserPositions.userLastWithdrawnStakeIndex",
+                    "_HEX_SYMBOLS",
+                    "_paused",
+                    "_roles"
+                ],
+                "Full Calculation Variables": [
+                    "Pools.totalPooled",
+                    "REWARDS",
+                    "UserPositions.rewardDebt",
+                    "UserPositions.stakes",
+                    "UserPositions.totalAmount",
+                    "UserPositions.userLastWithdrawnStakeIndex",
+                    "_HEX_SYMBOLS",
+                    "_paused",
+                    "_roles"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

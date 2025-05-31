@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.accumBoostedReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "_stakeToken"
+        ],
+        "Reward Token Address": [
+            "reaper"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_stakeToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "reaper.safeTransfer(user, reaper.balanceOf(user).sub(beforeReward))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "masterChef.mintExtraReward(stakeToken, userAddr, extraReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_safeUnwrap(_stakeToken, _msgSender(), _amount)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_safeUnwrap(_stakeToken, _msgSender(), userStakeAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_safeUnwrap(_stakeToken, _msgSender(), userStakeAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "stakers.yield"
+        ],
+        "User Stake Time": [
+            "stakers.last_yield_time"
+        ],
+        "Stake Token Address": [
+            "WBNB"
+        ],
+        "Reward Token Address": [
+            "BTCB"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "DepositBNB"
+        ],
+        "getReward": [
+            "CollectYields",
+            "FarmMyYield"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "DepositBNB",
+                "Node": [
+                    524
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [],
+                "Full Calculation Variables": [],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "CollectYields",
+                "Node": [
+                    508
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BTCB",
+                    "stakers.addr",
+                    "stakers.last_yield_time",
+                    "stakers.yield"
+                ],
+                "Full Calculation Variables": [
+                    "BTCB",
+                    "stakers.addr",
+                    "stakers.last_yield_time",
+                    "stakers.yield"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "FarmMyYield",
+                "Node": [
+                    517
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakers.yield",
+                    "BTCB",
+                    "stakers.last_yield_time",
+                    "stakers.addr"
+                ],
+                "Full Calculation Variables": [
+                    "stakers.yield",
+                    "BTCB",
+                    "stakers.last_yield_time",
+                    "stakers.addr"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": []
+    }
+}

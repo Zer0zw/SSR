@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "flyBalanceOf"
+        ],
+        "User Stake Reward": [
+            "veFlyBalance"
+        ],
+        "User Stake Time": [
+            "userSnapshot"
+        ],
+        "Stake Token Address": [
+            "FLY"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "Fly(FLY).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "Fly(FLY).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

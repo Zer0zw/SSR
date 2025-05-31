@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeData.pairNum",
+            "stakeData.tokenNum"
+        ],
+        "User Stake Reward": [
+            "hadReward",
+            "noGetReward"
+        ],
+        "User Stake Time": [
+            "stakeData.stakeTime"
+        ],
+        "Stake Token Address": [
+            "uniswapPair"
+        ],
+        "Reward Token Address": [
+            "address(myMinePool)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(uniswapPair).transferFrom(msg.sender,address(this),amount)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IERC20(uniswapPair).transferFrom(msg.sender,address(this),amount)"
+            },
+            {
+                "Function": "fpStake",
+                "Node": "_basicTransfer(sender,address(myMinePool),amount)"
+            },
+            {
+                "Function": "_fpStake",
+                "Node": "_basicTransfer(sender,address(myMinePool),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getStakeReward",
+                "Node": "_basicTransfer(address(myMinePool),msg.sender,rewardNum)"
+            },
+            {
+                "Function": "getFpReward",
+                "Node": "_basicTransfer(address(myMinePool),msg.sender,willReward)"
+            },
+            {
+                "Function": "getMyTearmWillReward",
+                "Node": "_basicTransfer(address(myMinePool),msg.sender,rewardNum)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC20(uniswapPair).transfer(sender,stakeMap[sender][indx].pairNum)"
+            },
+            {
+                "Function": "fpUnstake",
+                "Node": "_basicTransfer(address(myMinePool),msg.sender,amount)"
+            }
+        ]
+    }
+}

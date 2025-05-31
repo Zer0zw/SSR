@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "dgameToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakedToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "dgameToken.safeTransfer(msg.sender, pendingRewards)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "dgameToken.safeTransfer(msg.sender, pendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "stakedToken.safeTransfer(msg.sender, userBalance)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "stakedToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

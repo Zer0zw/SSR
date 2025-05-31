@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "approvedTokenList"
+        ],
+        "Reward Token Address": [
+            "ZBOOFI"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(token).safeTransferFrom(address(msg.sender), address(tokenInfo.strategy), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_safeZBOOFITransfer(to, pendingZBoofi)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "_safeZBOOFITransfer(to, pendingZBoofi)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "tokenInfo.strategy.withdraw(msg.sender, to, lpToSend, amountShares)"
+            },
+            {
+                "Function": "withdrawAndHarvest",
+                "Node": "tokenInfo.strategy.withdraw(msg.sender, to, lpToSend, amountShares)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "tokenInfo.strategy.withdraw(msg.sender, to, lpToSend, amountShares)"
+            }
+        ]
+    }
+}

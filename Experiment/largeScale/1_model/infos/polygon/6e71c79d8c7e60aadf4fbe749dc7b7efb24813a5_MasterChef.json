@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "land"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingLand",
+                "Node": "return user.amount.mul(accLandPerShare).div(1e12).sub(user.rewardDebt)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "if (!landNFTEnable) { safeLandTransfer(_to, pending) } else { safeLandNFTTransfer(_to, pending) }"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "if (!landNFTEnable) { safeLandTransfer(_to, pending) } else { safeLandNFTTransfer(_to, pending) }"
+            },
+            {
+                "Function": "enterStaking",
+                "Node": "if (!landNFTEnable) { safeLandTransfer(msg.sender, pending) } else { safeLandNFTTransfer(msg.sender, pending) }"
+            },
+            {
+                "Function": "leaveStaking",
+                "Node": "if (!landNFTEnable) { safeLandTransfer(msg.sender, pending) } else { safeLandNFTTransfer(msg.sender, pending) }"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "pool.lpToken.safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

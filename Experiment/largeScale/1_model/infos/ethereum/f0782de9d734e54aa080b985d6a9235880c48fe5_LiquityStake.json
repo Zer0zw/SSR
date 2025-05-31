@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Params.lqtyAmount"
+        ],
+        "User Stake Reward": [
+            "ethGain",
+            "lusdGain"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LQTYTokenAddr"
+        ],
+        "Reward Token Address": [
+            "LQTYStaking"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_liquityStake",
+                "Node": "LQTYTokenAddr.pullTokensIfNeeded(_params.from, _params.lqtyAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_liquityStake",
+                "Node": "withdrawStaking(ethGain, lusdGain, _params.wethTo, _params.lusdTo)"
+            }
+        ],
+        "unStake": []
+    }
+}

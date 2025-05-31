@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "masterChef.userInfo(PID, address(this)).amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "underlying"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_triggerDepositAction",
+                "Node": "masterChef.deposit(PID, _amt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_pullRewards",
+                "Node": "masterChef.deposit(PID, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_triggerWithdrawAction",
+                "Node": "masterChef.withdraw(PID, amtToReturn)"
+            }
+        ]
+    }
+}

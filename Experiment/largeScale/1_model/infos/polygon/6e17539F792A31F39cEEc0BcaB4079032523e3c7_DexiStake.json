@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardAmount"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastOperation",
+            "UserInfo.unlockTime"
+        ],
+        "Stake Token Address": [
+            "_stakingTokenAddress"
+        ],
+        "Reward Token Address": [
+            "_rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(_stakingTokenAddress).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IERC20(_rewardTokenAddress).transfer(msg.sender, rewardsInDexi)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_stakingTokenAddress).transfer(msg.sender, userInfo[msg.sender].stakedAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_rewardTokenAddress).transfer(msg.sender, rewardsInDexi)"
+            }
+        ]
+    }
+}

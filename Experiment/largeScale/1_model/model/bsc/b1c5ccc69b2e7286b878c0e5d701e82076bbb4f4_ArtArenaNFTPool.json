@@ -1,0 +1,593 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "usersInfo.amount"
+        ],
+        "User Stake Reward": [
+            "usersRewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stakeAll"
+        ],
+        "getReward": [
+            "claimPrevRewards",
+            "claimReward",
+            "stake",
+            "stakeAll",
+            "unstake",
+            "unstakeAll"
+        ],
+        "unStake": [
+            "emergencyUnstakeALL",
+            "unstake",
+            "unstakeAll"
+        ],
+        "Sensitive Functions": [
+            "setNextRewardToken",
+            "setupTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    1207,
+                    1208,
+                    1209,
+                    1210,
+                    1211
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "bonusEndBlock",
+                    "currentRound",
+                    "lastRewardBlock",
+                    "rewardTokenCount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rewardPerBlock",
+                    "roundInfo.rwdToken",
+                    "stakedToken",
+                    "totalStaked",
+                    "usersInfo.amount",
+                    "usersInfo.tokenIds",
+                    "usersRewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "bonusEndBlock",
+                    "currentRound",
+                    "lastRewardBlock",
+                    "rewardTokenCount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rewardPerBlock",
+                    "roundInfo.rwdToken",
+                    "stakedToken",
+                    "totalStaked",
+                    "usersInfo.amount",
+                    "usersInfo.tokenIds",
+                    "usersRewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeAll",
+                "Node": [
+                    1207,
+                    1208,
+                    1209,
+                    1210,
+                    1211
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "bonusEndBlock",
+                    "rewardTokenCount",
+                    "usersInfo.amount",
+                    "stakedToken",
+                    "roundInfo.PRECISION_FACTOR",
+                    "usersInfo.tokenIds",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "bonusEndBlock",
+                    "rewardTokenCount",
+                    "usersInfo.amount",
+                    "stakedToken",
+                    "roundInfo.PRECISION_FACTOR",
+                    "usersInfo.tokenIds",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    1330
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "FEE_DENOMINATOR",
+                    "bonusEndBlock",
+                    "currentRound",
+                    "lastRewardBlock",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rewardPerBlock",
+                    "tokenFee",
+                    "totalStaked",
+                    "usersInfo.amount",
+                    "usersRewardDebt"
+                ],
+                "Control Variables": [
+                    "FEE_DENOMINATOR",
+                    "bonusEndBlock",
+                    "currentRound",
+                    "lastRewardBlock",
+                    "rewardToken",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rewardPerBlock",
+                    "tokenFee",
+                    "totalStaked",
+                    "usersInfo.amount",
+                    "usersRewardDebt",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "FEE_DENOMINATOR",
+                    "bonusEndBlock",
+                    "currentRound",
+                    "lastRewardBlock",
+                    "rewardToken",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rewardPerBlock",
+                    "tokenFee",
+                    "totalStaked",
+                    "usersInfo.amount",
+                    "usersRewardDebt",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "claimPrevRewards",
+                "Node": [
+                    1475
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "rewardTokenCount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.rwdToken",
+                    "usersInfo.amount",
+                    "usersRewardDebt"
+                ],
+                "Control Variables": [
+                    "currentRound",
+                    "rewardTokenCount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.rwdToken",
+                    "usersInfo.amount",
+                    "usersRewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "currentRound",
+                    "rewardTokenCount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.rwdToken",
+                    "usersInfo.amount",
+                    "usersRewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstake",
+                "Node": [
+                    1475
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "usersInfo.amount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Control Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "rewardToken",
+                    "usersInfo.amount",
+                    "vault",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "rewardToken",
+                    "usersInfo.amount",
+                    "vault",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stake",
+                "Node": [
+                    1475
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "usersInfo.amount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Control Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "rewardToken",
+                    "usersInfo.amount",
+                    "vault",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "rewardToken",
+                    "usersInfo.amount",
+                    "vault",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": [
+                    1475
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "usersInfo.amount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Control Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "rewardToken",
+                    "usersInfo.amount",
+                    "vault",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "rewardToken",
+                    "usersInfo.amount",
+                    "vault",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakeAll",
+                "Node": [
+                    1475
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "usersInfo.amount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Control Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "rewardToken",
+                    "usersInfo.amount",
+                    "vault",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "tokenFee",
+                    "lastRewardBlock",
+                    "currentRound",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "rewardTokenCount",
+                    "bonusEndBlock",
+                    "rewardToken",
+                    "usersInfo.amount",
+                    "vault",
+                    "roundInfo.PRECISION_FACTOR",
+                    "FEE_DENOMINATOR",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": [
+                    1259,
+                    1260,
+                    1261,
+                    1262,
+                    1263
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "bonusEndBlock",
+                    "currentRound",
+                    "lastRewardBlock",
+                    "rewardTokenCount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rewardPerBlock",
+                    "roundInfo.rwdToken",
+                    "stakedToken",
+                    "tokenOwner",
+                    "totalStaked",
+                    "usersInfo.amount",
+                    "usersInfo.tokenIds",
+                    "usersRewardDebt"
+                ],
+                "Full Calculation Variables": [
+                    "bonusEndBlock",
+                    "currentRound",
+                    "lastRewardBlock",
+                    "rewardTokenCount",
+                    "roundInfo.PRECISION_FACTOR",
+                    "roundInfo.accTokenPerShare",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rewardPerBlock",
+                    "roundInfo.rwdToken",
+                    "stakedToken",
+                    "tokenOwner",
+                    "totalStaked",
+                    "usersInfo.amount",
+                    "usersInfo.tokenIds",
+                    "usersRewardDebt"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": [
+                    1259,
+                    1260,
+                    1261,
+                    1262,
+                    1263
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "lastRewardBlock",
+                    "currentRound",
+                    "tokenOwner",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "bonusEndBlock",
+                    "rewardTokenCount",
+                    "usersInfo.amount",
+                    "stakedToken",
+                    "roundInfo.PRECISION_FACTOR",
+                    "usersInfo.tokenIds",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Full Calculation Variables": [
+                    "lastRewardBlock",
+                    "currentRound",
+                    "tokenOwner",
+                    "usersRewardDebt",
+                    "roundInfo.accTokenPerShare",
+                    "bonusEndBlock",
+                    "rewardTokenCount",
+                    "usersInfo.amount",
+                    "stakedToken",
+                    "roundInfo.PRECISION_FACTOR",
+                    "usersInfo.tokenIds",
+                    "totalStaked",
+                    "roundInfo.prevAndCurrentRewardsBalance",
+                    "roundInfo.rwdToken",
+                    "roundInfo.rewardPerBlock"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyUnstakeALL",
+                "Node": [
+                    1259,
+                    1260,
+                    1261,
+                    1262,
+                    1263
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "stakedToken",
+                    "tokenOwner",
+                    "usersInfo.amount",
+                    "usersInfo.tokenIds"
+                ],
+                "Full Calculation Variables": [
+                    "stakedToken",
+                    "tokenOwner",
+                    "usersInfo.amount",
+                    "usersInfo.tokenIds"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

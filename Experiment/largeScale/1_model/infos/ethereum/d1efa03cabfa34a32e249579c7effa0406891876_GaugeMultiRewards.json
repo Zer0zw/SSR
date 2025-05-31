@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakes"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "Reward.rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "_stake(amount, account)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewardFor",
+                "Node": "ERC20Upgradeable(_rewardsToken).safeTransfer(account, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdraw",
+                "Node": "stakingToken.safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "withdrawFor",
+                "Node": "_withdraw(amount, account)"
+            }
+        ]
+    }
+}

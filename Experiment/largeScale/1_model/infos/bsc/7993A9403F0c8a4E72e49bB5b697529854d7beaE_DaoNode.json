@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeToken",
+            "UserInfo.stakedOf"
+        ],
+        "User Stake Reward": [
+            "UserInfo.userReward",
+            "UserInfo.rewardOf"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastVoteAt",
+            "UserInfo.lastRewardAt"
+        ],
+        "Stake Token Address": [
+            "nodeInfo.stakedToken",
+            "voteToken"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "nodeVote",
+                "Node": "TransferHelper.safeTransferFrom(_token, msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeReward",
+                "Node": "TransferHelper.safeTransfer(tokenAddress, _user, _pending)"
+            },
+            {
+                "Function": "takeNodeReward",
+                "Node": "TransferHelper.safeTransfer(tokenAddress, msg.sender, pending)"
+            },
+            {
+                "Function": "_safeRewardTransfer",
+                "Node": "TransferHelper.safeTransfer(tokenAddress, _user, _pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "revokeNodeWithdraw",
+                "Node": "TransferHelper.safeTransfer(_token, msg.sender, _amount)"
+            },
+            {
+                "Function": "revokeVoteWithdraw",
+                "Node": "TransferHelper.safeTransfer(_token, msg.sender, _amount)"
+            }
+        ]
+    }
+}

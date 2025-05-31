@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.deposit"
+        ],
+        "User Stake Reward": [
+            "Stake.rewards"
+        ],
+        "User Stake Time": [
+            "Stake.interestCountFrom",
+            "Stake.holdFrom"
+        ],
+        "Stake Token Address": [
+            "fourRXToken"
+        ],
+        "Reward Token Address": [
+            "fourRXToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "require(fourRXToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "fourRXToken.transfer(user.wallet, availableAmount)"
+            },
+            {
+                "Function": "exitProgram",
+                "Node": "fourRXToken.transfer(user.wallet, availableAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exitProgram",
+                "Node": "fourRXToken.transfer(user.wallet, availableAmount)"
+            }
+        ]
+    }
+}

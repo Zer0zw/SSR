@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Deposit.amount"
+        ],
+        "User Stake Reward": [
+            "Deposit.profit",
+            "User.claimed"
+        ],
+        "User Stake Time": [
+            "Deposit.start",
+            "Deposit.finish"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "user.deposits.push(Deposit(plan, true, false, percent, msg.value, profit, block.timestamp, finish, 0, false))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "payable(msg.sender).transfer(totalAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

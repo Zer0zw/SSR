@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "_getPendingTokens",
+            "_getPendingTokensMany"
+        ],
+        "User Stake Time": [
+            "_ownerOf.timestamp"
+        ],
+        "Stake Token Address": [
+            "CT"
+        ],
+        "Reward Token Address": [
+            "SHELL"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTurtles",
+                "Node": "emit Transfer(address(0), msg.sender, tokenIds_[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "SHELL.mint(to_, _pendingTokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTurtles",
+                "Node": "emit Transfer(msg.sender, address(0), tokenIds_[i])"
+            }
+        ]
+    }
+}

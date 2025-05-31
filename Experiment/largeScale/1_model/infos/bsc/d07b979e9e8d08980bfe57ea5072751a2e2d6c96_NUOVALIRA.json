@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.sM.totalStaked",
+            "User.sT.totalStaked"
+        ],
+        "User Stake Reward": [
+            "User.sM.unClaimedTokens",
+            "User.sT.unClaimedTokens",
+            "User.bonus"
+        ],
+        "User Stake Time": [
+            "User.sM.checkpoint",
+            "User.sT.checkpoint",
+            "User.sM.lastStakeTime",
+            "User.sT.lastStakeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBUSD",
+                "Node": "token.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "stakeToken",
+                "Node": "_transfer(msg.sender, address(this), tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimToken_M",
+                "Node": "_mint(msg.sender, tokenAmount)"
+            },
+            {
+                "Function": "claimToken_T",
+                "Node": "_mint(msg.sender, tokenAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeToken",
+                "Node": "_transfer(address(this), msg.sender, tokenAmount)"
+            }
+        ]
+    }
+}

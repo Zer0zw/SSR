@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.balance"
+        ],
+        "User Stake Reward": [
+            "Staker.reward"
+        ],
+        "User Stake Time": [
+            "Staker.firstJoinTime",
+            "Staker.rewardUpdateTime"
+        ],
+        "Stake Token Address": [
+            "USDT_ADDRESS"
+        ],
+        "Reward Token Address": [
+            "USDT_ADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "transfer(address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "USDT_TOKEN.transfer(msg.sender, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_transfer(address(this), msg.sender, amount)"
+            }
+        ]
+    }
+}

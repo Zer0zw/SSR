@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.originAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.credit"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_JGN_TOKEN_"
+        ],
+        "Reward Token Address": [
+            "_JGN_TOKEN_"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "mint",
+                "Node": "IERC20(_JGN_TOKEN_).transferFrom(msg.sender, address(this), jgnAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "IERC20(_JGN_TOKEN_).transfer(msg.sender, jgnReceive)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "IERC20(_JGN_TOKEN_).transfer(msg.sender, jgnReceive)"
+            }
+        ]
+    }
+}

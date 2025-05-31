@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "iglooMaster.userShares"
+        ],
+        "User Stake Reward": [
+            "previousIglooStorage.rewardDebt",
+            "pendingRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "depositToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokensArray"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "depositToken.safeTransfer(to, tokenAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_previousRewardsHarvest",
+                "Node": "_safeRewardTokenTransfer(previousRewardToken, to, userPendingRewards)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_safeRewardTokenTransfer(previousRewardToken, to, userPendingRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "depositToken.safeTransfer(to, tokenAmount)"
+            }
+        ]
+    }
+}

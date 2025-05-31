@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "cardsNumOf"
+        ],
+        "User Stake Reward": [
+            "rewardsOf",
+            "claimableRewardsOf"
+        ],
+        "User Stake Time": [
+            "Entry.stakingTimestamp",
+            "lastClaimedTimestamp"
+        ],
+        "Stake Token Address": [
+            "alliance"
+        ],
+        "Reward Token Address": [
+            "rewardAddresses"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onERC1155Received",
+                "Node": "alliance.safeTransferFrom(address(this), from, allianceId, value, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(IERC20(rewardAddresses.at(i)).transfer(_msgSender(), claimableRewardOf(_msgSender(), rewardAddresses.at(i)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStakeCards",
+                "Node": "alliance.safeTransferFrom(address(this), _msgSender(), allianceId, num, \"\")"
+            },
+            {
+                "Function": "unstakeNft",
+                "Node": "planetNft.safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

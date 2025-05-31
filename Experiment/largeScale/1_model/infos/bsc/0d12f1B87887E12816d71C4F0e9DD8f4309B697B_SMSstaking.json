@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.DepositeToken",
+            "Users.DepositeToken"
+        ],
+        "User Stake Reward": [
+            "userInfo.WithdrawAbleReward",
+            "Users.WithdrawAbleReward"
+        ],
+        "User Stake Time": [
+            "userInfo.lockableDays",
+            "userInfo.depositeTime"
+        ],
+        "Stake Token Address": [
+            "ETAGHY"
+        ],
+        "Reward Token Address": [
+            "ETAGHY"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "farm",
+                "Node": "ETAGHY.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "ETAGHY.transfer(msg.sender,  totalwithdrawAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "harvest",
+                "Node": "ETAGHY.transfer(msg.sender,  totalwithdrawAmount)"
+            }
+        ]
+    }
+}

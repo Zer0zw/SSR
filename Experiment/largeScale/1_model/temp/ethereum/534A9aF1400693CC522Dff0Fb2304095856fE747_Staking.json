@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_totalSupply"
+        ],
+        "User Stake Reward": [
+            "claimedRewards",
+            "magnifiedRewardCorrections"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_totalSupply += _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "(bool success, ) = _to.call{value: claimableRewards}(\"\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "(bool success, ) = sender.call{value: claimableRewards}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_totalSupply -= _amount"
+            }
+        ]
+    }
+}

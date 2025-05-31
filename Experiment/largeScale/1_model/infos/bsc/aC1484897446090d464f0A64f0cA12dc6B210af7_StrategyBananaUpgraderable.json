@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "sharesTotal"
+        ],
+        "User Stake Reward": [
+            "earnedAmt"
+        ],
+        "User Stake Time": [
+            "lastEarnBlock"
+        ],
+        "Stake Token Address": [
+            "wantAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(wantAddress).safeTransferFrom(address(msg.sender), address(this), _wantAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "IERC20(earnedAddress).safeTransfer(govAddress, fee)"
+            },
+            {
+                "Function": "buyBack",
+                "Node": "IPancakeRouter02(cakeRouterAddress).swapExactTokensForTokensSupportingFeeOnTransferTokens(wbnbAmt, 0, wbnbToGrandPath, buyBackAddress, now + 60)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(wantAddress).safeTransfer(GrandFarmAddress, _wantAmt)"
+            }
+        ]
+    }
+}

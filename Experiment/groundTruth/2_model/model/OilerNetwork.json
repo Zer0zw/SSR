@@ -1,0 +1,95 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes.tokenAmount"
+        ],
+        "User Stake Reward": [
+            "rewardPointsEarned",
+            "stakes.expectedStakingRewardPoints"
+        ],
+        "User Stake Time": [
+            "stakes.lockingPeriodInBlocks",
+            "stakes.startBlock"
+        ],
+        "Stake Token Address": [
+            "poolToken"
+        ],
+        "Reward Token Address": [
+            "oilerToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "lockTokens"
+        ],
+        "getReward": [
+            "getRewards",
+            "release"
+        ],
+        "unStake": [
+            "unlockTokens"
+        ],
+        "Sensitive Functions": [
+            "setPoolToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "lockTokens",
+                "Node": [
+                    99
+                ],
+                "Input": [
+                    "lockingPeriodInBlocks_",
+                    "tokenAmount_"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "poolToken",
+                    "rewardPointsEarned",
+                    "stakes.expectedStakingRewardPoints",
+                    "stakes.lockingPeriodInBlocks",
+                    "stakes.tokenAmount",
+                    "stakingProgramEndsBlock",
+                    "totalRewardPoints"
+                ],
+                "Full Calculation Variables": [
+                    "poolToken",
+                    "rewardPointsEarned",
+                    "stakes.expectedStakingRewardPoints",
+                    "stakes.lockingPeriodInBlocks",
+                    "stakes.tokenAmount",
+                    "stakingProgramEndsBlock",
+                    "totalRewardPoints"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unlockTokens",
+                "Node": [
+                    119
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "stakes.startBlock",
+                    "stakes.tokenAmount"
+                ],
+                "Control Variables": [
+                    "poolToken",
+                    "stakes.startBlock",
+                    "stakes.tokenAmount"
+                ],
+                "Full Calculation Variables": [
+                    "poolToken",
+                    "stakes.startBlock",
+                    "stakes.tokenAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,170 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.lptAmount"
+        ],
+        "User Stake Reward": [
+            "users.pendedTwa",
+            "users.twaAdjust"
+        ],
+        "User Stake Time": [
+            "users.lastUpdateBlock",
+            "users.vestingBlock"
+        ],
+        "Stake Token Address": [
+            "pools.lpToken"
+        ],
+        "Reward Token Address": [
+            "twa"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "emergencyWithdraw",
+            "withdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "initialize",
+            "migrate"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1358
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_notEntered",
+                    "pools.accTwaPerLpt",
+                    "pools.lpToken",
+                    "users.lptAmount",
+                    "users.twaAdjust"
+                ],
+                "Full Calculation Variables": [
+                    "_notEntered",
+                    "pools.accTwaPerLpt",
+                    "pools.lpToken",
+                    "users.lptAmount",
+                    "users.twaAdjust"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1520
+                ],
+                "Input": [
+                    "accTwaPerLpt",
+                    "user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "twaVestingPool"
+                ],
+                "Full Calculation Variables": [
+                    "twaVestingPool"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1520
+                ],
+                "Input": [
+                    "accTwaPerLpt",
+                    "user"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "twaVestingPool"
+                ],
+                "Full Calculation Variables": [
+                    "twaVestingPool"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1380
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_notEntered",
+                    "pools.accTwaPerLpt",
+                    "pools.lpToken",
+                    "users.lptAmount",
+                    "users.twaAdjust"
+                ],
+                "Full Calculation Variables": [
+                    "_notEntered",
+                    "pools.accTwaPerLpt",
+                    "pools.lpToken",
+                    "users.lptAmount",
+                    "users.twaAdjust"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1395
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "users.lptAmount",
+                    "users.pendedTwa",
+                    "users.twaAdjust",
+                    "users.vestingBlock"
+                ],
+                "Control Variables": [
+                    "_notEntered",
+                    "pools.lpToken",
+                    "users.lptAmount",
+                    "users.pendedTwa",
+                    "users.twaAdjust",
+                    "users.vestingBlock"
+                ],
+                "Full Calculation Variables": [
+                    "_notEntered",
+                    "pools.lpToken",
+                    "users.lptAmount",
+                    "users.pendedTwa",
+                    "users.twaAdjust",
+                    "users.vestingBlock"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

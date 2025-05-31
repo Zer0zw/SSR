@@ -1,0 +1,164 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "allStake.amount"
+        ],
+        "User Stake Reward": [
+            "daylyRewardStakeVIM"
+        ],
+        "User Stake Time": [
+            "allStake.stakeAt",
+            "allStake.unStakeAt"
+        ],
+        "Stake Token Address": [
+            "allStake.tokenContract"
+        ],
+        "Reward Token Address": [
+            "VIMContract"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stake",
+            "stakeAt"
+        ],
+        "getReward": [
+            "claim"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "adminwithdraw"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    590
+                ],
+                "Input": [
+                    "amount",
+                    "tokenAddress"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "VIMContract",
+                    "allStake.amount",
+                    "lastTimeUpdateStake",
+                    "mapAddresStakeId",
+                    "mapStakeByDate",
+                    "minAmount",
+                    "paused",
+                    "stopStake"
+                ],
+                "Full Calculation Variables": [
+                    "VIMContract",
+                    "allStake.amount",
+                    "lastTimeUpdateStake",
+                    "mapAddresStakeId",
+                    "mapStakeByDate",
+                    "minAmount",
+                    "paused",
+                    "stopStake"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    702
+                ],
+                "Input": [
+                    "stakeId"
+                ],
+                "Calculation Variables": [
+                    "allStake.amount",
+                    "allStake.id",
+                    "allStake.lastTimeClaim",
+                    "allStake.tokenContract",
+                    "allStake.unStakeAt",
+                    "allStake.user",
+                    "daylyRewardStakeVIM",
+                    "lastTimeUpdateStake",
+                    "mapStakeByDate",
+                    "stopStakeAt"
+                ],
+                "Control Variables": [
+                    "VIMContract",
+                    "allStake.amount",
+                    "allStake.id",
+                    "allStake.lastTimeClaim",
+                    "allStake.tokenContract",
+                    "allStake.unStakeAt",
+                    "allStake.user",
+                    "daylyRewardStakeVIM",
+                    "lastTimeUpdateStake",
+                    "mapStakeByDate",
+                    "paused",
+                    "rewardSource",
+                    "stopStake",
+                    "stopStakeAt"
+                ],
+                "Full Calculation Variables": [
+                    "VIMContract",
+                    "allStake.amount",
+                    "allStake.id",
+                    "allStake.lastTimeClaim",
+                    "allStake.tokenContract",
+                    "allStake.unStakeAt",
+                    "allStake.user",
+                    "daylyRewardStakeVIM",
+                    "lastTimeUpdateStake",
+                    "mapStakeByDate",
+                    "paused",
+                    "rewardSource",
+                    "stopStake",
+                    "stopStakeAt"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    666
+                ],
+                "Input": [
+                    "stakeId"
+                ],
+                "Calculation Variables": [
+                    "allStake.amount",
+                    "allStake.tokenContract",
+                    "allStake.unStakeAt",
+                    "allStake.user",
+                    "allStake.withdrawed"
+                ],
+                "Control Variables": [
+                    "allStake.amount",
+                    "allStake.tokenContract",
+                    "allStake.unStakeAt",
+                    "allStake.user",
+                    "allStake.withdrawed",
+                    "paused",
+                    "timeWithdraw"
+                ],
+                "Full Calculation Variables": [
+                    "allStake.amount",
+                    "allStake.tokenContract",
+                    "allStake.unStakeAt",
+                    "allStake.user",
+                    "allStake.withdrawed",
+                    "paused",
+                    "timeWithdraw"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

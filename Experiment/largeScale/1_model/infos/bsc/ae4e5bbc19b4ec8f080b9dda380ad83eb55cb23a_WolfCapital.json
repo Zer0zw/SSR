@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.currentStaked",
+            "StakeData.amount"
+        ],
+        "User Stake Reward": [
+            "User.referralRewards",
+            "StakeData.claimedReward"
+        ],
+        "User Stake Time": [
+            "StakeData.startTime",
+            "StakeData.checkpoint"
+        ],
+        "Stake Token Address": [
+            "busd"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "busd.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "busd.transfer(msg.sender, rewardAmount)"
+            },
+            {
+                "Function": "claimLottery",
+                "Node": "busd.transfer(msg.sender, (team.lotteryAmount[currentWeek-1] * userShare) / percentDivider)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "busd.transfer(msg.sender, userStake.amount)"
+            }
+        ]
+    }
+}

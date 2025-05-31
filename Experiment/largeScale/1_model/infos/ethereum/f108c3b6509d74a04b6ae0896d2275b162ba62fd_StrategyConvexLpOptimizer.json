@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "sushi",
+            "xsushi",
+            "crv",
+            "cvx",
+            "cvxCrv"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_deposit",
+                "Node": "booster.deposit(pid, _want, true)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_tendGainsFromPositions",
+                "Node": "baseRewardsPool.getReward(address(this), true)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "claimZap.claimRewards(new address[](0), chefIds, false, false, false, 0, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "baseRewardsPool.withdrawAndUnwrap(_toWithdraw, false)"
+            }
+        ]
+    }
+}

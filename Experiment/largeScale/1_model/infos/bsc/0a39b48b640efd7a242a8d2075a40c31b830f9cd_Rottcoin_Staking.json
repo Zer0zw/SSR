@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens"
+        ],
+        "User Stake Time": [
+            "stakingTime"
+        ],
+        "Stake Token Address": [
+            "RottToken"
+        ],
+        "Reward Token Address": [
+            "RottToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "Token(RottToken).transferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "Token(RottToken).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "claimDivs",
+                "Node": "updateAccount(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(RottToken).transfer(msg.sender, amountToWithdraw), \"Could not transfer tokens.\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(RottToken).transfer(msg.sender, amountAfterFee), \"Could not transfer tokens.\")"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "require(Token(RottToken).transfer(devAddress, WithdrawFee), \"Could not transfer tokens.\")"
+            }
+        ]
+    }
+}

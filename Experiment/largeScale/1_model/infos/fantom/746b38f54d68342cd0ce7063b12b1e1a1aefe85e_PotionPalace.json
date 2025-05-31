@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "receipt.arcturianId"
+        ],
+        "User Stake Reward": [
+            "potionPerBlock"
+        ],
+        "User Stake Time": [
+            "receipt.potionBrewedBlock"
+        ],
+        "Stake Token Address": [
+            "arcturian"
+        ],
+        "Reward Token Address": [
+            "potion"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterPalace",
+                "Node": "arcturian.safeTransferFrom(msg.sender, address(this), arcturianId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": "potion.transfer(receipt[arcturianId].owner, potionsMade)"
+            },
+            {
+                "Function": "collectAll",
+                "Node": "potion.transfer(receipt[arcturianId[i]].owner, potionsMade)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exitPalace",
+                "Node": "arcturian.safeTransferFrom(address(this), msg.sender, arcturianId)"
+            }
+        ]
+    }
+}

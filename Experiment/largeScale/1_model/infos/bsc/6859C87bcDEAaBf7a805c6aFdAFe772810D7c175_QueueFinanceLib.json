@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_deposit.stakedAmount",
+            "_deposit.initialStakedAmount"
+        ],
+        "User Stake Reward": [
+            "_pending",
+            "_deposit.accuredCoin"
+        ],
+        "User Stake Time": [
+            "_deposit.lastUpdated",
+            "pool.poolStartTime",
+            "pool.poolEndTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositFromWithdraw",
+                "Node": "iDepositContractQF.depositFromWithdraw(_pid, ((depositAmount).mul(fetchWithdrawData.poolInfo.eInvestCoinValue)).div(_deposit.iCoinValue), true, msg.sender)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawBySequence",
+                "Node": "iDataContractQF.updatePoolBalance(_pid, (investCoinValueAmount.div(_deposit.iCoinValue)).add(_pending), true)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "emit Withdraw(msg.sender, _pid, _claimAmount.add(_pending))"
+            },
+            {
+                "Function": "withdrawBySequence",
+                "Node": "iDataContractQF.updatePoolBalance(_pid, (investCoinValueAmount.div(_deposit.iCoinValue)).add(_pending), true)"
+            }
+        ]
+    }
+}

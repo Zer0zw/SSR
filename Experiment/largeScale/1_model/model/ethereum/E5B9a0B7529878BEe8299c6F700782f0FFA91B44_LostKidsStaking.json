@@ -1,0 +1,133 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedTokens"
+        ],
+        "User Stake Reward": [
+            "rewardPerKid"
+        ],
+        "User Stake Time": [
+            "stakedTokens.stakeTime"
+        ],
+        "Stake Token Address": [
+            "lostkids"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addManyToRegister"
+        ],
+        "getReward": [
+            "claimManyFromRegister"
+        ],
+        "unStake": [
+            "claimManyFromRegister",
+            "rescue"
+        ],
+        "Sensitive Functions": [
+            "ownerBackupClaim",
+            "setNewAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addManyToRegister",
+                "Node": [
+                    1661
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "lostkids"
+                ],
+                "Full Calculation Variables": [
+                    "lostkids"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimManyFromRegister",
+                "Node": [
+                    1695
+                ],
+                "Input": [
+                    "tokenIds",
+                    "unstake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "rewardsToken"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "rewardsToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimManyFromRegister",
+                "Node": [
+                    1712
+                ],
+                "Input": [
+                    "unstake",
+                    "tokenId",
+                    "unstake",
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "register.tokenId",
+                    "rewardPerKid",
+                    "register.stakeTime",
+                    "register.owner",
+                    "lostkids"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "register.tokenId",
+                    "rewardPerKid",
+                    "register.stakeTime",
+                    "register.owner",
+                    "lostkids"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "rescue",
+                "Node": [
+                    1748
+                ],
+                "Input": [
+                    "tokenIds"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "lostkids",
+                    "register.owner",
+                    "register.tokenId",
+                    "rescueEnabled"
+                ],
+                "Full Calculation Variables": [
+                    "lostkids",
+                    "register.owner",
+                    "register.tokenId",
+                    "rescueEnabled"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

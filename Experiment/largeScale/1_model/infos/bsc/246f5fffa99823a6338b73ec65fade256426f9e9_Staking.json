@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.initialAmount"
+        ],
+        "User Stake Reward": [
+            "Stake.finalAmount"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "TKN"
+        ],
+        "Reward Token Address": [
+            "TKN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TKN.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "TKN.transfer(msg.sender, total)"
+            }
+        ]
+    }
+}

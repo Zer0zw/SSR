@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "UserData.totalHarvested",
+            "UserData.currentRewards"
+        ],
+        "User Stake Time": [
+            "UserData.startTime",
+            "UserData.lastStakeTime"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_rewardToken.transfer(receiver, rewards)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "_rewardToken.transfer(receiver, rewards)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "_rewardToken.transfer(receiver, rewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_token.transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "forceUnstake",
+                "Node": "_token.transfer(account, amount)"
+            }
+        ]
+    }
+}

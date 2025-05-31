@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "startedstaking",
+            "lastclaim"
+        ],
+        "Stake Token Address": [
+            "wrappedcompnft"
+        ],
+        "Reward Token Address": [
+            "CTKNAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStakeManual",
+                "Node": "Bank(bank).manageBalances(4,msg.sender,0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "Bank(bank).manageBalances(1,msg.sender,reward)"
+            },
+            {
+                "Function": "removeStake",
+                "Node": "Bank(bank).manageBalances(1,msg.sender,temp2)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "Bank(bank).manageBalances(1,msg.sender,temp2)"
+            }
+        ]
+    }
+}

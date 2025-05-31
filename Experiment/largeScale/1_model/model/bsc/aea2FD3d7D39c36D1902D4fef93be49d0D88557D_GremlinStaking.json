@@ -1,0 +1,215 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakings.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakings.claimedAmount"
+        ],
+        "User Stake Time": [
+            "stakings.lastBlockStaked"
+        ],
+        "Stake Token Address": [
+            "GREM"
+        ],
+        "Reward Token Address": [
+            "GREM"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "enterStaking"
+        ],
+        "getReward": [
+            "claim",
+            "singleCompound"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "leaveStaking"
+        ],
+        "Sensitive Functions": [
+            "sendBtcDividents"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": [
+                    526
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GREM",
+                    "addressIndexes",
+                    "divisor",
+                    "ecoSystemWallet",
+                    "stakings.index",
+                    "stakings.lastBlockCompounded",
+                    "stakings.lastBlockStaked",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked",
+                    "whaleFee",
+                    "whaleFeeNumber"
+                ],
+                "Full Calculation Variables": [
+                    "GREM",
+                    "addressIndexes",
+                    "divisor",
+                    "ecoSystemWallet",
+                    "stakings.index",
+                    "stakings.lastBlockCompounded",
+                    "stakings.lastBlockStaked",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked",
+                    "whaleFee",
+                    "whaleFeeNumber"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": [
+                    633
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "GREMPerBlock",
+                    "stakings.claimedAmount",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked"
+                ],
+                "Control Variables": [
+                    "GREM",
+                    "GREMPerBlock",
+                    "stakings.claimedAmount",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "GREM",
+                    "GREMPerBlock",
+                    "stakings.claimedAmount",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "singleCompound",
+                "Node": [
+                    653
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GREMPerBlock",
+                    "divisor",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked",
+                    "whaleFee",
+                    "whaleFeeNumber"
+                ],
+                "Full Calculation Variables": [
+                    "GREMPerBlock",
+                    "divisor",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked",
+                    "whaleFee",
+                    "whaleFeeNumber"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": [
+                    567
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "GREMPerBlock",
+                    "divisor",
+                    "earlyWithdrawFee",
+                    "stakings.index",
+                    "stakings.lastBlockCompounded",
+                    "stakings.lastBlockStaked",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked"
+                ],
+                "Control Variables": [
+                    "GREM",
+                    "GREMPerBlock",
+                    "blockPerSecond",
+                    "divisor",
+                    "earlyWithdrawFee",
+                    "earlyWithdrawFeeTime",
+                    "stakings.index",
+                    "stakings.lastBlockCompounded",
+                    "stakings.lastBlockStaked",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked"
+                ],
+                "Full Calculation Variables": [
+                    "GREM",
+                    "GREMPerBlock",
+                    "blockPerSecond",
+                    "divisor",
+                    "earlyWithdrawFee",
+                    "earlyWithdrawFeeTime",
+                    "stakings.index",
+                    "stakings.lastBlockCompounded",
+                    "stakings.lastBlockStaked",
+                    "stakings.stakedAmount",
+                    "totalPool",
+                    "totalStaked"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    668
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GREM",
+                    "stakings.index",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount"
+                ],
+                "Full Calculation Variables": [
+                    "GREM",
+                    "stakings.index",
+                    "stakings.lastBlockCompounded",
+                    "stakings.stakedAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

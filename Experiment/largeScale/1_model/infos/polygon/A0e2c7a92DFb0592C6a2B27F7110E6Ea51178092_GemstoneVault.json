@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.shares",
+            "UserInfo.ownedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "gemstones"
+        ],
+        "Reward Token Address": [
+            "gemstones"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "gemstones.safeTransferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "gemstones.safeTransfer(msg.sender, currentCallFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "gemstones.safeTransfer(msg.sender, actualReward)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "gemstones.safeTransfer(msg.sender, actualReward)"
+            }
+        ]
+    }
+}

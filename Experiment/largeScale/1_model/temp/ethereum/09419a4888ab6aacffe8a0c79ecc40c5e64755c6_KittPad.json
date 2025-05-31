@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Share.amount",
+            "Share.amountBase"
+        ],
+        "User Stake Reward": [
+            "Reward.totalRealised",
+            "Reward.totalRealisedForNft"
+        ],
+        "User Stake Time": [
+            "Share.stakedTime"
+        ],
+        "Stake Token Address": [
+            "shareholderToken"
+        ],
+        "Reward Token Address": [
+            "prTokenList"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "shareContract.transferFrom(shareholder, address(this), stakeAmount)"
+            },
+            {
+                "Function": "stakeNFT",
+                "Node": "nftContract.transferFrom(shareholder, address(this), nftTokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distributeRewardForNft",
+                "Node": "payable(shareholder).call{ value: earnedRewards }(\"\")"
+            },
+            {
+                "Function": "distributeReward",
+                "Node": "rwdt.transfer(shareholder, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "nftContract.transferFrom(address(this), shareholder, nftTokenIds[i])"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "shareContract.transfer(account, baseAmount)"
+            }
+        ]
+    }
+}

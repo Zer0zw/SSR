@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "RewardDistributionTokenUpgradeable.withdrawReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "StakingPool.stakingToken"
+        ],
+        "Reward Token Address": [
+            "StakingPool.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "_rewardDistributionTokenAddr(pool).withdrawReward(account)"
+            },
+            {
+                "Function": "emergencyClaimAndMigrate",
+                "Node": "oldDist.withdrawReward(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransfer(account, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransfer(account, balanceOf(vaultId, msg.sender))"
+            },
+            {
+                "Function": "emergencyExit",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransfer(msg.sender, dist.balanceOf(msg.sender))"
+            },
+            {
+                "Function": "emergencyExitAndClaim",
+                "Node": "IERC20Upgradeable(pool.stakingToken).safeTransfer(msg.sender, dist.balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

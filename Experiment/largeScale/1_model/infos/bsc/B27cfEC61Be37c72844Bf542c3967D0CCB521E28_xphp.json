@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "dphp0",
+            "dphp1",
+            "dphp2",
+            "dphp3"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "withdrawTime0",
+            "withdrawTime1",
+            "withdrawTime2",
+            "withdrawTime3"
+        ],
+        "Stake Token Address": [
+            "php"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "getXphp",
+                "Node": "emit Transfer(address(0), msg.sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withDraw",
+                "Node": "emit Transfer(msg.sender, address(0), amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UnStake",
+                "Node": "super._transfer(stakeAdr,sender,amount)"
+            }
+        ]
+    }
+}

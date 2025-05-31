@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmounts"
+        ],
+        "User Stake Reward": [
+            "accuAirdropReward",
+            "accuReferralReward"
+        ],
+        "User Stake Time": [
+            "snapshotTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "airdropToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IAirdropHubV1(hub).transferFrom(staker, amount)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IAirdropHubV1(hub).transferFrom(staker, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_unstake",
+                "Node": "ITRC20(airdropToken).transfer(staker, airdropReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ITRC20(stakeToken).transfer(staker, amount)"
+            },
+            {
+                "Function": "unstakeWithoutReward",
+                "Node": "ITRC20(stakeToken).transfer(staker, amount)"
+            },
+            {
+                "Function": "unstakeFor",
+                "Node": "ITRC20(stakeToken).transfer(staker, amount)"
+            },
+            {
+                "Function": "unstakeFromHub",
+                "Node": "ITRC20(stakeToken).transfer(staker, amount)"
+            },
+            {
+                "Function": "_unstake",
+                "Node": "ITRC20(stakeToken).transfer(staker, amount)"
+            }
+        ]
+    }
+}

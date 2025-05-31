@@ -1,0 +1,64 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stake"
+        ],
+        "User Stake Reward": [
+            "userRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastDepositedTime",
+            "UserInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakeToken.transferFrom(_user, address(this), _amount)"
+            },
+            {
+                "Function": "depositForUser",
+                "Node": "stakeToken.transferFrom(_user, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "rewardTokens[i].transfer(_user, amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "rewardTokens[i].transfer(_user, amount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "rewardTokens[i].transfer(_user, amount)"
+            },
+            {
+                "Function": "withdrawAllForUser",
+                "Node": "rewardTokens[i].transfer(_user, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakeToken.transfer(_user, withdrawAmount)"
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": "stakeToken.transfer(_user, withdrawAmount)"
+            },
+            {
+                "Function": "withdrawAllForUser",
+                "Node": "stakeToken.transfer(_user, withdrawAmount)"
+            }
+        ]
+    }
+}

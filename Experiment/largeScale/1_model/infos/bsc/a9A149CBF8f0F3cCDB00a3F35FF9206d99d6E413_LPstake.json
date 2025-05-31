@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakeTotal",
+            "stakeLog.LPAmount"
+        ],
+        "User Stake Reward": [
+            "stakeLog.totalEarn",
+            "stakeLog.remainEarn"
+        ],
+        "User Stake Time": [
+            "stakeLog.startTime",
+            "stakeLog.endTime"
+        ],
+        "Stake Token Address": [
+            "LPADDRESS"
+        ],
+        "Reward Token Address": [
+            "ERTADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "userStake",
+                "Node": "IERC20(LPADDRESS).safeTransferFrom(msg.sender, address(this), _lpAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "userClaim",
+                "Node": "IERC20(ERTADDRESS).transfer(msg.sender, curEarn)"
+            },
+            {
+                "Function": "parentClaim",
+                "Node": "IERC20(ERTADDRESS).transfer(msg.sender, pCurEarn)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "userUnstake",
+                "Node": "IERC20(LPADDRESS).transfer(msg.sender, userStakeLog[msg.sender][_index].LPAmount"
+            }
+        ]
+    }
+}

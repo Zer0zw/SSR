@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens",
+            "totalEarnedEth"
+        ],
+        "User Stake Time": [
+            "depositTime"
+        ],
+        "Stake Token Address": [
+            "trustedDepositTokenAddress"
+        ],
+        "Reward Token Address": [
+            "trustedRewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(trustedPlatformTokenAddress).safeTransfer(feeRecipientAddress, fee)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(withdrawAsToken).safeTransfer(msg.sender, withdrawTokenReceived)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "IERC20(tokenToTransfer).safeTransfer(account, amountToTransfer)"
+            },
+            {
+                "Function": "updateAccount",
+                "Node": "IERC20(uniswapRouterV2.WETH()).safeTransfer(account, pendingDivsEth)"
+            },
+            {
+                "Function": "claim",
+                "Node": "updateAccount(msg.sender, _amountOutMin_claimAsToken_dyp, _amountOutMin_attemptSwap, _deadline)"
+            },
+            {
+                "Function": "claimAs",
+                "Node": "updateAccount(msg.sender, claimAsToken, _amountOutMin_claimAsToken_weth, _amountOutMin_claimAsToken_dyp, _amountOutMin_attemptSwap, _deadline)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(withdrawAsToken).safeTransfer(msg.sender, withdrawTokenReceived)"
+            }
+        ]
+    }
+}

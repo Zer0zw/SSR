@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.amount",
+            "stakingStorage.stakingBalanceOf"
+        ],
+        "User Stake Reward": [
+            "userInfo.reward",
+            "mOldReward"
+        ],
+        "User Stake Time": [
+            "stakingStorage.getStakesDataByIndex.staketime"
+        ],
+        "Stake Token Address": [
+            "linaToken"
+        ],
+        "Reward Token Address": [
+            "linaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "staking",
+                "Node": "linaToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "linaToken.transfer(msg.sender, iReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancelStaking",
+                "Node": "linaToken.transfer(msg.sender, returnAmount.sub(amount))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokensStakedByUserDoodlePalNFT",
+            "tokensStakedByUserNFTv2"
+        ],
+        "User Stake Reward": [
+            "pendingRewardsDoodlePalNFT",
+            "pendingRewardsNFTv2"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedAtBlock",
+            "StakeInfo.lastHarvestBlock"
+        ],
+        "Stake Token Address": [
+            "collectionAddressDoodlePalNFT",
+            "collectionAddressNFTv2"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeDoodlePalNFT",
+                "Node": "_mint(_msgSender(), welcomeBonusAmountDoodlePalNFT)"
+            },
+            {
+                "Function": "stakeNFTv2",
+                "Node": "_mint(_msgSender(), welcomeBonusAmountNFTv2)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestDoodlePalNFT",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            },
+            {
+                "Function": "harvestNFTv2",
+                "Node": "_mint(_msgSender(), rewardAmountInERC20Tokens)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeDoodlePalNFT",
+                "Node": "IERC721(collectionAddressDoodlePalNFT).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            },
+            {
+                "Function": "unstakeNFTv2",
+                "Node": "IERC721(collectionAddressNFTv2).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

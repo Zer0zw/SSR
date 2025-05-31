@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "converter.removeLiquidityAndConvert(IPancakePair(address(lp)), compoundedLPRewardAmount, minToken0AmountConverted, minToken1AmountConverted, token0Percentage, msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "converter.removeLiquidityAndConvert(IPancakePair(address(lp)), amount, minToken0AmountConverted, minToken1AmountConverted, token0Percentage, msg.sender)"
+            },
+            {
+                "Function": "exit",
+                "Node": "converter.removeLiquidityAndConvert(IPancakePair(address(lp)), _balances[msg.sender], minToken0AmountConverted, minToken1AmountConverted, token0Percentage, msg.sender)"
+            }
+        ]
+    }
+}

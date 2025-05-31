@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "periodFinish",
+            "lastUpdateTime"
+        ],
+        "Stake Token Address": [
+            "lpt"
+        ],
+        "Reward Token Address": [
+            "bidaddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakePool2",
+                "Node": "super.stake(amount)"
+            },
+            {
+                "Function": "autoStakeETHPool2",
+                "Node": "super.addStake(receivedLPtoken)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewardBid",
+                "Node": "bidtoken.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawPool2",
+                "Node": "super.withdraw(amount)"
+            },
+            {
+                "Function": "withdrawAndClaimPool2",
+                "Node": "super.withdraw(_amount)"
+            },
+            {
+                "Function": "exitPool2",
+                "Node": "super.withdraw(balanceOf(msg.sender))"
+            }
+        ]
+    }
+}

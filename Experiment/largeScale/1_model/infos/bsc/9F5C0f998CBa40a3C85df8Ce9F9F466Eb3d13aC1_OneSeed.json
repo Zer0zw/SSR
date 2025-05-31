@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakeholders.amount"
+        ],
+        "User Stake Reward": [
+            "_myStakeRewards.reward"
+        ],
+        "User Stake Time": [
+            "_stakeholders.lastReward"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "removeFromAddress(_msgSender(), amount)"
+            },
+            {
+                "Function": "stakeReferred",
+                "Node": "removeFromAddress(_msgSender(), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rewardAllStaking",
+                "Node": "addToAddress(_stakeholders[_stakeMapping[i]].holder, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "if (_isExcluded[_msgSender()]) { _tOwned[_msgSender()] = _tOwned[_msgSender()].add(amount) } else { _rOwned[_msgSender()] = _rOwned[_msgSender()].add(rAmount) }"
+            }
+        ]
+    }
+}

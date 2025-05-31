@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "farmedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantAddress",
+            "farmedAddress"
+        ],
+        "Reward Token Address": [
+            "earnedAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_wormDeposit",
+                "Node": "IMasterchef(stakingRewardsAddress).deposit(pid, _farmedAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_wormHarvest",
+                "Node": "IMasterchef(stakingRewardsAddress).withdraw(pid, 0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_wormWithdraw",
+                "Node": "IMasterchef(stakingRewardsAddress).withdraw(pid, _farmedAmt)"
+            },
+            {
+                "Function": "_emergencyWormWithdraw",
+                "Node": "IMasterchef(stakingRewardsAddress).emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

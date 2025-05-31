@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User._DaiDeposited"
+        ],
+        "User Stake Reward": [
+            "User._rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "DaiToken"
+        ],
+        "Reward Token Address": [
+            "LunaCoreToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeDai",
+                "Node": "DaiToken.transferFrom(_msgSender(), address(0xcC249D41F3b4ea5C79EC82F5F0D91f39CFa2B92d), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "LunaCoreToken.transfer(_msgSender(), _pendingRewards)"
+            },
+            {
+                "Function": "stakeDai",
+                "Node": "LunaCoreToken.transfer(_msgSender(), _pendingRewards)"
+            }
+        ],
+        "unStake": []
+    }
+}

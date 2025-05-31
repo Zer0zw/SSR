@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.amount"
+        ],
+        "User Stake Reward": [
+            "Staker.dividend_amount"
+        ],
+        "User Stake Time": [
+            "Staker.time"
+        ],
+        "Stake Token Address": [
+            "coinAddress"
+        ],
+        "Reward Token Address": [
+            "coinAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "MSPACE.transferFrom(msg.sender, gameDevWallet, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "MSPACE.transferFrom(gameDevWallet, msg.sender, amountToWithdraw)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "MSPACE.transferFrom(gameDevWallet, msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

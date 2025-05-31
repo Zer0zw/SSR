@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.totalRewards"
+        ],
+        "User Stake Time": [
+            "UserInfo.startTime"
+        ],
+        "Stake Token Address": [
+            "brl"
+        ],
+        "Reward Token Address": [
+            "usdc"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "brl.safeTransferFrom(address(msg.sender), address(this), _brlAmount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "nft.safeTransferFrom(msg.sender, address(this), 0, _nftAmount, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingUSDC",
+                "Node": "IERC20(usdc).transfer(msg.sender, amountToSend)"
+            },
+            {
+                "Function": "_claimRewards",
+                "Node": "IERC20(usdc).transfer(msg.sender, amountToSend)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "brl.safeTransfer(address(msg.sender), _brlAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, 0, _nftAmount, \"\")"
+            }
+        ]
+    }
+}

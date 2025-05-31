@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "TOTAL_BANANA_STAKED",
+            "TOTAL_GNANA_STAKED"
+        ],
+        "User Stake Reward": [
+            "TOTAL_BANANA_DISTRIBUTED"
+        ],
+        "User Stake Time": [
+            "TIME_LOCKED_BANANA",
+            "TIME_LOCKED_GNANA"
+        ],
+        "Stake Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ],
+        "Reward Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeBanana",
+                "Node": "IBananaPool(BANANA_POOL).enterStaking(bananaToStake)"
+            },
+            {
+                "Function": "stakeGanana",
+                "Node": "IGnanaPool(GNANA_POOL).deposit(gnanaToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestBanana",
+                "Node": "IBananaPool(BANANA_POOL).leaveStaking(0)"
+            },
+            {
+                "Function": "harvestGnana",
+                "Node": "IGnanaPool(GNANA_POOL).withdraw(0)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBanana",
+                "Node": "IBananaPool(BANANA_POOL).leaveStaking((TOTAL_BANANA_STAKED / 100) *  percent)"
+            },
+            {
+                "Function": "withdrawGnana",
+                "Node": "IGnanaPool(GNANA_POOL).withdraw(_amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,105 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_liquidityBalances"
+        ],
+        "User Stake Reward": [
+            "dividendMap"
+        ],
+        "User Stake Time": [
+            "ClientMap.joinTime"
+        ],
+        "Stake Token Address": [
+            "PancakePair"
+        ],
+        "Reward Token Address": [
+            "USDT"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "addPledge"
+        ],
+        "getReward": [
+            "withdrawDividend"
+        ],
+        "unStake": [
+            "removePledge"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addPledge",
+                "Node": [
+                    1050,
+                    1051,
+                    1052,
+                    1053,
+                    1054
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "PancakePair"
+                ],
+                "Full Calculation Variables": [
+                    "PancakePair"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawDividend",
+                "Node": [
+                    1165
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "divBase",
+                    "dividendMap"
+                ],
+                "Control Variables": [
+                    "balanceTop",
+                    "divBase",
+                    "dividendMap"
+                ],
+                "Full Calculation Variables": [
+                    "balanceTop",
+                    "divBase",
+                    "dividendMap"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removePledge",
+                "Node": [
+                    1082
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "ClientMap.joinKey",
+                    "PancakePair",
+                    "_liquidityBalances",
+                    "_liquiditySupply"
+                ],
+                "Full Calculation Variables": [
+                    "ClientMap.joinKey",
+                    "PancakePair",
+                    "_liquidityBalances",
+                    "_liquiditySupply"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

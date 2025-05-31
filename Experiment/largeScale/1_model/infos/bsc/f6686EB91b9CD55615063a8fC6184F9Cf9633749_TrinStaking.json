@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staked.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "staked.claimedAmount"
+        ],
+        "User Stake Time": [
+            "staked.lastBlockStaked"
+        ],
+        "Stake Token Address": [
+            "TRIN"
+        ],
+        "Reward Token Address": [
+            "TRIN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "TRIN.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "TRIN.transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "singleCompound",
+                "Node": "TRIN.transfer(ecoSystemWallet, whaleFeeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "TRIN.transfer(msg.sender, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "TRIN.transfer( msg.sender, stakings[msg.sender].stakedAmount)"
+            }
+        ]
+    }
+}

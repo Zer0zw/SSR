@@ -1,0 +1,60 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depoite.amount"
+        ],
+        "User Stake Reward": [
+            "user.refferalRewardsBNB",
+            "user.refferalRewardsBUSD"
+        ],
+        "User Stake Time": [
+            "depoite.depositeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "token.transferFrom(msg.sender, address(this), amount.sub(tax))"
+            },
+            {
+                "Function": "compund",
+                "Node": "investor[msg.sender].deposites.push(depoite(amount, block.timestamp,true,0,block.timestamp))"
+            },
+            {
+                "Function": "reStake",
+                "Node": "investor[msg.sender].deposites.push(depoite(amount, block.timestamp,true,0,block.timestamp))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardBUSD",
+                "Node": "token.transfer(msg.sender, totalRewards.sub(taxR))"
+            },
+            {
+                "Function": "withdrawRewardBNB",
+                "Node": "payable(msg.sender).transfer(totalRewards.sub(taxR))"
+            },
+            {
+                "Function": "withdrawRefferalReward",
+                "Node": "token.transfer(msg.sender, totalDeposite)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTokensBUSD",
+                "Node": "token.transfer(msg.sender, totalDeposite.sub(tax))"
+            },
+            {
+                "Function": "withdrawTokensBNB",
+                "Node": "payable(msg.sender).transfer(totalDeposite.sub(tax))"
+            }
+        ]
+    }
+}

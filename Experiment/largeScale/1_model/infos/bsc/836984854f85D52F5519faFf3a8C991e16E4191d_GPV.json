@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "orders.token",
+            "currentOrders.token"
+        ],
+        "User Stake Reward": [
+            "orders.profitToken",
+            "currentOrders.profitToken"
+        ],
+        "User Stake Time": [
+            "orders.time",
+            "currentOrders.time"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "pledgeToken",
+                "Node": "balanceOf[msg.sender] = Utils.safeSub(balanceOf[msg.sender], _value)"
+            },
+            {
+                "Function": "currentToken",
+                "Node": "balanceOf[msg.sender] = Utils.safeSub(balanceOf[msg.sender], _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeProfit",
+                "Node": "balanceOf[msg.sender] = Utils.safeAdd(balanceOf[msg.sender], money)"
+            },
+            {
+                "Function": "profitTask",
+                "Node": "balanceOf[msg.sender] = Utils.safeAdd(balanceOf[msg.sender], money)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "extractOrdersToken",
+                "Node": "balanceOf[msg.sender] = Utils.safeAdd(balanceOf[msg.sender], item.token)"
+            },
+            {
+                "Function": "extractCurrentToken",
+                "Node": "balanceOf[msg.sender] = Utils.safeAdd(balanceOf[msg.sender], currentOrders[msg.sender].token)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,237 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "userInfo.amount"
+            ],
+            "User Stake Reward": [
+                "userInfo.rewardReceived",
+                "userInfo.rewardDebt"
+            ],
+            "User Stake Time": [
+                "userDepositInfo.orderTime"
+            ],
+            "Stake Token Address": [
+                "poolInfo.lpToken"
+            ],
+            "Reward Token Address": [
+                "poolInfo.bonusToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "deposit",
+                "depositByDelegate"
+            ],
+            "getReward": [
+                "claimAllReward",
+                "claimBylpToken",
+                "deposit",
+                "depositByDelegate",
+                "withdraw",
+                "withdrawBylpToken"
+            ],
+            "unStake": [
+                "emergencyWithdraw",
+                "withdraw",
+                "withdrawBylpToken"
+            ],
+            "Sensitive Functions": [
+                "add",
+                "setBonus"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "poolInfo.accITokenPerShare",
+                        "poolInfo.depositMax",
+                        "poolInfo.depositMin",
+                        "poolInfo.enableBonus",
+                        "poolInfo.lpToken",
+                        "userInfo.amount",
+                        "userInfo.rewardDebt"
+                    ]
+                },
+                {
+                    "Function": "depositByDelegate",
+                    "Calculation Variables": [
+                        "delegateCaller",
+                        "openDelegate",
+                        "poolInfo.accITokenPerShare",
+                        "poolInfo.depositMax",
+                        "poolInfo.depositMin",
+                        "poolInfo.enableBonus",
+                        "poolInfo.lpToken",
+                        "poolInfo.totalAmount",
+                        "userInfo.amount",
+                        "userInfo.rewardDebt"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "poolInfo.depositMin",
+                        "poolInfo.enableBonus",
+                        "userInfo.amount",
+                        "userInfo.rewardReceived",
+                        "userInfo.lastReceived",
+                        "poolInfo.accITokenPerShare",
+                        "poolInfo.depositMax",
+                        "userInfo.rewardDebt",
+                        "iToken",
+                        "poolInfo.swapPairAddress"
+                    ]
+                },
+                {
+                    "Function": "claimBylpToken",
+                    "Calculation Variables": [
+                        "poolInfo.depositMin",
+                        "poolInfo.enableBonus",
+                        "userInfo.amount",
+                        "userInfo.rewardReceived",
+                        "poolInfo.lpToken",
+                        "userInfo.lastReceived",
+                        "poolInfo.accITokenPerShare",
+                        "poolInfo.depositMax",
+                        "userInfo.rewardDebt",
+                        "iToken",
+                        "poolInfo.swapPairAddress"
+                    ]
+                },
+                {
+                    "Function": "claimAllReward",
+                    "Calculation Variables": [
+                        "poolInfo.depositMin",
+                        "poolInfo.enableBonus",
+                        "userInfo.amount",
+                        "userInfo.rewardReceived",
+                        "poolInfo.lpToken",
+                        "userInfo.lastReceived",
+                        "poolInfo.accITokenPerShare",
+                        "poolInfo.depositMax",
+                        "userInfo.rewardDebt",
+                        "iToken",
+                        "poolInfo.swapPairAddress"
+                    ]
+                },
+                {
+                    "Function": "depositByDelegate",
+                    "Calculation Variables": [
+                        "poolInfo.depositMin",
+                        "poolInfo.enableBonus",
+                        "userInfo.amount",
+                        "poolInfo.accITokenPerShare",
+                        "poolInfo.depositMax",
+                        "openDelegate",
+                        "userInfo.rewardDebt",
+                        "delegateCaller",
+                        "iToken",
+                        "poolInfo.swapPairAddress"
+                    ]
+                },
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "poolInfo.enableBonus",
+                        "poolInfo.lockSeconds",
+                        "userInfo.amount",
+                        "userInfo.rewardReceived",
+                        "poolInfo.lpToken",
+                        "userInfo.lastReceived",
+                        "userInfo.rewardDebt",
+                        "poolInfo.accITokenPerShare",
+                        "paused",
+                        "iToken",
+                        "poolInfo.swapPairAddress"
+                    ]
+                },
+                {
+                    "Function": "withdrawBylpToken",
+                    "Calculation Variables": [
+                        "poolInfo.enableBonus",
+                        "poolInfo.lockSeconds",
+                        "userInfo.amount",
+                        "userInfo.rewardReceived",
+                        "poolInfo.lpToken",
+                        "userInfo.lastReceived",
+                        "userInfo.rewardDebt",
+                        "poolInfo.accITokenPerShare",
+                        "paused",
+                        "iToken",
+                        "poolInfo.swapPairAddress"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "poolInfo.accITokenPerShare",
+                        "poolInfo.enableBonus",
+                        "poolInfo.lockSeconds",
+                        "poolInfo.lpToken",
+                        "poolInfo.totalAmount",
+                        "userDepositInfo.amount",
+                        "userDepositInfo.orderTime",
+                        "userInfo.amount",
+                        "userInfo.lastReceived",
+                        "userInfo.rewardDebt",
+                        "userInfo.rewardReceived",
+                        "paused"
+                    ]
+                },
+                {
+                    "Function": "withdrawBylpToken",
+                    "Calculation Variables": [
+                        "poolInfo.accITokenPerShare",
+                        "poolInfo.enableBonus",
+                        "poolInfo.lockSeconds",
+                        "poolInfo.lpToken",
+                        "poolInfo.totalAmount",
+                        "userDepositInfo.amount",
+                        "userDepositInfo.orderTime",
+                        "userInfo.amount",
+                        "userInfo.lastReceived",
+                        "userInfo.rewardDebt",
+                        "userInfo.rewardReceived",
+                        "paused"
+                    ]
+                },
+                {
+                    "Function": "emergencyWithdraw",
+                    "Calculation Variables": [
+                        "poolInfo.lpToken",
+                        "userInfo.amount",
+                        "paused"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [
+            "deposit",
+            "claimAllReward",
+            "claimBylpToken"
+        ],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

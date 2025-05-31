@@ -1,0 +1,84 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "stakes.amountStaked"
+            ],
+            "User Stake Reward": [
+                "stakers.rewardsClaimed"
+            ],
+            "User Stake Time": [
+                "stakes.lockPeriod",
+                "stakes.stakedDay",
+                "stakes.unstakedDay",
+                "stakers.lastClaimDay"
+            ],
+            "Stake Token Address": [
+                "jokToken"
+            ],
+            "Reward Token Address": [
+                "jokToken"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "withdraw"
+            ],
+            "unStake": [
+                "unstake"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "jokToken",
+                        "validLockPeriods.isValid"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "ethTax",
+                        "jokToken",
+                        "maxPercentage"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "jokToken",
+                        "stakes.amountStaked",
+                        "stakes.lockPeriod",
+                        "stakes.stakedDay"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

@@ -1,0 +1,163 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPTokenBalance",
+            "LockedLPTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewardsFromETH",
+            "rewardsFromToken"
+        ],
+        "User Stake Time": [
+            "timePooled1",
+            "timePooled2"
+        ],
+        "Stake Token Address": [
+            "arbiStakeAddress"
+        ],
+        "Reward Token Address": [
+            "arbiStakeAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "receive",
+            "stake",
+            "stakeToken"
+        ],
+        "getReward": [
+            "withdrawRewardTokensFromStakingETH",
+            "withdrawRewardTokensFromStakingToken"
+        ],
+        "unStake": [
+            "withdrawLPTokens"
+        ],
+        "Sensitive Functions": [
+            "setTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    771
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [
+                    "FACTORY",
+                    "WETHAddress",
+                    "arbiStakeAddress"
+                ],
+                "Control Variables": [
+                    "FACTORY",
+                    "INF",
+                    "LockedLP",
+                    "LockedLPTokenBalance",
+                    "WETHAddress",
+                    "_LGEFinishTime",
+                    "arbiStakeAddress",
+                    "rewardsFromToken"
+                ],
+                "Full Calculation Variables": [
+                    "FACTORY",
+                    "INF",
+                    "LockedLP",
+                    "LockedLPTokenBalance",
+                    "WETHAddress",
+                    "_LGEFinishTime",
+                    "arbiStakeAddress",
+                    "rewardsFromToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokensFromStakingETH",
+                "Node": [
+                    796
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DECIMAL",
+                    "_ETHRewardValue",
+                    "rewardsFromETH"
+                ],
+                "Control Variables": [
+                    "DECIMAL",
+                    "_ETHRewardValue",
+                    "arbiStakeAddress",
+                    "rewardsFromETH",
+                    "timePooled1"
+                ],
+                "Full Calculation Variables": [
+                    "DECIMAL",
+                    "_ETHRewardValue",
+                    "arbiStakeAddress",
+                    "rewardsFromETH",
+                    "timePooled1"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawRewardTokensFromStakingToken",
+                "Node": [
+                    808
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DECIMAL",
+                    "_tokenRewardValue",
+                    "rewardsFromToken"
+                ],
+                "Control Variables": [
+                    "DECIMAL",
+                    "_tokenRewardValue",
+                    "arbiStakeAddress",
+                    "rewardsFromToken",
+                    "timePooled2"
+                ],
+                "Full Calculation Variables": [
+                    "DECIMAL",
+                    "_tokenRewardValue",
+                    "arbiStakeAddress",
+                    "rewardsFromToken",
+                    "timePooled2"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLPTokens",
+                "Node": [
+                    783
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "LPTokenBalance"
+                ],
+                "Control Variables": [
+                    "FACTORY",
+                    "LPTokenBalance",
+                    "WETHAddress",
+                    "arbiStakeAddress",
+                    "rewardsFromETH",
+                    "timePooled1"
+                ],
+                "Full Calculation Variables": [
+                    "FACTORY",
+                    "LPTokenBalance",
+                    "WETHAddress",
+                    "arbiStakeAddress",
+                    "rewardsFromETH",
+                    "timePooled1"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

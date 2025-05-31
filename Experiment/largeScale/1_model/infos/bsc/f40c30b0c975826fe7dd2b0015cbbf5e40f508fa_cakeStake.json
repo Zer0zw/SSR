@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "_pledgeAmount"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "_levelReward"
+        ],
+        "User Stake Time": [
+            "UserInfo.stopTime"
+        ],
+        "Stake Token Address": [
+            "cakeDao"
+        ],
+        "Reward Token Address": [
+            "CakeToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(cakeDao).safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "safeCake(msg.sender, reward.mul(5).div(100))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "tokenExtraction",
+                "Node": "safeTransfer(msg.sender, _pledgeAmount[msg.sender])"
+            }
+        ]
+    }
+}

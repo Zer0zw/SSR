@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.staked"
+        ],
+        "User Stake Reward": [
+            "UserInfo.staked"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastStakeBlockNumber"
+        ],
+        "Stake Token Address": [
+            "wsFHM"
+        ],
+        "Reward Token Address": [
+            "wsFHM"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(wsFHM).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doClaim",
+                "Node": "info.staked = info.staked.add(allClaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(wsFHM).safeTransfer(_to, transferring)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IERC20(wsFHM).safeTransfer(msg.sender, toWithdraw)"
+            }
+        ]
+    }
+}

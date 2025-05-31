@@ -1,0 +1,30 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stakeholder.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Stakeholder.cooldown_time"
+        ],
+        "Stake Token Address": [
+            "IBEP20Interface"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "if (IBEP20Interface.transferFrom(msg.sender, address(this), amount))"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "if (IBEP20Interface.transfer(msg.sender, amount))"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "principalBalance",
+            "newDeposits"
+        ],
+        "User Stake Reward": [
+            "roi",
+            "availableReward"
+        ],
+        "User Stake Time": [
+            "timeOfEntry",
+            "lastAction"
+        ],
+        "Stake Token Address": [
+            "TOKEN"
+        ],
+        "Reward Token Address": [
+            "TOKEN"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "ARK.transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "ARK.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "takeAction",
+                "Node": "ARK.transfer(investor, withdrawAmount)"
+            },
+            {
+                "Function": "doTheThing",
+                "Node": "ARK.transfer(investor, withdrawAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

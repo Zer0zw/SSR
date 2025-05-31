@@ -1,0 +1,61 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "bears"
+        ],
+        "User Stake Reward": [
+            "rate",
+            "rewardPeroid"
+        ],
+        "User Stake Time": [
+            "StakedBear.lastClaimed",
+            "StakedBear.emergencyOutTime"
+        ],
+        "Stake Token Address": [
+            "bearNFT"
+        ],
+        "Reward Token Address": [
+            "honey"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "IERC721(bearNFT).safeTransferFrom(msg.sender, address(this), _tokenId, \" \")"
+            },
+            {
+                "Function": "batchStakeNFT",
+                "Node": "IERC721(bearNFT).safeTransferFrom(msg.sender, address(this), _tokenIds[i], \" \")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(honey).transfer(msg.sender, reward)"
+            },
+            {
+                "Function": "claimBatchReward",
+                "Node": "IERC20(honey).transfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeNFT",
+                "Node": "IERC721(bearNFT).safeTransferFrom(address(this), msg.sender, _tokenId, \" \")"
+            },
+            {
+                "Function": "batchUnstakeNFT",
+                "Node": "IERC721(bearNFT).safeTransferFrom(address(this), msg.sender, _tokenIds[i], \" \")"
+            },
+            {
+                "Function": "unstakeWithoutRewardNFT",
+                "Node": "IERC721(bearNFT).safeTransferFrom(address(this), msg.sender, _tokenId, \" \")"
+            },
+            {
+                "Function": "batchUnstakeWithoutRewardNFT",
+                "Node": "IERC721(bearNFT).safeTransferFrom(address(this), msg.sender, _tokenIds[i], \" \")"
+            }
+        ]
+    }
+}

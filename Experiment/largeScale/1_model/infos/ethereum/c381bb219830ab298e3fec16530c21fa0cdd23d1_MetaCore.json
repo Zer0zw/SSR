@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Account.balance",
+            "Account.totalStakes"
+        ],
+        "User Stake Reward": [
+            "Account.rewardsClaimed",
+            "Account.pending"
+        ],
+        "User Stake Time": [
+            "Account.timeInvest",
+            "Account.lastClaimed"
+        ],
+        "Stake Token Address": [
+            "MCORE_WETH_POOL_ADDRESS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "require(IERC20(MCORE_WETH_POOL_ADDRESS).transferFrom(msg.sender, address(this), _tokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(_transfer(msg.sender, owing))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "UNSTAKE",
+                "Node": "require(IERC20(MCORE_WETH_POOL_ADDRESS).transfer(msg.sender, accounts[msg.sender].balance)"
+            }
+        ]
+    }
+}

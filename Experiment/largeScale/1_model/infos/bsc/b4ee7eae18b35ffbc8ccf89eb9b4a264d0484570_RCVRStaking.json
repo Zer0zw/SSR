@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "RCVRAddress"
+        ],
+        "Reward Token Address": [
+            "RCVRAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createSafeStake",
+                "Node": "RCVR(RCVRAddress).transfer(msg.sender,_stake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawTreasuryRewards",
+                "Node": "RCVR(RCVRAddress).transfer(msg.sender,reward)"
+            },
+            {
+                "Function": "withdrawCompReward",
+                "Node": "RCVR(RCVRAddress).transfer(msg.sender,reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeStake",
+                "Node": "RCVR(RCVRAddress).transfer(msg.sender,_stake)"
+            }
+        ]
+    }
+}

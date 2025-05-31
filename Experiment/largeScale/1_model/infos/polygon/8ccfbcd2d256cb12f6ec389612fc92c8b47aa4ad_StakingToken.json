@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "user.accumulatedReward"
+        ],
+        "User Stake Time": [
+            "user.starttime",
+            "user.rewardtime"
+        ],
+        "Stake Token Address": [
+            "agro"
+        ],
+        "Reward Token Address": [
+            "agro"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "agro.transferFrom (msg.sender, address(this), _stake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewards",
+                "Node": "agro.transferFrom (admin, msg.sender, w_reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "agro.transfer (msg.sender, _stake*50/100)"
+            },
+            {
+                "Function": "unStake",
+                "Node": "agro.transfer (msg.sender, _stake)"
+            }
+        ]
+    }
+}

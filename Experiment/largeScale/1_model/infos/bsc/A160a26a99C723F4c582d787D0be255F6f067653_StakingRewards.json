@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "_rewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "VOLTA_token"
+        ],
+        "Reward Token Address": [
+            "PRP_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "VOLTA_token.transferFrom(msg.sender, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IPancakeRouter02(routeraddress).swapExactTokensForTokensSupportingFeeOnTransferTokens(_rewards[msg.sender], 0, path, msg.sender, block.timestamp)"
+            },
+            {
+                "Function": "compound",
+                "Node": "IPancakeRouter02(routeraddress).swapExactTokensForTokensSupportingFeeOnTransferTokens(_rewards[msg.sender], 0, path, address(this), block.timestamp)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "VOLTA_token.transfer(msg.sender, tempbalance)"
+            }
+        ]
+    }
+}

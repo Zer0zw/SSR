@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balances"
+        ],
+        "User Stake Reward": [
+            "payoutsTo"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "chipsLP"
+        ],
+        "Reward Token Address": [
+            "chips"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "chipsLP.transferFrom(msg.sender, address(this), amount"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "chipsLP.transferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimYield",
+                "Node": "chips.transfer(recipient, dividends)"
+            },
+            {
+                "Function": "depositYield",
+                "Node": "chipsStaking.depositFor(recipient, dividends)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cashout",
+                "Node": "chipsLP.transfer(recipient, amount)"
+            }
+        ]
+    }
+}

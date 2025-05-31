@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "timePooled",
+            "internalTime"
+        ],
+        "Stake Token Address": [
+            "BLIAddress"
+        ],
+        "Reward Token Address": [
+            "BLIAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ITRC20(BLIAddress).mint(address(this), toMint)"
+            },
+            {
+                "Function": "stake",
+                "Node": "JustSwap(poolAddress).addLiquidity.value(address(this).balance)(1, amountTokenDesired, INF)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokens",
+                "Node": "ITRC20(BLIAddress).mint(msg.sender, netAmount)"
+            },
+            {
+                "Function": "withdrawReferralEarned",
+                "Node": "ITRC20(BLIAddress).mint(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLPTokens",
+                "Node": "ITRC20(poolAddress).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

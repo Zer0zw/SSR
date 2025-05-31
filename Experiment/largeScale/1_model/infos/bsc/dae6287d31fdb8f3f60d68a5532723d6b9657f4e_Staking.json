@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Position.tokenStaked"
+        ],
+        "User Stake Reward": [
+            "Position.tokenInterest"
+        ],
+        "User Stake Time": [
+            "Position.unlockDate",
+            "Position.createdDate"
+        ],
+        "Stake Token Address": [
+            "VMT"
+        ],
+        "Reward Token Address": [
+            "VMT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "bool success = IERC20(VMT).transferFrom(_msgSender(), address(this), tokenAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "bool success = IERC20(VMT).transfer(_msgSender(), amountWithInterest)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "bool success = IERC20(VMT).transfer(_msgSender(), amountAfterPenalty)"
+            }
+        ]
+    }
+}

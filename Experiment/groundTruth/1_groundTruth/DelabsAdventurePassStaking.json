@@ -1,0 +1,110 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [],
+            "User Stake Reward": [],
+            "User Stake Time": [
+                "stakingPositions.startTime",
+                "stakingPositions.lockStartTime"
+            ],
+            "Stake Token Address": [
+                "adventurePass"
+            ],
+            "Reward Token Address": []
+        },
+
+        "Functions": {
+            "Stake": [
+                "batchStake",
+                "stake"
+            ],
+            "getReward": [],
+            "unStake": [
+                "batchUnstake",
+                "forceBatchUnstake",
+                "unstake"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "_paused",
+                        "adventurePass",
+                        "stakingLevels",
+                        "stakingPositions.level",
+                        "stakingPositions.lockedPeriod",
+                        "stakingPositions.owner",
+                        "stakingPositions.startTime"
+                    ]
+                },
+                {
+                    "Function": "batchStake",
+                    "Calculation Variables": [
+                        "_paused",
+                        "adventurePass",
+                        "stakingLevels",
+                        "stakingPositions.level",
+                        "stakingPositions.lockedPeriod",
+                        "stakingPositions.owner",
+                        "stakingPositions.startTime"
+                    ]
+                }
+            ],
+            "getReward": [],
+            "unStake": [
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "adventurePass",
+                        "stakingPositions.level",
+                        "stakingPositions.lockStartTime",
+                        "stakingPositions.lockedPeriod",
+                        "stakingPositions.owner",
+                        "stakingPositions.startTime",
+                        "_paused"
+                    ]
+                },
+                {
+                    "Function": "batchUnstake",
+                    "Calculation Variables": [
+                        "adventurePass",
+                        "stakingPositions.level",
+                        "stakingPositions.lockStartTime",
+                        "stakingPositions.lockedPeriod",
+                        "stakingPositions.owner",
+                        "stakingPositions.startTime",
+                        "_paused"
+                    ]
+                },
+                {
+                    "Function": "forceBatchUnstake",
+                    "Calculation Variables": [
+                        "adventurePass",
+                        "stakingPositions.level",
+                        "stakingPositions.owner",
+                        "stakingPositions.startTime",
+                        "_owner"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

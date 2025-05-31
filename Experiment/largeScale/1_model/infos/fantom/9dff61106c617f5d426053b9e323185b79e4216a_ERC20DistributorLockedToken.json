@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.rewardAmount"
+        ],
+        "User Stake Time": [
+            "Stake.unlockAt",
+            "Stake.createdAt"
+        ],
+        "Stake Token Address": [
+            "Stake.token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "token.mint(recipient, rewardAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "info.token.safeTransfer(info.owner, info.amount)"
+            }
+        ]
+    }
+}

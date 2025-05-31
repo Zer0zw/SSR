@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userShares.shares"
+        ],
+        "User Stake Reward": [
+            "masterChef.pendingShare"
+        ],
+        "User Stake Time": [
+            "userShares.lastDepositTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "earnToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stakeToken.safeTransfer(_user, _withdrawAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "earn",
+                "Node": "earnToken.safeTransfer(_bountyHunter, bountyReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stakeToken.safeTransfer(_user, _withdrawAmount)"
+            }
+        ]
+    }
+}

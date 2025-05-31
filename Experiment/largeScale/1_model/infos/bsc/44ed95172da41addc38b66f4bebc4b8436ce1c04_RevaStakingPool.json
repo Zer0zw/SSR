@@ -1,0 +1,56 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserPoolInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserPoolInfo.rewardDebt",
+            "UserPoolInfo.rewardFeeDebt"
+        ],
+        "User Stake Time": [
+            "UserPoolInfo.timeDeposited"
+        ],
+        "Stake Token Address": [
+            "revaToken"
+        ],
+        "Reward Token Address": [
+            "revaToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IBEP20(revaToken).safeTransferFrom(address(msg.sender), address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claimPendingMintReward",
+                "Node": "IRevaToken(revaToken).mint(_user, pendingMintReward"
+            },
+            {
+                "Function": "_claimPendingFeeReward",
+                "Node": "IBEP20(revaToken).safeTransferFrom(revaFeeReceiver, to, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(revaToken).safeTransfer(address(msg.sender), _amount"
+            },
+            {
+                "Function": "withdrawEarly",
+                "Node": "IBEP20(revaToken).safeTransfer(address(msg.sender), _amount.sub(withdrawalFee)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "IBEP20(revaToken).safeTransfer(address(msg.sender), amount"
+            },
+            {
+                "Function": "emergencyWithdrawEarly",
+                "Node": "IBEP20(revaToken).safeTransfer(address(msg.sender), amount.sub(withdrawalFee)"
+            }
+        ]
+    }
+}

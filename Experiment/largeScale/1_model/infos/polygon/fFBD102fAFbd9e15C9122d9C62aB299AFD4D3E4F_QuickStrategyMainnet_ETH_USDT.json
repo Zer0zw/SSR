@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "usdt_weth"
+        ],
+        "Reward Token Address": [
+            "quick"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "SNXRewardUniLPStrategy",
+                "Node": "IERC20(underlying).safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "SNXRewardUniLPStrategy",
+                "Node": "IERC20(rewardToken).safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "SNXRewardUniLPStrategy",
+                "Node": "IERC20(underlying).safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

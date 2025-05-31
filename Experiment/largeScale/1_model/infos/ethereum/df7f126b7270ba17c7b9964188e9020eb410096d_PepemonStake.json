@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "cardsStaked"
+        ],
+        "User Stake Reward": [
+            "StakingEvent.cardRewardId"
+        ],
+        "User Stake Time": [
+            "UserInfo.blockEnd"
+        ],
+        "Stake Token Address": [
+            "pepemonFactory"
+        ],
+        "Reward Token Address": [
+            "pepemonFactory"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeAny",
+                "Node": "pepemonFactory.safeBatchTransferFrom(msg.sender, address(this), _cardIdList, _cardAmountList, \"\""
+            },
+            {
+                "Function": "stake",
+                "Node": "pepemonFactory.safeBatchTransferFrom(msg.sender, address(this), _event.cardIdList, _event.cardAmountList, \"\""
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "pepemonFactory.mint(msg.sender, _event.cardRewardId, 1, \"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "cancel",
+                "Node": "pepemonFactory.safeBatchTransferFrom(address(this), msg.sender, _cardIdList, _cardAmountList, \"\")"
+            },
+            {
+                "Function": "_withdrawCardsStaked",
+                "Node": "pepemonFactory.safeBatchTransferFrom(address(this), msg.sender, _cardIdList, _cardAmountList, \"\")"
+            }
+        ]
+    }
+}

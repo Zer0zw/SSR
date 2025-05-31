@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "deposits"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "harvested"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken",
+            "rewardTokenJOE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_getReward",
+                "Node": "rewardsToken.safeTransfer(msg.sender, reward)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "_safeRewardTokenTransfer(rewardToken, msg.sender, userPendingRewards)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "_safeRewardTokenTransfer(rewardSuperTokens[i], msg.sender, userPendingRewardsSuper)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "masterChefJoeV3.withdraw(joePid, lpFromShares)"
+            }
+        ]
+    }
+}

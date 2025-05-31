@@ -1,0 +1,68 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardReceived"
+        ],
+        "User Stake Time": [
+            "DepositOrder.orderTime"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.bonusToken",
+            "iToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount"
+            },
+            {
+                "Function": "depositByDelegate",
+                "Node": "pool.lpToken.safeTransferFrom(_user, address(this), _amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "deposit",
+                "Node": "safeITokenTransfer(_user, pendingAmount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "safeBonusTransfer(_pid, _user, pendingAmount)"
+            },
+            {
+                "Function": "depositByDelegate",
+                "Node": "safeITokenTransfer(_toUser, pendingAmount)"
+            },
+            {
+                "Function": "depositByDelegate",
+                "Node": "safeBonusTransfer(_pid, _toUser, pendingAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeITokenTransfer( _user, pendingAmount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "safeBonusTransfer(_pid, _user, pendingAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(_user, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(_user, amount)"
+            }
+        ]
+    }
+}

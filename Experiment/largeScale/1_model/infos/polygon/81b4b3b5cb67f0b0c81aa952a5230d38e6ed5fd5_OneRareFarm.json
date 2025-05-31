@@ -1,0 +1,37 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "timePeriod"
+        ],
+        "Stake Token Address": [
+            "ORareToken"
+        ],
+        "Reward Token Address": [
+            "ERC1155Token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ORareToken.safeTransferFrom(_msgSender(), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimWinning",
+                "Node": "ERC1155Token.safeBatchTransferFrom(address(this), msg.sender, tokenIdsWon, tokenIdsWonQty, \"0x0\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "ORareToken.safeTransfer(msg.sender, stakedAmount[msg.sender])"
+            }
+        ]
+    }
+}

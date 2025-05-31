@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ORKAN"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( ORKAN ).transferFrom( _recipient, address(this), _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "stake",
+                "Node": "IStaking( staking ).claim( _recipient )"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "mc.pendingBeets"
+        ],
+        "User Stake Time": [
+            "allnums.5",
+            "allnums.6"
+        ],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "alladdr.3"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "balanceOf[msg.sender] += _mint.sub(_fee)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "doHardWork",
+                "Node": "balanceOf[worker] += (_mint.mul(allnums[3])).div(1e6)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "balanceOf[msg.sender] -= _amt"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "balanceOf[msg.sender] -= _amt"
+            }
+        ]
+    }
+}

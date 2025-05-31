@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "usergEDECheckpointed"
+        ],
+        "User Stake Reward": [
+            "yields"
+        ],
+        "User Stake Time": [
+            "lastRewardClaimTime"
+        ],
+        "Stake Token Address": [
+            "gEde"
+        ],
+        "Reward Token Address": [
+            "emittedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "getYield",
+                "Node": "TransferHelper.safeTransfer(emitted_token_address, msg.sender, yield0)"
+            },
+            {
+                "Function": "getYieldUser",
+                "Node": "TransferHelper.safeTransfer(emitted_token_address, from, yield0)"
+            }
+        ],
+        "unStake": []
+    }
+}

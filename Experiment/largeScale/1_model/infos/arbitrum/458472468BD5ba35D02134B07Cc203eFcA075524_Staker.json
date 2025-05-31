@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerTokenBalance"
+        ],
+        "User Stake Reward": [
+            "stakerRewards"
+        ],
+        "User Stake Time": [
+            "stakerInternalTime",
+            "timePooled_Stake"
+        ],
+        "Stake Token Address": [
+            "acms"
+        ],
+        "Reward Token Address": [
+            "acms"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(acms).mint(address(this), toMint)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IERC20(acms).safeTransferFrom(staker, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokens",
+                "Node": "IERC20(acms).mint(msg.sender, withdrawable)"
+            },
+            {
+                "Function": "withdrawStakerRewardTokens",
+                "Node": "IERC20(acms).mint(staker, withdrawable)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(acms).safeTransfer(staker, _amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "weiBalanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "stakersStartingTime"
+        ],
+        "Stake Token Address": [
+            "SUPPORTED_STAKING_COIN_ADDRESSES"
+        ],
+        "Reward Token Address": [
+            "ETGF"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.tokenStake(tokenAddress, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "ETGF.safeTransfer(msg.sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.tokenWithdraw(tokenAddress, amount)"
+            },
+            {
+                "Function": "exit",
+                "Node": "withdraw(SUPPORTED_STAKING_COIN_ADDRESSES[i], __balance)"
+            }
+        ]
+    }
+}

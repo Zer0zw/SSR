@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakedAmount"
+        ],
+        "User Stake Reward": [
+            "_rewardBal",
+            "totalDistributedValue"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "baseToken"
+        ],
+        "Reward Token Address": [
+            "farmingTokens",
+            "farmToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IIronChef(farmPool).deposit(poolId, _baseBal, address(this))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "_swapTokens(_rewardToken, targetCompoundToken, _rewardBal)"
+            },
+            {
+                "Function": "_buyWantAndReinvest",
+                "Node": "_swapTokens(_targetCompoundToken, token0, _compoundToBuyToken0)"
+            },
+            {
+                "Function": "_buyWantAndReinvest",
+                "Node": "_swapTokens(_targetCompoundToken, token1, _compoundToBuyToken1)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawSome",
+                "Node": "IIronChef(farmPool).withdraw(poolId, _amount, address(this))"
+            },
+            {
+                "Function": "_withdrawAll",
+                "Node": "IIronChef(farmPool).withdrawAndHarvest(poolId, _stakedAmount, address(this))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IIronChef(farmPool).emergencyWithdraw(poolId, address(this))"
+            },
+            {
+                "Function": "retireStrat",
+                "Node": "IERC20(baseToken).safeTransfer(address(vault), baseBal)"
+            }
+        ]
+    }
+}

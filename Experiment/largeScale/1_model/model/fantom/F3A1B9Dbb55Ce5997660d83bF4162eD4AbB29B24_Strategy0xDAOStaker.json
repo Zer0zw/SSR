@@ -1,0 +1,204 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "emissionToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "emissionToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "harvest",
+            "tend"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "harvest",
+            "migrate",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "clone0xDAOStaker",
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1835
+                ],
+                "Input": [
+                    "_debtOutstanding"
+                ],
+                "Calculation Variables": [
+                    "want"
+                ],
+                "Control Variables": [
+                    "emergencyExit",
+                    "masterchef",
+                    "pid",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "emergencyExit",
+                    "masterchef",
+                    "pid",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "tend",
+                "Node": [
+                    1835
+                ],
+                "Input": [
+                    "_debtOutstanding"
+                ],
+                "Calculation Variables": [
+                    "want"
+                ],
+                "Control Variables": [
+                    "emergencyExit",
+                    "masterchef",
+                    "pid",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "emergencyExit",
+                    "masterchef",
+                    "pid",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    1768
+                ],
+                "Input": [
+                    "_debtOutstanding"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "masterchef",
+                    "pid"
+                ],
+                "Full Calculation Variables": [
+                    "masterchef",
+                    "pid"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1854
+                ],
+                "Input": [
+                    "_amountNeeded"
+                ],
+                "Calculation Variables": [
+                    "masterchef",
+                    "pid",
+                    "want"
+                ],
+                "Control Variables": [
+                    "masterchef",
+                    "pid",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "masterchef",
+                    "pid",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "harvest",
+                "Node": [
+                    1866
+                ],
+                "Input": [
+                    "_amountNeeded"
+                ],
+                "Calculation Variables": [
+                    "pid",
+                    "masterchef",
+                    "want"
+                ],
+                "Control Variables": [
+                    "pid",
+                    "masterchef",
+                    "want"
+                ],
+                "Full Calculation Variables": [
+                    "pid",
+                    "masterchef",
+                    "want"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "migrate",
+                "Node": [
+                    1874
+                ],
+                "Input": [
+                    "_newStrategy"
+                ],
+                "Calculation Variables": [
+                    "masterchef",
+                    "pid"
+                ],
+                "Control Variables": [
+                    "masterchef",
+                    "pid"
+                ],
+                "Full Calculation Variables": [
+                    "masterchef",
+                    "pid"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1886
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "masterchef",
+                    "pid",
+                    "strategist",
+                    "vault"
+                ],
+                "Full Calculation Variables": [
+                    "masterchef",
+                    "pid",
+                    "strategist",
+                    "vault"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

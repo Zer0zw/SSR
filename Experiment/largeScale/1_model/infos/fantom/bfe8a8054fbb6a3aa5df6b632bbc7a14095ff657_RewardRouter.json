@@ -1,0 +1,82 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmounts",
+            "depositBalances"
+        ],
+        "User Stake Reward": [
+            "cumulativeRewards"
+        ],
+        "User Stake Time": [
+            "averageStakedAmounts",
+            "transferredAverageStakedAmounts"
+        ],
+        "Stake Token Address": [
+            "anzor",
+            "esAnzor",
+            "bnAnzor",
+            "alp"
+        ],
+        "Reward Token Address": [
+            "esAnzor",
+            "bnAnzor",
+            "weth"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeAnzor",
+                "Node": "IRewardTracker(stakedAnzorTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "stakeEsAnzor",
+                "Node": "IRewardTracker(stakedAnzorTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "mintAndStakeAlp",
+                "Node": "IRewardTracker(feeAlpTracker).stakeForAccount(account, account, alp, alpAmount)"
+            },
+            {
+                "Function": "mintAndStakeAlpETH",
+                "Node": "IRewardTracker(feeAlpTracker).stakeForAccount(account, account, alp, alpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IRewardTracker(feeAnzorTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimEsAnzor",
+                "Node": "IRewardTracker(stakedAnzorTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimFees",
+                "Node": "IRewardTracker(feeAnzorTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "handleRewards",
+                "Node": "IVester(anzorVester).claimForAccount(account, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeAnzor",
+                "Node": "IRewardTracker(stakedAnzorTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeEsAnzor",
+                "Node": "IRewardTracker(stakedAnzorTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeAndRedeemAlp",
+                "Node": "IRewardTracker(stakedAlpTracker).unstakeForAccount(account, feeAlpTracker, _alpAmount, account)"
+            },
+            {
+                "Function": "unstakeAndRedeemAlpETH",
+                "Node": "IRewardTracker(stakedAlpTracker).unstakeForAccount(account, feeAlpTracker, _alpAmount, account)"
+            }
+        ]
+    }
+}

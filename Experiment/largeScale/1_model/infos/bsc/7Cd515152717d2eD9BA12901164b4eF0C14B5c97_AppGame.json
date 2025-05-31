@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "infoStaking.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "infoStaking.startTime",
+            "infoStaking.endTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "userStake",
+                "Node": "token.transferFrom(msg.sender, address(this), amountStake)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "userUnstake",
+                "Node": "token.transfer(msg.sender,claimableAmount)"
+            },
+            {
+                "Function": "userUnstakeNft",
+                "Node": "IERC721(info.nftContract).safeTransferFrom(address(this), msg.sender, info.tokenId)"
+            }
+        ]
+    }
+}

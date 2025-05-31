@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "activeStakedSrv",
+            "inactiveStakedSrv"
+        ],
+        "User Stake Reward": [
+            "totalBusdClaimed"
+        ],
+        "User Stake Time": [
+            "lastStakeTime",
+            "lastClaimTime"
+        ],
+        "Stake Token Address": [
+            "srv"
+        ],
+        "Reward Token Address": [
+            "busd"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "srv.transferFrom(_account, address(this), _srvAmount)"
+            },
+            {
+                "Function": "stakeAdmin",
+                "Node": "srv.transferFrom(_account, address(this), _srvAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "busd.transfer(_account, _busdAmount)"
+            },
+            {
+                "Function": "claimAdmin",
+                "Node": "busd.transfer(_account, _busdAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "srv.transfer(_account, srvAmountToWithdraw)"
+            },
+            {
+                "Function": "withdrawAdmin",
+                "Node": "srv.transfer(_account, srvAmountToWithdraw)"
+            }
+        ]
+    }
+}

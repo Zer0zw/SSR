@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "userTotalStaked"
+        ],
+        "User Stake Reward": [
+            "UserInfo.amount",
+            "userTotalEarned"
+        ],
+        "User Stake Time": [
+            "UserInfo.depositTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.safeTransferFrom(address(msg.sender), TreasuryWallet, _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "processRequest",
+                "Node": "token.transfer(_user, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "emit Withdraw(msg.sender, _pid, user.amount.add(reward))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "token.safeTransfer(address(msg.sender), amount)"
+            }
+        ]
+    }
+}

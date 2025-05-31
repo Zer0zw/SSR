@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.nblStakeAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "StakeInfo.begin"
+        ],
+        "Stake Token Address": [
+            "nbl"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositNft",
+                "Node": "nft.safeTransferFrom(msg.sender, address(this), _tokenid)"
+            },
+            {
+                "Function": "depositInscription",
+                "Node": "inscription.safeTransferFrom(msg.sender, address(this), _inscriptionId)"
+            },
+            {
+                "Function": "depositNbl",
+                "Node": "nbl.safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "stakebook.harvest(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawNft",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, tokenid)"
+            },
+            {
+                "Function": "withdrawNft",
+                "Node": "inscription.safeTransferFrom(address(this), msg.sender, stakes[_index].inscriptionId)"
+            },
+            {
+                "Function": "withdrawNft",
+                "Node": "nbl.safeTransfer(community, discount)"
+            },
+            {
+                "Function": "withdrawNft",
+                "Node": "nbl.safeTransfer(msg.sender, SafeMath.sub(amount, discount))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "inscription.safeTransferFrom(address(this), msg.sender, stakes[i].inscriptionId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "nft.safeTransferFrom(address(this), msg.sender, stakes[i].nftTokenId)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "nbl.safeTransfer(msg.sender, mybal > stakes[i].nblStakeAmount ? stakes[i].nblStakeAmount : mybal)"
+            }
+        ]
+    }
+}

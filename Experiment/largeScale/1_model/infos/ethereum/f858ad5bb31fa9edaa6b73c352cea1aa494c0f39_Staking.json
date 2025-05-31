@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "bags",
+            "Bag.genTokenId",
+            "Bag.gen2TokenIds"
+        ],
+        "User Stake Reward": [
+            "bags",
+            "Bag.unclaimedBalance"
+        ],
+        "User Stake Time": [
+            "bags",
+            "Bag.lastStateChange"
+        ],
+        "Stake Token Address": [
+            "genesis",
+            "gen2"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "genesis.safeTransferFrom(msg.sender, address(this), _genTokenId)"
+            },
+            {
+                "Function": "stake",
+                "Node": "gen2.safeTransferFrom(msg.sender, address(this), _gen2TokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "rewardsToken.mint(msg.sender, _totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "genesis.safeTransferFrom(address(this), msg.sender, _genTokenIds[i].id)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "gen2.safeTransferFrom(address(this), msg.sender, _gen2TokenIds[i].ids[j])"
+            }
+        ]
+    }
+}

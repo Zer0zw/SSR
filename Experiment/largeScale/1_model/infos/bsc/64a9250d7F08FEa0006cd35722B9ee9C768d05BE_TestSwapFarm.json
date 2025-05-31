@@ -1,0 +1,57 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt0",
+            "UserInfo.rewardDebt1",
+            "UserInfo.rewardFarmDebt",
+            "UserInfo.rewardKythDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.rewardToken0",
+            "PoolInfo.rewardToken1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "safeRewardTransfer(pool.rewardToken0, _userAddr, pendingReward0)"
+            },
+            {
+                "Function": "claimReward",
+                "Node": "safeRewardTransfer(pool.rewardToken1, _userAddr, pendingReward1)"
+            },
+            {
+                "Function": "claimFarmKyth",
+                "Node": "safeRewardTransfer(kyth, _userAddr, pendingReward)"
+            },
+            {
+                "Function": "claimEvangelistKyth",
+                "Node": "safeRewardTransfer(kyth, _userAddr, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "pool.lpToken.safeTransfer(address(msg.sender), user.amount)"
+            }
+        ]
+    }
+}

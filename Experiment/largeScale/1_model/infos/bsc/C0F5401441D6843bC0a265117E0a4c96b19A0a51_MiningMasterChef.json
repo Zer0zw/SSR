@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "usedQuotaForNfa"
+        ],
+        "User Stake Reward": [
+            "pendingStakedToken"
+        ],
+        "User Stake Time": [
+            "NfaStakeInfo.endBlock",
+            "NfaStakeInfo.startBlock"
+        ],
+        "Stake Token Address": [
+            "stakedToken"
+        ],
+        "Reward Token Address": [
+            "stakedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "activateNfa",
+                "Node": "_currency.transferFrom(msg.sender,address(this), totalPayable)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "stakedToken.safeTransfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": []
+    }
+}

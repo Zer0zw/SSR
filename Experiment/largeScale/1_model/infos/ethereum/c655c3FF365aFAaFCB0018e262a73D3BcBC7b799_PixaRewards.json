@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "currentStaking"
+        ],
+        "User Stake Reward": [
+            "totalAmount"
+        ],
+        "User Stake Time": [
+            "claimerTime"
+        ],
+        "Stake Token Address": [
+            "pixaaddress"
+        ],
+        "Reward Token Address": [
+            "rewardsaddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakePixa",
+                "Node": "pixa.transfer(rewardsaddress, amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "pixa.transfer(msg.sender, totalAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakePixa",
+                "Node": "pixa.transfer(msg.sender,amountToWithdraw)"
+            }
+        ]
+    }
+}

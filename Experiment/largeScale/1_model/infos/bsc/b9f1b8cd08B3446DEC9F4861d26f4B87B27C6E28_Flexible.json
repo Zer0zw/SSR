@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.start"
+        ],
+        "Stake Token Address": [
+            "rewardToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(rewardToken.transferFrom(msg.sender, address(this), amount))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "require(rewardToken.transfer(msg.sender, reward + user.amount))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(rewardToken.transfer(msg.sender, reward + user.amount))"
+            }
+        ]
+    }
+}

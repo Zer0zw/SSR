@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tiers.chonk",
+            "holders.tier_id"
+        ],
+        "User Stake Reward": [
+            "holders.taiyakiRewards",
+            "holders.gyozaRewards"
+        ],
+        "User Stake Time": [
+            "holders.taiyakiUpdatedAt",
+            "holders.gyozaUpdatedAt",
+            "holders.chonkChainUpdatedAt"
+        ],
+        "Stake Token Address": [
+            "ChonkAddress"
+        ],
+        "Reward Token Address": [
+            "TaiyakiAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(IERC20(ChonkAddress).transferFrom(_msgSender(), address(this), tiers[tier_id].chonk)"
+            },
+            {
+                "Function": "stakeChonkChan",
+                "Node": "IChonkNFT(NFTAddress).safeTransferFrom(_msgSender(), address(this), chonkChainId, 1, \"Stake\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTaiyaki",
+                "Node": "ITaiyaki(TaiyakiAddress).mint(_msgSender(), amount)"
+            },
+            {
+                "Function": "redeemMonthlyNFT",
+                "Node": "IChonkNFT(NFTAddress).mint(_msgSender(), tier.cardId, 1, \"Redeem\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeChonkChan",
+                "Node": "IChonkNFT(NFTAddress).safeTransferFrom(address(this), _msgSender(), chonkChainId, 1, \"UnStake\")"
+            },
+            {
+                "Function": "exit",
+                "Node": "IERC20(ChonkAddress).transfer(_msgSender(), tier.chonk)"
+            },
+            {
+                "Function": "exit",
+                "Node": "IChonkNFT(NFTAddress).safeTransferFrom(address(this), _msgSender(), chonkChainId, 1, \"UnStake\")"
+            }
+        ]
+    }
+}

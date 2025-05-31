@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "inceptionTimestamp"
+        ],
+        "Stake Token Address": [
+            "baseAsset"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20Upgradeable(baseAsset).safeTransferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestYield",
+                "Node": "IERC20Upgradeable(baseAsset).safeTransferFrom(msg.sender, address(this), _amountYield)"
+            },
+            {
+                "Function": "harvestYield",
+                "Node": "IERC20Upgradeable(baseAsset).transfer(feeHolder, amountFee)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20Upgradeable(baseAsset).safeTransfer(_beneficiary, _amount)"
+            },
+            {
+                "Function": "performWithdraw",
+                "Node": "IERC20Upgradeable(baseAsset).safeTransfer(_beneficiary, _amount)"
+            }
+        ]
+    }
+}

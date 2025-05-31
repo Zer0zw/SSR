@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStake"
+        ],
+        "User Stake Reward": [
+            "pendingReward"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "pair"
+        ],
+        "Reward Token Address": [
+            "reward"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "depositLP",
+                "Node": "masterchef.deposit(pid, balanceOfPair())"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "masterchef.deposit(pid, 0)"
+            },
+            {
+                "Function": "claimRewardManually",
+                "Node": "getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLP",
+                "Node": "masterchef.withdraw(pid, stakeBalance)"
+            },
+            {
+                "Function": "withdrawLPManually",
+                "Node": "masterchef.withdraw(pid, amount)"
+            }
+        ]
+    }
+}

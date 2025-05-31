@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "pendingXBID"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "vai"
+        ],
+        "Reward Token Address": [
+            "xvs"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "vai.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "safeXBIDTransfer(account, pending)"
+            },
+            {
+                "Function": "updateAndPayOutPending",
+                "Node": "safeXBIDTransfer(account, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "vai.safeTransfer(address(account), _amount)"
+            },
+            {
+                "Function": "_withdraw",
+                "Node": "vai.safeTransfer(address(account), _amount)"
+            }
+        ]
+    }
+}

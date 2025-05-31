@@ -1,0 +1,66 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerTokens"
+        ],
+        "User Stake Reward": [
+            "_balances"
+        ],
+        "User Stake Time": [
+            "timeStaked",
+            "LegendariesStaked.cotfAccumulatedTime",
+            "LegendariesStaked.mtfmAccumulatedTime",
+            "LegendariesStaked.cotfLastStaked",
+            "LegendariesStaked.mtfmLastStaked"
+        ],
+        "Stake Token Address": [
+            "JUNGLE_FREAKS_ADDRESS",
+            "LEGENDARY_VAULT_ADDRESS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeById",
+                "Node": "_freaksContract.transferFrom(msg.sender, address(this), id)"
+            },
+            {
+                "Function": "stakeLegendaries",
+                "Node": "_vaultContract.safeTransferFrom(msg.sender, address(this), LEGENDARY_COTF, cotf, \"\")"
+            },
+            {
+                "Function": "stakeLegendaries",
+                "Node": "_vaultContract.safeTransferFrom(msg.sender, address(this), LEGENDARY_MTFM, mtfm, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimLegendaries",
+                "Node": "_mint(msg.sender, totalRewards)"
+            },
+            {
+                "Function": "claimAll",
+                "Node": "_mint(msg.sender, totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLegendaries",
+                "Node": "_vaultContract.safeTransferFrom(address(this), msg.sender, LEGENDARY_COTF, cotf, \"\")"
+            },
+            {
+                "Function": "unstakeLegendaries",
+                "Node": "_vaultContract.safeTransferFrom(address(this), msg.sender, LEGENDARY_MTFM, mtfm, \"\")"
+            },
+            {
+                "Function": "unstakeByIds",
+                "Node": "_freaksContract.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_freaksContract.transferFrom(address(this), msg.sender, id)"
+            }
+        ]
+    }
+}

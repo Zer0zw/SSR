@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "dailyreward"
+        ],
+        "User Stake Time": [
+            "Stake.stakeAt",
+            "Stake.unStakeAt"
+        ],
+        "Stake Token Address": [
+            "Stake.tokenContract"
+        ],
+        "Reward Token Address": [
+            "NELUMContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IBEP20(dNELUMContract).transferFrom(address(this), msg.sender, amount * 10**18)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IBEP20(NELUMContract).transferFrom(rewardSource,claimObj.user,totalReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IBEP20(dNELUMContract).transferFrom(msg.sender, address(this), unStakeObj.amount * 10**18)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IBEP20(withdrawObj.tokenContract).transfer(withdrawObj.user, withdrawObj.amount * 10**18)"
+            }
+        ]
+    }
+}

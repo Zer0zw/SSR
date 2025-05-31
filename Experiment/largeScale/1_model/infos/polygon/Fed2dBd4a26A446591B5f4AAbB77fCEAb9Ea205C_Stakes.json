@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Record.amount"
+        ],
+        "User Stake Reward": [
+            "Record.gain"
+        ],
+        "User Stake Time": [
+            "Record.from",
+            "Record.to"
+        ],
+        "Stake Token Address": [
+            "asset"
+        ],
+        "Reward Token Address": [
+            "asset"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "startStaking",
+                "Node": "asset.transferFrom(msg.sender, address(this), _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "end",
+                "Node": "asset.transferFrom(getOwner(), msg.sender, _interest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "end",
+                "Node": "asset.transfer(msg.sender, ledger[msg.sender][i].amount.sub(_penalization))"
+            },
+            {
+                "Function": "end",
+                "Node": "asset.transfer(msg.sender, ledger[msg.sender][i].amount)"
+            }
+        ]
+    }
+}

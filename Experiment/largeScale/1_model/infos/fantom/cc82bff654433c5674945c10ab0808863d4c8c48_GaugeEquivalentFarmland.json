@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "Reward.rewardsDuration"
+        ],
+        "Stake Token Address": [
+            "stake"
+        ],
+        "Reward Token Address": [
+            "rewardTokens"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "stake.safeTransferFrom(msg.sender, address(this), amount"
+            },
+            {
+                "Function": "depositFor",
+                "Node": "stake.safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "IERC20(_rewardsToken).safeTransfer(msg.sender, _reward.sub(_toLock))"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "IERC20(_rewardsToken).safeTransfer(account, _reward.sub(_toLock))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "stake.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Player.stake"
+        ],
+        "User Stake Reward": [
+            "Player.payout",
+            "Player.total_out"
+        ],
+        "User Stake Time": [
+            "deposittime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "YFToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "WETH(address(token)).deposit.value(amount)()"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "YFToken.safeTransfer(msg.sender, out)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "address(msg.sender).transfer(r)"
+            }
+        ]
+    }
+}

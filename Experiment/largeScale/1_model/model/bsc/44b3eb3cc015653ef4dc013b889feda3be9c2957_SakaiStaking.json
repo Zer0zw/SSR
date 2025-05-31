@@ -1,0 +1,126 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakers.balance"
+        ],
+        "User Stake Reward": [
+            "_stakers.claimedReward"
+        ],
+        "User Stake Time": [
+            "_stakers.startStake",
+            "_stakers.checkPoint"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "setStakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1692
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "backendWallet",
+                    "bnbFee",
+                    "interestRate",
+                    "interestRateDenominator",
+                    "isStart",
+                    "stakingToken",
+                    "timeEnd",
+                    "totalAllocationReward",
+                    "totalStakedToken"
+                ],
+                "Full Calculation Variables": [
+                    "backendWallet",
+                    "bnbFee",
+                    "interestRate",
+                    "interestRateDenominator",
+                    "isStart",
+                    "stakingToken",
+                    "timeEnd",
+                    "totalAllocationReward",
+                    "totalStakedToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    1659
+                ],
+                "Input": [
+                    "account",
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "backendWallet",
+                    "stakingToken",
+                    "totalAllocationReward",
+                    "treasuryWallet"
+                ],
+                "Full Calculation Variables": [
+                    "backendWallet",
+                    "stakingToken",
+                    "totalAllocationReward",
+                    "treasuryWallet"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1735
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "_stakers.balance"
+                ],
+                "Control Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_stakers.balance",
+                    "_status",
+                    "stakingToken",
+                    "timeEnd"
+                ],
+                "Full Calculation Variables": [
+                    "_ENTERED",
+                    "_NOT_ENTERED",
+                    "_stakers.balance",
+                    "_status",
+                    "stakingToken",
+                    "timeEnd"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

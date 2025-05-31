@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "tokenIdsOfUser"
+        ],
+        "User Stake Reward": [
+            "totalTokensEarned",
+            "StakingDetails.tokensEarned",
+            "StakingDetails.claimableTokens"
+        ],
+        "User Stake Time": [
+            "tokenStakedAt",
+            "StakingDetails.stakedDays"
+        ],
+        "Stake Token Address": [
+            "thiccNFT"
+        ],
+        "Reward Token Address": [
+            "thiccToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "thiccNFT.safeTransferFrom(msg.sender, address(this), tokenIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "calculateClaimableTokens",
+                "Node": "return first13DaysReward + atAfter14Before29Reward + atAfter30DaysReward"
+            },
+            {
+                "Function": "calculateClaimableTokens",
+                "Node": "return first13DaysReward+atAfter14Before29Reward"
+            },
+            {
+                "Function": "calculateClaimableTokens",
+                "Node": "return totalEarned"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "thiccNFT.safeTransferFrom(address(this), msg.sender, tokenIds[i])"
+            },
+            {
+                "Function": "unstake",
+                "Node": "transferThiccToken(tokensEarned)"
+            }
+        ]
+    }
+}

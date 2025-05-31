@@ -1,0 +1,128 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "shares.amount"
+            ],
+            "User Stake Reward": [
+                "shares.totalClaimed"
+            ],
+            "User Stake Time": [
+                "shares.lastDepositTimestamp",
+                "shares.lastWithdrawnTimestamp"
+            ],
+            "Stake Token Address": [
+                "tokenAddress"
+            ],
+            "Reward Token Address": [
+                "tokenAddress"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "stake"
+            ],
+            "getReward": [
+                "claimReward",
+                "claimRewardForAccount",
+                "claimRewardReferrer"
+            ],
+            "unStake": [
+                "unstake"
+            ],
+            "Sensitive Functions": [
+                "claimStuckTokens"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "stake",
+                    "Calculation Variables": [
+                        "tokenAddress",
+                        "minimumStake"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "claimRewardForAccount",
+                    "Calculation Variables": [
+                        "addressStakingPool",
+                        "addressVaultCapital",
+                        "dividendsPerShare",
+                        "dividendsPerShareAccuracyFactor",
+                        "percentDenominator",
+                        "percentTaxForStakingPool",
+                        "percentTaxForVaultCapital",
+                        "shares.amount",
+                        "shares.isReceiveReward",
+                        "shares.totalExcluded",
+                        "tokenAddress"
+                    ]
+                },
+                {
+                    "Function": "claimReward",
+                    "Calculation Variables": [
+                        "addressStakingPool",
+                        "addressVaultCapital",
+                        "dividendsPerShare",
+                        "dividendsPerShareAccuracyFactor",
+                        "percentDenominator",
+                        "percentTaxForStakingPool",
+                        "percentTaxForVaultCapital",
+                        "shares.amount",
+                        "shares.isReceiveReward",
+                        "shares.totalExcluded",
+                        "tokenAddress"
+                    ]
+                },
+                {
+                    "Function": "claimRewardReferrer",
+                    "Calculation Variables": [
+                        "percentDenominator",
+                        "percentTaxClaimReferrer",
+                        "tokenAddress"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "unstake",
+                    "Calculation Variables": [
+                        "currentEpoch",
+                        "dividendsPerShare",
+                        "dividendsPerShareAccuracyFactor",
+                        "lastResetEpochAt",
+                        "pendingCalculateReward",
+                        "percentDenominator",
+                        "resetEpochEvery",
+                        "shares.lastDepositTimestamp",
+                        "tokenAddress",
+                        "totalDividends",
+                        "totalShares"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": [
+            "claimRewardForAccount"
+        ]
+    }
+}
+        

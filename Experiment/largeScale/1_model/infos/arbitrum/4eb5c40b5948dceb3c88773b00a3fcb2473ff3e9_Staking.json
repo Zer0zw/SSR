@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserStake.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "UserStake.depositBlock"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "SafeERC20.safeTransferFrom(token, from, address(this), amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "SafeERC20.safeTransferFrom(token, from, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "SafeERC20.safeTransfer(token, account, _amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "SafeERC20.safeTransfer(token, account, returnedAmount)"
+            }
+        ]
+    }
+}

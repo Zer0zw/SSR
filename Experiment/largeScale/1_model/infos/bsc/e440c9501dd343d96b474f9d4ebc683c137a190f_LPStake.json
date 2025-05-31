@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amount"
+        ],
+        "User Stake Reward": [
+            "User.rewardTotal",
+            "User.rewardPayout"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpAddress"
+        ],
+        "Reward Token Address": [
+            "stAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(lpAddress).safeTransferFrom(address(msg.sender), address(this), _lpAmt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "IERC20(stAddress).transfer(msg.sender, realReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(lpAddress).transfer(msg.sender, _lpAmt)"
+            }
+        ]
+    }
+}

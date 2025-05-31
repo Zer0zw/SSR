@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.amounts"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Staker.since"
+        ],
+        "Stake Token Address": [
+            "tokens"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "ERC20(tokens[token]).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "ERC20(tokens[token]).transferFrom(msg.sender, projectTreasury, taxPT)"
+            },
+            {
+                "Function": "stake",
+                "Node": "ERC20(tokens[token]).transferFrom(msg.sender, team, taxT)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "ERC20(tokens[token]).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "ERC20(tokens[token]).transfer(projectTreasury, taxPT)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "ERC20(tokens[token]).transfer(team, taxT)"
+            }
+        ]
+    }
+}

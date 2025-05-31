@@ -1,0 +1,169 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "LPTokenBalance"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "timePooled",
+            "internalTime"
+        ],
+        "Stake Token Address": [
+            "nortAddress"
+        ],
+        "Reward Token Address": [
+            "nortAddress"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "fallback",
+            "stake"
+        ],
+        "getReward": [
+            "withdrawReferralEarned",
+            "withdrawRewardTokens"
+        ],
+        "unStake": [
+            "withdrawLPTokens"
+        ],
+        "Sensitive Functions": [
+            "setTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": [
+                    194
+                ],
+                "Input": [
+                    "ref",
+                    "staker"
+                ],
+                "Calculation Variables": [
+                    "FACTORY",
+                    "nortAddress"
+                ],
+                "Control Variables": [
+                    "FACTORY",
+                    "_POOLADDRESS",
+                    "nortAddress",
+                    "stakingFrom"
+                ],
+                "Full Calculation Variables": [
+                    "FACTORY",
+                    "_POOLADDRESS",
+                    "nortAddress",
+                    "stakingFrom"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "fallback",
+                "Node": [
+                    194
+                ],
+                "Input": [
+                    "ref",
+                    "staker"
+                ],
+                "Calculation Variables": [
+                    "FACTORY",
+                    "nortAddress"
+                ],
+                "Control Variables": [
+                    "FACTORY",
+                    "_POOLADDRESS",
+                    "nortAddress",
+                    "stakingFrom"
+                ],
+                "Full Calculation Variables": [
+                    "FACTORY",
+                    "_POOLADDRESS",
+                    "nortAddress",
+                    "stakingFrom"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardTokens",
+                "Node": [
+                    234
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DECIMAL",
+                    "_rewardValue",
+                    "nortAddress",
+                    "rewards",
+                    "timePooledReward"
+                ],
+                "Full Calculation Variables": [
+                    "DECIMAL",
+                    "_rewardValue",
+                    "nortAddress",
+                    "rewards",
+                    "timePooledReward"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawReferralEarned",
+                "Node": [
+                    241
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "nortAddress",
+                    "referralEarned",
+                    "referralUnlockTime"
+                ],
+                "Full Calculation Variables": [
+                    "nortAddress",
+                    "referralEarned",
+                    "referralUnlockTime"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLPTokens",
+                "Node": [
+                    220
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "LPTokenBalance"
+                ],
+                "Control Variables": [
+                    "FACTORY",
+                    "LPTokenBalance",
+                    "nortAddress",
+                    "rewards",
+                    "timePooled"
+                ],
+                "Full Calculation Variables": [
+                    "FACTORY",
+                    "LPTokenBalance",
+                    "nortAddress",
+                    "rewards",
+                    "timePooled"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

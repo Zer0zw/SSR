@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.depositAmount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardLockedUp",
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.lastInteraction",
+            "UserInfo.lastDeposit"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "if (!token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_safeTokenTransfer(_user, pending)"
+            },
+            {
+                "Function": "_payOrLockTokens",
+                "Node": "_safeTokenTransfer(_user, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_safeTokenTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_safeTokenTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

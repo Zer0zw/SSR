@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "startStaking"
+        ],
+        "Stake Token Address": [
+            "DAIaddress"
+        ],
+        "Reward Token Address": [
+            "ETFX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_mint(sender, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "ETFX.safeTransfer(sender, reward)"
+            },
+            {
+                "Function": "exit",
+                "Node": "ETFX.safeTransfer(sender, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "AAVE.withdraw(DAIaddress, amount, sender)"
+            },
+            {
+                "Function": "exit",
+                "Node": "AAVE.withdraw(DAIaddress, unstake, sender)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_userStakeTokenId"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "CSOwnerToken"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "transferFrom(_msgSender(), address(this), _tokenId)"
+            },
+            {
+                "Function": "_stake",
+                "Node": "IsFroyoToken(stakeToken).mint(address(this), 1 ether)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "dRewards(pool).withdraw(categoryId, 0, _user)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "safeTransferFromContract(address(this), _msgSender(), _tokenId)"
+            },
+            {
+                "Function": "emergencyUnstake",
+                "Node": "safeTransferFromContract(address(this), _msgSender(), _tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "shares.amount"
+        ],
+        "User Stake Reward": [
+            "shares.totalRealised"
+        ],
+        "User Stake Time": [
+            "lunchTime",
+            "duration"
+        ],
+        "Stake Token Address": [
+            "tokenPool.stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterStaking",
+                "Node": "tokenPool.stakingToken.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "giveStakingReward",
+                "Node": "rewardsToken.transfer(shareholder, amount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "rewardsToken.transfer(shareholder, unpaid)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leaveStaking",
+                "Node": "tokenPool.stakingToken.transfer(msg.sender, shares[msg.sender].amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "safeEarn.transfer(msg.sender, amtClaimed)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "tokenPool.stakingToken.transfer(msg.sender, shares[msg.sender].amount)"
+            }
+        ]
+    }
+}

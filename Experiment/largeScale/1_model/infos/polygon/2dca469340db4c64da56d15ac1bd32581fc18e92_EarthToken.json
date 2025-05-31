@@ -1,0 +1,47 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_staking.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "_staking.pending"
+        ],
+        "User Stake Time": [
+            "_staking.unLockTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addStake",
+                "Node": "super._transfer(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "AddStake",
+                "Node": "addStake(_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "super._transfer(address(this), msg.sender, _pending)"
+            },
+            {
+                "Function": "ClaimRewards",
+                "Node": "claimRewards()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "exitStaking",
+                "Node": "super._transfer(msg.sender, address(this), _amount.Mper(10))"
+            },
+            {
+                "Function": "ExitStaking",
+                "Node": "exitStaking(_amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.userNfts"
+        ],
+        "User Stake Reward": [
+            "UserInfo.userAccReward",
+            "UserInfo.userHarvestedReward"
+        ],
+        "User Stake Time": [
+            "DURATION"
+        ],
+        "Stake Token Address": [
+            "contractAddress_"
+        ],
+        "Reward Token Address": [
+            "saf"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(contractAddress_).safeTransferFrom(address(msg.sender), address(this), _tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getRewards",
+                "Node": "saf.safeTransfer(msg.sender, nu)"
+            },
+            {
+                "Function": "receiveIncome",
+                "Node": "saf.safeTransfer(msg.sender, nums)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC721(contractAddress_).safeTransferFrom(address(this), address(msg.sender), _tokenId)"
+            }
+        ]
+    }
+}

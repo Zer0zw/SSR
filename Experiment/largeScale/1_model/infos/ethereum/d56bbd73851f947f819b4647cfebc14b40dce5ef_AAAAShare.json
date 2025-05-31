@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "locks"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "locks"
+        ],
+        "Stake Token Address": [
+            "shareToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "TransferHelper.safeTransferFrom(IConfig(config).token(), msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "mintReward",
+                "Node": "uint amount = _mint(msg.sender)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "TransferHelper.safeTransfer(IConfig(config).token(), msg.sender, _amount)"
+            }
+        ]
+    }
+}

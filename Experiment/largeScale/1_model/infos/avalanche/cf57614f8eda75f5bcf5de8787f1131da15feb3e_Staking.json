@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userStakedAmount",
+            "Stake.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "rewardsReceived",
+            "totalUserXTickets"
+        ],
+        "User Stake Time": [
+            "Stake.stakedAt"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), stakedAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "rewardsToken.safeTransferFrom(address(this), _winnerAddress, ticketNFTID[campaignId][winningTicketId], \"\")"
+            },
+            {
+                "Function": "claimPenaltyBonus",
+                "Node": "stakingToken.transfer(msg.sender, stakerPenaltyBonus)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "stakingToken.transfer(msg.sender, payoutAmount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "StakeInfo.amount"
+        ],
+        "User Stake Reward": [
+            "StakeInfo.pendingReward"
+        ],
+        "User Stake Time": [
+            "StakeInfo.FinalTimestamp"
+        ],
+        "Stake Token Address": [
+            "stakeTokenAddress"
+        ],
+        "Reward Token Address": [
+            "rewardTokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakeTokenAddress).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakeTokenAddress).safeTransfer(msg.sender, FirstTimeRewardsPercentage)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimMonthlyReward",
+                "Node": "IERC20(rewardTokenAddress).safeTransfer(msg.sender, userStakeInfos[msg.sender].pendingReward + userRewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(stakeTokenAddress).safeTransfer(msg.sender, userStakeInfos[msg.sender].amount)"
+            }
+        ]
+    }
+}

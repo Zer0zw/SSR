@@ -1,0 +1,249 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "V2Stakings.amount",
+            "hoStakings.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "V2Stakings.stakeTime",
+            "hoStakings.stakeTime"
+        ],
+        "Stake Token Address": [
+            "v2Pair",
+            "hoToken"
+        ],
+        "Reward Token Address": [
+            "hoToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakingHo",
+            "stakingV2"
+        ],
+        "getReward": [
+            "wdHo",
+            "wdHoEarn",
+            "wdV2",
+            "wdV2Earn"
+        ],
+        "unStake": [
+            "wdHo",
+            "wdV2"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingV2",
+                "Node": [
+                    101
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "V2Stakings.amount",
+                    "v2Pair"
+                ],
+                "Full Calculation Variables": [
+                    "V2Stakings.amount",
+                    "v2Pair"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "stakingHo",
+                "Node": [
+                    160
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "LEAST",
+                    "hoDec",
+                    "hoStakings.amount",
+                    "hoToken"
+                ],
+                "Full Calculation Variables": [
+                    "LEAST",
+                    "hoDec",
+                    "hoStakings.amount",
+                    "hoToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "wdV2Earn",
+                "Node": [
+                    148
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DAY",
+                    "RATE",
+                    "V2Stakings.amount",
+                    "V2Stakings.earnTime",
+                    "hoDec"
+                ],
+                "Control Variables": [
+                    "DAY",
+                    "RATE",
+                    "V2Stakings.amount",
+                    "V2Stakings.earnTime",
+                    "hoDec",
+                    "hoToken"
+                ],
+                "Full Calculation Variables": [
+                    "DAY",
+                    "RATE",
+                    "V2Stakings.amount",
+                    "V2Stakings.earnTime",
+                    "hoDec",
+                    "hoToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "wdV2",
+                "Node": [
+                    148
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DAY",
+                    "RATE",
+                    "V2Stakings.amount",
+                    "V2Stakings.earnTime",
+                    "hoDec"
+                ],
+                "Control Variables": [
+                    "DAY",
+                    "RATE",
+                    "V2Stakings.amount",
+                    "V2Stakings.earnTime",
+                    "hoDec",
+                    "hoToken"
+                ],
+                "Full Calculation Variables": [
+                    "DAY",
+                    "RATE",
+                    "V2Stakings.amount",
+                    "V2Stakings.earnTime",
+                    "hoDec",
+                    "hoToken"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "wdHoEarn",
+                "Node": [
+                    201
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DAY",
+                    "hoStakings.amount",
+                    "raiseOver10"
+                ],
+                "Control Variables": [
+                    "DAY",
+                    "hoStakings.amount",
+                    "hoToken",
+                    "raiseOver10"
+                ],
+                "Full Calculation Variables": [
+                    "DAY",
+                    "hoStakings.amount",
+                    "hoToken",
+                    "raiseOver10"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "wdHo",
+                "Node": [
+                    201
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "DAY",
+                    "hoStakings.amount",
+                    "raiseOver10"
+                ],
+                "Control Variables": [
+                    "DAY",
+                    "hoStakings.amount",
+                    "hoToken",
+                    "raiseOver10"
+                ],
+                "Full Calculation Variables": [
+                    "DAY",
+                    "hoStakings.amount",
+                    "hoToken",
+                    "raiseOver10"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "wdV2",
+                "Node": [
+                    115
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "DAY",
+                    "V2Stakings.amount",
+                    "V2Stakings.earnTime",
+                    "V2Stakings.stakeTime",
+                    "v2Pair"
+                ],
+                "Full Calculation Variables": [
+                    "DAY",
+                    "V2Stakings.amount",
+                    "V2Stakings.earnTime",
+                    "V2Stakings.stakeTime",
+                    "v2Pair"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "wdHo",
+                "Node": [
+                    172
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "LEAST",
+                    "hoDec",
+                    "hoStakings.amount",
+                    "hoStakings.earnTime",
+                    "hoToken"
+                ],
+                "Full Calculation Variables": [
+                    "LEAST",
+                    "hoDec",
+                    "hoStakings.amount",
+                    "hoStakings.earnTime",
+                    "hoToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

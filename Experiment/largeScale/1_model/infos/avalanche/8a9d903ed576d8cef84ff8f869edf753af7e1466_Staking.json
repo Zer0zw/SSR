@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Validator.stakedAmount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "Validator.depositTime"
+        ],
+        "Stake Token Address": [
+            "CRAToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(CRAToken).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "addMoreStake",
+                "Node": "IERC20(CRAToken).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(CRAToken).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "calculateDailyStakeReward"
+        ],
+        "User Stake Time": [
+            "Stake.startTime",
+            "StakeType.lockedTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_burn(_msgSender(), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawStakeReward",
+                "Node": "_mint(_msgSender(), _amount)"
+            },
+            {
+                "Function": "withdrawOtherRewards",
+                "Node": "_mint(DEVELOPMENT, getDevelopmentPercentageReward())"
+            },
+            {
+                "Function": "withdrawOtherRewards",
+                "Node": "_mint(UNIVERSAL_BASIC_INCOME, getUBIPercentageReward())"
+            },
+            {
+                "Function": "withdrawOtherRewards",
+                "Node": "_mint(LEADERSHIP_BOARD, getLeadershipBoardPercentageReward())"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_mint(_msgSender(), _amount)"
+            }
+        ]
+    }
+}

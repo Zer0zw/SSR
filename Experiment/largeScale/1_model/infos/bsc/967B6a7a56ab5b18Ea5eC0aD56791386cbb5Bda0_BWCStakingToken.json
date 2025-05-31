@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "_staketime"
+        ],
+        "Stake Token Address": [
+            "tokenaddress"
+        ],
+        "Reward Token Address": [
+            "tokenaddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "a.transferFrom(msg.sender,address(this),amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redeem",
+                "Node": "a.transfer(_idowner[_id],cash)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "redeem",
+                "Node": "a.transfer(_idowner[_id],cash)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "OrderInfo.amount"
+        ],
+        "User Stake Reward": [
+            "nftRewardRate"
+        ],
+        "User Stake Time": [
+            "OrderInfo.startTime",
+            "OrderInfo.endTime"
+        ],
+        "Stake Token Address": [
+            "XSOS1155"
+        ],
+        "Reward Token Address": [
+            "XSOS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "XSOS1155.safeTransferFrom(msg.sender, _destroyAddress, tid, amount, b)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "XSOS.safeTransfer(msg.sender, totalRewards)"
+            },
+            {
+                "Function": "airdropToken",
+                "Node": "XSOS.safeTransfer(msg.sender, r)"
+            }
+        ],
+        "unStake": []
+    }
+}

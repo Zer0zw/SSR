@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Player.myDeposit",
+            "UserDept.amount"
+        ],
+        "User Stake Reward": [
+            "Player.monthlyIncome",
+            "Player.totalIncome"
+        ],
+        "User Stake Time": [
+            "UserDept.depTime",
+            "UserDept.expTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "token.transferFrom(msg.sender,address(this),_amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "token.transfer(msg.sender,_amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "principleWithdraw",
+                "Node": "token.transfer(msg.sender,_amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stake"
+        ],
+        "User Stake Reward": [
+            "_distributedRewardsSnapshot"
+        ],
+        "User Stake Time": [
+            "_contractDurationInDays"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "_token.safeTransferFrom(_stakeHolder, address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "_token.safeTransfer(_stakeHolder, withdrawAmount)"
+            }
+        ]
+    }
+}

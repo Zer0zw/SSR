@@ -1,0 +1,64 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "withdrawTime"
+        ],
+        "Stake Token Address": [
+            "stakeInToken"
+        ],
+        "Reward Token Address": [
+            "stakeOutToken",
+            "stakeOutToken2"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "super.stake(amount, _month)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "_sendReward(msg.sender, reward)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_sendReward(one_addr, reward * 10 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_sendReward(two_addr, reward * 8 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_sendReward(three_addr, reward * 6 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_sendReward(four_addr, reward * 4 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_sendReward(five_addr, reward * 2 / 100)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "_sendReward(six_addr, reward * 1 / 100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "super.withdraw(amount, _month)"
+            }
+        ]
+    }
+}

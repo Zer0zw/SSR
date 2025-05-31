@@ -1,0 +1,34 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedInfo.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "stakedInfo.returnAmount"
+        ],
+        "User Stake Time": [
+            "stakedInfo.stakedForDays"
+        ],
+        "Stake Token Address": [
+            "_HALOAddress"
+        ],
+        "Reward Token Address": [
+            "_HALOAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeHALO",
+                "Node": "bool success = _HALO.transferFrom(user, address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimHALO",
+                "Node": "_HALO.transfer(user, amountToReturn)"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "LinearInterest",
+            "bonus"
+        ],
+        "User Stake Time": [
+            "stakeInitTime"
+        ],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_burn(msg.sender, _amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_mint(msg.sender, totalvalue)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_mint(orig, oInterest)"
+            }
+        ]
+    }
+}

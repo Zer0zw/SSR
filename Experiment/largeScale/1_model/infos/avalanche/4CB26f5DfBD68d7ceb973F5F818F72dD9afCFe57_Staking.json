@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.stakedSoldiers",
+            "UserInfo.stakedOfficers",
+            "UserInfo.stakedGenerals"
+        ],
+        "User Stake Reward": [
+            "UserInfo.numberOfSteals",
+            "NFTInfo.amountStolen"
+        ],
+        "User Stake Time": [
+            "NFTInfo.depositTime",
+            "NFTInfo.lastHarvest"
+        ],
+        "Stake Token Address": [
+            "nftContract"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "IERC721(address(nftContract)).safeTransferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvestNormal",
+                "Node": "token.safeTransfer(_msgSender(), pendingReward_)"
+            },
+            {
+                "Function": "_harvestUnstake",
+                "Node": "token.safeTransfer(nftInfo[tokenId].owner, pendingReward_)"
+            },
+            {
+                "Function": "withdrawDividend",
+                "Node": "token.safeTransfer(_msgSender(), _withdrawableDividend)"
+            },
+            {
+                "Function": "_stealReward",
+                "Node": "token.safeTransfer(_msgSender(), stolenReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "IERC721(address(nftContract)).safeTransferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

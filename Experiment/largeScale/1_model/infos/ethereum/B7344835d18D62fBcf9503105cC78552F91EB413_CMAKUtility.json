@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.amount"
+        ],
+        "User Stake Reward": [
+            "User.claimedEthReward",
+            "User.claimedNftReward",
+            "User.claimedRewardCoin"
+        ],
+        "User Stake Time": [
+            "User.stakeTime"
+        ],
+        "Stake Token Address": [
+            "midnightToken"
+        ],
+        "Reward Token Address": [
+            "midnightToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(midnightToken).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "ITreasury(treasury).withdrawShare(msg.sender, share)"
+            },
+            {
+                "Function": "withdrawNFTReward",
+                "Node": "ITreasury(treasury).withdrawNftReward(msg.sender, ethReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20(midnightToken).transfer(msg.sender, user.amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "_safeMint(_user, coinPerWeek)"
+            }
+        ]
+    }
+}

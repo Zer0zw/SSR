@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balanceslp"
+        ],
+        "User Stake Reward": [
+            "_myLpBRCT"
+        ],
+        "User Stake Time": [
+            "_tokenListTime"
+        ],
+        "Stake Token Address": [
+            "_brctLPToken"
+        ],
+        "Reward Token Address": [
+            "_brctToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_brctLPToken.safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawFund",
+                "Node": "_brctToken.safeTransfer(msg.sender, _myLpBRCT[msg.sender])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_brctLPToken.safeTransfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "Resource.amount"
+        ],
+        "User Stake Time": [
+            "StakeInfo.endTimestamp"
+        ],
+        "Stake Token Address": [
+            "Character.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "Resource.tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC721(_characters[index].tokenAddress).transferFrom(_msgSender(), address(this), _characters[index].tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_currentCell.rewards[r].tokenAddress).safeTransferFrom(owner(), _msgSender(), _currentCell.rewards[r].amount)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(_currentCell.bonuses[_bonusIdx].tokenAddress).safeTransferFrom(owner(), _msgSender(), _currentCell.bonuses[_bonusIdx].amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC721(_character.tokenAddress).transferFrom(address(this), _msgSender(), _character.tokenId)"
+            }
+        ]
+    }
+}

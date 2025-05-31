@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "releaseTime"
+        ],
+        "Stake Token Address": [
+            "USDT"
+        ],
+        "Reward Token Address": [
+            "WNE"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "WNE.transferFrom(msg.sender, ticketOwner, sbbAmount.mul(amount).div(1000000))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "release",
+                "Node": "USDT.transfer(msg.sender, amount.div(100).mul(rate))"
+            },
+            {
+                "Function": "release",
+                "Node": "WNE.transfer(msg.sender, amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLp",
+                "Node": "pair.transfer(msg.sender, _lpBalances[msg.sender])"
+            }
+        ]
+    }
+}

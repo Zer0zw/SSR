@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "staker"
+        ],
+        "User Stake Reward": [
+            "mintamount"
+        ],
+        "User Stake Time": [
+            "stakestart"
+        ],
+        "Stake Token Address": [
+            "pairadr"
+        ],
+        "Reward Token Address": [
+            "address(this)"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "uniswappair.transferFrom(msg.sender,address(this),_amt)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_mint(msg.sender,_amt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "uniswappair.transfer(msg.sender,_amt)"
+            }
+        ]
+    }
+}

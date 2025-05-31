@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeHistory.amount"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "stakeHistory.starttime",
+            "stakeHistory.endtime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "paytoken.transferFrom(msg.sender,address(this), totaltoken)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "wtoken.transfer(_user, _token)"
+            }
+        ]
+    }
+}

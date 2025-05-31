@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_want"
+        ],
+        "User Stake Reward": [
+            "amountHarvested"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(rewards).deposit(poolId, _want)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, IERC20(WMATIC).balanceOf(address(this)))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, _maticFee)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_swapUniswapWithPathPreapproved(reward_a_path, remainingHarvested)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_swapUniswapWithPathPreapproved(a_b_path, _balanceA.div(2))"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouterV2(currentRouter).addLiquidity(tokenA, tokenB, aBalance, bBalance, 0, 0, address(this), now + 60)"
+            }
+        ],
+        "unStake": []
+    }
+}

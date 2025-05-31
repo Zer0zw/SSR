@@ -1,0 +1,102 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [],
+        "Reward Token Address": []
+    },
+    "Functions": {
+        "Stake": [
+            "freeze"
+        ],
+        "getReward": [
+            "collect"
+        ],
+        "unStake": [
+            "unfreeze"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "freeze",
+                "Node": [
+                    200
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "MIN_FREEZE_AMOUNT",
+                    "info.scaledPayoutPerToken",
+                    "info.totalFrozen",
+                    "info.users"
+                ],
+                "Full Calculation Variables": [
+                    "MIN_FREEZE_AMOUNT",
+                    "info.scaledPayoutPerToken",
+                    "info.totalFrozen",
+                    "info.users"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "collect",
+                "Node": [
+                    67
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "FLOAT_SCALAR",
+                    "info.scaledPayoutPerToken",
+                    "info.users"
+                ],
+                "Control Variables": [
+                    "FLOAT_SCALAR",
+                    "info.scaledPayoutPerToken",
+                    "info.users"
+                ],
+                "Full Calculation Variables": [
+                    "FLOAT_SCALAR",
+                    "info.scaledPayoutPerToken",
+                    "info.users"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unfreeze",
+                "Node": [
+                    212
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [
+                    "BURN_RATE"
+                ],
+                "Control Variables": [
+                    "BURN_RATE",
+                    "FLOAT_SCALAR",
+                    "info.scaledPayoutPerToken",
+                    "info.totalFrozen",
+                    "info.users"
+                ],
+                "Full Calculation Variables": [
+                    "BURN_RATE",
+                    "FLOAT_SCALAR",
+                    "info.scaledPayoutPerToken",
+                    "info.totalFrozen",
+                    "info.users"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

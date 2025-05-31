@@ -1,0 +1,66 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ParticipantData.stakedAmount"
+        ],
+        "User Stake Reward": [
+            "ParticipantData.claimedTokens",
+            "ParticipantData.claimedRewardTokens"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "LPToken"
+        ],
+        "Reward Token Address": [
+            "RewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLp",
+                "Node": "IERC20Upgradeable(address(LPToken)).safeTransferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeFromEth",
+                "Node": "IERC20Upgradeable(LPToken.token0()).transfer(msg.sender, unusedToken0)"
+            },
+            {
+                "Function": "stakeFromEth",
+                "Node": "IERC20Upgradeable(LPToken.token1()).transfer(msg.sender, unusedToken1)"
+            },
+            {
+                "Function": "stakeFromToken",
+                "Node": "IERC20Upgradeable(LPToken.token0()).transfer(msg.sender, unusedToken0)"
+            },
+            {
+                "Function": "stakeFromToken",
+                "Node": "IERC20Upgradeable(LPToken.token1()).transfer(msg.sender, unusedToken1)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20Upgradeable(address(HoneyToken)).safeTransfer(msg.sender, rewardsToTransfer)"
+            },
+            {
+                "Function": "claimRewards",
+                "Node": "IERC20Upgradeable(address(RewardToken)).safeTransfer(msg.sender, rewardTokensToTransfer)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeLp",
+                "Node": "IERC20Upgradeable(address(LPToken)).safeTransfer(msg.sender, amount)"
+            },
+            {
+                "Function": "unstakeToEth",
+                "Node": "payable(msg.sender).call{value: ethAmount}(\"\")"
+            },
+            {
+                "Function": "unstakeToToken",
+                "Node": "IERC20Upgradeable(token).transfer(msg.sender, tokenAmount)"
+            }
+        ]
+    }
+}

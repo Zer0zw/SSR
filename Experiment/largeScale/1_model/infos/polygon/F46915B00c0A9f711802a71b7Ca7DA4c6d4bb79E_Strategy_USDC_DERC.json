@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getAmountLPFromFarm"
+        ],
+        "User Stake Reward": [
+            "pendingYel"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "QUICKToken",
+            "YELtoken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_transfer(lpToken, vault, getBalanceOfToken(lpToken))"
+            },
+            {
+                "Function": "depositAsMigrate",
+                "Node": "_transfer(lpToken, vault, getBalanceOfToken(lpToken))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimYel",
+                "Node": "_transfer(YELtoken, _receiver, yelAmount)"
+            },
+            {
+                "Function": "autoCompound",
+                "Node": "_transfer(WMATIC, vault, getBalanceOfToken(WMATIC))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(lpToken, _receiver, getBalanceOfToken(lpToken))"
+            },
+            {
+                "Function": "requestWithdraw",
+                "Node": "_transfer(YELtoken, _receiver, yelAmount)"
+            },
+            {
+                "Function": "migrate",
+                "Node": "_transfer(WMATIC, vault, getBalanceOfToken(WMATIC))"
+            }
+        ]
+    }
+}

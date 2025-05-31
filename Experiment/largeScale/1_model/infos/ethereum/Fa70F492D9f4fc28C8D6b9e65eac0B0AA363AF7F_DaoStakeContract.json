@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerBalance",
+            "StakerData.altQuantity"
+        ],
+        "User Stake Reward": [
+            "StakerData.rewardAmount"
+        ],
+        "User Stake Time": [
+            "StakerData.durationTimestamp"
+        ],
+        "Stake Token Address": [
+            "phnxContractAddress"
+        ],
+        "Reward Token Address": [
+            "phnxContractAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeALT",
+                "Node": "IERC20(phnxContractAddress).transfer(msg.sender, rewardAmount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstakeALT",
+                "Node": "IERC20(phnxContractAddress).transfer(msg.sender, withdrawAmount)"
+            }
+        ]
+    }
+}

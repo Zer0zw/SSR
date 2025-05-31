@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes"
+        ],
+        "User Stake Reward": [
+            "rewards"
+        ],
+        "User Stake Time": [
+            "lastBuy"
+        ],
+        "Stake Token Address": [
+            "MEGContract"
+        ],
+        "Reward Token Address": [
+            "BUSDTokenContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "buyTokens",
+                "Node": "require(BUSDTokenContract.transferFrom(msg.sender,address(this), amountTopay)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "require(BUSDTokenContract.transfer(msg.sender, rewardAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "require(MEGContract.transfer(msg.sender, numberOfTokens)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeOwner.tokens"
+        ],
+        "User Stake Reward": [
+            "stakeOwner.rewards"
+        ],
+        "User Stake Time": [
+            "tokenInfo.stakingstartingtime",
+            "tokenInfo.rewardstartingtime",
+            "tokenInfo.period"
+        ],
+        "Stake Token Address": [
+            "mainAddress"
+        ],
+        "Reward Token Address": [
+            "MCcontract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "Main.transferFrom( msg.sender, address(this),data[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimMTCtoken",
+                "Node": "MC.mint(msg.sender, _reward )"
+            },
+            {
+                "Function": "claimAllMTCtokens",
+                "Node": "MC.mint(msg.sender, _reward )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "Main.transferFrom(address(this),msg.sender,tokenID)"
+            }
+        ]
+    }
+}

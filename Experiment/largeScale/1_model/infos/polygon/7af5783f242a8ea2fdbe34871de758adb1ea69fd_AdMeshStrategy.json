@@ -1,0 +1,28 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "ADMESH_STAKING"
+        ],
+        "Reward Token Address": [
+            "MESH"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "harvest",
+                "Node": "IMeshDepositor(MESH_DEPOSITOR).deposit(_harvested_balance.div(1e18).mul(1e18), ADMESH_STAKING)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "swapRewardToWmaticAndDistributeFee",
+                "Node": "IERC20(WMATIC).safeTransfer(strategist, _maticFee)"
+            }
+        ],
+        "unStake": []
+    }
+}

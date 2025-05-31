@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Stake.rewardRatio"
+        ],
+        "User Stake Time": [
+            "Stake.since",
+            "Stake.rate"
+        ],
+        "Stake Token Address": [
+            "midToken"
+        ],
+        "Reward Token Address": [
+            "midToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "midToken.safeTransferFrom(_msgSender(), address(this), stakeAmount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "midToken.safeTransferFrom(_msgSender(), address(this), stakeAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "monthlyClaim",
+                "Node": "midToken.safeTransfer(_msgSender(), stakeMonthlyReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "midToken.safeTransfer(_msgSender(), stakeAndReward)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "midToken.safeTransfer(_msgSender(), afterFee)"
+            }
+        ]
+    }
+}

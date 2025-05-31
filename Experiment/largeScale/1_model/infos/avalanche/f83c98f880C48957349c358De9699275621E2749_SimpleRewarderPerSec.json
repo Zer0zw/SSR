@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt",
+            "UserInfo.unpaidRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "onJoeReward",
+                "Node": "user.amount = _lpAmount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "onJoeReward",
+                "Node": "rewardToken.safeTransfer(_user, pending)"
+            },
+            {
+                "Function": "onJoeReward",
+                "Node": "_user.call.value(pending)(\"\")"
+            },
+            {
+                "Function": "onJoeReward",
+                "Node": "rewardToken.safeTransfer(_user, balance)"
+            },
+            {
+                "Function": "onJoeReward",
+                "Node": "_user.call.value(balance)(\"\")"
+            }
+        ],
+        "unStake": []
+    }
+}

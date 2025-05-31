@@ -1,0 +1,136 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ],
+        "Reward Token Address": [
+            "BANANA_TOKEN",
+            "GNANA_TOKEN"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "compound",
+            "deposit"
+        ],
+        "getReward": [
+            "compound"
+        ],
+        "unStake": [
+            "withdrawBanana",
+            "withdrawGnana"
+        ],
+        "Sensitive Functions": [
+            "withdrawBanana",
+            "withdrawGnana",
+            "withdrawLeftOverBanana",
+            "withdrawLeftOverGnana",
+            "withdrawRemainingMainstreet"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "compound",
+                "Node": [
+                    295
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN"
+                ],
+                "Full Calculation Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    260
+                ],
+                "Input": [
+                    "bananaToStake"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GNANA_TOKEN",
+                    "BANANA_POOL",
+                    "GNANA_POOL"
+                ],
+                "Full Calculation Variables": [
+                    "GNANA_TOKEN",
+                    "BANANA_POOL",
+                    "GNANA_POOL"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compound",
+                "Node": [
+                    300
+                ],
+                "Input": [],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN"
+                ],
+                "Full Calculation Variables": [
+                    "GNANA_POOL",
+                    "GNANA_TOKEN"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawBanana",
+                "Node": [
+                    286
+                ],
+                "Input": [
+                    "amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "BANANA_POOL",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "BANANA_POOL",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "withdrawGnana",
+                "Node": [
+                    306
+                ],
+                "Input": [
+                    "_amount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "GNANA_POOL",
+                    "_owner"
+                ],
+                "Full Calculation Variables": [
+                    "GNANA_POOL",
+                    "_owner"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

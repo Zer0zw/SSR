@@ -1,0 +1,179 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "userInfo.amount"
+            ],
+            "User Stake Reward": [
+                "userInfo.rewardDebt"
+            ],
+            "User Stake Time": [],
+            "Stake Token Address": [
+                "poolInfo.lpToken"
+            ],
+            "Reward Token Address": [
+                "t42"
+            ]
+        },
+
+        "Functions": {
+            "Stake": [
+                "deposit",
+                "depositByAddLiquidity",
+                "depositByAddLiquidityETH",
+                "depositTo"
+            ],
+            "getReward": [
+                "deposit",
+                "depositByAddLiquidity",
+                "depositByAddLiquidityETH",
+                "depositSingle",
+                "depositSingleTo",
+                "depositTo",
+                "withdraw",
+                "withdrawAndRemoveLiquidity",
+                "withdrawSingle"
+            ],
+            "unStake": [
+                "emergencyWithdraw",
+                "withdraw",
+                "withdrawSingle"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "poolInfo.lpToken",
+                        "poolInfo.ticket"
+                    ]
+                },
+                {
+                    "Function": "depositTo",
+                    "Calculation Variables": [
+                        "poolInfo.lpToken",
+                        "poolInfo.ticket",
+                        "_whitelist"
+                    ]
+                },
+                {
+                    "Function": "depositByAddLiquidity",
+                    "Calculation Variables": [
+                        "paraRouter",
+                        "poolInfo.lpToken",
+                        "poolInfo.ticket"
+                    ]
+                },
+                {
+                    "Function": "depositByAddLiquidityETH",
+                    "Calculation Variables": [
+                        "paraRouter",
+                        "poolInfo.lpToken",
+                        "poolInfo.ticket"
+                    ]
+                }
+            ],
+            "getReward": [
+                {
+                    "Function": "depositSingle",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                },
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                },
+                {
+                    "Function": "depositSingleTo",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                },
+                {
+                    "Function": "withdrawSingle",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                },
+                {
+                    "Function": "depositByAddLiquidity",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                },
+                {
+                    "Function": "withdrawAndRemoveLiquidity",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                },
+                {
+                    "Function": "depositByAddLiquidityETH",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                },
+                {
+                    "Function": "depositTo",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                },
+                {
+                    "Function": "deposit",
+                    "Calculation Variables": [
+                        "claimFeeRate"
+                    ]
+                }
+            ],
+            "unStake": [
+                {
+                    "Function": "withdraw",
+                    "Calculation Variables": [
+                        "withdrawFeeRate",
+                        "poolInfo.lpToken"
+                    ]
+                },
+                {
+                    "Function": "withdrawSingle",
+                    "Calculation Variables": [
+                        "withdrawFeeRate",
+                        "poolInfo.lpToken"
+                    ]
+                },
+                {
+                    "Function": "emergencyWithdraw",
+                    "Calculation Variables": [
+                        "poolInfo.lpToken",
+                        "userInfo.amount",
+                        "userInfo.rewardDebt",
+                        "withdrawFeeRate"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [
+            "withdraw",
+            "withdrawSingle"
+        ],
+        
+        "Unauthorized User Funds Access (UFA)": []
+    }
+}
+        

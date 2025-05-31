@@ -1,0 +1,32 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingState.stakedAmountOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingState.tokenAddress"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "tokenInstance(_targetCurrency).transferFrom(_staker, address(stakingState), stakingAmountConvertedRoundedUp.div(10**(uint(18).sub(targetDecimals)))"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "stakingState.refund(_targetCurrency, _unstaker, unstakingAmountConvertedRoundedUp)"
+            },
+            {
+                "Function": "unstakeMultipleTokens",
+                "Node": "stakingState.refund(_targetCurrency, _unstaker, unstakingAmountConvertedRoundedUp)"
+            }
+        ]
+    }
+}

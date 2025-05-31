@@ -1,0 +1,62 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_locked_liquidity"
+        ],
+        "User Stake Reward": [
+            "rewards0",
+            "rewards1"
+        ],
+        "User Stake Time": [
+            "LockedStake.ending_timestamp",
+            "LockedStake.start_timestamp"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "rewardsToken0",
+            "rewardsToken1"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeLocked",
+                "Node": "TransferHelper.safeTransferFrom(address(stakingToken), source_address, address(this), liquidity)"
+            },
+            {
+                "Function": "_stakeLocked",
+                "Node": "TransferHelper.safeTransferFrom(address(stakingToken), source_address, address(this), liquidity)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken0.transfer(destination_address, reward0)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "rewardsToken1.transfer(destination_address, reward1)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "rewardsToken0.transfer(destination_address, reward0)"
+            },
+            {
+                "Function": "_getReward",
+                "Node": "rewardsToken1.transfer(destination_address, reward1)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawLocked",
+                "Node": "stakingToken.transfer(destination_address, liquidity)"
+            },
+            {
+                "Function": "_withdrawLocked",
+                "Node": "stakingToken.transfer(destination_address, liquidity)"
+            }
+        ]
+    }
+}

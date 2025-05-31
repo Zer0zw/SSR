@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserSp.staked"
+        ],
+        "User Stake Reward": [
+            "UserSp.earned"
+        ],
+        "User Stake Time": [
+            "UserSp.lastRewardTime"
+        ],
+        "Stake Token Address": [
+            "pool"
+        ],
+        "Reward Token Address": [
+            "moon"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeE",
+                "Node": "address(uint160((address(_vault)))).transfer(_value)"
+            },
+            {
+                "Function": "stake",
+                "Node": "_forwardFundsToken(token, _value)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimMoonInTpool",
+                "Node": "_vault.transferToken(moon, _msgSender(), _getEarned(pool.rate, pool.adapter, tokenStakingPool))"
+            },
+            {
+                "Function": "claimMoonInEpool",
+                "Node": "_vault.transferToken(moon, _msgSender(), _getEarned(eRate, eAdapter, eStakingPool))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTokenPool",
+                "Node": "_vault.transferToken(IERC20(token), _msgSender(), tokenStakingPool.staked"
+            },
+            {
+                "Function": "withdrawEPool",
+                "Node": "_vault.transferFunds(_msgSender(), eStakingPool.staked"
+            }
+        ]
+    }
+}

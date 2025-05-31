@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakingBalance",
+            "customStakingBalance"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [
+            "staking_start_time"
+        ],
+        "Stake Token Address": [
+            "emc"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "emc.transferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "customStaking",
+                "Node": "emc.transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "redistributeRewards",
+                "Node": "payable(recipient).transfer(balance)"
+            },
+            {
+                "Function": "customRewards",
+                "Node": "payable(recipient).transfer(balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "emc.transfer(msg.sender, balance)"
+            },
+            {
+                "Function": "customUnstake",
+                "Node": "emc.transfer(msg.sender, balance)"
+            }
+        ]
+    }
+}

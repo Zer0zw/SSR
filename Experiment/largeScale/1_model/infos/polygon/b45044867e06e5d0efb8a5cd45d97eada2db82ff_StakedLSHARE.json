@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "tokenUnderlying"
+        ],
+        "Reward Token Address": [
+            "tokenBorrowable"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enterBorrowableAllIn",
+                "Node": "_mint(msg.sender, _amount)"
+            },
+            {
+                "Function": "enterBorrowableAllIn",
+                "Node": "_mint(msg.sender, what)"
+            },
+            {
+                "Function": "enterBorrowable",
+                "Node": "_mint(msg.sender, _amount)"
+            },
+            {
+                "Function": "enterBorrowable",
+                "Node": "_mint(msg.sender, what)"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, minted)"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "rewardBorrowable",
+                "Node": "tokenBorrowable.transferFrom(msg.sender, address(this), balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "tokenUnderlying.transfer(msg.sender, withdrawn)"
+            },
+            {
+                "Function": "leaveWithBorrowable",
+                "Node": "tokenBorrowable.transfer(msg.sender, what)"
+            }
+        ]
+    }
+}

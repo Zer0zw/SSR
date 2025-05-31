@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "personHasStake"
+        ],
+        "User Stake Reward": [
+            "couldGetPool"
+        ],
+        "User Stake Time": [
+            "startTime",
+            "endTime"
+        ],
+        "Stake Token Address": [
+            "stakeToken"
+        ],
+        "Reward Token Address": [
+            "rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakeToken).safeTransferFrom(msg.sender,teamAddr,_amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(rewardToken).safeTransfer(msg.sender,rewardAmt)"
+            },
+            {
+                "Function": "rewardPool",
+                "Node": "IERC20(rewardToken).safeTransfer(msg.sender,rAmt)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stakeToken).safeTransfer(msg.sender,personHasStake[_round][msg.sender])"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stakeToken).safeTransfer(msg.sender,getBackAmt)"
+            }
+        ]
+    }
+}

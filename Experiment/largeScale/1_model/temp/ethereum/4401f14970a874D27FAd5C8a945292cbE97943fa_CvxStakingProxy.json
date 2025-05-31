@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getBalance"
+        ],
+        "User Stake Reward": [
+            "cvxCrvBal"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "cvx",
+            "crv",
+            "cvxCrv"
+        ],
+        "Reward Token Address": [
+            "cvxCrv"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IConvexRewards(cvxStaking).stakeAll()"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distribute",
+                "Node": "IERC20(cvxCrv).safeTransfer(msg.sender,incentiveAmount)"
+            },
+            {
+                "Function": "distributeOther",
+                "Node": "_token.safeTransfer(msg.sender,incentiveAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(cvx).safeTransfer(msg.sender, _amount)"
+            }
+        ]
+    }
+}

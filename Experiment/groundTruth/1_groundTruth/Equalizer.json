@@ -1,0 +1,80 @@
+{
+    "Model": {
+        "Variables": {
+            "User Stake Amount": [
+                "totalAmountDeposited"
+            ],
+            "User Stake Reward": [],
+            "User Stake Time": [
+                "lastDepositBlockNr"
+            ],
+            "Stake Token Address": [
+                "stakedToken"
+            ],
+            "Reward Token Address": []
+        },
+
+        "Functions": {
+            "Stake": [
+                "provideLiquidity"
+            ],
+            "getReward": [],
+            "unStake": [
+                "removeLiquidity"
+            ]
+        },
+
+        "Calculations": {
+            "Stake": [
+                {
+                    "Function": "provideLiquidity",
+                    "Calculation Variables": [
+                        "RATIO_MULTIPLY_FACTOR",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_balances",
+                        "_status",
+                        "_totalSupply",
+                        "isPaused",
+                        "maxCapacity",
+                        "stakedToken",
+                        "totalAmountDeposited"
+                    ]
+                }
+            ],
+            "getReward": [],
+            "unStake": [
+                {
+                    "Function": "removeLiquidity",
+                    "Calculation Variables": [
+                        "RATIO_MULTIPLY_FACTOR",
+                        "_ENTERED",
+                        "_NOT_ENTERED",
+                        "_balances",
+                        "_status",
+                        "_totalSupply",
+                        "stakedToken",
+                        "totalAmountDeposited"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "Defects": {
+        "Critical Variables Manipulation (CVM)": [],
+
+        "Rewards without Timedelay (RT)": [],
+        
+        "Single Liquidity Pool Reliance (SLR)": [],
+        
+        "Omission in Status Update (OSU)": [],
+        
+        "Unsafe Verifications (UV)": [],
+        
+        "Unauthorized User Funds Access (UFA)": [
+            "transferToAccount"
+        ]
+    }
+}
+        

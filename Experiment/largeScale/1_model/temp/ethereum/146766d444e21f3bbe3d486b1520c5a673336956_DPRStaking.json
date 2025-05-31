@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "user_staking_amount"
+        ],
+        "User Stake Reward": [
+            "user_claimed_map"
+        ],
+        "User Stake Time": [
+            "user_staking_time"
+        ],
+        "Stake Token Address": [
+            "dpr"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "dpr.safeTransferFrom(msg.sender, address(this), staking_amount"
+            },
+            {
+                "Function": "addAndExtendStaking",
+                "Node": "dpr.safeTransferFrom(msg.sender, address(this), amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "dpr.safeTransfer(msg.sender, claim_this_time)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "adminWithdrawUserFund",
+                "Node": "dpr.safeTransfer(user, user_staking_amount[user])"
+            },
+            {
+                "Function": "migrate",
+                "Node": "migrate_address.migrate(msg.sender, staking_amount)"
+            }
+        ]
+    }
+}

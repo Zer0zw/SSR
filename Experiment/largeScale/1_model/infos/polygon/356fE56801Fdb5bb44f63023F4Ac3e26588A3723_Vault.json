@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "UserVault.amount"
+        ],
+        "User Stake Reward": [
+            "UserVault.totalEarned"
+        ],
+        "User Stake Time": [
+            "UserVault.depositTime",
+            "UserVault.vestingPeriodEnds"
+        ],
+        "Stake Token Address": [
+            "vaultToken"
+        ],
+        "Reward Token Address": [
+            "vaultToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "vaultToken.safeTransferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "vaultToken.safeTransfer(msg.sender, claimableAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

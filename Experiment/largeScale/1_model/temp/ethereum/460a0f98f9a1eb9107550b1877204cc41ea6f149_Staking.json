@@ -1,0 +1,54 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depositedTokens",
+            "depositedTokensFD"
+        ],
+        "User Stake Reward": [
+            "totalEarnedTokens",
+            "totalEarnedTokensFD"
+        ],
+        "User Stake Time": [
+            "stakingTime",
+            "stakingTimeFD"
+        ],
+        "Stake Token Address": [
+            "tokenAddress"
+        ],
+        "Reward Token Address": [
+            "tokenAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "require(Token(tokenAddress).transferFrom(msg.sender, address(this), amountToStake)"
+            },
+            {
+                "Function": "stakeFD",
+                "Node": "require(Token(tokenAddress).transferFrom(msg.sender, address(this), amountToStake)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateAccount",
+                "Node": "require(Token(tokenAddress).transfer(account, pendingDivs)"
+            },
+            {
+                "Function": "updateAccountFD",
+                "Node": "require(Token(tokenAddress).transfer(account, pendingDivs)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "require(Token(tokenAddress).transfer(msg.sender, amountAfterFee)"
+            },
+            {
+                "Function": "unstakeFD",
+                "Node": "require(Token(tokenAddress).transfer(msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

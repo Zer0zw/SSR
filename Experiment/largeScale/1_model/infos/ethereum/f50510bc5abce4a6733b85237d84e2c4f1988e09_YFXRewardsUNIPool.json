@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "rewards",
+            "accumulatedStakingPower"
+        ],
+        "User Stake Time": [
+            "starttime",
+            "periodFinish"
+        ],
+        "Stake Token Address": [
+            "y"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "y.safeTransferFrom(msg.sender, _wallet, tokenAmount)"
+            },
+            {
+                "Function": "stake",
+                "Node": "super.tokenStake(left)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "getReward",
+                "Node": "token.safeTransfer(msg.sender, actualPaid)"
+            },
+            {
+                "Function": "getReward",
+                "Node": "token.safeTransfer(referrer, commission)"
+            }
+        ],
+        "unStake": []
+    }
+}

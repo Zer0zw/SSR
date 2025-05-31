@@ -1,0 +1,67 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "mappingStaking1months.amountTokens1",
+            "mappingStaking1months.amountTokens2",
+            "mappingStaking1months.amountTokens3",
+            "mappingStaking3months.amountTokens1",
+            "mappingStaking3months.amountTokens2",
+            "mappingStaking3months.amountTokens3",
+            "mappingStaking6months.amountTokens1",
+            "mappingStaking6months.amountTokens2",
+            "mappingStaking6months.amountTokens3"
+        ],
+        "User Stake Reward": [
+            "mappingClaim1months.rewardsClaimed1",
+            "mappingClaim1months.rewardsClaimed2",
+            "mappingClaim1months.rewardsClaimed3",
+            "mappingClaim3months.rewardsClaimed1",
+            "mappingClaim3months.rewardsClaimed2",
+            "mappingClaim3months.rewardsClaimed3",
+            "mappingClaim6months.rewardsClaimed1",
+            "mappingClaim6months.rewardsClaimed2",
+            "mappingClaim6months.rewardsClaimed3"
+        ],
+        "User Stake Time": [
+            "mappingStaking1months.startStake1",
+            "mappingStaking1months.startStake2",
+            "mappingStaking1months.startStake3",
+            "mappingStaking3months.startStake1",
+            "mappingStaking3months.startStake2",
+            "mappingStaking3months.startStake3",
+            "mappingStaking6months.startStake1",
+            "mappingStaking6months.startStake2",
+            "mappingStaking6months.startStake3"
+        ],
+        "Stake Token Address": [
+            "addressDogeCUP"
+        ],
+        "Reward Token Address": [
+            "addressDogeCUP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(addressDogeCUP).transferFrom(staker, address(this), amountDCUPtokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimRewardsAndTokens",
+                "Node": "IERC20(addressDogeCUP).transfer(staker, unpaidEarnings * (100 - feesWithdraw - feesToCancel) / 100)"
+            },
+            {
+                "Function": "claim",
+                "Node": "IERC20(addressDogeCUP).transfer(staker, unpaidEarnings * (100 - feesWithdraw) / 100)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "claimRewardsAndTokens",
+                "Node": "IERC20(addressDogeCUP).transfer(staker, amountTokens)"
+            }
+        ]
+    }
+}

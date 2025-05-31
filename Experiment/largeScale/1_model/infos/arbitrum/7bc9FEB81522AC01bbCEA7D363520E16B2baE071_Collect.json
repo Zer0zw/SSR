@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "User.totalGhostAmount"
+        ],
+        "User Stake Reward": [
+            "User.totalRewardETH"
+        ],
+        "User Stake Time": [
+            "User.stakingTime"
+        ],
+        "Stake Token Address": [
+            "WETH9"
+        ],
+        "Reward Token Address": [
+            "ghost"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "provide",
+                "Node": "TransferHelper.safeTransferETH(address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawETH",
+                "Node": "TransferHelper.safeTransferETH(msg.sender,truthAmount)"
+            },
+            {
+                "Function": "releaseGhost",
+                "Node": "TransferHelper.safeTransfer(ghost,to,truthAmount)"
+            }
+        ],
+        "unStake": []
+    }
+}

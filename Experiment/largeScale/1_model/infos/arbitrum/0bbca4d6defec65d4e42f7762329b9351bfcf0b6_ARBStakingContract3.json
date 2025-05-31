@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_balances",
+            "DepositInfo.amount"
+        ],
+        "User Stake Reward": [
+            "calculateInterest"
+        ],
+        "User Stake Time": [
+            "_depositTime",
+            "DepositInfo.depositTime",
+            "DepositInfo.lockupPeriod"
+        ],
+        "Stake Token Address": [
+            "_token"
+        ],
+        "Reward Token Address": [
+            "_token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_token.transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimInterestForDeposit",
+                "Node": "_token. transfer(msg. sender, totalInterestToClaim)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "_token.transfer(msg.sender, amountToWithdraw)"
+            }
+        ]
+    }
+}

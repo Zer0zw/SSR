@@ -1,0 +1,65 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake_data.amount",
+            "totalStakedEABCD",
+            "totalStakedBUSD"
+        ],
+        "User Stake Reward": [
+            "stake_data.claimedAmount",
+            "reward_eABCD_amount",
+            "reward_BUSD_amount"
+        ],
+        "User Stake Time": [
+            "stake_data.stakedDate",
+            "staking_period"
+        ],
+        "Stake Token Address": [
+            "_BUSDADDRESS",
+            "_eABCDADDRESS"
+        ],
+        "Reward Token Address": [
+            "_THALESADDRESS"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeEABCD",
+                "Node": "IBEP20(_eABCDADDRESS).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakeBUSD",
+                "Node": "IBEP20(_BUSDADDRESS).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "IBEP20(_THALESADDRESS).transfer(stake_data[i].owner, reward)"
+            },
+            {
+                "Function": "refund",
+                "Node": "IBEP20(_THALESADDRESS).transfer(stake_data[i].owner, reward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IBEP20(_BUSDADDRESS).transfer(stake_data[i].owner, stake_data[i].amount)"
+            },
+            {
+                "Function": "unstake",
+                "Node": "IBEP20(_eABCDADDRESS).transfer(stake_data[i].owner, stake_data[i].amount)"
+            },
+            {
+                "Function": "refund",
+                "Node": "IBEP20(_BUSDADDRESS).transfer(stake_data[i].owner, stake_data[i].amount)"
+            },
+            {
+                "Function": "refund",
+                "Node": "IBEP20(_eABCDADDRESS).transfer(stake_data[i].owner, stake_data[i].amount)"
+            }
+        ]
+    }
+}

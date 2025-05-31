@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "lpBalance",
+            "countLpPooled"
+        ],
+        "User Stake Reward": [
+            "dQuickPending",
+            "quickAmount",
+            "total_wmatic"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "wantShortLP"
+        ],
+        "Reward Token Address": [
+            "farmToken",
+            "quick"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_depositLp",
+                "Node": "IStakingDualRewards(farmMasterChef).stake(lpBalance)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimHarvest",
+                "Node": "IStakingDualRewards(farmMasterChef).getReward()"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_withdrawFarm",
+                "Node": "IStakingDualRewards(farmMasterChef).withdraw(_amount)"
+            }
+        ]
+    }
+}

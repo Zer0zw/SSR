@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfStaked"
+        ],
+        "User Stake Reward": [
+            "emissionToken"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "emissionToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "adjustPosition",
+                "Node": "masterchef.deposit(pid, toInvest)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "prepareReturn",
+                "Node": "masterchef.withdraw(pid, 0)"
+            },
+            {
+                "Function": "prepareMigration",
+                "Node": "emissionToken.safeTransfer(_newStrategy, emissionToken.balanceOf(address(this)))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "liquidatePosition",
+                "Node": "ChefLike(masterchef).withdraw(pid, amountToFree)"
+            },
+            {
+                "Function": "liquidateAllPositions",
+                "Node": "masterchef.withdraw(pid, stakedBalance)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "masterchef.emergencyWithdraw(pid)"
+            }
+        ]
+    }
+}

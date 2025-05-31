@@ -1,0 +1,55 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "V2Stakings.amount",
+            "hoStakings.amount"
+        ],
+        "User Stake Reward": [
+            "myV2Earn",
+            "myHoEarn"
+        ],
+        "User Stake Time": [
+            "V2Stakings.stakeTime",
+            "hoStakings.stakeTime"
+        ],
+        "Stake Token Address": [
+            "v2Pair",
+            "hoToken"
+        ],
+        "Reward Token Address": [
+            "hoToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakingV2",
+                "Node": "require(IERC20(v2Pair).transferFrom(msg.sender, address(this), amount)"
+            },
+            {
+                "Function": "stakingHo",
+                "Node": "require(IERC20(hoToken).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "wdV2Earn",
+                "Node": "IERC20(hoToken).transfer(msg.sender, earnsTotal)"
+            },
+            {
+                "Function": "wdHoEarn",
+                "Node": "IERC20(hoToken).transfer(msg.sender, earnsTotal)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "wdV2",
+                "Node": "IERC20(v2Pair).transfer(msg.sender, amount)"
+            },
+            {
+                "Function": "wdHo",
+                "Node": "IERC20(hoToken).transfer(msg.sender, amount)"
+            }
+        ]
+    }
+}

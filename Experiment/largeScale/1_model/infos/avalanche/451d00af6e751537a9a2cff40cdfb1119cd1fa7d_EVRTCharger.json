@@ -1,0 +1,36 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "deposits"
+        ],
+        "User Stake Reward": [
+            "userProfits"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "evrt"
+        ],
+        "Reward Token Address": [
+            "evrt"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, _amount)"
+            },
+            {
+                "Function": "enter",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "leave",
+                "Node": "evrt.safeTransfer(msg.sender, toSend)"
+            }
+        ]
+    }
+}

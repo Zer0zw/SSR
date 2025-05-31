@@ -1,0 +1,72 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakedAmounts"
+        ],
+        "User Stake Reward": [
+            "depositBalances"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "quick",
+            "esQuick",
+            "qlp"
+        ],
+        "Reward Token Address": [
+            "esQuick",
+            "bnQuick"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeQuick",
+                "Node": "IRewardTracker(stakedQuickTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "stakeEsQuick",
+                "Node": "IRewardTracker(stakedQuickTracker).stakeForAccount(_fundingAccount, _account, _token, _amount)"
+            },
+            {
+                "Function": "mintAndStakeQlp",
+                "Node": "IRewardTracker(feeQlpTracker).stakeForAccount(account, account, qlp, qlpAmount)"
+            },
+            {
+                "Function": "mintAndStakeQlpETH",
+                "Node": "IRewardTracker(feeQlpTracker).stakeForAccount(account, account, qlp, qlpAmount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IRewardTracker(feeQuickTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimEsQuick",
+                "Node": "IRewardTracker(stakedQuickTracker).claimForAccount(account, account)"
+            },
+            {
+                "Function": "claimFees",
+                "Node": "IRewardTracker(feeQuickTracker).claimForAccount(account, account)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeQuick",
+                "Node": "IRewardTracker(stakedQuickTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeEsQuick",
+                "Node": "IRewardTracker(stakedQuickTracker).unstakeForAccount(_account, _token, _amount, _account)"
+            },
+            {
+                "Function": "unstakeAndRedeemQlp",
+                "Node": "IRewardTracker(stakedQlpTracker).unstakeForAccount(account, feeQlpTracker, _qlpAmount, account)"
+            },
+            {
+                "Function": "unstakeAndRedeemQlpETH",
+                "Node": "IRewardTracker(stakedQlpTracker).unstakeForAccount(account, feeQlpTracker, _qlpAmount, account)"
+            }
+        ]
+    }
+}

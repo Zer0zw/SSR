@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountOut",
+            "lpAmountStaked",
+            "ssAmountStaked"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "_targetToken",
+            "shareTokenLP",
+            "shareToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "zapIntoFarmWithToken",
+                "Node": "IRewardPool(_farm).depositFor(_pid, amountOut, msg.sender)"
+            },
+            {
+                "Function": "zapIntoACWithToken",
+                "Node": "IStrategyManager(_strategyManager).depositFor(_pid, amountOut, msg.sender)"
+            },
+            {
+                "Function": "zapIntoBoardroomWithToken",
+                "Node": "IBoardroom(_boardroom).stakeFor(msg.sender, amountOut)"
+            },
+            {
+                "Function": "zapIntoBoardroomsWithToken",
+                "Node": "IBoardroomManager(_boardroomManager).stakeLPFor(msg.sender, lpAmountStaked)"
+            },
+            {
+                "Function": "zapIntoBoardroomsWithToken",
+                "Node": "IBoardroomManager(_boardroomManager).stakeShareFor(msg.sender, ssAmountStaked)"
+            }
+        ],
+        "getReward": [],
+        "unStake": []
+    }
+}

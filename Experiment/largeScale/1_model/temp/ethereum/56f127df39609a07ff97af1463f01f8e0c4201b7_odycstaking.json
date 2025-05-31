@@ -1,0 +1,71 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerToDuck",
+            "stakerToDuckling",
+            "stakerToAlpha"
+        ],
+        "User Stake Reward": [
+            "getAllRewards"
+        ],
+        "User Stake Time": [
+            "duckTimeStaked",
+            "ducklingTimeStaked",
+            "alphaTimeStaked"
+        ],
+        "Stake Token Address": [
+            "DUCK_ADDRESS",
+            "DUCKLING_ADDRESS",
+            "ALPHA_ADDRESS"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeDuckById",
+                "Node": "_duckContract.transferFrom(msg.sender, address(this), id)"
+            },
+            {
+                "Function": "stakeDucklingsById",
+                "Node": "_ducklingContract.transferFrom(msg.sender, address(this), id)"
+            },
+            {
+                "Function": "stakeAlphaById",
+                "Node": "_alphaContract.transferFrom(msg.sender, address(this), id)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimAll",
+                "Node": "_mint(msg.sender, totalRewards > remaining ? remaining : totalRewards)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeDuckByIds",
+                "Node": "_duckContract.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeDucklingsByIds",
+                "Node": "_ducklingContract.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeAlphaByIds",
+                "Node": "_alphaContract.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_duckContract.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_ducklingContract.transferFrom(address(this), msg.sender, id)"
+            },
+            {
+                "Function": "unstakeAll",
+                "Node": "_alphaContract.transferFrom(address(this), msg.sender, id)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakerObject.artisBalance"
+        ],
+        "User Stake Reward": [
+            "totalARTISRewards"
+        ],
+        "User Stake Time": [
+            "stakerObject.startTime"
+        ],
+        "Stake Token Address": [
+            "artisToken"
+        ],
+        "Reward Token Address": [
+            "artisToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "tokensReceived",
+                "Node": "stakers[from].artisBalance = stakers[from].artisBalance.add(amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "compoundYield",
+                "Node": "stakers[staker].artisBalance = stakers[staker].artisBalance.add(yield)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstake",
+                "Node": "artisToken.send(account, amount.add(yield), \"\""
+            }
+        ]
+    }
+}

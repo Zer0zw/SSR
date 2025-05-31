@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_stakeBalances"
+        ],
+        "User Stake Reward": [
+            "mintedRewards",
+            "remainingRewards"
+        ],
+        "User Stake Time": [
+            "StakeInfo.stakedMonthes",
+            "StakeInfo.stakedExpireAt"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": [
+            "stakingToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(stakingToken).safeTransferFrom(_msgSender(), address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "distribute",
+                "Node": "token_.safeTransferFrom(sender,to,selfAmount)"
+            },
+            {
+                "Function": "_distributeBindRewards",
+                "Node": "token_.safeTransfer(child,selfAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(stakingToken).safeTransfer(to, stakeAmount)"
+            },
+            {
+                "Function": "burnExpiredStake",
+                "Node": "IStaingToken(stakingToken).burn(stakeBalance)"
+            }
+        ]
+    }
+}

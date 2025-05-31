@@ -1,0 +1,72 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "depoite.amount"
+        ],
+        "User Stake Reward": [
+            "user.refferalRewardsBNB",
+            "user.refferalRewardsBUSD"
+        ],
+        "User Stake Time": [
+            "depoite.depositeTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "invest",
+                "Node": "token.transferFrom(msg.sender, address(this), amount.sub(tax))"
+            },
+            {
+                "Function": "invest",
+                "Node": "users.deposites.push(depoite(amount.sub(tax), block.timestamp,true,0,block.timestamp))"
+            },
+            {
+                "Function": "invest",
+                "Node": "users.deposites.push(depoite(amount.sub(tax), block.timestamp,false,block.timestamp,0))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdrawRewardBUSD",
+                "Node": "token.transfer(msg.sender, totalRewards.sub(taxR))"
+            },
+            {
+                "Function": "withdrawRewardBNB",
+                "Node": "payable(msg.sender).transfer(totalRewards.sub(taxR))"
+            },
+            {
+                "Function": "withdrawRefferalReward",
+                "Node": "token.transfer(msg.sender, totalDeposite)"
+            },
+            {
+                "Function": "withdrawRefferalReward",
+                "Node": "payable(msg.sender).transfer(totalDeposite)"
+            },
+            {
+                "Function": "withdrawDevReward",
+                "Node": "token.transfer(msg.sender, totalDeposite)"
+            },
+            {
+                "Function": "withdrawDevReward",
+                "Node": "payable(msg.sender).transfer(totalDeposite)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawTokensBUSD",
+                "Node": "token.transfer(msg.sender, totalDeposite.sub(tax))"
+            },
+            {
+                "Function": "withdrawTokensBNB",
+                "Node": "payable(msg.sender).transfer(totalDeposite.sub(tax))"
+            }
+        ]
+    }
+}

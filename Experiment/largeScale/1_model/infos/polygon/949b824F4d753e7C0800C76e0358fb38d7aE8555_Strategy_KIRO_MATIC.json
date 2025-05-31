@@ -1,0 +1,73 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "getAmountLPFromFarm"
+        ],
+        "User Stake Reward": [
+            "pendingYel"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "getRewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_transfer(token0, lpToken, _desired0)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "_transfer(token1, lpToken, _desired1)"
+            },
+            {
+                "Function": "depositAsMigrate",
+                "Node": "_transfer(_token, lpToken, amount1)"
+            },
+            {
+                "Function": "depositAsMigrate",
+                "Node": "IWMATIC(WMATIC).transfer(lpToken, amount0)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimYel",
+                "Node": "_transfer(YELtoken, _receiver, yelAmount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(lpToken, _receiver, getBalanceOfToken(lpToken))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(_token, _receiver, getBalanceOfToken(_token))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(USDT, _receiver, getBalanceOfToken(USDT))"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "_transfer(WMATIC, _receiver, getBalanceOfToken(WMATIC))"
+            },
+            {
+                "Function": "withdrawUSDTFee",
+                "Node": "_transfer(USDT, _owner, _balance)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "requestWithdraw",
+                "Node": "pendingYel[_receiver] += yelAmount"
+            },
+            {
+                "Function": "migrate",
+                "Node": "_transfer(WMATIC, vault, getBalanceOfToken(WMATIC))"
+            }
+        ]
+    }
+}

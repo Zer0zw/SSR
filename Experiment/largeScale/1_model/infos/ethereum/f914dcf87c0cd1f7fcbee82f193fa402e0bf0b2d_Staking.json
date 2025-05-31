@@ -1,0 +1,39 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stake.amount"
+        ],
+        "User Stake Reward": [
+            "totalRewards"
+        ],
+        "User Stake Time": [
+            "stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "myToken"
+        ],
+        "Reward Token Address": [
+            "myToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "createStake",
+                "Node": "require(myToken.transferFrom(msg.sender, address(this), _stake), \"Token Transfer Failed\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unStake",
+                "Node": "myToken.transferFrom(owner(), msg.sender, _investorReward)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "myToken.transfer(msg.sender, _stake)"
+            }
+        ]
+    }
+}

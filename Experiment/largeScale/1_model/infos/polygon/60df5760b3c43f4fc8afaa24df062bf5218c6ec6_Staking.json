@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amountByStakeId",
+            "currentTotalStakesByAddress"
+        ],
+        "User Stake Reward": [
+            "totalEarnedRewards"
+        ],
+        "User Stake Time": [
+            "timeByStakeId"
+        ],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "stakingToken.transferFrom(msg.sender, address(this), _numberOfTokens)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstakeTokens",
+                "Node": "userWalletBalance[msg.sender] += amountByStakeId[_stakeId] + reward/100000"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawFromWallet",
+                "Node": "stakingToken.transfer(msg.sender, withdrawStakeAmount[_stakeId])"
+            },
+            {
+                "Function": "withdrawFromWalletWithPenalty",
+                "Node": "stakingToken.transfer(msg.sender, withdrawStakeAmount[_stakeId] - (withdrawStakeAmount[_stakeId] * penaltyMultiplier)/10000)"
+            }
+        ]
+    }
+}

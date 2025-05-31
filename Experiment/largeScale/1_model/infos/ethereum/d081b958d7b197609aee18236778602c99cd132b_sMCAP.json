@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOf"
+        ],
+        "User Stake Reward": [
+            "pendingRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MCAP"
+        ],
+        "Reward Token Address": [
+            "MCAP"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, actualAmount)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "_mint(msg.sender, what)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "pendingRewards",
+                "Node": "return (balanceOf(account) * totalStaked) / totalShares"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "MCAP.transfer(msg.sender, what)"
+            }
+        ]
+    }
+}

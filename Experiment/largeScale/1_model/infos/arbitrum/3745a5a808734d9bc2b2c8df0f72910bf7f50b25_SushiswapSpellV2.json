@@ -1,0 +1,50 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "amtLPUser",
+            "amtLPBorrow"
+        ],
+        "User Stake Reward": [
+            "sushi"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lp"
+        ],
+        "Reward Token Address": [
+            "sushi"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "addLiquidityWERC20",
+                "Node": "doPutCollateral(lp, IERC20(lp).balanceOf(address(this)))"
+            },
+            {
+                "Function": "addLiquidityWMiniChef",
+                "Node": "bank.putCollateral(address(wminichef), id, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvestWMiniChef",
+                "Node": "doRefund(sushi)"
+            },
+            {
+                "Function": "harvestWMiniChef",
+                "Node": "doRefund(rewardToken)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "removeLiquidityWERC20",
+                "Node": "doTakeCollateral(lp, amt.amtLPTake)"
+            },
+            {
+                "Function": "removeLiquidityWMiniChef",
+                "Node": "bank.takeCollateral(address(wminichef), collId, amt.amtLPTake)"
+            }
+        ]
+    }
+}

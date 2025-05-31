@@ -1,0 +1,42 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "DepositedToken.activeDeposit",
+            "DepositedToken.totalDeposits"
+        ],
+        "User Stake Reward": [
+            "DepositedToken.pendingGains",
+            "DepositedToken.totalGained"
+        ],
+        "User Stake Time": [
+            "DepositedToken.startTime",
+            "DepositedToken.lastClaimedDate"
+        ],
+        "Stake Token Address": [
+            "SBX"
+        ],
+        "Reward Token Address": [
+            "SBX"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "STAKE",
+                "Node": "require(ERC20Interface(SBX).transferFrom(msg.sender, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimReward",
+                "Node": "require(ERC20Interface(SBX).transfer(msg.sender, pendingReward(msg.sender))"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "ClaimStakedTokens",
+                "Node": "require(ERC20Interface(SBX).transfer(msg.sender, toTransfer))"
+            }
+        ]
+    }
+}

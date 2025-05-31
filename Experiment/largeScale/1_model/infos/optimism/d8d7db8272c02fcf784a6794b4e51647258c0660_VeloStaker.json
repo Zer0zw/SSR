@@ -1,0 +1,31 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "totalWant"
+        ],
+        "User Stake Reward": [
+            "rewardAmt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "want"
+        ]
+    },
+    "Calculations": {
+        "Stake": [],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "want.safeTransfer(address(rewardPool), rewardAmt)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "_mint(address(beVeloRewardPool), emissionsGap)"
+            }
+        ],
+        "unStake": []
+    }
+}

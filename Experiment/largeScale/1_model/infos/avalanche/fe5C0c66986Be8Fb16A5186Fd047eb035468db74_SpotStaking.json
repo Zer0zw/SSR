@@ -1,0 +1,33 @@
+{
+    "Variables": {
+        "User Stake Amount": [],
+        "User Stake Reward": [
+            "userToIndexClaimed"
+        ],
+        "User Stake Time": [
+            "StakeItem.stakeTime",
+            "userToIndexStakeStart"
+        ],
+        "Stake Token Address": [
+            "StakeItem.nftContract"
+        ],
+        "Reward Token Address": [
+            "StakeItem.rewardContract"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "userToIndexStakeStart[msg.sender][index] = block.timestamp"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimStake",
+                "Node": "rewardContract.safeTransferFrom(address(this), msg.sender, s.tokenID, 1, \"\")"
+            }
+        ],
+        "unStake": []
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.airdropToken"
+        ],
+        "Reward Token Address": [
+            "PoolInfo.airdropToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "safeAirdropTransfer(pool.airdropToken, account, pending)"
+            },
+            {
+                "Function": "_deposit",
+                "Node": "safeAirdropTransfer(pool.airdropToken, account, pending)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "safeAirdropTransfer(pool.airdropToken, _to, _amount)"
+            },
+            {
+                "Function": "harvestAll",
+                "Node": "safeAirdropTransfer(pool.airdropToken, _to, _amount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "safeAirdropTransfer(pool.airdropToken, account, pending)"
+            }
+        ]
+    }
+}

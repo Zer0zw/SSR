@@ -1,0 +1,43 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Claim.deposit"
+        ],
+        "User Stake Reward": [
+            "epoch.distribute"
+        ],
+        "User Stake Time": [
+            "Claim.expiry"
+        ],
+        "Stake Token Address": [
+            "COW"
+        ],
+        "Reward Token Address": [
+            "sCOW"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20( sCOW ).safeTransfer( warmupContract, _amount )"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claim",
+                "Node": "IWarmup( warmupContract ).retrieve( _recipient, IsCOW( sCOW ).balanceForGons( info.gons ,_recipient) )"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "IERC20( COW ).safeTransfer( msg.sender, _amount )"
+            },
+            {
+                "Function": "unstakeFromCaller",
+                "Node": "IERC20( COW ).safeTransfer(_to, _amount )"
+            }
+        ]
+    }
+}

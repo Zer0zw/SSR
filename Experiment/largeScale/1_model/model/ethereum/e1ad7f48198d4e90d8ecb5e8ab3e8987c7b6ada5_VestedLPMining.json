@@ -1,0 +1,187 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "users.lptAmount"
+        ],
+        "User Stake Reward": [
+            "users.pendedCvp"
+        ],
+        "User Stake Time": [
+            "users.lastUpdateBlock",
+            "users.vestingBlock"
+        ],
+        "Stake Token Address": [
+            "pools.lpToken"
+        ],
+        "Reward Token Address": [
+            "cvp"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit",
+            "deposit"
+        ],
+        "getReward": [
+            "deposit",
+            "withdraw"
+        ],
+        "unStake": [
+            "emergencyWithdraw",
+            "emergencyWithdraw",
+            "withdraw",
+            "withdraw"
+        ],
+        "Sensitive Functions": [
+            "add",
+            "initialize"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    1588
+                ],
+                "Input": [
+                    "_amount",
+                    "_pid",
+                    "_boostAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "usersPoolBoost.balance",
+                    "_notEntered",
+                    "cvp",
+                    "poolBoostByLp",
+                    "pools.lpToken",
+                    "users.cvpAdjust",
+                    "users.lptAmount"
+                ],
+                "Full Calculation Variables": [
+                    "usersPoolBoost.balance",
+                    "_notEntered",
+                    "cvp",
+                    "poolBoostByLp",
+                    "pools.lpToken",
+                    "users.cvpAdjust",
+                    "users.lptAmount"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1853
+                ],
+                "Input": [
+                    "pool",
+                    "poolBoost",
+                    "user",
+                    "userPB"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "cvpVestingPool"
+                ],
+                "Full Calculation Variables": [
+                    "cvpVestingPool"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "deposit",
+                "Node": [
+                    1853
+                ],
+                "Input": [
+                    "pool",
+                    "poolBoost",
+                    "user",
+                    "userPB"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "cvpVestingPool"
+                ],
+                "Full Calculation Variables": [
+                    "cvpVestingPool"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1633
+                ],
+                "Input": [
+                    "_pid",
+                    "_amount",
+                    "_boostAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "usersPoolBoost.balance",
+                    "_notEntered",
+                    "cvp",
+                    "poolBoostByLp",
+                    "pools.lpToken",
+                    "users.cvpAdjust",
+                    "users.lptAmount"
+                ],
+                "Full Calculation Variables": [
+                    "usersPoolBoost.balance",
+                    "_notEntered",
+                    "cvp",
+                    "poolBoostByLp",
+                    "pools.lpToken",
+                    "users.cvpAdjust",
+                    "users.lptAmount"
+                ],
+                "Is Depend on this.balance": false
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": [
+                    1658
+                ],
+                "Input": [
+                    "_pid"
+                ],
+                "Calculation Variables": [
+                    "users.vestingBlock",
+                    "usersPoolBoost.balance",
+                    "users.pendedCvp",
+                    "users.cvpAdjust",
+                    "users.lptAmount"
+                ],
+                "Control Variables": [
+                    "users.pendedCvp",
+                    "users.vestingBlock",
+                    "_notEntered",
+                    "usersPoolBoost.balance",
+                    "cvp",
+                    "pools.lpToken",
+                    "users.cvpAdjust",
+                    "users.lptAmount"
+                ],
+                "Full Calculation Variables": [
+                    "users.pendedCvp",
+                    "users.vestingBlock",
+                    "_notEntered",
+                    "usersPoolBoost.balance",
+                    "cvp",
+                    "pools.lpToken",
+                    "users.cvpAdjust",
+                    "users.lptAmount"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ]
+    }
+}

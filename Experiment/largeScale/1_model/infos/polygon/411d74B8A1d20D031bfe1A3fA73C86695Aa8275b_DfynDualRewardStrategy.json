@@ -1,0 +1,51 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [
+            "amountHarvested",
+            "otherHarvested"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "harvestedToken",
+            "otherToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IERC20(want).safeApprove(rewards, uint256(-1))"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IERC20(DFYN_WMATIC).safeTransfer(strategist, _maticFee)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(DFYN).safeTransfer(strategist, h_bal)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(otherToken).safeTransfer(strategist, h_bal2)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "migrate",
+                "Node": "_withdrawSome(balanceOfPool())"
+            },
+            {
+                "Function": "migrate",
+                "Node": "IERC20(want).safeApprove(rewards, uint256(-1))"
+            }
+        ]
+    }
+}

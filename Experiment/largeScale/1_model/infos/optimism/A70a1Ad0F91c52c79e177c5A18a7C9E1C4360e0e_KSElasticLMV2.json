@@ -1,0 +1,45 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakes.liquidity"
+        ],
+        "User Stake Reward": [
+            "stakes.rewardUnclaimed"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "farms.phase.rewards.rewardToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "nft.transferFrom(msg.sender, address(this), nftIds[i])"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": "_safeTransfer(token, receiver, rewardAmounts[i])"
+            },
+            {
+                "Function": "_claimReward",
+                "Node": "_safeTransfer(token, receiver, rewardAmounts[i])"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "nft.transferFrom(address(this), msg.sender, nftIds[i])"
+            },
+            {
+                "Function": "withdrawEmergency",
+                "Node": "nft.transferFrom(address(this), stake.owner, nftId)"
+            }
+        ]
+    }
+}

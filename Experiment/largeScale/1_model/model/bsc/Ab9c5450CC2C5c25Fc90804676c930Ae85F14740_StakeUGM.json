@@ -1,0 +1,90 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeInfos.amount"
+        ],
+        "User Stake Reward": [
+            "stakeInfos.claimed"
+        ],
+        "User Stake Time": [
+            "stakeInfos.startTS",
+            "stakeInfos.endTS"
+        ],
+        "Stake Token Address": [
+            "ugmToken"
+        ],
+        "Reward Token Address": [
+            "ugmToken"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "stakeToken"
+        ],
+        "getReward": [
+            "claimReward"
+        ],
+        "unStake": [],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeToken",
+                "Node": [
+                    324
+                ],
+                "Input": [
+                    "stakeAmount"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "addressStaked",
+                    "planExpired",
+                    "ugmToken"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "addressStaked",
+                    "planExpired",
+                    "ugmToken"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimReward",
+                "Node": [
+                    306
+                ],
+                "Input": [],
+                "Calculation Variables": [
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS"
+                ],
+                "Control Variables": [
+                    "addressStaked",
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS",
+                    "ugmToken"
+                ],
+                "Full Calculation Variables": [
+                    "addressStaked",
+                    "interestRate",
+                    "stakeInfos.amount",
+                    "stakeInfos.claimed",
+                    "stakeInfos.endTS",
+                    "ugmToken"
+                ],
+                "Is Depend on this.balance": false
+            }
+        ],
+        "unStake": []
+    }
+}

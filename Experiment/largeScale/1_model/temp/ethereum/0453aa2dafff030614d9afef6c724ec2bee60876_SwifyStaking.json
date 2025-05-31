@@ -1,0 +1,41 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Position.tokenQuantity"
+        ],
+        "User Stake Reward": [
+            "Position.profitsPerWeek",
+            "Position.profitsReclaimed"
+        ],
+        "User Stake Time": [
+            "Position.createdDate",
+            "Position.nextWeekUnlockDate"
+        ],
+        "Stake Token Address": [
+            "Token.tokenAddress"
+        ],
+        "Reward Token Address": [
+            "swifyCoinAddress"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeTokens",
+                "Node": "IERC20(tokens[symbol].tokenAddress).transferFrom(msg.sender, address(this), tokenQuantity)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "receiveWeekProfits",
+                "Node": "payable(msg.sender).call{value: amountToPay}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "closePosition",
+                "Node": "IERC20(tokens[positions[positionId].symbol].tokenAddress).transfer(msg.sender, positions[positionId].tokenQuantity)"
+            }
+        ]
+    }
+}

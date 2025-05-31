@@ -1,0 +1,46 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "lpToken"
+        ],
+        "Reward Token Address": [
+            "SAMOZ",
+            "sCENT"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "lpToken[pid].safeTransferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "withdraw",
+                "Node": "SAMOZ.safeTransfer(msg.sender, _pendingSamoz)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "sCENT.mint(msg.sender, _pendingSamoz)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "lpToken[pid].safeTransfer(to, amount)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "lpToken[pid].safeTransfer(to, amount)"
+            }
+        ]
+    }
+}

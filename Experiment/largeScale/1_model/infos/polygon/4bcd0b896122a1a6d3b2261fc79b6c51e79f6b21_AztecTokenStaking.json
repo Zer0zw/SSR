@@ -1,0 +1,35 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "reward"
+        ],
+        "User Stake Time": [
+            "Stake.stake_time",
+            "Stake.duration_months"
+        ],
+        "Stake Token Address": [
+            "AztecToken"
+        ],
+        "Reward Token Address": [
+            "AztecToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "IERC20(AztecToken).transferFrom(msg.sender, address(this), amount)"
+            }
+        ],
+        "getReward": [],
+        "unStake": [
+            {
+                "Function": "unStake",
+                "Node": "IERC20(AztecToken).transfer(msg.sender, s.amount + ((s.amount * reward[s.duration_months]) / 100))"
+            }
+        ]
+    }
+}

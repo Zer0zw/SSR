@@ -1,0 +1,40 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "ownedStakesBalance"
+        ],
+        "User Stake Reward": [
+            "YIELD_CPS",
+            "StakeDetails.startTimestamp"
+        ],
+        "User Stake Time": [
+            "StakeDetails.startTimestamp"
+        ],
+        "Stake Token Address": [
+            "nft"
+        ],
+        "Reward Token Address": [
+            "shady"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeMany",
+                "Node": "nft.transferFrom(_msgSender(), address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "claimTokensAndMaybeUnstake",
+                "Node": "shady.mint(_msgSender(), totalClaimed)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawNfts",
+                "Node": "nft.transferFrom(address(this), _msgSender(), tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_userShares"
+        ],
+        "User Stake Reward": [
+            "userPaidRewards"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "PoolInfo.want"
+        ],
+        "Reward Token Address": [
+            "piToken"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "poolInfo[_pid].want.safeTransferFrom(msg.sender, address(this), _amount)"
+            },
+            {
+                "Function": "depositNative",
+                "Node": "WNative.deposit{value: _amount}()"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "_safePiTokenTransfer(_user, pending)"
+            },
+            {
+                "Function": "_calcPendingAndPayRewards",
+                "Node": "_safePiTokenTransfer(_user, pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "pool.want.safeTransfer(address(msg.sender), _balance)"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "Address.sendValue(payable(msg.sender), _balance)"
+            },
+            {
+                "Function": "emergencyWithdraw",
+                "Node": "want.safeTransfer(address(msg.sender), __wantBalance)"
+            }
+        ]
+    }
+}

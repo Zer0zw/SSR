@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "accounts",
+            "stakedHistory"
+        ],
+        "User Stake Reward": [
+            "accounts",
+            "claimHistory"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "stakingToken"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeRewards",
+                "Node": "stakingToken.safeTransferFrom(_transferAccount, address(this), _amount)"
+            },
+            {
+                "Function": "stakeFor",
+                "Node": "stakingToken.safeTransferFrom(_transferAccount, address(this), _amount)"
+            },
+            {
+                "Function": "delegateStakeFor",
+                "Node": "stakingToken.safeTransferFrom(_delegatorAddress, address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "updateClaimHistory",
+                "Node": "No direct transfer statement found for reward claiming in the provided code"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstakeFor",
+                "Node": "stakingToken.safeTransfer(_transferAccount, _amount)"
+            },
+            {
+                "Function": "undelegateStakeFor",
+                "Node": "stakingToken.safeTransfer(_delegatorAddress, _amount)"
+            }
+        ]
+    }
+}

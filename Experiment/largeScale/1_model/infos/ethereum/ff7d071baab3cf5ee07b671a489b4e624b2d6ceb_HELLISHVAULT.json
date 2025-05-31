@@ -1,0 +1,49 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "addrTotalStake"
+        ],
+        "User Stake Reward": [
+            "bank"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp"
+        ],
+        "Stake Token Address": [
+            "VaultInfo.nft"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stakeBGF",
+                "Node": "vaultid.nft.transferFrom(msg.sender, address(this), tokenId)"
+            },
+            {
+                "Function": "_activateTower",
+                "Node": "vaultid.nft.transferFrom(msg.sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_claim",
+                "Node": "bank[msg.sender] += earned"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "_unstakeBGF",
+                "Node": "vaultid.nft.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "_deactivateTower",
+                "Node": "vaultid.nft.transferFrom(address(this), msg.sender, tokenId)"
+            },
+            {
+                "Function": "unlockLegendary",
+                "Node": "vaultid.nft.transferFrom(address(this), msg.sender, _tokenId)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "stakeBalances",
+            "Invest.amountTokenInvested"
+        ],
+        "User Stake Reward": [
+            "Invest.totalTokenEarned"
+        ],
+        "User Stake Time": [
+            "Invest.investDate",
+            "Invest.releaseDate"
+        ],
+        "Stake Token Address": [
+            "WBNB"
+        ],
+        "Reward Token Address": [
+            "WBNB"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stake",
+                "Node": "_transferFrom(investor,address(this),amount)"
+            },
+            {
+                "Function": "stakeJackpot",
+                "Node": "stakeBalances[_jid][staker] = stakeBalances[_jid][staker] + amount"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "_basicTransfer(address(this),staker,totalEarned)"
+            },
+            {
+                "Function": "awardJackpot",
+                "Node": "distributeBNBShare(shareHolderPercent, _jid)"
+            },
+            {
+                "Function": "awardJackpot",
+                "Node": "payable(winnerAddress).call{value: winnerPercent, gas: 30000}(\"\")"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "_basicTransfer(address(this),staker,totalEarned)"
+            }
+        ]
+    }
+}

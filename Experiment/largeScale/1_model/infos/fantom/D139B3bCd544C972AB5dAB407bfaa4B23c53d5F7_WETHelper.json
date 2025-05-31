@@ -1,0 +1,48 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "UserInfo.amount",
+            "PoolInfo.amount"
+        ],
+        "User Stake Reward": [
+            "UserInfo.rewardDebt"
+        ],
+        "User Stake Time": [
+            "UserInfo.untilLock"
+        ],
+        "Stake Token Address": [
+            "PoolInfo.lpToken"
+        ],
+        "Reward Token Address": [
+            "strategyx"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "_harvest",
+                "Node": "safeStrategyxTransfer(msg.sender, pending)"
+            },
+            {
+                "Function": "_harvest",
+                "Node": "mint(address(this), pending)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdrawEth",
+                "Node": "IERC20(WETH).safeTransfer(_to, _amount)"
+            },
+            {
+                "Function": "withdrawEth",
+                "Node": "IERC20(WETH).safeTransfer(address(wethelper), _amount)"
+            }
+        ]
+    }
+}

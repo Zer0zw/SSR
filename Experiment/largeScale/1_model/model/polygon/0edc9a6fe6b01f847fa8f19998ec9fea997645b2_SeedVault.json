@@ -1,0 +1,184 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "userInfo.shares"
+        ],
+        "User Stake Reward": [
+            "userInfo.treeAtLastUserAction"
+        ],
+        "User Stake Time": [
+            "userInfo.lastDepositedTime",
+            "userInfo.lastUserActionTime"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Functions": {
+        "Stake": [
+            "deposit"
+        ],
+        "getReward": [
+            "harvest"
+        ],
+        "unStake": [
+            "withdraw",
+            "withdrawAll"
+        ],
+        "Sensitive Functions": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": [
+                    915
+                ],
+                "Input": [
+                    "_amount",
+                    "_ignore",
+                    "_referrer"
+                ],
+                "Calculation Variables": [],
+                "Control Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "token"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": [
+                    960
+                ],
+                "Input": [
+                    "_referrer"
+                ],
+                "Calculation Variables": [
+                    "callFee",
+                    "masterchef",
+                    "seedPoolPid",
+                    "token"
+                ],
+                "Control Variables": [
+                    "_paused",
+                    "callFee",
+                    "masterchef",
+                    "performanceFee",
+                    "seedPoolPid",
+                    "token",
+                    "treasury"
+                ],
+                "Full Calculation Variables": [
+                    "_paused",
+                    "callFee",
+                    "masterchef",
+                    "performanceFee",
+                    "seedPoolPid",
+                    "token",
+                    "treasury"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": [
+                    1152
+                ],
+                "Input": [
+                    "_ignore",
+                    "_shares"
+                ],
+                "Calculation Variables": [
+                    "masterchef",
+                    "seedPoolPid",
+                    "token",
+                    "totalShares",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "locked",
+                    "masterchef",
+                    "seedPoolPid",
+                    "token",
+                    "totalShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "userInfo.treeAtLastUserAction",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Full Calculation Variables": [
+                    "locked",
+                    "masterchef",
+                    "seedPoolPid",
+                    "token",
+                    "totalShares",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "userInfo.shares",
+                    "userInfo.treeAtLastUserAction",
+                    "withdrawFee",
+                    "withdrawFeePeriod"
+                ],
+                "Is Depend on this.balance": true
+            },
+            {
+                "Function": "withdrawAll",
+                "Node": [
+                    1152
+                ],
+                "Input": [
+                    "_shares",
+                    "_ignore"
+                ],
+                "Calculation Variables": [
+                    "totalShares",
+                    "masterchef",
+                    "seedPoolPid",
+                    "token",
+                    "withdrawFee"
+                ],
+                "Control Variables": [
+                    "totalShares",
+                    "withdrawFeePeriod",
+                    "locked",
+                    "userInfo.treeAtLastUserAction",
+                    "withdrawFee",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "masterchef",
+                    "seedPoolPid",
+                    "token",
+                    "userInfo.shares"
+                ],
+                "Full Calculation Variables": [
+                    "totalShares",
+                    "withdrawFeePeriod",
+                    "locked",
+                    "userInfo.treeAtLastUserAction",
+                    "withdrawFee",
+                    "userInfo.lastDepositedTime",
+                    "userInfo.lastUserActionTime",
+                    "masterchef",
+                    "seedPoolPid",
+                    "token",
+                    "userInfo.shares"
+                ],
+                "Is Depend on this.balance": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "_hardStakers.hardStakedWukongId",
+            "totalStakedNFT"
+        ],
+        "User Stake Reward": [
+            "_hardStakers.accumulatedAmount",
+            "_passiveStakers.accumulatedAmount"
+        ],
+        "User Stake Time": [
+            "_hardStakers.lastCheckpoint",
+            "_passiveStakers.lastCheckPoint"
+        ],
+        "Stake Token Address": [
+            "WukongNFT"
+        ],
+        "Reward Token Address": []
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "hardStake",
+                "Node": "WukongNFT.safeTransferFrom(_sender, address(this), tokenId)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "accumulatePassiveStake",
+                "Node": "_passiveStakers[_owner].accumulatedAmount += getPassiveStakeReward(_owner)"
+            },
+            {
+                "Function": "accumulateHardStake",
+                "Node": "_hardStakers[staker].accumulatedAmount += getCurrentHardStakeReward(staker)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unHardStake",
+                "Node": "WukongNFT.safeTransferFrom(address(this), sender, tokenId)"
+            }
+        ]
+    }
+}

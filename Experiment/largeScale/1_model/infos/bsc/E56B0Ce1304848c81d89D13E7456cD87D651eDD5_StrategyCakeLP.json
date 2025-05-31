@@ -1,0 +1,59 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "balanceOfPool"
+        ],
+        "User Stake Reward": [],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "want"
+        ],
+        "Reward Token Address": [
+            "cake"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(masterchef).enterStaking(wantBal)"
+            },
+            {
+                "Function": "deposit",
+                "Node": "IMasterChef(masterchef).deposit(poolId, wantBal)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokens(toWbnb, 0, cakeToWbnbRoute, address(this), now)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IUniswapRouterETH(unirouter).swapExactTokensForTokens(toSfp, 0, bnbToSfpRoute, vault, now)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wbnb).safeTransfer(msg.sender, callFeeAmount)"
+            },
+            {
+                "Function": "harvest",
+                "Node": "IERC20(wbnb).safeTransfer(treasuryPool, treasuryFeeAmount)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "withdraw",
+                "Node": "IMasterChef(masterchef).leaveStaking(_amount.sub(wantBal))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IMasterChef(masterchef).withdraw(poolId, _amount.sub(wantBal))"
+            },
+            {
+                "Function": "withdraw",
+                "Node": "IERC20(want).safeTransfer(vault, wantBal)"
+            }
+        ]
+    }
+}

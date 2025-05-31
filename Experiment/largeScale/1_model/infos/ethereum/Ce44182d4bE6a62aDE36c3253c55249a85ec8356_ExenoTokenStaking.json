@@ -1,0 +1,52 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Stakeholder.totalAmount",
+            "Stake.amount"
+        ],
+        "User Stake Reward": [
+            "Record.interest",
+            "Record.claimable",
+            "Record.nextRebaseClaimable"
+        ],
+        "User Stake Time": [
+            "Stake.timestamp",
+            "Record.timestamp",
+            "Record.nextRebaseTimestamp"
+        ],
+        "Stake Token Address": [
+            "token"
+        ],
+        "Reward Token Address": [
+            "token"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "_stake",
+                "Node": "token.safeTransfer(stakeholder, amount)"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "unstake",
+                "Node": "token.safeTransferFrom(wallet, stakeholder, payout)"
+            },
+            {
+                "Function": "unstakeFifo",
+                "Node": "token.safeTransferFrom(wallet, stakeholder, payout)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "token.safeTransfer(stakeholder, amount)"
+            },
+            {
+                "Function": "unstakeFifo",
+                "Node": "token.safeTransfer(stakeholder, amount)"
+            }
+        ]
+    }
+}

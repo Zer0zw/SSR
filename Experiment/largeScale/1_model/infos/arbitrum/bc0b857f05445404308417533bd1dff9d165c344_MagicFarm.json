@@ -1,0 +1,38 @@
+{
+    "Variables": {
+        "User Stake Amount": [
+            "Staker.totalstaked"
+        ],
+        "User Stake Reward": [
+            "Staker.totalRewards",
+            "Staker.RewardsToHarvest"
+        ],
+        "User Stake Time": [],
+        "Stake Token Address": [
+            "MagicAssets"
+        ],
+        "Reward Token Address": [
+            "Orb"
+        ]
+    },
+    "Calculations": {
+        "Stake": [
+            {
+                "Function": "stakeNFT",
+                "Node": "MagicAssets.safeTransferFrom(msg.sender, address(this), nftids[k], 1, \"\")"
+            }
+        ],
+        "getReward": [
+            {
+                "Function": "ClaimRewards",
+                "Node": "payable(msg.sender).transfer(RewardsToHarvest)"
+            }
+        ],
+        "unStake": [
+            {
+                "Function": "unstake",
+                "Node": "MagicAssets.safeTransferFrom(address(this), msg.sender, nftids[k], 1, \"\")"
+            }
+        ]
+    }
+}
