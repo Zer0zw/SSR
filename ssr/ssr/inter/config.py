@@ -1,4 +1,4 @@
-API_KEY = "sk-7adc02489443491f95d47f39e12a7a04"
+API_KEY = "your_api_key_here"
 
 MODEL = "deepseek-chat"
 # MODEL = "deepseek-reasoner"
